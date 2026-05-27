@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Wafer icons (decorative) -->
+  <g opacity="0.18" fill="white">
+    <circle cx="1000" cy="120" r="60"/>
+    <circle cx="1000" cy="120" r="40" fill="#1e3a8a"/>
+    <circle cx="1080" cy="510" r="40"/>
+    <circle cx="1080" cy="510" r="25" fill="#1e3a8a"/>
+  </g>
+
+  <!-- Brand tag -->
+  <g transform="translate(80, 130)">
+    <rect x="0" y="0" width="180" height="36" rx="18" fill="white" fill-opacity="0.15"/>
+    <text x="90" y="24" text-anchor="middle" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" fill="white">반도체 아카데미</text>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="270" font-family="-apple-system, system-ui, sans-serif" font-size="78" font-weight="800" fill="white">
+    어려운 반도체 이야기,
+  </text>
+  <text x="80" y="370" font-family="-apple-system, system-ui, sans-serif" font-size="78" font-weight="800" fill="#bfdbfe">
+    쉽게 풀어드려요
+  </text>
+
+  <!-- Subtitle -->
+  <text x="80" y="450" font-family="-apple-system, system-ui, sans-serif" font-size="26" font-weight="400" fill="white" fill-opacity="0.85">
+    반도체 산업과 유해인자를 누구나 이해할 수 있게.
+  </text>
+
+  <!-- Bottom strip -->
+  <g transform="translate(80, 530)" opacity="0.9">
+    <text x="0" y="0" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="500" fill="white" fill-opacity="0.7">
+      비유 · 일러스트 · 인터랙티브 다이어그램
+    </text>
+  </g>
+</svg>

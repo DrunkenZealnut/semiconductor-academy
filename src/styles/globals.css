@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@plugin '@tailwindcss/typography';
+
+@theme {
+  /* Brand */
+  --color-brand-50:  #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  /* Hazard semantic */
+  --color-hazard-critical: #dc2626;
+  --color-hazard-high:     #f59e0b;
+  --color-hazard-moderate: #eab308;
+  --color-hazard-low:      #84cc16;
+
+  /* Process palette */
+  --color-process-wafer:           #64748b;
+  --color-process-cleaning:        #06b6d4;
+  --color-process-diffusion:       #f97316;
+  --color-process-photolithography:#a855f7;
+  --color-process-etching:         #ef4444;
+  --color-process-deposition:      #22c55e;
+  --color-process-ion-implantation:#eab308;
+  --color-process-cmp:             #3b82f6;
+  --color-process-packaging:       #ec4899;
+
+  --font-sans: Pretendard, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: white;
+  color: #111827;
+}
+
+.dark body {
+  background: #0a0a0a;
+  color: #e5e7eb;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* MDX prose 보정 */
+.prose :where(code):not(:where([class~='not-prose'] *))::before,
+.prose :where(code):not(:where([class~='not-prose'] *))::after {
+  content: '';
+}
+
+/* 인라인 화학식 (예: <code>C₆H₆</code>) */
+.formula {
+  font-family: var(--font-mono);
+  background: #f1f5f9;
+  padding: 0.1em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.95em;
+}
+
+.dark .formula {
+  background: #1f2937;
+}

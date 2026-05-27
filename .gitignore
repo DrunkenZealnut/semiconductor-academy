@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build/
+
+# misc
+.DS_Store
+*.pem
+.vscode/
+.idea/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# bkit runtime (keep state, ignore runtime cache)
+.bkit/runtime/
+
+# 원본 학술 자료 (저작권 보호 — 로컬 참조만 허용, 공개 저장소에 업로드 금지)
+data/

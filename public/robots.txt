@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drunkenzealnut.github.io/semiconductor-academy/sitemap.xml

@@ -1,0 +1,150 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-05-27T04:20:45.518Z",
+  "activeFeatures": [
+    "semiconductor-academy-site",
+    "SemiconductorAcademy",
+    "[slug]"
+  ],
+  "primaryFeature": "semiconductor-academy-site",
+  "features": {
+    "semiconductor-academy-site": {
+      "phase": "act",
+      "phaseNumber": 5,
+      "matchRate": 95,
+      "iterationCount": 1,
+      "startedAt": "2026-05-27T00:00:00.000Z",
+      "lastUpdated": "2026-05-27T04:30:00.000Z",
+      "tasks": {
+        "plan": "1",
+        "design": "2",
+        "do": "3",
+        "check": "4",
+        "act-1": "5"
+      },
+      "documents": {
+        "plan": "docs/01-plan/features/semiconductor-academy-site.plan.md",
+        "design": "docs/02-design/features/semiconductor-academy-site.design.md",
+        "analysis": "docs/03-analysis/semiconductor-academy-site.analysis.md"
+      }
+    },
+    "SemiconductorAcademy": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-27T04:19:30.088Z",
+        "lastUpdated": "2026-05-27T04:19:30.088Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/seo.ts"
+    },
+    "[slug]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-27T04:20:41.007Z",
+        "lastUpdated": "2026-05-27T04:20:45.518Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/process/[slug]/page.tsx"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 5,
+    "level": "Dynamic",
+    "phaseHistory": [
+      {
+        "phase": "plan",
+        "feature": "semiconductor-academy-site",
+        "at": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "semiconductor-academy-site",
+        "at": "2026-05-27T00:00:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "semiconductor-academy-site",
+        "at": "2026-05-27T01:46:22.038Z"
+      },
+      {
+        "phase": "check",
+        "feature": "semiconductor-academy-site",
+        "at": "2026-05-27T02:00:00.000Z"
+      },
+      {
+        "phase": "act",
+        "feature": "semiconductor-academy-site",
+        "iteration": 1,
+        "matchRate": 95,
+        "at": "2026-05-27T04:30:00.000Z"
+      }
+    ]
+  },
+  "session": {
+    "startedAt": "2026-05-26T13:06:29.799Z",
+    "onboardingCompleted": true,
+    "lastActivity": "2026-05-27T04:20:45.518Z"
+  },
+  "history": [
+    {
+      "event": "plan_created",
+      "feature": "semiconductor-academy-site",
+      "at": "2026-05-27T00:00:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "semiconductor-academy-site",
+      "at": "2026-05-27T00:00:00.000Z"
+    },
+    {
+      "event": "do_started",
+      "feature": "semiconductor-academy-site",
+      "at": "2026-05-27T01:46:22.038Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "semiconductor-academy-site",
+      "matchRate": 81,
+      "at": "2026-05-27T02:00:00.000Z"
+    },
+    {
+      "event": "act_completed",
+      "feature": "semiconductor-academy-site",
+      "iteration": 1,
+      "matchRate": 95,
+      "at": "2026-05-27T04:30:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-27T04:19:30.088Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-27T04:20:41.007Z",
+      "feature": "[slug]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-27T04:20:43.006Z",
+      "feature": "[slug]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-27T04:20:45.518Z",
+      "feature": "[slug]",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}

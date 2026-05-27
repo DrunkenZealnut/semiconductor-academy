@@ -1,0 +1,79 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X, BookOpen } from 'lucide-react';
+import { cn } from '@/lib/cn';
+import { ThemeToggle } from './ThemeToggle';
+
+const navItems = [
+  { href: '/what-is-semiconductor/', label: '반도체란?' },
+  { href: '/process-overview/', label: '공정 한눈에' },
+  { href: '/chemicals/', label: '유해물질 사전' },
+  { href: '/occupational-disease/', label: '직업병' },
+  { href: '/about/', label: '소개' },
+];
+
+export function Header() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100">
+          <BookOpen className="size-6 text-brand-600" />
+          <span>반도체 아카데미</span>
+        </Link>
+
+        <nav className="hidden items-center gap-1 md:flex" aria-label="주 메뉴">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <ThemeToggle />
+        </nav>
+
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={open}
+            className="rounded-md p-2 text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <nav
+          aria-label="모바일 메뉴"
+          className={cn(
+            'border-t border-slate-200 bg-white md:hidden dark:border-slate-800 dark:bg-slate-950',
+          )}
+        >
+          <ul className="space-y-1 px-4 py-3">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+  );
+}
