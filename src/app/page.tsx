@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, FlaskConical, Activity } from 'lucide-react';
+import { ArrowRight, Compass, FlaskConical, Activity } from 'lucide-react';
 import { ProcessDiagram } from '@/components/process/ProcessDiagram';
 import { buildMetadata } from '@/lib/seo';
 
@@ -62,10 +62,10 @@ export default function HomePage() {
       {/* Three pillars */}
       <section className="mt-20 grid gap-6 md:grid-cols-3">
         <FeatureCard
-          icon={BookOpen}
-          title="공정 한눈에 보기"
-          description="9단계 반도체 제조 공정을 차례로 따라가며 어떤 일이 일어나는지 알아봐요."
-          href="/process-overview/"
+          icon={Compass}
+          title="학습 시작 가이드"
+          description="처음이라면 여기서부터. 약 40분 안에 반도체 산업의 큰 그림을 잡을 수 있어요."
+          href="/start/"
           color="text-cyan-600"
         />
         <FeatureCard
@@ -84,15 +84,17 @@ export default function HomePage() {
         />
       </section>
 
-      {/* CTA */}
-      <section className="mt-20 rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 px-8 py-12 text-center text-white shadow-xl">
-        <h2 className="text-2xl font-bold sm:text-3xl">처음 오셨다면?</h2>
-        <p className="mx-auto mt-3 max-w-xl text-brand-100">
+      {/* CTA — 톤다운된 단색 (다이어그램이 메인이라 secondary 톤) */}
+      <section className="mt-20 rounded-3xl border border-slate-200 bg-slate-50 px-8 py-10 text-center dark:border-slate-800 dark:bg-slate-900">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+          처음 오셨다면?
+        </h2>
+        <p className="mx-auto mt-3 max-w-xl text-slate-600 dark:text-slate-400">
           반도체가 무엇인지부터 차근차근 시작해 보세요. 비유와 그림으로 풀어드려요.
         </p>
         <Link
           href="/what-is-semiconductor/"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-brand-700 shadow-md transition hover:shadow-lg"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-brand-700 hover:shadow-md"
         >
           처음부터 시작하기
           <ArrowRight className="size-4" />
