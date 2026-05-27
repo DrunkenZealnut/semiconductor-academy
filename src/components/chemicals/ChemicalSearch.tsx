@@ -2,7 +2,7 @@
 
 import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Search, X } from 'lucide-react';
+import { Search, X, SlidersHorizontal } from 'lucide-react';
 import { ChemicalCard } from './ChemicalCard';
 import { searchChemicals } from '@/lib/search';
 import { chemicals } from '@/lib/content';
@@ -37,6 +37,7 @@ function ChemicalSearchInner() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const initialQuery = searchParams.get('q') ?? '';
   const initialCategories = useMemo(
@@ -105,10 +106,40 @@ function ChemicalSearchInner() {
     setActiveProcesses(new Set());
   };
 
+  const activeFilterCount = activeCategories.size + activeProcesses.size;
+
   return (
     <div className="not-prose grid gap-6 lg:grid-cols-[240px_1fr]">
-      {/* Filter sidebar */}
-      <aside className="space-y-6">
+      {/* Mobile filter toggle - only visible below lg */}
+      <button
+        type="button"
+        onClick={() => setMobileFiltersOpen((v) => !v)}
+        aria-expanded={mobileFiltersOpen}
+        aria-controls="chemical-filters"
+        className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 lg:hidden"
+      >
+        <span className="flex items-center gap-2">
+          <SlidersHorizontal className="size-4" />
+          필터
+          {activeFilterCount > 0 && (
+            <span className="ml-1 rounded-full bg-brand-600 px-2 py-0.5 text-xs font-bold text-white">
+              {activeFilterCount}
+            </span>
+          )}
+        </span>
+        <span className="text-xs text-slate-500">
+          {mobileFiltersOpen ? '접기' : '펼치기'}
+        </span>
+      </button>
+
+      {/* Filter sidebar - always visible on lg+, toggleable on mobile */}
+      <aside
+        id="chemical-filters"
+        className={cn(
+          'space-y-6',
+          !mobileFiltersOpen && 'hidden lg:block',
+        )}
+      >
         <div>
           <h3 className="mb-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
             분류
