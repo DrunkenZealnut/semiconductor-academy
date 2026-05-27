@@ -7,6 +7,9 @@ import type { ComponentType } from 'react';
  * 새 공정 MDX 추가 시: `src/content/processes/{slug}.mdx` 작성 후 여기에 import 추가.
  */
 const processMdxLoaders: Record<string, () => Promise<{ default: ComponentType }>> = {
+  wafer: () => import('@/content/processes/wafer.mdx'),
+  cleaning: () => import('@/content/processes/cleaning.mdx'),
+  diffusion: () => import('@/content/processes/diffusion.mdx'),
   photolithography: () => import('@/content/processes/photolithography.mdx'),
   etching: () => import('@/content/processes/etching.mdx'),
   'ion-implantation': () => import('@/content/processes/ion-implantation.mdx'),

@@ -302,5 +302,83 @@
     "hazardSummary": "유산·기형아 유발 의심. 1990년대 말 자체 금지.",
     "easyExplain": "예전에 포토레지스트 용제로 흔히 쓰였는데, 임신부에게 위험하다는 사실이 밝혀져 1990년대 후반 반도체 업계가 자체적으로 금지했어요.",
     "sourceRef": { "page": 144, "section": "포토리소그래피의 유해인자 (생식독성 이슈)" }
+  },
+  {
+    "id": "antimony-trioxide",
+    "nameKo": "삼산화안티몬",
+    "nameEn": "Antimony Trioxide",
+    "formula": "Sb₂O₃",
+    "casNo": "1327-33-9",
+    "category": "metal",
+    "usedIn": ["diffusion"],
+    "hazards": ["carcinogen-2a", "sensitizer"],
+    "hazardSummary": "장기 노출 시 폐암·진폐 위험. 안티몬과 그 화합물 노출기준 0.5mg/m³.",
+    "easyExplain": "확산 공정에서 안티몬(Sb)을 실리콘에 넣는 데 쓰이는 흰색 가루예요. 분진을 들이마시면 폐에 쌓여 폐암이나 진폐를 일으킬 수 있어 노출 기준이 매우 낮게 정해져 있어요.",
+    "sourceRef": { "page": 106, "section": "확산 공정의 유해인자 - 표 7-2" }
+  },
+  {
+    "id": "boron-tribromide",
+    "nameKo": "삼브롬화붕소",
+    "nameEn": "Boron Tribromide",
+    "formula": "BBr₃",
+    "casNo": "10294-33-4",
+    "category": "gas",
+    "usedIn": ["diffusion"],
+    "hazards": ["corrosive", "acute-toxic"],
+    "hazardSummary": "상기도 자극. 노출 시 호흡곤란과 폐부종 가능.",
+    "easyExplain": "p형 반도체를 만들 때 붕소를 액체 형태로 공급하는 물질이에요. 공기 중 수분과 만나면 매캐한 가스가 발생해 호흡기를 자극하고, 심하면 폐에 물이 차는 폐부종까지 일으킬 수 있어요.",
+    "sourceRef": { "page": 106, "section": "확산 공정의 유해인자 - 표 7-2" }
+  },
+  {
+    "id": "phosphorus-oxychloride",
+    "nameKo": "옥시염화인 (염화포스포릴)",
+    "nameEn": "Phosphorus Oxychloride",
+    "formula": "POCl₃",
+    "casNo": "10025-87-3",
+    "category": "gas",
+    "usedIn": ["diffusion"],
+    "hazards": ["corrosive", "acute-toxic"],
+    "hazardSummary": "극심한 자극. 고농도 노출 시 사망 가능.",
+    "easyExplain": "확산 공정에서 인(P)을 액체 상태로 실리콘에 주입하는 물질이에요. 단시간 노출만으로도 어지러움·두통·구토를 일으키고, 농도가 높으면 사망에 이를 수 있어요. 장기 노출 시 천식 같은 호흡기 질환도 일으켜요.",
+    "sourceRef": { "page": 107, "section": "확산 공정의 유해인자 - 표 7-2" }
+  },
+  {
+    "id": "dichlorosilane",
+    "nameKo": "디클로로실란",
+    "nameEn": "Dichlorosilane",
+    "formula": "SiH₂Cl₂",
+    "casNo": "4109-96-0",
+    "category": "gas",
+    "usedIn": ["diffusion", "deposition"],
+    "hazards": ["corrosive", "acute-toxic"],
+    "hazardSummary": "인화성·자극성. 물과 반응해 염화수소(HCl) 발생.",
+    "easyExplain": "확산·증착 공정에서 실리콘을 공급하는 원료 가스예요. 공기 중 수분과 만나면 염산이 만들어져 호흡기를 자극해요. 가연성도 강해 누출 시 화재 위험이 있어요.",
+    "sourceRef": { "page": 106, "section": "확산 공정의 유해인자" }
+  },
+  {
+    "id": "ozone",
+    "nameKo": "오존",
+    "nameEn": "Ozone",
+    "formula": "O₃",
+    "casNo": "10028-15-6",
+    "category": "byproduct",
+    "usedIn": ["cleaning", "photolithography"],
+    "hazards": ["acute-toxic", "corrosive"],
+    "hazardSummary": "강한 폐 자극. 장기 노출 시 폐 기능 저하.",
+    "easyExplain": "스모그가 있는 날 공기에서 느껴지는 비릿한 냄새의 그 물질이에요. 클리닝과 노광 공정에서 강력한 산화제로 쓰여요. 적은 양으로도 폐를 자극하고, 누적되면 폐 기능을 떨어뜨려요.",
+    "sourceRef": { "page": 91, "section": "클리닝 공정 - 오존 클리닝" }
+  },
+  {
+    "id": "sulfuric-acid",
+    "nameKo": "황산",
+    "nameEn": "Sulfuric Acid",
+    "formula": "H₂SO₄",
+    "casNo": "7664-93-9",
+    "category": "acid",
+    "usedIn": ["cleaning", "photolithography"],
+    "hazards": ["corrosive", "carcinogen-1"],
+    "hazardSummary": "강한 화학 화상. 황산 미스트는 발암성 1군.",
+    "easyExplain": "자동차 배터리에 들어있는 그 강산이에요. 반도체 공장에서는 98% 이상의 진한 농도로 써서 위험해요. 피라냐 클리닝(SPM)에서 포토레지스트와 유기물을 태우는 데 사용돼요. 공기 중 미스트는 발암성 1군으로 분류돼요.",
+    "sourceRef": { "page": 90, "section": "클리닝 공정 - 피라냐 클리닝" }
   }
 ]
