@@ -1,0 +1,173 @@
+[
+  {
+    "id": "wafer",
+    "order": 1,
+    "nameKo": "웨이퍼 제조",
+    "nameEn": "Wafer Manufacturing",
+    "slug": "wafer",
+    "oneLine": "모래에서 반도체의 도화지를 만드는 공정이에요",
+    "analogy": "모래에서 추출한 순수한 실리콘을 녹였다가 천천히 굳혀 '잉곳'이라는 긴 원기둥을 만들고, 그걸 얇게 잘라 동전 같은 '웨이퍼'를 만들어요. 케이크를 통째로 구운 뒤 얇게 슬라이스하는 것과 비슷해요.",
+    "iconName": "Disc",
+    "color": "process-wafer",
+    "steps": [
+      { "id": "extract", "nameKo": "실리콘 추출", "description": "규사에서 다결정 실리콘 추출" },
+      { "id": "ingot", "nameKo": "잉곳 성장", "description": "초고순도 실리콘을 녹여 단결정 잉곳 제작" },
+      { "id": "slice", "nameKo": "슬라이싱", "description": "잉곳을 0.7mm 두께로 얇게 자름" },
+      { "id": "polish", "nameKo": "연마", "description": "거울처럼 매끄럽게 표면 처리" }
+    ],
+    "chemicals": ["arsenic", "trichlorosilane"],
+    "hazardKeywords": ["고온 노출", "분진", "갈륨비소"]
+  },
+  {
+    "id": "cleaning",
+    "order": 2,
+    "nameKo": "클리닝",
+    "nameEn": "Cleaning",
+    "slug": "cleaning",
+    "oneLine": "웨이퍼를 가장 깨끗하게 씻는 공정이에요",
+    "analogy": "수술 전 의사가 손을 박박 씻는 것과 비슷해요. 다음 공정에서 미세 회로를 그리려면 머리카락 1만분의 1보다 작은 먼지조차 남아있으면 안 돼요.",
+    "iconName": "Droplets",
+    "color": "process-cleaning",
+    "steps": [
+      { "id": "wet", "nameKo": "습식 클리닝", "description": "화학 용액으로 표면 오염물 제거" },
+      { "id": "dry", "nameKo": "건식 클리닝", "description": "플라스마/가스로 미세 잔류물 제거" },
+      { "id": "dry-method", "nameKo": "건조", "description": "마란고니 건조 등으로 잔류수 제거" }
+    ],
+    "chemicals": ["hydrofluoric-acid", "hydrogen-peroxide", "isopropyl-alcohol"],
+    "hazardKeywords": ["불산 부식", "과산화수소 산화", "유기용제"]
+  },
+  {
+    "id": "diffusion",
+    "order": 3,
+    "nameKo": "확산",
+    "nameEn": "Diffusion",
+    "slug": "diffusion",
+    "oneLine": "고온으로 불순물을 실리콘에 스며들게 해요",
+    "analogy": "뜨거운 차에 설탕이 천천히 녹아 퍼지듯이, 약 1000℃의 노(furnace)에서 가스로 된 불순물이 실리콘 내부로 스며들어요.",
+    "iconName": "Flame",
+    "color": "process-diffusion",
+    "steps": [
+      { "id": "heat", "nameKo": "예열", "description": "노 온도를 800~1200℃까지 상승" },
+      { "id": "gas", "nameKo": "가스 주입", "description": "도펀트 가스 공급" },
+      { "id": "anneal", "nameKo": "어닐링", "description": "확산 완료 후 안정화" }
+    ],
+    "chemicals": ["arsine", "phosphine", "diborane"],
+    "hazardKeywords": ["고온", "독성 가스", "수소 화재"]
+  },
+  {
+    "id": "photolithography",
+    "order": 4,
+    "nameKo": "포토리소그래피",
+    "nameEn": "Photolithography",
+    "slug": "photolithography",
+    "oneLine": "빛으로 회로 무늬를 그려넣는 공정이에요",
+    "analogy": "사진을 인화하는 것과 비슷해요. 빛에 반응하는 약품(포토레지스트)을 웨이퍼에 바르고, 회로 무늬가 그려진 마스크로 빛을 쏘면 회로가 새겨져요.",
+    "iconName": "Camera",
+    "color": "process-photolithography",
+    "steps": [
+      { "id": "clean", "nameKo": "클리닝", "description": "표면을 깨끗이 씻어요" },
+      { "id": "treat", "nameKo": "표면 처리", "description": "PR이 잘 붙도록 HMDS 처리" },
+      { "id": "coat", "nameKo": "PR 코팅", "description": "포토레지스트를 균일하게 도포" },
+      { "id": "soft-bake", "nameKo": "소프트 베이크", "description": "용매 증발, 1차 경화" },
+      { "id": "expose", "nameKo": "노광", "description": "마스크 통해 UV/EUV 조사" },
+      { "id": "post-bake", "nameKo": "노광 후 경화", "description": "화학 반응 완료" },
+      { "id": "develop", "nameKo": "현상", "description": "현상액으로 무늬 드러냄" },
+      { "id": "hard-bake", "nameKo": "하드 베이크", "description": "최종 경화" }
+    ],
+    "chemicals": ["pgmea", "tmah", "hmds", "benzene"],
+    "hazardKeywords": ["유기용제 노출", "광화학 부산물", "PR 분진"]
+  },
+  {
+    "id": "etching",
+    "order": 5,
+    "nameKo": "식각",
+    "nameEn": "Etching",
+    "slug": "etching",
+    "oneLine": "필요 없는 부분을 깎아내는 공정이에요",
+    "analogy": "조각가가 정으로 돌을 깎듯이, 포토리소그래피로 그려진 무늬를 따라 화학 약품이나 플라스마로 웨이퍼 표면을 깎아 회로를 새겨요.",
+    "iconName": "Scissors",
+    "color": "process-etching",
+    "steps": [
+      { "id": "wet-etch", "nameKo": "습식 식각", "description": "산/염기 용액으로 화학적 제거" },
+      { "id": "dry-etch", "nameKo": "건식 식각", "description": "플라스마로 정밀 식각" },
+      { "id": "strip", "nameKo": "PR 박리", "description": "남은 포토레지스트 제거" }
+    ],
+    "chemicals": ["hydrofluoric-acid", "chlorine", "fluorine"],
+    "hazardKeywords": ["불산", "할로겐 가스", "플라스마 부산물"]
+  },
+  {
+    "id": "deposition",
+    "order": 6,
+    "nameKo": "증착",
+    "nameEn": "Deposition",
+    "slug": "deposition",
+    "oneLine": "얇은 막을 입히는 공정이에요",
+    "analogy": "벽에 페인트를 칠하듯이, 웨이퍼 표면에 절연막이나 금속막을 머리카락의 수천분의 1 두께로 균일하게 입혀요.",
+    "iconName": "Layers",
+    "color": "process-deposition",
+    "steps": [
+      { "id": "cvd", "nameKo": "화학기상증착(CVD)", "description": "가스 화학 반응으로 막 형성" },
+      { "id": "pvd", "nameKo": "물리기상증착(PVD)", "description": "금속 증발/스퍼터링" },
+      { "id": "ald", "nameKo": "원자층증착(ALD)", "description": "원자 단위 정밀 증착" }
+    ],
+    "chemicals": ["silane", "ammonia", "tungsten-hexafluoride"],
+    "hazardKeywords": ["발화성 가스", "유독 가스", "고압"]
+  },
+  {
+    "id": "ion-implantation",
+    "order": 7,
+    "nameKo": "이온 주입",
+    "nameEn": "Ion Implantation",
+    "slug": "ion-implantation",
+    "oneLine": "불순물 이온을 가속해 실리콘에 박아넣어요",
+    "analogy": "총알을 표적에 박는 것과 비슷해요. 도펀트 이온을 강력한 전기장으로 가속해 실리콘 결정 안에 박아넣어 반도체 성질을 만들어요.",
+    "iconName": "Target",
+    "color": "process-ion-implantation",
+    "steps": [
+      { "id": "source", "nameKo": "이온 발생", "description": "도펀트를 플라스마화" },
+      { "id": "accelerate", "nameKo": "가속", "description": "수십 keV로 가속" },
+      { "id": "implant", "nameKo": "주입", "description": "웨이퍼에 이온 박힘" },
+      { "id": "anneal", "nameKo": "활성화", "description": "열처리로 결정 복원" }
+    ],
+    "chemicals": ["arsine", "phosphine", "boron-trifluoride"],
+    "hazardKeywords": ["X선 발생", "독성 가스", "고전압"]
+  },
+  {
+    "id": "cmp",
+    "order": 8,
+    "nameKo": "물리화학적 연마 (CMP)",
+    "nameEn": "Chemical Mechanical Polishing",
+    "slug": "cmp",
+    "oneLine": "표면을 거울처럼 매끄럽게 갈아내요",
+    "analogy": "사포로 나무 표면을 다듬듯이, 약품(슬러리)과 패드로 웨이퍼 표면을 원자 수준으로 평탄하게 갈아요. 다음 공정에서 빛 초점이 잘 맞도록.",
+    "iconName": "Scan",
+    "color": "process-cmp",
+    "steps": [
+      { "id": "slurry", "nameKo": "슬러리 공급", "description": "연마용 화학 용액 분사" },
+      { "id": "polish", "nameKo": "연마", "description": "회전 패드로 평탄화" },
+      { "id": "clean", "nameKo": "세정", "description": "잔류 슬러리 제거" }
+    ],
+    "chemicals": ["silica-slurry", "ceria-slurry", "hydrogen-peroxide"],
+    "hazardKeywords": ["나노 입자", "산화제", "금속 슬러리"]
+  },
+  {
+    "id": "packaging",
+    "order": 9,
+    "nameKo": "칩 조립 (패키징)",
+    "nameEn": "Packaging",
+    "slug": "packaging",
+    "oneLine": "웨이퍼를 잘라 칩으로 만들고 보호 케이스에 넣어요",
+    "analogy": "쿠키 반죽 한 판을 구운 뒤 모양대로 잘라 포장하는 것과 비슷해요. 웨이퍼를 잘라 칩으로 나누고, 와이어로 연결해 플라스틱 케이스에 봉지화해요.",
+    "iconName": "Package",
+    "color": "process-packaging",
+    "steps": [
+      { "id": "dice", "nameKo": "다이싱", "description": "웨이퍼를 칩으로 절단" },
+      { "id": "bond", "nameKo": "다이/와이어 본딩", "description": "기판 부착 + 전기 연결" },
+      { "id": "mold", "nameKo": "몰딩", "description": "에폭시로 봉지" },
+      { "id": "mark", "nameKo": "마킹", "description": "레이저로 제품명 표시" },
+      { "id": "test", "nameKo": "패키지 검사", "description": "최종 테스트" }
+    ],
+    "chemicals": ["epoxy-resin", "solder-flux", "lead"],
+    "hazardKeywords": ["에폭시 분진", "납 노출", "유기용제"]
+  }
+]

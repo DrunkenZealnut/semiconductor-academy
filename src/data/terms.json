@@ -1,0 +1,92 @@
+[
+  {
+    "id": "semiconductor",
+    "termKo": "반도체",
+    "termEn": "Semiconductor",
+    "shortDef": "전기가 도체와 부도체의 중간 정도로 흐르는 물질. 조건에 따라 흐름을 조절할 수 있어요."
+  },
+  {
+    "id": "wafer",
+    "termKo": "웨이퍼",
+    "termEn": "Wafer",
+    "shortDef": "반도체를 만드는 얇은 원판. 실리콘으로 만들며, 반도체의 '도화지' 역할."
+  },
+  {
+    "id": "photoresist",
+    "termKo": "포토레지스트",
+    "termEn": "Photoresist (PR)",
+    "shortDef": "빛에 반응해 성질이 변하는 약품. 포토리소그래피에서 회로 무늬를 만들 때 사용."
+  },
+  {
+    "id": "cleanroom",
+    "termKo": "클린룸",
+    "termEn": "Cleanroom",
+    "shortDef": "공기 중 먼지가 거의 없는 작업 공간. 반도체 공장의 핵심 시설."
+  },
+  {
+    "id": "ingot",
+    "termKo": "잉곳",
+    "termEn": "Ingot",
+    "shortDef": "웨이퍼를 만들기 전, 실리콘을 녹였다 굳혀 만든 긴 원기둥."
+  },
+  {
+    "id": "doping",
+    "termKo": "도핑",
+    "termEn": "Doping",
+    "shortDef": "순수한 실리콘에 불순물을 약간 섞어 전기 흐름 성질을 조절하는 기법."
+  },
+  {
+    "id": "plasma",
+    "termKo": "플라스마",
+    "termEn": "Plasma",
+    "shortDef": "기체에 강한 에너지를 가해 이온화시킨 상태. 식각·증착 공정에 사용."
+  },
+  {
+    "id": "mask",
+    "termKo": "마스크",
+    "termEn": "Mask",
+    "shortDef": "회로 무늬가 그려진 판. 포토리소그래피에서 필름 역할."
+  },
+  {
+    "id": "etching",
+    "termKo": "식각",
+    "termEn": "Etching",
+    "shortDef": "원하지 않는 부분의 막을 화학/물리적으로 깎아내는 공정."
+  },
+  {
+    "id": "deposition",
+    "termKo": "증착",
+    "termEn": "Deposition",
+    "shortDef": "웨이퍼 표면에 얇은 막을 입히는 공정."
+  },
+  {
+    "id": "cmp",
+    "termKo": "CMP",
+    "termEn": "Chemical Mechanical Polishing",
+    "shortDef": "화학 슬러리 + 기계적 연마로 표면을 평탄하게 만드는 공정."
+  },
+  {
+    "id": "precautionary-principle",
+    "termKo": "사전주의 원칙",
+    "termEn": "Precautionary Principle",
+    "shortDef": "위험이 불확실해도 미리 예방하는 접근법. 새 기술/물질에 적용."
+  },
+  {
+    "id": "msds",
+    "termKo": "MSDS / SDS",
+    "termEn": "Material Safety Data Sheet",
+    "shortDef": "물질안전보건자료. 화학물질의 위험·취급법을 정리한 문서."
+  },
+  {
+    "id": "iarc-1",
+    "termKo": "발암성 1군",
+    "termEn": "IARC Group 1",
+    "shortDef": "국제암연구소가 '사람에게 발암성이 있다'고 분류한 최상위 등급."
+  },
+  {
+    "id": "emf",
+    "termKo": "극저주파 자기장",
+    "termEn": "Extremely Low Frequency Magnetic Field",
+    "shortDef": "60Hz 이하의 자기장. 전력 설비·반도체 장비에서 발생."
+  }
+]
