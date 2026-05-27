@@ -43,27 +43,20 @@ export function ProcessDiagram({ activeId, variant = 'full' }: ProcessDiagramPro
       aria-label="반도체 제조 9대 공정 다이어그램"
       className="not-prose"
     >
-      <div className="overflow-x-auto pb-4">
-        <ol className="flex min-w-max items-stretch gap-2 px-1">
-          {processes.map((p, idx) => (
-            <li key={p.id} className="flex items-center gap-2">
-              <ProcessNode
-                process={p}
-                active={p.id === activeId}
-                selected={p.id === selectedId}
-                onSelect={setSelectedId}
-                variant={variant}
-              />
-              {idx < processes.length - 1 && (
-                <ChevronRight
-                  aria-hidden
-                  className="size-5 shrink-0 text-slate-400 dark:text-slate-600"
-                />
-              )}
-            </li>
-          ))}
-        </ol>
-      </div>
+      {/* 반응형 그리드: mobile 3열 → sm 4열 → md 5열 → lg 9열 (한 줄, 가로 스크롤 없음) */}
+      <ol className="grid grid-cols-3 gap-2 pb-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
+        {processes.map((p) => (
+          <li key={p.id} className="contents">
+            <ProcessNode
+              process={p}
+              active={p.id === activeId}
+              selected={p.id === selectedId}
+              onSelect={setSelectedId}
+              variant={variant}
+            />
+          </li>
+        ))}
+      </ol>
 
       {/* 정보 카드: 마지막으로 선택된 공정 유지 */}
       {variant === 'full' && (
@@ -140,8 +133,7 @@ function ProcessNode({ process: p, active, selected, onSelect, variant }: Proces
       onFocus={() => onSelect(p.id)}
       aria-label={`${p.order}단계: ${p.nameKo}. ${p.oneLine}`}
       className={cn(
-        'group flex flex-col items-center gap-2 rounded-2xl border-2 px-4 py-3 text-center transition',
-        variant === 'compact' ? 'min-w-[110px]' : 'min-w-[130px]',
+        'group flex h-full flex-col items-center gap-2 rounded-2xl border-2 px-3 py-3 text-center transition',
         'hover:-translate-y-1 hover:shadow-md',
         active
           ? 'border-brand-500 bg-brand-50 dark:bg-brand-950/40'
@@ -162,7 +154,9 @@ function ProcessNode({ process: p, active, selected, onSelect, variant }: Proces
         {p.nameKo}
       </div>
       {variant === 'full' && (
-        <div className="text-xs text-slate-500 dark:text-slate-400">{p.nameEn}</div>
+        <div className="line-clamp-2 text-xs leading-tight text-slate-500 dark:text-slate-400">
+          {p.nameEn}
+        </div>
       )}
     </Link>
   );
