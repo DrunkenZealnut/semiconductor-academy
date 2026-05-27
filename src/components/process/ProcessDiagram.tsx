@@ -114,7 +114,7 @@ export function ProcessDiagram({ activeId, variant = 'full' }: ProcessDiagramPro
             </div>
           ) : (
             <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-              💡 위 공정 박스를 클릭하거나 마우스로 가리키면 자세한 정보가 여기에 표시돼요.
+              💡 위 공정 박스를 탭하거나 가리키면 자세한 정보가 여기에 표시돼요.
             </div>
           )}
         </>
