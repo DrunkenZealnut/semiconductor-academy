@@ -12,7 +12,10 @@ const processMdxLoaders: Record<string, () => Promise<{ default: ComponentType }
   diffusion: () => import('@/content/processes/diffusion.mdx'),
   photolithography: () => import('@/content/processes/photolithography.mdx'),
   etching: () => import('@/content/processes/etching.mdx'),
+  deposition: () => import('@/content/processes/deposition.mdx'),
   'ion-implantation': () => import('@/content/processes/ion-implantation.mdx'),
+  cmp: () => import('@/content/processes/cmp.mdx'),
+  packaging: () => import('@/content/processes/packaging.mdx'),
 };
 
 export async function loadProcessMdx(slug: string): Promise<ComponentType | null> {
