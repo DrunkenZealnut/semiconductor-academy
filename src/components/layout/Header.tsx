@@ -7,8 +7,8 @@ import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
 
 const navItems = [
-  { href: '/what-is-semiconductor/', label: '반도체란?' },
-  { href: '/process-overview/', label: '공정 한눈에' },
+  { href: '/chapters/', label: '책 차례' },
+  { href: '/process-overview/', label: '공정' },
   { href: '/chemicals/', label: '유해물질 사전' },
   { href: '/occupational-disease/', label: '직업병' },
   { href: '/about/', label: '소개' },

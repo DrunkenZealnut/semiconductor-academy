@@ -1,0 +1,30 @@
+## 패키징 — 검은 칩에 옷을 입히기
+
+웨이퍼 가공이 끝나면 한 장의 웨이퍼에 수백~수천 개의 칩이 만들어져 있어요. 이걸 자르고, 연결하고, 보호 케이스에
+넣어 우리가 아는 검은 직사각형 칩으로 만들어요. 이 마지막 단계가 패키징입니다.
+
+<ProcessDiagram activeId="packaging" variant="compact" />
+
+## 8단계 진행
+
+다이싱 → 다이 본딩 → 와이어 본딩 → 몰딩 → 마킹 → 솔더볼 부착 → 싱귤레이션 → 패키지 검사
+
+## 핵심 위험
+
+- **납 (Pb)**: 솔더의 주성분. EU의 RoHS 규제로 무연 솔더로 전환 중
+- **에폭시 수지**: 몰딩의 검은 플라스틱. 굳기 전 액체 상태에서 알레르기 유발
+- **솔더 플럭스**: 가열 시 매캐한 흄 발생
+
+<ChemicalCard id="lead" />
+<ChemicalCard id="epoxy-resin" />
+
+<Callout type="warning" title="OSAT 협력업체의 사각지대">
+  패키징은 OSAT(Outsourced Semiconductor Assembly and Test) 업체가 담당하는 경우가 많아 작업자의 노출 평가
+  자료가 누락되기 쉬워요. 산업보건 연구의 가장 큰 공백 영역 중 하나예요.
+</Callout>
+
+## 자세한 공정 →
+
+[패키징 공정 자세히 보기 →](/process/packaging/)
+
+다음: <ChapterRef order={14} /> — 책의 후반부 학술 reflection 시작

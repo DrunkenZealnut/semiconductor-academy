@@ -122,6 +122,55 @@ export const CATEGORY_LABELS: Record<ChemicalCategory, string> = {
   byproduct: '부산물',
 };
 
+/** 챕터 카테고리 */
+export type ChapterCategory = 'foundation' | 'process' | 'hazard' | 'reflection';
+
+export interface Chapter {
+  id: string;
+  order: number;
+  slug: string;
+  title: string;
+  shortTitle?: string;
+  subtitle?: string;
+  category: ChapterCategory;
+  sourcePages: [number, number];
+  readingTime: number;
+  hasFullBody: boolean;
+  externalLink?: string;
+  relatedProcessIds?: ProcessId[];
+  relatedChemicalIds?: string[];
+  legacyUrl?: string;
+}
+
+export const CHAPTER_CATEGORY_LABELS: Record<ChapterCategory, string> = {
+  foundation: '기초',
+  process: '공정',
+  hazard: '유해성',
+  reflection: '성찰',
+};
+
+/** 카테고리별 Tailwind 색상 키 — 카드 보더·뱃지에서 사용 */
+export const CHAPTER_CATEGORY_COLOR: Record<ChapterCategory, {
+  border: string; bg: string; text: string; bgDark: string; textDark: string;
+}> = {
+  foundation: {
+    border: 'border-blue-500', bg: 'bg-blue-100', text: 'text-blue-700',
+    bgDark: 'dark:bg-blue-950/40', textDark: 'dark:text-blue-300',
+  },
+  process: {
+    border: 'border-emerald-500', bg: 'bg-emerald-100', text: 'text-emerald-700',
+    bgDark: 'dark:bg-emerald-950/40', textDark: 'dark:text-emerald-300',
+  },
+  hazard: {
+    border: 'border-amber-500', bg: 'bg-amber-100', text: 'text-amber-700',
+    bgDark: 'dark:bg-amber-950/40', textDark: 'dark:text-amber-300',
+  },
+  reflection: {
+    border: 'border-purple-500', bg: 'bg-purple-100', text: 'text-purple-700',
+    bgDark: 'dark:bg-purple-950/40', textDark: 'dark:text-purple-300',
+  },
+};
+
 /** 유해성 → 컬러 토큰 매핑 */
 export const HAZARD_COLOR: Record<HazardType, string> = {
   'carcinogen-1': 'hazard-critical',

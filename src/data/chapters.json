@@ -1,0 +1,154 @@
+[
+  {
+    "id": "01-risks-of-new-tech",
+    "order": 1,
+    "slug": "risks-of-new-tech",
+    "title": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
+    "shortTitle": "새 기술의 위험성",
+    "subtitle": "DDT, 석면이 알려준 교훈 — 반도체에도 같은 시각이 필요해요",
+    "category": "foundation",
+    "sourcePages": [15, 26],
+    "readingTime": 7,
+    "hasFullBody": true,
+    "legacyUrl": "/risks-of-new-tech/"
+  },
+  {
+    "id": "02-semiconductor",
+    "order": 2,
+    "slug": "semiconductor",
+    "title": "반도체의 이해",
+    "shortTitle": "반도체란?",
+    "subtitle": "도체와 부도체 사이, 전기를 반만 흐르게 하는 신기한 물질",
+    "category": "foundation",
+    "sourcePages": [27, 43],
+    "readingTime": 8,
+    "hasFullBody": true,
+    "legacyUrl": "/what-is-semiconductor/"
+  },
+  {
+    "id": "03-process-overview",
+    "order": 3,
+    "slug": "process-overview-chapter",
+    "title": "반도체 제조 공정의 전반적 이해",
+    "shortTitle": "제조 공정 개요",
+    "subtitle": "모래에서 칩까지 — 9단계 큰 그림",
+    "category": "foundation",
+    "sourcePages": [45, 54],
+    "readingTime": 6,
+    "hasFullBody": true,
+    "relatedProcessIds": ["wafer", "cleaning", "diffusion", "photolithography", "etching", "deposition", "ion-implantation", "cmp", "packaging"]
+  },
+  {
+    "id": "04-cleanroom",
+    "order": 4,
+    "slug": "cleanroom-chapter",
+    "title": "클린룸과 유해인자",
+    "shortTitle": "클린룸",
+    "subtitle": "수술실보다 1만 배 깨끗한 공간, 그 안의 역설",
+    "category": "foundation",
+    "sourcePages": [55, 65],
+    "readingTime": 6,
+    "hasFullBody": true,
+    "legacyUrl": "/cleanroom/"
+  },
+  {
+    "id": "05-wafer", "order": 5, "slug": "wafer",
+    "title": "웨이퍼 제조 공정과 유해인자", "shortTitle": "웨이퍼 제조",
+    "subtitle": "모래에서 반도체의 도화지를 만드는 11단계",
+    "category": "process", "sourcePages": [67, 83], "readingTime": 8,
+    "hasFullBody": false, "externalLink": "/process/wafer/",
+    "relatedProcessIds": ["wafer"]
+  },
+  {
+    "id": "06-cleaning", "order": 6, "slug": "cleaning",
+    "title": "클리닝 공정과 유해인자", "shortTitle": "클리닝",
+    "subtitle": "수술 전 손 씻기보다 1만 배 정밀한 세정",
+    "category": "process", "sourcePages": [85, 99], "readingTime": 7,
+    "hasFullBody": false, "externalLink": "/process/cleaning/",
+    "relatedProcessIds": ["cleaning"]
+  },
+  {
+    "id": "07-diffusion", "order": 7, "slug": "diffusion",
+    "title": "확산 공정과 유해인자", "shortTitle": "확산",
+    "subtitle": "잉크가 물에 퍼지듯 — 1000℃에서 원자가 스며들어요",
+    "category": "process", "sourcePages": [101, 110], "readingTime": 5,
+    "hasFullBody": false, "externalLink": "/process/diffusion/",
+    "relatedProcessIds": ["diffusion"]
+  },
+  {
+    "id": "08-photolithography", "order": 8, "slug": "photolithography",
+    "title": "포토리소그래피 공정과 유해인자", "shortTitle": "포토리소그래피",
+    "subtitle": "사진 인화처럼 빛으로 회로를 그리는 핵심 공정",
+    "category": "process", "sourcePages": [111, 157], "readingTime": 12,
+    "hasFullBody": false, "externalLink": "/process/photolithography/",
+    "relatedProcessIds": ["photolithography"]
+  },
+  {
+    "id": "09-etching", "order": 9, "slug": "etching",
+    "title": "식각 공정과 유해인자", "shortTitle": "식각",
+    "subtitle": "조각가의 정처럼 — 불산과 플라스마로 깎아내요",
+    "category": "process", "sourcePages": [159, 181], "readingTime": 8,
+    "hasFullBody": false, "externalLink": "/process/etching/",
+    "relatedProcessIds": ["etching"]
+  },
+  {
+    "id": "10-deposition", "order": 10, "slug": "deposition",
+    "title": "증착 공정과 유해인자", "shortTitle": "증착",
+    "subtitle": "원자 한 층씩 — 페인트칠하듯 박막을 입혀요",
+    "category": "process", "sourcePages": [183, 193], "readingTime": 6,
+    "hasFullBody": false, "externalLink": "/process/deposition/",
+    "relatedProcessIds": ["deposition"]
+  },
+  {
+    "id": "11-ion-implantation", "order": 11, "slug": "ion-implantation",
+    "title": "이온 주입 공정과 유해인자", "shortTitle": "이온 주입",
+    "subtitle": "총알처럼 — 이온을 가속해 실리콘에 박아넣어요",
+    "category": "process", "sourcePages": [195, 205], "readingTime": 6,
+    "hasFullBody": false, "externalLink": "/process/ion-implantation/",
+    "relatedProcessIds": ["ion-implantation"]
+  },
+  {
+    "id": "12-cmp", "order": 12, "slug": "cmp",
+    "title": "물리 화학적 연마와 유해인자", "shortTitle": "CMP",
+    "subtitle": "원자 단위 사포질 — 거울처럼 평평하게",
+    "category": "process", "sourcePages": [207, 215], "readingTime": 5,
+    "hasFullBody": false, "externalLink": "/process/cmp/",
+    "relatedProcessIds": ["cmp"]
+  },
+  {
+    "id": "13-packaging", "order": 13, "slug": "packaging",
+    "title": "칩 조립 및 검사 공정과 유해인자", "shortTitle": "패키징",
+    "subtitle": "검은 칩에 옷을 입히는 마지막 단계 — 8공정",
+    "category": "process", "sourcePages": [217, 261], "readingTime": 10,
+    "hasFullBody": false, "externalLink": "/process/packaging/",
+    "relatedProcessIds": ["packaging"]
+  },
+  {
+    "id": "14-chemicals-usage", "order": 14, "slug": "chemicals-usage",
+    "title": "반도체 공정에서의 화학물질 사용과 유해성", "shortTitle": "화학물질 사용",
+    "subtitle": "표 14-4가 말하는 것 — 어디에 무엇을 얼마나 쓰나",
+    "category": "hazard", "sourcePages": [263, 281], "readingTime": 9,
+    "hasFullBody": true
+  },
+  {
+    "id": "15-electromagnetic", "order": 15, "slug": "electromagnetic-chapter",
+    "title": "반도체 공정과 전자파", "shortTitle": "전자파",
+    "subtitle": "보이지 않는 ELF-MF — 거리의 제곱에 반비례하는 위험",
+    "category": "hazard", "sourcePages": [283, 303], "readingTime": 8,
+    "hasFullBody": true, "legacyUrl": "/electromagnetic/"
+  },
+  {
+    "id": "16-occupational-disease", "order": 16, "slug": "occupational-disease-chapter",
+    "title": "반도체 공정 주요 질병 위험 고찰", "shortTitle": "직업병 고찰",
+    "subtitle": "생식독성 입증 · 림프종 · 백혈병의 그림자",
+    "category": "hazard", "sourcePages": [305, 317], "readingTime": 10,
+    "hasFullBody": true, "legacyUrl": "/occupational-disease/"
+  },
+  {
+    "id": "17-industrial-health-view", "order": 17, "slug": "industrial-health-view",
+    "title": "산업보건학적 시각에서 바라본 반도체 산업", "shortTitle": "산업보건학적 시각",
+    "subtitle": "신공정 · 신기술 · 새 화학물질 — 책의 결론",
+    "category": "reflection", "sourcePages": [319, 333], "readingTime": 10,
+    "hasFullBody": true
+  }
+]

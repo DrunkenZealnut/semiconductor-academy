@@ -33,3 +33,4 @@ next-env.d.ts
 # 원본 학술 자료 (저작권 보호 — 로컬 참조만 허용, 공개 저장소에 업로드 금지)
 # 주의: leading slash로 최상위 data/만 매칭 (src/data/는 포함)
 /data/
+.gstack/

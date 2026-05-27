@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Compass, FlaskConical, Activity } from 'lucide-react';
 import { ProcessDiagram } from '@/components/process/ProcessDiagram';
+import { ChaptersHero } from '@/components/chapter/ChaptersHero';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -58,6 +59,9 @@ export default function HomePage() {
         </div>
         <ProcessDiagram />
       </section>
+
+      {/* 책 차례 진입 - 책처럼 차근차근 */}
+      <ChaptersHero />
 
       {/* Three pillars */}
       <section className="mt-20 grid gap-6 md:grid-cols-3">
