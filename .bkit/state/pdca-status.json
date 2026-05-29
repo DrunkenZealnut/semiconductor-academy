@@ -1,27 +1,22 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T13:14:23.400Z",
+  "lastUpdated": "2026-05-30T14:30:00.000Z",
   "activeFeatures": [
-    "source-quote-expansion",
     "SemiconductorAcademy",
     "layout",
     "content"
   ],
-  "primaryFeature": "source-quote-expansion",
+  "primaryFeature": "SemiconductorAcademy",
   "features": {
     "source-quote-expansion": {
-      "phase": "plan",
-      "phaseNumber": 1,
-      "matchRate": null,
+      "phase": "archived",
+      "matchRate": 98,
       "iterationCount": 0,
       "startedAt": "2026-05-29T20:30:00.000Z",
-      "documents": {
-        "plan": "docs/01-plan/features/source-quote-expansion.plan.md"
-      },
-      "timestamps": {
-        "started": "2026-05-29T20:30:00.000Z",
-        "lastUpdated": "2026-05-29T20:30:00.000Z"
-      }
+      "completedAt": "2026-05-30T14:00:00.000Z",
+      "archivedAt": "2026-05-30T14:30:00.000Z",
+      "archivedTo": "docs/archive/2026-05/source-quote-expansion/",
+      "summary": "학술 원본 인용 강화 — 1d, 98%, LayeredExplain placeholder 제거 + 17챕터 quote 17/17 + SourceQuote 28→74 (+46) + 의역 26개 책 원문 교체 + 열거 구조 46개 완결 + MDX `~`→`∼` 10건. AC 9/9, 19 commits."
     },
     "homepage-book-centric": {
       "phase": "archived",

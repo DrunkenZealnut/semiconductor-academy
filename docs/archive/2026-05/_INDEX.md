@@ -4,6 +4,7 @@
 |---------|:--------:|:---:|:---:|:---:|------|
 | [ch3-to-ch17-batch](./ch3-to-ch17-batch/) | 2026-05-29 | 96% | 0 | ~8.5h | 17 챕터 책 완주 milestone |
 | [homepage-book-centric](./homepage-book-centric/) | 2026-05-29 | 97% | 0 | ~50m | 메인 책 정체성 IA 재편 (BookHero / BookTOCPreview / SpecialSection) |
+| [source-quote-expansion](./source-quote-expansion/) | 2026-05-30 | 98% | 0 | ~1d | 학술 원본 인용 강화 — 17챕터 LayeredExplain quote + SourceQuote 28→74 + 의역 26개 책 원문 교체 + 열거 구조 46개 완결, placeholder 0건 |
 
 ---
 
