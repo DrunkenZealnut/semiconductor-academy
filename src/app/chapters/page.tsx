@@ -43,7 +43,7 @@ export default function ChaptersIndexPage() {
           const items = getChaptersByCategory(cat);
           if (items.length === 0) return null;
           return (
-            <section key={cat}>
+            <section key={cat} id={cat} className="scroll-mt-24">
               <header className="mb-4 flex items-baseline gap-2">
                 <span className="text-2xl" aria-hidden>{CATEGORY_EMOJI[cat]}</span>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
