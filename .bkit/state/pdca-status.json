@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T17:15:00.000Z",
-  "activeFeatures": ["ch3-to-ch17-batch"],
-  "primaryFeature": "ch3-to-ch17-batch",
+  "lastUpdated": "2026-05-29T17:40:00.000Z",
+  "activeFeatures": ["ch14-to-ch17-reflection"],
+  "primaryFeature": "ch14-to-ch17-reflection",
   "features": {
     "semiconductor-academy-site": {
       "phase": "completed", "phaseNumber": 6, "matchRate": 95, "iterationCount": 1,
@@ -64,10 +64,24 @@
         "report": "docs/04-report/ch5-to-ch13-process-light.report.md"
       },
       "parent": "ch3-to-ch17-batch (sub-batch B)"
+    },
+    "ch14-to-ch17-reflection": {
+      "phase": "design",
+      "phaseNumber": 2,
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-05-29T17:25:00.000Z",
+      "lastUpdated": "2026-05-29T17:40:00.000Z",
+      "tasks": { "plan": "32", "design": "33" },
+      "documents": {
+        "plan": "docs/01-plan/features/ch14-to-ch17-reflection.plan.md",
+        "design": "docs/02-design/features/ch14-to-ch17-reflection.design.md"
+      },
+      "parent": "ch3-to-ch17-batch (sub-batch C, 마지막)"
     }
   },
   "pipeline": {
-    "currentPhase": 6,
+    "currentPhase": 2,
     "level": "Dynamic",
     "phaseHistory": [
       { "phase": "plan", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:15:00.000Z" },
@@ -79,13 +93,15 @@
       { "phase": "design", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:25:00.000Z" },
       { "phase": "do", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:45:00.000Z" },
       { "phase": "check", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T17:00:00.000Z" },
-      { "phase": "completed", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T17:15:00.000Z" }
+      { "phase": "completed", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T17:15:00.000Z" },
+      { "phase": "plan", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:25:00.000Z" },
+      { "phase": "design", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:40:00.000Z" }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T17:15:00.000Z"
+    "lastActivity": "2026-05-29T17:25:00.000Z"
   },
   "history": [
     { "event": "feature_completed", "feature": "semiconductor-academy-site", "matchRate": 95, "at": "2026-05-27T04:35:00.000Z" },
@@ -102,6 +118,8 @@
     { "event": "design_created", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:25:00.000Z" },
     { "event": "do_completed", "feature": "ch5-to-ch13-process-light", "commit": "3913a90", "at": "2026-05-29T16:45:00.000Z" },
     { "event": "check_completed", "feature": "ch5-to-ch13-process-light", "matchRate": 98, "at": "2026-05-29T17:00:00.000Z" },
-    { "event": "feature_completed", "feature": "ch5-to-ch13-process-light", "matchRate": 98, "at": "2026-05-29T17:15:00.000Z" }
+    { "event": "feature_completed", "feature": "ch5-to-ch13-process-light", "matchRate": 98, "at": "2026-05-29T17:15:00.000Z" },
+    { "event": "plan_created", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:25:00.000Z" },
+    { "event": "design_created", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:40:00.000Z" }
   ]
 }

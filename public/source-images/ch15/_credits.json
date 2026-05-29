@@ -1,0 +1,17 @@
+{
+  "chapter": 15,
+  "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
+  "images": [
+    {
+      "file": "ch15-cover.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 15장 표지",
+      "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
+      "publisher": "에피스테메", "page": 245,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    { "file": "fig-15-1-elf.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 15장 도식",
+      "caption": "ELF 자기장 노출 분포", "page": 265,
+      "license": "Fair use (교육 목적 학술 인용)" }
+  ]
+}
