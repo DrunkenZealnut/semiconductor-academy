@@ -9,7 +9,26 @@
       </p>
     ),
   }}
-  deep={{ sourcePage: 109, sourceSection: '8장 포토리소그래피 공정과 유해인자' }}
+  deep={{
+    sourcePage: 111,
+    sourceSection: '8장 - 포토리소그래피의 어원과 핵심 기술',
+    quote: (
+      <>
+        <p>
+          <strong>포토리소그래피(photolithography)는 라틴어의 lithos(돌) + graphy(그림, 글자)의 합성어인
+          석판화 기술</strong>로서, 인쇄 기술로 쓰이다가 현재는 <strong>반도체 노광 공정 기술을 통칭하는
+          이름으로 사용되며 반도체 미세화의 핵심 기술</strong>이다.
+        </p>
+        <p className="mt-2">
+          포토리소그래피 공정은 원하는 회로 패턴을 만들어 놓은 <strong>마스크 또는 레티클(reticle)이라는
+          원판을 웨이퍼 위에 두고 빛을 투과시켜 설계된 회로 패턴을 웨이퍼상에 형성하는 공정</strong>이다.
+          … 대부분의 포토레지스트는 유기화합물로 구성되어 있기 때문에, 산업보건 측면에서 포토리소그래피
+          공정은 <strong>반도체 제조 공정 중 유기화합물을 가장 많이 취급하는 공정</strong>이자 작업자들에게
+          유기화합물이 많이 노출될 수 있는 공정이기도 하다.
+        </p>
+      </>
+    ),
+  }}
 />
 
 <ImageFigure
@@ -52,6 +71,25 @@ PR을 웨이퍼에 바르고 → 마스크를 통해 UV·EUV 빛을 쏘고 → �
   골격으로 단순화한 것이에요.
 </Callout>
 
+<SourceQuote page={113} section="1. 포토 공정 개요 - 3대 핵심 + 8단계 완결">
+  <p>
+    포토리소그래피 공정은 크게 <strong>포토레지스트 코팅(coating), 노광(exposure), 현상(development)</strong>으로
+    구성된다. 고해상도의 회로 패턴을 얻기 위해서는 추가적인 클리닝, 표면 처리 및 여러 차례 경화(baking)
+    과정을 거치게 된다.
+  </p>
+  <p className="mt-2">
+    이를 종합하면 포토리소그래피 공정은 다음 <strong>8단계로 진행</strong>된다.
+  </p>
+  <p className="mt-2">① <strong>클리닝(세정)</strong></p>
+  <p>② <strong>표면 처리</strong> (HMDS 프라이머 증착)</p>
+  <p>③ <strong>포토레지스트 코팅</strong></p>
+  <p>④ <strong>소프트 베이크(soft bake)</strong></p>
+  <p>⑤ <strong>정렬 및 노광(alignment &amp; exposure)</strong></p>
+  <p>⑥ <strong>노광 후 경화(post exposure bake, PEB)</strong></p>
+  <p>⑦ <strong>현상</strong></p>
+  <p>⑧ <strong>하드 베이크(hard bake)</strong></p>
+</SourceQuote>
+
 ## 2. 포토레지스트(PR) — 가장 많은 화학물질이 모이는 곳
 
 <ImageFigure
@@ -70,9 +108,33 @@ PR은 보통 **수지(resin) + 광활성 화합물(PAC) + 용제(solvent) + 첨�
   채로 일하는 상황이 만들어져요.
 </Callout>
 
-<SourceQuote page={120} section="8장 - 포토레지스트 MSDS 영업비밀">
-  포토레지스트 MSDS에서는 다수의 성분이 영업비밀로 분류되어 비공개되며, 이는 작업자가 자신이 노출되는
-  화학물질을 정확히 알 수 없게 만드는 산업보건의 큰 장벽이다.
+<SourceQuote page={138} section="2장 가. 포토레지스트 4가지 구성 + MSDS 영업비밀 실태">
+  <p>
+    <strong>포토레지스트는 중합체, 증감제, 용매, 첨가제로 구성된다.</strong>
+  </p>
+  <p className="mt-2">
+    <strong>① 중합체(polymer)</strong>: 웨이퍼 표면에 부착되는 유기 고체 물질로, 회로 패턴을 형성하며
+    식각 과정에서도 제거되지 않고 남는 부분이다. 포지티브형 중합체에는 주로 <strong>페놀포름알데히드
+    또는 노볼락 수지</strong>가 사용되었고, 네거티브형 중합체에는 폴리이소프렌 고무가 사용되었다.
+  </p>
+  <p className="mt-2">
+    <strong>② 증감제(sensitizer)</strong>: 빛에 매우 민감한 유기화합물(PAC)이며, 노광되는 동안
+    광화학반응의 속도를 조절하는 물질이다. 노볼락 수지와 함께 많이 사용되어 온 증감제는
+    <strong> DNQ(디아조나프토퀴논)</strong>이다.
+  </p>
+  <p className="mt-2">
+    <strong>③ 용매(solvent)</strong>: 중합체와 증감제를 액상인 포토레지스트 내에 잘 용해시킨다.
+    포지티브형은 주로 <strong>아세테이트 계열</strong>을 사용한다.
+  </p>
+  <p className="mt-2">
+    <strong>④ 첨가제(additive)</strong>: 최적화된 해상도를 얻기 위해 포토레지스트의 광화학반응을
+    조절하는 용도로 사용되며, … <strong>대부분 영업비밀 물질이다.</strong>
+  </p>
+  <p className="mt-2">
+    Jang 등(2019)이 국내 PR 제품 원액 51종과 그중 <strong>48개 제품의 MSDS</strong>를 수집·분석한
+    결과, <strong>MSDS에서 나타난 성분 명칭을 빈도에 따라 정리하면 35종이 확인</strong>되며, <strong>총
+    238개 성분 중 116번(49%)이 영업비밀로 구체적인 성분 명칭을 알 수 없는 경우</strong>로 나타났다.
+  </p>
 </SourceQuote>
 
 ## 3. 노광 (Exposure) — 광원의 진화와 위험
@@ -87,9 +149,24 @@ PR은 보통 **수지(resin) + 광활성 화합물(PAC) + 용제(solvent) + 첨�
 광원은 회로 폭을 좁히기 위해 점점 짧은 파장으로 진화했어요.
 **g-line(436nm) → i-line(365nm) → KrF(248nm) → ArF(193nm) → EUV(13.5nm)**.
 
-<SourceQuote page={117} section="8장 - 노광 공정의 광원">
-  EUV(극자외선) 광원은 13.5nm의 매우 짧은 파장으로 강한 에너지를 가지며, 광원 자체의 누설과
-  부산물(주석 입자 등)이 새로운 산업보건 평가 대상이 되고 있다.
+<SourceQuote page={140} section="3장 나. 노광 광원의 진화와 화학 증폭형 PR">
+  <p>
+    <strong>미세한 회로선 폭의 회로도를 얻기 위해 노광 빛의 파장은 점점 짧아진다.</strong> … 파장이
+    <strong> 248nm 혹은 193nm의 짧은 자외선(deep UV)</strong>을 광원으로 사용한 포토리소그래피
+    공정에서는 기존 수은 램프의 <strong>G선이나 I선</strong>을 광원으로 사용했던 것과는 다른
+    포토레지스트가 필요해졌다.
+  </p>
+  <p className="mt-2">
+    엑시머 레이저를 광원으로 이용할 경우 빛의 세기가 기존 수은 램프보다 약해지기 때문에 빛에 대한
+    감광 효과를 보다 증폭할 수 있는 포토레지스트가 필요해졌고, 이러한 포토레지스트를 <strong>화학
+    증폭형(chemically amplified) 포토레지스트</strong>라고 한다.
+  </p>
+  <p className="mt-2">
+    <strong>KrF(248nm) 엑시머 레이저</strong> 포토레지스트는 폴리하이드록시스티렌(PHS)과 광산
+    발산제(PAG)로 구성된다. <strong>ArF(193nm) 엑시머 레이저</strong> 포토레지스트는 PHS의 벤젠고리가
+    193nm에서 빛을 흡수해 사용할 수 없어, 주로 <strong>아크릴레이트계 + 아다만틴(adamantine)계</strong>
+    화합물 고분자를 사용한다.
+  </p>
 </SourceQuote>
 
 <Callout type="warning" title="EUV — 새 광원, 새 위험">
@@ -115,6 +192,26 @@ PR은 보통 **수지(resin) + 광활성 화합물(PAC) + 용제(solvent) + 첨�
   포토는 가장 많은 화학물질 + 영업비밀 + 신광원 = <ChapterRef order={4} /> "클린룸의 역설"이
   가장 응축된 단계예요. EUV 부산물은 <ChapterRef order={16} />의 "예상치 못한 부산물"의 대표 사례.
 </Callout>
+
+<SourceQuote page={142} section="5. 산업보건학적 시각 - 유기화합물 가장 다양 + CMR 17종 검출">
+  <p>
+    <strong>포토리소그래피 공정은 세정, PR 코팅, 현상 과정에서 다양한 화학물질이 사용된다.</strong>
+    특히 유기화합물로 구성되는 다양한 종류의 PR을 작업자들이 직접 취급하기 때문에 <strong>반도체 제조
+    공정 중 가장 다양한 유기화합물에 노출될 수 있는 공정</strong>이기도 하다.
+  </p>
+  <p className="mt-2">
+    Jang 등(2019)은 51개 PR 제품에 대해 110℃의 PR 사용 조건과 유사한 온도로 가열하여 휘발 성분을
+    분석한 결과 <strong>총 126종의 화학물질이 검출</strong>되었고, 51개 제품 중 가장 검출빈도가 높은
+    물질은 <strong>톨루엔(56.9%), p-크레졸(45.1%), PGME(43.1%), 아세톤(35.3%)</strong> 순이었다.
+    검출 물질 중 <strong>백혈병 유발 물질인 벤젠을 포함하여 17종은 발암성(carcinogen), 생식세포변이원성
+    (mutagen) 혹은 생식독성(reprotoxic) 물질들(CMR)</strong>이었다.
+  </p>
+  <p className="mt-2">
+    이 분석 결과는 <strong>포토리소그래피의 운전조건과 유사한 온도 조건에서도 벤젠을 포함한 CMR
+    물질들이 부산물로 발생 가능함</strong>을 확인했다는 점에서 의미가 있으며, 포토리소그래피 공정에서
+    작업하는 <strong>오퍼레이터나 정비 작업자들의 노출 가능성을 확인</strong>하였다.
+  </p>
+</SourceQuote>
 
 ## 자세한 공정 →
 
