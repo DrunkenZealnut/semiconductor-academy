@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T14:45:00.000Z",
-  "activeFeatures": ["ch2-deep-content"],
-  "primaryFeature": "ch2-deep-content",
+  "lastUpdated": "2026-05-29T15:15:00.000Z",
+  "activeFeatures": ["ch3-ch4-foundation"],
+  "primaryFeature": "ch3-ch4-foundation",
   "features": {
     "semiconductor-academy-site": {
       "phase": "completed", "phaseNumber": 6, "matchRate": 95, "iterationCount": 1,
@@ -17,43 +17,55 @@
       "completedAt": "2026-05-29T13:45:00.000Z"
     },
     "ch2-deep-content": {
-      "phase": "completed",
-      "phaseNumber": 6,
-      "matchRate": 96,
+      "phase": "completed", "phaseNumber": 6, "matchRate": 96, "iterationCount": 0,
+      "completedAt": "2026-05-29T14:45:00.000Z"
+    },
+    "ch3-to-ch17-batch": {
+      "phase": "plan",
+      "phaseNumber": 1,
+      "matchRate": null,
       "iterationCount": 0,
-      "startedAt": "2026-05-29T14:00:00.000Z",
-      "completedAt": "2026-05-29T14:45:00.000Z",
-      "lastUpdated": "2026-05-29T14:45:00.000Z",
-      "deployedTo": "https://drunkenzealnut.github.io/semiconductor-academy/chapter/semiconductor/",
-      "tasks": { "plan": "22", "design": "23", "do": "24", "check": "25", "report": "26" },
+      "startedAt": "2026-05-29T15:00:00.000Z",
+      "lastUpdated": "2026-05-29T15:00:00.000Z",
+      "tasks": { "plan": "27" },
       "documents": {
-        "plan": "docs/01-plan/features/ch2-deep-content.plan.md",
-        "design": "docs/02-design/features/ch2-deep-content.design.md",
-        "analysis": "docs/03-analysis/ch2-deep-content.analysis.md",
-        "report": "docs/04-report/ch2-deep-content.report.md"
-      }
+        "plan": "docs/01-plan/features/ch3-to-ch17-batch.plan.md"
+      },
+      "note": "batch parent — sub-batches A/B/C로 분할 실행"
+    },
+    "ch3-ch4-foundation": {
+      "phase": "design",
+      "phaseNumber": 2,
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-05-29T15:15:00.000Z",
+      "lastUpdated": "2026-05-29T15:30:00.000Z",
+      "tasks": { "plan": "28", "design": "29" },
+      "documents": {
+        "plan": "docs/01-plan/features/ch3-ch4-foundation.plan.md",
+        "design": "docs/02-design/features/ch3-ch4-foundation.design.md"
+      },
+      "parent": "ch3-to-ch17-batch (sub-batch A)"
     }
   },
   "pipeline": {
-    "currentPhase": 6,
+    "currentPhase": 1,
     "level": "Dynamic",
     "phaseHistory": [
-      { "phase": "plan", "feature": "ch2-deep-content", "at": "2026-05-29T14:00:00.000Z" },
-      { "phase": "design", "feature": "ch2-deep-content", "at": "2026-05-29T14:15:00.000Z" },
-      { "phase": "do", "feature": "ch2-deep-content", "at": "2026-05-29T14:20:00.000Z" },
-      { "phase": "check", "feature": "ch2-deep-content", "matchRate": 96, "at": "2026-05-29T14:30:00.000Z" },
-      { "phase": "completed", "feature": "ch2-deep-content", "at": "2026-05-29T14:45:00.000Z" }
+      { "phase": "plan", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:15:00.000Z" }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T14:45:00.000Z"
+    "lastActivity": "2026-05-29T15:15:00.000Z"
   },
   "history": [
     { "event": "feature_completed", "feature": "semiconductor-academy-site", "matchRate": 95, "at": "2026-05-27T04:35:00.000Z" },
     { "event": "feature_completed", "feature": "chapter-based-restructure", "matchRate": 97, "at": "2026-05-27T17:45:00.000Z" },
     { "event": "feature_completed", "feature": "reading-experience-ch1", "matchRate": 94, "at": "2026-05-29T13:45:00.000Z" },
-    { "event": "feature_completed", "feature": "ch2-deep-content", "matchRate": 96, "at": "2026-05-29T14:45:00.000Z" }
+    { "event": "feature_completed", "feature": "ch2-deep-content", "matchRate": 96, "at": "2026-05-29T14:45:00.000Z" },
+    { "event": "plan_created", "feature": "ch3-to-ch17-batch", "at": "2026-05-29T15:00:00.000Z" },
+    { "event": "plan_created", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:15:00.000Z" }
   ]
 }

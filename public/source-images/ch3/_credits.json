@@ -1,0 +1,31 @@
+{
+  "chapter": 3,
+  "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
+  "images": [
+    {
+      "file": "ch3-cover.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 3장 도입 일러스트",
+      "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
+      "publisher": "에피스테메",
+      "page": 45,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    { "file": "fig-3-1-overview.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 3장 도식",
+      "caption": "9단계 반도체 제조 공정 흐름", "page": 47,
+      "license": "Fair use (교육 목적 학술 인용)" },
+    { "file": "fig-3-2-wafer.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 3장 도식",
+      "caption": "실리콘 웨이퍼 제조 단계", "page": 49,
+      "license": "Fair use (교육 목적 학술 인용)" },
+    { "file": "fig-3-3-assembly.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 3장 도식",
+      "caption": "칩 조립 및 검사 공정", "page": 52,
+      "license": "Fair use (교육 목적 학술 인용)" },
+    { "file": "fig-3-4-support.jpg", "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 3장 도식",
+      "caption": "반도체 공장 지원 산업", "page": 53,
+      "license": "Fair use (교육 목적 학술 인용)" }
+  ]
+}
