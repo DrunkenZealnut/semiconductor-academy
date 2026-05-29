@@ -1,41 +1,42 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-27T07:55:24.057Z",
+  "lastUpdated": "2026-05-29T04:06:59.966Z",
   "activeFeatures": [
-    "chapter-based-restructure",
+    "reading-experience-ch1",
     "SemiconductorAcademy",
-    "chapter",
-    "[slug]",
-    "chapters",
-    "layout"
+    "layout",
+    "content"
   ],
-  "primaryFeature": "chapter-based-restructure",
+  "primaryFeature": "reading-experience-ch1",
   "features": {
     "semiconductor-academy-site": {
       "phase": "completed",
       "phaseNumber": 6,
       "matchRate": 95,
       "iterationCount": 1,
-      "startedAt": "2026-05-27T00:00:00.000Z",
-      "completedAt": "2026-05-27T04:35:00.000Z",
-      "lastUpdated": "2026-05-27T04:35:00.000Z",
-      "deployedTo": "https://drunkenzealnut.github.io/semiconductor-academy/",
-      "repository": "https://github.com/DrunkenZealnut/semiconductor-academy"
+      "completedAt": "2026-05-27T04:35:00.000Z"
     },
     "chapter-based-restructure": {
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 97,
+      "iterationCount": 0,
+      "completedAt": "2026-05-27T17:45:00.000Z"
+    },
+    "reading-experience-ch1": {
       "phase": "design",
       "phaseNumber": 2,
       "matchRate": null,
       "iterationCount": 0,
-      "startedAt": "2026-05-27T16:30:00.000Z",
-      "lastUpdated": "2026-05-27T16:45:00.000Z",
+      "startedAt": "2026-05-29T09:00:00.000Z",
+      "lastUpdated": "2026-05-29T09:30:00.000Z",
       "tasks": {
-        "plan": "12",
-        "design": "13"
+        "plan": "17",
+        "design": "18"
       },
       "documents": {
-        "plan": "docs/01-plan/features/chapter-based-restructure.plan.md",
-        "design": "docs/02-design/features/chapter-based-restructure.design.md"
+        "plan": "docs/01-plan/features/reading-experience-ch1.plan.md",
+        "design": "docs/02-design/features/reading-experience-ch1.design.md"
       }
     },
     "SemiconductorAcademy": {
@@ -46,49 +47,10 @@
       "requirements": [],
       "documents": {},
       "timestamps": {
-        "started": "2026-05-27T07:46:42.413Z",
-        "lastUpdated": "2026-05-27T07:55:01.682Z"
+        "started": "2026-05-29T04:05:46.764Z",
+        "lastUpdated": "2026-05-29T04:06:59.966Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
-    },
-    "chapter": {
-      "phase": "do",
-      "phaseNumber": 3,
-      "matchRate": null,
-      "iterationCount": 0,
-      "requirements": [],
-      "documents": {},
-      "timestamps": {
-        "started": "2026-05-27T07:47:37.844Z",
-        "lastUpdated": "2026-05-27T07:48:11.926Z"
-      },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/chapter/ChaptersHero.tsx"
-    },
-    "[slug]": {
-      "phase": "do",
-      "phaseNumber": 3,
-      "matchRate": null,
-      "iterationCount": 0,
-      "requirements": [],
-      "documents": {},
-      "timestamps": {
-        "started": "2026-05-27T07:48:25.636Z",
-        "lastUpdated": "2026-05-27T07:48:25.636Z"
-      },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapter/[slug]/page.tsx"
-    },
-    "chapters": {
-      "phase": "do",
-      "phaseNumber": 3,
-      "matchRate": null,
-      "iterationCount": 0,
-      "requirements": [],
-      "documents": {},
-      "timestamps": {
-        "started": "2026-05-27T07:48:37.839Z",
-        "lastUpdated": "2026-05-27T07:48:37.839Z"
-      },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapters/page.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/mdx-components.tsx"
     },
     "layout": {
       "phase": "do",
@@ -98,10 +60,23 @@
       "requirements": [],
       "documents": {},
       "timestamps": {
-        "started": "2026-05-27T07:55:24.057Z",
-        "lastUpdated": "2026-05-27T07:55:24.057Z"
+        "started": "2026-05-29T04:06:11.026Z",
+        "lastUpdated": "2026-05-29T04:06:34.818Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/Header.tsx"
+    },
+    "content": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-29T04:06:48.599Z",
+        "lastUpdated": "2026-05-29T04:06:56.149Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/content/ImageFigure.tsx"
     }
   },
   "pipeline": {
@@ -110,15 +85,15 @@
     "phaseHistory": [
       {
         "phase": "plan",
-        "feature": "chapter-based-restructure",
-        "at": "2026-05-27T16:30:00.000Z"
+        "feature": "reading-experience-ch1",
+        "at": "2026-05-29T09:00:00.000Z"
       }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-27T07:55:24.057Z"
+    "lastActivity": "2026-05-29T04:06:59.966Z"
   },
   "history": [
     {
@@ -128,103 +103,61 @@
       "at": "2026-05-27T04:35:00.000Z"
     },
     {
-      "event": "plan_created",
+      "event": "feature_completed",
       "feature": "chapter-based-restructure",
-      "at": "2026-05-27T16:30:00.000Z"
+      "matchRate": 97,
+      "at": "2026-05-27T17:45:00.000Z"
     },
     {
-      "timestamp": "2026-05-27T07:46:42.413Z",
+      "event": "plan_created",
+      "feature": "reading-experience-ch1",
+      "at": "2026-05-29T09:00:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-29T04:05:46.764Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
     },
     {
-      "timestamp": "2026-05-27T07:47:22.436Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:47:29.216Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:47:37.844Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:47:46.378Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:47:53.830Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:01.976Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:05.514Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:11.926Z",
-      "feature": "chapter",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:25.636Z",
-      "feature": "[slug]",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:37.839Z",
-      "feature": "chapters",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:43.463Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:48:45.074Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:54:54.107Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:55:01.682Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-27T07:55:24.057Z",
+      "timestamp": "2026-05-29T04:06:11.026Z",
       "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:32.523Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:34.818Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:48.599Z",
+      "feature": "content",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:56.149Z",
+      "feature": "content",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:58.620Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T04:06:59.966Z",
+      "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
     }

@@ -61,6 +61,11 @@ body {
   border-radius: 4px;
 }
 
+/* 사용자 폰트 크기 — <html>에 font-sm/md/lg 클래스 적용 시 prose 글자 크기 변경 */
+.font-sm .prose { font-size: 16px; line-height: 1.7; }
+.font-md .prose { font-size: 18px; line-height: 1.75; }
+.font-lg .prose { font-size: 21px; line-height: 1.8; }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

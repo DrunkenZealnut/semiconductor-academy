@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Menu, X, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
+import { FontSizeToggle } from './FontSizeToggle';
 
 const navItems = [
   { href: '/chapters/', label: '책 차례' },
@@ -35,10 +36,12 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <FontSizeToggle />
           <ThemeToggle />
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
+          <FontSizeToggle />
           <ThemeToggle />
           <button
             type="button"
