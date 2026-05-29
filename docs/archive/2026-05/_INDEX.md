@@ -3,6 +3,7 @@
 | Feature | Archived | Match Rate | Iter | 시간 | Note |
 |---------|:--------:|:---:|:---:|:---:|------|
 | [ch3-to-ch17-batch](./ch3-to-ch17-batch/) | 2026-05-29 | 96% | 0 | ~8.5h | 17 챕터 책 완주 milestone |
+| [homepage-book-centric](./homepage-book-centric/) | 2026-05-29 | 97% | 0 | ~50m | 메인 책 정체성 IA 재편 (BookHero / BookTOCPreview / SpecialSection) |
 
 ---
 

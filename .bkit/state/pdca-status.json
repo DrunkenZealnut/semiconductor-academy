@@ -1,23 +1,48 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T18:45:00.000Z",
-  "activeFeatures": [],
-  "primaryFeature": null,
+  "lastUpdated": "2026-05-29T08:41:39.446Z",
+  "activeFeatures": [
+    "SemiconductorAcademy",
+    "layout"
+  ],
+  "primaryFeature": "SemiconductorAcademy",
   "features": {
+    "homepage-book-centric": {
+      "phase": "archived",
+      "matchRate": 97,
+      "iterationCount": 0,
+      "startedAt": "2026-05-29T19:00:00.000Z",
+      "completedAt": "2026-05-29T20:00:00.000Z",
+      "archivedAt": "2026-05-29T20:05:00.000Z",
+      "archivedTo": "docs/archive/2026-05/homepage-book-centric/",
+      "summary": "메인 책 정체성 IA 재편 — 50분, 97%, 신규 3 컴포넌트(BookHero/BookTOCPreview/SpecialSection) + page.tsx 재작성 + chapters anchors. 9/9 AC, Critical/Major 0, Minor 5(모두 보강)."
+    },
     "semiconductor-academy-site": {
-      "phase": "completed", "phaseNumber": 6, "matchRate": 95, "iterationCount": 1,
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 95,
+      "iterationCount": 1,
       "completedAt": "2026-05-27T04:35:00.000Z"
     },
     "chapter-based-restructure": {
-      "phase": "completed", "phaseNumber": 6, "matchRate": 97, "iterationCount": 0,
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 97,
+      "iterationCount": 0,
       "completedAt": "2026-05-27T17:45:00.000Z"
     },
     "reading-experience-ch1": {
-      "phase": "completed", "phaseNumber": 6, "matchRate": 94, "iterationCount": 0,
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 94,
+      "iterationCount": 0,
       "completedAt": "2026-05-29T13:45:00.000Z"
     },
     "ch2-deep-content": {
-      "phase": "completed", "phaseNumber": 6, "matchRate": 96, "iterationCount": 0,
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 96,
+      "iterationCount": 0,
       "completedAt": "2026-05-29T14:45:00.000Z"
     },
     "ch3-ch4-foundation": {
@@ -27,7 +52,13 @@
       "iterationCount": 0,
       "startedAt": "2026-05-29T15:15:00.000Z",
       "completedAt": "2026-05-29T16:00:00.000Z",
-      "tasks": { "plan": "28", "design": "29", "do": "30", "check": "31", "report": "32" },
+      "tasks": {
+        "plan": "28",
+        "design": "29",
+        "do": "30",
+        "check": "31",
+        "report": "32"
+      },
       "documents": {
         "plan": "docs/01-plan/features/ch3-ch4-foundation.plan.md",
         "design": "docs/02-design/features/ch3-ch4-foundation.design.md",
@@ -43,7 +74,13 @@
       "iterationCount": 0,
       "startedAt": "2026-05-29T16:10:00.000Z",
       "completedAt": "2026-05-29T17:15:00.000Z",
-      "tasks": { "plan": "33", "design": "34", "do": "31", "check": "35", "report": "36" },
+      "tasks": {
+        "plan": "33",
+        "design": "34",
+        "do": "31",
+        "check": "35",
+        "report": "36"
+      },
       "documents": {
         "plan": "docs/01-plan/features/ch5-to-ch13-process-light.plan.md",
         "design": "docs/02-design/features/ch5-to-ch13-process-light.design.md",
@@ -59,7 +96,13 @@
       "iterationCount": 0,
       "startedAt": "2026-05-29T17:25:00.000Z",
       "completedAt": "2026-05-29T18:30:00.000Z",
-      "tasks": { "plan": "32", "design": "33", "do": "33", "check": "34", "report": "35" },
+      "tasks": {
+        "plan": "32",
+        "design": "33",
+        "do": "33",
+        "check": "34",
+        "report": "35"
+      },
       "documents": {
         "plan": "docs/01-plan/features/ch14-to-ch17-reflection.plan.md",
         "design": "docs/02-design/features/ch14-to-ch17-reflection.design.md",
@@ -77,57 +120,381 @@
       "archivedAt": "2026-05-29T18:45:00.000Z",
       "archivedTo": "docs/archive/2026-05/ch3-to-ch17-batch/",
       "summary": "17 챕터 책 완주 milestone — A(2.5h, 96%) + B(3h, 98%) + C(~3h, 95%) = 8.5h, 15 챕터, 44 이미지, 21 자체표, 23 SourceQuote (≤150자), 57 Callout"
+    },
+    "layout": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-29T08:17:58.360Z",
+        "lastUpdated": "2026-05-29T08:41:39.446Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/BookHero.tsx"
+    },
+    "chapters": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-29T08:18:42.668Z",
+        "lastUpdated": "2026-05-29T08:18:42.668Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapters/page.tsx"
+    },
+    "SemiconductorAcademy": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-29T08:19:09.344Z",
+        "lastUpdated": "2026-05-29T08:38:46.691Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
     }
   },
   "pipeline": {
     "currentPhase": 6,
     "level": "Dynamic",
     "phaseHistory": [
-      { "phase": "plan", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:15:00.000Z" },
-      { "phase": "design", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:30:00.000Z" },
-      { "phase": "do", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:35:00.000Z" },
-      { "phase": "check", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:50:00.000Z" },
-      { "phase": "completed", "feature": "ch3-ch4-foundation", "at": "2026-05-29T16:00:00.000Z" },
-      { "phase": "plan", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:10:00.000Z" },
-      { "phase": "design", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:25:00.000Z" },
-      { "phase": "do", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:45:00.000Z" },
-      { "phase": "check", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T17:00:00.000Z" },
-      { "phase": "completed", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T17:15:00.000Z" },
-      { "phase": "plan", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:25:00.000Z" },
-      { "phase": "design", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:40:00.000Z" },
-      { "phase": "do", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T18:00:00.000Z" },
-      { "phase": "check", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T18:15:00.000Z" },
-      { "phase": "completed", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T18:30:00.000Z" },
-      { "phase": "completed", "feature": "ch3-to-ch17-batch", "at": "2026-05-29T18:30:00.000Z" }
+      {
+        "phase": "plan",
+        "feature": "ch3-ch4-foundation",
+        "at": "2026-05-29T15:15:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "ch3-ch4-foundation",
+        "at": "2026-05-29T15:30:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "ch3-ch4-foundation",
+        "at": "2026-05-29T15:35:00.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "ch3-ch4-foundation",
+        "at": "2026-05-29T15:50:00.000Z"
+      },
+      {
+        "phase": "completed",
+        "feature": "ch3-ch4-foundation",
+        "at": "2026-05-29T16:00:00.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "ch5-to-ch13-process-light",
+        "at": "2026-05-29T16:10:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "ch5-to-ch13-process-light",
+        "at": "2026-05-29T16:25:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "ch5-to-ch13-process-light",
+        "at": "2026-05-29T16:45:00.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "ch5-to-ch13-process-light",
+        "at": "2026-05-29T17:00:00.000Z"
+      },
+      {
+        "phase": "completed",
+        "feature": "ch5-to-ch13-process-light",
+        "at": "2026-05-29T17:15:00.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "ch14-to-ch17-reflection",
+        "at": "2026-05-29T17:25:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "ch14-to-ch17-reflection",
+        "at": "2026-05-29T17:40:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "ch14-to-ch17-reflection",
+        "at": "2026-05-29T18:00:00.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "ch14-to-ch17-reflection",
+        "at": "2026-05-29T18:15:00.000Z"
+      },
+      {
+        "phase": "completed",
+        "feature": "ch14-to-ch17-reflection",
+        "at": "2026-05-29T18:30:00.000Z"
+      },
+      {
+        "phase": "completed",
+        "feature": "ch3-to-ch17-batch",
+        "at": "2026-05-29T18:30:00.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "homepage-book-centric",
+        "at": "2026-05-29T19:00:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "homepage-book-centric",
+        "at": "2026-05-29T19:15:00.000Z"
+      }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T18:45:00.000Z"
+    "lastActivity": "2026-05-29T08:41:39.446Z"
   },
   "history": [
-    { "event": "feature_completed", "feature": "semiconductor-academy-site", "matchRate": 95, "at": "2026-05-27T04:35:00.000Z" },
-    { "event": "feature_completed", "feature": "chapter-based-restructure", "matchRate": 97, "at": "2026-05-27T17:45:00.000Z" },
-    { "event": "feature_completed", "feature": "reading-experience-ch1", "matchRate": 94, "at": "2026-05-29T13:45:00.000Z" },
-    { "event": "feature_completed", "feature": "ch2-deep-content", "matchRate": 96, "at": "2026-05-29T14:45:00.000Z" },
-    { "event": "plan_created", "feature": "ch3-to-ch17-batch", "at": "2026-05-29T15:00:00.000Z" },
-    { "event": "plan_created", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:15:00.000Z" },
-    { "event": "design_created", "feature": "ch3-ch4-foundation", "at": "2026-05-29T15:30:00.000Z" },
-    { "event": "do_completed", "feature": "ch3-ch4-foundation", "commit": "50e0231", "at": "2026-05-29T15:35:00.000Z" },
-    { "event": "check_completed", "feature": "ch3-ch4-foundation", "matchRate": 96, "at": "2026-05-29T15:50:00.000Z" },
-    { "event": "feature_completed", "feature": "ch3-ch4-foundation", "matchRate": 96, "at": "2026-05-29T16:00:00.000Z" },
-    { "event": "plan_created", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:10:00.000Z" },
-    { "event": "design_created", "feature": "ch5-to-ch13-process-light", "at": "2026-05-29T16:25:00.000Z" },
-    { "event": "do_completed", "feature": "ch5-to-ch13-process-light", "commit": "3913a90", "at": "2026-05-29T16:45:00.000Z" },
-    { "event": "check_completed", "feature": "ch5-to-ch13-process-light", "matchRate": 98, "at": "2026-05-29T17:00:00.000Z" },
-    { "event": "feature_completed", "feature": "ch5-to-ch13-process-light", "matchRate": 98, "at": "2026-05-29T17:15:00.000Z" },
-    { "event": "plan_created", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:25:00.000Z" },
-    { "event": "design_created", "feature": "ch14-to-ch17-reflection", "at": "2026-05-29T17:40:00.000Z" },
-    { "event": "do_completed", "feature": "ch14-to-ch17-reflection", "commit": "b9d0789", "at": "2026-05-29T18:00:00.000Z" },
-    { "event": "check_completed", "feature": "ch14-to-ch17-reflection", "matchRate": 95, "at": "2026-05-29T18:15:00.000Z" },
-    { "event": "feature_completed", "feature": "ch14-to-ch17-reflection", "matchRate": 95, "at": "2026-05-29T18:30:00.000Z" },
-    { "event": "batch_completed", "feature": "ch3-to-ch17-batch", "matchRate": 96, "subBatches": ["ch3-ch4-foundation", "ch5-to-ch13-process-light", "ch14-to-ch17-reflection"], "totalChapters": 15, "totalDuration": "~8.5h", "at": "2026-05-29T18:30:00.000Z" },
-    { "event": "feature_archived", "feature": "ch3-to-ch17-batch", "archivedTo": "docs/archive/2026-05/ch3-to-ch17-batch/", "preserveSummary": true, "at": "2026-05-29T18:45:00.000Z" }
+    {
+      "event": "feature_completed",
+      "feature": "semiconductor-academy-site",
+      "matchRate": 95,
+      "at": "2026-05-27T04:35:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "chapter-based-restructure",
+      "matchRate": 97,
+      "at": "2026-05-27T17:45:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "reading-experience-ch1",
+      "matchRate": 94,
+      "at": "2026-05-29T13:45:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "ch2-deep-content",
+      "matchRate": 96,
+      "at": "2026-05-29T14:45:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "ch3-to-ch17-batch",
+      "at": "2026-05-29T15:00:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "ch3-ch4-foundation",
+      "at": "2026-05-29T15:15:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "ch3-ch4-foundation",
+      "at": "2026-05-29T15:30:00.000Z"
+    },
+    {
+      "event": "do_completed",
+      "feature": "ch3-ch4-foundation",
+      "commit": "50e0231",
+      "at": "2026-05-29T15:35:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "ch3-ch4-foundation",
+      "matchRate": 96,
+      "at": "2026-05-29T15:50:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "ch3-ch4-foundation",
+      "matchRate": 96,
+      "at": "2026-05-29T16:00:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "ch5-to-ch13-process-light",
+      "at": "2026-05-29T16:10:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "ch5-to-ch13-process-light",
+      "at": "2026-05-29T16:25:00.000Z"
+    },
+    {
+      "event": "do_completed",
+      "feature": "ch5-to-ch13-process-light",
+      "commit": "3913a90",
+      "at": "2026-05-29T16:45:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "ch5-to-ch13-process-light",
+      "matchRate": 98,
+      "at": "2026-05-29T17:00:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "ch5-to-ch13-process-light",
+      "matchRate": 98,
+      "at": "2026-05-29T17:15:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "ch14-to-ch17-reflection",
+      "at": "2026-05-29T17:25:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "ch14-to-ch17-reflection",
+      "at": "2026-05-29T17:40:00.000Z"
+    },
+    {
+      "event": "do_completed",
+      "feature": "ch14-to-ch17-reflection",
+      "commit": "b9d0789",
+      "at": "2026-05-29T18:00:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "ch14-to-ch17-reflection",
+      "matchRate": 95,
+      "at": "2026-05-29T18:15:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "ch14-to-ch17-reflection",
+      "matchRate": 95,
+      "at": "2026-05-29T18:30:00.000Z"
+    },
+    {
+      "event": "batch_completed",
+      "feature": "ch3-to-ch17-batch",
+      "matchRate": 96,
+      "subBatches": [
+        "ch3-ch4-foundation",
+        "ch5-to-ch13-process-light",
+        "ch14-to-ch17-reflection"
+      ],
+      "totalChapters": 15,
+      "totalDuration": "~8.5h",
+      "at": "2026-05-29T18:30:00.000Z"
+    },
+    {
+      "event": "feature_archived",
+      "feature": "ch3-to-ch17-batch",
+      "archivedTo": "docs/archive/2026-05/ch3-to-ch17-batch/",
+      "preserveSummary": true,
+      "at": "2026-05-29T18:45:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "homepage-book-centric",
+      "at": "2026-05-29T19:00:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "homepage-book-centric",
+      "at": "2026-05-29T19:15:00.000Z"
+    },
+    {
+      "event": "do_completed",
+      "feature": "homepage-book-centric",
+      "at": "2026-05-29T19:35:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "homepage-book-centric",
+      "matchRate": 97,
+      "at": "2026-05-29T19:50:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "homepage-book-centric",
+      "matchRate": 97,
+      "at": "2026-05-29T20:00:00.000Z"
+    },
+    {
+      "event": "feature_archived",
+      "feature": "homepage-book-centric",
+      "archivedTo": "docs/archive/2026-05/homepage-book-centric/",
+      "preserveSummary": true,
+      "at": "2026-05-29T20:05:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-29T08:17:58.360Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:17.919Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:38.617Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:42.668Z",
+      "feature": "chapters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:19:09.344Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:20:04.394Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:35.912Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:42.807Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:46.691Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:58.794Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:41:39.446Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    }
   ]
 }
