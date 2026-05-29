@@ -1,0 +1,71 @@
+{
+  "chapter": 2,
+  "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
+  "images": [
+    {
+      "file": "ch2-cover.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도입 일러스트",
+      "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
+      "publisher": "에피스테메",
+      "page": 20,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-1-current.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 2-1",
+      "caption": "전류와 전자의 흐름 개념도",
+      "page": 21,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-2-bands.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "도체·부도체·반도체의 에너지 밴드 구조",
+      "page": 23,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-3-intrinsic.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "진성/불순물 반도체의 구분",
+      "page": 28,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-4-mosfet.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "MOS 트랜지스터의 구조",
+      "page": 29,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-5-diode.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "다이오드의 동작 원리",
+      "page": 31,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-6-transistor.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "NPN/PNP 트랜지스터 단면",
+      "page": 32,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-2-7-ic.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 2장 도식",
+      "caption": "집적회로(IC) 실물 사진",
+      "page": 34,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
+  ]
+}
