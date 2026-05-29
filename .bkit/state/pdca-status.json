@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T18:30:00.000Z",
+  "lastUpdated": "2026-05-29T18:45:00.000Z",
   "activeFeatures": [],
   "primaryFeature": null,
   "features": {
@@ -69,17 +69,14 @@
       "parent": "ch3-to-ch17-batch (sub-batch C, 마지막)"
     },
     "ch3-to-ch17-batch": {
-      "phase": "completed",
-      "phaseNumber": 6,
+      "phase": "archived",
       "matchRate": 96,
       "iterationCount": 0,
       "startedAt": "2026-05-29T15:00:00.000Z",
       "completedAt": "2026-05-29T18:30:00.000Z",
-      "tasks": { "plan": "27" },
-      "documents": {
-        "plan": "docs/01-plan/features/ch3-to-ch17-batch.plan.md"
-      },
-      "note": "batch parent — A+B+C 모두 완료, 17 챕터 책 완주 (8.5h, 평균 96.3%)"
+      "archivedAt": "2026-05-29T18:45:00.000Z",
+      "archivedTo": "docs/archive/2026-05/ch3-to-ch17-batch/",
+      "summary": "17 챕터 책 완주 milestone — A(2.5h, 96%) + B(3h, 98%) + C(~3h, 95%) = 8.5h, 15 챕터, 44 이미지, 21 자체표, 23 SourceQuote (≤150자), 57 Callout"
     }
   },
   "pipeline": {
@@ -107,7 +104,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T18:30:00.000Z"
+    "lastActivity": "2026-05-29T18:45:00.000Z"
   },
   "history": [
     { "event": "feature_completed", "feature": "semiconductor-academy-site", "matchRate": 95, "at": "2026-05-27T04:35:00.000Z" },
@@ -130,6 +127,7 @@
     { "event": "do_completed", "feature": "ch14-to-ch17-reflection", "commit": "b9d0789", "at": "2026-05-29T18:00:00.000Z" },
     { "event": "check_completed", "feature": "ch14-to-ch17-reflection", "matchRate": 95, "at": "2026-05-29T18:15:00.000Z" },
     { "event": "feature_completed", "feature": "ch14-to-ch17-reflection", "matchRate": 95, "at": "2026-05-29T18:30:00.000Z" },
-    { "event": "batch_completed", "feature": "ch3-to-ch17-batch", "matchRate": 96, "subBatches": ["ch3-ch4-foundation", "ch5-to-ch13-process-light", "ch14-to-ch17-reflection"], "totalChapters": 15, "totalDuration": "~8.5h", "at": "2026-05-29T18:30:00.000Z" }
+    { "event": "batch_completed", "feature": "ch3-to-ch17-batch", "matchRate": 96, "subBatches": ["ch3-ch4-foundation", "ch5-to-ch13-process-light", "ch14-to-ch17-reflection"], "totalChapters": 15, "totalDuration": "~8.5h", "at": "2026-05-29T18:30:00.000Z" },
+    { "event": "feature_archived", "feature": "ch3-to-ch17-batch", "archivedTo": "docs/archive/2026-05/ch3-to-ch17-batch/", "preserveSummary": true, "at": "2026-05-29T18:45:00.000Z" }
   ]
 }
