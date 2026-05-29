@@ -9,7 +9,25 @@
       </p>
     ),
   }}
-  deep={{ sourcePage: 181, sourceSection: '12장 물리 화학적 연마(CMP)와 유해인자' }}
+  deep={{
+    sourcePage: 181,
+    sourceSection: '12장 - CMP의 정의와 광역 평탄화',
+    quote: (
+      <>
+        <p>
+          <strong>물리 화학적 연마(chemical mechanical polishing 또는 planarization, CMP)는 웨이퍼
+          위에 집적한 재료를 화학적 침식과 기계적 마찰을 이용하여 연마하는 과정</strong>으로, 주 목적은
+          <strong> 다음 공정을 진행하기 위한 웨이퍼 표면의 광역 평탄화(planarization)</strong>이다.
+        </p>
+        <p className="mt-2">
+          원래는 최종 단계에서 표면의 평균 거칠기를 <strong>1nm 이내</strong>로 가공하기 위해서 개발되었으나,
+          <strong> 1980년대 말 미국의 IBM에서 다층 금속 배선 공정에서의 평탄화 문제를 해결하기 위해
+          도입</strong>되었다. 이 공정을 활용하면 <strong>다층 배선 반도체 소자 제작이나 구리처럼 식각이
+          어려운 물질을 평탄화</strong>할 수 있다.
+        </p>
+      </>
+    ),
+  }}
 />
 
 <ImageFigure
@@ -51,6 +69,27 @@ CMP 슬러리는 대상 막에 따라 둘로 나뉘어요.
   따라 정반대 방향으로 설계돼요.
 </Callout>
 
+<SourceQuote page={184} section="1. 슬러리 - 5가지 필수 특성 + 2분류·4세분">
+  <p>
+    <strong>슬러리(slurry)는 화학반응을 위한 산 또는 염기가 초순수에 섞여 있으며, 기계적 연마를 위한
+    미세 입자(nano powder particulate)가 균일하게 분산되어 콜로이드 형태</strong>를 띤다.
+  </p>
+  <p className="mt-2">
+    슬러리는 다음과 같은 <strong>5가지 특성</strong>이 있어야 한다.
+  </p>
+  <p className="mt-2">• <strong>슬러리 내 금속이온의 농도가 매우 낮아야 한다.</strong></p>
+  <p>• 슬러리 내 연마 입자의 크기가 균일해야 한다.</p>
+  <p>• 연마 속도가 높고 연마 선택도가 균일해야 한다.</p>
+  <p>• 연마 입자에 의한 <strong>표면 흠집(scratch) 발생률이 매우 낮아야 한다.</strong></p>
+  <p>• 슬러리 내 연마 입자의 <strong>분산 안정성 및 장시간 보관 안정성</strong>이 있어야 한다.</p>
+  <p className="mt-2">
+    슬러리의 종류는 평탄화 대상 물질의 종류에 따라 크게 <strong>산화막(oxide) 슬러리와 금속막(metal) 슬러리로 구분</strong>된다. 더 세분하면 산화막 슬러리는 <strong>① 산화막 CMP용 + ② STI(shallow trench isolation) CMP용</strong>으로, 금속막 슬러리는 <strong>③ 텅스텐 및 알루미늄 CMP용 + ④ 구리 CMP용</strong>으로 나눌 수 있다.
+  </p>
+  <p className="mt-2">
+    <strong>산화막 CMP는 보통 염기성 상태(pH 10 이상)</strong>에서 수행하며, <strong>수산화칼륨이나 암모니아수</strong>를 첨가한다. <strong>STI CMP는 주로 세리아(CeO₂) 입자</strong>를 사용한다. 금속막 CMP에서는 <strong>주로 알루미나 입자를 산성 용액(pH 7 이하)에 혼합</strong>한 슬러리를 사용하며, <strong>산화제(질산제이철, 과산화수소, 질산칼륨, 질산)</strong>가 금속 표면을 산화하여 마찰력을 높인다.
+  </p>
+</SourceQuote>
+
 ## 2. CMP 연마 헤드 — 기계적 마찰
 
 <ImageFigure
@@ -66,11 +105,48 @@ CMP 슬러리는 대상 막에 따라 둘로 나뉘어요.
 <ChemicalCard id="silica-slurry" />
 <ChemicalCard id="ceria-slurry" />
 
+<SourceQuote page={186} section="2. CMP 연마 헤드 - 장치 3대 구성 + Thinning·Dishing">
+  <p>
+    <strong>CMP 장치의 구성은 ① 웨이퍼를 연마 패드 위에 고정하고 웨이퍼를 회전시키는 회전 테이블과,
+    ② 일정한 압력으로 누르면서 회전하여 물리적인 연마를 하는 연마 헤드(polishing head), ③ 웨이퍼
+    위에 슬러리를 공급하는 노즐</strong>로 구성된다.
+  </p>
+  <p className="mt-2">
+    <strong>연마를 덜 하면 불필요한 박막이 남고, 너무 많이 하면 필요한 막층이 얇아지는 현상(thinning)이
+    발생한다.</strong> 웨이퍼가 커지면서 웨이퍼 전체를 일정 두께로 연마하는 기술의 난이도가 높아졌다.
+    <strong> 부분적으로 연마가 불균등하게 이루어져 생기는 두께 차이를 디싱(dishing)이라고 한다.</strong>
+    디싱은 회전 테이블의 회전으로 슬러리가 웨이퍼 가장자리에 더 많이 분포하게 되면서 발생한다.
+  </p>
+  <p className="mt-2">
+    슬러리의 기능은 <strong>① 화학적 연마제를 공급하고, ② 웨이퍼와 연마 입자 사이에 윤활 기능을 하며,
+    ③ 연마 과정에서 떨어져 나온 웨이퍼의 물질을 제거</strong>하는 것이다.
+  </p>
+</SourceQuote>
+
 ## 3. 산업보건학적 시각
 
-<SourceQuote page={189} section="12장 - CMP 공정의 유해인자">
-  CMP 공정에서 사용되는 슬러리는 수십 나노미터 크기의 입자가 액체에 분산된 형태로, 이러한 나노 입자의
-  장기 흡입 영향에 대한 연구는 아직 충분치 않다.
+<SourceQuote page={189} section="3. 산업보건학적 시각 - 화학물질 + 나노 입자 + 물리적 유해인자">
+  <p>
+    <strong>[화학 — 산화막 슬러리]</strong> 산화막 슬러리에는 <strong>염기성 용액을 만들기 위해 수산화칼륨이나
+    암모니아수가 첨가</strong>된다. 흄드 실리카 슬러리에는 실리카가 포함되어 있지만, <strong>공기 중으로
+    노출될 가능성은 거의 없다.</strong>
+  </p>
+  <p className="mt-2">
+    <strong>[화학 — 금속막 슬러리]</strong> 금속막 슬러리에는 <strong>질산제이철, 과산화수소, 질산칼륨,
+    질산</strong> 등이 산화제로 포함된다.
+  </p>
+  <p className="mt-2">
+    <strong>[나노 입자 노출]</strong> <strong>슬러리 중의 작은 입자가 나노 크기라서 정비 과정 중에 이들
+    나노 입자에 노출될 수 있다.</strong>
+  </p>
+  <p className="mt-2">
+    <strong>[물리적 유해인자]</strong> CMP 연마 패드의 마모와 오염을 줄이고 공정 관리를 위해서 물리적인
+    힘을 가해 패드의 상태를 복원하는 <strong>패드 컨디셔닝(pad conditioning) 작업</strong>이 CMP 작업과
+    동시에 이루어진다. 패드 컨디셔닝의 한 방법으로 <strong>약 20kHz의 초음파</strong>를 패드에 가하면
+    미세한 기포들이 생성되고 붕괴된다. 또한 CMP 공정 완료를 인지하기 위해 <strong>레이저 반사를 이용한
+    광학적 측정법</strong>을 사용하는데, <strong>광원이 테이블 밑에 존재하기 때문에 작업자에게 노출될
+    가능성은 거의 없다.</strong>
+  </p>
 </SourceQuote>
 
 <Callout type="warning" title="나노 입자 흡입 — 폐 깊숙이">
