@@ -1,12 +1,28 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-29T08:41:39.446Z",
+  "lastUpdated": "2026-05-29T13:14:23.400Z",
   "activeFeatures": [
+    "source-quote-expansion",
     "SemiconductorAcademy",
-    "layout"
+    "layout",
+    "content"
   ],
-  "primaryFeature": "SemiconductorAcademy",
+  "primaryFeature": "source-quote-expansion",
   "features": {
+    "source-quote-expansion": {
+      "phase": "plan",
+      "phaseNumber": 1,
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-05-29T20:30:00.000Z",
+      "documents": {
+        "plan": "docs/01-plan/features/source-quote-expansion.plan.md"
+      },
+      "timestamps": {
+        "started": "2026-05-29T20:30:00.000Z",
+        "lastUpdated": "2026-05-29T20:30:00.000Z"
+      }
+    },
     "homepage-book-centric": {
       "phase": "archived",
       "matchRate": 97,
@@ -159,6 +175,19 @@
         "lastUpdated": "2026-05-29T08:38:46.691Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
+    },
+    "content": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-29T13:14:23.400Z",
+        "lastUpdated": "2026-05-29T13:14:23.400Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/content/LayeredExplain.tsx"
     }
   },
   "pipeline": {
@@ -260,7 +289,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T08:41:39.446Z"
+    "lastActivity": "2026-05-29T13:14:23.400Z"
   },
   "history": [
     {
@@ -493,6 +522,12 @@
     {
       "timestamp": "2026-05-29T08:41:39.446Z",
       "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T13:14:23.400Z",
+      "feature": "content",
       "phase": "do",
       "action": "updated"
     }

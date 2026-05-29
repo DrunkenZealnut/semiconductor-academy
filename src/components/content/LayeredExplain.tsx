@@ -40,16 +40,19 @@ export function LayeredExplain({ hook, easy, deep }: LayeredExplainProps) {
         )}
       </div>
 
-      {/* Layer 3: Deep (optional, collapsed) */}
-      {deep && (deep.quote || deep.sourcePage) && (
+      {/* Layer 3: Deep — only rendered when an actual quote exists */}
+      {deep?.quote && (
         <Disclosure
           title={`📖 학술 원본 보기${
             deep.sourcePage ? ` (p.${deep.sourcePage})` : ''
           }${deep.sourceSection ? ` — ${deep.sourceSection}` : ''}`}
         >
-          {deep.quote ?? (
-            <p className="text-sm text-slate-600 dark:text-slate-400">
-              원본 자료에서 해당 페이지를 참고하세요.
+          <blockquote className="border-l-4 border-brand-400 pl-4 italic text-slate-700 dark:text-slate-300">
+            {deep.quote}
+          </blockquote>
+          {deep.sourcePage && (
+            <p className="mt-2 text-right text-xs text-slate-500 dark:text-slate-400">
+              — 「반도체 산업의 유해인자」 p.{deep.sourcePage}
             </p>
           )}
         </Disclosure>
