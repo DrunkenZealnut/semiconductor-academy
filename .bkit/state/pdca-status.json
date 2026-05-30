@@ -1,8 +1,7 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-30T01:46:15.630Z",
+  "lastUpdated": "2026-05-30T02:32:35.766Z",
   "activeFeatures": [
-    "cross-link-system",
     "SemiconductorAcademy",
     "layout",
     "content",
@@ -10,22 +9,24 @@
     "quotes",
     "sources",
     "[source]",
-    "[part]"
+    "[part]",
+    "cross-link",
+    "[slug]",
+    "[id]"
   ],
-  "primaryFeature": "cross-link-system",
+  "primaryFeature": "SemiconductorAcademy",
   "features": {
     "cross-link-system": {
-      "phase": "design",
-      "matchRate": null,
+      "phase": "archived",
+      "matchRate": 100,
       "iterationCount": 0,
       "startedAt": "2026-05-30T20:45:00.000Z",
-      "documents": {
-        "plan": "docs/01-plan/features/cross-link-system.plan.md",
-        "design": "docs/02-design/features/cross-link-system.design.md"
-      },
-      "scope": "Topic/Hazard enum + 책 17 + OSHA 5 태깅 + 빌드 인덱스 + RelatedFromOtherSources + ChemicalSourceHub + (옵션) /quotes source 필터",
-      "designPrinciple": "Extensibility-first (manifest-driven discovery, source-count-agnostic UI, graceful degradation)",
-      "inherits": "multi-source-learning-platform archive (docs/archive/2026-05/multi-source-learning-platform/)"
+      "completedAt": "2026-05-30T22:30:00.000Z",
+      "archivedAt": "2026-05-30T23:00:00.000Z",
+      "archivedTo": "docs/archive/2026-05/cross-link-system/",
+      "branch": "feat/cross-link-system",
+      "inherits": "multi-source-learning-platform archive",
+      "summary": "자료원 간 의미적 연결망 (Phase C) — 1.5h, 100% (in-scope 11 FR, FR-12 deferred), Topic 23·Hazard 12 enum + 책 17+OSHA 5 태깅 + build-cross-link-index 자동 발견(80 bidirectional edges, DoD 4배, 0 unknown chemicals) + lookup.ts + 3 컴포넌트(RelatedItemCard/RelatedFromOtherSources/ChemicalSourceHub) + 3 페이지 통합. Extensibility 5원칙(manifest-driven, schema-enum 미러, source-agnostic UI, graceful degradation, schema versioning) 코드 구현 + §11.3 test 실증 통과 (test-source add/remove, 코어 0줄 수정). 11 신규 파일, 4 수정. Critical/Major 0, Minor 1(Design 주석 informational)."
     },
     "multi-source-learning-platform": {
       "phase": "archived",
@@ -287,9 +288,48 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:46:15.630Z",
-        "lastUpdated": "2026-05-30T01:46:15.630Z"
+        "lastUpdated": "2026-05-30T02:32:10.292Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/osha-scs/[part]/page.tsx"
+    },
+    "cross-link": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T02:28:01.897Z",
+        "lastUpdated": "2026-05-30T02:31:38.096Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/cross-link/ChemicalSourceHub.tsx"
+    },
+    "[slug]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T02:31:51.345Z",
+        "lastUpdated": "2026-05-30T02:31:56.642Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapter/[slug]/page.tsx"
+    },
+    "[id]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T02:32:29.657Z",
+        "lastUpdated": "2026-05-30T02:32:35.766Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chemicals/[id]/page.tsx"
     }
   },
   "pipeline": {
@@ -411,7 +451,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-30T01:46:15.630Z"
+    "lastActivity": "2026-05-30T02:32:35.766Z"
   },
   "history": [
     {
@@ -801,6 +841,102 @@
       "feature": "cross-link-system",
       "designPrinciple": "Extensibility-first per user request",
       "at": "2026-05-30T21:15:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-30T02:28:01.897Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:30:49.668Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:31:12.003Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:31:26.838Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:31:38.096Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:31:51.345Z",
+      "feature": "[slug]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:31:56.642Z",
+      "feature": "[slug]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:32:04.927Z",
+      "feature": "[part]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:32:10.292Z",
+      "feature": "[part]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:32:29.657Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T02:32:35.766Z",
+      "feature": "[id]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "event": "do_completed",
+      "feature": "cross-link-system",
+      "extensibilityTest": "passed (test-source add/remove, 0 core code change)",
+      "at": "2026-05-30T21:50:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "cross-link-system",
+      "matchRate": 100,
+      "scope": "11 in-scope FR (FR-12 deferred)",
+      "criticalCount": 0,
+      "majorCount": 0,
+      "minorCount": 1,
+      "at": "2026-05-30T22:00:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "cross-link-system",
+      "matchRate": 100,
+      "extensibilityTestPassed": true,
+      "at": "2026-05-30T22:30:00.000Z"
+    },
+    {
+      "event": "feature_archived",
+      "feature": "cross-link-system",
+      "archivedTo": "docs/archive/2026-05/cross-link-system/",
+      "preserveSummary": true,
+      "at": "2026-05-30T23:00:00.000Z"
     }
   ]
 }
