@@ -2,7 +2,7 @@
   "version": "2.0",
   "lastUpdated": "2026-05-30T01:46:15.630Z",
   "activeFeatures": [
-    "multi-source-learning-platform",
+    "cross-link-system",
     "SemiconductorAcademy",
     "layout",
     "content",
@@ -12,24 +12,32 @@
     "[source]",
     "[part]"
   ],
-  "primaryFeature": "multi-source-learning-platform",
+  "primaryFeature": "cross-link-system",
   "features": {
-    "multi-source-learning-platform": {
-      "phase": "do",
+    "cross-link-system": {
+      "phase": "design",
       "matchRate": null,
       "iterationCount": 0,
-      "startedAt": "2026-05-30T18:00:00.000Z",
+      "startedAt": "2026-05-30T20:45:00.000Z",
       "documents": {
-        "plan": "docs/01-plan/features/multi-source-learning-platform.plan.md",
-        "design": "docs/02-design/features/multi-source-learning-platform.design.md"
+        "plan": "docs/01-plan/features/cross-link-system.plan.md",
+        "design": "docs/02-design/features/cross-link-system.design.md"
       },
+      "scope": "Topic/Hazard enum + 책 17 + OSHA 5 태깅 + 빌드 인덱스 + RelatedFromOtherSources + ChemicalSourceHub + (옵션) /quotes source 필터",
+      "designPrinciple": "Extensibility-first (manifest-driven discovery, source-count-agnostic UI, graceful degradation)",
+      "inherits": "multi-source-learning-platform archive (docs/archive/2026-05/multi-source-learning-platform/)"
+    },
+    "multi-source-learning-platform": {
+      "phase": "archived",
+      "matchRate": 96,
+      "iterationCount": 0,
+      "startedAt": "2026-05-30T18:00:00.000Z",
+      "completedAt": "2026-05-30T20:10:00.000Z",
+      "archivedAt": "2026-05-30T20:30:00.000Z",
+      "archivedTo": "docs/archive/2026-05/multi-source-learning-platform/",
       "branch": "feat/multi-source-learning-platform",
-      "progress": {
-        "phaseA": "completed (Source types, SourcePicker/Badge/Header/SectionList, /sources/[source])",
-        "phaseB": "completed (OSHA 5 MDX, oshaMdx loader, /sources/osha-scs/[part])",
-        "phaseC": "pending (cross-link schema, build script, RelatedFromOtherSources, ChemicalSourceHub)"
-      },
-      "scope": "Phase A(IA 재편: Source 모델) + Phase B(OSHA 5 Part 통합) + Phase C(cross-link 시스템)"
+      "commit": "acd234e",
+      "summary": "다중 자료원 학습 플랫폼 재편 (Phase A+B) — 3h, 96%, Source 1급 객체 도입 + OSHA SCS 5 Part(1A/1B/2/3/4) 통합 + 4 컴포넌트(SourcePicker/Badge/Header/SectionList) + 2 신규 라우트(/sources/[source], /sources/osha-scs/[part]) + oshaMdx 로더. 7 prerendered routes, 19 files (+3,232/-8). 17 챕터 URL 100% 호환. Phase C(cross-link 시스템)는 별 cycle로 분리. Critical/Major 0, Minor 4."
     },
     "source-quote-index": {
       "phase": "archived",
@@ -387,6 +395,16 @@
         "phase": "design",
         "feature": "multi-source-learning-platform",
         "at": "2026-05-30T18:30:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "multi-source-learning-platform",
+        "at": "2026-05-30T19:00:00.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "multi-source-learning-platform",
+        "at": "2026-05-30T19:30:00.000Z"
       }
     ]
   },
@@ -740,6 +758,49 @@
       "feature": "[part]",
       "phase": "do",
       "action": "updated"
+    },
+    {
+      "event": "do_completed",
+      "feature": "multi-source-learning-platform",
+      "commit": "acd234e",
+      "scope": "Phase A+B only (Phase C deferred to separate cycle)",
+      "at": "2026-05-30T19:00:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "multi-source-learning-platform",
+      "matchRate": 96,
+      "scope": "Phase A+B",
+      "criticalCount": 0,
+      "majorCount": 0,
+      "minorCount": 4,
+      "at": "2026-05-30T19:30:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "multi-source-learning-platform",
+      "matchRate": 96,
+      "scope": "Phase A+B (Phase C deferred to separate cycle)",
+      "at": "2026-05-30T20:10:00.000Z"
+    },
+    {
+      "event": "feature_archived",
+      "feature": "multi-source-learning-platform",
+      "archivedTo": "docs/archive/2026-05/multi-source-learning-platform/",
+      "preserveSummary": true,
+      "at": "2026-05-30T20:30:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "cross-link-system",
+      "inherits": "multi-source-learning-platform (Phase C split)",
+      "at": "2026-05-30T20:45:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "cross-link-system",
+      "designPrinciple": "Extensibility-first per user request",
+      "at": "2026-05-30T21:15:00.000Z"
     }
   ]
 }
