@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronLeft, ChevronRight, Clock, ExternalLink } from 'lucide-react';
 import { SourceBadge } from '@/components/sources/SourceBadge';
+import { RelatedFromOtherSources } from '@/components/cross-link/RelatedFromOtherSources';
 import { OSHA_SCS } from '@/lib/sources';
 import { loadOshaScsPartMdx } from '@/lib/oshaMdx';
 import { buildMetadata } from '@/lib/seo';
@@ -98,6 +99,8 @@ export default async function OshaScsPartPage({
           <p className="text-slate-600 dark:text-slate-400">본문 준비 중입니다.</p>
         )}
       </div>
+
+      <RelatedFromOtherSources sourceId="osha-scs" sectionId={section.id} />
 
       <nav
         aria-label="OSHA Part 이전/다음"

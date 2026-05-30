@@ -5,6 +5,7 @@ import { HazardBadge } from '@/components/content/HazardBadge';
 import { Callout } from '@/components/content/Callout';
 import { Tag } from '@/components/ui/Tag';
 import { Card } from '@/components/ui/Card';
+import { ChemicalSourceHub } from '@/components/cross-link/ChemicalSourceHub';
 import {
   chemicals,
   getChemicalById,
@@ -111,6 +112,8 @@ export default async function ChemicalDetailPage({
           </div>
         </section>
       )}
+
+      <ChemicalSourceHub chemicalId={chem.id} />
 
       <footer className="mt-12 border-t border-slate-200 pt-6 text-sm text-slate-500 dark:border-slate-800">
         출처: 「반도체 산업의 유해인자」 p.{chem.sourceRef.page} —{' '}

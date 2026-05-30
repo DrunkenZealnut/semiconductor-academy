@@ -1,0 +1,109 @@
+{
+  "$comment": "Cross-link tags for the EPI book (17 chapters). Mirror IDs from src/data/chapters.json. Schema: src/lib/cross-link/schema.ts.",
+  "01-risks-of-new-tech": {
+    "topics": ["industrial-hygiene"]
+  },
+  "02-semiconductor": {
+    "topics": ["wafer-fab"]
+  },
+  "03-process-overview": {
+    "topics": ["wafer-fab"]
+  },
+  "04-cleanroom": {
+    "topics": ["cleanroom", "engineering-controls"]
+  },
+  "05-wafer": {
+    "topics": ["wafer-fab"],
+    "chemicals": ["isopropyl-alcohol", "trichlorosilane"]
+  },
+  "06-cleaning": {
+    "topics": ["liquid-chemicals"],
+    "hazards": ["corrosive"],
+    "chemicals": [
+      "hydrofluoric-acid",
+      "isopropyl-alcohol",
+      "hydrogen-peroxide",
+      "sulfuric-acid",
+      "ammonia",
+      "ozone"
+    ]
+  },
+  "07-diffusion": {
+    "topics": ["diffusion", "gas-safety"],
+    "hazards": ["pyrophoric", "toxic", "acute-toxic"],
+    "chemicals": [
+      "arsine",
+      "phosphine",
+      "diborane",
+      "phosphorus-oxychloride",
+      "boron-tribromide"
+    ]
+  },
+  "08-photolithography": {
+    "topics": ["photolithography", "liquid-chemicals"],
+    "hazards": ["flammable"],
+    "chemicals": ["pgmea", "hmds", "tmah"]
+  },
+  "09-etching": {
+    "topics": ["etching", "gas-safety", "liquid-chemicals"],
+    "hazards": ["corrosive", "toxic"],
+    "chemicals": [
+      "hydrofluoric-acid",
+      "chlorine",
+      "fluorine",
+      "boron-trifluoride",
+      "tungsten-hexafluoride",
+      "tmah"
+    ]
+  },
+  "10-deposition": {
+    "topics": ["deposition", "gas-safety"],
+    "hazards": ["pyrophoric"],
+    "chemicals": ["silane", "dichlorosilane", "trichlorosilane", "ammonia"]
+  },
+  "11-ion-implantation": {
+    "topics": ["ion-implantation", "gas-safety"],
+    "hazards": ["toxic", "acute-toxic"],
+    "chemicals": ["arsine", "phosphine", "diborane", "boron-trifluoride"]
+  },
+  "12-cmp": {
+    "topics": ["cmp"],
+    "chemicals": ["silica-slurry", "ceria-slurry"]
+  },
+  "13-packaging": {
+    "topics": ["packaging"],
+    "chemicals": ["lead", "epoxy-resin", "solder-flux", "antimony-trioxide"]
+  },
+  "14-chemicals-usage": {
+    "topics": [
+      "chemical-inventory",
+      "liquid-chemicals",
+      "storage-compatibility"
+    ],
+    "hazards": ["corrosive", "flammable", "toxic"],
+    "chemicals": [
+      "hydrofluoric-acid",
+      "isopropyl-alcohol",
+      "hydrogen-peroxide",
+      "pgmea",
+      "sulfuric-acid",
+      "ammonia"
+    ]
+  },
+  "15-electromagnetic": {
+    "topics": ["industrial-hygiene", "exposure-monitoring"]
+  },
+  "16-occupational-disease": {
+    "topics": ["occupational-disease", "exposure-monitoring"],
+    "hazards": ["carcinogen", "reproductive-toxin"],
+    "chemicals": [
+      "benzene",
+      "arsenic",
+      "ethylene-glycol-ether",
+      "trichlorosilane"
+    ]
+  },
+  "17-industrial-health-view": {
+    "topics": ["industrial-hygiene", "occupational-disease"]
+  }
+}

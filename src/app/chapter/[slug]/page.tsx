@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { ChapterFooterNav } from '@/components/chapter/ChapterFooterNav';
+import { RelatedFromOtherSources } from '@/components/cross-link/RelatedFromOtherSources';
 import { chapters, getAdjacentChapters, getChapterBySlug } from '@/lib/chapters';
 import { loadChapterMdx } from '@/lib/chaptersMdx';
 import { buildMetadata } from '@/lib/seo';
@@ -45,6 +46,8 @@ export default async function ChapterPage({
           <p className="text-slate-600 dark:text-slate-400">본문 준비 중입니다.</p>
         )}
       </div>
+
+      <RelatedFromOtherSources sourceId="epi-semi-hazards" sectionId={chapter.id} />
 
       <ChapterFooterNav prev={prev} next={next} />
     </article>

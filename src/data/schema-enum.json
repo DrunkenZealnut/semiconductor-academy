@@ -1,0 +1,43 @@
+{
+  "$comment": "Build-time mirror of TOPICS/HAZARDS from src/lib/cross-link/schema.ts. KEEP IN SYNC.",
+  "version": 1,
+  "topics": [
+    "ghs",
+    "sds-label",
+    "chemical-inventory",
+    "cleanroom",
+    "wafer-fab",
+    "photolithography",
+    "etching",
+    "diffusion",
+    "deposition",
+    "ion-implantation",
+    "cmp",
+    "packaging",
+    "gas-safety",
+    "liquid-chemicals",
+    "compressed-gas",
+    "cryogenic",
+    "storage-compatibility",
+    "engineering-controls",
+    "ppe",
+    "emergency-response",
+    "occupational-disease",
+    "exposure-monitoring",
+    "industrial-hygiene"
+  ],
+  "hazards": [
+    "flammable",
+    "pyrophoric",
+    "oxidizer",
+    "corrosive",
+    "toxic",
+    "acute-toxic",
+    "carcinogen",
+    "reproductive-toxin",
+    "sensitizer",
+    "compressed-gas",
+    "cryogenic",
+    "reactive"
+  ]
+}

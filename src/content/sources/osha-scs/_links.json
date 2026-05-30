@@ -1,0 +1,46 @@
+{
+  "$comment": "Cross-link tags for OSHA Semiconductor Chemical Safety (5 Parts). Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts OSHA_SCS.sections.",
+  "part-1a": {
+    "topics": ["ghs", "sds-label"]
+  },
+  "part-1b": {
+    "topics": ["chemical-inventory", "emergency-response", "ppe"],
+    "hazards": ["corrosive", "toxic"]
+  },
+  "part-2": {
+    "topics": [
+      "liquid-chemicals",
+      "gas-safety",
+      "storage-compatibility",
+      "ppe"
+    ],
+    "hazards": ["flammable", "corrosive", "toxic", "oxidizer", "pyrophoric"],
+    "chemicals": ["hydrofluoric-acid", "isopropyl-alcohol", "sulfuric-acid"]
+  },
+  "part-3": {
+    "topics": ["gas-safety", "liquid-chemicals", "emergency-response"],
+    "hazards": ["pyrophoric", "toxic", "acute-toxic", "corrosive", "reactive"],
+    "chemicals": [
+      "arsine",
+      "phosphine",
+      "diborane",
+      "silane",
+      "dichlorosilane",
+      "hydrofluoric-acid",
+      "chlorine",
+      "fluorine",
+      "boron-trifluoride",
+      "tungsten-hexafluoride"
+    ]
+  },
+  "part-4": {
+    "topics": [
+      "gas-safety",
+      "compressed-gas",
+      "cryogenic",
+      "emergency-response",
+      "engineering-controls"
+    ],
+    "hazards": ["compressed-gas", "cryogenic", "toxic"]
+  }
+}

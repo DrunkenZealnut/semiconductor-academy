@@ -1,0 +1,977 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-30T02:33:18.331Z",
+  "sources": [
+    "epi-semi-hazards",
+    "osha-scs"
+  ],
+  "bySection": {
+    "epi-semi-hazards::01-risks-of-new-tech": {
+      "topics": [
+        "industrial-hygiene"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "epi-semi-hazards::02-semiconductor": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "epi-semi-hazards::03-process-overview": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "epi-semi-hazards::04-cleanroom": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "epi-semi-hazards::05-wafer": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "isopropyl-alcohol",
+        "trichlorosilane"
+      ]
+    },
+    "epi-semi-hazards::06-cleaning": {
+      "topics": [
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "isopropyl-alcohol",
+        "hydrogen-peroxide",
+        "sulfuric-acid",
+        "ammonia",
+        "ozone"
+      ]
+    },
+    "epi-semi-hazards::07-diffusion": {
+      "topics": [
+        "diffusion",
+        "gas-safety"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic",
+        "acute-toxic"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "diborane",
+        "phosphorus-oxychloride",
+        "boron-tribromide"
+      ]
+    },
+    "epi-semi-hazards::08-photolithography": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "flammable"
+      ],
+      "chemicals": [
+        "pgmea",
+        "hmds",
+        "tmah"
+      ]
+    },
+    "epi-semi-hazards::09-etching": {
+      "topics": [
+        "etching",
+        "gas-safety",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "chlorine",
+        "fluorine",
+        "boron-trifluoride",
+        "tungsten-hexafluoride",
+        "tmah"
+      ]
+    },
+    "epi-semi-hazards::10-deposition": {
+      "topics": [
+        "deposition",
+        "gas-safety"
+      ],
+      "hazards": [
+        "pyrophoric"
+      ],
+      "chemicals": [
+        "silane",
+        "dichlorosilane",
+        "trichlorosilane",
+        "ammonia"
+      ]
+    },
+    "epi-semi-hazards::11-ion-implantation": {
+      "topics": [
+        "ion-implantation",
+        "gas-safety"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "diborane",
+        "boron-trifluoride"
+      ]
+    },
+    "epi-semi-hazards::12-cmp": {
+      "topics": [
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "silica-slurry",
+        "ceria-slurry"
+      ]
+    },
+    "epi-semi-hazards::13-packaging": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "lead",
+        "epoxy-resin",
+        "solder-flux",
+        "antimony-trioxide"
+      ]
+    },
+    "epi-semi-hazards::14-chemicals-usage": {
+      "topics": [
+        "chemical-inventory",
+        "liquid-chemicals",
+        "storage-compatibility"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "isopropyl-alcohol",
+        "hydrogen-peroxide",
+        "pgmea",
+        "sulfuric-acid",
+        "ammonia"
+      ]
+    },
+    "epi-semi-hazards::15-electromagnetic": {
+      "topics": [
+        "industrial-hygiene",
+        "exposure-monitoring"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "epi-semi-hazards::16-occupational-disease": {
+      "topics": [
+        "occupational-disease",
+        "exposure-monitoring"
+      ],
+      "hazards": [
+        "carcinogen",
+        "reproductive-toxin"
+      ],
+      "chemicals": [
+        "benzene",
+        "arsenic",
+        "ethylene-glycol-ether",
+        "trichlorosilane"
+      ]
+    },
+    "epi-semi-hazards::17-industrial-health-view": {
+      "topics": [
+        "industrial-hygiene",
+        "occupational-disease"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "osha-scs::part-1a": {
+      "topics": [
+        "ghs",
+        "sds-label"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "osha-scs::part-1b": {
+      "topics": [
+        "chemical-inventory",
+        "emergency-response",
+        "ppe"
+      ],
+      "hazards": [
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "osha-scs::part-2": {
+      "topics": [
+        "liquid-chemicals",
+        "gas-safety",
+        "storage-compatibility",
+        "ppe"
+      ],
+      "hazards": [
+        "flammable",
+        "corrosive",
+        "toxic",
+        "oxidizer",
+        "pyrophoric"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "isopropyl-alcohol",
+        "sulfuric-acid"
+      ]
+    },
+    "osha-scs::part-3": {
+      "topics": [
+        "gas-safety",
+        "liquid-chemicals",
+        "emergency-response"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic",
+        "acute-toxic",
+        "corrosive",
+        "reactive"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "diborane",
+        "silane",
+        "dichlorosilane",
+        "hydrofluoric-acid",
+        "chlorine",
+        "fluorine",
+        "boron-trifluoride",
+        "tungsten-hexafluoride"
+      ]
+    },
+    "osha-scs::part-4": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas",
+        "cryogenic",
+        "emergency-response",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas",
+        "cryogenic",
+        "toxic"
+      ],
+      "chemicals": []
+    }
+  },
+  "byTopic": {
+    "industrial-hygiene": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "01-risks-of-new-tech"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "15-electromagnetic"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "17-industrial-health-view"
+      }
+    ],
+    "wafer-fab": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "02-semiconductor"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "03-process-overview"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "05-wafer"
+      }
+    ],
+    "cleanroom": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "04-cleanroom"
+      }
+    ],
+    "engineering-controls": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "liquid-chemicals": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "diffusion": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      }
+    ],
+    "gas-safety": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "photolithography": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      }
+    ],
+    "etching": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      }
+    ],
+    "deposition": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      }
+    ],
+    "ion-implantation": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      }
+    ],
+    "cmp": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "12-cmp"
+      }
+    ],
+    "packaging": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "13-packaging"
+      }
+    ],
+    "chemical-inventory": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      }
+    ],
+    "storage-compatibility": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "exposure-monitoring": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "15-electromagnetic"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "occupational-disease": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "17-industrial-health-view"
+      }
+    ],
+    "ghs": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1a"
+      }
+    ],
+    "sds-label": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1a"
+      }
+    ],
+    "emergency-response": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "ppe": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "compressed-gas": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "cryogenic": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ]
+  },
+  "byHazard": {
+    "corrosive": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "pyrophoric": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "toxic": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "acute-toxic": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "flammable": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "carcinogen": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "reproductive-toxin": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "oxidizer": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "reactive": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "compressed-gas": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "cryogenic": [
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ]
+  },
+  "byChemical": {
+    "isopropyl-alcohol": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "05-wafer"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "trichlorosilane": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "05-wafer"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "hydrofluoric-acid": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "hydrogen-peroxide": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      }
+    ],
+    "sulfuric-acid": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
+    "ammonia": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      }
+    ],
+    "ozone": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "06-cleaning"
+      }
+    ],
+    "arsine": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "phosphine": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "diborane": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "phosphorus-oxychloride": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      }
+    ],
+    "boron-tribromide": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "07-diffusion"
+      }
+    ],
+    "pgmea": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "14-chemicals-usage"
+      }
+    ],
+    "hmds": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      }
+    ],
+    "tmah": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      }
+    ],
+    "chlorine": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "fluorine": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "boron-trifluoride": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "tungsten-hexafluoride": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "silane": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "dichlorosilane": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      }
+    ],
+    "silica-slurry": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "12-cmp"
+      }
+    ],
+    "ceria-slurry": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "12-cmp"
+      }
+    ],
+    "lead": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "13-packaging"
+      }
+    ],
+    "epoxy-resin": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "13-packaging"
+      }
+    ],
+    "solder-flux": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "13-packaging"
+      }
+    ],
+    "antimony-trioxide": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "13-packaging"
+      }
+    ],
+    "benzene": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "arsenic": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ],
+    "ethylene-glycol-ether": [
+      {
+        "sourceId": "epi-semi-hazards",
+        "sectionId": "16-occupational-disease"
+      }
+    ]
+  },
+  "unknownChemicals": []
+}
