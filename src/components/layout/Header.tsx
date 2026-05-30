@@ -11,6 +11,7 @@ const navItems = [
   { href: '/chapters/', label: '책 차례' },
   { href: '/process-overview/', label: '공정' },
   { href: '/chemicals/', label: '유해물질 사전' },
+  { href: '/quotes/', label: '인용 검색' },
   { href: '/occupational-disease/', label: '직업병' },
   { href: '/about/', label: '소개' },
 ];

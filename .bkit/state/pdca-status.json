@@ -1,13 +1,31 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-30T14:30:00.000Z",
+  "lastUpdated": "2026-05-30T00:46:13.808Z",
   "activeFeatures": [
+    "source-quote-index",
     "SemiconductorAcademy",
     "layout",
-    "content"
+    "content",
+    "quote-index",
+    "quotes"
   ],
-  "primaryFeature": "SemiconductorAcademy",
+  "primaryFeature": "source-quote-index",
   "features": {
+    "source-quote-index": {
+      "phase": "plan",
+      "phaseNumber": 1,
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-05-30T15:00:00.000Z",
+      "documents": {
+        "plan": "docs/01-plan/features/source-quote-index.plan.md"
+      },
+      "timestamps": {
+        "started": "2026-05-30T15:00:00.000Z",
+        "lastUpdated": "2026-05-30T15:00:00.000Z"
+      },
+      "parent": "source-quote-expansion"
+    },
     "source-quote-expansion": {
       "phase": "archived",
       "matchRate": 98,
@@ -141,9 +159,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:17:58.360Z",
-        "lastUpdated": "2026-05-29T08:41:39.446Z"
+        "lastUpdated": "2026-05-30T00:46:13.808Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/BookHero.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/Header.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -183,6 +201,32 @@
         "lastUpdated": "2026-05-29T13:14:23.400Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/content/LayeredExplain.tsx"
+    },
+    "quote-index": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T00:44:35.624Z",
+        "lastUpdated": "2026-05-30T00:45:04.342Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/quote-index/QuoteIndex.tsx"
+    },
+    "quotes": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T00:45:30.233Z",
+        "lastUpdated": "2026-05-30T00:45:30.233Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/quotes/page.tsx"
     }
   },
   "pipeline": {
@@ -284,7 +328,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-29T13:14:23.400Z"
+    "lastActivity": "2026-05-30T00:46:13.808Z"
   },
   "history": [
     {
@@ -523,6 +567,36 @@
     {
       "timestamp": "2026-05-29T13:14:23.400Z",
       "feature": "content",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T00:44:35.624Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T00:45:04.342Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T00:45:30.233Z",
+      "feature": "quotes",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T00:46:01.631Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T00:46:13.808Z",
+      "feature": "layout",
       "phase": "do",
       "action": "updated"
     }

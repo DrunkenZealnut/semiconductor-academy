@@ -4,6 +4,9 @@
   "private": true,
   "description": "반도체 산업과 유해인자를 누구나 이해할 수 있게 풀어주는 학습 사이트",
   "scripts": {
+    "extract:quotes": "node scripts/extract-quotes.mjs",
+    "predev": "npm run extract:quotes",
+    "prebuild": "npm run extract:quotes",
     "dev": "next dev -p 3016",
     "build": "next build",
     "start": "next start -p 3016",
