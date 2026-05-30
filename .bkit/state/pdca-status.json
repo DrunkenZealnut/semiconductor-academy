@@ -1,30 +1,25 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-30T00:46:13.808Z",
+  "lastUpdated": "2026-05-30T17:00:00.000Z",
   "activeFeatures": [
-    "source-quote-index",
     "SemiconductorAcademy",
     "layout",
     "content",
     "quote-index",
     "quotes"
   ],
-  "primaryFeature": "source-quote-index",
+  "primaryFeature": "SemiconductorAcademy",
   "features": {
     "source-quote-index": {
-      "phase": "plan",
-      "phaseNumber": 1,
-      "matchRate": null,
+      "phase": "archived",
+      "matchRate": 100,
       "iterationCount": 0,
       "startedAt": "2026-05-30T15:00:00.000Z",
-      "documents": {
-        "plan": "docs/01-plan/features/source-quote-index.plan.md"
-      },
-      "timestamps": {
-        "started": "2026-05-30T15:00:00.000Z",
-        "lastUpdated": "2026-05-30T15:00:00.000Z"
-      },
-      "parent": "source-quote-expansion"
+      "completedAt": "2026-05-30T16:30:00.000Z",
+      "archivedAt": "2026-05-30T17:00:00.000Z",
+      "archivedTo": "docs/archive/2026-05/source-quote-index/",
+      "parent": "source-quote-expansion",
+      "summary": "인용 인덱스 페이지 — 2.5h, 100%, scripts/extract-quotes.mjs 정규식 파싱 → quotes.json 91개 자동 추출(LE 17 + SQ 74) + /quotes fuse.js 4축 검색 + 유형/챕터 필터 + Header 진입점 + predev/prebuild 훅. AC 9/9, 1 commit, 데이터 품질 이슈 0."
     },
     "source-quote-expansion": {
       "phase": "archived",
