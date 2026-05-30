@@ -1,15 +1,36 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-05-30T17:00:00.000Z",
+  "lastUpdated": "2026-05-30T01:46:15.630Z",
   "activeFeatures": [
+    "multi-source-learning-platform",
     "SemiconductorAcademy",
     "layout",
     "content",
     "quote-index",
-    "quotes"
+    "quotes",
+    "sources",
+    "[source]",
+    "[part]"
   ],
-  "primaryFeature": "SemiconductorAcademy",
+  "primaryFeature": "multi-source-learning-platform",
   "features": {
+    "multi-source-learning-platform": {
+      "phase": "do",
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-05-30T18:00:00.000Z",
+      "documents": {
+        "plan": "docs/01-plan/features/multi-source-learning-platform.plan.md",
+        "design": "docs/02-design/features/multi-source-learning-platform.design.md"
+      },
+      "branch": "feat/multi-source-learning-platform",
+      "progress": {
+        "phaseA": "completed (Source types, SourcePicker/Badge/Header/SectionList, /sources/[source])",
+        "phaseB": "completed (OSHA 5 MDX, oshaMdx loader, /sources/osha-scs/[part])",
+        "phaseC": "pending (cross-link schema, build script, RelatedFromOtherSources, ChemicalSourceHub)"
+      },
+      "scope": "Phase A(IA 재편: Source 모델) + Phase B(OSHA 5 Part 통합) + Phase C(cross-link 시스템)"
+    },
     "source-quote-index": {
       "phase": "archived",
       "matchRate": 100,
@@ -180,9 +201,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-05-29T08:38:46.691Z"
+        "lastUpdated": "2026-05-30T01:45:46.340Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/oshaMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -222,6 +243,45 @@
         "lastUpdated": "2026-05-30T00:45:30.233Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/quotes/page.tsx"
+    },
+    "sources": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T01:43:08.529Z",
+        "lastUpdated": "2026-05-30T01:43:56.936Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceSectionList.tsx"
+    },
+    "[source]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T01:44:09.275Z",
+        "lastUpdated": "2026-05-30T01:44:09.275Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/page.tsx"
+    },
+    "[part]": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-05-30T01:46:15.630Z",
+        "lastUpdated": "2026-05-30T01:46:15.630Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/osha-scs/[part]/page.tsx"
     }
   },
   "pipeline": {
@@ -317,13 +377,23 @@
         "phase": "design",
         "feature": "homepage-book-centric",
         "at": "2026-05-29T19:15:00.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "multi-source-learning-platform",
+        "at": "2026-05-30T18:00:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "multi-source-learning-platform",
+        "at": "2026-05-30T18:30:00.000Z"
       }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-05-30T00:46:13.808Z"
+    "lastActivity": "2026-05-30T01:46:15.630Z"
   },
   "history": [
     {
@@ -592,6 +662,82 @@
     {
       "timestamp": "2026-05-30T00:46:13.808Z",
       "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "event": "plan_created",
+      "feature": "multi-source-learning-platform",
+      "at": "2026-05-30T18:00:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "multi-source-learning-platform",
+      "at": "2026-05-30T18:30:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-30T01:42:16.376Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:42:55.891Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:43:08.529Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:43:29.495Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:43:44.390Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:43:56.936Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:44:09.275Z",
+      "feature": "[source]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:44:24.247Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:44:27.731Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:45:46.340Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T01:46:15.630Z",
+      "feature": "[part]",
       "phase": "do",
       "action": "updated"
     }

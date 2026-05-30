@@ -181,3 +181,78 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
   'acute-toxic': 'hazard-critical',
   sensitizer: 'hazard-moderate',
 };
+
+// ─────────────────────────────────────────────────────────────
+// Source (자료원) — multi-source-learning-platform
+// Design: docs/02-design/features/multi-source-learning-platform.design.md §3.1
+// ─────────────────────────────────────────────────────────────
+
+export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper';
+export type SourceLanguage = 'ko' | 'en';
+export type SourceLicense =
+  | 'fair-use'
+  | 'us-gov-public-domain'
+  | 'cc-by'
+  | 'cc-by-sa'
+  | 'public-domain';
+
+export interface SourceSection {
+  /** 자료원 내부 고유 ID (e.g., "part-3", "01-risks-of-new-tech") */
+  id: string;
+  /** URL 경로 (기존 호환 또는 신규) */
+  href: string;
+  /** 표시 제목 (원본 언어 그대로) */
+  title: string;
+  /** 한 줄 요약 (한국어, 카드용) */
+  summary?: string;
+  /** 학습 시간(분) */
+  readingTime?: number;
+}
+
+export interface Source {
+  /** 글로벌 고유 ID (kebab-case) */
+  id: string;
+  kind: SourceKind;
+  language: SourceLanguage;
+  /** 자료원 자체의 제목 */
+  title: string;
+  /** 부제·한 줄 설명 */
+  subtitle?: string;
+  /** 저자/기관 */
+  attribution: string;
+  /** 발행처 */
+  publisher?: string;
+  /** 발행 연도 */
+  year?: number;
+  license: SourceLicense;
+  /** 외부 원문 URL */
+  url?: string;
+  /** 표시 순서 (작을수록 먼저) */
+  order: number;
+  /** 카드 강조 토큰 — 'book' | 'osha' 등 (Tailwind 색상 키와 매핑) */
+  accent?: 'book' | 'osha' | 'standard';
+  /** 자료원의 섹션 목록 */
+  sections: SourceSection[];
+}
+
+/** 자료원 표시 메타 — UI 라벨 등 */
+export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
+  book: '학술서',
+  'training-program': '교육 프로그램',
+  standard: '표준',
+  guide: '가이드',
+  paper: '논문',
+};
+
+export const SOURCE_LANGUAGE_LABELS: Record<SourceLanguage, string> = {
+  ko: 'KO',
+  en: 'EN',
+};
+
+export const SOURCE_LICENSE_LABELS: Record<SourceLicense, string> = {
+  'fair-use': 'Fair use (학술 인용)',
+  'us-gov-public-domain': 'U.S. Government Work · 공개',
+  'cc-by': 'CC BY',
+  'cc-by-sa': 'CC BY-SA',
+  'public-domain': 'Public Domain',
+};

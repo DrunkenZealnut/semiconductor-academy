@@ -4,6 +4,7 @@ import { BookHero } from '@/components/layout/BookHero';
 import { BookTOCPreview } from '@/components/layout/BookTOCPreview';
 import { SpecialSection } from '@/components/layout/SpecialSection';
 import { ProcessDiagram } from '@/components/process/ProcessDiagram';
+import { SourcePicker } from '@/components/sources/SourcePicker';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -16,6 +17,8 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <BookHero />
+
+      <SourcePicker />
 
       <BookTOCPreview />
 
