@@ -1,6 +1,8 @@
 [
   {
     "id": "01-risks-of-new-tech-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -13,6 +15,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -25,6 +29,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -37,6 +43,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -49,6 +57,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -61,6 +71,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -73,6 +85,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-6",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -85,6 +99,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-7",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -97,6 +113,8 @@
   },
   {
     "id": "01-risks-of-new-tech-sq-8",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 1,
     "chapterTitle": "새 기술, 새 공정, 새 화학물질 사용의 위험성",
     "chapterShortTitle": "새 기술의 위험성",
@@ -109,6 +127,8 @@
   },
   {
     "id": "02-semiconductor-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -121,6 +141,8 @@
   },
   {
     "id": "02-semiconductor-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -133,6 +155,8 @@
   },
   {
     "id": "02-semiconductor-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -145,6 +169,8 @@
   },
   {
     "id": "02-semiconductor-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -157,6 +183,8 @@
   },
   {
     "id": "02-semiconductor-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -169,6 +197,8 @@
   },
   {
     "id": "02-semiconductor-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -181,6 +211,8 @@
   },
   {
     "id": "02-semiconductor-sq-6",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 2,
     "chapterTitle": "반도체의 이해",
     "chapterShortTitle": "반도체란?",
@@ -193,6 +225,8 @@
   },
   {
     "id": "03-process-overview-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -205,6 +239,8 @@
   },
   {
     "id": "03-process-overview-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -217,6 +253,8 @@
   },
   {
     "id": "03-process-overview-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -229,6 +267,8 @@
   },
   {
     "id": "03-process-overview-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -241,6 +281,8 @@
   },
   {
     "id": "03-process-overview-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -253,6 +295,8 @@
   },
   {
     "id": "03-process-overview-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -265,6 +309,8 @@
   },
   {
     "id": "03-process-overview-sq-6",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 3,
     "chapterTitle": "반도체 제조 공정의 전반적 이해",
     "chapterShortTitle": "제조 공정 개요",
@@ -277,6 +323,8 @@
   },
   {
     "id": "04-cleanroom-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -289,6 +337,8 @@
   },
   {
     "id": "04-cleanroom-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -301,6 +351,8 @@
   },
   {
     "id": "04-cleanroom-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -313,6 +365,8 @@
   },
   {
     "id": "04-cleanroom-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -325,6 +379,8 @@
   },
   {
     "id": "04-cleanroom-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -337,6 +393,8 @@
   },
   {
     "id": "04-cleanroom-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 4,
     "chapterTitle": "클린룸과 유해인자",
     "chapterShortTitle": "클린룸",
@@ -349,6 +407,8 @@
   },
   {
     "id": "05-wafer-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 5,
     "chapterTitle": "웨이퍼 제조 공정과 유해인자",
     "chapterShortTitle": "웨이퍼 제조",
@@ -361,6 +421,8 @@
   },
   {
     "id": "05-wafer-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 5,
     "chapterTitle": "웨이퍼 제조 공정과 유해인자",
     "chapterShortTitle": "웨이퍼 제조",
@@ -373,6 +435,8 @@
   },
   {
     "id": "05-wafer-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 5,
     "chapterTitle": "웨이퍼 제조 공정과 유해인자",
     "chapterShortTitle": "웨이퍼 제조",
@@ -385,6 +449,8 @@
   },
   {
     "id": "05-wafer-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 5,
     "chapterTitle": "웨이퍼 제조 공정과 유해인자",
     "chapterShortTitle": "웨이퍼 제조",
@@ -397,6 +463,8 @@
   },
   {
     "id": "06-cleaning-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 6,
     "chapterTitle": "클리닝 공정과 유해인자",
     "chapterShortTitle": "클리닝",
@@ -409,6 +477,8 @@
   },
   {
     "id": "06-cleaning-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 6,
     "chapterTitle": "클리닝 공정과 유해인자",
     "chapterShortTitle": "클리닝",
@@ -421,6 +491,8 @@
   },
   {
     "id": "06-cleaning-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 6,
     "chapterTitle": "클리닝 공정과 유해인자",
     "chapterShortTitle": "클리닝",
@@ -433,6 +505,8 @@
   },
   {
     "id": "06-cleaning-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 6,
     "chapterTitle": "클리닝 공정과 유해인자",
     "chapterShortTitle": "클리닝",
@@ -445,6 +519,8 @@
   },
   {
     "id": "07-diffusion-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 7,
     "chapterTitle": "확산 공정과 유해인자",
     "chapterShortTitle": "확산",
@@ -457,6 +533,8 @@
   },
   {
     "id": "07-diffusion-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 7,
     "chapterTitle": "확산 공정과 유해인자",
     "chapterShortTitle": "확산",
@@ -469,6 +547,8 @@
   },
   {
     "id": "07-diffusion-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 7,
     "chapterTitle": "확산 공정과 유해인자",
     "chapterShortTitle": "확산",
@@ -481,6 +561,8 @@
   },
   {
     "id": "07-diffusion-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 7,
     "chapterTitle": "확산 공정과 유해인자",
     "chapterShortTitle": "확산",
@@ -493,6 +575,8 @@
   },
   {
     "id": "08-photolithography-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 8,
     "chapterTitle": "포토리소그래피 공정과 유해인자",
     "chapterShortTitle": "포토리소그래피",
@@ -505,6 +589,8 @@
   },
   {
     "id": "08-photolithography-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 8,
     "chapterTitle": "포토리소그래피 공정과 유해인자",
     "chapterShortTitle": "포토리소그래피",
@@ -517,6 +603,8 @@
   },
   {
     "id": "08-photolithography-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 8,
     "chapterTitle": "포토리소그래피 공정과 유해인자",
     "chapterShortTitle": "포토리소그래피",
@@ -529,6 +617,8 @@
   },
   {
     "id": "08-photolithography-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 8,
     "chapterTitle": "포토리소그래피 공정과 유해인자",
     "chapterShortTitle": "포토리소그래피",
@@ -541,6 +631,8 @@
   },
   {
     "id": "08-photolithography-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 8,
     "chapterTitle": "포토리소그래피 공정과 유해인자",
     "chapterShortTitle": "포토리소그래피",
@@ -553,6 +645,8 @@
   },
   {
     "id": "09-etching-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 9,
     "chapterTitle": "식각 공정과 유해인자",
     "chapterShortTitle": "식각",
@@ -565,6 +659,8 @@
   },
   {
     "id": "09-etching-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 9,
     "chapterTitle": "식각 공정과 유해인자",
     "chapterShortTitle": "식각",
@@ -577,6 +673,8 @@
   },
   {
     "id": "09-etching-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 9,
     "chapterTitle": "식각 공정과 유해인자",
     "chapterShortTitle": "식각",
@@ -589,6 +687,8 @@
   },
   {
     "id": "09-etching-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 9,
     "chapterTitle": "식각 공정과 유해인자",
     "chapterShortTitle": "식각",
@@ -601,6 +701,8 @@
   },
   {
     "id": "09-etching-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 9,
     "chapterTitle": "식각 공정과 유해인자",
     "chapterShortTitle": "식각",
@@ -613,6 +715,8 @@
   },
   {
     "id": "10-deposition-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -625,6 +729,8 @@
   },
   {
     "id": "10-deposition-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -637,6 +743,8 @@
   },
   {
     "id": "10-deposition-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -649,6 +757,8 @@
   },
   {
     "id": "10-deposition-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -661,6 +771,8 @@
   },
   {
     "id": "10-deposition-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -673,6 +785,8 @@
   },
   {
     "id": "10-deposition-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 10,
     "chapterTitle": "증착 공정과 유해인자",
     "chapterShortTitle": "증착",
@@ -685,6 +799,8 @@
   },
   {
     "id": "11-ion-implantation-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 11,
     "chapterTitle": "이온 주입 공정과 유해인자",
     "chapterShortTitle": "이온 주입",
@@ -697,6 +813,8 @@
   },
   {
     "id": "11-ion-implantation-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 11,
     "chapterTitle": "이온 주입 공정과 유해인자",
     "chapterShortTitle": "이온 주입",
@@ -709,6 +827,8 @@
   },
   {
     "id": "11-ion-implantation-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 11,
     "chapterTitle": "이온 주입 공정과 유해인자",
     "chapterShortTitle": "이온 주입",
@@ -721,6 +841,8 @@
   },
   {
     "id": "11-ion-implantation-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 11,
     "chapterTitle": "이온 주입 공정과 유해인자",
     "chapterShortTitle": "이온 주입",
@@ -733,6 +855,8 @@
   },
   {
     "id": "11-ion-implantation-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 11,
     "chapterTitle": "이온 주입 공정과 유해인자",
     "chapterShortTitle": "이온 주입",
@@ -745,6 +869,8 @@
   },
   {
     "id": "12-cmp-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 12,
     "chapterTitle": "물리 화학적 연마와 유해인자",
     "chapterShortTitle": "CMP",
@@ -757,6 +883,8 @@
   },
   {
     "id": "12-cmp-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 12,
     "chapterTitle": "물리 화학적 연마와 유해인자",
     "chapterShortTitle": "CMP",
@@ -769,6 +897,8 @@
   },
   {
     "id": "12-cmp-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 12,
     "chapterTitle": "물리 화학적 연마와 유해인자",
     "chapterShortTitle": "CMP",
@@ -781,6 +911,8 @@
   },
   {
     "id": "12-cmp-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 12,
     "chapterTitle": "물리 화학적 연마와 유해인자",
     "chapterShortTitle": "CMP",
@@ -793,6 +925,8 @@
   },
   {
     "id": "13-packaging-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -805,6 +939,8 @@
   },
   {
     "id": "13-packaging-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -817,6 +953,8 @@
   },
   {
     "id": "13-packaging-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -829,6 +967,8 @@
   },
   {
     "id": "13-packaging-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -841,6 +981,8 @@
   },
   {
     "id": "13-packaging-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -853,6 +995,8 @@
   },
   {
     "id": "13-packaging-sq-5",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 13,
     "chapterTitle": "칩 조립 및 검사 공정과 유해인자",
     "chapterShortTitle": "패키징",
@@ -865,6 +1009,8 @@
   },
   {
     "id": "14-chemicals-usage-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 14,
     "chapterTitle": "반도체 공정에서의 화학물질 사용과 유해성",
     "chapterShortTitle": "화학물질 사용",
@@ -877,6 +1023,8 @@
   },
   {
     "id": "14-chemicals-usage-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 14,
     "chapterTitle": "반도체 공정에서의 화학물질 사용과 유해성",
     "chapterShortTitle": "화학물질 사용",
@@ -889,6 +1037,8 @@
   },
   {
     "id": "14-chemicals-usage-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 14,
     "chapterTitle": "반도체 공정에서의 화학물질 사용과 유해성",
     "chapterShortTitle": "화학물질 사용",
@@ -901,6 +1051,8 @@
   },
   {
     "id": "14-chemicals-usage-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 14,
     "chapterTitle": "반도체 공정에서의 화학물질 사용과 유해성",
     "chapterShortTitle": "화학물질 사용",
@@ -913,6 +1065,8 @@
   },
   {
     "id": "15-electromagnetic-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 15,
     "chapterTitle": "반도체 공정과 전자파",
     "chapterShortTitle": "전자파",
@@ -925,6 +1079,8 @@
   },
   {
     "id": "15-electromagnetic-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 15,
     "chapterTitle": "반도체 공정과 전자파",
     "chapterShortTitle": "전자파",
@@ -937,6 +1093,8 @@
   },
   {
     "id": "15-electromagnetic-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 15,
     "chapterTitle": "반도체 공정과 전자파",
     "chapterShortTitle": "전자파",
@@ -949,6 +1107,8 @@
   },
   {
     "id": "15-electromagnetic-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 15,
     "chapterTitle": "반도체 공정과 전자파",
     "chapterShortTitle": "전자파",
@@ -961,6 +1121,8 @@
   },
   {
     "id": "15-electromagnetic-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 15,
     "chapterTitle": "반도체 공정과 전자파",
     "chapterShortTitle": "전자파",
@@ -973,6 +1135,8 @@
   },
   {
     "id": "16-occupational-disease-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 16,
     "chapterTitle": "반도체 공정 주요 질병 위험 고찰",
     "chapterShortTitle": "직업병 고찰",
@@ -985,6 +1149,8 @@
   },
   {
     "id": "16-occupational-disease-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 16,
     "chapterTitle": "반도체 공정 주요 질병 위험 고찰",
     "chapterShortTitle": "직업병 고찰",
@@ -997,6 +1163,8 @@
   },
   {
     "id": "16-occupational-disease-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 16,
     "chapterTitle": "반도체 공정 주요 질병 위험 고찰",
     "chapterShortTitle": "직업병 고찰",
@@ -1009,6 +1177,8 @@
   },
   {
     "id": "16-occupational-disease-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 16,
     "chapterTitle": "반도체 공정 주요 질병 위험 고찰",
     "chapterShortTitle": "직업병 고찰",
@@ -1021,6 +1191,8 @@
   },
   {
     "id": "16-occupational-disease-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 16,
     "chapterTitle": "반도체 공정 주요 질병 위험 고찰",
     "chapterShortTitle": "직업병 고찰",
@@ -1033,6 +1205,8 @@
   },
   {
     "id": "17-industrial-health-view-le-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 17,
     "chapterTitle": "산업보건학적 시각에서 바라본 반도체 산업",
     "chapterShortTitle": "산업보건학적 시각",
@@ -1045,6 +1219,8 @@
   },
   {
     "id": "17-industrial-health-view-sq-1",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 17,
     "chapterTitle": "산업보건학적 시각에서 바라본 반도체 산업",
     "chapterShortTitle": "산업보건학적 시각",
@@ -1057,6 +1233,8 @@
   },
   {
     "id": "17-industrial-health-view-sq-2",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 17,
     "chapterTitle": "산업보건학적 시각에서 바라본 반도체 산업",
     "chapterShortTitle": "산업보건학적 시각",
@@ -1069,6 +1247,8 @@
   },
   {
     "id": "17-industrial-health-view-sq-3",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 17,
     "chapterTitle": "산업보건학적 시각에서 바라본 반도체 산업",
     "chapterShortTitle": "산업보건학적 시각",
@@ -1081,6 +1261,8 @@
   },
   {
     "id": "17-industrial-health-view-sq-4",
+    "sourceId": "epi-semi-hazards",
+    "language": "ko",
     "chapter": 17,
     "chapterTitle": "산업보건학적 시각에서 바라본 반도체 산업",
     "chapterShortTitle": "산업보건학적 시각",
@@ -1090,5 +1272,343 @@
     "section": "5. Ch.1 책 원문 - 산업의 책무와 ITRS 2007 4대 명제",
     "text": "이러한 반도체 산업의 특성으로 인해 건강 영향에 대한 위험성은 상존할 수밖에 없다. 이를 달리 생각하면 반도체 회사가 신제품 개발을 필수적으로 여기듯이 산업보건에 대한 연구와 투자를 지속적으로 해야 한다. 세계반도체협회에서 발행하는 ITRS(International Technology Roadmap for Semiconductors)에서도 반도체 산업이 환경, 안전, 보건에 더 많은 관심을 가져야 한다고 언급한다. 예를 들어 2007년도 판에는 다음과 같은 네 가지가 환경, 안전, 보건에 대한 핵심 명제였다. ① 개발 단계에서 공정과 물질에 대한 이해(특성화)가 필요하다 ② 유해성이 덜하거나 부산물의 유해성이 덜한 물질을 사용한다 ③ 원재료와 자원을 덜 쓰는 제품과 시스템(장비와 설비)을 설계한다 ④ 근로자에게 안전한 공장을 만든다 이와 같이 반도체 산업에서는 작업자의 건강은 물론 일반 환경과 안전 문제가 상존하고 있어 ESH (environment, safety, and health)가 매우 중요한 업종이다.",
     "snippet": "이러한 반도체 산업의 특성으로 인해 건강 영향에 대한 위험성은 상존할 수밖에 없다. 이를 달리 생각하면 반도체 회사가 신제품 개발을 필수적으로 여기듯이 산업보건에 대한 연구와 투자를 지속적으로 해야 한다. 세계반도체협회에서 발행하는 ITRS(Inter…"
+  },
+  {
+    "id": "osha-scs::part-1a::overview::course-overview",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "overview",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "Course Overview",
+    "text": "Introduction to the Globally Harmonized System of Classification and Labeling of Chemicals (GHS) for semiconductor employees.",
+    "snippet": "Introduction to the Globally Harmonized System of Classification and Labeling of Chemicals (GHS) for semiconductor employees."
+  },
+  {
+    "id": "osha-scs::part-1a::learning-objectives::learning-objectives",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "learning-objectives",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "Learning Objectives",
+    "text": "After completing this course, you will be able to: Identify what is included in the GHS; Recognize the characteristics of hazardous chemicals; Recall GHS classifications",
+    "snippet": "After completing this course, you will be able to: Identify what is included in the GHS; Recognize the characteristics of hazardous chemical…"
+  },
+  {
+    "id": "osha-scs::part-1a::definition::4-three-types-of-hazards",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "§4 Three Types of Hazards",
+    "text": "1. Physical hazards — corrosivity, flammability, explosive potential 2. Health hazards — adverse effects on health (short-term or long-term) 3. Environmental hazards — pollution of rivers, streams,…",
+    "snippet": "1. Physical hazards — corrosivity, flammability, explosive potential 2. Health hazards — adverse effects on health (short-term or long-term)…"
+  },
+  {
+    "id": "osha-scs::part-1a::definition::5-4-pyrophoric-substances",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "§5.4 Pyrophoric Substances",
+    "text": "Ignite simply by coming into contact with air. No flame or other ignition source needed.",
+    "snippet": "Ignite simply by coming into contact with air. No flame or other ignition source needed."
+  },
+  {
+    "id": "osha-scs::part-1a::definition::6-3-hf-special-hazard",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "§6.3 HF Special Hazard",
+    "text": "Commonly used for etching and chamber cleaning. Excellent at dissolving silicon compounds but extremely dangerous when used improperly.",
+    "snippet": "Commonly used for etching and chamber cleaning. Excellent at dissolving silicon compounds but extremely dangerous when used improperly."
+  },
+  {
+    "id": "osha-scs::part-1a::summary::course-summary",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "summary",
+    "partId": "part-1a",
+    "partTitle": "Part 1A · Introduction to GHS",
+    "partHref": "/sources/osha-scs/part-1a/",
+    "sectionRef": "Course Summary",
+    "text": "After completing this course, you should be able to: Identify what is included in the GHS (standardized classification, labels, SDSs); Recognize characteristics of hazardous chemicals (physical,…",
+    "snippet": "After completing this course, you should be able to: Identify what is included in the GHS (standardized classification, labels, SDSs); Recog…"
+  },
+  {
+    "id": "osha-scs::part-1b::overview::course-overview",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "overview",
+    "partId": "part-1b",
+    "partTitle": "Part 1B · Communication, Controls, and Emergency Procedures",
+    "partHref": "/sources/osha-scs/part-1b/",
+    "sectionRef": "Course Overview",
+    "text": "This course covers communication, controls, and emergency procedures for hazardous chemicals in the semiconductor industry. Topics include Safety Data Sheets (SDSs), labels, hazardous chemical…",
+    "snippet": "This course covers communication, controls, and emergency procedures for hazardous chemicals in the semiconductor industry. Topics include S…"
+  },
+  {
+    "id": "osha-scs::part-1b::learning-objectives::learning-objectives",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "learning-objectives",
+    "partId": "part-1b",
+    "partTitle": "Part 1B · Communication, Controls, and Emergency Procedures",
+    "partHref": "/sources/osha-scs/part-1b/",
+    "sectionRef": "Learning Objectives",
+    "text": "After completing this course, you will be able to: Identify SDS and label requirements according to the Globally Harmonized System (GHS); Recognize what controls to use and precautions to take when…",
+    "snippet": "After completing this course, you will be able to: Identify SDS and label requirements according to the Globally Harmonized System (GHS); Re…"
+  },
+  {
+    "id": "osha-scs::part-1b::definition::2-1-sds-structure",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-1b",
+    "partTitle": "Part 1B · Communication, Controls, and Emergency Procedures",
+    "partHref": "/sources/osha-scs/part-1b/",
+    "sectionRef": "§2.1 SDS Structure",
+    "text": "There are 16 sections in a chemical Safety Data Sheet, falling into four broad categories:",
+    "snippet": "There are 16 sections in a chemical Safety Data Sheet, falling into four broad categories:"
+  },
+  {
+    "id": "osha-scs::part-1b::summary::course-summary",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "summary",
+    "partId": "part-1b",
+    "partTitle": "Part 1B · Communication, Controls, and Emergency Procedures",
+    "partHref": "/sources/osha-scs/part-1b/",
+    "sectionRef": "Course Summary",
+    "text": "After completing this course, you should be able to: Identify SDS and label requirements according to the GHS; Recognize what controls to use and precautions to take when storing and using hazardous…",
+    "snippet": "After completing this course, you should be able to: Identify SDS and label requirements according to the GHS; Recognize what controls to us…"
+  },
+  {
+    "id": "osha-scs::part-2::overview::course-overview",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "overview",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "Course Overview",
+    "text": "This course covers semiconductor chemical hazards, controls, and emergency actions. It builds on Parts 1A and 1B, which covered physical, health, and environmental hazard classifications.",
+    "snippet": "This course covers semiconductor chemical hazards, controls, and emergency actions. It builds on Parts 1A and 1B, which covered physical, he…"
+  },
+  {
+    "id": "osha-scs::part-2::learning-objectives::learning-objectives",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "learning-objectives",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "Learning Objectives",
+    "text": "After completing this course, you will be able to: Identify the chemical hazards in semiconductor fabrication facilities; Recognize common hazard controls in semiconductor fabrication facilities;…",
+    "snippet": "After completing this course, you will be able to: Identify the chemical hazards in semiconductor fabrication facilities; Recognize common h…"
+  },
+  {
+    "id": "osha-scs::part-2::definition::flash-point",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "Flash Point",
+    "text": "The minimum temperature at which a flammable liquid evaporates enough vapor to ignite in the presence of an ignition source.",
+    "snippet": "The minimum temperature at which a flammable liquid evaporates enough vapor to ignite in the presence of an ignition source."
+  },
+  {
+    "id": "osha-scs::part-2::definition::6-pyrophoric-chemicals",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "§6 Pyrophoric Chemicals",
+    "text": "A pyrophoric chemical spontaneously ignites in air at or below 130°F (54°C).",
+    "snippet": "A pyrophoric chemical spontaneously ignites in air at or below 130°F (54°C)."
+  },
+  {
+    "id": "osha-scs::part-2::definition::hf-exposure-first-aid",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "HF Exposure First Aid",
+    "text": "1. Call emergency services immediately — transfer to ER as soon as possible 2. Rinse contaminated area under safety shower for at least 5 minutes 3. Remove all contaminated clothing while in the…",
+    "snippet": "1. Call emergency services immediately — transfer to ER as soon as possible 2. Rinse contaminated area under safety shower for at least 5 mi…"
+  },
+  {
+    "id": "osha-scs::part-2::summary::course-summary",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "summary",
+    "partId": "part-2",
+    "partTitle": "Part 2 · Chemical Hazards, Controls, and Emergency Actions",
+    "partHref": "/sources/osha-scs/part-2/",
+    "sectionRef": "Course Summary",
+    "text": "After completing this course, you should be able to: Identify chemical hazards in semiconductor fabrication facilities (flammable liquids/gases/solids, combustibles, pyrophorics, oxidizers,…",
+    "snippet": "After completing this course, you should be able to: Identify chemical hazards in semiconductor fabrication facilities (flammable liquids/ga…"
+  },
+  {
+    "id": "osha-scs::part-3::overview::course-overview",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "overview",
+    "partId": "part-3",
+    "partTitle": "Part 3 · Extremely Hazardous Chemicals",
+    "partHref": "/sources/osha-scs/part-3/",
+    "sectionRef": "Course Overview",
+    "text": "This course focuses on extremely hazardous chemicals found in semiconductor fabrication, one of the most chemical-intensive processes in the industry. It covers nine categories of extreme chemical…",
+    "snippet": "This course focuses on extremely hazardous chemicals found in semiconductor fabrication, one of the most chemical-intensive processes in the…"
+  },
+  {
+    "id": "osha-scs::part-3::learning-objectives::learning-objectives",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "learning-objectives",
+    "partId": "part-3",
+    "partTitle": "Part 3 · Extremely Hazardous Chemicals",
+    "partHref": "/sources/osha-scs/part-3/",
+    "sectionRef": "Learning Objectives",
+    "text": "After completing this course, you will be able to: Recall important information about nine categories of extremely hazardous chemicals found in semiconductor fabrication; Use data sheets to answer…",
+    "snippet": "After completing this course, you will be able to: Recall important information about nine categories of extremely hazardous chemicals found…"
+  },
+  {
+    "id": "osha-scs::part-3::definition::5-silane-special-focus",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-3",
+    "partTitle": "Part 3 · Extremely Hazardous Chemicals",
+    "partHref": "/sources/osha-scs/part-3/",
+    "sectionRef": "§5 Silane — Special Focus",
+    "text": "Silane is a very common semiconductor gas used as a silicon deposition source. It is extremely hazardous because it almost always ignites when contacting air.",
+    "snippet": "Silane is a very common semiconductor gas used as a silicon deposition source. It is extremely hazardous because it almost always ignites wh…"
+  },
+  {
+    "id": "osha-scs::part-3::definition::1-toxic-hydride-gases",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-3",
+    "partTitle": "Part 3 · Extremely Hazardous Chemicals",
+    "partHref": "/sources/osha-scs/part-3/",
+    "sectionRef": "§1 Toxic Hydride Gases",
+    "text": "Highly toxic gases that are also flammable and sometimes pyrophoric. Route of entry at very low concentrations is inhalation. They have poor warning properties because the safe exposure level is less…",
+    "snippet": "Highly toxic gases that are also flammable and sometimes pyrophoric. Route of entry at very low concentrations is inhalation. They have poor…"
+  },
+  {
+    "id": "osha-scs::part-3::summary::course-summary",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "summary",
+    "partId": "part-3",
+    "partTitle": "Part 3 · Extremely Hazardous Chemicals",
+    "partHref": "/sources/osha-scs/part-3/",
+    "sectionRef": "Course Summary",
+    "text": "After completing this course, you should be able to: Recall important information about nine categories of extremely hazardous chemicals in semiconductor fabrication; Use data sheets to answer…",
+    "snippet": "After completing this course, you should be able to: Recall important information about nine categories of extremely hazardous chemicals in…"
+  },
+  {
+    "id": "osha-scs::part-4::overview::course-overview",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "overview",
+    "partId": "part-4",
+    "partTitle": "Part 4 · Hazardous Gas Systems and Controls",
+    "partHref": "/sources/osha-scs/part-4/",
+    "sectionRef": "Course Overview",
+    "text": "This course covers the hazards of and controls for gases used in semiconductor fabrication facilities. It addresses gas storage, distribution, use, and emergency procedures.",
+    "snippet": "This course covers the hazards of and controls for gases used in semiconductor fabrication facilities. It addresses gas storage, distributio…"
+  },
+  {
+    "id": "osha-scs::part-4::learning-objectives::learning-objectives",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "learning-objectives",
+    "partId": "part-4",
+    "partTitle": "Part 4 · Hazardous Gas Systems and Controls",
+    "partHref": "/sources/osha-scs/part-4/",
+    "sectionRef": "Learning Objectives",
+    "text": "After completing this course, you will be able to: Recall the characteristics of chemical hazard categories; Identify the characteristics of hazardous gases used in semiconductor manufacturing;…",
+    "snippet": "After completing this course, you will be able to: Recall the characteristics of chemical hazard categories; Identify the characteristics of…"
+  },
+  {
+    "id": "osha-scs::part-4::definition::2-cryogenic-cylinders",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-4",
+    "partTitle": "Part 4 · Hazardous Gas Systems and Controls",
+    "partHref": "/sources/osha-scs/part-4/",
+    "sectionRef": "§2 Cryogenic Cylinders",
+    "text": "Cryogenic cylinders store cryogenic liquids such as nitrogen, argon, hydrogen, and oxygen. The liquid is stored under pressure to keep it in the liquid phase and evaporates slowly, generating a gas…",
+    "snippet": "Cryogenic cylinders store cryogenic liquids such as nitrogen, argon, hydrogen, and oxygen. The liquid is stored under pressure to keep it in…"
+  },
+  {
+    "id": "osha-scs::part-4::definition::5-common-gas-controls",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "definition",
+    "partId": "part-4",
+    "partTitle": "Part 4 · Hazardous Gas Systems and Controls",
+    "partHref": "/sources/osha-scs/part-4/",
+    "sectionRef": "§5 Common Gas Controls",
+    "text": "Controls used with all compressed gas cylinders regardless of hazard or quantity:",
+    "snippet": "Controls used with all compressed gas cylinders regardless of hazard or quantity:"
+  },
+  {
+    "id": "osha-scs::part-4::summary::course-summary",
+    "sourceId": "osha-scs",
+    "language": "en",
+    "type": "osha-section",
+    "kind": "summary",
+    "partId": "part-4",
+    "partTitle": "Part 4 · Hazardous Gas Systems and Controls",
+    "partHref": "/sources/osha-scs/part-4/",
+    "sectionRef": "Course Summary",
+    "text": "After completing this course (and the full SCS curriculum), you should be able to: Recall characteristics of chemical hazard categories; Identify characteristics of hazardous gases in semiconductor…",
+    "snippet": "After completing this course (and the full SCS curriculum), you should be able to: Recall characteristics of chemical hazard categories; Ide…"
   }
 ]
