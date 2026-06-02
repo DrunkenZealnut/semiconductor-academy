@@ -2,9 +2,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronLeft, ChevronRight, Clock, ExternalLink } from 'lucide-react';
 import { SourceBadge } from '@/components/sources/SourceBadge';
+import { LanguageToggle } from '@/components/sources/LanguageToggle';
 import { RelatedFromOtherSources } from '@/components/cross-link/RelatedFromOtherSources';
 import { OSHA_SCS } from '@/lib/sources';
-import { loadOshaScsPartMdx } from '@/lib/oshaMdx';
+import { loadOshaScsPartMdx, hasOshaScsKo } from '@/lib/oshaMdx';
 import { buildMetadata } from '@/lib/seo';
 import { SOURCE_LICENSE_LABELS } from '@/lib/types';
 
@@ -46,9 +47,15 @@ export default async function OshaScsPartPage({
   if (idx < 0) notFound();
 
   const section = getPartByIndex(idx);
-  const MdxBody = await loadOshaScsPartMdx(part);
+  const EnBody = await loadOshaScsPartMdx(part, 'en');
+  const KoBody = hasOshaScsKo(part) ? await loadOshaScsPartMdx(part, 'ko') : null;
   const prev = idx > 0 ? getPartByIndex(idx - 1) : undefined;
   const next = idx < OSHA_SCS.sections.length - 1 ? getPartByIndex(idx + 1) : undefined;
+
+  const enNotice =
+    'OSHA · 미국 노동부 산업안전보건청 · 본 페이지의 영어 본문은 원본 transcript입니다.';
+  const koNotice =
+    'OSHA 원본(영문)을 한국어로 옮긴 번역본입니다. 안전·법규 문구는 원문(EN)을 함께 확인하세요.';
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -89,13 +96,17 @@ export default async function OshaScsPartPage({
         {section.summary ? (
           <p className="mt-2 text-base text-slate-600 dark:text-slate-400">{section.summary}</p>
         ) : null}
-        <p className="mt-3 text-xs text-slate-500 dark:text-slate-500">
-          OSHA · 미국 노동부 산업안전보건청 · 본 페이지의 영어 본문은 원본 transcript입니다.
-        </p>
       </header>
 
       <div className="prose prose-lg max-w-none dark:prose-invert prose-h2:mt-10 prose-h3:mt-6">
-        {MdxBody ? <MdxBody /> : (
+        {EnBody ? (
+          <LanguageToggle
+            en={<EnBody />}
+            ko={KoBody ? <KoBody /> : null}
+            enNotice={enNotice}
+            koNotice={koNotice}
+          />
+        ) : (
           <p className="text-slate-600 dark:text-slate-400">본문 준비 중입니다.</p>
         )}
       </div>
