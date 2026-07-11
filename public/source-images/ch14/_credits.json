@@ -3,15 +3,38 @@
   "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
   "images": [
     {
-      "file": "ch14-cover.jpg", "type": "book-page",
+      "file": "ch14-cover.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 14장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
-      "publisher": "에피스테메", "page": 219,
+      "publisher": "에피스테메",
+      "page": 263,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제14장 — 반도체 공정에서의 화학물질 사용과 유해성"
+    },
+    {
+      "file": "fig-14-1-msds.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 14-1 · Williams et al.(2002)",
+      "caption": "그림 14-1. 반도체 칩 2g 제조에 사용되는 화석연료·화학물질·물·가스상 물질 (34,372g, 17,186배)",
+      "page": 265,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-14-1-msds.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 14장 도식",
-      "caption": "화학물질 영업비밀 비중", "page": 222,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-14-2-usage-stats.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 14-2 · 2005년 조사자료",
+      "caption": "그림 14-2. 반도체 사업장에서 사용되는 화학제품 수·단일 성분 수·노출기준이 있는 성분 수",
+      "page": 266,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-14-3-trade-secret.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 14-3",
+      "caption": "그림 14-3. 사업장별 영업비밀 물질의 함량에 따른 화학제품 수",
+      "page": 271,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

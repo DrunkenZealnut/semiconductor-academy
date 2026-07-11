@@ -3,23 +3,54 @@
   "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
   "images": [
     {
-      "file": "ch8-cover.jpg", "type": "book-page",
+      "file": "ch8-cover.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 8장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
-      "publisher": "에피스테메", "page": 81,
+      "publisher": "에피스테메",
+      "page": 111,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제8장 — 포토리소그래피 공정과 유해인자"
+    },
+    {
+      "file": "fig-8-1-overview.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 8장 도식",
+      "caption": "그림 8-3(1/2). 포토리소그래피의 8단계 세부 공정 모식도 — ① 웨이퍼 세정 ② 표면 처리 ③ PR 코팅 ④ 소프트 베이크",
+      "page": 114,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-8-1-overview.jpg", "type": "book-page",
+    {
+      "file": "fig-8-2-pr.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 8장 도식",
-      "caption": "포토 공정 개요", "page": 84,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-8-2-pr.jpg", "type": "book-page",
+      "caption": "그림 8-15. ASML PAS 5500 스텝 앤드 스캔 하이브리드 노광 장비",
+      "page": 129,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-8-3-exposure.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 8장 도식",
-      "caption": "포토레지스트", "page": 99,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-8-3-exposure.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 8장 도식",
-      "caption": "노광 장비", "page": 96,
-      "license": "Fair use (교육 목적 학술 인용)" }
+      "caption": "그림 8-11. 밀착 프린터(a)와 근접 프린터(b)의 정렬·노광 모식도",
+      "page": 126,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-8-1-principle.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」",
+      "caption": "그림 8-1. 포토리소그래피 공정의 원리 — 광원·마스크(레티클)·웨이퍼의 광학 배치",
+      "page": 112,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-8-3-steps-5-8.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」",
+      "caption": "그림 8-3(2/2). 포토리소그래피의 8단계 세부 공정 모식도 — ⑤ 마스크 정렬 ⑥ 노광 ⑦ 노광 후 경화 ⑧ 현상·하드 베이크",
+      "page": 115,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

@@ -9,19 +9,24 @@
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
       "publisher": "에피스테메",
       "page": 55,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제4장 — 반도체 사업장의 클린룸"
+    },
+    {
+      "file": "fig-4-1-fab-layout.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 4장 그림 4-1",
+      "caption": "그림 4-1. 웨이퍼 가공 공장의 모식도 — 상부층은 공정 진행 지역과 서비스 지역으로, 하부층은 유틸리티 설비 공간으로 구분됨",
+      "page": 56,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-4-1-intro.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 4장 도입 일러스트",
-      "caption": "클린룸 도입", "page": 55,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-4-2-structure.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 4장 도식",
-      "caption": "클린룸의 구조", "page": 57,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-4-3-airflow.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 4장 도식",
-      "caption": "공기 청정도 관리 도식", "page": 59,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-4-2-hvac.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 4장 그림 4-2",
+      "caption": "그림 4-2. 클린룸 공조 시스템 개요도 — (a) AHU, (b) DFU, (c) FFU",
+      "page": 59,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

@@ -9,23 +9,48 @@
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
       "publisher": "에피스테메",
       "page": 45,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제3장 — 반도체 제조 공정의 전반적 이해"
+    },
+    {
+      "file": "fig-3-1-overview.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 3-1 · 원출처 Wald and Jones(1987)",
+      "caption": "그림 3-1. 반도체 제조 공정 개요 — 웨이퍼 제조 → 웨이퍼 가공(팹) → 칩 조립 검사 포장",
+      "page": 47,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-3-1-overview.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 3장 도식",
-      "caption": "9단계 반도체 제조 공정 흐름", "page": 47,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-3-2-wafer.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 3장 도식",
-      "caption": "실리콘 웨이퍼 제조 단계", "page": 49,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-3-3-assembly.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 3장 도식",
-      "caption": "칩 조립 및 검사 공정", "page": 52,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-3-4-support.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 3장 도식",
-      "caption": "반도체 공장 지원 산업", "page": 53,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-3-2-wafer.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 3-2",
+      "caption": "그림 3-2. 실리콘 잉곳과 웨이퍼 제조 과정",
+      "page": 49,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-3-3-wafer-sizes.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 3-3 · 원출처 네이버블로그(2013)",
+      "caption": "그림 3-3. 다양한 실리콘 웨이퍼 크기",
+      "page": 50,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-3-3-assembly.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 3-4",
+      "caption": "그림 3-4. 웨이퍼 가공 공정을 거친 웨이퍼와 반도체 칩",
+      "page": 52,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-3-4-support.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 3-5 · 원출처 다음백과",
+      "caption": "그림 3-5. 회로가 증착된 실리콘 웨이퍼를 일정 크기로 자르고 가공하고 포장해서 생산된 칩",
+      "page": 53,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

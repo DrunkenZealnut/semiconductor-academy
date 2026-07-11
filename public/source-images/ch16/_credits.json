@@ -3,23 +3,14 @@
   "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
   "images": [
     {
-      "file": "ch16-cover.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 16장 표지",
+      "file": "ch16-cover.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 16장 표지 (원본: _page_95_Picture_0.jpeg)",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
-      "publisher": "에피스테메", "page": 281,
-      "license": "Fair use (교육 목적 학술 인용)"
-    },
-    { "file": "fig-16-1-repro.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 16장 도식",
-      "caption": "생식독성 위험", "page": 281,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-16-2-cancer.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 16장 도식",
-      "caption": "암 위험 역학 연구", "page": 297,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-16-3-cohort.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 16장 도식",
-      "caption": "코호트 연구 도식", "page": 275,
-      "license": "Fair use (교육 목적 학술 인용)" }
+      "publisher": "에피스테메",
+      "page": 305,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제16장 — 반도체 공정 주요 질병 위험 고찰"
+    }
   ]
 }

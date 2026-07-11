@@ -1,33 +1,37 @@
 <LayeredExplain
-  hook="수백 종을 소량씩 — 그리고 영업비밀의 벽"
+  hook="칩 2g 만드는 데 화학물질 34,372g, 그런데 정체는 절반도 모른다"
   easy={{
     analogy: (
       <p>
-        대형 화학공장과 반도체 공장의 차이를 아시나요? 화학공장은 적은 종류를 대량으로 다루는 반면,
-        반도체 공장은 <strong>약 500종 이상을 소량씩</strong> 다뤄요. 종류가 많고, 그 중 상당수는
-        영업비밀(trade secret)로 성분 비공개. 작업자가 무엇에 노출되는지 정확히 알기 어려운 구조예요.
+        손톱보다 작은 반도체 칩 하나(2g)를 만드는 데 화학물질이 무려 <strong>34,372g</strong> 쓰여요.
+        칩 무게의 <strong>17,186배</strong>예요. 그런데 이 화학물질들 중 상당수는 회사의
+        <strong> 영업비밀</strong>로 분류되어 있어서, 정확히 무엇이 들어있는지는 연구자조차 알기
+        어려워요. 이번 장은 우리나라 반도체 산업이 화학물질을 <strong>얼마나, 무엇을</strong> 쓰는지 —
+        그리고 <strong>왜 정확히 알기 어려운지</strong>를 정리해요.
       </p>
     ),
   }}
   deep={{
-    sourcePage: 219,
-    sourceSection: '14장 - 반도체 칩 2g에 화학물질 34,372g',
+    sourcePage: 263,
+    sourceSection: '14장 - 도입: IC 칩과 화학물질 34,372g',
     quote: (
       <>
         <p>
-          집적회로가 1959년 처음 개발되었고, 1960년대 초기에 상업적으로 실리콘을 소재로 한 집적회로인
-          IC 칩이 출시되었다. <strong>반도체 칩을 만드는 데 사용되는 화학물질은 공정의 복잡함 이상으로
-          그 종류도 많거니와 사용량도 많다.</strong>
+          집적회로가 1959년 처음 개발되었고, 1960년대 초기에 상업적으로 실리콘을 소재로 한
+          집적회로인 IC 칩이 출시되었다. <strong>반도체 칩을 만드는 데 사용되는 화학물질은 공정의
+          복잡함 이상으로 그 종류도 많거니와 사용량도 많다.</strong> 또한 반도체 생산의 웨이퍼
+          사이즈가 커지는 반면 칩내의 회로폭이 좁아지면서 사용되는 화학물질도 변화하게 된다.
         </p>
         <p className="mt-2">
-          반도체 산업은 다양한 종류의 화학물질을 많이 사용한다. [그림 14-1]은 <strong>반도체 2g의 반도체
-          칩 1개를 제조하는 데 사용되는 화학물질의 양이 무려 34,372g</strong>이라는 것을 모식도로 표현한
-          것이다.
+          화학물질의 변화는 주로 안전보건 이슈보다는 개발되는 반도체의 성능에 따라 변하게 되지만,
+          <strong> 에틸렌글리콜류는 작업자의 생식독성에 영향을 줄 수 있다는 우려 때문에 1990년대에
+          사용이 금지된 물질</strong>이다. 따라서 우리나라도 반도체 업체에서는 에틸렌글리콜류
+          대신에 프로필렌 글리콜류가 사용되고 있다.
         </p>
         <p className="mt-2">
-          또한 <strong>에틸렌글리콜류는 작업자의 생식독성에 영향을 줄 수 있다는 우려 때문에 1990년대에
-          사용이 금지된 물질</strong>이다. 우리나라도 반도체 업체에서는 에틸렌글리콜류 대신에 프로필렌
-          글리콜류가 사용되고 있다.
+          반도체 산업은 다양한 종류의 화학물질을 많이 사용한다. 그림 14-1은 <strong>반도체 2g의
+          반도체 칩 1개를 제조하는 데 사용되는 화학물질의 양이 무려 34,372g</strong>이라는 것을
+          모식도로 표현한 것이다.
         </p>
       </>
     ),
@@ -38,132 +42,535 @@
   src="/source-images/ch14/ch14-cover.jpg"
   alt="제14장 도입 일러스트"
   caption="제14장 — 반도체 공정에서의 화학물질 사용과 유해성"
-  source="「반도체 산업의 유해인자」 p.219"
+  source="「반도체 산업의 유해인자」 p.263"
   maxWidth={520}
 />
 
 ## 한 줄 요약
 
-한국 반도체 산업이 사용하는 화학물질은 **연간 수만 톤, 약 500종 이상**. 그러나 **영업비밀** 비중이 높아
-작업자 노출 평가의 가장 큰 구조적 장벽. Ch.6∼Ch.13의 공정별 화학물질을 종합 + 영업비밀·MSDS 한계 명시.
+반도체 칩 하나(2g)를 만드는 데 화학물질 34,372g이 쓰여요. 우리나라 사업장은 평균 **210개
+제품·135개 성분**을 쓰지만 그중 **노출기준이 있는 성분은 3분의 1뿐**이고, 상당수는
+**영업비밀**로 가려져 있어요. 공정별 화학물질 목록(표 14-4·14-5)과 노출평가·분해 산물 연구까지,
+이 장은 Ch.6∼Ch.13에서 본 화학물질을 숫자로 종합해요.
 
-## 1. 영업비밀 — 가장 큰 정보 사각지대
+## 1. 반도체 화학물질, 왜 실태 파악이 어려울까
+
+국내 반도체 산업은 1980년대부터 시작됐어요. 하지만 산업보건에 본격적으로 관심을 갖게 된 건
+2000년대 이후라서, 1980년대부터 2000년대 초반까지 국내 반도체 산업에서 어떤 화학물질이 쓰였고
+작업자가 얼마나 노출됐는지는 지금도 정확히 파악하기 어려워요.
+
+<SourceQuote page={266} section="1. 화학물질 실태 파악이 어려운 이유 - 7가지">
+  <p>
+    <strong>반도체 산업에 종사하는 작업자의 건강과 관련하여 화학물질의 정확한 사용실태와
+    위험성을 파악하기 어려운데 그 이유는 다음과 같다.</strong>
+  </p>
+  <p className="mt-2">• 매년 반도체 기술이 발달함에 따라 사용되는 화학물질의 세부 특성이 달라질 수 있다. 기본적인 화학물질은 변하지 않지만 세부 특성에 영향을 주는 화학물질, 예를 들어 포토공정에 사용되는 미량 성분은 변하고, <strong>대부분 영업비밀 물질로 지정되어 있어 알기 어렵다.</strong></p>
+  <p className="mt-2">• 화학물질이 단일 성분으로 사용되기도 하지만 <strong>많은 제품은 혼합물 형태로 사용</strong>된다.</p>
+  <p className="mt-2">• <strong>영업비밀 물질이 많이 포함</strong>되어 있다. 반도체 공정 특성상 많은 영업비밀 물질을 포함하게 된다. 이런 정보는 파악하기 어렵다.</p>
+  <p className="mt-2">• 반도체 회사마다 사용하는 화학제품명이 다르고, 그 성분도 다르다.</p>
+  <p className="mt-2">• 반도체의 생산량, 기술의 발전에 따라 화학제품의 종류와 양이 수시로 변한다.</p>
+  <p className="mt-2">• 반도체 산업에서는 고온이나 고에너지를 사용하게 되는데 이럴 경우 <strong>반응 부산물이 생성</strong>될 수 있다.</p>
+  <p className="mt-2">• 반도체 산업의 기술보호 특성으로 인해 화학물질 정보 등이 잘 공개되지 않는다.</p>
+</SourceQuote>
+
+<Callout type="info" title="이 7가지 이유가 이 장 전체의 뼈대예요">
+  영업비밀(3장), 공정별 화학물질 목록(5장), 노출평가의 한계(6장)가 모두 이 7가지 이유에서
+  갈라져 나온 이야기예요.
+</Callout>
+
+에틸렌글리콜류처럼 생식독성 우려로 아예 금지된 사례도 있어요. 지금은 국내 반도체 업체 대부분이
+에틸렌글리콜류 대신 프로필렌 글리콜류를 사용해요.
+
+<ChemicalCard id="ethylene-glycol-ether" />
+<HazardBadge type="reproductive-toxin" />
+
+### 가. 미국 IBM 사례로 본 반세기의 변화
+
+화학물질 사용은 기술 발전에 따라 계속 바뀌어요. 표 14-1은 미국 IBM의 3개 공장에서 초기부터
+1999년까지를 세 기간으로 나눠, 화학물질 공급 방식과 위험 관리가 어떻게 달라졌는지 보여줘요.
+
+| 항목 | 기간 Ⅰ | 기간 Ⅱ | 기간 Ⅲ |
+|---|---|---|---|
+| 화학물질의 수동 공급 | 예 | 일부 수동 | 공장1 R&D부서만 사용 · 공장2 자동 · 공장3 극히 일부 수동 |
+| 장비에 화학물질 수동 공급 | 예 | 일부 | 공장1 아니오(대부분 자동) · 공장3 극히 일부 |
+| Fab에 화학물질 공급 | 수동 공급 | 공장1·2 일부 수동, 공장3 수동 공급 | 공장1 자동 · 공장2 80년대 중반부터 Bulk 공급 · 공장3 일부만 수동 |
+| 팹에서 폐액 수거 | 수동 | 공장1 일부 수동 · 공장2 80년대 중반까지 수동 우세 · 공장3 수동 | 대부분 자동 |
+| 에틸렌 글리콜류 사용 | 사용 | 사용 | 1992년 이후 금지 |
+| 발암성 물질 사용 | 예 | 예 | 예 |
+| 화학물질 탱크에 웨이퍼 수동 침지 | 수동 | 일부 수동 | 공장1 자동 · 공장2 극히 일부 수동 |
+| 독성가스 모니터링 | 없음 | 일부 설치 | 특정 가스만 설치 |
+| PR 종류 | 공장1 PR(−) · 공장2 PR(−)＋PR(+) | PR(−)＋PR(+) | PR(+) 우세 |
+| 에칭, PR 제거 | 습식 | 습식＋건식 | 건식 우세 |
+| 웨이퍼 크기 | 공장1 3.25인치 미만 · 공장2 2.25∼3인치 | — | 공장1 5∼12인치 · 공장2 5∼8인치 |
+
+<p className="text-xs italic text-slate-500">
+  공장1(뉴욕 이스트피시킬): 기간Ⅰ 1963∼1973년 · 기간Ⅱ 1974∼1983년 · 기간Ⅲ 1984∼1999년.
+  공장2(버몬트주 벌링턴): 기간Ⅰ 1962∼1973년 · 기간Ⅱ 1974∼1988년 · 기간Ⅲ 1989∼1999년.
+  공장3(캘리포니아주 산호세, 디스크 등 저장장치 제조로 공정이 다름): 기간Ⅰ 1956∼1972년 ·
+  기간Ⅱ 1973∼1989년 · 기간Ⅲ 1990∼1999년. 공장3은 웨이퍼 침지·에칭·독성가스 모니터링·PR
+  사용·웨이퍼 크기 항목이 해당 없음(해당 항목은 공장1·2에만 적용).
+</p>
+
+<p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 14-1 (p.264) · Herrick et al.(2005)</p>
 
 <ImageFigure
   src="/source-images/ch14/fig-14-1-msds.jpg"
-  alt="화학물질 영업비밀 비중"
-  caption="그림 14-1. 화학물질 영업비밀 비중"
-  source="「반도체 산업의 유해인자」 p.222"
+  alt="반도체 칩 2g 제조에 사용되는 화학물질 34,372g 내역 — 화석연료 1,600g, 화학물질 72g, 물 32,000g, 가스상 물질 700g"
+  caption="그림 14-1. 반도체 칩 2g 제조에 사용되는 화석연료·화학물질·물·가스상 물질 (34,372g, 17,186배)"
+  source="「반도체 산업의 유해인자」 p.265 · Williams et al.(2002)"
 />
 
-### 1.1 영업비밀 비공개 통계
+발암성 물질은 세 기간 내내 계속 사용됐고, 자동화는 꾸준히 늘었지만 **위험한 물질 자체가 사라진
+건 아니에요**. 에틸렌글리콜류처럼 명확한 건강 피해 우려가 확인된 소수의 물질만 금지됐을 뿐이에요.
 
-| 정보원 | 조사 대상 | 영업비밀 처리 | 학술적 의미 |
-|--------|---------|:------:|------|
-| 책 8장 (PR MSDS) | 48개 PR 제품 | **35종 중 다수 비공개** | 작업자 노출 물질 파악 불가 |
-| 책 14장 (종합) | 모든 공정 화학물질 | **영업비밀 비중 높음** | 노출 평가의 구조적 장벽 |
-| MSDS 제도 (한국) | 법적 의무 | **영업비밀 예외 인정** | "알 권리 vs 영업비밀" 갈등 |
+## 2. 우리나라 반도체 사업장의 화학물질 사용현황
 
-<Callout type="warning" title="MSDS에 적힌 게 전부가 아니다">
-  포토레지스트(PR) 같은 복잡한 혼합물은 성분의 30∼70%가 **영업비밀(trade secret)**로 분류되어
-  정확한 성분이 공개되지 않아요. **연구자조차 작업환경에서 무엇에 노출되는지 정확히 알 수 없는** 구조.
-  이것이 반도체 산업보건의 가장 근본적인 장벽이에요.
-</Callout>
+<ImageFigure
+  src="/source-images/ch14/fig-14-2-usage-stats.jpg"
+  alt="사업장별(A∼K) 화학제품 수, 성분 수, 노출기준이 있는 성분 수 막대그래프"
+  caption="그림 14-2. 반도체 사업장에서 사용되는 화학제품 수·단일 성분 수·노출기준이 있는 성분 수"
+  source="「반도체 산업의 유해인자」 p.266 · 2005년 조사자료"
+/>
 
-<SourceQuote page={221} section="1. 영업비밀 - 화학물질 실태 파악 어려운 7가지 이유">
+2015년도에 조사한 국내 반도체 사업장의 화학제품·성분 현황이에요. 예를 들어 A 사업장은 화학제품
+약 200여 개를 쓰고 있는데, 중복 성분을 제외한 단일 성분(CAS No. 기준)은 120개, 그중 **직업
+노출기준이 있는 성분은 40여 개뿐**이에요. 노출기준은 성분 3개 중 1개꼴로만 있고, 나머지는
+없어요. 현실적으로 노출기준이 없는 물질은 사업장에서 잘 관리되지 않는다는 게 문제예요.
+
+<SourceQuote page={267} section="2. 우리나라 화학물질 사용현황 - 평균 210개 제품·135개 성분">
   <p>
-    <strong>반도체 산업에 종사하는 작업자의 건강과 관련하여 화학물질의 정확한 사용실태와 위험성을
-    파악하기 어려운데 그 이유는 다음과 같다.</strong>
-  </p>
-  <p className="mt-2">① <strong>매년 반도체 기술이 발달함에 따라 사용되는 화학물질의 세부 특성이 달라질 수 있다.</strong> 포토공정에 사용되는 미량 성분은 변하고, <strong>대부분 영업비밀 물질로 지정되어 있어 알기 어렵다.</strong></p>
-  <p className="mt-2">② 화학물질이 단일 성분으로 사용되기도 하지만 <strong>많은 제품은 혼합물 형태로 사용</strong>된다.</p>
-  <p className="mt-2">③ <strong>영업비밀 물질이 많이 포함</strong>되어 있다. 반도체 공정 특성상 많은 영업비밀 물질을 포함하게 된다.</p>
-  <p className="mt-2">④ <strong>반도체 회사마다 사용하는 화학제품명이 다르고, 그 성분도 다르다.</strong></p>
-  <p className="mt-2">⑤ 반도체의 생산량, 기술의 발전에 따라 <strong>화학제품의 종류와 양이 수시로 변한다.</strong></p>
-  <p className="mt-2">⑥ <strong>반도체 산업에서는 고온이나 고에너지를 사용하게 되는데 이럴 경우 반응 부산물이 생성</strong>될 수 있다.</p>
-  <p className="mt-2">⑦ <strong>반도체 산업의 기술보호 특성으로 인해 화학물질 정보 등이 잘 공개되지 않는다.</strong></p>
-  <p className="mt-2">
-    <strong>2015년도 조사자료에 따르면 201개 화학제품에 영업비밀 물질이 포함된 제품은 72개로 평균 33% 화학제품(범위 16∼56%)이 최소한 1개의 영업비밀 물질을 포함</strong>하고 있었다. 또한 <strong>포토 공정에서 사용되는 화학제품의 90% 이상이 최소한 1개 이상의 영업비밀 물질을 포함</strong>하고 있었으며, <strong>제품 중 영업비밀 함량도 1∼65%까지 다양</strong>하였다.
+    평균적으로 보면 우리나라 반도체 사업장에서 <strong>210개(범위 73∼432 제품)의 화학제품이
+    사용</strong>되고 있고, 화학성분으로 하면 <strong>평균 135개(범위 74∼198개 성분)가
+    사용</strong>되고 있다.
   </p>
 </SourceQuote>
 
-## 2. 공정별 화학물질 — Ch.6∼Ch.13 종합
+### 가. 가장 빈번히 사용되는 화학성분 10가지
 
-<Callout type="info" title="Ch.6∼Ch.13에서 본 화학물질의 큰 그림">
-  9공정 챕터에서 본 화학물질을 한 표로 종합하면 반도체 산업의 화학적 다양성과 위험 분포가 드러나요.
-</Callout>
+표 14-2는 두 사업장(A, B)에서 가장 빈번히 사용되는 화학성분을 순서대로 정리한 거예요.
 
-| 공정 (챕터) | 대표 화학물질 | 위험 유형 |
-|------|------------|---------|
-| 클리닝 (<ChapterRef order={6} />) | HF, HCl, H₂SO₄, NH₄OH, H₂O₂ | 강산·강염기, **HF 화상** |
-| 확산 (<ChapterRef order={7} />) | AsH₃, PH₃, B₂H₆ | 극독성 가스 (ppm 한계) |
-| 포토 (<ChapterRef order={8} />) | PR(혼합물), TMAH, HMDS | **영업비밀 다수**, TMAH 피부 흡수 |
-| 식각 (<ChapterRef order={9} />) | HF, Cl₂, PFC (CF₄·SF₆·NF₃) | 산, 가스, **온실가스** |
-| 증착 (<ChapterRef order={10} />) | SiH₄, WF₆, 전구체 다수 | **자연발화**, 알려지지 않은 부산물 |
-| 이온주입 (<ChapterRef order={11} />) | AsH₃, PH₃, BF₃ | 극독성 + X선 + 고전압 |
-| CMP (<ChapterRef order={12} />) | 슬러리(나노입자), H₂O₂ | 나노 흡입, 금속 |
-| 패키징 (<ChapterRef order={13} />) | Pb·Sn, 에폭시, 플럭스 | 흄, 피부 알레르기 |
+| 순서 | A 사업장 | CAS No. | B 사업장 | CAS No. |
+|---|---|---|---|---|
+| 1 | Propylene glycol monomethyl ether acetate (PGMEA) | 108-65-6 | Propylene glycol monomethyl ether acetate (PGMEA) | 108-65-6 |
+| 2 | Cyclohexanone | 108-94-1 | Cyclohexanone | 108-94-1 |
+| 3 | Propylene glycol monomethyl ether (PGME) | 107-98-2 | Propylene glycol monomethyl ether (PGME) | 107-98-2 |
+| 4 | Silica, vitreous | 60676-86-0 | Gamma-butyrolactone | 96-48-0 |
+| 5 | Carbon black | 1333-86-4 | Ethyl lactate | 97-64-3 |
+| 6 | Gamma-butyrolactone | 96-48-0 | Hydrofluoric acid | 7664-39-3 |
+| 7 | Sulfuric acid | 7664-93-9 | 2-Methoxy-1-propanol | 1589-47-5 |
+| 8 | Ethyl lactate | 97-64-3 | Silica, vitreous | 60676-86-0 |
+| 9 | Copper(II) sulfate | 7758-98-7 | Neon | 7440-01-9 |
+| 10 | Hydrogen | 1333-74-0 | Carbon black | 1333-86-4 |
 
-<SourceQuote page={224} section="2. 우리나라 반도체 산업 화학물질 사용 현황 - 210개 제품·135개 성분">
+<p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 14-2 (p.267) · Kim S et al.(2018)</p>
+
+빈번히 사용되는 성분은 크게 두 갈래예요. **PGMEA·사이클로헥사논·PGME** 같은 유기용제류, 그리고
+**감마-뷰틸로락톤·불산·황산·카본블랙**이에요. PGMEA와 PGME는 과거 에틸렌글리콜류를 대신하는
+물질로 **포토공정**에 많이 쓰이고, 감마-뷰틸로락톤도 포토공정 위주예요. 불산과 황산은 **세척
+공정**에서, 카본블랙과 실리카(vitreous)는 **몰드 공정** 에폭시 컴파운드의 구성 성분으로 쓰여요.
+
+<ChemicalCard id="pgmea" />
+<ChemicalCard id="sulfuric-acid" />
+
+<SourceQuote page={268} section="2. 화학물질 사용현황 - 포토 공정의 영업비밀과 식각 공정의 비소">
   <p>
-    <strong>평균적으로 보면 우리나라 반도체 사업장에서 210개(범위 73∼432 제품)의 화학제품이 사용되고 있고, 화학성분으로 하면 평균 135개(범위 74∼198개 성분)가 사용</strong>되고 있다.
+    <strong>반도체 산업에서 화학물질이 가장 많이 사용되는 곳은 포토 공정</strong>이며 포토
+    공정에 사용되는 화학제품은 대부분 영업비밀 물질을 포함하고 있다. <strong>포토 공정에서
+    사용되는 화학제품의 90% 이상이 최소한 1개 이상의 영업비밀 물질을 포함</strong>하고 있었으며
+    제품 중 영업비밀 함량도 <strong>1∼65%까지 다양</strong>하였다. 또한 포토 공정과 몰딩
+    공정에서 사용되는 노보락 수지가 가열되면 <strong>벤젠이나 포름알데히드가 발생</strong>하기도
+    하였다.
   </p>
   <p className="mt-2">
-    <strong>직업 노출기준은 120개의 화학성분 중에 약 1/3밖에 없고 나머지는 직업 노출기준이 없다.</strong> 현실적으로 직업 노출기준이 없는 물질은 사업장에서 잘 관리하지 않는다.
-  </p>
-  <p className="mt-2">
-    빈번히 사용되는 화학성분은 <strong>프로필렌 글리콜 모노메틸 에테르 아세테이트(PGMEA), 사이클로헥사논, 프로필렌 글리콜 모노메틸 에테르(PGME) 등의 유기용제류와 감마-뷰틸로락톤, 불산, 황산, 카본블랙</strong> 등이 사용된다. 특히 <strong>PGMEA와 PGME는 과거의 에틸렌 글리콜류를 대신하여 사용되는 물질로 포토공정에 많이 사용</strong>된다.
-  </p>
-  <p className="mt-2">
-    <strong>반도체 산업에서 화학물질이 가장 많이 사용되는 곳은 포토 공정</strong>이며, <strong>식각 공정에서는 비소가 화학물질로 사용되지 않지만 식각 공정의 공기 중에서 비소가 검출</strong>되었는데, 이는 임플란트 공정의 아르신(AsH₃)이 웨이퍼에 비소로 침착되어 있다가 식각 공정에서 방출되는 것으로 추정된다.
+    다른 예로 <strong>식각 공정에서는 비소가 화학물질로 사용되지 않지만 식각 공정의 공기 중에서
+    비소가 검출</strong>되었는데, 이는 <strong>임플란트 공정의 아르신(AsH₃)이 웨이퍼에 비소로
+    침착되어 있다가 식각 공정에서 방출</strong>되는 것으로 추정된다.
   </p>
 </SourceQuote>
 
-## 3. 노출 평가의 한계 — 4중 장벽
+비소 사례는 화학물질 관리가 왜 어려운지 잘 보여줘요. 실제로 뿌린 적 없는 물질이 다른 공정
+(<ChapterRef order={11} />)에서 넘어와 검출되는 거예요. 반도체 회사는 사용하는 화학물질뿐
+아니라 이런 **반응 부산물과 공정 간 오염**까지 관리해야 해요.
 
-| 장벽 | 내용 |
-|------|------|
-| **(1) 영업비밀** | 측정 대상 물질 자체를 모름 |
-| **(2) 정비·세정** | 정상 작업만 측정, 정비 시 노출 누락 (Ch.3) |
-| **(3) 반응 부산물** | 종류·양 미파악 → 측정 불가 (Ch.10·Ch.16) |
-| **(4) 협력업체** | 자료 누락 (Ch.3, Ch.13 OSAT) |
+<ChemicalCard id="arsenic" />
+
+## 3. 영업비밀 물질 — 알아도 알 수 없는 성분
+
+기업이 기술을 보호하는 방법은 크게 두 가지예요. 특허는 공개를 원칙으로 일정 기간 독점 사용권을
+주고, 영업비밀은 특허 출원 대신 비밀 유지로 경쟁력을 지켜요. 우리나라는 부정경쟁방지 및
+영업비밀보호에 관한 법률에서 영업비밀을 공공연히 알려져 있지 않고 독립된 경제적 가치를 가지는
+것으로서, 상당한 노력에 의해 비밀로 유지된 생산방법·판매방법·그 밖의 영업활동에 유용한 기술상
+또는 경영상 정보로 정의해요. 이 정의를 만족하려면 4가지 요건을 동시에 충족해야 해요.
+
+### 가. 영업비밀의 법적 요건 4가지
+
+| 요건 | 의미 |
+|---|---|
+| ① 비공지성(비밀성) | 출판물·간행물·인터넷 등으로 불특정 다수에게 알려져 있지 않아, 보유자를 통하지 않고는 통상적으로 입수할 수 없는 상태 |
+| ② 경제성(독립된 경제적 가치) | 비공개 신청자가 비밀로서 정보를 소유·관리할 정당한 이익 또는 경제적 가치가 있음 |
+| ③ 비밀유지성 | 종업원이나 외부 제3자가 인식할 수 있을 정도로 비밀로 관리되는 상태가 객관적으로 유지됨 |
+| ④ 유용성 | 법적 보호가치가 있는 객관적·사회적 필요성 범위에서 생산·판매·연구개발 등 영업활동에 구체적 도움을 주는 정보 |
+
+<p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 14장 3절 (p.268∼269) · 부정경쟁방지 및 영업비밀보호에 관한 법률</p>
+
+기업에서는 영업비밀 대신 **비밀영업정보(Confidential Business Information, CBI)**라는 용어를
+쓰기도 해요. 영업활동에서 비밀을 유지해 이익을 얻을 수 있는 정보 전반을 가리키는, 영업비밀보다
+더 넓은 개념이에요.
+
+### 나. 국내 관리 제도 — 2020년 개정과 사전심사제도
+
+<SourceQuote page={270} section="3. 영업비밀 물질의 법적 관리 - 2020년 개정 사전심사제도와 제112조">
+  <p>
+    이전에는 물질안전보건자료의 기재사항 중 화학물질의 명칭과 함유량에 대해 화학물질제조자가
+    자의적으로 영업비밀 여부를 판단하여 공개하지 않을 수 있었는데 <strong>2020년부터는 기업이
+    영업비밀을 이유로 화학물질의 명칭과 함유량을 비공개하기 위해서는 고용노동부장관의 사전
+    심사를 받도록</strong> 했고(사전 심사제도), 화학물질의 명칭과 함유량을 비공개하더라도 그
+    위험성을 유추할 수 있도록 <strong>대체명칭과 대체함유량(대체 자료)은 기재</strong>하도록
+    하였다.
+  </p>
+  <p className="mt-2">
+    또한 영업비밀 물질에 대해서 대체자료를 제공했다 하더라도 <strong>근로자의 안전 및 보건을
+    유지하거나 직업성 질환 발생 원인을 규명하기 위하여 근로자에게 중대한 건강장해가 발생하는 등
+    정보 제공이 요구되는 경우에는 정보를 제공</strong>하도록 하고 있다(산업안전보건법 제112조).
+  </p>
+</SourceQuote>
+
+<Term id="msds">물질안전보건자료(MSDS)</Term>를 확인하면 영업비밀 물질 포함 여부를 알 수
+있어요. 하지만 영업비밀이라고만 적혀 있을 뿐, 실제 성분은 대체자료로만 유추할 수 있어요.
+
+### 다. 영업비밀 물질 사용 실태 — 2015년 조사
+
+<SourceQuote page={271} section="3. 영업비밀 물질 사용현황 - 201개 중 72개, 평균 33%">
+  <p>
+    2015년도 조사자료에 따르면 <strong>201개 화학제품에 영업비밀 물질이 포함된 제품은 72개로
+    평균 33% 화학제품(범위, 16∼56%)이 최소한 1개의 영업비밀 물질이 포함</strong>되어 있었다.
+    어떤 화학제품은 한 제품 내에 영업비밀 물질이 여러 개 함유되어 있을 수 있다. 영업비밀 물질의
+    함량이 제품마다 다른데, 어느 한 화학제품에서 영업비밀 물질의 수나 함량이 많다는 것은
+    그만큼 그 물질을 안전보건 측면에서 관리하기가 어렵다는 것을 의미한다.
+  </p>
+</SourceQuote>
+
+<ImageFigure
+  src="/source-images/ch14/fig-14-3-trade-secret.jpg"
+  alt="사업장별(A∼K) 영업비밀 물질의 함량 구간별 화학제품 수 누적 막대그래프"
+  caption="그림 14-3. 사업장별 영업비밀 물질의 함량에 따른 화학제품 수"
+  source="「반도체 산업의 유해인자」 p.271"
+/>
+
+예를 들어 G 사업장은 영업비밀 물질을 포함한 화학제품이 186개인데, 함량 구간별로 나누면
+이래요.
+
+| 영업비밀 함량 구간 | 화학제품 수 |
+|---|---|
+| 1% 미만 | 4개 |
+| 1∼10% | 64개 |
+| 10∼30% | 83개 |
+| 30∼50% | 12개 |
+| 50% 이상 | 16개 |
+| 함량 미표시 | 7개 |
+| **합계** | **186개** |
+
+<Callout type="warning" title="MSDS에 적힌 게 전부가 아니에요">
+  영업비밀 함량이 30% 이상인 제품도 드물지 않아요. 성분표에 영업비밀이라고만 적힌 화학제품을
+  매일 다룬다는 뜻이에요. 대체자료(대체명칭·대체함유량)가 있어도 정확한 화학구조와 독성은
+  제조사만 알아요.
+</Callout>
+
+우리나라는 2020년 개정 산업안전보건법에 따라 화학물질 제조자·수입자가 물질안전보건자료를
+고용노동부에 제출하도록 했어요. 비유해물질은 표기를 생략할 수 있게 됐고, 영업비밀은
+사전승인을 받아 대체자료로 기술하되, 중대한 건강장해가 나타나 공개 필요성이 있으면
+공개하도록 구체적으로 명시했어요.
+
+## 4. 해외 화학물질 규제 동향 — EU와 세계반도체협회
+
+2000년대 들어 화학물질 관리를 가장 체계적으로 하는 곳은 EU예요.
+
+### 가. REACH·CLP·ECHA 체계
+
+<SourceQuote page={271} section="4. 국외 화학물질 규제 - EU REACH·CLP·ECHA">
+  <p>
+    2000년대 들어 화학물질 관리를 체계적으로 하는 곳은 EU인데 이유는 <strong>REACH(Regulation
+    for Registration, Evaluation, Authorization and Restriction of Chemicals, 2007년
+    제정)</strong> 제도 하에 <strong>EU CLP(Classification, Labelling and Packaging of
+    substances and mixtures)</strong> 규정을 제정하였고, <strong>화학물질청(European
+    Chemicals Agency, ECHA)</strong>에서 화학물질, 살생물 물질 등을 관리한다. EU의 화학물질
+    분류는 큰 틀에서 보면 UN의 <strong>GHS(Globally Harmonized System of Classification and
+    Labelling of Chemicals)</strong>에 부합하여 실질적 화학물질 관리의 내용을 포괄하고 있다.
+  </p>
+  <p className="mt-2">
+    REACH는 EU 내의 모든 국가가 단일 시스템을 이용하여 화학물질로 인해 야기되는 위험에 관한
+    정보와 이를 어떻게 처리해야 하는지에 대한 정보를 <strong>등록, 평가 및 승인</strong>을 하기
+    위한 것으로, 이 정보가 생산 공정 전체에 제공되도록 하는 것이다. 하위 사용자는 자신의
+    장소에서 안전하게 사용하고 관련 정보를 공급 업체와 고객에게 전달함으로써 화학물질의 안전한
+    사용을 촉진하는 데 중요한 역할을 한다.
+  </p>
+</SourceQuote>
+
+EU에서 쓰는 핵심 용어 4가지예요.
+
+| 용어 | 뜻 |
+|---|---|
+| SVHC (Substance of Very High Concern) | CMR·PBTs·vPvB·내분비계 교란물질 등 고위험성 물질. REACH의 신고·허가·제한 대상 |
+| CMR (Carcinogenic, Mutagenic or toxic for Reproduction) | 발암성, 생식세포 변이원성 또는 생식독성 물질 |
+| PBTs (Persistent, Bioaccumulative and Toxic substances) | 잔류성이 강한 생체 축적 독성 물질 |
+| vPvB (very Persistent and very Bioaccumulative) | 잔류성 및 생체 축적성이 매우 심한 물질 |
+
+이 규정은 이제 EU 안에만 머무르지 않고 전 세계 화학물질 관리에 중요한 역할을 하고 있어요.
+
+### 나. EU-RoHS 규제 물질
+
+EU는 전기·가전제품에 들어가는 유해물질 사용을 규제하려고 2003년 EU-RoHS(Restriction of
+Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·PBDE·PBB를 규제했고,
+프탈레이트류(DEHP·DBP·BBP·DiBP)는 2015년에 추가돼 2019년 7월부터 시행 중이에요.
+
+| 화학물질 | 최고농도, ppm (%) |
+|---|---|
+| **2019년 7월 이전부터 규제한 물질** | |
+| Cadmium and Cadmium compounds | 100 (0.01%) |
+| Hexavalent Chromium compounds | 1,000 (0.1%) |
+| Lead and Lead compounds | 1,000 (0.1%) |
+| Mercury and Mercury compounds | 1,000 (0.1%) |
+| Polybrominated diphenyl ethers (PBDEs) | 1,000 (0.1%) |
+| Polybrominated biphenyls (PBBs) | 1,000 (0.1%) |
+| **2019년 7월 이후 규제하는 물질** | |
+| Di(2-ethylhexyl) phthalate (DEHP), CAS 117-81-7 | 1,000 (0.1%) |
+| Di-n-butyl phthalate (DBP), CAS 84-74-2 | 1,000 (0.1%) |
+| Butyl benzyl phthalate (BBP), CAS 85-68-7 | 1,000 (0.1%) |
+| Di-i-butyl phthalate (DiBP), CAS 84-69-5 | 1,000 (0.1%) |
+
+<p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 14-3 (p.273∼274)</p>
+
+그림 14-4는 이 중 PBBs·PBDEs·프탈레이트·DEHP의 화학구조를 보여줘요. 모두 브롬(Br)이나 에스터
+결합을 가진 유기화합물이에요.
+
+### 다. 세계반도체협회의 PFC 감축과 ECHA의 PFOA 규제
+
+<SourceQuote page={274} section="4. 국외 화학물질 규제 - 세계반도체협회 PFC 감축과 ECHA의 PFOA 규제">
+  <p>
+    세계반도체협회(World Semiconductor Council)는 1999년부터 2010년 말까지 <strong>과불화합물
+    (perfluorocompounds, PFCs)의 배출량을 최소 10%까지 줄이기로 약속</strong>하였고, <strong>실제
+    32%를 감축하여 목표량을 초과</strong>하였다. 2020년까지 표준화 배출율을 0.22kg CO₂/cm²까지
+    자발적인 감축을 진행하기로 하였다. 또한 세계반도체협회는 자발적으로 <strong>퍼플루오르옥타닐
+    술폰산(PFOS, CAS No. 1763-23-1)</strong>의 사용을 감소하기로 하였다.
+  </p>
+  <p className="mt-2">
+    EU의 화학물질관리청(ECHA)에서는 <strong>2022년 7월부터 과불화합물</strong>(불소가 많은
+    화합물로 <strong>과불옥탄산(PFOA, CAS No. 335-67-1)</strong>이 한 예임)을 <strong>반도체
+    산업의 장비에서 사용을 금지</strong>하려고 하는데(포토공정의 PR로는 사용 가능), 이런
+    규제가 도입되면 국내 사업장도 같이 규제하는 것이 보통이다. 예로 <strong>PFOA와 그 염 및
+    폴리머는 25ppb 이상을 포함하지 못하고</strong>, 퍼플루오로헵틸기(C₇F₁₅-)나
+    퍼플루오로옥틸기(C₈F₁₅-)는 <strong>1,000ppb를 넘지 못하도록</strong> 하고 있다.
+  </p>
+</SourceQuote>
+
+<Callout type="tip" title="Ch.9 식각의 PFC와 연결돼요">
+  CF₄·SF₆·NF₃ 같은 식각 가스(<ChapterRef order={9} />)가 대표적인 PFC예요. 온실가스이면서
+  EU가 규제 대상으로 보는 물질이라, 국내 반도체 사업장의 감축 노력과도 직결돼요.
+</Callout>
+
+## 5. 반도체 공정별 사용하는 화학물질
+
+<SourceQuote page={276} section="5. 반도체 공정별 화학물질 - 표의 한계와 국내 S사 납 사용 중단">
+  <p>
+    반도체에서 사용되는 화학물질은 기술의 발달에 따라 수시로 변하고, 사업장마다 다른 화학제품을
+    사용하고 있기 때문에 과거부터 현재까지 또 미래의 화학물질을 정확히 파악하기 어렵다. 여기에
+    명시된 화학물질이 모든 사업장에 동일하게 다 사용되는 것은 아니고, 또 기술되지 않은
+    화학물질이 사용될 수 있다. 더구나 영업비밀 부분에서 기술했듯이 <strong>상당히 많은 영업비밀
+    물질이 사용되기 때문에 표 외의 화학물질이 더 사용된다고 판단해야 한다.</strong>
+  </p>
+  <p className="mt-2">
+    우리나라 대형 반도체 산업장도 약 2010년까지는 패키지 도금 공정이 있는 것으로 파악되고
+    있고, 도금 공정에는 납 등이 사용되다가 납의 사용이 중지되었다. 예를 들어 <strong>국내 S사는
+    1991년부터 패키지 도금 공정에서 납을 사용하다가 2006년에 납이 함유되지 않은 제품으로
+    도금</strong>을 하였다. 현재는 도금공정 자체가 없는 반도체 회사도 많다.
+  </p>
+</SourceQuote>
+
+표 14-4는 웨이퍼 가공 공정(팹 공정)에서, 표 14-5는 칩 조립 및 검사 공정(패키지 공정)에서 각
+공정별로 주로 사용되는 화학물질을 요약한 거예요.
+
+### 가. 팹 공정 — 확산·에칭·증착·세정·임플란트·CMP
+
+| 공정 | 사용 화학물질 |
+|---|---|
+| 확산 (<ChapterRef order={7} />) | 가스: BCl₃, B₂H₆, H₂, HCl(gas), He, N₂, NH₃, NO, N₂O, O₂, PH₃, SiH₄ · 액체: DCS, HF(석영관 세정), IPA, POCl₃, TEOS, TEMAH, TMA, TEMAZ |
+| 에칭 (<ChapterRef order={9} />) | 건식(가스): Ar, BCl₃, C₂F₆, C₂H₄, C₃H₈, CH₂F₂, CH₃F, CF₄, C₄F₆, C₄F₈, C₅F₈, Cl₂, CO, H₂, HBr, He, N₂, NF₃, O₂, O₃, SF₆ · 습식(액체): Acetic acid, BOE(HF·NH₄OH·Water·계면활성제), HF, HNO₃, NH₄OH |
+| 증착 (<ChapterRef order={10} />) | 가스: C₃F₈, He, N₂O, NF₃, O₃, SiF₄, WF₆, Ar, H₂, N₂ · 액체: Ethylene Glycols, TDMAT, TEOS |
+| 세정 (<ChapterRef order={6} />) | 액체: Acetone(장비 세정), Catechol, HF, H₂O₂, H₃PO₄, H₂SO₄, IPA(장비 세정), NH₄OH, Mono ethanolamine, PGME, Water |
+| 임플란트 (<ChapterRef order={11} />) | 가스: Ar, AsH₃, BF₃, N₂, PH₃, SF₆, Xe |
+| 화학기계연마 (<ChapterRef order={12} />) | 기체: N₂ · 액체: HF, KOH, NH₄OH, Water · 고체: Fumed Silica(수용액에 분산) |
+
+<p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 14-4 (p.277)</p>
+
+<ChemicalCard id="tungsten-hexafluoride" />
+
+### 나. 포토 공정 — 화학물질이 가장 복잡한 단계
+
+포토 공정은 표 14-4에서 가장 많은 지면을 차지해요. 장비 자체가 쓰는 가스부터, 노광 파장에
+따라 완전히 다른 화학물질 세트를 쓰거든요.
+
+- **노광 장비(엑시머 레이저) 가스**: F₂, Kr, He, N₂, Ne
+- **증착막 도포**(HMDS 프라이밍): HMDS
+
+<ChemicalCard id="hmds" />
+
+| 구분 | g, h, i-line용 | KrF(불화크립톤)용 |
+|---|---|---|
+| 수지(Resin Polymer) | 노볼락 수지(Novolac Resin) | 폴리하이드록시스티렌(Poly Hydroxy Styrene) |
+| 감광 화합물 | PAC(Photo Active Compound) | PAG(Photo Acid Generator) |
+| 주 용제 | Ethylene Lactate, Ethylene Glycols, PGMEA | PGMEA |
+| 첨가제 | 영업비밀 | 영업비밀 |
+
+노광 파장이 바뀌면 감광제 화학까지 통째로 바뀌어요. PR(+)와 PR(−)도 원리가 정반대예요.
+
+| 구분 | PR(+) 포지티브형 | PR(−) 네거티브형 |
+|---|---|---|
+| 원리 | 노광된 영역이 제거됨 | 노광된 영역이 남음 |
+| 화학물질 및 반응 | 노볼락-포름알데히드 수지와 빛 감응제(디아조퀴논·디아조나프토퀴논계)가 자외선에 반응해 알칼리 현상액에 녹는 carboxylic acid로 분해 | 고리상 고무계 수지와 빛 감응제(비스아자이드계)가 자외선에 반응해 불용성 구조를 형성 |
+| 현상액 | KOH, NaOH, Methyl 2-Hydroxyisobutyrate, TMAH | 지방족 탄화수소(헥산·헵탄), PGMEA, Stoddard solvent, Xylene |
+
+<p className="text-xs italic text-slate-500">감광제를 녹이는 용매로는 PGME, PGMEA가 쓰여요.</p>
+
+<ChemicalCard id="tmah" />
+
+| 공정 단계 | 화학물질 |
+|---|---|
+| Soft bake | 신규 화학물질 사용 없음 — 휘발성 용매·반응 부산물 발생 가능 |
+| 노광 | 화학물질 사용 없음 |
+| Hard bake | 신규 화학물질 사용 없음 — 휘발성 용매·반응 부산물 발생 가능 |
+| PM | 이소프로필알콜(IPA), 아세톤 |
+
+<p className="text-xs italic text-slate-500">
+  출처: 「반도체 산업의 유해인자」 표 14-4 (p.278∼279). 약어 — DCS: Dichlorosilane, TMAH:
+  Tetramethyl Ammonium Hydroxide, TEOS: Tetra Ethyl Ortho Silicate, TEMAH:
+  Tetrakis(dimethylamido)hafnium, TMA: Trimethylaluminum, TEMAZ:
+  Tetrakis(dimethylamido)zirconium, TDMAT: Tetrakis(dimethylamido)titanium(IV), HMDS:
+  Hexamethyldisilazane, PAC: Photo Active Compounds(광감응제), PAG: Photo Acid
+  Generator(광산 발생제), PGME: Propylene glycol methyl ether, PGMEA: Propylene glycol
+  methyl ether acetate.
+</p>
+
+<Callout type="warning" title="포토 공정 = 영업비밀 밀도 최고">
+  2장에서 본 "포토 공정 화학제품의 90% 이상이 영업비밀 포함"이라는 통계가 바로 이 표의
+  "첨가제: 영업비밀" 칸에서 나온 거예요. <ChapterRef order={8} />에서 PR 성분 35종의 실체를
+  더 자세히 다뤄요.
+</Callout>
+
+### 다. 패키지 공정
+
+<ChapterRef order={13} />에서 다룬 조립·검사 공정에서 실제로 어떤 화학물질을 쓰는지 표로
+정리하면 이래요.
+
+| 공정 | 세부 작업 | 사용 화학물질 |
+|---|---|---|
+| 후면 연마 | — | 고체: Slurry(TMAH·Silica·Fumed Silica) · 액체: Piperazine, NH₄OH, H₂O |
+| 웨이퍼 절단 | — | 가스: CO₂ · 액체: Polyoxirane, Polyethylene oxide, Oxirane, Preservative(Tetrahydrofurfuryl Alcohol), Methyl-1H-benzotriazole, Methyl-Polymer, Water, Wetting Agent |
+| 칩 접착(die attach) | 접착 작업 | 고체: Acrylate resin, Ag, Carbon black, Fused silica, Epoxy resin, Phenol resin, Non-crystalline silica, Polydimethyl hydrogen siloxane · 액체: Ethyl benzene, Organic peroxide, Petroleum distillate, Succinic acid |
+| 몰드 공정 | 몰드 작업 | 고체: Antimony Trioxide, EMC(비페닐형·브롬화 에폭시수지+페놀수지+폴리올레핀), Carbon Black, Fused silica, Metal hydroxide(수산화마그네슘 등), Colorant(Titanium Oxide) · 액체: Curing agent(Peroxide), Fatty acid amide |
+| 몰드 공정 | 금형세정 작업 | 액체: Polyoxyethylene glycol, Amine, Diethyleneglycol mono hexylether, Ethylene diamine, Organic acid |
+| 인쇄 공정 | 레이저 마킹 | 화학물질 특별히 사용하지 않음 — 몰딩부 레이저 조사 시 연기 발생, 국소배기로 처리 |
+| 인쇄 공정 | 잉크 마킹 | 고체: Polyurethane resin, Epoxy resin · 액체: Cyclohexanone, Diethylene Glycol Monobutyl Ether, Diethylene glycol monoethyl ether acetate, Ethylene Glycol Monobutyl Ether Acetate, N-butyl acetate, PGMEA, Solvent Naphtha, Xylene · 세척제: Acetone, Ethyl acetate, Toluene |
+| 도금 | — | 2010년대까지 존재(국내 대형 제조업체는 주석 약63%·납 약37% 도금을 하다가 2005∼2006년 이후 납 중단) · 고체: Ag, Sn, Cu · 액체: Ammonium persulfate, Citric acid, Hydrogen peroxide, IPA, Methane sulfonic acid, Methanol, Organic acid, Nitric acid, Potassium hydroxide, Potassium phosphate, Succinic acid, Sulfamic acid, Sulfuric acid, Tin methanesulfonate, Water |
+| 솔더볼 부착 | — | 고체: Sn, Ag, Cu(과거 납 사용, 현재 미사용) · 액체: Amine, Diethylene glycol mono hexylether, Ethylene diamine mono hexylether, Organic acid, Polyoxyethylene glycol, Polyoxyethylene glycol ether, Polyoxyethylene amine |
+| 테스트(번인·모니터링, MBT) | — | 화학물질 특별히 사용하지 않음 — 고온 테스트 과정에서 휘발성 물질 발생 가능 |
+| 검사 공정(X-ray test) | — | X선·감마선 등 전리방사선 — 몰딩 후 회로 패턴 흔들림 검사 |
+
+<p className="text-xs italic text-slate-500">
+  * TMAH: Tetramethyl Ammonium Hydroxide. 출처: 「반도체 산업의 유해인자」 표 14-5 (p.279)
+</p>
+
+<ChemicalCard id="lead" />
+<ChemicalCard id="antimony-trioxide" />
+<ChemicalCard id="epoxy-resin" />
+<ChemicalCard id="solder-flux" />
+
+## 6. 노출평가의 현실과 분해 산물
+
+### 가. 작업환경 측정 — 87∼90%가 불검출
+
+<SourceQuote page={279} section="6. 노출평가 - 측정결과 대부분 불검출, 초과 0건">
+  <p>
+    최근 작업환경 측정자료에 따르면 <strong>우리나라 반도체 공장에서 유해인자는 노출농도에
+    비해 측정결과가 매우 낮아서 검출이 안 되거나 노출기준에 비해 현저히 낮은 수준</strong>을
+    보인다. 예를 들어 국내 반도체회사의 3년간 작업환경 측정자료를 보면 <strong>2012∼2014년
+    동안 유해인자 측정 건수 중 검출되지 않은 비율이 각 공장별로 83.7%, 89.6% 정도였고, 노출기준을
+    초과한 항목은 3년 동안 없었다.</strong>
+  </p>
+</SourceQuote>
+
+| 연도 | A 사업장 측정 건수 | A 불검출(%) | B 사업장 측정 건수 | B 불검출(%) |
+|---|---|---|---|---|
+| 2012 | 3,401 | 71.1 | 3,227 | 90.6 |
+| 2013 | 4,923 | 81.9 | 3,577 | 91.1 |
+| 2014 | 11,134 | 88.3 | 5,721 | 88.1 |
+| **계** | **19,458** | **83.7** | **12,525** | **89.6** |
+
+<p className="text-xs italic text-slate-500">
+  노출기준 초과 건수는 두 사업장 모두 3년간 0건. 출처: 「반도체 산업의 유해인자」 표 14-6
+  (p.279) · 한국방송통신대학교 산학협력단(2015)
+</p>
 
 <Callout type="warning" title="정상 작업 평균 ≠ 실제 노출">
-  반도체 공장의 화학물질 측정은 대부분 **정상 작업의 평균값**이에요. 정비 작업의 단기 고노출,
-  부산물의 미지 농도, 협력업체의 노출이 모두 평균에서 누락되면 "안전하다"는 판단이 실제 작업자의
-  경험과 크게 어긋나요.
+  이 통계는 정상 작업을 측정한 값이에요. 협력업체 작업자나 유지보수 작업 같은 고농도 노출은
+  빠져 있어요.
 </Callout>
 
-<SourceQuote page={239} section="3. 노출 평가의 역설 - 측정의 87% 미검출, 노출기준 초과 0건">
+<SourceQuote page={280} section="6. 노출평가의 한계 - 정비 작업자의 비소 고노출 사례">
   <p>
-    최근 작업환경 측정자료에 따르면 <strong>우리나라 반도체 공장에서 유해인자는 노출농도에 비해 측정결과가 매우 낮아서 검출이 안 되거나 노출기준에 비해 현저히 낮은 수준</strong>을 보인다.
-  </p>
-  <p className="mt-2">
-    예를 들어 국내 반도체회사의 3년간 작업환경 측정 결과를 보면 <strong>2012∼2014년 동안 유해인자 측정 건수 중 검출되지 않은 비율이 각 공장별로 83.7%, 89.6% 정도였고, 노출기준을 초과한 항목은 3년 동안 없었다.</strong>
-  </p>
-  <p className="mt-2">
-    <strong>그러나 이런 작업환경 측정자료는 정상 작업이 이루어지는 공정에서 측정된 값으로 협력업체 작업자나 유지보수 작업 같은 고농도 노출작업이 포함되지 않아 실제 노출정도를 잘 평가하지 못한다는 지적도 있다.</strong>
-  </p>
-  <p className="mt-2">
-    예를 들어 반도체의 임플란터 유지보수 작업자를 대상으로 비소 노출을 측정한 결과 <strong>개인시료가 장소시료보다 노출이 높았고, 중전류 임플란터를 유지보수할 때가 고전류나 고에너지 임플란터 사용할 때보다 비소 농도</strong>가 더 높았다.
+    그러나 이런 작업환경 측정자료는 정상 작업이 이루어지는 공정에서 측정된 값으로 협력업체
+    작업자나 유지보수 작업 같은 고농도 노출작업이 포함되지 않아 실제 노출정도를 잘 평가하지
+    못한다는 지적도 있다. 예를 들어 <strong>반도체의 임플란터 유지보수 작업자를 대상으로 비소
+    노출을 측정한 결과 개인시료가 장소시료보다 노출이 높았고, 중전류 임플란터를 유지보수할
+    때가 고전류나 고에너지 임플란터를 사용할 때보다 비소 농도가 더 높았다.</strong> 따라서
+    반도체 공장에서 노출평가를 할 때는 정상 작업보다는 <strong>고농도 노출이 발생할 수 있는
+    유지보수 작업, PR 교체, 스크러버 청소 작업</strong> 등 비특이적인 작업을 잘 평가해야 한다.
   </p>
 </SourceQuote>
 
-## 4. 산업보건학적 시각
+### 나. 분해 산물 — 없던 물질이 생겨난다
 
-- **종류 다양성** — 약 500종이 매일 사용
-- **영업비밀** — 작업자가 무엇에 노출되는지 모름 (Ch.8 PR 가장 극단)
-- **부산물 미지** — 측정 불가 영역 (Ch.10·Ch.16)
-- **협력업체 누락** — 정비·세정·OSAT (Ch.3·Ch.13)
+반도체 공정은 에너지를 많이 써요. 고에너지 상태에서는 애초에 공급된 화학제품에는 없던 **분해
+산물**이 생길 수 있어요.
 
-<Callout type="tip" title="Ch.16 결과와 연결">
-  이 4중 장벽은 **노출 평가의 한계 = 인과관계 입증의 한계**로 이어져요. <ChapterRef order={16} />의
-  한국 역학조사가 "통계적 유의성 vs 인과관계" 논쟁에 부딪히는 근본 원인이에요.
+<SourceQuote page={280} section="6. 분해 산물 - 포토 공정 열처리에서 생기는 벤젠·톨루엔·페놀">
+  <p>
+    포토 공정에서는 웨이퍼에 PR을 도포하고 상대적으로 낮은 열처리를 하는 연화 공정(70∼90℃)과
+    고온에서 열처리하는 경화 공정(120∼130℃)이 있는데 이때 <strong>원래 PR에 없던 벤젠, 톨루엔,
+    페놀 등이 열처리 조건에서 발생</strong>하였다. 그러나 실제로 이런 분해 산물을 포토 공정에서
+    측정했을 때 <strong>공기 중 농도가 노출기준에 비해 매우 낮았다.</strong>
+  </p>
+</SourceQuote>
+
+그림 14-5는 포토 공정의 PR을 고온으로 가열했을 때 발생하는 휘발성 유기화합물을 GC(가스
+크로마토그래피)로 분석한 결과예요. 주 성분인 PGMEA 외에 **아세톤·벤젠·메틸이소부틸케톤·
+톨루엔**이 소량 검출됐어요. 원래 PR 조성에는 없던 물질이 열처리 과정에서 새로 생겨난다는 걸
+실측으로 보여주는 자료예요.
+
+<ChemicalCard id="benzene" />
+
+### 다. 4중 장벽 — 왜 노출평가가 늘 부족해 보일까
+
+이 장에서 본 내용을 종합하면, 반도체 공장의 노출평가에는 구조적인 사각지대가 네 겹으로 쌓여
+있어요.
+
+| 장벽 | 내용 |
+|---|---|
+| ① 영업비밀 | 측정 대상 물질 자체를 모른다 (3장) |
+| ② 정상 작업 편향 | 측정은 대부분 정상 작업 — 정비·PR 교체·스크러버 청소 시 고농도 노출은 빠짐 |
+| ③ 반응·분해 부산물 | 종류·양이 사전에 파악되지 않아 측정 계획에 넣기 어렵다 |
+| ④ 노출기준 공백 | 성분의 3분의 2는 애초에 노출기준 자체가 없다 (2장) |
+
+<Callout type="tip" title="사전예방원칙과 Ch.16으로 연결돼요">
+  검출이 안 됐다는 건 안전하다는 말과 같지 않아요. 무엇에 얼마나 노출됐는지 자체를 모르는
+  구조에서는 <Term id="precautionary-principle">사전예방원칙</Term>적인 태도가 필요해요. 이
+  노출평가의 한계는 <ChapterRef order={16} />의 역학조사가 "통계적 유의성 vs 인과관계" 논쟁에
+  부딪히는 근본 배경이기도 해요.
 </Callout>
 
 ## 검색해 보기
 
-특정 물질의 자세한 정보는 **유해물질 사전**에서 검색해보세요. 31종의 대표 화학물질을 카드로 정리했어요.
+특정 물질의 자세한 정보는 **유해물질 사전**에서 찾아보세요. 이 장에서 나온 물질을 포함해
+31종의 대표 화학물질을 카드로 정리했어요.
 
 [유해물질 사전 →](/chemicals/)
 
