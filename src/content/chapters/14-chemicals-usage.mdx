@@ -103,13 +103,13 @@
 | 에칭, PR 제거 | 습식 | 습식＋건식 | 건식 우세 |
 | 웨이퍼 크기 | 공장1 3.25인치 미만 · 공장2 2.25∼3인치 | — | 공장1 5∼12인치 · 공장2 5∼8인치 |
 
-<p className="text-xs italic text-slate-500">
+<div className="text-xs italic text-slate-500">
   공장1(뉴욕 이스트피시킬): 기간Ⅰ 1963∼1973년 · 기간Ⅱ 1974∼1983년 · 기간Ⅲ 1984∼1999년.
   공장2(버몬트주 벌링턴): 기간Ⅰ 1962∼1973년 · 기간Ⅱ 1974∼1988년 · 기간Ⅲ 1989∼1999년.
   공장3(캘리포니아주 산호세, 디스크 등 저장장치 제조로 공정이 다름): 기간Ⅰ 1956∼1972년 ·
   기간Ⅱ 1973∼1989년 · 기간Ⅲ 1990∼1999년. 공장3은 웨이퍼 침지·에칭·독성가스 모니터링·PR
   사용·웨이퍼 크기 항목이 해당 없음(해당 항목은 공장1·2에만 적용).
-</p>
+</div>
 
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 14-1 (p.264) · Herrick et al.(2005)</p>
 
@@ -440,7 +440,7 @@ Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·P
 | Hard bake | 신규 화학물질 사용 없음 — 휘발성 용매·반응 부산물 발생 가능 |
 | PM | 이소프로필알콜(IPA), 아세톤 |
 
-<p className="text-xs italic text-slate-500">
+<div className="text-xs italic text-slate-500">
   출처: 「반도체 산업의 유해인자」 표 14-4 (p.278∼279). 약어 — DCS: Dichlorosilane, TMAH:
   Tetramethyl Ammonium Hydroxide, TEOS: Tetra Ethyl Ortho Silicate, TEMAH:
   Tetrakis(dimethylamido)hafnium, TMA: Trimethylaluminum, TEMAZ:
@@ -448,7 +448,7 @@ Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·P
   Hexamethyldisilazane, PAC: Photo Active Compounds(광감응제), PAG: Photo Acid
   Generator(광산 발생제), PGME: Propylene glycol methyl ether, PGMEA: Propylene glycol
   methyl ether acetate.
-</p>
+</div>
 
 <Callout type="warning" title="포토 공정 = 영업비밀 밀도 최고">
   2장에서 본 "포토 공정 화학제품의 90% 이상이 영업비밀 포함"이라는 통계가 바로 이 표의
@@ -475,9 +475,9 @@ Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·P
 | 테스트(번인·모니터링, MBT) | — | 화학물질 특별히 사용하지 않음 — 고온 테스트 과정에서 휘발성 물질 발생 가능 |
 | 검사 공정(X-ray test) | — | X선·감마선 등 전리방사선 — 몰딩 후 회로 패턴 흔들림 검사 |
 
-<p className="text-xs italic text-slate-500">
+<div className="text-xs italic text-slate-500">
   * TMAH: Tetramethyl Ammonium Hydroxide. 출처: 「반도체 산업의 유해인자」 표 14-5 (p.279)
-</p>
+</div>
 
 <ChemicalCard id="lead" />
 <ChemicalCard id="antimony-trioxide" />
@@ -505,10 +505,10 @@ Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·P
 | 2014 | 11,134 | 88.3 | 5,721 | 88.1 |
 | **계** | **19,458** | **83.7** | **12,525** | **89.6** |
 
-<p className="text-xs italic text-slate-500">
+<div className="text-xs italic text-slate-500">
   노출기준 초과 건수는 두 사업장 모두 3년간 0건. 출처: 「반도체 산업의 유해인자」 표 14-6
   (p.279) · 한국방송통신대학교 산학협력단(2015)
-</p>
+</div>
 
 <Callout type="warning" title="정상 작업 평균 ≠ 실제 노출">
   이 통계는 정상 작업을 측정한 값이에요. 협력업체 작업자나 유지보수 작업 같은 고농도 노출은
@@ -541,10 +541,17 @@ Hazardous Substances)를 제정했어요. 카드뮴·6가 크롬·납·수은·P
   </p>
 </SourceQuote>
 
-그림 14-5는 포토 공정의 PR을 고온으로 가열했을 때 발생하는 휘발성 유기화합물을 GC(가스
-크로마토그래피)로 분석한 결과예요. 주 성분인 PGMEA 외에 **아세톤·벤젠·메틸이소부틸케톤·
-톨루엔**이 소량 검출됐어요. 원래 PR 조성에는 없던 물질이 열처리 과정에서 새로 생겨난다는 걸
-실측으로 보여주는 자료예요.
+<ImageFigure
+  src="/source-images/ch14/fig-14-5-chromatogram.jpg"
+  alt="포토 공정 PR을 고온 가열했을 때 발생하는 휘발성 유기화합물 GC-MS 크로마토그램 — 가장 큰 피크는 PGMEA, 앞쪽 확대 구간에 아세톤·벤젠·메틸이소부틸케톤·톨루엔 피크"
+  caption="그림 14-5. PR을 고온 가열했을 때 발생하는 휘발성 유기화합물 크로마토그램"
+  source="「반도체 산업의 유해인자」 p.280 · Jang et al.(2019)"
+/>
+
+위 그림 14-5는 포토 공정의 PR을 고온으로 가열했을 때 발생하는 휘발성 유기화합물을 GC-MS로
+분석한 크로마토그램이에요. 가장 큰 피크는 PR 용매인 PGMEA이고, 앞쪽 시간대를 확대하면 **아세톤·
+벤젠·메틸이소부틸케톤·톨루엔** 피크가 보여요. 책 본문이 대표로 든 **벤젠·톨루엔·페놀**과 마찬가지로,
+원래 PR 조성에는 없던 물질이 열처리 과정에서 새로 생겨난다는 걸 실측으로 보여주는 자료예요.
 
 <ChemicalCard id="benzene" />
 
