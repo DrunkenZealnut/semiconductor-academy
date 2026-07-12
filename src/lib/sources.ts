@@ -86,7 +86,54 @@ export const OSHA_SCS: Source = {
   ],
 };
 
-export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS];
+/**
+ * NCS 반도체 학습모듈 — 국가직무능력표준(교육부·한국산업인력공단).
+ * 원자료 `data/ncs/`(직무훈련용)를 고등학생 눈높이로 재구성. 원문 이미지는 저작권상 미사용.
+ * 파일럿: 반도체제조 트랙 3개 → 세분류(개발·재료·장비)별 확대.
+ * 확장: `src/content/sources/ncs-semi/{module}.mdx` 작성 + `ncsMdx.tsx` 로더 등록 + 아래 sections에 추가.
+ */
+export const NCS_SEMI: Source = {
+  id: 'ncs-semi',
+  kind: 'standard',
+  language: 'ko',
+  title: 'NCS 반도체 학습모듈',
+  subtitle: '국가직무능력표준 — 현장 직무로 배우는 반도체',
+  attribution: '교육부 · 한국산업인력공단',
+  publisher: 'NCS 국가직무능력표준',
+  year: 2024,
+  license: 'ncs-open',
+  url: 'https://www.ncs.go.kr/',
+  order: 3,
+  accent: 'standard',
+  sections: [
+    {
+      id: 'photo-equipment',
+      href: '/sources/ncs-semi/photo-equipment/',
+      title: 'Photo(노광) 장비 운영',
+      summary: '빛으로 회로를 그리는 노광·트랙 장비를 셋업하고 관리하는 일',
+      readingTime: 12,
+      group: '반도체제조',
+    },
+    {
+      id: 'quality-control',
+      href: '/sources/ncs-semi/quality-control/',
+      title: '반도체 품질관리',
+      summary: '불량을 찾아내고 원인을 되짚어 수율을 지키는 일',
+      readingTime: 10,
+      group: '반도체제조',
+    },
+    {
+      id: 'productivity',
+      href: '/sources/ncs-semi/productivity/',
+      title: '반도체 생산성 향상',
+      summary: '같은 설비에서 더 많은 좋은 칩을 만들어 내는 개선 활동',
+      readingTime: 9,
+      group: '반도체제조',
+    },
+  ],
+};
+
+export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI];
 
 export function getOrderedSources(): Source[] {
   return [...SOURCES].sort((a, b) => a.order - b.order);
