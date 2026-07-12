@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T12:33:18.750Z",
+  "generatedAt": "2026-07-12T12:56:58.291Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -265,6 +265,49 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::material-safety": {
+      "topics": [
+        "ghs",
+        "sds-label",
+        "emergency-response"
+      ],
+      "hazards": [
+        "corrosive",
+        "acute-toxic",
+        "reproductive-toxin"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::cmp-materials": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive",
+        "oxidizer"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::cleaning-materials": {
+      "topics": [
+        "liquid-chemicals",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::flipchip-materials": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "ncs-semi::equipment-design": {
       "topics": [
         "engineering-controls",
@@ -424,6 +467,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "equipment-design"
       },
       {
@@ -451,6 +498,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -537,6 +592,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
       }
     ],
     "packaging": [
@@ -551,6 +610,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "flip-package-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "flipchip-materials"
       }
     ],
     "chemical-inventory": [
@@ -613,17 +676,29 @@
     ],
     "ghs": [
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1a"
       }
     ],
     "sds-label": [
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1a"
       }
     ],
     "emergency-response": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
@@ -663,6 +738,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -713,6 +800,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -739,6 +830,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -751,6 +846,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -767,9 +866,17 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
       }
     ],
     "oxidizer": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-2"

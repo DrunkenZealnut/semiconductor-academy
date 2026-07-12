@@ -1,6 +1,6 @@
-# NCS 반도체개발 트랙 8모듈 재구성 스펙 (서브에이전트 작업 지시서)
+# NCS 반도체개발·재료 트랙 재구성 스펙 (서브에이전트 작업 지시서)
 
-> **Feature**: `ncs-semiconductor` 확장 — 반도체개발 트랙 8개 모듈
+> **Feature**: `ncs-semiconductor` 확장 — 반도체개발 트랙 8개 + 반도체재료 트랙 4개 모듈
 > **작성일**: 2026-07-12 · 상위 문서: `docs/01-plan/features/ncs-semiconductor.plan.md`, `docs/02-design/features/ncs-semiconductor.design.md`
 > 이 문서는 병렬 재구성 서브에이전트가 Read하는 **단일 작업 스펙**이다. 각 에이전트는 자기 모듈 1개만 담당한다.
 
@@ -30,6 +30,17 @@ NCS 학습모듈 원문(마크다운, `data/ncs/반도체개발/…`)을 읽고,
 | `custom-layout-verification` | 커스텀 레이아웃 검증 | LM1903060132_23v5 | `LM1903060132_23v5_커스텀_레이아웃_검증/LM1903060132_23v5_커스텀_레이아웃_검증.md` |
 
 경로 루트: `/Users/zealnutkim/DEV/SemiconductorAcademy/`. 출력: `src/content/sources/ncs-semi/{모듈id}.mdx`.
+
+### 1-b. 재료 트랙 배정표 (2차 배치)
+
+| 모듈 id (파일명) | 모듈명 | LM 코드 | 원문 경로 (`data/ncs/반도체재료/` 하위) |
+|---|---|---|---|
+| `material-safety` | 반도체 재료 안전관리 | LM1903060411_23v3 | `LM1903060411_23v3_반도체_재료_안전관리/LM1903060411_23v3_반도체_재료_안전관리.md` |
+| `cmp-materials` | 반도체용 CMP 재료 제조 | LM1903060415_20v1 | `LM1903060415_20v1_반도체용_CMP_재료_제조/LM1903060415_20v1_반도체용_CMP_재료_제조.md` |
+| `cleaning-materials` | 반도체용 세정 공정 재료 제조 | LM1903060425_23v3 | `LM1903060425_23v3_반도체용_세정_공정_재료_제조/LM1903060425_23v3_반도체용_세정_공정_재료_제조.md` |
+| `flipchip-materials` | 반도체용 플립칩 재료 제조 | LM1903060414_20v1 | `LM1903060414_20v1_반도체용_플립칩_재료_제조/LM1903060414_20v1_반도체용_플립칩_재료_제조.md` |
+
+**재료 트랙 추가 지침**: 이 트랙은 사이트의 책 「반도체 산업의 유해인자」와 주제가 가장 가깝다(화학물질·안전). ① 화학물질명·화학식·농도 수치는 원문 그대로 정확하게. ② `Term`(msds, cmp, etching 등)·`ChapterRef`(6 클리닝, 12 CMP, 14 화학물질 등) 연결 기회가 개발 트랙보다 많다 — 자연스러운 곳에 적극 활용하되 남용 금지. ③ 안전 내용은 `Callout type="warning"`으로 살린다. ④ 완료 보고에 `suggested-hazards`를 추가한다(§8).
 
 ## 2. 원문 구조 이해 (읽기 요령)
 
@@ -114,5 +125,7 @@ quotes: {SourceQuote 개수(LayeredExplain deep 제외)}
 key-numbers: {본문·표에 쓴 원문 수치 3~6개 — 검증용, "값 (원문 위치)" 형식}
 suggested-topics: {아래 통제 어휘 중 이 모듈 내용과 실제로 맞는 것 0~3개, 없으면 none}
   허용 topic: ghs, sds-label, chemical-inventory, cleanroom, wafer-fab, photolithography, etching, diffusion, deposition, ion-implantation, cmp, packaging, gas-safety, liquid-chemicals, compressed-gas, cryogenic, storage-compatibility, engineering-controls, ppe, emergency-response, occupational-disease, exposure-monitoring, industrial-hygiene
+suggested-hazards: {재료 트랙만. 모듈이 실질적으로 다루는 위험 분류 0~3개, 없으면 none}
+  허용 hazard: flammable, pyrophoric, oxidizer, corrosive, toxic, acute-toxic, carcinogen, reproductive-toxin, sensitizer, compressed-gas, cryogenic, reactive
 notes: {OCR 손상으로 뺀 내용·특이사항 1~2줄, 없으면 none}
 ```

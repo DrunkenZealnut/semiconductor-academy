@@ -18,6 +18,21 @@
   "productivity": {
     "topics": ["wafer-fab"]
   },
+  "material-safety": {
+    "topics": ["ghs", "sds-label", "emergency-response"],
+    "hazards": ["corrosive", "acute-toxic", "reproductive-toxin"]
+  },
+  "cmp-materials": {
+    "topics": ["cmp", "liquid-chemicals"],
+    "hazards": ["corrosive", "oxidizer"]
+  },
+  "cleaning-materials": {
+    "topics": ["liquid-chemicals", "engineering-controls"],
+    "hazards": ["corrosive", "flammable", "toxic"]
+  },
+  "flipchip-materials": {
+    "topics": ["packaging"]
+  },
   "equipment-design": {
     "topics": ["engineering-controls", "cleanroom"]
   },

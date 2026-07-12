@@ -17,6 +17,10 @@ const loaders: Record<string, () => Promise<{ default: ComponentType }>> = {
   'photo-equipment': () => import('@/content/sources/ncs-semi/photo-equipment.mdx'),
   'quality-control': () => import('@/content/sources/ncs-semi/quality-control.mdx'),
   'productivity': () => import('@/content/sources/ncs-semi/productivity.mdx'),
+  'material-safety': () => import('@/content/sources/ncs-semi/material-safety.mdx'),
+  'cmp-materials': () => import('@/content/sources/ncs-semi/cmp-materials.mdx'),
+  'cleaning-materials': () => import('@/content/sources/ncs-semi/cleaning-materials.mdx'),
+  'flipchip-materials': () => import('@/content/sources/ncs-semi/flipchip-materials.mdx'),
   'equipment-design': () => import('@/content/sources/ncs-semi/equipment-design.mdx'),
   'equipment-assembly': () => import('@/content/sources/ncs-semi/equipment-assembly.mdx'),
 };
