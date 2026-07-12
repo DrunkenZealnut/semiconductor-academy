@@ -8,16 +8,41 @@
       "source": "「반도체 산업의 유해인자」 5장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
       "publisher": "에피스테메",
-      "page": 65,
+      "page": 66,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제5장 — 웨이퍼 제조 공정과 유해인자"
+    },
+    {
+      "file": "fig-5-1-ingot.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 5장 그림 5-1",
+      "caption": "그림 5-1. 반도체 칩의 주요 생산 과정",
+      "page": 67,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-5-1-ingot.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 5장 도식",
-      "caption": "잉곳 제조 (Czochralski)", "page": 67,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-5-2-gaas.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 5장 도식",
-      "caption": "갈륨비소 웨이퍼", "page": 72,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-5-2-gaas.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 5장 그림 5-6 (원자료: 실리콘 런 동영상 캡처)",
+      "caption": "그림 5-6. 잉곳을 절단하여 낱개의 웨이퍼 판으로 만드는 과정",
+      "page": 74,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-5-3-crystal-growth.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 5장 그림 5-3 (원자료: 실트론)",
+      "caption": "그림 5-3. 잉곳의 성장 과정",
+      "page": 70,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-5-4-czochralski.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 5장 그림 5-4",
+      "caption": "그림 5-4. 초크랄스키법(CZ)에 의한 잉곳 성장",
+      "page": 71,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }
