@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-11T04:39:28.722Z",
+  "lastUpdated": "2026-07-12T01:27:55.912Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -284,7 +284,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-06-03T00:59:05.324Z"
+        "lastUpdated": "2026-07-12T01:27:55.912Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/oshaMdx.tsx"
     },
@@ -417,6 +417,28 @@
         "lastUpdated": "2026-05-30T12:15:31.802Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/ui/Chip.tsx"
+    },
+    "osha-ko-part-3": {
+      "phase": "completed",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-07-12T00:00:00.000Z",
+      "completedAt": "2026-07-12T01:30:00.000Z",
+      "branch": "feat/osha-ko-part-3",
+      "inherits": "osha-bilingual-toggle(토글 메커니즘) + osha-ko-part-2(번역 템플릿·용어 일관)",
+      "cycleType": "content-expansion",
+      "documents": {
+        "plan": "docs/01-plan/features/osha-ko-part-3.plan.md",
+        "analysis": "docs/03-analysis/osha-ko-part-3.analysis.md",
+        "report": "docs/04-report/osha-ko-part-3.report.md"
+      },
+      "decisions": {
+        "scope": "Part 3만 (4는 후속 사이클)",
+        "translation": "Claude 초벌 번역 직접 작성 (이후 사람 검수)",
+        "codeChange": "koLoaders 1줄 + part-3.ko.mdx 신규 (9개 극위험 화학물질 범주, 실란 폭발 기전, 비상 대응)"
+      },
+      "designSkipped": "메커니즘 4번째 재사용 — 콘텐츠 확장 사이클로 Design skip",
+      "verification": "헤딩 35/35·표 2/2·목록 79/79 구조 대조, 안전 수치 8개·화학식 35개 전수 일치, typecheck/build 무오류, quotes.json diff 0, Playwright 렌더 실측(토글·한글 전환·SSR 무결성)"
     },
     "osha-ko-part-2": {
       "phase": "completed",
@@ -559,7 +581,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-11T04:39:28.722Z"
+    "lastActivity": "2026-07-12T01:27:55.912Z"
   },
   "history": [
     {
@@ -1426,6 +1448,12 @@
       "cycleType": "content-expansion (Design skip)",
       "scope": "Part 2 한글 번역 — 신규 1(part-2.ko.mdx 325줄, 표 8개) + 수정 1줄(koLoaders). FR 6/6(FR-5 부분), NFR 6/6, 영문↔한글 14/14. P0/P1 0, P2 1(G-1 독성물질명 영문 병기). ★5x5 적합성 매트릭스 25셀 전부 정합(안전 오정보 0). NFR-4 코어 무수정 3번째 실증. OSHA 5 Part 중 3개(1A/1B/2) 한글화 완료. 후속: osha-ko-part-3. ⚠️ Claude 초벌 → 안전 검수 필요",
       "at": "2026-06-07T00:30:00.000Z"
+    },
+    {
+      "timestamp": "2026-07-12T01:27:55.912Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
     }
   ]
 }
