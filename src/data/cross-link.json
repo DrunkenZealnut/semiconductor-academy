@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T02:35:51.326Z",
+  "generatedAt": "2026-07-12T12:10:30.193Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -242,6 +242,21 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::equipment-design": {
+      "topics": [
+        "engineering-controls",
+        "cleanroom"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-assembly": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "osha-scs::part-1a": {
       "topics": [
         "ghs",
@@ -369,12 +384,24 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-design"
       }
     ],
     "engineering-controls": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-assembly"
       },
       {
         "sourceId": "osha-scs",

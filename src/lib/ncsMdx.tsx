@@ -9,6 +9,8 @@ const loaders: Record<string, () => Promise<{ default: ComponentType }>> = {
   'photo-equipment': () => import('@/content/sources/ncs-semi/photo-equipment.mdx'),
   'quality-control': () => import('@/content/sources/ncs-semi/quality-control.mdx'),
   'productivity': () => import('@/content/sources/ncs-semi/productivity.mdx'),
+  'equipment-design': () => import('@/content/sources/ncs-semi/equipment-design.mdx'),
+  'equipment-assembly': () => import('@/content/sources/ncs-semi/equipment-assembly.mdx'),
 };
 
 export async function loadNcsModuleMdx(moduleId: string): Promise<ComponentType | null> {

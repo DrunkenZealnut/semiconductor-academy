@@ -8,5 +8,11 @@
   },
   "productivity": {
     "topics": ["wafer-fab"]
+  },
+  "equipment-design": {
+    "topics": ["engineering-controls", "cleanroom"]
+  },
+  "equipment-assembly": {
+    "topics": ["engineering-controls"]
   }
 }

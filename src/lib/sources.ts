@@ -130,6 +130,22 @@ export const NCS_SEMI: Source = {
       readingTime: 9,
       group: '반도체제조',
     },
+    {
+      id: 'equipment-design',
+      href: '/sources/ncs-semi/equipment-design/',
+      title: '반도체 장비 주변부 기구 설계',
+      summary: '장비를 둘러싼 부대 기구를 설계하고 시뮬레이션으로 검증하는 일',
+      readingTime: 9,
+      group: '반도체장비',
+    },
+    {
+      id: 'equipment-assembly',
+      href: '/sources/ncs-semi/equipment-assembly/',
+      title: '반도체 장비 기구 조립 검증',
+      summary: '조립한 장비 기구가 정밀도 기준을 만족하는지 검증하는 일',
+      readingTime: 10,
+      group: '반도체장비',
+    },
   ],
 };
 
