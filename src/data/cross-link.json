@@ -1,8 +1,9 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T01:16:43.727Z",
+  "generatedAt": "2026-07-12T18:23:25.992Z",
   "sources": [
     "epi-semi-hazards",
+    "ncs-semi",
     "osha-scs"
   ],
   "bySection": {
@@ -217,6 +218,111 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::system-process-development": {
+      "topics": [
+        "wafer-fab",
+        "ion-implantation",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::package-product-design": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::flip-package-development": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::photo-equipment": {
+      "topics": [
+        "photolithography",
+        "cleanroom",
+        "ppe"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::quality-control": {
+      "topics": [
+        "exposure-monitoring",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::productivity": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::material-safety": {
+      "topics": [
+        "ghs",
+        "sds-label",
+        "emergency-response"
+      ],
+      "hazards": [
+        "corrosive",
+        "acute-toxic",
+        "reproductive-toxin"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::cmp-materials": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive",
+        "oxidizer"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::cleaning-materials": {
+      "topics": [
+        "liquid-chemicals",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::flipchip-materials": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-design": {
+      "topics": [
+        "engineering-controls",
+        "cleanroom"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-assembly": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "osha-scs::part-1a": {
       "topics": [
         "ghs",
@@ -326,18 +432,50 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "05-wafer"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "quality-control"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "productivity"
       }
     ],
     "cleanroom": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-design"
       }
     ],
     "engineering-controls": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-assembly"
       },
       {
         "sourceId": "osha-scs",
@@ -360,6 +498,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -410,6 +556,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-equipment"
       }
     ],
     "etching": [
@@ -428,18 +578,42 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
       }
     ],
     "cmp": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
       }
     ],
     "packaging": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-product-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "flip-package-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "flipchip-materials"
       }
     ],
     "chemical-inventory": [
@@ -470,6 +644,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "quality-control"
       }
     ],
     "occupational-disease": [
@@ -482,7 +660,25 @@
         "sectionId": "17-industrial-health-view"
       }
     ],
+    "ppe": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-equipment"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
     "ghs": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-1a"
@@ -490,11 +686,19 @@
     ],
     "sds-label": [
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1a"
       }
     ],
     "emergency-response": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
@@ -506,16 +710,6 @@
       {
         "sourceId": "osha-scs",
         "sectionId": "part-4"
-      }
-    ],
-    "ppe": [
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-1b"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-2"
       }
     ],
     "compressed-gas": [
@@ -544,6 +738,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -594,6 +800,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -620,6 +830,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -632,6 +846,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -648,9 +866,17 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
       }
     ],
     "oxidizer": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-2"

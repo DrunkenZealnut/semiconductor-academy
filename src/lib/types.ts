@@ -194,7 +194,8 @@ export type SourceLicense =
   | 'us-gov-public-domain'
   | 'cc-by'
   | 'cc-by-sa'
-  | 'public-domain';
+  | 'public-domain'
+  | 'ncs-open';
 
 export interface SourceSection {
   /** 자료원 내부 고유 ID (e.g., "part-3", "01-risks-of-new-tech") */
@@ -207,6 +208,8 @@ export interface SourceSection {
   summary?: string;
   /** 학습 시간(분) */
   readingTime?: number;
+  /** 세분류 트랙명 (예: "반도체제조"). 없으면 그룹 없이 flat 렌더 (책·OSHA). */
+  group?: string;
 }
 
 export interface Source {
@@ -255,4 +258,5 @@ export const SOURCE_LICENSE_LABELS: Record<SourceLicense, string> = {
   'cc-by': 'CC BY',
   'cc-by-sa': 'CC BY-SA',
   'public-domain': 'Public Domain',
+  'ncs-open': 'NCS 학습모듈 · 교육 목적 공개',
 };
