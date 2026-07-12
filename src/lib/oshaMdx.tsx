@@ -14,6 +14,7 @@ const enLoaders: Record<string, () => Promise<{ default: ComponentType }>> = {
 const koLoaders: Record<string, () => Promise<{ default: ComponentType }>> = {
   'part-1a': () => import('@/content/sources/osha-scs/part-1a.ko.mdx'),
   'part-1b': () => import('@/content/sources/osha-scs/part-1b.ko.mdx'),
+  'part-2': () => import('@/content/sources/osha-scs/part-2.ko.mdx'),
 };
 
 /** 한글 번역 가용 여부 — 토글 노출 판단 (FR-7) */
