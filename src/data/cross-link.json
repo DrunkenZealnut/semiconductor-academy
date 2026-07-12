@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T12:10:30.193Z",
+  "generatedAt": "2026-07-12T12:33:18.750Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -218,6 +218,29 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::system-process-development": {
+      "topics": [
+        "wafer-fab",
+        "ion-implantation",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::package-product-design": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::flip-package-development": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "ncs-semi::photo-equipment": {
       "topics": [
         "photolithography",
@@ -369,6 +392,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "quality-control"
       },
       {
@@ -496,18 +523,34 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
       }
     ],
     "cmp": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "system-process-development"
       }
     ],
     "packaging": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-product-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "flip-package-development"
       }
     ],
     "chemical-inventory": [

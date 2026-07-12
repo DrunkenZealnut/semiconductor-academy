@@ -1,5 +1,14 @@
 {
   "$comment": "Cross-link tags for NCS 반도체 학습모듈. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts NCS_SEMI.sections. Glob-discovered by scripts/build-cross-link-index.mjs.",
+  "system-process-development": {
+    "topics": ["wafer-fab", "ion-implantation", "cmp"]
+  },
+  "package-product-design": {
+    "topics": ["packaging"]
+  },
+  "flip-package-development": {
+    "topics": ["packaging"]
+  },
   "photo-equipment": {
     "topics": ["photolithography", "cleanroom", "ppe"]
   },
