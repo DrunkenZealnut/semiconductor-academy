@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-06-02T09:55:00.000Z",
+  "lastUpdated": "2026-07-11T04:39:28.722Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -271,7 +271,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-06-02T09:23:08.797Z"
+        "lastUpdated": "2026-06-03T00:59:05.324Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/oshaMdx.tsx"
     },
@@ -404,6 +404,27 @@
         "lastUpdated": "2026-05-30T12:15:31.802Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/ui/Chip.tsx"
+    },
+    "osha-ko-part-2": {
+      "phase": "completed",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-06-02T10:00:00.000Z",
+      "branch": "feat/osha-ko-part-2",
+      "inherits": "osha-bilingual-toggle(토글 메커니즘) + osha-ko-part-1b(번역 템플릿·용어 일관)",
+      "cycleType": "content-expansion",
+      "documents": {
+        "plan": "docs/01-plan/features/osha-ko-part-2.plan.md",
+        "analysis": "docs/03-analysis/osha-ko-part-2.analysis.md",
+        "report": "docs/04-report/osha-ko-part-2.report.md"
+      },
+      "decisions": {
+        "scope": "Part 2만 (3/4 후속 사이클)",
+        "translation": "Claude 초벌 번역 직접 작성 (이후 사람 검수)",
+        "codeChange": "koLoaders 1줄 + part-2.ko.mdx 신규 (표 8개, 5x5 적합성 매트릭스 포함)"
+      },
+      "designSkipped": "메커니즘 파일럿 확정 — 콘텐츠 확장 사이클로 Design skip (1B와 동일)",
+      "completedAt": "2026-06-07T00:30:00.000Z"
     }
   },
   "pipeline": {
@@ -525,7 +546,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-06-02T09:23:08.797Z"
+    "lastActivity": "2026-07-11T04:39:28.722Z"
   },
   "history": [
     {
@@ -1349,6 +1370,49 @@
       ],
       "note": "Design skip 사이클 — design.md 없음 (3종 아카이브)",
       "at": "2026-06-02T09:55:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "osha-ko-part-2",
+      "inherits": "osha-bilingual-toggle + osha-ko-part-1b",
+      "cycleType": "content-expansion",
+      "scope": "Part 2 한글 번역(Chemical Hazards, Controls, Emergency Actions) — 영문 325줄, 12섹션, 표 8개(폭발한계·노출한계 PEL/TLV/STEL·5x5 적합성 매트릭스). 변경: koLoaders 1줄 + part-2.ko.mdx 신규. FR 6 / NFR 6 / Risk 6. R-1(매트릭스 셀)·R-2(안전 수치 직역) 중점",
+      "at": "2026-06-02T10:00:00.000Z"
+    },
+    {
+      "timestamp": "2026-06-03T00:59:05.324Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "event": "do_completed",
+      "feature": "osha-ko-part-2",
+      "designSkipped": true,
+      "scope": "part-2.ko.mdx 신규(영문 325줄 1:1, 12섹션, 표 8개: 폭발한계 정의/가스별 LEL·UEL/화재 비상조치/부식성/노출한계 PEL·TLV·STEL·IDLH/독성 노출경로/유형별 저장/5x5 적합성 매트릭스. 안전 수치 직역: flash point 53F·11.7C, pyrophoric 130F·54C, LEL/UEL %, HF 5분 세척, STEL 15분, TWA 8시간) + koLoaders part-2 1줄. 컴포넌트/page 0줄 수정(NFR-4)",
+      "verification": "typecheck 0에러, build 정적 export 성공(/part-2 SSG), quotes.json diff 0, part-2.html 한글 렌더 실측. 적합성 매트릭스 OK18/NO32=영문(9 OK/16 NO) 2배 → 영한 동시렌더+셀위치 일치(R-1 회피)",
+      "at": "2026-06-03T01:00:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "osha-ko-part-2",
+      "matchRate": 98,
+      "criticalCount": 0,
+      "majorCount": 0,
+      "minorCount": 1,
+      "frPass": "6/6 (FR-5 부분)",
+      "nfrPass": "6/6",
+      "scope": "영문↔한글 12섹션+개요/요약 1:1(누락0/추가0/오역0) + 표 8개 정합 + ★5x5 적합성 매트릭스 25셀 전부 일치(OK9/NO16, 안전오정보 0) + 안전 수치 직역 정확. Gap 1건 P2(G-1 독성물질명 영문 병기 누락). 제약 위반 0. 권고: report",
+      "at": "2026-06-03T01:30:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "osha-ko-part-2",
+      "matchRate": 98,
+      "report": "docs/04-report/osha-ko-part-2.report.md",
+      "cycleType": "content-expansion (Design skip)",
+      "scope": "Part 2 한글 번역 — 신규 1(part-2.ko.mdx 325줄, 표 8개) + 수정 1줄(koLoaders). FR 6/6(FR-5 부분), NFR 6/6, 영문↔한글 14/14. P0/P1 0, P2 1(G-1 독성물질명 영문 병기). ★5x5 적합성 매트릭스 25셀 전부 정합(안전 오정보 0). NFR-4 코어 무수정 3번째 실증. OSHA 5 Part 중 3개(1A/1B/2) 한글화 완료. 후속: osha-ko-part-3. ⚠️ Claude 초벌 → 안전 검수 필요",
+      "at": "2026-06-07T00:30:00.000Z"
     }
   ]
 }
