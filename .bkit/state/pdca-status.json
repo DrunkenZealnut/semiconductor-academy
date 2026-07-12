@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-12T01:27:55.912Z",
+  "lastUpdated": "2026-07-12T01:42:34.692Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -284,7 +284,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-12T01:27:55.912Z"
+        "lastUpdated": "2026-07-12T01:42:34.692Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/oshaMdx.tsx"
     },
@@ -417,6 +417,28 @@
         "lastUpdated": "2026-05-30T12:15:31.802Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/ui/Chip.tsx"
+    },
+    "osha-ko-part-4": {
+      "phase": "completed",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-07-12T01:40:00.000Z",
+      "completedAt": "2026-07-12T01:50:00.000Z",
+      "branch": "feat/osha-ko-part-4",
+      "inherits": "osha-bilingual-toggle(토글 메커니즘) + osha-ko-part-3(번역 템플릿·용어 일관)",
+      "cycleType": "content-expansion",
+      "documents": {
+        "plan": "docs/01-plan/features/osha-ko-part-4.plan.md",
+        "analysis": "docs/03-analysis/osha-ko-part-4.analysis.md",
+        "report": "docs/04-report/osha-ko-part-4.report.md"
+      },
+      "decisions": {
+        "scope": "Part 4 — OSHA SCS 5 Part 한글화 완주 (마지막 Part)",
+        "translation": "Claude 초벌 번역 직접 작성 (이후 사람 검수)",
+        "codeChange": "koLoaders 1줄 + part-4.ko.mdx 신규 (극저온 실린더, 압축가스 위험, NFPA 등급, 12단계 통제 시스템, EMO 절차)"
+      },
+      "designSkipped": "메커니즘 5번째(최종) 재사용 — 콘텐츠 확장 사이클로 Design skip",
+      "verification": "헤딩 23/23·표 4/4·목록 51/51 구조 대조, 안전 수치 전수 일치(230×700=161,000 산술 정합 확인), 화학식 3개 일치, typecheck/build 무오류, quotes.json diff 0(완전 무변화), Playwright 렌더 실측"
     },
     "osha-ko-part-3": {
       "phase": "completed",
@@ -581,7 +603,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-12T01:27:55.912Z"
+    "lastActivity": "2026-07-12T01:42:34.692Z"
   },
   "history": [
     {
@@ -1451,6 +1473,12 @@
     },
     {
       "timestamp": "2026-07-12T01:27:55.912Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T01:42:34.692Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
