@@ -102,7 +102,8 @@ Distribution)**은 칩의 밥줄, **열 방출(Heat Transfer)**은 머리를 식
 패키지 하나에 칩을 여러 개 넣기도 해요. 같은 기능의 칩을 여러 개 쌓으면 **MCP(Multi Chip
 Package)**, 서로 다른 기능(메모리+로직 등)을 합쳐 하나의 시스템처럼 만들면 **SIP(System In
 Package)**예요. **WLP(Wafer Level Package)**는 <Term id="wafer">웨이퍼</Term> 상태 그대로
-패키징을 끝내고 낱개로 잘라내는 방식이라, 공정이 줄어드는 만큼 가장 작고 저렴해요.
+패키징을 끝내고 낱개로 잘라내는 방식이에요. 칩 크기에 가까운 작은 크기가 큰 장점이지만, 연결
+단자 수나 기판 설계 조건에 따라 전체 비용은 달라질 수 있어요.
 
 ## 3. 설계에서 지켜야 할 균형 — 전기·기계·열
 
@@ -124,7 +125,7 @@ Package)**예요. **WLP(Wafer Level Package)**는 <Term id="wafer">웨이퍼</Te
 </SourceQuote>
 
 실제로 본딩 와이어 하나의 저항(R_pkg)은 수십 mΩ, 인덕턴스(L_pkg)는 수 nH, 캐패시턴스(C_pkg)는
-0.X pF 정도로 아주 작은 값이에요. 그런데 신호 속도가 빨라질수록 이 작은 값들이 신호를 일그러
+1pF에 못 미치는 수준으로, 셋 다 아주 작은 값이에요. 그런데 신호 속도가 빨라질수록 이 작은 값들이 신호를 일그러
 뜨리고 옆 선로까지 간섭(**크로스토크, Cross talk**)을 일으켜요. 이런 신호 품질을 **신호
 무결성(SI, Signal Integrity)**, 전원 품질을 **전력 무결성(PI, Power Integrity)**, 외부로
 새거나 들어오는 잡음 문제를 **전자파 간섭(EMI, Electro-Magnetic Interference)**이라 부르고,

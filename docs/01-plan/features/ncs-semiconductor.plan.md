@@ -45,8 +45,8 @@ NCS 학습모듈 고지: "교육훈련기관에서 **출처를 명시하고 교�
 | 요소 | 현황 | NCS 적용 |
 |---|---|---|
 | `SOURCES` 레지스트리 (`sources.ts`) | `[EPI_BOOK, OSHA_SCS]` | `NCS_SEMI` 1개 추가 |
-| `SourceKind` (`types.ts`) | `'book'|'training-program'|'standard'|'guide'|'paper'` | **`'standard'` 이미 존재** |
-| `accent` | `'book'|'osha'|'standard'` | **`'standard'` 이미 존재** (색상 토큰만 확인) |
+| `SourceKind` (`types.ts`) | `'book'\|'training-program'\|'standard'\|'guide'\|'paper'` | **`'standard'` 이미 존재** |
+| `accent` | `'book'\|'osha'\|'standard'` | **`'standard'` 이미 존재** (색상 토큰만 확인) |
 | `SourceLicense` | fair-use / us-gov / cc-by(sa) / public-domain | NCS용 신규 값 1개 추가 필요(§5) |
 | 라우팅 | `/sources/[source]`, `/sources/osha-scs/[part]` | `/sources/ncs-semi/[module]` 신규(OSHA 라우트 복제) |
 | MDX 로더 레지스트리 | `oshaMdx.tsx` | `ncsMdx.tsx` 신규(동일 패턴) |
