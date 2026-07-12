@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import type { MDXComponents } from 'mdx/types';
 import { LayeredExplain } from '@/components/content/LayeredExplain';
 import { Term } from '@/components/content/Term';
@@ -22,6 +23,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ImageFigure,
     ChemicalCard,
     ProcessDiagram,
+    // 폭이 넓은 표는 페이지 대신 표 자체가 가로 스크롤되도록 감싼다 (모바일)
+    table: (props: ComponentProps<'table'>) => (
+      <div className="overflow-x-auto">
+        <table {...props} />
+      </div>
+    ),
     ...components,
   };
 }

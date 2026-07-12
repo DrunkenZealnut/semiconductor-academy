@@ -8,16 +8,41 @@
       "source": "「반도체 산업의 유해인자」 6장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
       "publisher": "에피스테메",
-      "page": 81,
+      "page": 85,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제6장 — 클리닝 공정과 유해인자"
+    },
+    {
+      "file": "fig-6-1-rca.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 6장 도식",
+      "caption": "그림 6-2. 오염 물질의 이동 — 기전과 문제점",
+      "page": 87,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-6-1-rca.jpg", "type": "book-page",
+    {
+      "file": "fig-6-2-dry.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 6장 도식",
-      "caption": "RCA 클리닝", "page": 83,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-6-2-dry.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 6장 도식",
-      "caption": "건식 클리닝 (드라이아이스)", "page": 89,
-      "license": "Fair use (교육 목적 학술 인용)" }
+      "caption": "그림 6-4. 자외선 세정의 모식도",
+      "page": 94,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-6-3-rca-sequence.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」",
+      "caption": "그림 6-3. RCA 세정의 한 예",
+      "page": 91,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-6-5-dry-ice.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」",
+      "caption": "그림 6-5. 드라이아이스 클리닝의 모식도",
+      "page": 94,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

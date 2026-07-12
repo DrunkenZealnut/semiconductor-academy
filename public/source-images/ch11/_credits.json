@@ -3,19 +3,46 @@
   "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
   "images": [
     {
-      "file": "ch11-cover.jpg", "type": "book-page",
+      "file": "ch11-cover.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 11장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
-      "publisher": "에피스테메", "page": 163,
+      "publisher": "에피스테메",
+      "page": 194,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제11장 — 이온 주입과 유해인자"
+    },
+    {
+      "file": "fig-11-1-implanter.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 11-1",
+      "caption": "그림 11-1. 이온 주입 장치에서 불순물 이온을 웨이퍼에 주입하는 과정 모식도",
+      "page": 197,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-11-1-implanter.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 11장 도식",
-      "caption": "이온 주입기", "page": 166,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-11-2-doping.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 11장 도식",
-      "caption": "도펀트 주입", "page": 171,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-11-panel-zones.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 11장 사진",
+      "caption": "고전압 에너지 이온 주입 장치의 측정 구역 — 빔 라인 · 고전압에너지 발생장치 · 이온 소스",
+      "page": 202,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-11-2-xray-30cm.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 11-2",
+      "caption": "그림 11-2. 메인 플라스틱 판넬에서 약 30cm 떨어진 곳에서 모니터링 — 유의미한 누출 감지",
+      "page": 203,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-11-3-xray-1m.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 11-3",
+      "caption": "그림 11-3. 메인 플라스틱 판넬에서 약 1m 떨어진 작업대 근처에서 모니터링",
+      "page": 203,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }

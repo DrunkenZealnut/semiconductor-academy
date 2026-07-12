@@ -5,67 +5,92 @@
     {
       "file": "ch2-cover.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도입 일러스트",
+      "source": "「반도체 산업의 유해인자」 2장 도입부 삽화",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
       "publisher": "에피스테메",
-      "page": 20,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "page": 27,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제2장 — 반도체의 이해"
     },
     {
       "file": "fig-2-1-current.jpg",
       "type": "book-page",
       "source": "「반도체 산업의 유해인자」 그림 2-1",
-      "caption": "전류와 전자의 흐름 개념도",
-      "page": 21,
+      "caption": "그림 2-1. 전류와 전자의 흐름 개념도",
+      "page": 27,
       "license": "Fair use (교육 목적 학술 인용)"
     },
     {
       "file": "fig-2-2-bands.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "도체·부도체·반도체의 에너지 밴드 구조",
-      "page": 23,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-2",
+      "caption": "그림 2-2. 도체, 반도체, 부도체의 비저항",
+      "page": 29,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션 '에너지 밴드 구조'는 오류. 실제 내용은 비저항(Ω·cm) 스케일 비교 도표 — 2026-07 재작성 시 교정."
     },
     {
       "file": "fig-2-3-intrinsic.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "진성/불순물 반도체의 구분",
-      "page": 28,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-5",
+      "caption": "그림 2-5. 부도체, 도체, 반도체의 전기적 특성과 전압(V)-전류(I) 특성 비교",
+      "page": 34,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션 '진성/불순물 반도체의 구분'은 오류. 실제 내용은 V-I 그래프 — 2026-07 재작성 시 교정."
     },
     {
       "file": "fig-2-4-mosfet.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "MOS 트랜지스터의 구조",
-      "page": 29,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-6",
+      "caption": "그림 2-6. 트랜지스터에서의 소스, 드레인, 게이트에 대한 모식도",
+      "page": 35,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션이 일반적인 'MOS 트랜지스터의 구조'였음 — 원문 그림 번호(2-6)와 정확한 캡션으로 교정."
     },
     {
       "file": "fig-2-5-diode.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "다이오드의 동작 원리",
-      "page": 31,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-9",
+      "caption": "그림 2-9. 다이오드의 원리를 나타낸 그래프. 순방향에서는 전류가 흐르고, 역방향에서는 전류가 흐르지 않음",
+      "page": 38,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션·페이지(p.31)가 부정확 — 그림 2-9로 교정."
     },
     {
       "file": "fig-2-6-transistor.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "NPN/PNP 트랜지스터 단면",
-      "page": 32,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-10",
+      "caption": "그림 2-10. 다이오드의 개념도. (a) 전류가 흐르지 않음 (b) 전류가 흐름",
+      "page": 38,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션 'NPN/PNP 트랜지스터 단면'은 오류 — 실제로는 p-n 2단자 다이오드 바이어스 회로도(B/E/C 표기 없음). 그림 2-10으로 교정."
     },
     {
       "file": "fig-2-7-ic.jpg",
       "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 2장 도식",
-      "caption": "집적회로(IC) 실물 사진",
-      "page": 34,
-      "license": "Fair use (교육 목적 학술 인용)"
+      "source": "「반도체 산업의 유해인자」 그림 2-12",
+      "caption": "그림 2-12. 패키지된 집적회로",
+      "page": 40,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "기존 캡션이 그림 2-8(집적회로 실물 사진)을 가리키는 것처럼 되어 있었으나, 이미지 내 텍스트 조각('는 논/모리/있다/고 하/오의')이 그림 2-12 주변 본문과 일치 — 그림 2-12로 교정."
+    },
+    {
+      "file": "fig-2-4-doping.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 2-4",
+      "caption": "그림 2-4. p형 반도체와 n형 반도체",
+      "page": 33,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "2026-07 재작성 시 신규 추가. data/_page_26_Picture_0.jpeg 실물 확인 후 채택."
+    },
+    {
+      "file": "fig-2-11-bjt-bias.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 2-11",
+      "caption": "그림 2-11. 트랜지스터의 개념도. C: 컬렉터(collector), E: 이미터(emitter), B: 베이스(base). (a) 전류가 흐르지 않음 (b) 전류가 흐름",
+      "page": 39,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "note": "2026-07 재작성 시 신규 추가. data/_page_32_Figure_0.jpeg 실물 확인 후 채택."
     }
   ]
 }

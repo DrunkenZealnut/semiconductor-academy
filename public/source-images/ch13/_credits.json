@@ -3,23 +3,54 @@
   "policy": "본 폴더의 이미지는 학술 인용 fair use 범위 내에서 사용됩니다. 책 페이지 이미지는 원본 도서의 표·그림으로, 작은 크기로 표시하며 각 이미지에 출처를 명시합니다.",
   "images": [
     {
-      "file": "ch13-cover.jpg", "type": "book-page",
+      "file": "ch13-cover.jpg",
+      "type": "book-page",
       "source": "「반도체 산업의 유해인자」 13장 표지",
       "authors": "윤충식·김승원·박동욱·정지연·최상준·하권철·함승헌",
-      "publisher": "에피스테메", "page": 190,
+      "publisher": "에피스테메",
+      "page": 217,
+      "license": "Fair use (교육 목적 학술 인용)",
+      "caption": "제13장 — 칩 조립·검사와 유해인자"
+    },
+    {
+      "file": "fig-13-1-wirebond.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 13장 구획 표지",
+      "caption": "책 속 구획 표지 — 「칩 조립 공정의 유해인자」",
+      "page": 222,
       "license": "Fair use (교육 목적 학술 인용)"
     },
-    { "file": "fig-13-1-wirebond.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 13장 도식",
-      "caption": "와이어 본딩", "page": 196,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-13-2-molding.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 13장 도식",
-      "caption": "몰딩 공정", "page": 203,
-      "license": "Fair use (교육 목적 학술 인용)" },
-    { "file": "fig-13-3-solderball.jpg", "type": "book-page",
-      "source": "「반도체 산업의 유해인자」 13장 도식",
-      "caption": "솔더볼 부착", "page": 209,
-      "license": "Fair use (교육 목적 학술 인용)" }
+    {
+      "file": "fig-13-2-molding.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 13-8 · Adwill(2017)",
+      "caption": "그림 13-8. 자외선 조사공정 모식도",
+      "page": 229,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-13-3-solderball.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 13-11",
+      "caption": "그림 13-11. 와이어 본딩 구조",
+      "page": 234,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-13-13-transfer-mold.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 13-13 · mdpi.com",
+      "caption": "그림 13-13. 몰딩(트랜스퍼 몰드) 공정",
+      "page": 237,
+      "license": "Fair use (교육 목적 학술 인용)"
+    },
+    {
+      "file": "fig-13-16-sbm-process.jpg",
+      "type": "book-page",
+      "source": "「반도체 산업의 유해인자」 그림 13-16",
+      "caption": "그림 13-16. 반도체 칩과 솔더 볼 부착 과정",
+      "page": 245,
+      "license": "Fair use (교육 목적 학술 인용)"
+    }
   ]
 }
