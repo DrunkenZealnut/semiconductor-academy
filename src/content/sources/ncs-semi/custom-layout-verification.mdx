@@ -65,6 +65,30 @@
 
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 커스텀 레이아웃 검증 — 1-1. DRC 검증 필요 지식(파운드리에서 제공하는 커스텀 레이아웃의 DRC 설계 규칙) · 수치는 특정 공정 노드의 예시로, 실제 설계는 각 파운드리가 제공하는 최신 설계 규칙을 따라요</div>
 
+폴리실리콘 선폭, 콘택트 간격, 커패시터용 금속 규칙처럼 항목마다 실제 도면 위에 표시되는
+치수 기준은 아래 원문 도판과 같아요.
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-verification/_page_18_Figure_2.jpeg"
+  alt="폴리실리콘 선폭·간격 최소 규격을 도면 위에 표시한 설계 규칙도"
+  caption="[그림 1-2] poly rule"
+  source="NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단"
+/>
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-verification/_page_20_Figure_0.jpeg"
+  alt="콘택트와 폴리실리콘 간 최소 간격·오버랩 규칙을 표시한 도면"
+  caption="[그림 1-3] Poly Contact rule"
+  source="NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단"
+/>
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-verification/_page_22_Figure_0.jpeg"
+  alt="커패시터용 금속층과 비아 간 오버랩 규칙을 표시한 도면"
+  caption="[그림 1-4] Capacitor metal rule"
+  source="NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단"
+/>
+
 <SourceQuote section="NCS 학습모듈 — 커스텀 레이아웃 검증: 1-1. DRC 검증 (설계 규칙의 필요성)">
   <p>
     DRC 설계 규칙은 반도체 제조 공정에서 레이아웃이 정확하게 제작되도록 보장하기 위한 필수
@@ -77,6 +101,13 @@
 훑어요. 간격이 부족하면 "간격 오류", 두 레이어가 잘못 겹치면 "오버랩 오류", 선의 굵기가
 기준에 못 미치면 "크기 오류"로 분류돼 보고서에 찍혀 나와요. 검증자는 오류 위치를 하나씩 찾아
 도면을 고치고, 다시 DRC를 돌려 오류가 다 사라졌는지 재확인하는 과정을 반복해요.
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-verification/_page_41_Figure_13.jpeg"
+  alt="DRC 실행 후 오류 위치가 표시된 검증 툴 화면 예시"
+  caption="[그림 1-9] DRC 오류 화면"
+  source="NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단"
+/>
 
 ### 나. 규칙을 어길 수밖에 없을 때 — 완화와 보완
 
@@ -139,6 +170,13 @@ DRC와 LVS를 다 통과해도 아직 끝이 아니에요. 배선 자체가 만�
 생기고, 신호가 빠르게 바뀌는 고주파 회로에서는 인덕턴스까지 무시할 수 없어요. LPE 도구는 이
 세 가지 값을 레이어별로 계산해 SPEF·DSPF 같은 표준 형식 파일로 뽑아내요.
 
+<ImageFigure
+  src="/source-images/ncs/custom-layout-verification/_page_99_Figure_0.jpeg"
+  alt="CMOS 공정 배선 단면에 숨어 있는 기생 저항·용량 회로도"
+  caption="[그림 3-1] cmos 공정에서 생성되는 기생 회로"
+  source="NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단"
+/>
+
 <SourceQuote section="NCS 학습모듈 — 커스텀 레이아웃 검증: 3-1. LPE 검증 (LPE 파일의 목적)">
   <p>
     LPE(Layout Parasitic Extraction) 파일은 반도체 설계에서 레이아웃의 기생 소자를 추출하여
@@ -172,5 +210,5 @@ DRC와 LVS를 다 통과해도 아직 끝이 아니에요. 배선 자체가 만�
 ---
 
 <div className="text-xs italic text-slate-500">
-출처: NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며 원문 도표·사진은 싣지 않았습니다.
+출처: NCS 학습모듈 「커스텀 레이아웃 검증」(LM1903060132_23v5) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며, 원문 도판 일부를 출처 표기와 함께 실었습니다(제3자 저작 표기 도판은 제외).
 </div>

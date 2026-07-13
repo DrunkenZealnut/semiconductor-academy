@@ -78,11 +78,25 @@
 <Term id="mask">마스크</Term>에 그려진 패턴을 포토 공정으로 옮기고 <Term id="etching">식각</Term>
 으로 깎아내고 <Term id="deposition">증착</Term>으로 다시 채우는 과정이 반복돼요.
 
+<ImageFigure
+  src="/source-images/ncs/system-process-development/_page_18_Figure_7.jpeg"
+  alt="CMP로 STI 산화막을 갈아내고 질화막을 제거해 소자 분리를 완성한 웨이퍼 단면"
+  caption="[그림 1-5] STI CMP 공정도"
+  source="NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단"
+/>
+
 n-Well은 p형 기판 위에 인(P) 이온을 심어 <Term id="doping">도핑</Term>해 PMOS가 들어설 자리를,
 p-Well은 붕소(B) 이온으로 도핑해 NMOS가 들어설 자리를 만들어요. 두 자리가 한 웨이퍼 위에
 나란히 있어야 CMOS 회로가 완성되기 때문에, 이온의 종류와 깊이를 정확히 맞추는 게 중요해요.
 실제로 NWELL 형성에는 830keV 정도의 비교적 높은 이온 주입 에너지가 쓰여요 — 붕소보다 무거운
 인 이온을 그만큼 더 깊이 밀어 넣어야 하기 때문이에요.
+
+<ImageFigure
+  src="/source-images/ncs/system-process-development/_page_19_Figure_2.jpeg"
+  alt="붕소 이온을 주입해 NMOS가 들어설 P-Well을 만드는 단계별 단면도"
+  caption="[그림 1-6] PWELL 형성 공정도"
+  source="NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단"
+/>
 
 <SourceQuote section="NCS 학습모듈 — 시스템 반도체 제조 공정 개발: 1-1. 필요 지식(Well 구조의 중요성)">
   <p>
@@ -97,11 +111,25 @@ p-Well은 붕소(B) 이온으로 도핑해 NMOS가 들어설 자리를 만들어
 에서 단 15초만 열처리해요 — 너무 오래 가열하면 애써 자리 잡은 불순물이 옆으로 퍼져 버리기
 때문이에요.
 
+<ImageFigure
+  src="/source-images/ncs/system-process-development/_page_22_Figure_0.jpeg"
+  alt="게이트 패턴 노광부터 식각, 감광막 제거까지 이어지는 단계별 웨이퍼 단면 변화"
+  caption="[그림 1-10] 게이트 패턴과 식각 공정의 흐름도"
+  source="NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단"
+/>
+
 <Callout type="info" title="포토·식각은 한 번이 아니라 수십 번">
   게이트, Well 두 곳, LDD, 소스·드레인, 콘택트 홀, 배선층까지 — 트랜지스터 하나가 완성되기까지
   포토리소그래피와 식각은 층마다 새로 반복돼요. 실제 배선 공정에서는 최상층까지 다섯 겹(M1~M5)을
   쌓아 올리며 이 과정을 그만큼 되풀이해요.
 </Callout>
+
+<ImageFigure
+  src="/source-images/ncs/system-process-development/_page_51_Figure_2.jpeg"
+  alt="금속 배선 1층 위에 절연막을 증착하고 평탄화하며 층을 쌓는 비아 공정 단계"
+  caption="[그림 1-36] 1단계 비아 공정도"
+  source="NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단"
+/>
 
 ## 2. 단위 소자 개발 — 만든 트랜지스터를 하나하나 검증하기
 
@@ -194,5 +222,5 @@ MOSFET을 예로 들면 재는 항목이 정해져 있어요. **임계 전압(Vt
 ---
 
 <div className="text-xs italic text-slate-500">
-출처: NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며 원문 도표·사진은 싣지 않았습니다.
+출처: NCS 학습모듈 「시스템 반도체 제조 공정 개발」(LM1903060116_23v7) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며, 원문 도판 일부를 출처 표기와 함께 실었습니다(제3자 저작 표기 도판은 제외).
 </div>

@@ -60,6 +60,9 @@
     "topics": ["ghs", "sds-label", "emergency-response"],
     "hazards": ["corrosive", "acute-toxic", "reproductive-toxin"]
   },
+  "wafer-materials": {
+    "topics": ["wafer-fab", "cmp", "cleanroom"]
+  },
   "cmp-materials": {
     "topics": ["cmp", "liquid-chemicals"],
     "hazards": ["corrosive", "oxidizer"]

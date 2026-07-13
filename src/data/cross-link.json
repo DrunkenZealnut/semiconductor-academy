@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-13T04:25:38.897Z",
+  "generatedAt": "2026-07-13T09:47:17.640Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -381,6 +381,15 @@
       ],
       "chemicals": []
     },
+    "ncs-semi::wafer-materials": {
+      "topics": [
+        "wafer-fab",
+        "cmp",
+        "cleanroom"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "ncs-semi::cmp-materials": {
       "topics": [
         "cmp",
@@ -547,6 +556,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "productivity"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-materials"
       }
     ],
     "cleanroom": [
@@ -565,6 +578,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "optical-equipment-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-materials"
       },
       {
         "sourceId": "ncs-semi",
@@ -747,6 +764,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-materials"
       },
       {
         "sourceId": "ncs-semi",
