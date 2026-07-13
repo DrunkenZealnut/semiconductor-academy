@@ -251,6 +251,14 @@ export const NCS_SEMI: Source = {
       group: '반도체재료',
     },
     {
+      id: 'wafer-materials',
+      href: '/sources/ncs-semi/wafer-materials/',
+      title: '반도체용 웨이퍼 재료 제조',
+      summary: '녹인 실리콘에서 잉곳을 키워 웨이퍼 한 장으로 완성하는 재료의 출발점',
+      readingTime: 12,
+      group: '반도체재료',
+    },
+    {
       id: 'cmp-materials',
       href: '/sources/ncs-semi/cmp-materials/',
       title: '반도체용 CMP 재료 제조',

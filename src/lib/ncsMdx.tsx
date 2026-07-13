@@ -25,6 +25,7 @@ const loaders: Record<string, () => Promise<{ default: ComponentType }>> = {
   'package-level-test': () => import('@/content/sources/ncs-semi/package-level-test.mdx'),
   'cleaning-process-gas': () => import('@/content/sources/ncs-semi/cleaning-process-gas.mdx'),
   'material-safety': () => import('@/content/sources/ncs-semi/material-safety.mdx'),
+  'wafer-materials': () => import('@/content/sources/ncs-semi/wafer-materials.mdx'),
   'cmp-materials': () => import('@/content/sources/ncs-semi/cmp-materials.mdx'),
   'cleaning-materials': () => import('@/content/sources/ncs-semi/cleaning-materials.mdx'),
   'flipchip-materials': () => import('@/content/sources/ncs-semi/flipchip-materials.mdx'),

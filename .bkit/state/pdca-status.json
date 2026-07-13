@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-12T23:54:21.594Z",
+  "lastUpdated": "2026-07-13T06:00:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -15,9 +15,11 @@
     "[id]",
     "ui",
     "[module]",
-    "scratchpad"
+    "scratchpad",
+    "ncs-image-expansion",
+    "ncs"
   ],
-  "primaryFeature": "chapters-source-fidelity",
+  "primaryFeature": "ncs-image-expansion",
   "features": {
     "ncs-semiconductor": {
       "phase": "completed",
@@ -309,7 +311,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-12T23:54:21.593Z"
+        "lastUpdated": "2026-07-13T05:51:29.073Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/ncsMdx.tsx"
     },
@@ -533,6 +535,34 @@
         "lastUpdated": "2026-07-12T23:23:29.375Z"
       },
       "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/8686a91f-5e02-40cc-8d81-64b4ab5207af/scratchpad/merged-json-to-md.py"
+    },
+    "ncs-image-expansion": {
+      "phase": "do",
+      "matchRate": null,
+      "iterationCount": 0,
+      "startedAt": "2026-07-13T00:00:00.000Z",
+      "branch": "feat/ncs-semiconductor",
+      "inherits": "ncs-semiconductor(30모듈 재구성 체계) + ncs-semiconductor-dev-track.spec.md(병렬 에이전트 스펙) + chapters-source-fidelity(ImageFigure·source-images 패턴)",
+      "cycleType": "source-expansion-and-image-pipeline",
+      "documents": {
+        "plan": "docs/01-plan/features/ncs-image-expansion.plan.md",
+        "design": "docs/02-design/features/ncs-image-expansion.design.md"
+      },
+      "summary": "NCS 미커버 54모듈 확장(최종 84) + 원문 도판 선별 사용 파이프라인(저작권 필터·sips 압축·ImageFigure). 기존 30모듈은 이미지 보강.",
+      "verification": "Phase 0 파일럿 완료: scripts/ncs 3종(추출·변환·검증), 기존 보강 2(system-process-development 4장·material-safety 3장)+신규 1(wafer-materials 5장, Sonnet+Fable 검증). 게이트: 구조검증 31 PASS·수치 원문 대조 전수·도판 12장 육안 저작권 확인(전부 국가 저작)·typecheck/lint·cross-link 46섹션 엣지 177·quotes 회귀 0·build 성공·SSR 중첩 0·용량 1.2MB(예산 3%)·Playwright 렌더+Lightbox 실측. 필터 개선: self_attributed 분리(오탐 90% 해소)."
+    },
+    "ncs": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-13T05:32:07.858Z",
+        "lastUpdated": "2026-07-13T05:34:12.416Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/scripts/ncs/extract-figures.py"
     }
   },
   "pipeline": {
@@ -654,7 +684,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-12T23:54:21.594Z"
+    "lastActivity": "2026-07-13T05:51:29.073Z"
   },
   "history": [
     {
@@ -1704,6 +1734,48 @@
     },
     {
       "timestamp": "2026-07-12T23:54:21.593Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:32:07.858Z",
+      "feature": "ncs",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:32:15.356Z",
+      "feature": "ncs",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:32:55.959Z",
+      "feature": "ncs",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:34:09.664Z",
+      "feature": "ncs",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:34:12.416Z",
+      "feature": "ncs",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:51:17.710Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-13T05:51:29.073Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
