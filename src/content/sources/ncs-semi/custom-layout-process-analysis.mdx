@@ -64,6 +64,15 @@ MOSFET)까지 견뎌야 해서 구조 자체가 달라져요.
 
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 커스텀 레이아웃 적용 공정 분석 — 1-1. 적용 공정 소자 분석 필요 지식(저전압·고전압 트랜지스터 특성 재구성)</div>
 
+이런 고전압 트랜지스터는 소스와 드레인을 웨이퍼 위아래로 배치하는 수직(Vertical) 구조로 만들기도 해요.
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-process-analysis/_page_22_Figure_0.jpeg"
+  alt="수직형 MOSFET 소자의 게이트·소스·드레인 단면 구조"
+  caption="[그림 1-1] Vertical MOSFET 구조"
+  source="NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단"
+/>
+
 전자와 정공이 채널을 이동하는 속도(이동도)도 다르게 설계에 반영돼요.
 
 <SourceQuote section="NCS 학습모듈 — 커스텀 레이아웃 적용 공정 분석: 1-1. 적용 공정 소자 분석 (반도체 소자의 공정별 전기적 특성)">
@@ -93,6 +102,13 @@ MIM(금속-절연체-금속), MOS, 폴리-폴리 구조 중에서 필요한 용�
 어떤 레이어를 쓰느냐에 따라 같은 값이라도 차지하는 면적과 온도에 따른 변화량이 달라지므로,
 설계자는 이 목록을 미리 알아야 회로의 크기와 성능을 가늠할 수 있어요.
 
+<ImageFigure
+  src="/source-images/ncs/custom-layout-process-analysis/_page_99_Figure_2.jpeg"
+  alt="커패시터 금속층과 비아 간 최소 폭·간격을 표시한 설계 규칙도"
+  caption="[그림 2-15] Capacitor metal rule"
+  source="NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단"
+/>
+
 ## 2. 레이어 분석 — 이 공정으로 무엇을 쌓을 수 있는가
 
 소자를 골랐다면 이제 그 소자들을 어떻게 연결할지가 문제예요. 반도체는 실리콘
@@ -111,6 +127,13 @@ MIM(금속-절연체-금속), MOS, 폴리-폴리 구조 중에서 필요한 용�
 과정을 필요한 층수만큼 반복하고, 마지막으로 약 2㎛ 두께의 보호막(Passivation)을 덮으면
 칩이 완성돼요.
 
+<ImageFigure
+  src="/source-images/ncs/custom-layout-process-analysis/_page_54_Figure_5.jpeg"
+  alt="산화막 아래 확산 공정으로 형성된 N웰 단면 구조"
+  caption="[그림 2-2] 확산에 의한 N-well 형성"
+  source="NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단"
+/>
+
 ### 나. 디자인 룰 읽는 법 — 최소값이 기본, 임계치수가 척도
 
 레이어마다 "이보다 가늘면 안 된다", "이보다 가까우면 안 된다"는 **디자인 룰**이 있고, 이
@@ -120,6 +143,13 @@ MIM(금속-절연체-금속), MOS, 폴리-폴리 구조 중에서 필요한 용�
 공정이에요. 디자인 룰을 표시하는 방법도 두 가지예요 — 공정 크기의 절반을 1람다(λ)로 잡고
 배수로 표시하는 **람다 방식**, 그리고 실제 마이크론(㎛) 단위 값을 그대로 쓰는 **마이크론
 방식**이에요.
+
+<ImageFigure
+  src="/source-images/ncs/custom-layout-process-analysis/_page_93_Figure_2.jpeg"
+  alt="N웰과 인접 영역 사이 최소 간격을 표시한 설계 규칙 도면"
+  caption="[그림 2-9] N-well Rule Description"
+  source="NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단"
+/>
 
 <Callout type="info" title="공정 세대를 부르는 법 — SCMOS·서브마이크론·딥서브마이크론">
   디자인 룰은 크게 세 세대로 나뉘어요. <strong>SCMOS</strong>는 1㎛ 이상 공정, <strong>서브마이크론
@@ -171,6 +201,13 @@ MIM(금속-절연체-금속), MOS, 폴리-폴리 구조 중에서 필요한 용�
 들어 모바일 기기라면 저전력 CMOS나 FinFET을, 전력 변환기라면 고전압 MOSFET이나 IGBT를
 고르는 식으로, 쓰임새에 따라 답이 달라져요.
 
+<ImageFigure
+  src="/source-images/ncs/custom-layout-process-analysis/_page_22_Figure_4.jpeg"
+  alt="IGBT의 수직 도핑층 구조와 BJT 결합 등가회로"
+  caption="[그림 1-2] IGBT 수직 구조"
+  source="NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단"
+/>
+
 ## 이 일을 하는 사람은
 
 이 분석은 흔히 **소자·공정 엔지니어**와 **커스텀 레이아웃 설계자** 사이를 잇는 역할이
@@ -189,5 +226,5 @@ DRC·LVS 검증에서 오류로 되돌아오기 때문에 실제로는 가장 �
 ---
 
 <div className="text-xs italic text-slate-500">
-출처: NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며 원문 도표·사진은 싣지 않았습니다.
+출처: NCS 학습모듈 「커스텀 레이아웃 적용 공정 분석」(LM1903060130_23v5) · 교육부·한국산업인력공단. 고등학생 눈높이로 재구성했으며, 원문 도판 일부를 출처 표기와 함께 실었습니다(제3자 저작 표기 도판은 제외).
 </div>

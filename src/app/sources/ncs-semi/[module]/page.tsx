@@ -162,8 +162,8 @@ export default async function NcsModulePage({
           ) : null}
         </p>
         <p className="mt-2 text-slate-500 dark:text-slate-500">
-          NCS 학습모듈 원문을 고등학생 눈높이로 재구성했습니다. 원문 도표·사진은 저작권상 싣지 않았으며,
-          각 모듈 하단에 원 학습모듈 코드를 표기합니다.
+          NCS 학습모듈 원문을 고등학생 눈높이로 재구성했습니다. 원문 도판은 출처 표기와 함께 일부만
+          실었으며(제3자 저작 표기 도판 제외), 각 모듈 하단에 원 학습모듈 코드를 표기합니다.
         </p>
       </footer>
     </article>
