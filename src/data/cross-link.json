@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-12T18:23:25.992Z",
+  "generatedAt": "2026-07-12T23:55:13.655Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -265,6 +265,109 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::advanced-underfill-package": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::thinfilm-diffusion-equipment": {
+      "topics": [
+        "deposition",
+        "diffusion",
+        "gas-safety"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::cleanroom-facility": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::mask-materials": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::cmp-slurry-materials": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals",
+        "sds-label"
+      ],
+      "hazards": [
+        "flammable",
+        "oxidizer"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::materials-quality-control": {
+      "topics": [
+        "ghs",
+        "sds-label",
+        "chemical-inventory"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-electrical-assembly": {
+      "topics": [
+        "engineering-controls",
+        "emergency-response"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::optical-equipment-maintenance": {
+      "topics": [
+        "cleanroom"
+      ],
+      "hazards": [
+        "cryogenic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::package-level-test": {
+      "topics": [
+        "packaging",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::cleaning-process-gas": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic",
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::thinfilm-precursor": {
+      "topics": [
+        "deposition",
+        "sds-label"
+      ],
+      "hazards": [
+        "reactive",
+        "toxic"
+      ],
+      "chemicals": []
+    },
     "ncs-semi::material-safety": {
       "topics": [
         "ghs",
@@ -457,6 +560,14 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cleanroom-facility"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "optical-equipment-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "equipment-design"
       }
     ],
@@ -464,6 +575,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleanroom-facility"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-assembly"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-level-test"
       },
       {
         "sourceId": "ncs-semi",
@@ -501,6 +624,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "cmp-materials"
       },
       {
@@ -520,6 +647,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-diffusion-equipment"
       }
     ],
     "gas-safety": [
@@ -538,6 +669,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-diffusion-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
       },
       {
         "sourceId": "osha-scs",
@@ -560,6 +699,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "mask-materials"
       }
     ],
     "etching": [
@@ -572,6 +715,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-diffusion-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-precursor"
       }
     ],
     "ion-implantation": [
@@ -595,6 +746,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "cmp-materials"
       }
     ],
@@ -613,6 +768,14 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "advanced-underfill-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-level-test"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "flipchip-materials"
       }
     ],
@@ -620,6 +783,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "materials-quality-control"
       },
       {
         "sourceId": "osha-scs",
@@ -674,7 +841,19 @@
         "sectionId": "part-2"
       }
     ],
-    "ghs": [
+    "sds-label": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "materials-quality-control"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-precursor"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
@@ -684,7 +863,11 @@
         "sectionId": "part-1a"
       }
     ],
-    "sds-label": [
+    "ghs": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "materials-quality-control"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
@@ -695,6 +878,10 @@
       }
     ],
     "emergency-response": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-assembly"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
@@ -713,6 +900,10 @@
       }
     ],
     "compressed-gas": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
       {
         "sourceId": "osha-scs",
         "sectionId": "part-4"
@@ -774,6 +965,14 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-diffusion-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -798,6 +997,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-diffusion-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-precursor"
       },
       {
         "sourceId": "ncs-semi",
@@ -849,6 +1060,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "cleaning-materials"
       },
       {
@@ -875,6 +1090,10 @@
     "oxidizer": [
       {
         "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "cmp-materials"
       },
       {
@@ -882,22 +1101,34 @@
         "sectionId": "part-2"
       }
     ],
-    "reactive": [
+    "cryogenic": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "optical-equipment-maintenance"
+      },
       {
         "sourceId": "osha-scs",
-        "sectionId": "part-3"
+        "sectionId": "part-4"
       }
     ],
     "compressed-gas": [
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-4"
       }
     ],
-    "cryogenic": [
+    "reactive": [
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-precursor"
+      },
       {
         "sourceId": "osha-scs",
-        "sectionId": "part-4"
+        "sectionId": "part-3"
       }
     ]
   },
