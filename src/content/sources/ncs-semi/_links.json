@@ -18,6 +18,44 @@
   "productivity": {
     "topics": ["wafer-fab"]
   },
+  "advanced-underfill-package": {
+    "topics": ["packaging"]
+  },
+  "thinfilm-diffusion-equipment": {
+    "topics": ["deposition", "diffusion", "gas-safety"],
+    "hazards": ["pyrophoric", "toxic"]
+  },
+  "cleanroom-facility": {
+    "topics": ["cleanroom", "engineering-controls"]
+  },
+  "mask-materials": {
+    "topics": ["photolithography"]
+  },
+  "cmp-slurry-materials": {
+    "topics": ["cmp", "liquid-chemicals", "sds-label"],
+    "hazards": ["flammable", "oxidizer"]
+  },
+  "materials-quality-control": {
+    "topics": ["ghs", "sds-label", "chemical-inventory"]
+  },
+  "equipment-electrical-assembly": {
+    "topics": ["engineering-controls", "emergency-response"]
+  },
+  "optical-equipment-maintenance": {
+    "topics": ["cleanroom"],
+    "hazards": ["cryogenic"]
+  },
+  "package-level-test": {
+    "topics": ["packaging", "engineering-controls"]
+  },
+  "cleaning-process-gas": {
+    "topics": ["gas-safety", "compressed-gas"],
+    "hazards": ["pyrophoric", "toxic", "compressed-gas"]
+  },
+  "thinfilm-precursor": {
+    "topics": ["deposition", "sds-label"],
+    "hazards": ["reactive", "toxic"]
+  },
   "material-safety": {
     "topics": ["ghs", "sds-label", "emergency-response"],
     "hazards": ["corrosive", "acute-toxic", "reproductive-toxin"]

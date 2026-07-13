@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-12T12:56:32.101Z",
+  "lastUpdated": "2026-07-12T23:54:21.594Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -309,7 +309,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-12T12:56:32.101Z"
+        "lastUpdated": "2026-07-12T23:54:21.593Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/ncsMdx.tsx"
     },
@@ -530,9 +530,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T12:24:49.341Z",
-        "lastUpdated": "2026-07-12T12:24:49.341Z"
+        "lastUpdated": "2026-07-12T23:23:29.375Z"
       },
-      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/8686a91f-5e02-40cc-8d81-64b4ab5207af/scratchpad/validate-ncs-mdx.py"
+      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/8686a91f-5e02-40cc-8d81-64b4ab5207af/scratchpad/merged-json-to-md.py"
     }
   },
   "pipeline": {
@@ -654,7 +654,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-12T12:56:32.101Z"
+    "lastActivity": "2026-07-12T23:54:21.594Z"
   },
   "history": [
     {
@@ -1614,6 +1614,96 @@
     },
     {
       "timestamp": "2026-07-12T12:56:32.101Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:23:29.375Z",
+      "feature": "scratchpad",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:07.033Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:10.925Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:16.042Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:27.616Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:30.829Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:33.670Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:37:38.667Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:52:07.056Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:52:11.076Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:54:11.711Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:54:14.064Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:54:16.879Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:54:19.292Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-12T23:54:21.593Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
