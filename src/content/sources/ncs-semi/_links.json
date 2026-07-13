@@ -3,6 +3,33 @@
   "system-process-development": {
     "topics": ["wafer-fab", "ion-implantation", "cmp"]
   },
+  "process-development": {
+    "topics": ["wafer-fab", "etching", "deposition", "ion-implantation", "cmp"]
+  },
+  "memory-process-development": {
+    "topics": ["wafer-fab", "diffusion", "ion-implantation", "etching", "deposition", "cmp"]
+  },
+  "unit-process-development": {
+    "topics": ["wafer-fab", "etching", "deposition", "ion-implantation", "cmp"]
+  },
+  "package-assembly-development": {
+    "topics": ["packaging"]
+  },
+  "wirebond-package-development": {
+    "topics": ["packaging"]
+  },
+  "wafer-level-package": {
+    "topics": ["packaging", "etching", "deposition", "cmp"]
+  },
+  "fanout-package": {
+    "topics": ["packaging"]
+  },
+  "heterogeneous-package": {
+    "topics": ["packaging", "etching", "cmp"]
+  },
+  "product-verification": {
+    "topics": ["packaging"]
+  },
   "package-product-design": {
     "topics": ["packaging"]
   },

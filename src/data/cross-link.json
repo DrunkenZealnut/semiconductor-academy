@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-13T09:47:17.640Z",
+  "generatedAt": "2026-07-13T21:08:13.466Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -223,6 +223,87 @@
         "wafer-fab",
         "ion-implantation",
         "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::process-development": {
+      "topics": [
+        "wafer-fab",
+        "etching",
+        "deposition",
+        "ion-implantation",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::memory-process-development": {
+      "topics": [
+        "wafer-fab",
+        "diffusion",
+        "ion-implantation",
+        "etching",
+        "deposition",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::unit-process-development": {
+      "topics": [
+        "wafer-fab",
+        "etching",
+        "deposition",
+        "ion-implantation",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::package-assembly-development": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::wirebond-package-development": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::wafer-level-package": {
+      "topics": [
+        "packaging",
+        "etching",
+        "deposition",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::fanout-package": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::heterogeneous-package": {
+      "topics": [
+        "packaging",
+        "etching",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::product-verification": {
+      "topics": [
+        "packaging"
       ],
       "hazards": [],
       "chemicals": []
@@ -551,6 +632,18 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "unit-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "quality-control"
       },
       {
@@ -667,6 +760,10 @@
       },
       {
         "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
         "sectionId": "thinfilm-diffusion-equipment"
       }
     ],
@@ -726,12 +823,48 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "unit-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "heterogeneous-package"
       }
     ],
     "deposition": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "unit-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-package"
       },
       {
         "sourceId": "ncs-semi",
@@ -750,6 +883,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "unit-process-development"
       }
     ],
     "cmp": [
@@ -760,6 +905,26 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "unit-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "heterogeneous-package"
       },
       {
         "sourceId": "ncs-semi",
@@ -778,6 +943,30 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-assembly-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wirebond-package-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "fanout-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "heterogeneous-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "product-verification"
       },
       {
         "sourceId": "ncs-semi",
