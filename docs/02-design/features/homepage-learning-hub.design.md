@@ -8,7 +8,7 @@
 
 ## 1. 홈 구성 (최종)
 
-```
+```text
 1. PlatformHero          (신규 — BookHero 대체)
 2. SourcePicker          (유지 — id="sources" 부여, 문구 갱신, 관점 뱃지 추가)
 3. LearningPathSection   (신규 — 관점 축 4경로)

@@ -143,7 +143,8 @@
   - navItems 맨 앞에 `{ href: '/#sources', label: '자료원' }` 추가
   - 나머지 항목(책 차례·공정·화학물질·인용·직업병·소개) 순서 유지
 - ✅ seo.ts
-  - DEFAULT_DESCRIPTION: "유해인자" 한정 → "4개 자료원, 116개 학습 단위..." (멀티소스 반영)
+  - DEFAULT_DESCRIPTION: "유해인자" 한정 → "4개 자료원으로 배우는 반도체" (멀티소스 반영)
+  - (참고: "116개 학습 단위" 수치는 seo.ts가 아니라 page.tsx의 홈 metadata description에서 TOTAL_UNITS로 파생됨)
 - ✅ Footer
   - 소개문: "유해인자를 누구나..." → "공정 원리부터 유해인자·안전·직무까지, 4개 자료원으로 배우는..."
   - 출처 표기: 원서 1종 → 4개 자료원 명시 (책·OSHA·NCS·교과서)
@@ -231,7 +232,7 @@
    - 브랜치: `feat/homepage-learning-hub`
    - 주요 변경: PlatformHero·LearningPathSection 신규, BookHero·BookTOCPreview 삭제, 메타·네비·푸터 갱신
    - 메시지 예시:
-     ```
+     ```text
      feat(homepage): 멀티소스 학습 허브 홈 재구성
      
      - PlatformHero 히어로 (BookHero 대체): 4자료원 플랫폼 메시지
@@ -264,9 +265,10 @@
 - **PlatformHero**: 독립 컴포넌트, props 0, SOURCES 직접 참조
 - **LearningPathSection**: 독립 컴포넌트, props 0, SOURCE_ACCENT_BORDER 재사용, PATH_STEPS는 로컬 상수(자료원 순서와 무관)
 - **SourcePicker 관점 맵**: PERSPECTIVE는 미등록 자료원에 대해 graceful (null coalescing)
-- **SEO 메타**: page.tsx와 seo.ts 양쪽에서 TOTAL_UNITS 동일하게 파생화
+- **SEO 메타**: 홈 metadata description(page.tsx)만 TOTAL_UNITS를 파생 포함, seo.ts의 DEFAULT_DESCRIPTION(다른 페이지 기본값)은 수치 없이 4자료원 문구만 갱신
 
 ### 파일 체크리스트
+
 | 파일 | 상태 | 비고 |
 |------|------|------|
 | src/components/layout/PlatformHero.tsx | ✅ 신규·완성 | Layers 아이콘, 파생 수치 |
