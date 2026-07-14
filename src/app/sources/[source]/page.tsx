@@ -3,7 +3,7 @@ import { SourceHeader } from '@/components/sources/SourceHeader';
 import { SourceSectionList } from '@/components/sources/SourceSectionList';
 import { getOrderedSources, getSource } from '@/lib/sources';
 import { buildMetadata } from '@/lib/seo';
-import { SOURCE_LICENSE_LABELS } from '@/lib/types';
+import { SOURCE_KIND_UNIT_LABELS, SOURCE_LICENSE_LABELS } from '@/lib/types';
 
 export function generateStaticParams() {
   return getOrderedSources().map((s) => ({ source: s.id }));
@@ -24,14 +24,6 @@ export async function generateMetadata({
   });
 }
 
-const UNIT_LABEL_BY_KIND: Record<string, string> = {
-  book: '챕터',
-  'training-program': 'Part',
-  standard: '섹션',
-  guide: '섹션',
-  paper: '섹션',
-};
-
 export default async function SourceIndexPage({
   params,
 }: {
@@ -41,7 +33,7 @@ export default async function SourceIndexPage({
   const source = getSource(sourceId);
   if (!source) notFound();
 
-  const unitLabel = UNIT_LABEL_BY_KIND[source.kind] ?? '섹션';
+  const unitLabel = SOURCE_KIND_UNIT_LABELS[source.kind];
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">

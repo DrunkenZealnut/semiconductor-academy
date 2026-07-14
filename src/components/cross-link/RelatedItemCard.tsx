@@ -7,6 +7,7 @@ import {
   type RelatedItem,
 } from '@/lib/cross-link/schema';
 import type { Source } from '@/lib/types';
+import { SOURCE_ACCENT_BORDER } from '@/components/sources/accent';
 
 interface RelatedItemCardProps {
   item: RelatedItem;
@@ -15,17 +16,8 @@ interface RelatedItemCardProps {
   unknownChemicals?: Set<string>;
 }
 
-const ACCENT_CARD: Record<NonNullable<Source['accent']>, string> = {
-  book: 'border-brand-200 hover:border-brand-400 dark:border-brand-900 dark:hover:border-brand-700',
-  osha: 'border-emerald-200 hover:border-emerald-400 dark:border-emerald-900 dark:hover:border-emerald-700',
-  standard:
-    'border-slate-200 hover:border-slate-400 dark:border-slate-700 dark:hover:border-slate-500',
-};
-
-const ACCENT_FALLBACK = ACCENT_CARD.standard;
-
 export function RelatedItemCard({ item, accent, unknownChemicals }: RelatedItemCardProps) {
-  const accentCls = accent ? ACCENT_CARD[accent] : ACCENT_FALLBACK;
+  const accentCls = SOURCE_ACCENT_BORDER[accent ?? 'standard'];
   return (
     <Link
       href={item.href}

@@ -187,7 +187,7 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
 // Design: docs/02-design/features/multi-source-learning-platform.design.md §3.1
 // ─────────────────────────────────────────────────────────────
 
-export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper';
+export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper' | 'textbook';
 export type SourceLanguage = 'ko' | 'en';
 export type SourceLicense =
   | 'fair-use'
@@ -233,7 +233,7 @@ export interface Source {
   /** 표시 순서 (작을수록 먼저) */
   order: number;
   /** 카드 강조 토큰 — 'book' | 'osha' 등 (Tailwind 색상 키와 매핑) */
-  accent?: 'book' | 'osha' | 'standard';
+  accent?: 'book' | 'osha' | 'standard' | 'school';
   /** 자료원의 섹션 목록 */
   sections: SourceSection[];
 }
@@ -245,6 +245,17 @@ export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
   standard: '표준',
   guide: '가이드',
   paper: '논문',
+  textbook: '교과서',
+};
+
+/** kind별 섹션 단위어 — 인덱스 목록 제목·상세 페이지 이전/다음 라벨에 공용 */
+export const SOURCE_KIND_UNIT_LABELS: Record<SourceKind, string> = {
+  book: '챕터',
+  'training-program': 'Part',
+  standard: '섹션',
+  guide: '섹션',
+  paper: '섹션',
+  textbook: '단원',
 };
 
 export const SOURCE_LANGUAGE_LABELS: Record<SourceLanguage, string> = {

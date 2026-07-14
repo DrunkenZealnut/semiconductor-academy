@@ -1,7 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-14T05:51:33.183Z",
+  "generatedAt": "2026-07-14T10:12:58.790Z",
   "sources": [
+    "daegu-hs-process",
     "epi-semi-hazards",
     "ncs-semi",
     "osha-scs"
@@ -214,6 +215,90 @@
       "topics": [
         "industrial-hygiene",
         "occupational-disease"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::process-overview": {
+      "topics": [
+        "wafer-fab",
+        "cleanroom"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::equipment-parameters": {
+      "topics": [
+        "wafer-fab",
+        "engineering-controls",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::photo": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::etch": {
+      "topics": [
+        "etching",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::thin-film": {
+      "topics": [
+        "deposition",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::metallization": {
+      "topics": [
+        "deposition",
+        "cmp",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::oxidation": {
+      "topics": [
+        "diffusion",
+        "etching",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::doping": {
+      "topics": [
+        "diffusion",
+        "ion-implantation",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::cmp": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "daegu-hs-process::cleaning": {
+      "topics": [
+        "liquid-chemicals",
+        "gas-safety",
+        "etching"
       ],
       "hazards": [],
       "chemicals": []
@@ -939,6 +1024,22 @@
         "sectionId": "05-wafer"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
       },
@@ -979,6 +1080,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
       },
       {
         "sourceId": "ncs-semi",
@@ -1025,6 +1130,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
       },
       {
         "sourceId": "ncs-semi",
@@ -1109,6 +1218,14 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cmp-slurry-materials"
       },
@@ -1167,6 +1284,14 @@
         "sectionId": "07-diffusion"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "memory-process-development"
       },
@@ -1191,6 +1316,26 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       },
       {
         "sourceId": "ncs-semi",
@@ -1267,6 +1412,10 @@
         "sectionId": "08-photolithography"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
       },
@@ -1299,6 +1448,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       },
       {
         "sourceId": "ncs-semi",
@@ -1337,6 +1498,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
       },
       {
         "sourceId": "ncs-semi",
@@ -1389,6 +1558,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
       },
@@ -1413,6 +1586,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
       },
       {
         "sourceId": "ncs-semi",
