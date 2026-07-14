@@ -8,6 +8,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { FontSizeToggle } from './FontSizeToggle';
 
 const navItems = [
+  { href: '/#sources', label: '자료원' },
   { href: '/chapters/', label: '책 차례' },
   { href: '/process-overview/', label: '공정' },
   { href: '/chemicals/', label: '유해물질 사전' },

@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">반도체 아카데미</h3>
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              반도체 산업과 유해인자를 누구나 이해할 수 있게 풀어드리는 학습 사이트.
+              공정 원리부터 유해인자·안전·직무까지, 4개 자료원으로 배우는 반도체 학습 사이트.
             </p>
           </div>
 
@@ -32,7 +32,8 @@ export function Footer() {
 
         <div className="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-500 dark:border-slate-800">
           <p>
-            원본: 윤충식 외, 「반도체 산업의 유해인자 (Hazards in Semiconductor Industry)」.
+            원본 자료: 「반도체 산업의 유해인자」(윤충식 외) · OSHA Semiconductor Chemical
+            Safety · NCS 반도체 학습모듈 · 「반도체 공정기초」(조우현·김준호, 렛유인)
           </p>
           <p className="mt-1">
             본 사이트는 교육 목적의 재구성 자료입니다. 정확한 정보는 원본 자료를 참고하세요.
