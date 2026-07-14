@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T10:11:36.244Z",
+  "lastUpdated": "2026-07-14T10:34:03.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -605,7 +605,8 @@
         "attribution": "원저자(조우현·김준호)·발행처(렛유인) 명시 — 사용자 확정 2026-07-14",
         "schema": "kind 'textbook'·accent 'school' 신규, license 'fair-use' 재사용, 10모듈 슬러그·3트랙 확정 (Design 2026-07-14)",
         "expansion": "9개 모듈(공정설비·포토·식각·박막·금속배선·산화·도핑·CMP·세정) 병렬 에이전트로 확대 완료 — 10/10 모듈 전량 완성 2026-07-14",
-        "pr": "PR #12 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/12"
+        "pr": "PR #12 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/12",
+        "merged": "PR #12 머지 완료 (merge commit 003f840) — 2026-07-14"
       },
       "summary": "대구반도체고 교과서 「반도체 공정기초」(렛유인)를 NCS 선례 따라 신규 자료원(daegu-hs-process, 3트랙 10모듈)으로 통합. 전면 재작성+출처 표기 확정. 작업·노출 모두 교과서 목차 순서, 파일럿: 반도체 공정 개요. Design 착수 가능.",
       "phaseNumber": 6,
@@ -2184,6 +2185,12 @@
       "feature": "sources",
       "phase": "do",
       "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T10:34:03.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "merged",
+      "detail": "PR #12 → main 머지 완료(merge commit 003f840). CodeRabbit 재리뷰 5건 전부 resolved 확인 후 사용자 승인으로 머지."
     }
   ]
 }
