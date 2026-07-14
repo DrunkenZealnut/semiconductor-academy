@@ -1,152 +1,517 @@
 {
   "$comment": "Cross-link tags for NCS 반도체 학습모듈. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts NCS_SEMI.sections. Glob-discovered by scripts/build-cross-link-index.mjs.",
   "system-process-development": {
-    "topics": ["wafer-fab", "ion-implantation", "cmp"]
+    "topics": [
+      "wafer-fab",
+      "ion-implantation",
+      "cmp"
+    ]
   },
   "process-development": {
-    "topics": ["wafer-fab", "etching", "deposition", "ion-implantation", "cmp"]
+    "topics": [
+      "wafer-fab",
+      "etching",
+      "deposition",
+      "ion-implantation",
+      "cmp"
+    ]
   },
   "memory-process-development": {
-    "topics": ["wafer-fab", "diffusion", "ion-implantation", "etching", "deposition", "cmp"]
+    "topics": [
+      "wafer-fab",
+      "diffusion",
+      "ion-implantation",
+      "etching",
+      "deposition",
+      "cmp"
+    ]
   },
   "unit-process-development": {
-    "topics": ["wafer-fab", "etching", "deposition", "ion-implantation", "cmp"]
+    "topics": [
+      "wafer-fab",
+      "etching",
+      "deposition",
+      "ion-implantation",
+      "cmp"
+    ]
   },
   "package-assembly-development": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "wirebond-package-development": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "wafer-level-package": {
-    "topics": ["packaging", "etching", "deposition", "cmp"]
+    "topics": [
+      "packaging",
+      "etching",
+      "deposition",
+      "cmp"
+    ]
   },
   "fanout-package": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "heterogeneous-package": {
-    "topics": ["packaging", "etching", "cmp"]
+    "topics": [
+      "packaging",
+      "etching",
+      "cmp"
+    ]
   },
   "product-verification": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "package-product-design": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "flip-package-development": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "photo-equipment": {
-    "topics": ["photolithography", "cleanroom", "ppe"]
+    "topics": [
+      "photolithography",
+      "cleanroom",
+      "ppe"
+    ]
   },
   "quality-control": {
-    "topics": ["exposure-monitoring", "wafer-fab"]
+    "topics": [
+      "exposure-monitoring",
+      "wafer-fab"
+    ]
   },
   "productivity": {
-    "topics": ["wafer-fab"]
+    "topics": [
+      "wafer-fab"
+    ]
   },
   "advanced-underfill-package": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "thinfilm-diffusion-equipment": {
-    "topics": ["deposition", "diffusion", "gas-safety"],
-    "hazards": ["pyrophoric", "toxic"]
+    "topics": [
+      "deposition",
+      "diffusion",
+      "gas-safety"
+    ],
+    "hazards": [
+      "pyrophoric",
+      "toxic"
+    ]
   },
   "cleanroom-facility": {
-    "topics": ["cleanroom", "engineering-controls"]
+    "topics": [
+      "cleanroom",
+      "engineering-controls"
+    ]
   },
   "mask-materials": {
-    "topics": ["photolithography"]
+    "topics": [
+      "photolithography"
+    ]
   },
   "cmp-slurry-materials": {
-    "topics": ["cmp", "liquid-chemicals", "sds-label"],
-    "hazards": ["flammable", "oxidizer"]
+    "topics": [
+      "cmp",
+      "liquid-chemicals",
+      "sds-label"
+    ],
+    "hazards": [
+      "flammable",
+      "oxidizer"
+    ]
   },
   "materials-quality-control": {
-    "topics": ["ghs", "sds-label", "chemical-inventory"]
+    "topics": [
+      "ghs",
+      "sds-label",
+      "chemical-inventory"
+    ]
   },
   "equipment-electrical-assembly": {
-    "topics": ["engineering-controls", "emergency-response"]
+    "topics": [
+      "engineering-controls",
+      "emergency-response"
+    ]
   },
   "optical-equipment-maintenance": {
-    "topics": ["cleanroom"],
-    "hazards": ["cryogenic"]
+    "topics": [
+      "cleanroom"
+    ],
+    "hazards": [
+      "cryogenic"
+    ]
   },
   "package-level-test": {
-    "topics": ["packaging", "engineering-controls"]
+    "topics": [
+      "packaging",
+      "engineering-controls"
+    ]
   },
   "cleaning-process-gas": {
-    "topics": ["gas-safety", "compressed-gas"],
-    "hazards": ["pyrophoric", "toxic", "compressed-gas"]
+    "topics": [
+      "gas-safety",
+      "compressed-gas"
+    ],
+    "hazards": [
+      "pyrophoric",
+      "toxic",
+      "compressed-gas"
+    ]
   },
   "thinfilm-precursor": {
-    "topics": ["deposition", "sds-label"],
-    "hazards": ["reactive", "toxic"]
+    "topics": [
+      "deposition",
+      "sds-label"
+    ],
+    "hazards": [
+      "reactive",
+      "toxic"
+    ]
   },
   "material-safety": {
-    "topics": ["ghs", "sds-label", "emergency-response"],
-    "hazards": ["corrosive", "acute-toxic", "reproductive-toxin"]
+    "topics": [
+      "ghs",
+      "sds-label",
+      "emergency-response"
+    ],
+    "hazards": [
+      "corrosive",
+      "acute-toxic",
+      "reproductive-toxin"
+    ]
   },
   "wafer-materials": {
-    "topics": ["wafer-fab", "cmp", "cleanroom"]
+    "topics": [
+      "wafer-fab",
+      "cmp",
+      "cleanroom"
+    ]
   },
   "cmp-materials": {
-    "topics": ["cmp", "liquid-chemicals"],
-    "hazards": ["corrosive", "oxidizer"]
+    "topics": [
+      "cmp",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "corrosive",
+      "oxidizer"
+    ]
   },
   "cleaning-materials": {
-    "topics": ["liquid-chemicals", "engineering-controls"],
-    "hazards": ["corrosive", "flammable", "toxic"]
+    "topics": [
+      "liquid-chemicals",
+      "engineering-controls"
+    ],
+    "hazards": [
+      "corrosive",
+      "flammable",
+      "toxic"
+    ]
   },
   "flipchip-materials": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "equipment-design": {
-    "topics": ["engineering-controls", "cleanroom"]
+    "topics": [
+      "engineering-controls",
+      "cleanroom"
+    ]
   },
   "equipment-assembly": {
-    "topics": ["engineering-controls"]
+    "topics": [
+      "engineering-controls"
+    ]
   },
   "lithography-materials": {
-    "topics": ["photolithography", "liquid-chemicals"],
-    "hazards": ["flammable", "toxic"]
+    "topics": [
+      "photolithography",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "flammable",
+      "toxic"
+    ]
   },
   "photo-process-materials": {
-    "topics": ["photolithography", "liquid-chemicals"],
-    "hazards": ["flammable", "toxic"]
+    "topics": [
+      "photolithography",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "flammable",
+      "toxic"
+    ]
   },
   "track-process-materials": {
-    "topics": ["photolithography", "liquid-chemicals"],
-    "hazards": ["flammable", "corrosive", "toxic"]
+    "topics": [
+      "photolithography",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "flammable",
+      "corrosive",
+      "toxic"
+    ]
   },
   "wet-chemical-materials": {
-    "topics": ["liquid-chemicals", "storage-compatibility"],
-    "hazards": ["corrosive", "flammable", "toxic"]
+    "topics": [
+      "liquid-chemicals",
+      "storage-compatibility"
+    ],
+    "hazards": [
+      "corrosive",
+      "flammable",
+      "toxic"
+    ]
   },
   "gas-materials": {
-    "topics": ["gas-safety", "compressed-gas"],
-    "hazards": ["toxic", "pyrophoric", "corrosive", "flammable"]
+    "topics": [
+      "gas-safety",
+      "compressed-gas"
+    ],
+    "hazards": [
+      "toxic",
+      "pyrophoric",
+      "corrosive",
+      "flammable"
+    ]
   },
   "etching-process-gas": {
-    "topics": ["etching", "gas-safety"],
-    "hazards": ["toxic", "corrosive", "flammable"]
+    "topics": [
+      "etching",
+      "gas-safety"
+    ],
+    "hazards": [
+      "toxic",
+      "corrosive",
+      "flammable"
+    ]
   },
   "thinfilm-process-gas": {
-    "topics": ["deposition", "gas-safety", "compressed-gas"],
-    "hazards": ["pyrophoric", "toxic", "flammable"]
+    "topics": [
+      "deposition",
+      "gas-safety",
+      "compressed-gas"
+    ],
+    "hazards": [
+      "pyrophoric",
+      "toxic",
+      "flammable"
+    ]
   },
   "implant-process-gas": {
-    "topics": ["ion-implantation", "gas-safety", "compressed-gas"],
-    "hazards": ["pyrophoric", "toxic", "acute-toxic", "flammable"]
+    "topics": [
+      "ion-implantation",
+      "gas-safety",
+      "compressed-gas"
+    ],
+    "hazards": [
+      "pyrophoric",
+      "toxic",
+      "acute-toxic",
+      "flammable"
+    ]
   },
   "package-materials": {
-    "topics": ["packaging"]
+    "topics": [
+      "packaging"
+    ]
   },
   "metal-target-materials": {
-    "topics": ["deposition"]
+    "topics": [
+      "deposition"
+    ]
   },
   "sod-process-materials": {
-    "topics": ["deposition", "liquid-chemicals"],
-    "hazards": ["toxic", "flammable", "reactive"]
+    "topics": [
+      "deposition",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "toxic",
+      "flammable",
+      "reactive"
+    ]
+  },
+  "etch-equipment": {
+    "topics": [
+      "etching",
+      "gas-safety",
+      "engineering-controls"
+    ],
+    "hazards": [
+      "toxic",
+      "compressed-gas",
+      "cryogenic"
+    ]
+  },
+  "clean-cmp-equipment": {
+    "topics": [
+      "cleanroom",
+      "cmp",
+      "gas-safety"
+    ],
+    "hazards": [
+      "corrosive",
+      "toxic"
+    ]
+  },
+  "metrology-equipment": {
+    "topics": [
+      "wafer-fab",
+      "cleanroom"
+    ],
+    "hazards": [
+      "cryogenic"
+    ]
+  },
+  "wafer-level-test": {
+    "topics": [
+      "wafer-fab",
+      "cleanroom",
+      "ppe"
+    ]
+  },
+  "packaging-front-equipment": {
+    "topics": [
+      "packaging",
+      "gas-safety",
+      "engineering-controls"
+    ],
+    "hazards": [
+      "compressed-gas"
+    ]
+  },
+  "packaging-back-equipment": {
+    "topics": [
+      "packaging",
+      "photolithography",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "corrosive",
+      "flammable"
+    ]
+  },
+  "utility-operation": {
+    "topics": [
+      "gas-safety",
+      "compressed-gas",
+      "liquid-chemicals"
+    ],
+    "hazards": [
+      "corrosive",
+      "flammable",
+      "toxic"
+    ]
+  },
+  "equipment-main-design": {
+    "topics": [
+      "photolithography"
+    ]
+  },
+  "equipment-system-software": {
+    "topics": [
+      "gas-safety",
+      "engineering-controls"
+    ],
+    "hazards": [
+      "toxic"
+    ]
+  },
+  "equipment-electrical-design": {
+    "topics": [
+      "engineering-controls",
+      "ppe",
+      "emergency-response"
+    ]
+  },
+  "equipment-utility-software": {
+    "topics": [
+      "engineering-controls"
+    ]
+  },
+  "equipment-prototype-evaluation": {
+    "topics": [
+      "deposition",
+      "etching",
+      "cmp"
+    ],
+    "hazards": [
+      "toxic",
+      "corrosive",
+      "compressed-gas"
+    ]
+  },
+  "equipment-quality-control": {
+    "topics": [
+      "cleanroom",
+      "deposition"
+    ]
+  },
+  "equipment-mechanical-assembly": {
+    "topics": [
+      "cleanroom",
+      "engineering-controls"
+    ]
+  },
+  "equipment-electrical-verification": {
+    "topics": [
+      "engineering-controls",
+      "emergency-response"
+    ]
+  },
+  "vacuum-plasma-maintenance": {
+    "topics": [
+      "gas-safety",
+      "compressed-gas",
+      "engineering-controls"
+    ],
+    "hazards": [
+      "compressed-gas",
+      "cryogenic"
+    ]
+  },
+  "chemical-gas-maintenance": {
+    "topics": [
+      "gas-safety",
+      "liquid-chemicals",
+      "compressed-gas"
+    ],
+    "hazards": [
+      "pyrophoric",
+      "corrosive",
+      "toxic"
+    ]
+  },
+  "equipment-safety": {
+    "topics": [
+      "engineering-controls",
+      "gas-safety",
+      "emergency-response"
+    ],
+    "hazards": [
+      "toxic",
+      "compressed-gas",
+      "acute-toxic"
+    ]
   }
 }
