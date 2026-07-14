@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T13:10:00.000Z",
+  "lastUpdated": "2026-07-14T13:20:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -637,7 +637,8 @@
         "book-toc": "BookTOCPreview 홈에서 제거 (/chapters/ 전담, Header 책 차례 유지) — 사용자 확정 2026-07-14",
         "path-axis": "학습 동선 축 = 관점 축(원리→위험→안전→직무, 4자료원 1:1 대응) — 사용자 확정 2026-07-14",
         "nav": "Header 네비 자료원 1항목 추가만 — 사용자 확정 2026-07-14",
-        "design": "히어로 카피 확정(원리부터 직무까지/네 가지 관점), 학습단위 수 코드 파생, 관점 뱃지 로컬 맵, 자료원 진입=홈 앵커(#sources, 신규 라우트 0), SOURCE_ACCENT_BORDER 재사용, 전역 Footer 갱신 범위 추가, BookHero·BookTOCPreview 삭제 (2026-07-14)"
+        "design": "히어로 카피 확정(원리부터 직무까지/네 가지 관점), 학습단위 수 코드 파생, 관점 뱃지 로컬 맵, 자료원 진입=홈 앵커(#sources, 신규 라우트 0), SOURCE_ACCENT_BORDER 재사용, 전역 Footer 갱신 범위 추가, BookHero·BookTOCPreview 삭제 (2026-07-14)",
+        "pr": "PR #13 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/13"
       },
       "summary": "홈을 4자료원 멀티소스 학습 허브로 재구성. A안·TOC 제거·관점 축·네비 1항목 전부 확정 — Design 착수 가능.",
       "phaseNumber": 6,
@@ -2330,6 +2331,12 @@
       "feature": "homepage-learning-hub",
       "event": "report_completed",
       "detail": "완료 보고서 작성 — Match Rate 98%, Before/After 대비. 경로 컨벤션 정정 + 코드 변동 수치 정정(rename 감지 기준 순변동 거의 0). 브랜치 feat/homepage-learning-hub, 커밋 미실행."
+    },
+    {
+      "timestamp": "2026-07-14T13:20:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "pushed_pr_created",
+      "detail": "커밋 7fb5299 생성(BookHero→PlatformHero rename 감지), origin/feat/homepage-learning-hub 푸시, PR #13 → main 생성"
     }
   ]
 }
