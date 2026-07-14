@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-13T21:11:30.614Z",
+  "lastUpdated": "2026-07-14T05:35:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -16,11 +16,9 @@
     "ui",
     "[module]",
     "scratchpad",
-    "ncs-image-expansion",
-    "ncs",
-    "ncs-image-expansion — Phase 0~2 Gap 분석"
+    "ncs"
   ],
-  "primaryFeature": "ncs-image-expansion",
+  "primaryFeature": null,
   "features": {
     "ncs-semiconductor": {
       "phase": "completed",
@@ -312,9 +310,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-13T20:52:33.491Z"
+        "lastUpdated": "2026-07-14T04:37:59.960Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/ncsMdx.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
     },
     "content": {
       "phase": "do",
@@ -533,25 +531,29 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T12:24:49.341Z",
-        "lastUpdated": "2026-07-12T23:23:29.375Z"
+        "lastUpdated": "2026-07-14T03:29:36.156Z"
       },
-      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/8686a91f-5e02-40cc-8d81-64b4ab5207af/scratchpad/merged-json-to-md.py"
+      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/4bfb342c-4a45-46eb-a8ed-12c4ade58fe9/scratchpad/marker-batch.sh"
     },
     "ncs-image-expansion": {
-      "phase": "check",
-      "matchRate": 100,
+      "phase": "archived",
+      "matchRate": 97,
       "iterationCount": 0,
       "startedAt": "2026-07-13T00:00:00.000Z",
       "branch": "feat/ncs-semiconductor",
       "inherits": "ncs-semiconductor(30모듈 재구성 체계) + ncs-semiconductor-dev-track.spec.md(병렬 에이전트 스펙) + chapters-source-fidelity(ImageFigure·source-images 패턴)",
       "cycleType": "source-expansion-and-image-pipeline",
       "documents": {
-        "plan": "docs/01-plan/features/ncs-image-expansion.plan.md",
-        "design": "docs/02-design/features/ncs-image-expansion.design.md",
-        "analysis": "docs/03-analysis/ncs-image-expansion.analysis.md"
+        "plan": "docs/archive/2026-07/ncs-image-expansion/plan.md",
+        "design": "docs/archive/2026-07/ncs-image-expansion/design.md",
+        "analysis": "docs/archive/2026-07/ncs-image-expansion/analysis.md",
+        "report": "docs/archive/2026-07/ncs-image-expansion/report.md"
       },
-      "summary": "NCS 미커버 54모듈 확장(최종 84) + 원문 도판 선별 사용 파이프라인(저작권 필터·sips 압축·ImageFigure). 기존 30모듈은 이미지 보강.",
-      "verification": "Phase 0 파일럿 완료: scripts/ncs 3종(추출·변환·검증), 기존 보강 2(system-process-development 4장·material-safety 3장)+신규 1(wafer-materials 5장, Sonnet+Fable 검증). 게이트: 구조검증 31 PASS·수치 원문 대조 전수·도판 12장 육안 저작권 확인(전부 국가 저작)·typecheck/lint·cross-link 46섹션 엣지 177·quotes 회귀 0·build 성공·SSR 중첩 0·용량 1.2MB(예산 3%)·Playwright 렌더+Lightbox 실측. 필터 개선: self_attributed 분리(오탐 90% 해소)."
+      "summary": "NCS 미커버 54모듈 확장 + 원문 도판 파이프라인 완료 — 최종 84모듈(개발30·제조13·재료22·장비19), 도판 144장 신규 삽입(제조66+장비78), 저작권 3중 방어 실증. Check Match Rate 97%.",
+      "verification": "Phase 0 파일럿 완료: scripts/ncs 3종(추출·변환·검증), 기존 보강 2(system-process-development 4장·material-safety 3장)+신규 1(wafer-materials 5장, Sonnet+Fable 검증). 게이트: 구조검증 31 PASS·수치 원문 대조 전수·도판 12장 육안 저작권 확인(전부 국가 저작)·typecheck/lint·cross-link 46섹션 엣지 177·quotes 회귀 0·build 성공·SSR 중첩 0·용량 1.2MB(예산 3%)·Playwright 렌더+Lightbox 실측. 필터 개선: self_attributed 분리(오탐 90% 해소).",
+      "completedAt": "2026-07-14T05:30:00.000Z",
+      "archivedAt": "2026-07-14T05:35:00.000Z",
+      "archivedTo": "docs/archive/2026-07/ncs-image-expansion/"
     },
     "ncs": {
       "phase": "do",
@@ -700,7 +702,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-13T21:11:30.614Z"
+    "lastActivity": "2026-07-14T04:37:59.960Z"
   },
   "history": [
     {
@@ -1848,6 +1850,90 @@
       "timestamp": "2026-07-13T21:11:30.614Z",
       "feature": "ncs-image-expansion — Phase 0~2 Gap 분석",
       "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:43:57.150Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:17.579Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:21.583Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:28.589Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:31.650Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:36.169Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T01:44:39.263Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T03:29:36.156Z",
+      "feature": "scratchpad",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:15:51.796Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:15:56.022Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:16:02.540Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:37:49.733Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:37:53.499Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T04:37:59.960Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
       "action": "updated"
     }
   ]

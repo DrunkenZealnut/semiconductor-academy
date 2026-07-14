@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-14T01:47:11.980Z",
+  "generatedAt": "2026-07-14T05:51:33.183Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -640,6 +640,194 @@
       ],
       "chemicals": []
     },
+    "ncs-semi::etch-equipment": {
+      "topics": [
+        "etching",
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "toxic",
+        "compressed-gas",
+        "cryogenic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::clean-cmp-equipment": {
+      "topics": [
+        "cleanroom",
+        "cmp",
+        "gas-safety"
+      ],
+      "hazards": [
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::metrology-equipment": {
+      "topics": [
+        "wafer-fab",
+        "cleanroom"
+      ],
+      "hazards": [
+        "cryogenic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::wafer-level-test": {
+      "topics": [
+        "wafer-fab",
+        "cleanroom",
+        "ppe"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::packaging-front-equipment": {
+      "topics": [
+        "packaging",
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::packaging-back-equipment": {
+      "topics": [
+        "packaging",
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::utility-operation": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-main-design": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-system-software": {
+      "topics": [
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-electrical-design": {
+      "topics": [
+        "engineering-controls",
+        "ppe",
+        "emergency-response"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-utility-software": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-prototype-evaluation": {
+      "topics": [
+        "deposition",
+        "etching",
+        "cmp"
+      ],
+      "hazards": [
+        "toxic",
+        "corrosive",
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-quality-control": {
+      "topics": [
+        "cleanroom",
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-mechanical-assembly": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-electrical-verification": {
+      "topics": [
+        "engineering-controls",
+        "emergency-response"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::vacuum-plasma-maintenance": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas",
+        "cryogenic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::chemical-gas-maintenance": {
+      "topics": [
+        "gas-safety",
+        "liquid-chemicals",
+        "compressed-gas"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::equipment-safety": {
+      "topics": [
+        "engineering-controls",
+        "gas-safety",
+        "emergency-response"
+      ],
+      "hazards": [
+        "toxic",
+        "compressed-gas",
+        "acute-toxic"
+      ],
+      "chemicals": []
+    },
     "osha-scs::part-1a": {
       "topics": [
         "ghs",
@@ -777,6 +965,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "wafer-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metrology-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-test"
       }
     ],
     "cleanroom": [
@@ -803,6 +999,26 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "equipment-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "clean-cmp-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metrology-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-test"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-quality-control"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-mechanical-assembly"
       }
     ],
     "engineering-controls": [
@@ -833,6 +1049,42 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "equipment-assembly"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-front-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-system-software"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-utility-software"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-mechanical-assembly"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-verification"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
       },
       {
         "sourceId": "osha-scs",
@@ -887,6 +1139,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "sod-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-back-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
       },
       {
         "sourceId": "osha-scs",
@@ -953,6 +1217,38 @@
         "sectionId": "implant-process-gas"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "clean-cmp-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-front-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-system-software"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -989,6 +1285,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "track-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-back-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-main-design"
       }
     ],
     "etching": [
@@ -1019,6 +1323,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "etching-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
       }
     ],
     "deposition": [
@@ -1061,6 +1373,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "sod-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-quality-control"
       }
     ],
     "ion-implantation": [
@@ -1129,6 +1449,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "clean-cmp-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
       }
     ],
     "packaging": [
@@ -1183,6 +1511,14 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "package-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-front-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-back-equipment"
       }
     ],
     "chemical-inventory": [
@@ -1243,6 +1579,14 @@
         "sectionId": "photo-equipment"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-test"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1297,6 +1641,18 @@
         "sectionId": "material-safety"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-verification"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1325,6 +1681,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
       },
       {
         "sourceId": "osha-scs",
@@ -1381,6 +1749,26 @@
         "sectionId": "etching-process-gas"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "clean-cmp-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-back-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1421,6 +1809,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
       },
       {
         "sourceId": "osha-scs",
@@ -1501,6 +1893,34 @@
         "sectionId": "sod-process-materials"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "clean-cmp-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-system-software"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1533,6 +1953,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
       },
       {
         "sourceId": "osha-scs",
@@ -1593,6 +2017,14 @@
         "sectionId": "sod-process-materials"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-back-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       }
@@ -1633,6 +2065,18 @@
         "sectionId": "optical-equipment-maintenance"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metrology-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-4"
       }
@@ -1641,6 +2085,26 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "cleaning-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "packaging-front-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-prototype-evaluation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
       },
       {
         "sourceId": "osha-scs",
