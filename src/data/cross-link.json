@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-13T21:08:13.466Z",
+  "generatedAt": "2026-07-14T01:47:11.980Z",
   "sources": [
     "epi-semi-hazards",
     "ncs-semi",
@@ -516,6 +516,130 @@
       "hazards": [],
       "chemicals": []
     },
+    "ncs-semi::lithography-materials": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::photo-process-materials": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::track-process-materials": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "flammable",
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::wet-chemical-materials": {
+      "topics": [
+        "liquid-chemicals",
+        "storage-compatibility"
+      ],
+      "hazards": [
+        "corrosive",
+        "flammable",
+        "toxic"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::gas-materials": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas"
+      ],
+      "hazards": [
+        "toxic",
+        "pyrophoric",
+        "corrosive",
+        "flammable"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::etching-process-gas": {
+      "topics": [
+        "etching",
+        "gas-safety"
+      ],
+      "hazards": [
+        "toxic",
+        "corrosive",
+        "flammable"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::thinfilm-process-gas": {
+      "topics": [
+        "deposition",
+        "gas-safety",
+        "compressed-gas"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic",
+        "flammable"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::implant-process-gas": {
+      "topics": [
+        "ion-implantation",
+        "gas-safety",
+        "compressed-gas"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic",
+        "acute-toxic",
+        "flammable"
+      ],
+      "chemicals": []
+    },
+    "ncs-semi::package-materials": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::metal-target-materials": {
+      "topics": [
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::sod-process-materials": {
+      "topics": [
+        "deposition",
+        "liquid-chemicals"
+      ],
+      "hazards": [
+        "toxic",
+        "flammable",
+        "reactive"
+      ],
+      "chemicals": []
+    },
     "osha-scs::part-1a": {
       "topics": [
         "ghs",
@@ -745,6 +869,26 @@
         "sectionId": "cleaning-materials"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "lithography-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "track-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wet-chemical-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "sod-process-materials"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -793,6 +937,22 @@
         "sectionId": "cleaning-process-gas"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etching-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -817,6 +977,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "mask-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "lithography-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "track-process-materials"
       }
     ],
     "etching": [
@@ -843,6 +1015,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "heterogeneous-package"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etching-process-gas"
       }
     ],
     "deposition": [
@@ -873,6 +1049,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-precursor"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metal-target-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "sod-process-materials"
       }
     ],
     "ion-implantation": [
@@ -895,6 +1083,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "unit-process-development"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
       }
     ],
     "cmp": [
@@ -987,6 +1179,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "flipchip-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "package-materials"
       }
     ],
     "chemical-inventory": [
@@ -1007,6 +1203,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wet-chemical-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -1115,6 +1315,18 @@
         "sectionId": "cleaning-process-gas"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-4"
       }
@@ -1153,6 +1365,22 @@
         "sectionId": "cleaning-materials"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "track-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wet-chemical-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etching-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1181,6 +1409,18 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "cleaning-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
       },
       {
         "sourceId": "osha-scs",
@@ -1225,6 +1465,42 @@
         "sectionId": "cleaning-materials"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "lithography-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "track-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wet-chemical-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etching-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "sod-process-materials"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-1b"
       },
@@ -1255,6 +1531,10 @@
         "sectionId": "material-safety"
       },
       {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -1275,6 +1555,42 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "cleaning-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "lithography-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "track-process-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wet-chemical-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etching-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "sod-process-materials"
       },
       {
         "sourceId": "osha-scs",
@@ -1335,6 +1651,10 @@
       {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-precursor"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "sod-process-materials"
       },
       {
         "sourceId": "osha-scs",
