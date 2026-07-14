@@ -3,6 +3,13 @@
 > **Feature**: `daegu-hs-textbook` · **분석일**: 2026-07-14 · **분석**: gap-detector Agent
 > Design: `docs/02-design/features/daegu-hs-textbook.design.md` · Plan: `docs/01-plan/features/daegu-hs-textbook.plan.md`
 > 대상: 파일럿 — 신규 Source 인프라 + 모듈 1개(반도체 공정 개요)
+>
+> **상태 갱신 (2026-07-14)**: 본문은 파일럿(모듈 1개) 기준의 최초 Check 기록으로 보존한다. 이후 나머지
+> 9개 모듈(공정설비·포토·식각·박막·금속배선·산화·도핑·CMP·세정)이 동일 방법론(3단 레이어 재구성 +
+> 원문 페이지 재검증 + 저작권 원칙)으로 순차 완료되어 **10/10 모듈 전량**이 이번 PR에 포함됐다.
+> 확대 구간도 typecheck·lint·build(10페이지 SSG)·`build:cross-link`(94섹션)·`extract:quotes`(회귀 0)를
+> 전부 통과했으며, CodeRabbit 리뷰로 발견된 추가 갭(용어 표기 불일치·문서 범위 등)은 본 PR에서 수정
+> 완료했다. 상세는 `docs/04-report/daegu-hs-textbook.report.md` 참조.
 
 ---
 

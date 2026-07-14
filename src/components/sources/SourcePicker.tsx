@@ -3,8 +3,8 @@ import { ArrowRight, BookOpen, GraduationCap, ShieldCheck, Library } from 'lucid
 import { cn } from '@/lib/cn';
 import { getOrderedSources } from '@/lib/sources';
 import type { Source } from '@/lib/types';
-import { SourceBadge } from './SourceBadge';
-import { SOURCE_ACCENT_BORDER } from './accent';
+import { SourceBadge } from '@/components/sources/SourceBadge';
+import { SOURCE_ACCENT_BORDER } from '@/components/sources/accent';
 
 const ACCENT_ICON: Record<NonNullable<Source['accent']>, string> = {
   book: 'bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300',

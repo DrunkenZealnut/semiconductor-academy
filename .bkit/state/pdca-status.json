@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T10:30:00.000Z",
+  "lastUpdated": "2026-07-14T10:11:36.244Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -363,9 +363,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:43:08.529Z",
-        "lastUpdated": "2026-07-14T08:56:48.389Z"
+        "lastUpdated": "2026-07-14T10:11:36.244Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceModuleArticle.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourcePicker.tsx"
     },
     "[source]": {
       "phase": "do",
@@ -604,7 +604,8 @@
         "pilot": "반도체 공정 개요(교과서 1번 모듈)부터 책 목차 순서대로 작업 — 사용자 \"책 순서대로\" 요청 반영 2026-07-14 (당초 공정설비 우선안 철회)",
         "attribution": "원저자(조우현·김준호)·발행처(렛유인) 명시 — 사용자 확정 2026-07-14",
         "schema": "kind 'textbook'·accent 'school' 신규, license 'fair-use' 재사용, 10모듈 슬러그·3트랙 확정 (Design 2026-07-14)",
-        "expansion": "9개 모듈(공정설비·포토·식각·박막·금속배선·산화·도핑·CMP·세정) 병렬 에이전트로 확대 완료 — 10/10 모듈 전량 완성 2026-07-14"
+        "expansion": "9개 모듈(공정설비·포토·식각·박막·금속배선·산화·도핑·CMP·세정) 병렬 에이전트로 확대 완료 — 10/10 모듈 전량 완성 2026-07-14",
+        "pr": "PR #12 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/12"
       },
       "summary": "대구반도체고 교과서 「반도체 공정기초」(렛유인)를 NCS 선례 따라 신규 자료원(daegu-hs-process, 3트랙 10모듈)으로 통합. 전면 재작성+출처 표기 확정. 작업·노출 모두 교과서 목차 순서, 파일럿: 반도체 공정 개요. Design 착수 가능.",
       "phaseNumber": 6,
@@ -734,7 +735,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-14T09:32:55.777Z"
+    "lastActivity": "2026-07-14T10:11:36.244Z"
   },
   "history": [
     {
@@ -2171,6 +2172,18 @@
       "feature": "daegu-hs-textbook",
       "event": "full_expansion_completed",
       "detail": "병렬 9에이전트로 나머지 모듈 초안 작성(각 원문 페이지 재확인·OCR 오류 정정·사실관계 검증 포함) → sources.ts/daeguMdx.tsx/_links.json 통합 등록 → typecheck/lint/build(10페이지 SSG)/cross-link(94섹션)/quotes(회귀0) 전부 통과. 10/10 모듈 완성."
+    },
+    {
+      "timestamp": "2026-07-14T10:45:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "pushed_pr_created",
+      "detail": "커밋 0e4572b 생성, origin/DrunkenZealnut/daeguhighschool_text 푸시, PR #12 → main 생성"
+    },
+    {
+      "timestamp": "2026-07-14T10:11:36.244Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
     }
   ]
 }
