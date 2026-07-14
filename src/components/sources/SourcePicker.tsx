@@ -21,13 +21,22 @@ function IconFor({ accent }: { accent?: Source['accent'] }) {
   return <Library aria-hidden className={cls} />;
 }
 
+/** 자료원별 학습 관점 라벨 — 홈 카드 뱃지 전용 (미등록 id는 뱃지 미표시) */
+const PERSPECTIVE: Record<string, string> = {
+  'epi-semi-hazards': '위험 — 왜 위험한가',
+  'osha-scs': '안전 — 어떻게 다루나',
+  'ncs-semi': '직무 — 현장에서 무슨 일을',
+  'daegu-hs-process': '원리 — 어떻게 동작하나',
+};
+
 export function SourcePicker() {
   const sources = getOrderedSources();
 
   return (
     <section
+      id="sources"
       aria-labelledby="source-picker-heading"
-      className="mt-12 sm:mt-16"
+      className="mt-12 scroll-mt-20 sm:mt-16"
     >
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
@@ -40,7 +49,7 @@ export function SourcePicker() {
           어느 자료부터 살펴볼까요?
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-400">
-          국내 학술서와 OSHA 교육 프로그램 등 자료원별로 학습할 수 있어요.
+          고교 교과서·학술서·OSHA·NCS, 네 가지 자료원이 각각 원리·위험·안전·직무를 맡아요.
           같은 주제를 여러 출처로 비교하면서 깊이 있게 익혀보세요.
         </p>
       </div>
@@ -69,7 +78,14 @@ export function SourcePicker() {
                   >
                     <IconFor accent={s.accent} />
                   </div>
-                  <SourceBadge source={s} variant="lang" />
+                  <div className="flex flex-wrap items-center justify-end gap-1.5">
+                    {PERSPECTIVE[s.id] ? (
+                      <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                        {PERSPECTIVE[s.id]}
+                      </span>
+                    ) : null}
+                    <SourceBadge source={s} variant="lang" />
+                  </div>
                 </div>
 
                 <div>

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T10:34:03.000Z",
+  "lastUpdated": "2026-07-14T13:20:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -17,9 +17,10 @@
     "[module]",
     "scratchpad",
     "ncs",
-    "daegu-hs-textbook"
+    "daegu-hs-textbook",
+    "homepage-learning-hub"
   ],
-  "primaryFeature": "daegu-hs-textbook",
+  "primaryFeature": "homepage-learning-hub",
   "features": {
     "ncs-semiconductor": {
       "phase": "completed",
@@ -285,9 +286,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:17:58.360Z",
-        "lastUpdated": "2026-05-30T00:46:13.808Z"
+        "lastUpdated": "2026-07-14T12:15:16.892Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/Header.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/Footer.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -311,9 +312,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-14T09:32:55.777Z"
+        "lastUpdated": "2026-07-14T12:23:05.062Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/daeguMdx.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
     },
     "content": {
       "phase": "do",
@@ -363,7 +364,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:43:08.529Z",
-        "lastUpdated": "2026-07-14T10:11:36.244Z"
+        "lastUpdated": "2026-07-14T12:14:26.814Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourcePicker.tsx"
     },
@@ -615,6 +616,37 @@
       "timestamps": {
         "lastUpdated": "2026-07-14T08:18:40.505Z"
       }
+    },
+    "homepage-learning-hub": {
+      "phase": "completed",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-07-14T11:05:00.000Z",
+      "completedAt": "2026-07-14T13:10:00.000Z",
+      "branch": "feat/homepage-learning-hub",
+      "inherits": "multi-source-learning-platform + ncs-semiconductor + daegu-hs-textbook (4자료원 완비 상태)",
+      "cycleType": "homepage-ia-rebranding",
+      "documents": {
+        "plan": "docs/01-plan/features/homepage-learning-hub.plan.md",
+        "design": "docs/02-design/features/homepage-learning-hub.design.md",
+        "analysis": "docs/03-analysis/homepage-learning-hub.analysis.md",
+        "report": "docs/04-report/homepage-learning-hub.report.md"
+      },
+      "decisions": {
+        "ia": "A안 — 학습 허브 재구성(플랫폼 히어로 + 자료원 승격 + 관점 탐색) — 사용자 확정 2026-07-14",
+        "book-toc": "BookTOCPreview 홈에서 제거 (/chapters/ 전담, Header 책 차례 유지) — 사용자 확정 2026-07-14",
+        "path-axis": "학습 동선 축 = 관점 축(원리→위험→안전→직무, 4자료원 1:1 대응) — 사용자 확정 2026-07-14",
+        "nav": "Header 네비 자료원 1항목 추가만 — 사용자 확정 2026-07-14",
+        "design": "히어로 카피 확정(원리부터 직무까지/네 가지 관점), 학습단위 수 코드 파생, 관점 뱃지 로컬 맵, 자료원 진입=홈 앵커(#sources, 신규 라우트 0), SOURCE_ACCENT_BORDER 재사용, 전역 Footer 갱신 범위 추가, BookHero·BookTOCPreview 삭제 (2026-07-14)",
+        "pr": "PR #13 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/13"
+      },
+      "summary": "홈을 4자료원 멀티소스 학습 허브로 재구성. A안·TOC 제거·관점 축·네비 1항목 전부 확정 — Design 착수 가능.",
+      "phaseNumber": 6,
+      "previousPhase": "check",
+      "autoAdvanced": true,
+      "timestamps": {
+        "lastUpdated": "2026-07-14T12:24:17.425Z"
+      }
     }
   },
   "pipeline": {
@@ -736,7 +768,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-14T10:11:36.244Z"
+    "lastActivity": "2026-07-14T12:24:17.425Z"
   },
   "history": [
     {
@@ -2191,6 +2223,120 @@
       "feature": "daegu-hs-textbook",
       "event": "merged",
       "detail": "PR #12 → main 머지 완료(merge commit 003f840). CodeRabbit 재리뷰 5건 전부 resolved 확인 후 사용자 승인으로 머지."
+    },
+    {
+      "timestamp": "2026-07-14T11:05:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "plan_created",
+      "detail": "Plan 작성 — 콘텐츠 인벤토리(4자료원 116단위) 대비 홈 아이덴티티 불일치 진단, A/B/C안 비교, 권장 A안"
+    },
+    {
+      "timestamp": "2026-07-14T11:20:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "decisions_confirmed",
+      "detail": "§9 결정 4건 확정: A안 IA·BookTOCPreview 제거·관점 축 동선·네비 최소 개편"
+    },
+    {
+      "timestamp": "2026-07-14T11:40:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "design_created",
+      "detail": "Design 작성 — 홈 6섹션 구성·컴포넌트 계약·전역 메타 갱신·삭제 목록·검증 계획 확정"
+    },
+    {
+      "timestamp": "2026-07-14T12:13:07.231Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:13:29.720Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:13:44.962Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:13:54.012Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:14:22.407Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:14:26.814Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:15:08.294Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:15:11.505Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:15:14.263Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:15:16.893Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:20:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "do_completed",
+      "detail": "PlatformHero·LearningPathSection 신규, page.tsx 재배열, SourcePicker(앵커·문구·관점뱃지)·Header(자료원 네비)·seo.ts·Footer 갱신, BookHero·BookTOCPreview 삭제. typecheck/lint/build(174 SSG) 통과, 구 문구 sweep 0, 렌더 실측 확인."
+    },
+    {
+      "timestamp": "2026-07-14T12:23:05.062Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:50:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "check_completed",
+      "detail": "gap-detector 98% — metadata 파생화·문서 수치 오기 즉시 수정, 재빌드 통과. Report 진행 가능."
+    },
+    {
+      "timestamp": "2026-07-14T12:24:17.425Z",
+      "feature": "homepage-learning-hub",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T13:10:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "report_completed",
+      "detail": "완료 보고서 작성 — Match Rate 98%, Before/After 대비. 경로 컨벤션 정정 + 코드 변동 수치 정정(rename 감지 기준 순변동 거의 0). 브랜치 feat/homepage-learning-hub, 커밋 미실행."
+    },
+    {
+      "timestamp": "2026-07-14T13:20:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "pushed_pr_created",
+      "detail": "커밋 7fb5299 생성(BookHero→PlatformHero rename 감지), origin/feat/homepage-learning-hub 푸시, PR #13 → main 생성"
     }
   ]
 }
