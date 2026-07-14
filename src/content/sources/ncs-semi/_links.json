@@ -106,5 +106,47 @@
   },
   "equipment-assembly": {
     "topics": ["engineering-controls"]
+  },
+  "lithography-materials": {
+    "topics": ["photolithography", "liquid-chemicals"],
+    "hazards": ["flammable", "toxic"]
+  },
+  "photo-process-materials": {
+    "topics": ["photolithography", "liquid-chemicals"],
+    "hazards": ["flammable", "toxic"]
+  },
+  "track-process-materials": {
+    "topics": ["photolithography", "liquid-chemicals"],
+    "hazards": ["flammable", "corrosive", "toxic"]
+  },
+  "wet-chemical-materials": {
+    "topics": ["liquid-chemicals", "storage-compatibility"],
+    "hazards": ["corrosive", "flammable", "toxic"]
+  },
+  "gas-materials": {
+    "topics": ["gas-safety", "compressed-gas"],
+    "hazards": ["toxic", "pyrophoric", "corrosive", "flammable"]
+  },
+  "etching-process-gas": {
+    "topics": ["etching", "gas-safety"],
+    "hazards": ["toxic", "corrosive", "flammable"]
+  },
+  "thinfilm-process-gas": {
+    "topics": ["deposition", "gas-safety", "compressed-gas"],
+    "hazards": ["pyrophoric", "toxic", "flammable"]
+  },
+  "implant-process-gas": {
+    "topics": ["ion-implantation", "gas-safety", "compressed-gas"],
+    "hazards": ["pyrophoric", "toxic", "acute-toxic", "flammable"]
+  },
+  "package-materials": {
+    "topics": ["packaging"]
+  },
+  "metal-target-materials": {
+    "topics": ["deposition"]
+  },
+  "sod-process-materials": {
+    "topics": ["deposition", "liquid-chemicals"],
+    "hazards": ["toxic", "flammable", "reactive"]
   }
 }
