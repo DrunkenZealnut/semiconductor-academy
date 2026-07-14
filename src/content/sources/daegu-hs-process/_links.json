@@ -1,0 +1,13 @@
+{
+  "$comment": "Cross-link tags for 대구반도체고 교과서 「반도체 공정기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts DAEGU_HS.sections. Glob-discovered by scripts/build-cross-link-index.mjs.",
+  "process-overview": { "topics": ["wafer-fab", "cleanroom"] },
+  "equipment-parameters": { "topics": ["wafer-fab", "engineering-controls", "gas-safety"] },
+  "photo": { "topics": ["photolithography"] },
+  "etch": { "topics": ["etching", "gas-safety"] },
+  "thin-film": { "topics": ["deposition", "gas-safety"] },
+  "metallization": { "topics": ["deposition", "cmp", "wafer-fab"] },
+  "oxidation": { "topics": ["diffusion", "etching", "wafer-fab"] },
+  "doping": { "topics": ["diffusion", "ion-implantation", "gas-safety"] },
+  "cmp": { "topics": ["cmp", "liquid-chemicals"] },
+  "cleaning": { "topics": ["liquid-chemicals", "gas-safety", "etching"] }
+}

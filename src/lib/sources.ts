@@ -781,7 +781,109 @@ export const NCS_SEMI: Source = {
   ],
 };
 
-export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI];
+/**
+ * 대구반도체고 교과서 「반도체 공정기초」 — 공정 원리를 교과서 단원 순서 그대로.
+ * 원자료 `data/school-text/daegu/`(상업 출판 교재)를 고등학생 눈높이로 **전면 재작성**.
+ * 저작권: 원문 문장·도판(244개) 미사용, 수치·정의만 근거로 재서술 + 원저자·발행처 표기.
+ * 확장: `src/content/sources/daegu-hs-process/{module}.mdx` 작성 + `daeguMdx.tsx` 로더 등록 +
+ * 아래 sections에 목차 순서대로 추가 (등록 순서 = 이전/다음 내비 순서).
+ */
+export const DAEGU_HS: Source = {
+  id: 'daegu-hs-process',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 공정기초',
+  subtitle: '대구반도체고 교과서 — 공정 원리를 단원 순서 그대로',
+  attribution: '조우현·김준호',
+  publisher: '렛유인',
+  license: 'fair-use',
+  order: 4,
+  accent: 'school',
+  sections: [
+    {
+      id: 'process-overview',
+      href: '/sources/daegu-hs-process/process-overview/',
+      title: '반도체 공정 개요',
+      summary: '8대 공정과 전공정·후공정, 웨이퍼 제작, 클린룸 — 반도체 공정의 큰 그림',
+      readingTime: 8,
+      group: '반도체 공정 개념',
+    },
+    {
+      id: 'equipment-parameters',
+      href: '/sources/daegu-hs-process/equipment-parameters/',
+      title: '공정 설비와 파라미터',
+      summary: '챔버·진공·플라즈마로 배우는 공정 설비의 작동 원리',
+      readingTime: 15,
+      group: '반도체 공정 개념',
+    },
+    {
+      id: 'photo',
+      href: '/sources/daegu-hs-process/photo/',
+      title: '포토 공정',
+      summary: '포토마스크·감광제·노광부터 다중패턴·EUV까지, 포토 공정 전 과정',
+      readingTime: 18,
+      group: '반도체 공정 Ⅰ',
+    },
+    {
+      id: 'etch',
+      href: '/sources/daegu-hs-process/etch/',
+      title: '식각 공정',
+      summary: '습식·건식식각, 플라즈마·RIE, 고밀도 플라즈마와 원자층식각(ALE)까지',
+      readingTime: 20,
+      group: '반도체 공정 Ⅰ',
+    },
+    {
+      id: 'thin-film',
+      href: '/sources/daegu-hs-process/thin-film/',
+      title: '박막 공정',
+      summary: 'PVD·CVD·ALD로 박막을 쌓는 원리와 품질을 가르는 세 잣대',
+      readingTime: 14,
+      group: '반도체 공정 Ⅰ',
+    },
+    {
+      id: 'metallization',
+      href: '/sources/daegu-hs-process/metallization/',
+      title: '금속 배선 공정',
+      summary: '실리사이드부터 구리 전해 도금까지, 배선 재료의 변천사',
+      readingTime: 13,
+      group: '반도체 공정 Ⅰ',
+    },
+    {
+      id: 'oxidation',
+      href: '/sources/daegu-hs-process/oxidation/',
+      title: '산화 공정',
+      summary: '열산화막의 특성·성장 원리와 산화·질화 공정 장비 이해하기',
+      readingTime: 12,
+      group: '반도체 공정 Ⅱ',
+    },
+    {
+      id: 'doping',
+      href: '/sources/daegu-hs-process/doping/',
+      title: '도핑 공정',
+      summary: '확산·이온주입·에피택시로 실리콘에 전기 성질을 심는 세 가지 방법',
+      readingTime: 17,
+      group: '반도체 공정 Ⅱ',
+    },
+    {
+      id: 'cmp',
+      href: '/sources/daegu-hs-process/cmp/',
+      title: 'CMP 공정',
+      summary: '슬러리와 패드로 웨이퍼를 갈아 평평하게 만드는 CMP 공정',
+      readingTime: 12,
+      group: '반도체 공정 Ⅱ',
+    },
+    {
+      id: 'cleaning',
+      href: '/sources/daegu-hs-process/cleaning/',
+      title: '세정 공정',
+      summary: '웨이퍼 오염을 씻어내는 습식·건식 세정 기술의 원리와 비교',
+      readingTime: 11,
+      group: '반도체 공정 Ⅱ',
+    },
+  ],
+};
+
+export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI, DAEGU_HS];
 
 export function getOrderedSources(): Source[] {
   return [...SOURCES].sort((a, b) => a.order - b.order);

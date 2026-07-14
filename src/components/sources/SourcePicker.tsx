@@ -1,27 +1,23 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, ShieldCheck, Library } from 'lucide-react';
+import { ArrowRight, BookOpen, GraduationCap, ShieldCheck, Library } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { getOrderedSources } from '@/lib/sources';
 import type { Source } from '@/lib/types';
 import { SourceBadge } from './SourceBadge';
-
-const ACCENT_RING: Record<NonNullable<Source['accent']>, string> = {
-  book: 'border-brand-200 hover:border-brand-400 dark:border-brand-900 dark:hover:border-brand-700',
-  osha: 'border-emerald-200 hover:border-emerald-400 dark:border-emerald-900 dark:hover:border-emerald-700',
-  standard:
-    'border-slate-200 hover:border-slate-400 dark:border-slate-700 dark:hover:border-slate-500',
-};
+import { SOURCE_ACCENT_BORDER } from './accent';
 
 const ACCENT_ICON: Record<NonNullable<Source['accent']>, string> = {
   book: 'bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300',
   osha: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
   standard: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200',
+  school: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
 };
 
 function IconFor({ accent }: { accent?: Source['accent'] }) {
   const cls = 'size-7';
   if (accent === 'book') return <BookOpen aria-hidden className={cls} />;
   if (accent === 'osha') return <ShieldCheck aria-hidden className={cls} />;
+  if (accent === 'school') return <GraduationCap aria-hidden className={cls} />;
   return <Library aria-hidden className={cls} />;
 }
 
@@ -51,7 +47,7 @@ export function SourcePicker() {
 
       <ul className="mt-8 grid gap-4 sm:grid-cols-2">
         {sources.map((s) => {
-          const accentRing = ACCENT_RING[s.accent ?? 'standard'];
+          const accentRing = SOURCE_ACCENT_BORDER[s.accent ?? 'standard'];
           const accentIcon = ACCENT_ICON[s.accent ?? 'standard'];
           const href = `/sources/${s.id}/`;
           return (

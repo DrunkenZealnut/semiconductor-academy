@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T05:35:00.000Z",
+  "lastUpdated": "2026-07-14T10:30:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -16,9 +16,10 @@
     "ui",
     "[module]",
     "scratchpad",
-    "ncs"
+    "ncs",
+    "daegu-hs-textbook"
   ],
-  "primaryFeature": null,
+  "primaryFeature": "daegu-hs-textbook",
   "features": {
     "ncs-semiconductor": {
       "phase": "completed",
@@ -310,9 +311,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-14T04:37:59.960Z"
+        "lastUpdated": "2026-07-14T09:32:55.777Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/daeguMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -362,9 +363,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:43:08.529Z",
-        "lastUpdated": "2026-07-12T02:15:17.372Z"
+        "lastUpdated": "2026-07-14T08:56:48.389Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceSectionList.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceModuleArticle.tsx"
     },
     "[source]": {
       "phase": "do",
@@ -375,7 +376,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:44:09.275Z",
-        "lastUpdated": "2026-05-30T01:44:09.275Z"
+        "lastUpdated": "2026-07-14T08:56:12.671Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/page.tsx"
     },
@@ -401,9 +402,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T02:28:01.897Z",
-        "lastUpdated": "2026-05-30T02:31:38.096Z"
+        "lastUpdated": "2026-07-14T08:55:52.090Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/cross-link/ChemicalSourceHub.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/cross-link/RelatedItemCard.tsx"
     },
     "[slug]": {
       "phase": "do",
@@ -518,9 +519,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T02:14:52.667Z",
-        "lastUpdated": "2026-07-13T09:46:36.992Z"
+        "lastUpdated": "2026-07-14T08:57:01.513Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/ncs-semi/[module]/page.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/daegu-hs-process/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
@@ -581,6 +582,37 @@
       },
       "previousPhase": "check",
       "autoAdvanced": true
+    },
+    "daegu-hs-textbook": {
+      "phase": "completed",
+      "matchRate": 96,
+      "iterationCount": 0,
+      "startedAt": "2026-07-14T07:33:53.000Z",
+      "completedAt": "2026-07-14T09:12:00.000Z",
+      "branch": "DrunkenZealnut/daeguhighschool_text",
+      "inherits": "multi-source-learning-platform(Source 레지스트리·라우팅) + cross-link-system(통제 어휘) + ncs-semiconductor(신규 자료원 통합 선례) + ch3-to-ch17-batch(3단 레이어 재구성)",
+      "cycleType": "new-source-review-and-content-expansion",
+      "documents": {
+        "plan": "docs/01-plan/features/daegu-hs-textbook.plan.md",
+        "design": "docs/02-design/features/daegu-hs-textbook.design.md",
+        "analysis": "docs/03-analysis/daegu-hs-textbook.analysis.md",
+        "report": "docs/04-report/daegu-hs-textbook.report.md"
+      },
+      "decisions": {
+        "copyright": "전면 재작성 + 출처 표기 (원문 이미지·문장 미사용) — 사용자 확정 2026-07-14",
+        "ia": "A안 — 신규 Source daegu-hs-process, 대단원 3트랙 그룹핑 (NCS 패턴 재사용) — 사용자 확정 2026-07-14",
+        "pilot": "반도체 공정 개요(교과서 1번 모듈)부터 책 목차 순서대로 작업 — 사용자 \"책 순서대로\" 요청 반영 2026-07-14 (당초 공정설비 우선안 철회)",
+        "attribution": "원저자(조우현·김준호)·발행처(렛유인) 명시 — 사용자 확정 2026-07-14",
+        "schema": "kind 'textbook'·accent 'school' 신규, license 'fair-use' 재사용, 10모듈 슬러그·3트랙 확정 (Design 2026-07-14)",
+        "expansion": "9개 모듈(공정설비·포토·식각·박막·금속배선·산화·도핑·CMP·세정) 병렬 에이전트로 확대 완료 — 10/10 모듈 전량 완성 2026-07-14"
+      },
+      "summary": "대구반도체고 교과서 「반도체 공정기초」(렛유인)를 NCS 선례 따라 신규 자료원(daegu-hs-process, 3트랙 10모듈)으로 통합. 전면 재작성+출처 표기 확정. 작업·노출 모두 교과서 목차 순서, 파일럿: 반도체 공정 개요. Design 착수 가능.",
+      "phaseNumber": 6,
+      "previousPhase": "check",
+      "autoAdvanced": true,
+      "timestamps": {
+        "lastUpdated": "2026-07-14T08:18:40.505Z"
+      }
     }
   },
   "pipeline": {
@@ -702,7 +734,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-14T04:37:59.960Z"
+    "lastActivity": "2026-07-14T09:32:55.777Z"
   },
   "history": [
     {
@@ -1935,6 +1967,210 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T07:33:53.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "plan_created",
+      "detail": "Plan 문서 작성 완료, 브랜치 DrunkenZealnut/daeguhighschool_text 재사용 결정"
+    },
+    {
+      "timestamp": "2026-07-14T07:45:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "decision_confirmed",
+      "detail": "저작권 정책 확정: 전면 재작성 + 출처 표기"
+    },
+    {
+      "timestamp": "2026-07-14T07:52:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "decisions_confirmed",
+      "detail": "IA(A안 신규 Source)·파일럿(공정설비/진공/플라즈마)·출처표기(원저자·발행처 명시) 확정 — Plan 문서 갱신 완료"
+    },
+    {
+      "timestamp": "2026-07-14T08:05:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "decision_revised",
+      "detail": "작업 순서를 책 목차 순서로 변경 — 파일럿: 공정 설비와 파라미터 → 반도체 공정 개요"
+    },
+    {
+      "timestamp": "2026-07-14T08:20:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "design_created",
+      "detail": "Design 문서 작성 — NCS 패턴 재사용, 파일럿 process-overview MDX 계약·검증 계획 확정"
+    },
+    {
+      "timestamp": "2026-07-14T08:03:46.718Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:03:49.145Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:03:51.502Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:04:00.842Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:04:03.199Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:04:07.148Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:04:28.398Z",
+      "feature": "[source]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:05:02.309Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:05:12.192Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:05:39.390Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:08:34.840Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:50:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "do_completed",
+      "detail": "파일럿 구현 완료 — 인프라(kind textbook·accent school·DAEGU_HS·로더·라우트) + process-overview MDX + _links.json. typecheck/lint/build/cross-link/quotes 전부 통과, 정적 산출물 실측 확인."
+    },
+    {
+      "timestamp": "2026-07-14T09:15:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "check_completed",
+      "detail": "gap-detector 96% — FZ 용어 갭 즉시 수정·재빌드 통과, Design stale 표기 2건 정정. Report 진행 가능."
+    },
+    {
+      "timestamp": "2026-07-14T08:18:40.506Z",
+      "feature": "daegu-hs-textbook",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:55:24.982Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:55:28.839Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:55:44.446Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:55:45.810Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:55:52.090Z",
+      "feature": "cross-link",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:56:08.541Z",
+      "feature": "[source]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:56:11.390Z",
+      "feature": "[source]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:56:12.671Z",
+      "feature": "[source]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:56:48.389Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:57:01.513Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T09:45:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "simplify_completed",
+      "detail": "/simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과."
+    },
+    {
+      "timestamp": "2026-07-14T09:12:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "report_completed",
+      "detail": "완료 보고서 작성 — Match Rate 96%, 파일럿(신규 인프라+모듈 1/10) 완료. 브랜치 DrunkenZealnut/daeguhighschool_text, 커밋 미실행(사용자 요청 대기)."
+    },
+    {
+      "timestamp": "2026-07-14T09:32:49.485Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T09:32:55.777Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T10:30:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "full_expansion_completed",
+      "detail": "병렬 9에이전트로 나머지 모듈 초안 작성(각 원문 페이지 재확인·OCR 오류 정정·사실관계 검증 포함) → sources.ts/daeguMdx.tsx/_links.json 통합 등록 → typecheck/lint/build(10페이지 SSG)/cross-link(94섹션)/quotes(회귀0) 전부 통과. 10/10 모듈 완성."
     }
   ]
 }
