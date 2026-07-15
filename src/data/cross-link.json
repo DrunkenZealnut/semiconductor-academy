@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-14T10:12:58.790Z",
+  "generatedAt": "2026-07-15T11:24:18.769Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
@@ -224,8 +224,15 @@
         "wafer-fab",
         "cleanroom"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "toxic",
+        "corrosive"
+      ],
+      "chemicals": [
+        "arsenic",
+        "hydrofluoric-acid",
+        "isopropyl-alcohol"
+      ]
     },
     "daegu-hs-process::equipment-parameters": {
       "topics": [
@@ -233,31 +240,70 @@
         "engineering-controls",
         "gas-safety"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "compressed-gas",
+        "cryogenic",
+        "toxic"
+      ],
+      "chemicals": [
+        "arsine",
+        "arsenic"
+      ]
     },
     "daegu-hs-process::photo": {
       "topics": [
         "photolithography"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "flammable",
+        "corrosive",
+        "carcinogen"
+      ],
+      "chemicals": [
+        "hmds",
+        "tmah",
+        "pgmea",
+        "benzene"
+      ]
     },
     "daegu-hs-process::etch": {
       "topics": [
         "etching",
         "gas-safety"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "corrosive",
+        "toxic",
+        "oxidizer"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "chlorine",
+        "fluorine",
+        "arsenic",
+        "sulfuric-acid"
+      ]
     },
     "daegu-hs-process::thin-film": {
       "topics": [
         "deposition",
         "gas-safety"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "pyrophoric",
+        "flammable",
+        "acute-toxic",
+        "toxic",
+        "reactive"
+      ],
+      "chemicals": [
+        "silane",
+        "diborane",
+        "arsine",
+        "phosphine",
+        "ammonia",
+        "dichlorosilane"
+      ]
     },
     "daegu-hs-process::metallization": {
       "topics": [
@@ -265,8 +311,14 @@
         "cmp",
         "wafer-fab"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": [
+        "tungsten-hexafluoride",
+        "sulfuric-acid"
+      ]
     },
     "daegu-hs-process::oxidation": {
       "topics": [
@@ -274,8 +326,16 @@
         "etching",
         "wafer-fab"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "flammable",
+        "oxidizer",
+        "corrosive"
+      ],
+      "chemicals": [
+        "ammonia",
+        "hydrofluoric-acid",
+        "sulfuric-acid"
+      ]
     },
     "daegu-hs-process::doping": {
       "topics": [
@@ -283,16 +343,38 @@
         "ion-implantation",
         "gas-safety"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "carcinogen",
+        "pyrophoric"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "diborane",
+        "phosphorus-oxychloride",
+        "boron-trifluoride",
+        "silane",
+        "arsenic"
+      ]
     },
     "daegu-hs-process::cmp": {
       "topics": [
         "cmp",
         "liquid-chemicals"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "corrosive",
+        "oxidizer"
+      ],
+      "chemicals": [
+        "silica-slurry",
+        "ceria-slurry",
+        "hydrogen-peroxide",
+        "hydrofluoric-acid",
+        "isopropyl-alcohol"
+      ]
     },
     "daegu-hs-process::cleaning": {
       "topics": [
@@ -300,8 +382,18 @@
         "gas-safety",
         "etching"
       ],
-      "hazards": [],
-      "chemicals": []
+      "hazards": [
+        "corrosive",
+        "oxidizer",
+        "toxic"
+      ],
+      "chemicals": [
+        "sulfuric-acid",
+        "hydrofluoric-acid",
+        "hydrogen-peroxide",
+        "ammonia",
+        "ozone"
+      ]
     },
     "ncs-semi::system-process-development": {
       "topics": [
@@ -1902,6 +1994,34 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
       },
@@ -1972,6 +2092,14 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-diffusion-equipment"
       },
@@ -2020,6 +2148,34 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       },
       {
         "sourceId": "ncs-semi",
@@ -2128,6 +2284,14 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
       },
@@ -2152,6 +2316,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
       },
       {
         "sourceId": "ncs-semi",
@@ -2214,6 +2390,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
       }
     ],
     "reproductive-toxin": [
@@ -2226,43 +2410,11 @@
         "sectionId": "material-safety"
       }
     ],
-    "oxidizer": [
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "cmp-slurry-materials"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "cmp-materials"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-2"
-      }
-    ],
-    "cryogenic": [
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "optical-equipment-maintenance"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "etch-equipment"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "metrology-equipment"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "vacuum-plasma-maintenance"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
-      }
-    ],
     "compressed-gas": [
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "cleaning-process-gas"
@@ -2292,7 +2444,67 @@
         "sectionId": "part-4"
       }
     ],
+    "cryogenic": [
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "optical-equipment-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metrology-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "oxidizer": [
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-slurry-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cmp-materials"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
+      }
+    ],
     "reactive": [
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-precursor"
@@ -2320,6 +2532,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
       },
       {
         "sourceId": "osha-scs",
@@ -2354,6 +2574,26 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -2370,6 +2610,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       }
     ],
     "sulfuric-acid": [
@@ -2380,6 +2628,22 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       },
       {
         "sourceId": "osha-scs",
@@ -2398,12 +2662,28 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       }
     ],
     "ozone": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "06-cleaning"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cleaning"
       }
     ],
     "arsine": [
@@ -2414,6 +2694,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
       },
       {
         "sourceId": "osha-scs",
@@ -2430,6 +2722,14 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2444,6 +2744,14 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2452,6 +2760,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
       }
     ],
     "boron-tribromide": [
@@ -2468,12 +2780,20 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
       }
     ],
     "hmds": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "08-photolithography"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
       }
     ],
     "tmah": [
@@ -2484,12 +2804,20 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
       }
     ],
     "chlorine": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
       },
       {
         "sourceId": "osha-scs",
@@ -2500,6 +2828,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
       },
       {
         "sourceId": "osha-scs",
@@ -2516,6 +2848,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2524,6 +2860,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "metallization"
       },
       {
         "sourceId": "osha-scs",
@@ -2536,6 +2876,14 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2546,6 +2894,10 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "thin-film"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2554,12 +2906,20 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
       }
     ],
     "ceria-slurry": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "cmp"
       }
     ],
     "lead": [
@@ -2590,12 +2950,32 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "photo"
       }
     ],
     "arsenic": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "etch"
+      },
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "doping"
       }
     ],
     "ethylene-glycol-ether": [
