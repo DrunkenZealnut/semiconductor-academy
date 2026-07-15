@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-14T14:10:00.000Z",
+  "lastUpdated": "2026-07-15T10:06:30.941Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -312,9 +312,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-14T12:23:05.062Z"
+        "lastUpdated": "2026-07-15T07:36:20.199Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/page.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/mdx-components.tsx"
     },
     "content": {
       "phase": "do",
@@ -364,9 +364,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:43:08.529Z",
-        "lastUpdated": "2026-07-14T12:14:26.814Z"
+        "lastUpdated": "2026-07-15T07:36:02.452Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourcePicker.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceRef.tsx"
     },
     "[source]": {
       "phase": "do",
@@ -648,6 +648,19 @@
       "timestamps": {
         "lastUpdated": "2026-07-14T12:24:17.425Z"
       }
+    },
+    "daegu-safety-enrichment": {
+      "phase": "archived",
+      "matchRate": 96,
+      "iterationCount": 0,
+      "startedAt": "2026-07-15T07:00:00.000Z",
+      "completedAt": "2026-07-15T10:40:00.000Z",
+      "archivedAt": "2026-07-15T10:55:00.000Z",
+      "archivedTo": "docs/archive/2026-07/daegu-safety-enrichment/",
+      "branch": "main",
+      "inherits": "daegu-hs-textbook(10모듈·문체 계약 §4) + cross-link-system(통제 어휘) + chapters-source-fidelity(발췌 근거 원칙)",
+      "cycleType": "content-enrichment",
+      "summary": "「반도체 공정기초」 10개 단원 전부에 소주제 앵커 안전 콘텐츠 보강 (1세션, 96%, Design skip). 책·OSHA 발췌 근거 기반 warning Callout 29개(팩트→통제→더보기 3단 서사) + SourceRef 신설(ChapterRef 자료원 범용판, 실사용 20개) + hazards 10종·chemicals 23종 태깅(cross-link 엣지 651, 신규 어휘 0). R-1 사실 검증 23개 팩트 원문 전건 일치·오류 0. Check 후 Minor 2건 반영(보조 링크 4건 Part 1A·1B·4·ch14 + HF 표현 원문 정합). 게이트 전부 통과(cross-link unknown 0·typecheck·lint·build 174p SSG·quotes diff 0), 비목표 위반 0. 후속: 안전 서술 사람 검수 권장, 커밋·PR은 사용자 요청 시."
     }
   },
   "pipeline": {
@@ -769,7 +782,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-14T12:24:17.425Z"
+    "lastActivity": "2026-07-15T10:06:30.941Z"
   },
   "history": [
     {
@@ -2344,6 +2357,30 @@
       "feature": "homepage-learning-hub",
       "event": "merged",
       "detail": "PR #13 → main 머지 완료(merge commit c88c20e). CodeRabbit 재리뷰 4건 코드 반영 확인 후 사용자 승인으로 머지. 브랜치 feat/homepage-learning-hub 로컬·원격 삭제."
+    },
+    {
+      "timestamp": "2026-07-15T07:36:02.452Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-15T07:36:19.261Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-15T07:36:20.199Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-15T10:06:30.941Z",
+      "feature": "daegu-safety-enrichment",
+      "phase": "report",
+      "action": "updated"
     }
   ]
 }
