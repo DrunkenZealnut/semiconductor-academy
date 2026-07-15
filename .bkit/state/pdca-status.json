@@ -657,10 +657,11 @@
       "completedAt": "2026-07-15T10:40:00.000Z",
       "archivedAt": "2026-07-15T10:55:00.000Z",
       "archivedTo": "docs/archive/2026-07/daegu-safety-enrichment/",
-      "branch": "main",
+      "branch": "feat/daegu-safety-enrichment",
+      "pr": "PR #14 생성 — https://github.com/DrunkenZealnut/semiconductor-academy/pull/14 (커밋 2: feat f8da695 + chore d46d0b2). CodeRabbit 리뷰 actionable 0건. 머지 완료 (merge commit f0aa0e1) — 2026-07-15",
       "inherits": "daegu-hs-textbook(10모듈·문체 계약 §4) + cross-link-system(통제 어휘) + chapters-source-fidelity(발췌 근거 원칙)",
       "cycleType": "content-enrichment",
-      "summary": "「반도체 공정기초」 10개 단원 전부에 소주제 앵커 안전 콘텐츠 보강 (1세션, 96%, Design skip). 책·OSHA 발췌 근거 기반 warning Callout 29개(팩트→통제→더보기 3단 서사) + SourceRef 신설(ChapterRef 자료원 범용판, 실사용 20개) + hazards 10종·chemicals 23종 태깅(cross-link 엣지 651, 신규 어휘 0). R-1 사실 검증 23개 팩트 원문 전건 일치·오류 0. Check 후 Minor 2건 반영(보조 링크 4건 Part 1A·1B·4·ch14 + HF 표현 원문 정합). 게이트 전부 통과(cross-link unknown 0·typecheck·lint·build 174p SSG·quotes diff 0), 비목표 위반 0. 후속: 안전 서술 사람 검수 권장, 커밋·PR은 사용자 요청 시."
+      "summary": "「반도체 공정기초」 10개 단원 전부에 소주제 앵커 안전 콘텐츠 보강 (1세션, 96%, Design skip). 책·OSHA 발췌 근거 기반 warning Callout 29개(팩트→통제→더보기 3단 서사) + SourceRef 신설(ChapterRef 자료원 범용판, 실사용 20개) + hazards 10종·chemicals 23종 태깅(cross-link 엣지 651, 신규 어휘 0). R-1 사실 검증 23개 팩트 원문 전건 일치·오류 0. Check 후 Minor 2건 반영(보조 링크 4건 Part 1A·1B·4·ch14 + HF 표현 원문 정합). 게이트 전부 통과(cross-link unknown 0·typecheck·lint·build 174p SSG·quotes diff 0), 비목표 위반 0. PR #14 머지 완료. 후속: 안전 서술 사람 검수 권장."
     }
   },
   "pipeline": {
