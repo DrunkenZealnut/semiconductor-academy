@@ -1,13 +1,53 @@
 {
-  "$comment": "Cross-link tags for 대구반도체고 교과서 「반도체 공정기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts DAEGU_HS.sections. Glob-discovered by scripts/build-cross-link-index.mjs.",
-  "process-overview": { "topics": ["wafer-fab", "cleanroom"] },
-  "equipment-parameters": { "topics": ["wafer-fab", "engineering-controls", "gas-safety"] },
-  "photo": { "topics": ["photolithography"] },
-  "etch": { "topics": ["etching", "gas-safety"] },
-  "thin-film": { "topics": ["deposition", "gas-safety"] },
-  "metallization": { "topics": ["deposition", "cmp", "wafer-fab"] },
-  "oxidation": { "topics": ["diffusion", "etching", "wafer-fab"] },
-  "doping": { "topics": ["diffusion", "ion-implantation", "gas-safety"] },
-  "cmp": { "topics": ["cmp", "liquid-chemicals"] },
-  "cleaning": { "topics": ["liquid-chemicals", "gas-safety", "etching"] }
+  "$comment": "Cross-link tags for 대구반도체고 교과서 「반도체 공정기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts DAEGU_HS.sections. Glob-discovered by scripts/build-cross-link-index.mjs. hazards/chemicals는 daegu-safety-enrichment 사이클에서 본문 안전 Callout 근거(책·OSHA 발췌)와 함께 추가.",
+  "process-overview": {
+    "topics": ["wafer-fab", "cleanroom"],
+    "hazards": ["toxic", "corrosive"],
+    "chemicals": ["arsenic", "hydrofluoric-acid", "isopropyl-alcohol"]
+  },
+  "equipment-parameters": {
+    "topics": ["wafer-fab", "engineering-controls", "gas-safety"],
+    "hazards": ["compressed-gas", "cryogenic", "toxic"],
+    "chemicals": ["arsine", "arsenic"]
+  },
+  "photo": {
+    "topics": ["photolithography"],
+    "hazards": ["flammable", "corrosive", "carcinogen"],
+    "chemicals": ["hmds", "tmah", "pgmea", "benzene"]
+  },
+  "etch": {
+    "topics": ["etching", "gas-safety"],
+    "hazards": ["corrosive", "toxic", "oxidizer"],
+    "chemicals": ["hydrofluoric-acid", "chlorine", "fluorine", "arsenic", "sulfuric-acid"]
+  },
+  "thin-film": {
+    "topics": ["deposition", "gas-safety"],
+    "hazards": ["pyrophoric", "flammable", "acute-toxic", "toxic", "reactive"],
+    "chemicals": ["silane", "diborane", "arsine", "phosphine", "ammonia", "dichlorosilane"]
+  },
+  "metallization": {
+    "topics": ["deposition", "cmp", "wafer-fab"],
+    "hazards": ["corrosive", "toxic"],
+    "chemicals": ["tungsten-hexafluoride", "sulfuric-acid"]
+  },
+  "oxidation": {
+    "topics": ["diffusion", "etching", "wafer-fab"],
+    "hazards": ["flammable", "oxidizer", "corrosive"],
+    "chemicals": ["ammonia", "hydrofluoric-acid", "sulfuric-acid"]
+  },
+  "doping": {
+    "topics": ["diffusion", "ion-implantation", "gas-safety"],
+    "hazards": ["toxic", "acute-toxic", "carcinogen", "pyrophoric"],
+    "chemicals": ["arsine", "phosphine", "diborane", "phosphorus-oxychloride", "boron-trifluoride", "silane", "arsenic"]
+  },
+  "cmp": {
+    "topics": ["cmp", "liquid-chemicals"],
+    "hazards": ["corrosive", "oxidizer"],
+    "chemicals": ["silica-slurry", "ceria-slurry", "hydrogen-peroxide", "hydrofluoric-acid", "isopropyl-alcohol"]
+  },
+  "cleaning": {
+    "topics": ["liquid-chemicals", "gas-safety", "etching"],
+    "hazards": ["corrosive", "oxidizer", "toxic"],
+    "chemicals": ["sulfuric-acid", "hydrofluoric-acid", "hydrogen-peroxide", "ammonia", "ozone"]
+  }
 }

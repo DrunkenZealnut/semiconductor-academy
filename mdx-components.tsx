@@ -8,6 +8,7 @@ import { HazardBadge } from '@/components/content/HazardBadge';
 import { ChapterNav } from '@/components/content/ChapterNav';
 import { ImageFigure } from '@/components/content/ImageFigure';
 import { ChapterRef } from '@/components/chapter/ChapterRef';
+import { SourceRef } from '@/components/sources/SourceRef';
 import { ChemicalCard } from '@/components/chemicals/ChemicalCard';
 import { ProcessDiagram } from '@/components/process/ProcessDiagram';
 
@@ -20,6 +21,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     HazardBadge,
     ChapterNav,
     ChapterRef,
+    SourceRef,
     ImageFigure,
     ChemicalCard,
     ProcessDiagram,
