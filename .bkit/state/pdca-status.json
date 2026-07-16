@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T09:00:00.000Z",
+  "lastUpdated": "2026-07-16T09:15:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -759,7 +759,9 @@
       "timestamps": {
         "lastUpdated": "2026-07-16T04:59:40.773Z"
       },
-      "completedAt": "2026-07-16T09:00:00.000Z"
+      "completedAt": "2026-07-16T09:00:00.000Z",
+      "branch": "feat/hs-textbook-collection",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/16"
     }
   },
   "pipeline": {
