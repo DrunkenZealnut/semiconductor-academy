@@ -6,6 +6,7 @@ import { Menu, X, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
 import { FontSizeToggle } from './FontSizeToggle';
+import { LogoutButton } from './LogoutButton';
 
 const navItems = [
   { href: '/#sources', label: '자료원' },
@@ -40,11 +41,13 @@ export function Header() {
           ))}
           <FontSizeToggle />
           <ThemeToggle />
+          <LogoutButton />
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
           <FontSizeToggle />
           <ThemeToggle />
+          <LogoutButton />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
