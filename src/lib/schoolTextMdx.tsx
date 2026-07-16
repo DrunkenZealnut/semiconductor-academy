@@ -26,6 +26,25 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
     'cmos-image-sensor': () =>
       import('@/content/sources/hs-semicon-basics/cmos-image-sensor.mdx'),
   },
+  'hs-basic-tech-1': {
+    'electronic-devices': () =>
+      import('@/content/sources/hs-basic-tech-1/electronic-devices.mdx'),
+    'dc-circuits': () => import('@/content/sources/hs-basic-tech-1/dc-circuits.mdx'),
+    measurement: () => import('@/content/sources/hs-basic-tech-1/measurement.mdx'),
+    milling: () => import('@/content/sources/hs-basic-tech-1/milling.mdx'),
+    'drafting-standards': () =>
+      import('@/content/sources/hs-basic-tech-1/drafting-standards.mdx'),
+    'drawing-methods': () => import('@/content/sources/hs-basic-tech-1/drawing-methods.mdx'),
+    'sectional-views': () => import('@/content/sources/hs-basic-tech-1/sectional-views.mdx'),
+    'pneumatics-basics': () =>
+      import('@/content/sources/hs-basic-tech-1/pneumatics-basics.mdx'),
+    'pneumatics-equipment': () =>
+      import('@/content/sources/hs-basic-tech-1/pneumatics-equipment.mdx'),
+    'hydraulics-equipment': () =>
+      import('@/content/sources/hs-basic-tech-1/hydraulics-equipment.mdx'),
+    'c-basics': () => import('@/content/sources/hs-basic-tech-1/c-basics.mdx'),
+    'c-programming': () => import('@/content/sources/hs-basic-tech-1/c-programming.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {
@@ -35,6 +54,11 @@ export function listSchoolTextSourceIds(): string[] {
 /** 공용 라우트가 이 자료원을 담당하는지 — REGISTRY 키 멤버십 */
 export function isSchoolTextSource(sourceId: string): boolean {
   return sourceId in REGISTRY;
+}
+
+/** 이 모듈에 대한 로더가 등록돼 있는지 — sections↔REGISTRY 정합성 검증용 */
+export function hasModuleLoader(sourceId: string, moduleId: string): boolean {
+  return moduleId in (REGISTRY[sourceId] ?? {});
 }
 
 export async function loadSchoolTextMdx(

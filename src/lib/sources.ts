@@ -988,7 +988,135 @@ export const DAEGU_HS: Source = {
   ],
 };
 
-export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI, HS_SEMI_BASICS, DAEGU_HS];
+/**
+ * 반도체고 교과서 「반도체기초기술1」 — 반도체장비 기술자 양성 실무 5과목
+ * (전자소자·기계가공·설계제도·공유압기술·C프로그래밍).
+ * 원자료 `data/school-text/20260413_171220_반도체기초기술1_크리아트_/` 전면 재작성
+ * (daegu 저작권 원칙 일괄). ⚠️ 원문 물리 페이지 순환 배치 — 챕터Ⅰ(electronic-devices)만
+ * 재구성 순서 적용(Design §3.1), 챕터Ⅱ~Ⅴ는 원문 라인 순서 그대로.
+ * 확장: `src/content/sources/hs-basic-tech-1/{module}.mdx` 작성 + `schoolTextMdx.tsx`
+ * 로더 등록 + 아래 sections에 목차 순서대로 추가 (완성 모듈만).
+ */
+export const HS_BASIC_TECH_1: Source = {
+  id: 'hs-basic-tech-1',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체기초기술 1',
+  subtitle: '반도체고 교과서 — 전자소자부터 설계제도·공유압·C프로그래밍까지, 장비 기술의 기초',
+  attribution: '정예원 외 4인',
+  publisher: '크리아트출판사',
+  license: 'fair-use',
+  order: 6,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'electronic-devices',
+      href: '/sources/hs-basic-tech-1/electronic-devices/',
+      title: '전자 소자',
+      summary: '색띠로 저항값 읽기부터 다이오드·트랜지스터 검사까지, 부품을 다루는 실무 기초',
+      readingTime: 16,
+      group: '전기·전자 기초',
+    },
+    {
+      id: 'dc-circuits',
+      href: '/sources/hs-basic-tech-1/dc-circuits/',
+      title: '직류 회로',
+      summary: '옴의 법칙과 직·병렬 합성 저항, 키르히호프의 법칙으로 회로 읽기',
+      readingTime: 11,
+      group: '전기·전자 기초',
+    },
+    {
+      id: 'measurement',
+      href: '/sources/hs-basic-tech-1/measurement/',
+      title: '측정 기술',
+      summary: '버니어캘리퍼스·마이크로미터로 반도체 장비 부품을 정밀하게 재는 법',
+      readingTime: 10,
+      group: '기계 가공 기술',
+    },
+    {
+      id: 'milling',
+      href: '/sources/hs-basic-tech-1/milling/',
+      title: '밀링 가공',
+      summary: '밀링 머신의 규격·절삭 공구·드릴 설치로 배우는 기계 가공의 기초',
+      readingTime: 13,
+      group: '기계 가공 기술',
+    },
+    {
+      id: 'drafting-standards',
+      href: '/sources/hs-basic-tech-1/drafting-standards/',
+      title: '제도의 규격과 통칙',
+      summary: 'KS 도면 규격과 선의 종류 — 반도체 장비 도면이 통일된 언어를 쓰는 이유',
+      readingTime: 13,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'drawing-methods',
+      href: '/sources/hs-basic-tech-1/drawing-methods/',
+      title: '기본 도법에 의한 도면 그리기',
+      summary: '정투상법으로 입체를 평면 도면에 옮기는 기본 도법',
+      readingTime: 9,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'sectional-views',
+      href: '/sources/hs-basic-tech-1/sectional-views/',
+      title: '단면도 그리기',
+      summary: '보이지 않는 내부 구조를 잘라서 보여주는 단면도의 종류와 표시법',
+      readingTime: 8,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'pneumatics-basics',
+      href: '/sources/hs-basic-tech-1/pneumatics-basics/',
+      title: '공압 기술의 개요',
+      summary: '압력 단위와 보일·샤를의 법칙 — 압축 공기로 반도체 장비를 움직이는 원리',
+      readingTime: 12,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'pneumatics-equipment',
+      href: '/sources/hs-basic-tech-1/pneumatics-equipment/',
+      title: '공압 발생장치와 조정기기',
+      summary: '공기 압축기·정화기기·실린더로 구성되는 공압 시스템',
+      readingTime: 14,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'hydraulics-equipment',
+      href: '/sources/hs-basic-tech-1/hydraulics-equipment/',
+      title: '유압 발생장치와 조정기기',
+      summary: '유압 시스템의 구성과 제어밸브로 큰 힘을 정밀하게 다루는 법',
+      readingTime: 10,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'c-basics',
+      href: '/sources/hs-basic-tech-1/c-basics/',
+      title: 'C언어의 기초',
+      summary: '컴파일·변수·자료형 — 장비를 움직이는 코드의 첫걸음',
+      readingTime: 12,
+      group: '프로그래밍',
+    },
+    {
+      id: 'c-programming',
+      href: '/sources/hs-basic-tech-1/c-programming/',
+      title: 'C프로그래밍 활용',
+      summary: '연산자·함수와 실습 예제로 익히는 C프로그래밍 활용',
+      readingTime: 14,
+      group: '프로그래밍',
+    },
+  ],
+};
+
+export const SOURCES: Source[] = [
+  EPI_BOOK,
+  OSHA_SCS,
+  NCS_SEMI,
+  HS_SEMI_BASICS,
+  DAEGU_HS,
+  HS_BASIC_TECH_1,
+];
 
 export function getOrderedSources(): Source[] {
   return [...SOURCES].sort((a, b) => a.order - b.order);

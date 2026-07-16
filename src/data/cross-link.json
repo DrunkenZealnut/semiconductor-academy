@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-16T05:22:13.554Z",
+  "generatedAt": "2026-07-16T09:41:13.764Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
+    "hs-basic-tech-1",
     "hs-semicon-basics",
     "ncs-semi",
     "osha-scs"
@@ -395,6 +396,26 @@
         "ammonia",
         "ozone"
       ]
+    },
+    "hs-basic-tech-1::pneumatics-basics": {
+      "topics": [
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "hs-basic-tech-1::pneumatics-equipment": {
+      "topics": [
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas"
+      ],
+      "chemicals": []
     },
     "hs-semicon-basics::semicon-overview": {
       "topics": [
@@ -1275,6 +1296,14 @@
         "sectionId": "equipment-parameters"
       },
       {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-basics"
+      },
+      {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-equipment"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cleanroom-facility"
       },
@@ -1479,6 +1508,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-basics"
+      },
+      {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-equipment"
       },
       {
         "sourceId": "hs-semicon-basics",
@@ -2477,6 +2514,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-basics"
+      },
+      {
+        "sourceId": "hs-basic-tech-1",
+        "sectionId": "pneumatics-equipment"
       },
       {
         "sourceId": "ncs-semi",

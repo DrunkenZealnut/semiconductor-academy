@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { SourceModuleArticle } from '@/components/sources/SourceModuleArticle';
 import { getSource } from '@/lib/sources';
 import {
+  hasModuleLoader,
   isSchoolTextSource,
   listSchoolTextSourceIds,
   loadSchoolTextMdx,
@@ -14,12 +15,22 @@ import { SOURCE_CATEGORY_LABELS, SOURCE_KIND_LABELS } from '@/lib/types';
  * 반도체고 교과서 카테고리 공용 모듈 라우트.
  * schoolTextMdx REGISTRY에 등록된 자료원만 params를 생성한다 — daegu·NCS·OSHA는
  * 전용 정적 세그먼트 라우트가 우선 매칭되므로 여기서 제외(출력 이중 생성 방지).
+ * sections에 있는데 REGISTRY 로더가 없으면(수동 미러 drift) 여기서 빌드를 실패시킨다 —
+ * 그렇지 않으면 "본문 준비 중" 자리표시 페이지가 조용히 배포된다(schoolTextMdx.tsx 참고).
  */
 export function generateStaticParams() {
   return listSchoolTextSourceIds().flatMap((sourceId) => {
     const source = getSource(sourceId);
     if (!source) return [];
-    return source.sections.map((s) => ({ source: sourceId, module: s.id }));
+    return source.sections.map((s) => {
+      if (!hasModuleLoader(sourceId, s.id)) {
+        throw new Error(
+          `[sources/[source]/[module]] ${sourceId}/${s.id}: sections에 등록됐지만 ` +
+            `schoolTextMdx.tsx REGISTRY에 로더가 없습니다. 둘을 함께 등록하세요.`,
+        );
+      }
+      return { source: sourceId, module: s.id };
+    });
   });
 }
 

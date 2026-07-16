@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T09:15:00.000Z",
+  "lastUpdated": "2026-07-16T09:40:53.481Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -23,9 +23,10 @@
     "auth",
     "login",
     "logout",
-    "hs-textbook-collection"
+    "hs-textbook-collection",
+    "hs-basic-tech-1"
   ],
-  "primaryFeature": "hs-textbook-collection",
+  "primaryFeature": "hs-basic-tech-1",
   "features": {
     "site-login-gate": {
       "phase": "completed",
@@ -343,9 +344,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-16T05:22:08.289Z"
+        "lastUpdated": "2026-07-16T09:40:53.481Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/schoolTextMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -551,7 +552,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T02:14:52.667Z",
-        "lastUpdated": "2026-07-16T05:20:48.243Z"
+        "lastUpdated": "2026-07-16T09:40:12.637Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/[module]/page.tsx"
     },
@@ -564,9 +565,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T12:24:49.341Z",
-        "lastUpdated": "2026-07-14T03:29:36.156Z"
+        "lastUpdated": "2026-07-16T08:43:02.206Z"
       },
-      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/4bfb342c-4a45-46eb-a8ed-12c4ade58fe9/scratchpad/marker-batch.sh"
+      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/4c0b7feb-c49e-4fb3-9cb2-1faa115d2fa1/scratchpad/overlap_check.py"
     },
     "ncs-image-expansion": {
       "phase": "archived",
@@ -762,6 +763,29 @@
       "completedAt": "2026-07-16T09:00:00.000Z",
       "branch": "feat/hs-textbook-collection",
       "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/16"
+    },
+    "hs-basic-tech-1": {
+      "phase": "report",
+      "matchRate": 94.8,
+      "iterationCount": 0,
+      "startedAt": "2026-07-16T10:00:00.000Z",
+      "inherits": "hs-textbook-collection(카테고리 인프라·공용 라우트·저작권 원칙, Match Rate 97.6%) + daegu-hs-textbook(재구성 방식 원형)",
+      "roadmapPosition": "hs-textbook-collection.plan.md §5.3 P1",
+      "cycleType": "category-new-volume",
+      "documents": {
+        "plan": "docs/01-plan/features/hs-basic-tech-1.plan.md",
+        "design": "docs/02-design/features/hs-basic-tech-1.design.md",
+        "analysis": "docs/03-analysis/hs-basic-tech-1.analysis.md"
+      },
+      "keyFindings": "원문 페이지 순환(rotation) 배치 발견·역산 완료(챕터1 앞부분이 파일 끝 4501~4666행에 위치) — 목차 재검증으로 5대단원 12중단원 확정. 콘텐츠 성격이 예상과 달리 전자소자+기계가공+설계제도+공유압+C프로그래밍 5과목 묶음이라 과목별 반도체 정체성 편차가 큼.",
+      "pendingDecisions": "§9 4건 — 범위(전량 vs III·IV 우선), 파일럿 모듈, 챕터 II·V 처리, 단위계 표기",
+      "doSummary": "5대단원 12모듈 전량 완주. 챕터I(전자소자·직류회로)는 원문 페이지 순환 배치를 역산해 직접 작성, 챕터II~V(10모듈)는 4개 병렬 서브에이전트(공통 스펙 파일 기반)로 작성 후 전건 리뷰. 원문 대조 자체 검증(공유압 에이전트)으로 근접 패러프레이즈 발견·재작성한 사례 포함. 옛 공학단위+SI 병기 규칙 적용(공유압). 빌드 195+페이지, cross-link 6 sources·100 sections, 스모크 12/12 통과.",
+      "phaseNumber": 6,
+      "previousPhase": "check",
+      "autoAdvanced": true,
+      "timestamps": {
+        "lastUpdated": "2026-07-16T09:04:54.362Z"
+      }
     }
   },
   "pipeline": {
@@ -883,7 +907,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-16T05:22:08.289Z"
+    "lastActivity": "2026-07-16T09:40:53.481Z"
   },
   "history": [
     {
@@ -2796,6 +2820,78 @@
     },
     {
       "timestamp": "2026-07-16T05:22:08.289Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:23:11.311Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:23:33.312Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:36:20.278Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:36:58.469Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:41:14.064Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:43:02.206Z",
+      "feature": "scratchpad",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T08:48:17.340Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T09:04:54.363Z",
+      "feature": "hs-basic-tech-1",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T09:39:58.959Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T09:39:59.413Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T09:40:12.637Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T09:40:53.481Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
