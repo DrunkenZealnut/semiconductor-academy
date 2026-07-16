@@ -18,10 +18,10 @@ const PATH_STEPS: PathStep[] = [
   {
     step: 1,
     perspective: '원리',
-    title: '공정이 어떻게 돌아갈까?',
-    description: '8대 공정부터 클린룸까지, 교과서 단원 순서 그대로 원리를 익혀요.',
-    sourceName: '「반도체 공정기초」 교과서',
-    href: '/sources/daegu-hs-process/',
+    title: '반도체가 뭐고 어떻게 만들까?',
+    description: '반도체 기초부터 공정기초까지, 반도체고 교과서를 권·단원 순서 그대로 익혀요.',
+    sourceName: '반도체 고등학교 교과서',
+    href: '/sources/hs-semicon-basics/',
     accent: 'school',
   },
   {

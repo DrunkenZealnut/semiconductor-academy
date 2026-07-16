@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-15T11:24:18.769Z",
+  "generatedAt": "2026-07-16T05:22:13.554Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
+    "hs-semicon-basics",
     "ncs-semi",
     "osha-scs"
   ],
@@ -394,6 +395,44 @@
         "ammonia",
         "ozone"
       ]
+    },
+    "hs-semicon-basics::semicon-overview": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-semicon-basics::semicon-industry": {
+      "topics": [
+        "packaging",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "sulfuric-acid",
+        "chlorine",
+        "silane",
+        "hydrofluoric-acid"
+      ]
+    },
+    "hs-semicon-basics::semicon-fundamentals": {
+      "topics": [
+        "diffusion",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "arsine",
+        "phosphine"
+      ]
+    },
+    "hs-semicon-basics::mosfet": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
     },
     "ncs-semi::system-process-development": {
       "topics": [
@@ -1132,6 +1171,14 @@
         "sectionId": "oxidation"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-overview"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "mosfet"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
       },
@@ -1384,6 +1431,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-fundamentals"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "memory-process-development"
       },
@@ -1428,6 +1479,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
       },
       {
         "sourceId": "ncs-semi",
@@ -1654,6 +1709,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-fundamentals"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
       },
@@ -1736,6 +1795,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
       },
       {
         "sourceId": "ncs-semi",
@@ -2594,6 +2657,10 @@
         "sectionId": "cleaning"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -2644,6 +2711,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
       },
       {
         "sourceId": "osha-scs",
@@ -2708,6 +2779,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-fundamentals"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2728,6 +2803,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-fundamentals"
       },
       {
         "sourceId": "osha-scs",
@@ -2820,6 +2899,10 @@
         "sectionId": "etch"
       },
       {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -2882,6 +2965,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-industry"
       },
       {
         "sourceId": "osha-scs",

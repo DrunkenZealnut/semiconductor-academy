@@ -782,6 +782,110 @@ export const NCS_SEMI: Source = {
 };
 
 /**
+ * 반도체고 교과서 「반도체 기초」 — 공정기초(daegu)의 선행편: 개념·산업·물성·소자.
+ * 원자료 `data/school-text/20260415_102949_반도체기초_렛유인_/`를 고등학생 눈높이로 **전면 재작성**
+ * (daegu 저작권 원칙 일괄: 원문 문장·도판 미사용, 수치·정의만 근거 + 원저자·발행처 표기).
+ * 10모듈 전체 등록 완료 — 등록 순서 = 교과서 목차 순서 = 이전/다음 내비 순서.
+ * sections 항목과 `schoolTextMdx.tsx` REGISTRY 로더는 반드시 쌍으로 관리한다
+ * (로더 누락 시 실패 모드는 schoolTextMdx.tsx 헤더 주석 참고).
+ */
+export const HS_SEMI_BASICS: Source = {
+  id: 'hs-semicon-basics',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 기초',
+  subtitle: '반도체고 교과서 — 개념·산업·물성·소자, 공정기초의 선행편',
+  attribution: '조우현·김준호',
+  publisher: '렛유인',
+  license: 'fair-use',
+  order: 4,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'semicon-overview',
+      href: '/sources/hs-semicon-basics/semicon-overview/',
+      title: '반도체 개요',
+      summary: '반도체란 무엇인가 — 도체와 부도체 사이, 시스템·메모리·센서로 나뉘는 반도체 제품의 큰 그림',
+      readingTime: 11,
+      group: '반도체 개념',
+    },
+    {
+      id: 'semicon-industry',
+      href: '/sources/hs-semicon-basics/semicon-industry/',
+      title: '반도체 산업',
+      summary: '5,800억 달러 시장과 밸류체인 — 팹리스·파운드리·OSAT·IDM이 만드는 생태계',
+      readingTime: 14,
+      group: '반도체 개념',
+    },
+    {
+      id: 'semicon-careers',
+      href: '/sources/hs-semicon-basics/semicon-careers/',
+      title: '반도체 직무',
+      summary: '공정 설계부터 인프라·안전까지 — 반도체 엔지니어의 포지션 지도와 취업 요건',
+      readingTime: 10,
+      group: '반도체 개념',
+    },
+    {
+      id: 'physical-properties',
+      href: '/sources/hs-semicon-basics/physical-properties/',
+      title: '반도체 물리적 특성',
+      summary: '자유전자와 정공, 실리콘 결정, 그리고 에너지 밴드로 읽는 도체·반도체·부도체',
+      readingTime: 13,
+      group: '반도체 특성',
+    },
+    {
+      id: 'semicon-fundamentals',
+      href: '/sources/hs-semicon-basics/semicon-fundamentals/',
+      title: '반도체 기초',
+      summary: '진성·외인성 반도체와 도핑, 페르미 레벨, 표동·확산 — 물성의 핵심',
+      readingTime: 13,
+      group: '반도체 특성',
+    },
+    {
+      id: 'passive-components',
+      href: '/sources/hs-semicon-basics/passive-components/',
+      title: '수동소자',
+      summary: '저항기·축전기·인덕터(R·L·C)의 원리와 반도체 공정에서의 구현',
+      readingTime: 9,
+      group: '반도체 소자',
+    },
+    {
+      id: 'diode',
+      href: '/sources/hs-semicon-basics/diode/',
+      title: '다이오드',
+      summary: 'PN 접합과 공핍영역, 순방향·역방향, 항복, 그리고 쇼트키·옴 접합',
+      readingTime: 13,
+      group: '반도체 소자',
+    },
+    {
+      id: 'bjt',
+      href: '/sources/hs-semicon-basics/bjt/',
+      title: 'BJT',
+      summary: '최초의 트랜지스터 — 이미터·베이스·콜렉터와 전류 증폭의 원리',
+      readingTime: 9,
+      group: '반도체 소자',
+    },
+    {
+      id: 'mosfet',
+      href: '/sources/hs-semicon-basics/mosfet/',
+      title: 'MOSFET',
+      summary: 'MOS 커패시터부터 문턱 전압·단채널 효과, HKMG·FinFET·GAA까지',
+      readingTime: 20,
+      group: '반도체 소자',
+    },
+    {
+      id: 'cmos-image-sensor',
+      href: '/sources/hs-semicon-basics/cmos-image-sensor/',
+      title: 'CMOS 이미지 센서',
+      summary: '빛을 숫자로 바꾸는 반도체의 눈 — 포토다이오드와 CIS 구조의 진화',
+      readingTime: 12,
+      group: '반도체 소자',
+    },
+  ],
+};
+
+/**
  * 대구반도체고 교과서 「반도체 공정기초」 — 공정 원리를 교과서 단원 순서 그대로.
  * 원자료 `data/school-text/daegu/`(상업 출판 교재)를 고등학생 눈높이로 **전면 재작성**.
  * 저작권: 원문 문장·도판(244개) 미사용, 수치·정의만 근거로 재서술 + 원저자·발행처 표기.
@@ -797,8 +901,9 @@ export const DAEGU_HS: Source = {
   attribution: '조우현·김준호',
   publisher: '렛유인',
   license: 'fair-use',
-  order: 4,
+  order: 5,
   accent: 'school',
+  category: 'hs-textbook',
   sections: [
     {
       id: 'process-overview',
@@ -883,7 +988,7 @@ export const DAEGU_HS: Source = {
   ],
 };
 
-export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI, DAEGU_HS];
+export const SOURCES: Source[] = [EPI_BOOK, OSHA_SCS, NCS_SEMI, HS_SEMI_BASICS, DAEGU_HS];
 
 export function getOrderedSources(): Source[] {
   return [...SOURCES].sort((a, b) => a.order - b.order);

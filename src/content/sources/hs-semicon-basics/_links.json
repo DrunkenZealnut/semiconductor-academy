@@ -1,0 +1,17 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_SEMI_BASICS.sections. 소자·물성 중심 권이라 최소 태깅 원칙 — 통제 어휘(공정·유해인자 중심)와 실제로 겹치는 모듈만 등록하고, 어휘에 맞지 않는 모듈(careers/physical-properties/passive-components/diode/bjt/cmos-image-sensor)은 생략한다(링크 미노출이 정상).",
+  "semicon-overview": {
+    "topics": ["wafer-fab"]
+  },
+  "semicon-industry": {
+    "topics": ["packaging", "gas-safety"],
+    "chemicals": ["sulfuric-acid", "chlorine", "silane", "hydrofluoric-acid"]
+  },
+  "semicon-fundamentals": {
+    "topics": ["diffusion", "ion-implantation"],
+    "chemicals": ["arsine", "phosphine"]
+  },
+  "mosfet": {
+    "topics": ["wafer-fab"]
+  }
+}

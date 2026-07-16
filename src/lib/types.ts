@@ -189,6 +189,10 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
 
 export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper' | 'textbook';
 export type SourceLanguage = 'ko' | 'en';
+/** 자료원 묶음 관리 단위 — kind(자료 유형)와 별개로 홈 UI에서 그룹으로 렌더된다.
+ *  값 추가 시 SOURCE_CATEGORY_LABELS(typecheck가 강제)와 함께 SourcePicker의 그룹
+ *  렌더(현재 hs-textbook 전용 섹션)도 확장해야 홈에서 무음 탈락하지 않는다. */
+export type SourceCategory = 'hs-textbook';
 export type SourceLicense =
   | 'fair-use'
   | 'us-gov-public-domain'
@@ -234,6 +238,8 @@ export interface Source {
   order: number;
   /** 카드 강조 토큰 — 'book' | 'osha' 등 (Tailwind 색상 키와 매핑) */
   accent?: 'book' | 'osha' | 'standard' | 'school';
+  /** 묶음 관리 단위 — 미지정이면 독립 자료원으로 개별 카드 렌더 */
+  category?: SourceCategory;
   /** 자료원의 섹션 목록 */
   sections: SourceSection[];
 }
@@ -246,6 +252,10 @@ export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
   guide: '가이드',
   paper: '논문',
   textbook: '교과서',
+};
+
+export const SOURCE_CATEGORY_LABELS: Record<SourceCategory, string> = {
+  'hs-textbook': '반도체 고등학교 교과서',
 };
 
 /** kind별 섹션 단위어 — 인덱스 목록 제목·상세 페이지 이전/다음 라벨에 공용 */
