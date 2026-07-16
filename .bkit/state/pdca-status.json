@@ -33,7 +33,7 @@
       "startedAt": "2026-07-15T23:45:43.000Z",
       "completedAt": "2026-07-16T03:00:00.000Z",
       "branch": "feat/site-login-gate",
-      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/15",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/15 — 머지 완료 (merge commit 979a43a, 2026-07-16T03:48:55Z)",
       "cycleType": "security-and-access-control",
       "documents": {
         "plan": "docs/01-plan/features/site-login-gate.plan.md",
@@ -44,7 +44,7 @@
       "decisions": {
         "authApproach": "방식 A(Middleware 서버 인증) 확정 — 사용자 확정 2026-07-16. output:'export' 제거, src/middleware.ts + HMAC-SHA256 쿠키 세션(Web Crypto API)"
       },
-      "summary": "저작권 보호 목적 사이트 전역 로그인 게이트. Middleware 쿠키 인증(30일 세션) 구현·검증·PR #15 오픈 완료. CodeRabbit 리뷰로 발견된 타이밍 사이드채널·Open Redirect 등 6건 수정 반영.",
+      "summary": "저작권 보호 목적 사이트 전역 로그인 게이트. Middleware 쿠키 인증(30일 세션) 구현·검증 완료. CodeRabbit 리뷰로 발견된 타이밍 사이드채널·Open Redirect 등 6건 수정 반영 후 PR #15 main에 머지 완료. 후속: Vercel Production/Preview에 SITE_AUTH_ID·SITE_AUTH_PASSWORD·SITE_AUTH_SESSION_SECRET 등록 필요(미등록 시 로그인 불가로 fail-closed).",
       "phaseNumber": 6,
       "previousPhase": "check",
       "autoAdvanced": true,
