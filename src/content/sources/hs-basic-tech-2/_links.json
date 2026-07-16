@@ -1,0 +1,15 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체기초기술2」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_BASIC_TECH_2.sections. book1(hs-basic-tech-1) 선례 승계 — 압축공기를 직접 다루는 공압 3모듈만 최소 태깅. 전기전자/기계가공/설계·CAD/유압(액체 — gas-safety 어휘 비대상)/프로그래밍 모듈은 통제 어휘와 접점이 없어 태깅 생략, 대신 본문 SourceRef로 book1·NCS 장비 트랙에 직접 연결(링크 미노출이 정상).",
+  "electropneumatic-circuits": {
+    "topics": ["gas-safety", "engineering-controls"],
+    "hazards": ["compressed-gas"]
+  },
+  "pneumatics-maintenance": {
+    "topics": ["gas-safety", "engineering-controls"],
+    "hazards": ["compressed-gas"]
+  },
+  "pneumatics-practice": {
+    "topics": ["gas-safety"],
+    "hazards": ["compressed-gas"]
+  }
+}

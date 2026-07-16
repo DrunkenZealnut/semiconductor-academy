@@ -1109,6 +1109,153 @@ export const HS_BASIC_TECH_1: Source = {
   ],
 };
 
+/**
+ * 반도체고 교과서 「반도체기초기술2」 — 「반도체기초기술1」의 응용편
+ * (교류·디지털 회로, 장비 제조·선반, 투상도·CAD, 공유압 회로·유지보수·실습,
+ * 마이크로프로세서·아두이노). 원자료
+ * data/school-text/20260414_071612_반도체기초기술2_크리아트_/ 전면 재작성
+ * (daegu 저작권 원칙 일괄). 원문 페이지 배치 정순 — book1식 순환 역산 불필요.
+ * 실습 반복 구간은 "대표 상세 + 변형 표" 압축, 안전 유의사항은 전건 보존(Design §4).
+ * 확장: `src/content/sources/hs-basic-tech-2/{module}.mdx` 작성 + `schoolTextMdx.tsx`
+ * 로더 등록 + 아래 sections에 목차 순서대로 추가 (완성 모듈만).
+ */
+export const HS_BASIC_TECH_2: Source = {
+  id: 'hs-basic-tech-2',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체기초기술 2',
+  subtitle:
+    '반도체고 교과서 — 교류·디지털 회로부터 CAD·공유압 실습·아두이노까지, 장비 기술의 응용',
+  attribution: '정예원 외 4인',
+  publisher: '크리아트출판사',
+  license: 'fair-use',
+  order: 7,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'ac-circuits',
+      href: '/sources/hs-basic-tech-2/ac-circuits/',
+      title: '교류 회로',
+      summary: '주파수·실횻값·임피던스부터 정류·정전압 회로까지, 교류를 다루는 법',
+      readingTime: 13,
+      group: '전기·전자 기초',
+    },
+    {
+      id: 'digital-circuits',
+      href: '/sources/hs-basic-tech-2/digital-circuits/',
+      title: '디지털 회로',
+      summary: '0과 1만으로 논리를 만드는 법 — 진법·게이트부터 가산기 실습까지',
+      readingTime: 14,
+      group: '전기·전자 기초',
+    },
+    {
+      id: 'equipment-manufacturing',
+      href: '/sources/hs-basic-tech-2/equipment-manufacturing/',
+      title: '반도체 장비 제조',
+      summary: '절삭·비절삭 가공으로 장비의 금속 부품 수만 개를 만드는 큰 그림',
+      readingTime: 9,
+      group: '기계 가공 기술',
+    },
+    {
+      id: 'machine-tools',
+      href: '/sources/hs-basic-tech-2/machine-tools/',
+      title: '범용 공작 기계',
+      summary: '재료가 도는 공작 기계, 선반 — 구조부터 다단축 가공 실습까지',
+      readingTime: 11,
+      group: '기계 가공 기술',
+    },
+    {
+      id: 'special-projections',
+      href: '/sources/hs-basic-tech-2/special-projections/',
+      title: '특수 투상도 그리기',
+      summary: '등각·부등각·사·투시 투상도 — 한 장에 입체감을 담는 네 가지 도법',
+      readingTime: 8,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'development-drawings',
+      href: '/sources/hs-basic-tech-2/development-drawings/',
+      title: '전개도 그리기',
+      summary: '입체를 펼쳐 철판 도면으로 — 전개도법 세 가지와 상관선의 원리',
+      readingTime: 8,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'cad-drafting',
+      href: '/sources/hs-basic-tech-2/cad-drafting/',
+      title: '컴퓨터를 이용한 제도',
+      summary: '손 제도에서 CAD로 — 좌표계·도면층부터 3D 모델링까지 핵심 개념',
+      readingTime: 13,
+      group: '반도체장비 설계',
+    },
+    {
+      id: 'electropneumatic-circuits',
+      href: '/sources/hs-basic-tech-2/electropneumatic-circuits/',
+      title: '전기공압 회로 구성하기',
+      summary: '접점·릴레이·논리 회로로 실린더의 작동 순서를 설계하는 법',
+      readingTime: 14,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'pneumatics-maintenance',
+      href: '/sources/hs-basic-tech-2/pneumatics-maintenance/',
+      title: '공압 장비의 유지·보수',
+      summary: '예방정비로 압축기·필터·실린더를 오래, 안전하게 쓰는 법',
+      readingTime: 11,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'pneumatics-practice',
+      href: '/sources/hs-basic-tech-2/pneumatics-practice/',
+      title: '공압 실습 과제',
+      summary: '직접·자동·순차 조작으로 단계를 밟는 복동 실린더 실습 3종',
+      readingTime: 10,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'electrohydraulic-circuits',
+      href: '/sources/hs-basic-tech-2/electrohydraulic-circuits/',
+      title: '전기유압 회로 구성하기',
+      summary: '유량·방향·압력 제어밸브의 역할과 전기로 유압을 조종하는 법',
+      readingTime: 14,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'hydraulics-practice',
+      href: '/sources/hs-basic-tech-2/hydraulics-practice/',
+      title: '유압 실습 과제',
+      summary: '미터 인·아웃부터 로킹·감압·시간 지연까지, 유압 회로 실습 8종',
+      readingTime: 12,
+      group: '반도체장비 공유압기술',
+    },
+    {
+      id: 'microprocessor-basics',
+      href: '/sources/hs-basic-tech-2/microprocessor-basics/',
+      title: '마이크로프로세서 기초',
+      summary: '손톱만 한 칩 속의 CPU·메모리·레지스터 — ATmega8535 들여다보기',
+      readingTime: 13,
+      group: '프로그래밍',
+    },
+    {
+      id: 'microprocessor-practice',
+      href: '/sources/hs-basic-tech-2/microprocessor-practice/',
+      title: '마이크로프로세서 실습',
+      summary: '코드 작성부터 칩에 굽기까지 — 개발 사이클 4단계와 LED 점등',
+      readingTime: 9,
+      group: '프로그래밍',
+    },
+    {
+      id: 'arduino-practice',
+      href: '/sources/hs-basic-tech-2/arduino-practice/',
+      title: '아두이노 실습',
+      summary: '초음파 3색 LED부터 블루투스 제어까지, 아두이노 실습 8종',
+      readingTime: 14,
+      group: '프로그래밍',
+    },
+  ],
+};
+
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -1116,6 +1263,7 @@ export const SOURCES: Source[] = [
   HS_SEMI_BASICS,
   DAEGU_HS,
   HS_BASIC_TECH_1,
+  HS_BASIC_TECH_2,
 ];
 
 export function getOrderedSources(): Source[] {

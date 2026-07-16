@@ -45,6 +45,33 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
     'c-basics': () => import('@/content/sources/hs-basic-tech-1/c-basics.mdx'),
     'c-programming': () => import('@/content/sources/hs-basic-tech-1/c-programming.mdx'),
   },
+  'hs-basic-tech-2': {
+    'ac-circuits': () => import('@/content/sources/hs-basic-tech-2/ac-circuits.mdx'),
+    'digital-circuits': () => import('@/content/sources/hs-basic-tech-2/digital-circuits.mdx'),
+    'equipment-manufacturing': () =>
+      import('@/content/sources/hs-basic-tech-2/equipment-manufacturing.mdx'),
+    'machine-tools': () => import('@/content/sources/hs-basic-tech-2/machine-tools.mdx'),
+    'special-projections': () =>
+      import('@/content/sources/hs-basic-tech-2/special-projections.mdx'),
+    'development-drawings': () =>
+      import('@/content/sources/hs-basic-tech-2/development-drawings.mdx'),
+    'cad-drafting': () => import('@/content/sources/hs-basic-tech-2/cad-drafting.mdx'),
+    'electropneumatic-circuits': () =>
+      import('@/content/sources/hs-basic-tech-2/electropneumatic-circuits.mdx'),
+    'pneumatics-maintenance': () =>
+      import('@/content/sources/hs-basic-tech-2/pneumatics-maintenance.mdx'),
+    'pneumatics-practice': () =>
+      import('@/content/sources/hs-basic-tech-2/pneumatics-practice.mdx'),
+    'electrohydraulic-circuits': () =>
+      import('@/content/sources/hs-basic-tech-2/electrohydraulic-circuits.mdx'),
+    'hydraulics-practice': () =>
+      import('@/content/sources/hs-basic-tech-2/hydraulics-practice.mdx'),
+    'microprocessor-basics': () =>
+      import('@/content/sources/hs-basic-tech-2/microprocessor-basics.mdx'),
+    'microprocessor-practice': () =>
+      import('@/content/sources/hs-basic-tech-2/microprocessor-practice.mdx'),
+    'arduino-practice': () => import('@/content/sources/hs-basic-tech-2/arduino-practice.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {
