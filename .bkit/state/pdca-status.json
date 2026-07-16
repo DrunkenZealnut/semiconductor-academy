@@ -31,7 +31,7 @@
   "features": {
     "hs-basic-tech-2": {
       "phase": "report",
-      "matchRate": 95.5,
+      "matchRate": 100,
       "iterationCount": 0,
       "startedAt": "2026-07-17T09:00:00.000Z",
       "inherits": "hs-basic-tech-1(재구성 방식·카테고리 인프라 확장 실증, Match Rate 94.8%) + hs-textbook-collection(카테고리 인프라, 97.6%) + daegu-hs-textbook(재구성 방식 원형)",
@@ -46,11 +46,13 @@
       "pendingDecisions": "없음",
       "designSummary": "15모듈 원문 라인 경계 실측 확정(파일럿 ac-circuits 65~398행). 신규 인프라 0(REGISTRY+sections 추가만, order 7). 이 권 특유 규칙 7건: book1 기초→응용 각도, CAD 개념 중심, 실습 대표+변형표 압축, 안전 유의사항 전건 보존(모듈 통합 Callout), 단위 SI 병기, 코드 펜스 규칙, 레지스터 명세 압축. cross-link는 공압 3모듈만 태깅, NCS 6건+·book1 SourceRef 매핑표 확정.",
       "doSummary": "5대단원 15모듈 전량 완주. 파일럿 ac-circuits 직접 작성·게이트 통과 후 6개 병렬 Sonnet 서브에이전트(공통 스펙 파일)로 14모듈 작성, 전건 Fable 리뷰(원문 대조 스팟체크). 리뷰 수정: 실습③ 기기 열 원문 재료표 수량 정정 1건 + 근접 패러프레이즈 스캔(공백 정규화 25자 연속 일치) 8건 중 안전수칙·절차 3곳 재작성(재스캔 0건, 나머지 6건은 재료목록·규격명 등 사실 정보로 허용). 압축 실증: 실습 19건(공압3·유압8·아두이노8) 전건 커버·안전 수칙 누락 0. 검증: typecheck/lint 0, build 217페이지 SSG, cross-link 7 sources·103 sections·699 edges, quotes.json 회귀 0, 렌더 스모크 15/15(3단 레이어·footer·인덱스 5트랙·홈 4번째 카드·공압 3모듈 자동 cross-link 섹션).",
-      "checkSummary": "gap-detector 22항목 대조 — ✅20 ⚠️2 ❌0, Match Rate 95.5%(기준 90% 통과). High/Medium 갭 0, Low 4건 중 2건 사후 해소(Low-1: development-drawings에 sectional-views SourceRef 추가·재빌드 확인 / Low-2: 설계 §4-4에 통합 Callout 단독 허용 명문화), 2건 무조치 합리 편차(NCS 호스트 트랙 내 이동·Ⅱ장 60kgf는 병기 범위 밖). Positive 5건(NCS 추가 2연결·권내 양방향 SourceRef·투상도 4종·유압 안전 11항목 전건·CAD 맥락 Callout). iterate 불필요, report 진행 권고.",
+      "checkSummary": "gap-detector 22항목 대조 — 최초 산출 ✅20 ⚠️2 ❌0(95.5%), 같은 세션에서 ⚠️ 2건 즉시 해소(Low-1: development-drawings에 sectional-views SourceRef 추가·재빌드 확인 / Low-2: 설계 §4-4에 통합 Callout 단독 허용 명문화) → 재확인 22/22 ✅, Match Rate 100%. 매트릭스 밖 관찰 Low 2건은 무조치 합리 편차로 채점 미반영(NCS 호스트 트랙 내 이동·Ⅱ장 60kgf는 병기 범위 밖). Positive 5건(NCS 추가 2연결·권내 양방향 SourceRef·투상도 4종·유압 안전 11항목 전건·CAD 맥락 Callout). iterate 불필요, report 진행 권고.",
       "phaseNumber": 6,
       "previousPhase": "check",
+      "branch": "feat/hs-basic-tech-2",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/19 — 오픈(리뷰 대기)",
       "timestamps": {
-        "lastUpdated": "2026-07-16T22:37:55.229Z"
+        "lastUpdated": "2026-07-17T12:15:00.000Z"
       },
       "autoAdvanced": true
     },
