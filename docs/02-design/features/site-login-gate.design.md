@@ -17,6 +17,19 @@ Plan §4 구현 범위를 Design 단계에서 구체화하며 아래 3가지가 
 | **`Header.tsx` 수정 + `LogoutButton.tsx` 신규** | 명시 없음 | 로그아웃 진입점 UI 추가 | FR-5(로그아웃)를 만족하려면 어딘가에 트리거 버튼이 있어야 함 |
 | **`.env.local`에 `SITE_AUTH_SESSION_SECRET` 추가** | "`SITE_AUTH_ID`, `SITE_AUTH_PASSWORD` 등" | 3번째 키로 명시 | 쿠키 서명 전용 비밀키 — 로그인 비밀번호와 분리(회전·유출 범위 독립) |
 
+### 0.1 CodeRabbit 리뷰 보정 (PR #15, 2026-07-16)
+
+PR을 올린 뒤 CodeRabbit 리뷰에서 발견된 실제 버그·정합성 문제. 아래 코드 블록에는 전부 반영 완료.
+
+| # | 발견 | 수정 |
+|:-:|---|---|
+| 1 | 로그인 라우트의 `safeEqual(id,..) \|\| safeEqual(pw,..)`가 `\|\|` 단락 평가로 ID가 틀리면 비밀번호 비교를 건너뜀 — 응답 시간으로 유효 ID 여부를 추정 가능(타이밍 방어를 스스로 무력화) | 두 비교를 항상 모두 실행한 뒤 결과만 결합 |
+| 2 | `isSafeRedirect`의 문자열 prefix 검사(`startsWith('/')`)만으로는 `/\evil.com`처럼 브라우저가 백슬래시를 슬래시로 정규화해 외부 origin으로 해석하는 입력을 못 거름(Open Redirect) | `new URL(value, location.origin)`로 파싱 후 same-origin만 허용, `pathname+search`만 사용(`getSafeRedirectTarget`) |
+| 3 | `SITE_AUTH_SESSION_SECRET`만 없으면 `createSessionToken()`이 예외를 던져 `server_misconfigured` 계약이 깨지고 처리되지 않은 500이 됨 | `getSecret()`에 최소 길이(32자) 검증 추가 + 로그인 라우트가 `createSessionToken()` 호출을 try/catch로 감싸 동일 계약(`server_misconfigured`)으로 응답 |
+| 4 | 미들웨어가 `pathname`만 저장해 쿼리스트링(`?q=...`) 유실 + `basePath` 미반영 시 리다이렉트가 앱 경로 밖으로 이탈 | `pathname+search` 저장, 리다이렉트 URL은 `request.nextUrl.basePath` 반영 |
+| 5 | `LoginForm`/`LogoutButton`의 raw `fetch()`는 Next 라우터를 거치지 않아 `basePath` 미반영(`router.push`는 Next가 자동 반영하므로 그대로 둠) | `fetch` URL에 `process.env.NEXT_PUBLIC_BASE_PATH` 수동 접두 |
+| 6 | 로그인/로그아웃 `fetch()`에 예외 처리가 없어 네트워크 오류 시 `pending`이 영구 `true`로 남거나(로그인), 실패해도 로그아웃된 것처럼 이동(로그아웃) | `try/catch/finally` 추가. 로그아웃은 응답 실패·예외 시 이동하지 않음 |
+
 ---
 
 ## 1. 아키텍처 개요
@@ -60,9 +73,14 @@ payload를 암호화하지 않고 평문으로 두는 이유: 서명이 있으�
 export const COOKIE_NAME = 'auth_session';
 export const MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30일 (Plan G3)
 
+const MIN_SECRET_LENGTH = 32; // openssl rand -base64 32 기준 — 짧은 시크릿의 서명 위조 위험 축소
+
 function getSecret(): string {
   const secret = process.env.SITE_AUTH_SESSION_SECRET;
   if (!secret) throw new Error('SITE_AUTH_SESSION_SECRET is not set');
+  if (secret.length < MIN_SECRET_LENGTH) {
+    throw new Error(`SITE_AUTH_SESSION_SECRET must be at least ${MIN_SECRET_LENGTH} characters`);
+  }
   return secret;
 }
 
@@ -143,8 +161,11 @@ export async function middleware(request: NextRequest) {
 
   if (authenticated) return NextResponse.next();
 
-  const loginUrl = new URL('/login', request.url);
-  loginUrl.searchParams.set('redirect', request.nextUrl.pathname);
+  // nextUrl.pathname/search는 basePath가 이미 제거된 값 — redirect 파라미터는 이 값 그대로 저장해
+  // 로그인 후 router.push(basePath 자동 반영)로 되돌아갈 수 있게 한다. 리다이렉트 대상 URL 자체는
+  // fetch를 거치지 않는 raw HTTP redirect라 basePath를 직접 붙여야 한다.
+  const loginUrl = new URL(`${request.nextUrl.basePath}/login`, request.url);
+  loginUrl.searchParams.set('redirect', request.nextUrl.pathname + request.nextUrl.search);
   return NextResponse.redirect(loginUrl);
 }
 
@@ -167,7 +188,7 @@ export const config = {
 
 **의도적으로 제외하지 않는 것**: `robots.txt`, `sitemap.xml`, `/images/*`, `/source-images/*`. Plan 비목표("크롤러 차단 정책 변경 불필요")와 일치하고, 콘텐츠 이미지도 저작권 보호 대상이라 게이트를 그대로 적용하는 게 맞다.
 
-basePath는 현재 프로덕션에서 빈 문자열로 확인됐다(`.github/workflows/` 비어 있음 → GH Pages용 주입 워크플로 없음). matcher 경로 변환 이슈 없음. 추후 basePath 도입 시 재검토 필요(Plan R-1).
+basePath는 현재 프로덕션에서 빈 문자열로 확인됐다(`.github/workflows/` 비어 있음 → GH Pages용 주입 워크플로 없음). matcher 경로 변환 이슈 없음. 다만 CLAUDE.md가 "모든 링크·asset 경로는 basePath를 가정해야 한다"고 명시하므로(현재 빈 문자열이라 오늘은 무증상이지만) `request.nextUrl.basePath`를 리다이렉트 URL 생성에 반영해 basePath가 실제로 켜지는 미래에도 안전하도록 CodeRabbit 리뷰 후 보정했다(§0.1 #4).
 
 ---
 
@@ -202,12 +223,22 @@ export async function POST(request: Request) {
   const id = typeof body?.id === 'string' ? body.id : '';
   const password = typeof body?.password === 'string' ? body.password : '';
 
-  if (!safeEqual(id, validId) || !safeEqual(password, validPassword)) {
+  // 두 비교를 항상 모두 실행 — ||로 단락 평가하면 ID 정오에 따라 응답 시간이 달라져
+  // 유효한 ID 여부가 타이밍으로 유출될 수 있음(§0.1 #1)
+  const idMatches = safeEqual(id, validId);
+  const passwordMatches = safeEqual(password, validPassword);
+  if (!idMatches || !passwordMatches) {
     // FR-4: 어느 필드가 틀렸는지 노출하지 않음 — 항상 동일 에러
     return NextResponse.json({ error: 'invalid_credentials' }, { status: 401 });
   }
 
-  const token = await createSessionToken();
+  let token: string;
+  try {
+    token = await createSessionToken();
+  } catch {
+    // SITE_AUTH_SESSION_SECRET 미설정/부적합 — 위 ID/PW 체크와 동일한 계약으로 응답(§0.1 #3)
+    return NextResponse.json({ error: 'server_misconfigured' }, { status: 500 });
+  }
   const response = NextResponse.json({ ok: true });
   response.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
@@ -241,9 +272,10 @@ export async function POST() {
 
 - Root Layout(Header/Footer)을 그대로 사용 — 로그인 전용 레이아웃은 새로 만들지 않는다. Header 내비 링크가 보이긴 하지만, 클릭해도 다시 `/login`으로 리다이렉트될 뿐이라 기능적 문제는 없다(비목표 범위 밖 UX 다듬기는 후속 과제로 남김).
 - `redirect` 쿼리 파라미터를 읽어야 하므로 `useSearchParams`가 필요 — 이 프로젝트의 기존 패턴(`ChemicalSearch.tsx`)을 그대로 따라 바깥은 `Suspense`, 내부에 실제 폼 로직을 둔다.
-- Open Redirect 방지: `redirect` 값이 `/`로 시작하고 `//`(프로토콜 상대 URL)로 시작하지 않을 때만 사용, 그 외엔 `/`로 폴백.
+- Open Redirect 방지: `redirect` 값을 `new URL(value, location.origin)`로 파싱해 same-origin일 때만 `pathname+search`를 사용, 그 외엔 `/`로 폴백(§0.1 #2 — 문자열 prefix 검사만으로는 백슬래시 정규화로 인한 우회가 가능해 CodeRabbit 리뷰 후 교체).
 - **Do 단계 보정**: `page.tsx`는 `'use client'`이면서 동시에 `metadata`를 export할 수 없는 Next.js 제약 때문에, 폼 로직을 `src/components/auth/LoginForm.tsx`(클라이언트)로 분리하고 `page.tsx`는 서버 컴포넌트로 남긴다 — `chemicals/page.tsx` + `ChemicalSearch.tsx` 분리와 동일한 패턴.
 - **Do 단계 보정**: `trailingSlash: true` 설정 때문에 `fetch('/api/login')`(슬래시 없음)은 308 리다이렉트를 유발한다 — 아래 코드는 `/api/login/`으로 수정된 최종본이다.
+- **CodeRabbit 보정**: raw `fetch()`는 basePath 미반영(§0.1 #5) + 네트워크 예외 시 `pending`이 영구 `true`로 남는 문제(§0.1 #6) — 아래 코드에 반영.
 
 ```tsx
 'use client';
@@ -251,8 +283,21 @@ export async function POST() {
 import { Suspense, useState, type FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-function isSafeRedirect(path: string | null): path is string {
-  return !!path && path.startsWith('/') && !path.startsWith('//');
+// fetch()는 Next.js 라우터를 거치지 않아 basePath가 자동 반영되지 않음(router.push는 자동 반영되므로 수동 처리 안 함)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
+// 문자열 prefix 검사(startsWith('/'))만으로는 `/\evil.com` 같은 입력이 통과한다 —
+// 브라우저가 백슬래시를 슬래시로 정규화해 protocol-relative(외부 origin) URL이 되기 때문.
+// new URL로 실제 파싱해 same-origin만 허용하고, pathname+search만 사용한다.
+function getSafeRedirectTarget(path: string | null): string {
+  if (!path) return '/';
+  try {
+    const url = new URL(path, window.location.origin);
+    if (url.origin !== window.location.origin) return '/';
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return '/';
+  }
 }
 
 function LoginFormInner() {
@@ -268,21 +313,27 @@ function LoginFormInner() {
     setPending(true);
     setError(false);
 
-    const res = await fetch('/api/login/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, password }),
-    });
+    try {
+      const res = await fetch(`${basePath}/api/login/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, password }),
+      });
 
-    if (!res.ok) {
-      setPending(false);
+      if (!res.ok) {
+        setError(true);
+        return;
+      }
+
+      const target = getSafeRedirectTarget(searchParams.get('redirect'));
+      router.push(target);
+      router.refresh(); // 로그인 직후 이동할 페이지의 RSC 캐시를 무효화
+    } catch {
+      // 네트워크 예외 — pending은 finally에서 항상 해제
       setError(true);
-      return;
+    } finally {
+      setPending(false);
     }
-
-    const target = searchParams.get('redirect');
-    router.push(isSafeRedirect(target) ? target : '/');
-    router.refresh(); // 로그인 직후 이동할 페이지의 RSC 캐시를 무효화
   };
 
   return (
@@ -360,11 +411,19 @@ export default function LoginPage() {
 import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 
+// fetch()는 Next.js 라우터를 거치지 않아 basePath가 자동 반영되지 않음(router.push는 자동 반영되므로 수동 처리 안 함)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 export function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await fetch('/api/logout/', { method: 'POST' }); // trailingSlash:true — 슬래시 없으면 308
+    try {
+      const res = await fetch(`${basePath}/api/logout/`, { method: 'POST' }); // trailingSlash:true — 슬래시 없으면 308
+      if (!res.ok) return; // 실패 시 쿠키가 남아있을 수 있어 로그아웃된 것처럼 이동하지 않음(§0.1 #6)
+    } catch {
+      return; // 네트워크 오류 — 동일하게 이동하지 않음
+    }
     router.push('/login/');
     router.refresh();
   };

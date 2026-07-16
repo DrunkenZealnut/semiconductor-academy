@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T02:06:26.743Z",
+  "lastUpdated": "2026-07-16T03:22:32.420Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -31,7 +31,7 @@
       "matchRate": 100,
       "iterationCount": 0,
       "startedAt": "2026-07-15T23:45:43.000Z",
-      "completedAt": "2026-07-16T02:20:00.000Z",
+      "completedAt": "2026-07-16T03:00:00.000Z",
       "branch": "feat/site-login-gate",
       "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/15",
       "cycleType": "security-and-access-control",
@@ -44,12 +44,12 @@
       "decisions": {
         "authApproach": "방식 A(Middleware 서버 인증) 확정 — 사용자 확정 2026-07-16. output:'export' 제거, src/middleware.ts + HMAC-SHA256 쿠키 세션(Web Crypto API)"
       },
-      "summary": "저작권 보호 목적 사이트 전역 로그인 게이트. .env.local 고정 ID/PW + 서명 전용 secret, Middleware 쿠키 인증(30일 세션) 설계 완료.",
+      "summary": "저작권 보호 목적 사이트 전역 로그인 게이트. Middleware 쿠키 인증(30일 세션) 구현·검증·PR #15 오픈 완료. CodeRabbit 리뷰로 발견된 타이밍 사이드채널·Open Redirect 등 6건 수정 반영.",
       "phaseNumber": 6,
       "previousPhase": "check",
       "autoAdvanced": true,
       "timestamps": {
-        "lastUpdated": "2026-07-16T02:06:26.743Z"
+        "lastUpdated": "2026-07-16T03:22:32.420Z"
       }
     },
     "ncs-semiconductor": {
@@ -316,7 +316,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:17:58.360Z",
-        "lastUpdated": "2026-07-16T01:45:52.690Z"
+        "lastUpdated": "2026-07-16T03:22:17.311Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/LogoutButton.tsx"
     },
@@ -342,7 +342,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-16T01:42:50.047Z"
+        "lastUpdated": "2026-07-16T03:22:32.420Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/middleware.ts"
     },
@@ -702,7 +702,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-16T01:42:20.645Z",
-        "lastUpdated": "2026-07-16T01:45:47.909Z"
+        "lastUpdated": "2026-07-16T03:22:28.735Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/auth/LoginForm.tsx"
     },
@@ -715,9 +715,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-16T01:43:03.153Z",
-        "lastUpdated": "2026-07-16T01:43:17.332Z"
+        "lastUpdated": "2026-07-16T03:21:43.318Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/login/page.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/api/login/route.ts"
     },
     "logout": {
       "phase": "do",
@@ -852,13 +852,19 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-16T02:06:26.743Z"
+    "lastActivity": "2026-07-16T03:22:32.420Z"
   },
   "history": [
     {
       "event": "plan_created",
       "feature": "site-login-gate",
       "at": "2026-07-15T23:45:43.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "site-login-gate",
+      "matchRate": 100,
+      "at": "2026-07-16T03:00:00.000Z"
     },
     {
       "event": "feature_completed",
@@ -2539,6 +2545,54 @@
       "timestamp": "2026-07-16T02:06:26.743Z",
       "feature": "site-login-gate",
       "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:21:43.318Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:21:49.597Z",
+      "feature": "auth",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:21:58.825Z",
+      "feature": "auth",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:22:06.457Z",
+      "feature": "auth",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:22:17.311Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:22:27.682Z",
+      "feature": "auth",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:22:28.735Z",
+      "feature": "auth",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T03:22:32.420Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
       "action": "updated"
     }
   ]

@@ -79,7 +79,7 @@
 | ID | 요구사항 |
 |----|----------|
 | NFR-1 | 자격 증명은 서버 측에서만 검증 — 클라이언트 번들에 ID/PW 원문 노출 0 |
-| NFR-2 | 쿠키는 `httpOnly` + `secure` + `sameSite=lax` 설정 |
+| NFR-2 | 쿠키는 `httpOnly` + `secure` + `sameSite=lax` 설정. `secure`는 Production/Preview에서 항상 `true`, localhost 개발 환경(HTTP)에 한해서만 `false` 허용 |
 | NFR-3 | Middleware는 Edge 런타임 호환 코드로 작성 (Node 전용 `crypto` 모듈 직접 사용 금지, Web Crypto API 사용) |
 | NFR-4 | `.env.local`은 절대 커밋하지 않음 (`.gitignore` 기존 규칙으로 이미 보장) — 대신 `.env.local.example`로 필요한 키만 문서화 |
 | NFR-5 | `output: 'export'` 제거 후에도 기존 7개 동적 라우트(`generateStaticParams`) 정상 렌더 |
@@ -93,7 +93,7 @@
 | 구분 | 파일 | 작업 |
 |------|------|------|
 | 수정 | `next.config.mjs` | `output: 'export'` 제거 (Middleware 사용을 위해 필수) |
-| 신규 | `middleware.ts` (프로젝트 루트) | 모든 요청에서 인증 쿠키 검사, 미인증 시 `/login` 리다이렉트 |
+| 신규 | `src/middleware.ts` | 모든 요청에서 인증 쿠키 검사, 미인증 시 `/login` 리다이렉트 |
 | 신규 | `src/app/login/page.tsx` | 로그인 폼 UI |
 | 신규 | `src/app/api/login/route.ts` | ID/PW 검증 후 세션 쿠키 발급 |
 | 신규 | `src/app/api/logout/route.ts` | 쿠키 삭제 |

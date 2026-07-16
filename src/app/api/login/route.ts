@@ -24,12 +24,22 @@ export async function POST(request: Request) {
   const id = typeof body?.id === 'string' ? body.id : '';
   const password = typeof body?.password === 'string' ? body.password : '';
 
-  if (!safeEqual(id, validId) || !safeEqual(password, validPassword)) {
+  // 두 비교를 항상 모두 실행 — ||로 단락 평가하면 ID 정오에 따라 응답 시간이 달라져
+  // 유효한 ID 여부가 타이밍으로 유출될 수 있음
+  const idMatches = safeEqual(id, validId);
+  const passwordMatches = safeEqual(password, validPassword);
+  if (!idMatches || !passwordMatches) {
     // FR-4: 어느 필드가 틀렸는지 노출하지 않음 — 항상 동일 에러
     return NextResponse.json({ error: 'invalid_credentials' }, { status: 401 });
   }
 
-  const token = await createSessionToken();
+  let token: string;
+  try {
+    token = await createSessionToken();
+  } catch {
+    // SITE_AUTH_SESSION_SECRET 미설정/부적합 — 위 ID/PW 체크와 동일한 계약으로 응답
+    return NextResponse.json({ error: 'server_misconfigured' }, { status: 500 });
+  }
   const response = NextResponse.json({ ok: true });
   response.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,

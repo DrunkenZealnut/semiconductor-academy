@@ -3,7 +3,7 @@
 > **Feature**: `site-login-gate`
 > **기간**: 2026-07-16 (Plan → Design → Do → Check → Report 당일 완료)
 > **Status**: ✅ Completed · Match Rate 100%
-> **Branch**: `feat/site-login-gate` (미커밋 — 사용자 요청 시에만 커밋)
+> **Branch**: `feat/site-login-gate` (커밋·푸시 완료 · [PR #15](https://github.com/DrunkenZealnut/semiconductor-academy/pull/15) 오픈)
 
 ---
 
@@ -234,37 +234,41 @@
 - ⏸️ **Vercel Production/Preview 환경변수 미등록**
   - 필요 항목: `SITE_AUTH_ID`, `SITE_AUTH_PASSWORD`, `SITE_AUTH_SESSION_SECRET` (3개)
   - 방법: 로컬 `.env.local`에서 값 복사 후 `vercel env add [키] production`, `vercel env add [키] preview` 실행
-  - 미등록 시: `.env.local`은 로컬 dev 전용이라 배포 환경에는 무방비 노출 (Plan R-2)
+  - 미등록 시: `.env.local`은 로컬 dev 전용이라 배포 환경에서는 (무방비 노출이 아니라) **fail-closed** — 세션이 없으니 Middleware가 모든 보호 경로를 `/login`으로 돌려보내고, ID/PW도 없으니 로그인 API가 `server_misconfigured`를 반환해 아무도 로그인할 수 없다(Plan R-2)
   - 상태: Plan DoD 항목이지만 실행 미완료
 
 - ⏸️ **Preview 배포로 온라인 환경 검증 미실시**
   - 현황: 로컬 dev(`npm run dev`) + curl로만 검증
   - 다음 단계: Vercel Preview 환경에 배포 후 실제 온라인에서 로그인 플로우 재확인 권장
 
-- ⏸️ **커밋 미완료**
-  - 현황: 모든 파일이 워킹 트리 변경 상태 (git add·commit 실행하지 않음)
-  - 규칙: 이 프로젝트의 정책상 사용자가 명시적으로 "커밋해줘"라 요청할 때만 git add/commit 실행
-  - 다음 단계: 사용자 요청 후 진행 → 브랜치: `feat/site-login-gate`, 메시지 예시:
-    ```text
-    feat(auth): 사이트 로그인 게이트 추가 (저작권 보호)
-    
-    - Middleware 서버 인증: src/middleware.ts (세션 쿠키 검증, 미인증 리다이렉트)
-    - 세션 쿠키: HMAC-SHA256 서명 ({exp}.{signature}), Web Crypto API, 30일 만료
-    - Route Handlers: POST /api/login/ (ID/PW 검증), POST /api/logout/ (쿠키 삭제)
-    - 로그인 UI: src/app/login/page.tsx + src/components/auth/LoginForm.tsx
-    - 로그아웃: Header 버튼 + src/components/layout/LogoutButton.tsx
-    - 환경변수: .env.local.example (3개 키: ID, PASSWORD, SESSION_SECRET)
-    
-    Match Rate 100%, build 무오류, 177페이지 SSG 무변경.
-    DoD 완료: 미인증 리다이렉트, 로그인·로그아웃 플로우, 세션 유지, 데이터 파이프라인 회귀 없음.
-    
-    미완료: Vercel env add (사용자가 실행), Preview 배포 검증 (선택).
-    ```
+- ✅ **커밋·푸시·PR 완료**
+  - 브랜치 `feat/site-login-gate` 커밋(`feat(auth): 저작권 보호를 위한 사이트 로그인 게이트 추가`) → 푸시 → **PR #15** 오픈(https://github.com/DrunkenZealnut/semiconductor-academy/pull/15)
+  - PR 오픈 직후 CodeRabbit 자동 리뷰에서 실제 버그 6건 발견 → 전부 수정해 같은 브랜치에 추가 커밋(§ CodeRabbit 리뷰 반영 참고)
+  - 남은 것은 머지 여부 결정과 Vercel 환경변수 등록뿐
 
 - ⏸️ **브라우저 자동화 도구 영향 (참고)**
   - 기존: Chrome 확장·Selenium·Puppeteer 등이 이 사이트를 테스트할 때 로그인 절차 없이 자동 접근 가능했음
   - 현재: 로그인 게이트 도입으로 이들 도구도 먼저 `/api/login/`을 호출해 쿠키를 획득한 후 테스트 실행해야 함
   - 영향도: 낮음 (CI/자동 테스트 파이프라인이 현재 이 저장소에 없으므로)
+
+---
+
+## CodeRabbit 리뷰 반영 (PR #15, 2026-07-16)
+
+PR을 올린 뒤 CodeRabbit이 코드를 직접 실행해가며 리뷰했고, gap-detector의 Design-vs-구현 정합성 검사(Match Rate 100%)로는 잡히지 않던 **로직 자체의 결함**을 6건 찾아냈다. 전부 검증 후 같은 브랜치에 추가 커밋으로 수정했다. 상세 코드는 `docs/02-design/features/site-login-gate.design.md` §0.1 참고.
+
+| # | 발견 | 심각도 | 수정 |
+|:-:|---|:---:|---|
+| 1 | 로그인 라우트 `safeEqual(id,..) \|\| safeEqual(pw,..)`가 `\|\|` 단락 평가로 ID 오류 시 비밀번호 비교를 건너뜀 — **응답 시간으로 유효 ID를 추정 가능**(스스로 만든 타이밍 방어를 스스로 무력화) | 🔴 Major | 두 비교를 항상 모두 실행 후 결합 |
+| 2 | `isSafeRedirect`가 문자열 prefix만 검사해 `/\evil.com`(브라우저가 백슬래시→슬래시로 정규화해 외부 origin이 됨) 같은 **Open Redirect**를 못 거름 | 🔴 Major | `new URL(value, location.origin)` 파싱 후 same-origin만 허용 |
+| 3 | `SITE_AUTH_SESSION_SECRET`만 빠지면 처리되지 않은 예외로 일반 500(계약 위반) | 🟠 Major | 최소 32자 길이 검증 + 로그인 라우트가 try/catch로 `server_misconfigured` 계약 유지 |
+| 4 | 미들웨어가 쿼리스트링 유실 + basePath 미반영 시 리다이렉트가 앱 경로 밖으로 이탈 | 🟠 Major | `pathname+search` 저장, `request.nextUrl.basePath` 반영 |
+| 5 | LoginForm·LogoutButton의 raw fetch가 basePath 미반영 | 🟠 Major | fetch URL에 `NEXT_PUBLIC_BASE_PATH` 수동 접두 |
+| 6 | 로그인·로그아웃 fetch에 예외 처리 없어 네트워크 오류 시 버튼 영구 비활성/거짓 로그아웃 | 🟡 Minor | `try/catch/finally` 추가, 로그아웃은 실패 시 이동하지 않음 |
+
+CodeRabbit 자체 판단(생성형 metadata export 관례 미준수)은 검증 후 **반영하지 않음** — `login/page.tsx`는 동적 파라미터가 없는 정적 페이지라 기존 `chemicals/page.tsx`와 동일하게 정적 `export const metadata`를 쓰는 것이 이 프로젝트의 실제 관례와 일치. `chemicals/page.tsx`도 같은 방식이라 오히려 CodeRabbit의 일반 가이드라인이 이 저장소 실제 패턴과 안 맞는 케이스로 판단.
+
+재검증: `typecheck`·`lint`·`build` 무오류(177페이지 유지), curl로 쿼리스트링 보존·로그인 성공/실패·로그아웃 흐름 재확인.
 
 ---
 

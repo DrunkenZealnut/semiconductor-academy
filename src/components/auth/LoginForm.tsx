@@ -3,8 +3,21 @@
 import { Suspense, useState, type FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-function isSafeRedirect(path: string | null): path is string {
-  return !!path && path.startsWith('/') && !path.startsWith('//');
+// fetch()는 Next.js 라우터를 거치지 않아 basePath가 자동 반영되지 않음(router.push는 자동 반영되므로 수동 처리 안 함)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
+// 문자열 prefix 검사(startsWith('/'))만으로는 `/\evil.com` 같은 입력이 통과한다 —
+// 브라우저가 백슬래시를 슬래시로 정규화해 protocol-relative(외부 origin) URL이 되기 때문.
+// new URL로 실제 파싱해 same-origin만 허용하고, pathname+search만 사용한다.
+function getSafeRedirectTarget(path: string | null): string {
+  if (!path) return '/';
+  try {
+    const url = new URL(path, window.location.origin);
+    if (url.origin !== window.location.origin) return '/';
+    return `${url.pathname}${url.search}`;
+  } catch {
+    return '/';
+  }
 }
 
 function LoginFormInner() {
@@ -20,21 +33,27 @@ function LoginFormInner() {
     setPending(true);
     setError(false);
 
-    const res = await fetch('/api/login/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, password }),
-    });
+    try {
+      const res = await fetch(`${basePath}/api/login/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, password }),
+      });
 
-    if (!res.ok) {
-      setPending(false);
+      if (!res.ok) {
+        setError(true);
+        return;
+      }
+
+      const target = getSafeRedirectTarget(searchParams.get('redirect'));
+      router.push(target);
+      router.refresh(); // 로그인 직후 이동할 페이지의 RSC 캐시를 무효화
+    } catch {
+      // 네트워크 예외 — pending은 finally에서 항상 해제
       setError(true);
-      return;
+    } finally {
+      setPending(false);
     }
-
-    const target = searchParams.get('redirect');
-    router.push(isSafeRedirect(target) ? target : '/');
-    router.refresh(); // 로그인 직후 이동할 페이지의 RSC 캐시를 무효화
   };
 
   return (

@@ -45,7 +45,7 @@ Do 단계에서 발견된 정당한 수정. 코드가 옳고 Design 문서가 �
 | # | 심각도 | 내용 | 처리 |
 |:-:|:---:|---|---|
 | 1 | doc | 의도적 변경 a~d가 Design 문서에 미반영 | ✅ **수정 완료** — Design §2.2·§5.1·§5.2에 반영, 코드 블록 최종본으로 교체 |
-| 2 | observe | login route가 `SITE_AUTH_SESSION_SECRET` 미설정 시 `createSessionToken()`에서 미포착 예외→500(ID/PW만 사전 검사) | Design과 동일 구조(설계도 미검사) → 구현 갭 아님. env 3키 등록이 DoD 항목이라 실무 위험 낮음. 후속 견고화 후보로만 기록 |
+| 2 | fixed | login route가 `SITE_AUTH_SESSION_SECRET` 미설정 시 `createSessionToken()`에서 미포착 예외→500(ID/PW만 사전 검사) | ✅ **PR #15 CodeRabbit 리뷰로 재발견·수정 완료** — 이 분석 시점엔 "Design과 동일 구조라 갭 아님"으로 보류했으나, CodeRabbit이 동일 지점을 Major로 재지적해 재검토 후 수정(로그인 라우트가 `createSessionToken()`을 try/catch로 감싸 동일 `server_misconfigured` 계약으로 응답) |
 | 3 | observe | `next.config.mjs`의 "GitHub Pages용 basePath" 주석 잔존 | Plan R-6이 이미 인지한 범위 밖 사항(CLAUDE.md 갱신은 별도 후속) — 이번 기능 갭 아님 |
 
 ---
@@ -64,3 +64,13 @@ Do 단계에서 발견된 정당한 수정. 코드가 옳고 Design 문서가 �
 ## 결론
 
 Match Rate **100%** ≥ 90% — **iterate 불필요, Report 진행 가능**. 파일 대 설계 비교에서 기능·보안 갭 0건. 유일한 실행 항목이던 "Design 문서를 의도적 변경에 맞춰 갱신"은 이 분석 직후 완료했다. observe 2건(SESSION_SECRET 미검사·주석 잔존)은 설계와 동일 구조이거나 범위 밖이라 후속 판단으로 남긴다.
+
+---
+
+## 추가: PR #15 CodeRabbit 리뷰 반영 (2026-07-16)
+
+이 분석(Design vs 구현 정합성 비교)은 100%였지만, PR을 올린 뒤 CodeRabbit이 **정합성이 아니라 로직 자체의 결함**을 다수 발견했다 — gap-detector와 이 분석은 "설계대로 구현됐는가"만 봤고, "설계·구현이 함께 갖고 있던 버그"는 검출 범위 밖이었다는 뜻이다.
+
+실제로 고친 것: 로그인 라우트의 `||` 단락 평가로 인한 타이밍 사이드채널(ID 유효성 추정 가능), `isSafeRedirect`의 백슬래시 기반 Open Redirect, SESSION_SECRET 누락/약함 시 처리되지 않은 500(위 gap #2), 리다이렉트 쿼리스트링·basePath 유실, fetch 네트워크 예외 미처리. 전부 `docs/02-design/features/site-login-gate.design.md` §0.1에 정리하고 코드에 반영, `typecheck`·`lint`·`build`·curl 재검증 통과.
+
+**교훈**: Design-vs-Implementation Match Rate 100%는 "설계를 충실히 구현했다"는 뜻이지 "설계가 안전하다"는 뜻이 아니다. 인증·리다이렉트처럼 보안이 걸린 로직은 별도의 적대적 검토(제3자 리뷰, 시큐리티 체크리스트)가 필요하다.
