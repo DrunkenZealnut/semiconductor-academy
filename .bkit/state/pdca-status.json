@@ -32,6 +32,8 @@
       "iterationCount": 0,
       "startedAt": "2026-07-15T23:45:43.000Z",
       "completedAt": "2026-07-16T02:20:00.000Z",
+      "branch": "feat/site-login-gate",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/15",
       "cycleType": "security-and-access-control",
       "documents": {
         "plan": "docs/01-plan/features/site-login-gate.plan.md",
