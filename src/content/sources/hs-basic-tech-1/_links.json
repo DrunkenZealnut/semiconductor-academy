@@ -1,0 +1,11 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체기초기술1」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_BASIC_TECH_1.sections. 5과목 묶음 중 압축가스를 직접 다루는 공압 모듈만 최소 태깅 — 전자소자/기계가공/설계제도/프로그래밍과 hydraulics-equipment(액체 유압이라 gas-safety 어휘 비대상)는 통제 어휘와 접점이 없어 태깅 생략, 대신 본문 SourceRef로 NCS 장비 트랙에 직접 연결(링크 미노출이 정상).",
+  "pneumatics-basics": {
+    "topics": ["gas-safety", "engineering-controls"],
+    "hazards": ["compressed-gas"]
+  },
+  "pneumatics-equipment": {
+    "topics": ["gas-safety", "engineering-controls"],
+    "hazards": ["compressed-gas"]
+  }
+}
