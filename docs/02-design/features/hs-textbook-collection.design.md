@@ -108,7 +108,7 @@ const standalone = sources.filter((s) => !s.category);        // 책·OSHA·NCS
 const textbooks = sources.filter((s) => s.category === 'hs-textbook');
 ```
 
-```
+```text
 자료원 선택 / 어느 자료부터 살펴볼까요?
 [학술서]  [OSHA]      ← standalone 기존 카드 그대로 (sm:grid-cols-2)
 [NCS]

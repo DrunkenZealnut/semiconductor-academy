@@ -53,7 +53,7 @@ export function listSchoolTextSourceIds(): string[] {
 
 /** 공용 라우트가 이 자료원을 담당하는지 — REGISTRY 키 멤버십 */
 export function isSchoolTextSource(sourceId: string): boolean {
-  return sourceId in REGISTRY;
+  return Object.prototype.hasOwnProperty.call(REGISTRY, sourceId);
 }
 
 /** 이 모듈에 대한 로더가 등록돼 있는지 — sections↔REGISTRY 정합성 검증용 */
