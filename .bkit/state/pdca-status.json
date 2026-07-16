@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T09:40:53.481Z",
+  "lastUpdated": "2026-07-16T14:00:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -785,7 +785,9 @@
       "autoAdvanced": true,
       "timestamps": {
         "lastUpdated": "2026-07-16T09:04:54.362Z"
-      }
+      },
+      "branch": "feat/hs-basic-tech-1",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/17 (base: feat/hs-textbook-collection, #16 병합 후 재타겟 필요)"
     }
   },
   "pipeline": {
