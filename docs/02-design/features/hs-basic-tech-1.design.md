@@ -7,7 +7,7 @@
 
 ## 1. 아키텍처 확장 — 신규 인프라 없음
 
-`hs-textbook-collection` 사이클이 만든 카테고리 공용 골격을 그대로 재사용한다. 이번 사이클에서 코드 신규 파일은 **0개** — `sources.ts`·`schoolTextMdx.tsx`에 항목만 추가한다.
+`hs-textbook-collection` 사이클이 만든 카테고리 공용 골격을 그대로 재사용한다. 이번 사이클에서 코드 신규 파일은 **0개** — `sources.ts`·`schoolTextMdx.tsx`에 항목만 추가하고, `src/app/sources/[source]/[module]/page.tsx`의 `sections↔REGISTRY` 빌드 타임 정합성 검증(§7 구현 순서 참고)도 이번 변경 범위에 포함된다.
 
 | 확장 지점 | 현황 | 조치 |
 |---|---|---|
@@ -70,7 +70,7 @@ export const HS_BASIC_TECH_1: Source = {
 
 파일럿 모듈 "전자 소자"는 원문 물리 페이지가 순환 배치돼 있어 **아래 순서로 정독**한다(라인 번호는 원문 OCR 파일 기준):
 
-```
+```text
 ① 4501~4514행: 표지·학습안내·학습목표
 ② 4514~4570행: 가. 저항기 — 옴의 법칙, 색띠 저항 코드표
 ③ 4570~4620행: 나. 커패시터 — C=εA/l, 정전용량 읽는 법

@@ -58,7 +58,8 @@ export function isSchoolTextSource(sourceId: string): boolean {
 
 /** 이 모듈에 대한 로더가 등록돼 있는지 — sections↔REGISTRY 정합성 검증용 */
 export function hasModuleLoader(sourceId: string, moduleId: string): boolean {
-  return moduleId in (REGISTRY[sourceId] ?? {});
+  const registry = REGISTRY[sourceId];
+  return registry !== undefined && Object.prototype.hasOwnProperty.call(registry, moduleId);
 }
 
 export async function loadSchoolTextMdx(
