@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T03:22:32.420Z",
+  "lastUpdated": "2026-07-16T11:31:00.324Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -22,9 +22,10 @@
     "site-login-gate",
     "auth",
     "login",
-    "logout"
+    "logout",
+    "hs-textbook-collection"
   ],
-  "primaryFeature": "site-login-gate",
+  "primaryFeature": "hs-textbook-collection",
   "features": {
     "site-login-gate": {
       "phase": "completed",
@@ -316,9 +317,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:17:58.360Z",
-        "lastUpdated": "2026-07-16T03:22:17.311Z"
+        "lastUpdated": "2026-07-16T05:21:45.702Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/LogoutButton.tsx"
+      "lastFile": "src/components/layout/LearningPathSection.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -331,7 +332,7 @@
         "started": "2026-05-29T08:18:42.668Z",
         "lastUpdated": "2026-05-29T08:18:42.668Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapters/page.tsx"
+      "lastFile": "src/app/chapters/page.tsx"
     },
     "SemiconductorAcademy": {
       "phase": "do",
@@ -342,9 +343,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-16T03:22:32.420Z"
+        "lastUpdated": "2026-07-16T11:31:00.324Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/middleware.ts"
+      "lastFile": "src/lib/schoolTextMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -357,7 +358,7 @@
         "started": "2026-05-29T13:14:23.400Z",
         "lastUpdated": "2026-05-29T13:14:23.400Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/content/LayeredExplain.tsx"
+      "lastFile": "src/components/content/LayeredExplain.tsx"
     },
     "quote-index": {
       "phase": "do",
@@ -370,7 +371,7 @@
         "started": "2026-05-30T00:44:35.624Z",
         "lastUpdated": "2026-05-30T12:16:35.406Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/quote-index/QuoteIndex.tsx"
+      "lastFile": "src/components/quote-index/QuoteIndex.tsx"
     },
     "quotes": {
       "phase": "do",
@@ -383,7 +384,7 @@
         "started": "2026-05-30T00:45:30.233Z",
         "lastUpdated": "2026-05-30T05:20:26.039Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/quotes/page.tsx"
+      "lastFile": "src/app/quotes/page.tsx"
     },
     "sources": {
       "phase": "do",
@@ -394,9 +395,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-30T01:43:08.529Z",
-        "lastUpdated": "2026-07-15T07:36:02.452Z"
+        "lastUpdated": "2026-07-16T05:21:22.298Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/sources/SourceRef.tsx"
+      "lastFile": "src/components/sources/SourcePicker.tsx"
     },
     "[source]": {
       "phase": "do",
@@ -409,7 +410,7 @@
         "started": "2026-05-30T01:44:09.275Z",
         "lastUpdated": "2026-07-14T08:56:12.671Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/page.tsx"
+      "lastFile": "src/app/sources/[source]/page.tsx"
     },
     "[part]": {
       "phase": "do",
@@ -422,7 +423,7 @@
         "started": "2026-05-30T01:46:15.630Z",
         "lastUpdated": "2026-06-02T07:11:46.066Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/osha-scs/[part]/page.tsx"
+      "lastFile": "src/app/sources/osha-scs/[part]/page.tsx"
     },
     "cross-link": {
       "phase": "do",
@@ -435,7 +436,7 @@
         "started": "2026-05-30T02:28:01.897Z",
         "lastUpdated": "2026-07-14T08:55:52.090Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/cross-link/RelatedItemCard.tsx"
+      "lastFile": "src/components/cross-link/RelatedItemCard.tsx"
     },
     "[slug]": {
       "phase": "do",
@@ -448,7 +449,7 @@
         "started": "2026-05-30T02:31:51.345Z",
         "lastUpdated": "2026-05-30T02:31:56.642Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chapter/[slug]/page.tsx"
+      "lastFile": "src/app/chapter/[slug]/page.tsx"
     },
     "[id]": {
       "phase": "do",
@@ -461,7 +462,7 @@
         "started": "2026-05-30T02:32:29.657Z",
         "lastUpdated": "2026-05-30T02:32:35.766Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/chemicals/[id]/page.tsx"
+      "lastFile": "src/app/chemicals/[id]/page.tsx"
     },
     "ui": {
       "phase": "do",
@@ -474,7 +475,7 @@
         "started": "2026-05-30T12:15:31.802Z",
         "lastUpdated": "2026-05-30T12:15:31.802Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/ui/Chip.tsx"
+      "lastFile": "src/components/ui/Chip.tsx"
     },
     "osha-ko-part-4": {
       "phase": "completed",
@@ -550,9 +551,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-07-12T02:14:52.667Z",
-        "lastUpdated": "2026-07-14T08:57:01.513Z"
+        "lastUpdated": "2026-07-16T05:20:48.243Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/daegu-hs-process/[module]/page.tsx"
+      "lastFile": "src/app/sources/[source]/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
@@ -598,7 +599,7 @@
         "started": "2026-07-13T05:32:07.858Z",
         "lastUpdated": "2026-07-13T05:34:12.416Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/scripts/ncs/extract-figures.py"
+      "lastFile": "scripts/ncs/extract-figures.py"
     },
     "ncs-image-expansion — Phase 0~2 Gap 분석": {
       "phase": "act",
@@ -704,7 +705,7 @@
         "started": "2026-07-16T01:42:20.645Z",
         "lastUpdated": "2026-07-16T03:22:28.735Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/auth/LoginForm.tsx"
+      "lastFile": "src/components/auth/LoginForm.tsx"
     },
     "login": {
       "phase": "do",
@@ -717,7 +718,7 @@
         "started": "2026-07-16T01:43:03.153Z",
         "lastUpdated": "2026-07-16T03:21:43.318Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/api/login/route.ts"
+      "lastFile": "src/app/api/login/route.ts"
     },
     "logout": {
       "phase": "do",
@@ -730,7 +731,37 @@
         "started": "2026-07-16T01:43:04.107Z",
         "lastUpdated": "2026-07-16T01:43:04.107Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/api/logout/route.ts"
+      "lastFile": "src/app/api/logout/route.ts"
+    },
+    "hs-textbook-collection": {
+      "phase": "completed",
+      "matchRate": 97.6,
+      "iterationCount": 0,
+      "startedAt": "2026-07-16T04:10:00.000Z",
+      "inherits": "daegu-hs-textbook(교과서 자료원 패턴 원형) + multi-source-learning-platform(Source 레지스트리·라우팅) + cross-link-system(통제 어휘) + ncs-semiconductor(트랙 그룹핑)",
+      "cycleType": "category-infra-and-source-roadmap",
+      "documents": {
+        "plan": "docs/01-plan/features/hs-textbook-collection.plan.md",
+        "design": "docs/02-design/features/hs-textbook-collection.design.md",
+        "analysis": "docs/03-analysis/hs-textbook-collection.analysis.md",
+        "report": "docs/04-report/hs-textbook-collection.report.md"
+      },
+      "decisions": {
+        "categoryUI": "A안 홈 그룹 섹션 확정 (2026-07-16) — 허브 페이지 기각",
+        "pilot": "A안 반도체 기초(렛유인) 확정 — 로드맵 §5.3 학습 위계 순서",
+        "cycleSplit": "권별 개별 feature 분할 확정 — 이번 사이클은 인프라+파일럿 1권",
+        "copyright": "전 권 daegu 원칙 일괄(전면 재작성·이미지 0·출처 표기) 확정"
+      },
+      "doSummary": "Phase 0 완주: SourceCategory 인프라 + SourcePicker 카테고리 그룹 + 공용 [source]/[module] 라우트/통합 로더(schoolTextMdx) + 파일럿 「반도체 기초」(hs-semicon-basics) 10모듈 전체 MDX(3단 레이어 전면 재작성·이미지 0·출처 표기) + _links.json 4모듈 태깅. 빌드 188페이지 무오류, 스모크 10/10 통과.",
+      "phaseNumber": 6,
+      "previousPhase": "check",
+      "autoAdvanced": true,
+      "timestamps": {
+        "lastUpdated": "2026-07-16T04:59:40.773Z"
+      },
+      "completedAt": "2026-07-16T09:00:00.000Z",
+      "branch": "feat/hs-textbook-collection",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/16"
     }
   },
   "pipeline": {
@@ -852,7 +883,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-16T03:22:32.420Z"
+    "lastActivity": "2026-07-16T11:31:00.324Z"
   },
   "history": [
     {
@@ -2591,6 +2622,186 @@
     },
     {
       "timestamp": "2026-07-16T03:22:32.420Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:19:22.297Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:19:26.398Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:19:28.386Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:19:52.211Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:19:54.108Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:04.674Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:10.673Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:17.133Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:21.950Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:39.582Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:20:53.460Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:21:03.986Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:43:28.041Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:43:32.980Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T04:59:40.773Z",
+      "feature": "hs-textbook-collection",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:20:39.950Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:20:48.243Z",
+      "feature": "[module]",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:20:54.675Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:20:57.378Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:08.133Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:11.904Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:15.197Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:18.022Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:20.384Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:22.298Z",
+      "feature": "sources",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:32.205Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:37.369Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:21:45.702Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T05:22:08.289Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-16T11:31:00.324Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
