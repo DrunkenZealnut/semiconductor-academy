@@ -15,7 +15,7 @@
 
 | 항목 | 내용 |
 |------|------|
-| **Feature** | 반도체고 교과서 9권(합계 약 46,700줄 OCR) 중 파일럿 1권 「반도체 기초」(조우현·김준호, 렛유인)의 전 모듈 재구성 + 카테고리 인프라 완성 |
+| **Feature** | 반도체고 교과서 9권(daegu 포함 합계 약 50,400줄 OCR) 중 파일럿 1권 「반도체 기초」(조우현·김준호, 렛유인)의 전 모듈 재구성 + 카테고리 인프라 완성 |
 | **상속** | `daegu-hs-textbook`(2026-07-14, Match Rate 96%) 사이클의 "동일한 방식" 선례 재사용 — 신규 8권 로드맵의 모범 사례 |
 | **범위** | Phase 0: 카테고리 신설(`SourceCategory`) + 홈 UI 개편(그룹 섹션) + 공용 라우트·로더 구축 + 파일럿 1권 10모듈 전량 완주 |
 | **시작 일시** | 2026-07-16 |
@@ -25,7 +25,7 @@
 
 ### 1.2 결과 요약
 
-```
+```text
 ┌──────────────────────────────────────────┐
 │  Design Match Rate: 97.6% ✅             │
 ├──────────────────────────────────────────┤
@@ -39,7 +39,7 @@
 
 | 관점 | 내용 |
 |------|------|
-| **Problem** | `data/school-text/`에 반도체고 교과서 8권(daegu 포함 9권, 46,700줄)이 OCR 추출되어 있으나 사이트 미반영. 기존 daegu는 4개 자료원 중 1카드일 뿐 "교과서 묶음" 개념이 없고, 9권으로 늘면 홈 자료원 카드가 12장 flat 나열돼 선택 UX가 무너진다. |
+| **Problem** | `data/school-text/`에 반도체고 교과서 8권(daegu 포함 9권, 신규 8권 기준 약 46,700줄)이 OCR 추출되어 있으나 사이트 미반영. 기존 daegu는 4개 자료원 중 1카드일 뿐 "교과서 묶음" 개념이 없고, 9권으로 늘면 홈 자료원 카드가 12장 flat 나열돼 선택 UX가 무너진다. |
 | **Solution** | **"반도체 고등학교 교과서" 카테고리**를 신설(`SourceCategory: 'hs-textbook'`)해 daegu + 신규 8권을 홈에서 한 묶음으로 관리. 카테고리 그룹 섹션(amber 보더·GraduationCap 아이콘) 렌더로 권별 카드 밀도를 개선. 각 권은 **공용 모듈 라우트**(`[source]/[module]`)로 라우팅하며, 신규 로더(`schoolTextMdx.tsx`)에 권 단위 등록만으로 확장 가능하게 구축. 파일럿 「반도체 기초」는 daegu 방식을 그대로 승계해 10모듈 전량 3단 레이어(Hook/Easy/Deep)로 재작성. |
 | **Function·UX Effect** | 홈 "자료원 선택"에서 **"반도체 고등학교 교과서" 그룹 섹션**이 표시되고, 그 안에 권별 컴팩트 카드가 표시(반도체 기초 → 공정기초 순, 9권 확대 시에도 이 그룹 안에 자연 누적). 학생이 자신의 교과서를 선택하면 `/sources/hs-semicon-basics/` 인덱스(3대단원 트랙 그룹) + 모듈 페이지(3단 레이어, 이전/다음, cross-link)로 단원 순서대로 학습 가능. 권 추가 비용: MDX 파일 + 로더 항목 1줄 + sections 등록(기존 라우트 복제 불필요). |
 | **Core Value** | 반도체고 실제 교과 과정 "기초→공정→후공정→장비→인프라"가 사이트와 1:1로 맞물리는 **"학습 플랫폼"** 의 확장 골격 완성. daegu 단권 보조자료를 넘어 **전 교과 학습 체계**로 진화하는 첫 단추. 신규 8권의 로드맵 가시화와 권별 사이클 착수 기준 문서화로, 후속 권들의 체계적 확대를 보장. |
@@ -230,7 +230,7 @@
 | 공용 모듈 라우트 | `src/app/sources/[source]/[module]/page.tsx` | ✅ |
 | 파일럿 콘텐츠 (10모듈) | `src/content/sources/hs-semicon-basics/*.mdx` (1,478줄) | ✅ |
 | cross-link 태깅 | `src/content/sources/hs-semicon-basics/_links.json` | ✅ |
-| 학습동선 개선 | `src/components/home/LearningPathSection.tsx` | ✅ |
+| 학습동선 개선 | `src/components/layout/LearningPathSection.tsx` | ✅ |
 
 ---
 
@@ -305,7 +305,7 @@
 ### 6.2 구현 검증 (파일럿 10모듈)
 
 **각 모듈별 구성**:
-```
+```text
 ✅ Callout(학습목표) — 원본 재서술
 ✅ LayeredExplain — Hook(질문) / Easy(비유·자체 다이어그램) / Deep(정의·원리, 인용 X)
 ✅ 본문 섹션 — GFM 표로 데이터 재배열 (원문 표 구조는 새로)
@@ -446,7 +446,7 @@
 | daegu 라우트 공용화 | daegu·NCS·OSHA 3개 라우트를 `[source]/[module]`로 통합 (이관 리팩터 사이클) | 코드 정리, 선택 사항 |
 | QuoteIndex 번들 최적화 | 8권 완료 후 SOURCES 레지스트리 코드 분할 (현재 ~1KB → 예상 ~25-30KB) | 번들 사이즈 개선, P7 후속 추천 |
 | MDX 출처 템플릿 일괄 | 10회 복붙 패턴을 컴포넌트·헬퍼로 통합 (daegu·NCS 기존 104파일 포함) | 유지보수성 향상, P2 권 착수 전 고려 |
-| 교과서 간 모듈 중복 검사 | 포토공정이 daegu·포토에칭 양쪽에 존재하는 경우 cross-link로만 갈음(중복 재작성 금지) | 콘텐츠 품질 | P3 이후 자동 |
+| 교과서 간 모듈 중복 검사 | 포토공정이 daegu·포토에칭 양쪽에 존재하는 경우 cross-link로만 갈음(중복 재작성 금지) | 콘텐츠 품질 · P3 이후 자동 |
 
 ---
 
@@ -471,7 +471,7 @@
 - `src/lib/sources.ts`: `SOURCES` 배열 순서 변경 (EPI_BOOK·OSHA·NCS → HS_SEMI_BASICS·DAEGU_HS)
 - `src/components/sources/SourcePicker.tsx`: 카테고리 그룹 섹션 렌더(amber 보더·GraduationCap·공통 뱃지)
 - `src/components/sources/SourcePicker.tsx`: PERSPECTIVE 뱃지 정리(교과서 공통 "교과" 뱃지) + 카피 갱신
-- `src/components/home/LearningPathSection.tsx`: 학습동선 step 기준 「반도체 기초」로 갱신
+- `src/components/layout/LearningPathSection.tsx`: 학습동선 step 기준 「반도체 기초」로 갱신
 
 **Quality**:
 - `/simplify` 리팩터링 8건 적용: `isSchoolTextSource()` predicate·`disclosureFor()` 템플릿·주석 교정·헬퍼 재사용·컴포넌트화
@@ -492,7 +492,7 @@
   - `src/content/sources/hs-semicon-basics/*.mdx` (신규 10파일)
   - `src/content/sources/hs-semicon-basics/_links.json` (신규)
   - `src/components/sources/SourcePicker.tsx` (수정)
-  - `src/components/home/LearningPathSection.tsx` (수정)
+  - `src/components/layout/LearningPathSection.tsx` (수정)
 
 ### 11.2 빌드 검증
 
@@ -548,7 +548,7 @@ Next.js 정적 세그먼트 우선 원칙 재확인:
 
 4. ✅ **저작권 안전의 전사적 일관화**
    - 렛유인·크리아트·에이치앤지·충남고·서울시교육청 발행처 5곳을 daegu 최보수 기준으로 일괄
-   - 원문 이미지·문장 미사용·출처 표기로 법적 리스크 제로
+   - 원문 이미지·문장 미사용·출처 표기는 위험 완화책이며, 발행처별 이용허락 확인 전까지는 잔여 리스크가 존재함
 
 5. ✅ **코드 품질의 자체 상향**
    - /simplify 리팩터링 8건 적용으로 타입 강제·주석 개선·컴포넌트 일관화
