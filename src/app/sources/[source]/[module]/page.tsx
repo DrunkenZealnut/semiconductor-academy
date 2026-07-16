@@ -21,7 +21,12 @@ import { SOURCE_CATEGORY_LABELS, SOURCE_KIND_LABELS } from '@/lib/types';
 export function generateStaticParams() {
   return listSchoolTextSourceIds().flatMap((sourceId) => {
     const source = getSource(sourceId);
-    if (!source) return [];
+    if (!source) {
+      throw new Error(
+        `[sources/[source]/[module]] ${sourceId}: REGISTRY에 등록됐지만 ` +
+          `sources.ts SOURCES에 자료원 메타데이터가 없습니다.`,
+      );
+    }
     return source.sections.map((s) => {
       if (!hasModuleLoader(sourceId, s.id)) {
         throw new Error(
