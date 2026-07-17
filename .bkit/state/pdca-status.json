@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-16T22:37:55.229Z",
+  "lastUpdated": "2026-07-17T03:06:20.790Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -25,10 +25,36 @@
     "logout",
     "hs-textbook-collection",
     "hs-basic-tech-1",
-    "hs-basic-tech-2"
+    "hs-basic-tech-2",
+    "hs-photo-etch"
   ],
-  "primaryFeature": "hs-basic-tech-2",
+  "primaryFeature": "hs-photo-etch",
   "features": {
+    "hs-photo-etch": {
+      "phase": "report",
+      "matchRate": 100,
+      "iterationCount": 0,
+      "startedAt": "2026-07-17T00:30:00.000Z",
+      "inherits": "hs-basic-tech-2(압축 전략·병렬 Do·특칙 설계, 100%) + hs-basic-tech-1(94.8%) + hs-textbook-collection(카테고리 인프라, 97.6%) + daegu-hs-textbook(재구성 원형)",
+      "roadmapPosition": "hs-textbook-collection.plan.md §5.3 P3 — 비고 'daegu cross-link 필수'",
+      "cycleType": "category-new-volume",
+      "documents": {
+        "plan": "docs/01-plan/features/hs-photo-etch.plan.md",
+        "design": "docs/02-design/features/hs-photo-etch.design.md",
+        "analysis": "docs/03-analysis/hs-photo-etch.analysis.md"
+      },
+      "keyFindings": "7,242줄(시리즈 최대)·페이지 1~274 정순(순환 배치 없음). 5대단원 15중단원 확정. 최대 이슈: 15중 5개 중단원이 상용 장비 모델(니콘 NSR-2205i11D·MARK-7 트랙·TE8500 에처) 매뉴얼형 → 장비 유형 일반화 특칙 필요. 포토·에칭 주제는 daegu·Process·책과 사이트 내 최다 중복 — '장비 기술자의 눈' 각도로 3중 관점 차별화. 유해인자 접점 시리즈 최다(감광액 177회·HMDS·CF₄·SF₆·Cl₂·HBr·클린룸). 판권: 박기주 외 4인, 에이치앤지, 충북교육청 인정(2019-12-26, 15-충북-63-고교-19-002), 2020.3.1 초판.",
+      "pendingDecisions": "없음",
+      "designSummary": "15모듈 라인 경계를 페이지 마커(인쇄 페이지 일치 확인) 대조로 정밀 확정(파일럿 process-overview 59~198행, 최대 etch-process 3196~4362행 1,167줄). RT 합 171분. 특유 규칙 6건: 장비 모델 일반화 특칙(#7·8·9·13·14 — 조작 시퀀스 재현 금지·3축 재구성·TE8500 표기 통일), 장비 기술자 각도, 유해인자 ChapterRef 연결(ch8·ch9), 실습 압축(#10·#15, 연번 1~10), etch-process 5절 구성, OCR 오식 대응. cross-link 후보표 15모듈(Do 본문 실증 확정) + daegu SourceRef 2·책 ChapterRef 2·NCS 2+ 매핑. Process 페이지 직접 연결은 수단 부재로 범위 명확화(책 챕터가 유해인자 관점 대표). 병렬 6배치(Ⅳ.1 단독 배정).",
+      "doSummary": "5대단원 15모듈 전량 완주. 파일럿 process-overview 직접 작성·게이트 통과 후 6배치 병렬 Sonnet 서브에이전트(1차 투입은 세션 pause와 겹쳐 6배치 전원 스톨 실패·산출물 0으로 재투입, 2차 전원 성공). 전건 Fable 리뷰 — 경계 이슈 2건 현장 해결(Ⅳ 도입부 3116~3195 개념의 etch-process 반영 확인 / Ⅴ.2 실제 시작 5806행 확인·F 배치가 커버), F 보고로 발견된 배정 라벨 밖 실습 2건(구성도 그리기·Upper Chamber)을 etch-practice에 사후 편입(실습 7종 전건 커버·안전 항목 8건 추가 보존). 장비 특칙 검증: 조작 시퀀스 패턴 15모듈 0건, 모델명 사례 수준(MARK-7 3·NSR 4·TE8500 3~5회, footer 포함). 근접 패러프레이즈 스캔 3건 중 1건 재작성(fab-cleanroom 정의문)·2건 허용(구성명 나열), 재스캔 0. 게이트: typecheck/lint 0, build 233페이지, cross-link 8 sources·118 sections·752 edges, quotes 회귀 0, 렌더 15/15·인덱스 5트랙·홈 5번째 카드·ChapterRef ch8/ch9 렌더·cross-link 자동 연결 확인.",
+      "checkSummary": "gap-detector 26항목 대조 — 최초 산출 ✅25 ⚠️1 ❌0(98.1%, 유일 ⚠️는 photo-practice 원문 전건 커버 미검증 — 원문이 gitignore라 에이전트 접근 불가). 오케스트레이터가 원문 전수 대조로 같은 세션 종결: Ⅲ.3 실습 3건이 전량('실습과제 2~5' 라벨 원문 전체 부재, 연번 체계 불연속 확인) → 26/26 ✅, Match Rate 100%. 설계 §3 #10·#15 비고 실측값 갱신. Positive 4건(실습 7종 확장·Ⅴ.2 경계 실측 보정·태깅 실증 확장·hmds 후보 정확 제외). iterate 불필요, report 진행 권고.",
+      "phaseNumber": 6,
+      "previousPhase": "check",
+      "timestamps": {
+        "lastUpdated": "2026-07-17T03:06:20.790Z"
+      },
+      "autoAdvanced": true
+    },
     "hs-basic-tech-2": {
       "phase": "completed",
       "matchRate": 100,
@@ -373,9 +399,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-16T22:16:29.691Z"
+        "lastUpdated": "2026-07-17T02:40:06.517Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/schoolTextMdx.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
     },
     "content": {
       "phase": "do",
@@ -940,7 +966,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-16T22:37:55.229Z"
+    "lastActivity": "2026-07-17T03:06:20.790Z"
   },
   "history": [
     {
@@ -2974,6 +3000,42 @@
     {
       "timestamp": "2026-07-16T22:37:55.229Z",
       "feature": "hs-basic-tech-2",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T01:00:29.338Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T01:00:31.591Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T02:36:20.041Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T02:36:25.953Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T02:40:06.517Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T03:06:20.790Z",
+      "feature": "hs-photo-etch",
       "phase": "report",
       "action": "updated"
     }

@@ -1,0 +1,50 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 포토·에칭」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_PHOTO_ETCH.sections. 시리즈 최소 태깅 원칙(본문 실증 기준)을 따르되, 이 권은 주제가 통제 어휘와 정면 교차해 전 모듈 태깅 — photolithography/etching 축으로 책(ch8·ch9)·daegu(photo·etch)·NCS 포토·에칭 트랙과 자동 상호 연결된다. chemicals는 본문에 실제 등장·서술된 것만(hmds — photo-process 7회 / chlorine — etch-process Cl₂ 서술).",
+  "process-overview": {
+    "topics": ["wafer-fab"]
+  },
+  "photo-process": {
+    "topics": ["photolithography", "liquid-chemicals"],
+    "chemicals": ["hmds"]
+  },
+  "photomask": {
+    "topics": ["photolithography"]
+  },
+  "fab-cleanroom": {
+    "topics": ["cleanroom", "ppe"]
+  },
+  "track-equipment": {
+    "topics": ["photolithography", "liquid-chemicals"]
+  },
+  "exposure-equipment": {
+    "topics": ["photolithography"]
+  },
+  "stepper-structure": {
+    "topics": ["photolithography"]
+  },
+  "track-operation": {
+    "topics": ["photolithography", "liquid-chemicals"]
+  },
+  "stepper-operation": {
+    "topics": ["photolithography"]
+  },
+  "photo-practice": {
+    "topics": ["photolithography", "liquid-chemicals"]
+  },
+  "etch-process": {
+    "topics": ["etching", "gas-safety", "liquid-chemicals"],
+    "chemicals": ["chlorine"]
+  },
+  "etch-equipment": {
+    "topics": ["etching", "gas-safety", "engineering-controls"]
+  },
+  "etcher-structure": {
+    "topics": ["etching"]
+  },
+  "etcher-maintenance": {
+    "topics": ["etching", "gas-safety", "engineering-controls"]
+  },
+  "etch-practice": {
+    "topics": ["etching"]
+  }
+}

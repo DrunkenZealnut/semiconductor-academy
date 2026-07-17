@@ -1256,6 +1256,153 @@ export const HS_BASIC_TECH_2: Source = {
   ],
 };
 
+/**
+ * 반도체고 교과서 「반도체 포토·에칭」 — 포토·에칭 공정과 장비의 구조·운용·정비
+ * (2015 개정 교육과정, 충청북도교육청 인정 2019-12-26). 원자료
+ * data/school-text/20260415_163233_반도체_포토에칭_에이치앤지_/ 전면 재작성
+ * (daegu 저작권 원칙 일괄). 원문 페이지 배치 정순.
+ * ⚠️ 장비 모델(NSR-2205i11D·MARK-7·TE8500) 매뉴얼형 5개 중단원은
+ * "장비 유형 일반화 특칙"(Design §4) 적용 — 조작 시퀀스 재현 금지.
+ * 확장: `src/content/sources/hs-photo-etch/{module}.mdx` 작성 + `schoolTextMdx.tsx`
+ * 로더 등록 + 아래 sections에 목차 순서대로 추가 (완성 모듈만).
+ */
+export const HS_PHOTO_ETCH: Source = {
+  id: 'hs-photo-etch',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 포토·에칭',
+  subtitle:
+    '반도체고 교과서 — 포토·에칭 공정부터 트랙·스테퍼·에처 장비의 구조·운용·정비까지',
+  attribution: '박기주 외 4인',
+  publisher: '에이치앤지',
+  license: 'fair-use',
+  order: 8,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'process-overview',
+      href: '/sources/hs-photo-etch/process-overview/',
+      title: '반도체 공정의 개요',
+      summary: '8대 공정의 큰 흐름 속에서 포토·에칭이 맡는 자리 찾기',
+      readingTime: 8,
+      group: '반도체 포토 공정',
+    },
+    {
+      id: 'photo-process',
+      href: '/sources/hs-photo-etch/photo-process/',
+      title: '반도체 포토 공정의 개요',
+      summary: '감광액 도포·노광·현상 — 트랙과 스테퍼가 회로를 새기는 순서',
+      readingTime: 14,
+      group: '반도체 포토 공정',
+    },
+    {
+      id: 'photomask',
+      href: '/sources/hs-photo-etch/photomask/',
+      title: '포토 마스크 공정',
+      summary: '원판 한 장이 수만 웨이퍼를 찍는다 — 마스크 제작과 3중 검사',
+      readingTime: 11,
+      group: '반도체 포토 공정',
+    },
+    {
+      id: 'fab-cleanroom',
+      href: '/sources/hs-photo-etch/fab-cleanroom/',
+      title: '반도체 공정실 및 설비',
+      summary: '먼지 한 톨과의 전쟁 — FAB 라인 구조와 청정복 착용 5단계',
+      readingTime: 9,
+      group: '반도체 포토 공정',
+    },
+    {
+      id: 'track-equipment',
+      href: '/sources/hs-photo-etch/track-equipment/',
+      title: '트랙 장비의 구조와 기능',
+      summary: '노광기 옆 자동 인화 라인 — 트랙 장비의 구조와 웨이퍼 반송 흐름',
+      readingTime: 13,
+      group: '포토 장비의 구조와 기능',
+    },
+    {
+      id: 'exposure-equipment',
+      href: '/sources/hs-photo-etch/exposure-equipment/',
+      title: '노광 장비의 개요',
+      summary: "얼라이너에서 스캐너까지 — 노광 장비가 걸어온 '더 가는 붓'의 역사",
+      readingTime: 9,
+      group: '포토 장비의 구조와 기능',
+    },
+    {
+      id: 'stepper-structure',
+      href: '/sources/hs-photo-etch/stepper-structure/',
+      title: 'NSR-2205i11D 장비의 구조와 기능',
+      summary: '스테퍼의 보편 구조 — 빛이 지나는 길과 정렬·포커스 계통',
+      readingTime: 11,
+      group: '포토 장비의 구조와 기능',
+    },
+    {
+      id: 'track-operation',
+      href: '/sources/hs-photo-etch/track-operation/',
+      title: 'MARK-7 장비의 운용',
+      summary: '트랙 장비를 순서대로 켜고 끄는 이유, 그리고 레시피 운용',
+      readingTime: 12,
+      group: '포토 장비의 운용',
+    },
+    {
+      id: 'stepper-operation',
+      href: '/sources/hs-photo-etch/stepper-operation/',
+      title: 'NSR-2205i11D 장비의 운용',
+      summary: '정렬·포커스·노광량 — 스테퍼를 정밀하게 부리는 운용의 원리',
+      readingTime: 10,
+      group: '포토 장비의 운용',
+    },
+    {
+      id: 'photo-practice',
+      href: '/sources/hs-photo-etch/photo-practice/',
+      title: '포토 장비 실습과제',
+      summary: '필터·컵 교환 실습으로 배우는 트랙 예방정비의 기본기',
+      readingTime: 10,
+      group: '포토 장비의 운용',
+    },
+    {
+      id: 'etch-process',
+      href: '/sources/hs-photo-etch/etch-process/',
+      title: '에칭 공정',
+      summary: '습식·건식 식각과 가스별 특성 — 장비 기술자가 돌리는 파라미터',
+      readingTime: 16,
+      group: '에칭 공정 및 장비',
+    },
+    {
+      id: 'etch-equipment',
+      href: '/sources/hs-photo-etch/etch-equipment/',
+      title: '에칭 장비의 구성 요소',
+      summary: '진공 속 수술실 — 에칭 챔버를 지키는 다섯 계통 뜯어보기',
+      readingTime: 14,
+      group: '에칭 공정 및 장비',
+    },
+    {
+      id: 'etcher-structure',
+      href: '/sources/hs-photo-etch/etcher-structure/',
+      title: 'TE8500 장비의 구조 및 기능',
+      summary: '카세트에서 챔버까지 — 웨이퍼가 거치는 에처의 몸속 구조',
+      readingTime: 12,
+      group: '에칭 장비의 운용',
+    },
+    {
+      id: 'etcher-maintenance',
+      href: '/sources/hs-photo-etch/etcher-maintenance/',
+      title: 'TE8500 장비의 유지·보수',
+      summary: '도달압력·리크 체크부터 — 에처를 지키는 Daily·Weekly PM',
+      readingTime: 12,
+      group: '에칭 장비의 운용',
+    },
+    {
+      id: 'etch-practice',
+      href: '/sources/hs-photo-etch/etch-practice/',
+      title: '에칭 장비 실습과제',
+      summary: '구성도 그리기부터 밸브 분해·조립까지 — 에칭 장비 실습 7종',
+      readingTime: 10,
+      group: '에칭 장비의 운용',
+    },
+  ],
+};
+
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -1264,6 +1411,7 @@ export const SOURCES: Source[] = [
   DAEGU_HS,
   HS_BASIC_TECH_1,
   HS_BASIC_TECH_2,
+  HS_PHOTO_ETCH,
 ];
 
 export function getOrderedSources(): Source[] {
