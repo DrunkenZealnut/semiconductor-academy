@@ -886,7 +886,7 @@
       "archivedAt": "2026-07-17T19:41:00.000Z",
       "archivedTo": "docs/archive/2026-07/hs-assembly-inspection/",
       "branch": "feat/hs-assembly-inspection",
-      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/22 — 생성됨(feat 60956d4 + chore b863716 + 296393d). CodeRabbit 리뷰 13건 검증 → 안전 Critical 3(레이저 인터록·ESD 장갑·에너지 격리)+문서 정합 3+경미 4 반영, 오탐/시리즈 패턴 3건(basePath 프레임워크 처리·deep.quote (재서술) 라벨·모델명 사례 수준) 반박. 머지 대기",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/22 — 머지 완료 (merge commit 4f24afd, 2026-07-17T20:30:15Z, base: main). 커밋 4(feat 60956d4 + chore b863716 + 296393d + fix 1772d59). CodeRabbit 리뷰 13건 검증 → 안전 Critical 3(레이저 인터록·ESD 장갑·에너지 격리)+문서 정합 3+경미 4 반영(fix 1772d59), 오탐/시리즈 패턴 3건(basePath 프레임워크 처리·deep.quote (재서술) 라벨·모델명 사례 수준) 반박(PR 코멘트에 근거 기록). 재리뷰: CodeRabbit incremental 자동 커버·추가 지적 0.",
       "inherits": "hs-thinfilm-diffusion(특칙 강화판·실습과제 단위 재구성, 100%) + hs-photo-etch(특칙 원형·장비 기술자 각도, 100%) + hs-textbook-collection(카테고리 인프라, 97.6%)",
       "cycleType": "category-new-volume",
       "summary": "에이치앤지 「반도체 조립·검사」(시리즈 3권째, 5,662줄 OCR) 6대단원 12모듈 전량 재구성 — 사이트 10번째 자료원(MDX 1,937줄·RT 123분·order 10), 첫 후공정 권. 당일 완결(~3.5h), Match Rate 100%(raw 98.6%→Low-1 모델명 맥락 종결)·iterate 0. 파일럿+5배치 병렬 Sonnet(서브에이전트 파일 쓰기 격리 이슈 → 텍스트 반환 전환으로 전량 회수). 실습과제 13/13·조작 시퀀스 0·원문 이미지 0. 로드맵 P5 비고(packaging Process 연결)를 packaging 태깅+책 ch13 ChapterRef 5건으로 이행, NCS 4종+P3 fab-cleanroom 권 간+daegu 연결(FR-10 초과). '움직이는 기계의 안전' 학습 축 신설(78건/9모듈) — P6·P7 재사용 권장. 게이트: typecheck·lint 0, build 12/12 SSG, cross-link 10 sources·138 sections·800 edges·unknown 0, quotes 214 회귀 0. 커밋 미완료(사용자 요청 시 진행)."
