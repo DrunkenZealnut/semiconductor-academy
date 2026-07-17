@@ -91,6 +91,32 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
       import('@/content/sources/hs-photo-etch/etcher-maintenance.mdx'),
     'etch-practice': () => import('@/content/sources/hs-photo-etch/etch-practice.mdx'),
   },
+  'hs-assembly-inspection': {
+    'packaging-overview': () =>
+      import('@/content/sources/hs-assembly-inspection/packaging-overview.mdx'),
+    'sawing-process': () =>
+      import('@/content/sources/hs-assembly-inspection/sawing-process.mdx'),
+    'sawing-equipment': () =>
+      import('@/content/sources/hs-assembly-inspection/sawing-equipment.mdx'),
+    'sawing-operation': () =>
+      import('@/content/sources/hs-assembly-inspection/sawing-operation.mdx'),
+    'sawing-practice': () =>
+      import('@/content/sources/hs-assembly-inspection/sawing-practice.mdx'),
+    'diebond-process': () =>
+      import('@/content/sources/hs-assembly-inspection/diebond-process.mdx'),
+    'diebond-equipment': () =>
+      import('@/content/sources/hs-assembly-inspection/diebond-equipment.mdx'),
+    'diebond-operation': () =>
+      import('@/content/sources/hs-assembly-inspection/diebond-operation.mdx'),
+    'diebond-practice': () =>
+      import('@/content/sources/hs-assembly-inspection/diebond-practice.mdx'),
+    'inspection-overview': () =>
+      import('@/content/sources/hs-assembly-inspection/inspection-overview.mdx'),
+    'probe-test': () =>
+      import('@/content/sources/hs-assembly-inspection/probe-test.mdx'),
+    'particle-counter': () =>
+      import('@/content/sources/hs-assembly-inspection/particle-counter.mdx'),
+  },
   'hs-thinfilm-diffusion': {
     'thinfilm-process': () =>
       import('@/content/sources/hs-thinfilm-diffusion/thinfilm-process.mdx'),

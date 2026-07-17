@@ -1494,6 +1494,130 @@ export const HS_THINFILM_DIFFUSION: Source = {
   ],
 };
 
+/**
+ * 반도체고 교과서 「반도체 조립·검사」 — 후공정(패키징) 조립·검사 공정과
+ * 쏘잉·다이 본딩·프로브 테스트·파티클 카운터 장비의 구조·조작·유지보수
+ * (2015 개정 교육과정, 충청북도교육청 인정 15-충북-63-고교-19-004 —
+ * 「포토·에칭」(-002)·「박막·확산」(-003)과 같은 시리즈 3권째). 원자료
+ * data/school-text/20260415_182247_반도체조립검사_에이치앤지_/ 전면 재작성.
+ * ⚠️ 조작 서술 노골("조작버튼 F3 Enter"·AC 전원 시퀀스) — "장비 일반화
+ * 특칙"(Design §4) 적용, 버튼·화면 조작 시퀀스 재현 금지.
+ * 확장: `src/content/sources/hs-assembly-inspection/{module}.mdx` 작성 +
+ * `schoolTextMdx.tsx` 로더 등록 + 아래 sections에 목차 순서대로 추가 (완성 모듈만).
+ */
+export const HS_ASSEMBLY_INSPECTION: Source = {
+  id: 'hs-assembly-inspection',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 조립·검사',
+  subtitle:
+    '반도체고 교과서 — 패키징 조립 공정부터 쏘잉·다이 본딩 장비, 프로브 테스트·파티클 카운터 검사까지',
+  attribution: '김경원 외 3인',
+  publisher: '에이치앤지',
+  license: 'fair-use',
+  order: 10,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'packaging-overview',
+      href: '/sources/hs-assembly-inspection/packaging-overview/',
+      title: '반도체 조립 개요',
+      summary: '웨이퍼에서 검은 칩까지 — 패키지의 네 가지 일과 조립 공정 8단계',
+      readingTime: 11,
+      group: '조립 개요',
+    },
+    {
+      id: 'sawing-process',
+      href: '/sources/hs-assembly-inspection/sawing-process/',
+      title: '쏘잉 공정 및 장비 개요',
+      summary: '판 초콜릿 쪼개듯 — 웨이퍼가 낱개 칩으로 갈라지는 다이싱의 첫 지도',
+      readingTime: 6,
+      group: '쏘잉 장비',
+    },
+    {
+      id: 'sawing-equipment',
+      href: '/sources/hs-assembly-inspection/sawing-equipment/',
+      title: '쏘잉 장비의 구조 및 기능',
+      summary: '테이프 마운터와 쏘잉 머신 — 절삭을 만드는 네 계통 뜯어보기',
+      readingTime: 9,
+      group: '쏘잉 장비',
+    },
+    {
+      id: 'sawing-operation',
+      href: '/sources/hs-assembly-inspection/sawing-operation/',
+      title: '쏘잉 장비의 조작',
+      summary: '준비→자동 절삭→종료 — 순서에 담긴 안전과 정밀의 논리',
+      readingTime: 11,
+      group: '쏘잉 장비',
+    },
+    {
+      id: 'sawing-practice',
+      href: '/sources/hs-assembly-inspection/sawing-practice/',
+      title: '쏘잉 장비의 모듈 실습 및 유지·보수',
+      summary: '블레이드 교체부터 그리스 도포까지 — 쏘잉 장비 예방정비의 리듬',
+      readingTime: 13,
+      group: '쏘잉 장비',
+    },
+    {
+      id: 'diebond-process',
+      href: '/sources/hs-assembly-inspection/diebond-process/',
+      title: '다이 본딩 공정 및 장비 개요',
+      summary: '양품 칩에 다리를 놓다 — 다이 본딩과 리드 프레임',
+      readingTime: 6,
+      group: '다이 본딩 장비',
+    },
+    {
+      id: 'diebond-equipment',
+      href: '/sources/hs-assembly-inspection/diebond-equipment/',
+      title: '다이 본딩 장비의 구조 및 기능',
+      summary: '집는 손과 풀 짜는 손 — 다이 본더와 에폭시 디스펜서의 구조',
+      readingTime: 9,
+      group: '다이 본딩 장비',
+    },
+    {
+      id: 'diebond-operation',
+      href: '/sources/hs-assembly-inspection/diebond-operation/',
+      title: '다이 본딩 장비의 조작',
+      summary: '초기화·필링·노즐 티칭 — 다이 본딩 조작 순서의 논리',
+      readingTime: 11,
+      group: '다이 본딩 장비',
+    },
+    {
+      id: 'diebond-practice',
+      href: '/sources/hs-assembly-inspection/diebond-practice/',
+      title: '다이 본딩 장비의 모듈 실습 및 유지·보수',
+      summary: '에폭시 디스펜서 분해·조립과 윤활 관리 — 다이 본더 예방정비',
+      readingTime: 9,
+      group: '다이 본딩 장비',
+    },
+    {
+      id: 'inspection-overview',
+      href: '/sources/hs-assembly-inspection/inspection-overview/',
+      title: '반도체 검사 개요',
+      summary: '웨이퍼 레벨과 패키지 레벨 — 두 번 검사하는 이유',
+      readingTime: 11,
+      group: '검사 개요',
+    },
+    {
+      id: 'probe-test',
+      href: '/sources/hs-assembly-inspection/probe-test/',
+      title: '프로브 테스트 장비',
+      summary: '머리카락보다 가는 바늘 수백 개 — 프로버의 정렬과 접촉',
+      readingTime: 15,
+      group: '프로브 테스트 장비',
+    },
+    {
+      id: 'particle-counter',
+      href: '/sources/hs-assembly-inspection/particle-counter/',
+      title: '파티클 카운터 장비',
+      summary: '레이저 빛으로 먼지를 세다 — 웨이퍼 표면 검사, 클린룸의 눈',
+      readingTime: 12,
+      group: '파티클 카운터 장비',
+    },
+  ],
+};
+
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -1504,6 +1628,7 @@ export const SOURCES: Source[] = [
   HS_BASIC_TECH_2,
   HS_PHOTO_ETCH,
   HS_THINFILM_DIFFUSION,
+  HS_ASSEMBLY_INSPECTION,
 ];
 
 export function getOrderedSources(): Source[] {
