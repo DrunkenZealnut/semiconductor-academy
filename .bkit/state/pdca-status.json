@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-17T09:56:38.626Z",
+  "lastUpdated": "2026-07-17T10:58:10.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -54,6 +54,8 @@
       "designSummary": "8모듈 설계(RT 합 96분). Ⅱ.2/Ⅱ.3 경계는 러닝 헤더 혼재로 원문상 모호 → 연속 구간을 같은 배치(C)에 배정해 담당 에이전트가 실습 소단원 표제 기준 자체 확정·보고하는 전략 채택(상호 참조 구조 R-3도 동시 해소). 특칙 강화판(#3~8): 터치 메뉴·설정화면 시퀀스 재현 금지 명시, P-5000·TEL α-8 표기 통일, 배치식 vs 매엽식 학습 축. 실습과제 단위 재구성+같은 소스 상호 SourceRef. 연결: daegu 3(thin-film·doping·oxidation)+책 ChapterRef(ch7·ch10)+NCS(thinfilm-diffusion-equipment 발견·정확히 짝)+P3 권 간 연결(시리즈 첫 적용). 병렬 4배치(B 단독=시리즈 최대 모듈 1,543줄).",
       "doSummary": "3대단원 8모듈 전량 완주. 파일럿 thinfilm-process 직접 작성·게이트 통과 후 4배치 병렬 Sonnet(A 확산 소형2/B thinfilm-equipment 단독/C 박막 조작+실습 연속/D 확산 조작+실습 연속) 전원 1차 성공. 경계 임무 완수: C가 Ⅱ.2/Ⅱ.3 경계 2130/2131 확정(러닝 헤더 판별 근거), D가 Ⅲ.2/Ⅲ.3 경계를 4871→4810으로 실측 보정. 실습 전수: 박막 7건(가~사, P/T·THK는 교체 후 공통 검증 단계로 판명)+확산 6건(가~바) 전건 커버·안전 무손실(박막 통합+개별, 확산 17항목→6규칙 무손실 압축). 특칙 강화판 검증: 터치 시퀀스 패턴 8모듈 0건, P-5000·TEL α-8 표기 통일(ALPHA 잔존 0), B배치는 화면 설정 740줄을 개념 3문단으로 압축. 리뷰 보정 2건(maintenance 학습목표 모델명 일반화, 파일럿 deep 정의문 재작성 — 재스캔 0). 게이트: typecheck 0/lint 신규 0(ExternalLink는 5월 기존 경고)/build 242p/cross-link 9 sources·126 sections·780 edges/quotes 회귀 0/렌더 8/8·3트랙·홈 6번째 카드. 연결: daegu 3(thin-film·doping·oxidation)+ch7·ch10+NCS(thinfilm-diffusion-equipment 등 3종)+P3 권 간 4건.",
       "checkSummary": "gap-detector 34항목 대조 — 최초 산출 ✅33 ⚠️1 ❌0(98.5%, 유일 ⚠️는 C5 모델명 빈도 — thinfilm-maintenance P-5000 4회·diffusion-equipment 합 4회로 '모듈당 2~3회' 경미 초과). 오케스트레이터가 출현 맥락 전수 분해로 같은 세션 종결: maintenance는 deep 인용 1+일반화 선언 문장 1 제외 시 본문 3회 기준 내, diffusion-equipment의 P-5000 1회는 특칙 ⑶ 배치식vs매엽식 대비 축 이행 문장(대표 모델 TEL α-8은 3회 기준 내) — P3 선례(NSR 4·TE8500 3~5회 '사례 수준' ✅)와 정합, 무수정 승인 → 34/34 ✅, Match Rate 100%. 게이트 재실행 실측: typecheck 0·lint 신규 0·cross-link 9 sources·126 sections·780 edges·unknown 0·quotes 214 회귀 0. Positive 7건(P3 권 간 4모듈 연결 확대·NCS 4종·터치 시퀀스 전량 추상화·모델명 정규화 TEL ALPHA-805CN→TEL α-8·P/T·THK 참조 구조 정확 재구성·저작권 방어 문구·ChapterRef 확대). 원문 실습 대조: 박막 7/7·확산 6/6·안전 표본 무손실. iterate 불필요, report 진행 권고.",
+      "branch": "feat/hs-thinfilm-diffusion",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/21 — 머지 완료 (merge commit 0b1f9561d1d19f061ca8d0e2637e44aeefee42fe, 2026-07-17T10:56:35Z, base: main). CodeRabbit 리뷰 11건 검증 후 10건 수정·1건 반박(장비 UI 재현 요구 — 이미 원리 수준 추상화 확인, 5개 파일 대상 스레드에 근거 기록, 커밋 ad57404). 재커밋 후 재리뷰 1건(cross-link.json byHazard 역인덱스) 오탐 판정 — _links.json에 hazards 필드 자체 미사용 확인, PR 코멘트로 근거 기록.",
       "previousPhase": "check",
       "autoAdvanced": true
     },
