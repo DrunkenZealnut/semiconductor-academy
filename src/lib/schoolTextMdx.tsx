@@ -72,6 +72,25 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
       import('@/content/sources/hs-basic-tech-2/microprocessor-practice.mdx'),
     'arduino-practice': () => import('@/content/sources/hs-basic-tech-2/arduino-practice.mdx'),
   },
+  'hs-photo-etch': {
+    'process-overview': () => import('@/content/sources/hs-photo-etch/process-overview.mdx'),
+    'photo-process': () => import('@/content/sources/hs-photo-etch/photo-process.mdx'),
+    photomask: () => import('@/content/sources/hs-photo-etch/photomask.mdx'),
+    'fab-cleanroom': () => import('@/content/sources/hs-photo-etch/fab-cleanroom.mdx'),
+    'track-equipment': () => import('@/content/sources/hs-photo-etch/track-equipment.mdx'),
+    'exposure-equipment': () =>
+      import('@/content/sources/hs-photo-etch/exposure-equipment.mdx'),
+    'stepper-structure': () => import('@/content/sources/hs-photo-etch/stepper-structure.mdx'),
+    'track-operation': () => import('@/content/sources/hs-photo-etch/track-operation.mdx'),
+    'stepper-operation': () => import('@/content/sources/hs-photo-etch/stepper-operation.mdx'),
+    'photo-practice': () => import('@/content/sources/hs-photo-etch/photo-practice.mdx'),
+    'etch-process': () => import('@/content/sources/hs-photo-etch/etch-process.mdx'),
+    'etch-equipment': () => import('@/content/sources/hs-photo-etch/etch-equipment.mdx'),
+    'etcher-structure': () => import('@/content/sources/hs-photo-etch/etcher-structure.mdx'),
+    'etcher-maintenance': () =>
+      import('@/content/sources/hs-photo-etch/etcher-maintenance.mdx'),
+    'etch-practice': () => import('@/content/sources/hs-photo-etch/etch-practice.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {

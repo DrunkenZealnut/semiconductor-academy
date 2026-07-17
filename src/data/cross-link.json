@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-16T22:36:31.318Z",
+  "generatedAt": "2026-07-17T02:41:00.256Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
     "hs-basic-tech-1",
     "hs-basic-tech-2",
+    "hs-photo-etch",
     "hs-semicon-basics",
     "ncs-semi",
     "osha-scs"
@@ -445,6 +446,126 @@
       "hazards": [
         "compressed-gas"
       ],
+      "chemicals": []
+    },
+    "hs-photo-etch::process-overview": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::photo-process": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "hmds"
+      ]
+    },
+    "hs-photo-etch::photomask": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::fab-cleanroom": {
+      "topics": [
+        "cleanroom",
+        "ppe"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::track-equipment": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::exposure-equipment": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::stepper-structure": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::track-operation": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::stepper-operation": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::photo-practice": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::etch-process": {
+      "topics": [
+        "etching",
+        "gas-safety",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "chlorine"
+      ]
+    },
+    "hs-photo-etch::etch-equipment": {
+      "topics": [
+        "etching",
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::etcher-structure": {
+      "topics": [
+        "etching"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::etcher-maintenance": {
+      "topics": [
+        "etching",
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-photo-etch::etch-practice": {
+      "topics": [
+        "etching"
+      ],
+      "hazards": [],
       "chemicals": []
     },
     "hs-semicon-basics::semicon-overview": {
@@ -1222,6 +1343,10 @@
         "sectionId": "oxidation"
       },
       {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "process-overview"
+      },
+      {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-overview"
       },
@@ -1274,6 +1399,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "fab-cleanroom"
       },
       {
         "sourceId": "ncs-semi",
@@ -1340,6 +1469,14 @@
       {
         "sourceId": "hs-basic-tech-2",
         "sectionId": "pneumatics-maintenance"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etcher-maintenance"
       },
       {
         "sourceId": "ncs-semi",
@@ -1430,6 +1567,26 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photo-process"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "track-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "track-operation"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photo-practice"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-process"
       },
       {
         "sourceId": "ncs-semi",
@@ -1568,6 +1725,18 @@
         "sectionId": "pneumatics-practice"
       },
       {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-process"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etcher-maintenance"
+      },
+      {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-industry"
       },
@@ -1650,6 +1819,38 @@
         "sectionId": "photo"
       },
       {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photo-process"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photomask"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "track-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "exposure-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "stepper-structure"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "track-operation"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "stepper-operation"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photo-practice"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
       },
@@ -1694,6 +1895,26 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-process"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etcher-structure"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etcher-maintenance"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-practice"
       },
       {
         "sourceId": "ncs-semi",
@@ -1997,6 +2218,10 @@
       }
     ],
     "ppe": [
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "fab-cleanroom"
+      },
       {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
@@ -2980,6 +3205,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "photo-process"
       }
     ],
     "tmah": [
@@ -3004,6 +3233,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "etch"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "etch-process"
       },
       {
         "sourceId": "hs-semicon-basics",
