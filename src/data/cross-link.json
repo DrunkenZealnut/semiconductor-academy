@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T10:48:19.153Z",
+  "generatedAt": "2026-07-17T14:11:33.196Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
+    "hs-assembly-inspection",
     "hs-basic-tech-1",
     "hs-basic-tech-2",
     "hs-photo-etch",
@@ -399,6 +400,101 @@
         "ammonia",
         "ozone"
       ]
+    },
+    "hs-assembly-inspection::packaging-overview": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::sawing-process": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::sawing-equipment": {
+      "topics": [
+        "packaging",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::sawing-operation": {
+      "topics": [
+        "packaging",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::sawing-practice": {
+      "topics": [
+        "packaging",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::diebond-process": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::diebond-equipment": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "epoxy-resin"
+      ]
+    },
+    "hs-assembly-inspection::diebond-operation": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "epoxy-resin"
+      ]
+    },
+    "hs-assembly-inspection::diebond-practice": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "epoxy-resin"
+      ]
+    },
+    "hs-assembly-inspection::inspection-overview": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::probe-test": {
+      "topics": [
+        "packaging",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-assembly-inspection::particle-counter": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
     },
     "hs-basic-tech-1::pneumatics-basics": {
       "topics": [
@@ -1468,6 +1564,10 @@
         "sectionId": "process-overview"
       },
       {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "particle-counter"
+      },
+      {
         "sourceId": "hs-photo-etch",
         "sectionId": "fab-cleanroom"
       },
@@ -1520,6 +1620,26 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-equipment"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-operation"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-practice"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "probe-test"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "particle-counter"
       },
       {
         "sourceId": "hs-basic-tech-1",
@@ -2230,6 +2350,50 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "packaging-overview"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-process"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-equipment"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-operation"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "sawing-practice"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-process"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-equipment"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-operation"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-practice"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "inspection-overview"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "probe-test"
       },
       {
         "sourceId": "hs-semicon-basics",
@@ -3494,6 +3658,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-equipment"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-operation"
+      },
+      {
+        "sourceId": "hs-assembly-inspection",
+        "sectionId": "diebond-practice"
       }
     ],
     "solder-flux": [

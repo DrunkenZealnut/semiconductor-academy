@@ -1,0 +1,42 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 조립·검사」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_ASSEMBLY_INSPECTION.sections. 시리즈 최소 태깅 원칙(본문 실증 기준) — packaging 축으로 책 ch13(13-packaging)·NCS 패키지·테스트 계열과 자동 상호 연결, particle-counter는 cleanroom 축으로 P3 fab-cleanroom·OSHA와 연결. chemicals는 본문 실증분만: epoxy-resin은 다이 본딩 3모듈(equipment 7·operation 11·practice 8회 서술), diebond-process는 0회라 미태깅. 솔더는 납 성분 미언급(공정 서술만)이라 제외.",
+  "packaging-overview": {
+    "topics": ["packaging"]
+  },
+  "sawing-process": {
+    "topics": ["packaging"]
+  },
+  "sawing-equipment": {
+    "topics": ["packaging", "engineering-controls"]
+  },
+  "sawing-operation": {
+    "topics": ["packaging", "engineering-controls"]
+  },
+  "sawing-practice": {
+    "topics": ["packaging", "engineering-controls"]
+  },
+  "diebond-process": {
+    "topics": ["packaging"]
+  },
+  "diebond-equipment": {
+    "topics": ["packaging"],
+    "chemicals": ["epoxy-resin"]
+  },
+  "diebond-operation": {
+    "topics": ["packaging"],
+    "chemicals": ["epoxy-resin"]
+  },
+  "diebond-practice": {
+    "topics": ["packaging"],
+    "chemicals": ["epoxy-resin"]
+  },
+  "inspection-overview": {
+    "topics": ["packaging"]
+  },
+  "probe-test": {
+    "topics": ["packaging", "engineering-controls"]
+  },
+  "particle-counter": {
+    "topics": ["cleanroom", "engineering-controls"]
+  }
+}
