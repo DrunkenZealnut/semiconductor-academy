@@ -91,6 +91,24 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
       import('@/content/sources/hs-photo-etch/etcher-maintenance.mdx'),
     'etch-practice': () => import('@/content/sources/hs-photo-etch/etch-practice.mdx'),
   },
+  'hs-thinfilm-diffusion': {
+    'thinfilm-process': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/thinfilm-process.mdx'),
+    'diffusion-process': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/diffusion-process.mdx'),
+    'thinfilm-equipment': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/thinfilm-equipment.mdx'),
+    'thinfilm-maintenance': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/thinfilm-maintenance.mdx'),
+    'thinfilm-practice': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/thinfilm-practice.mdx'),
+    'diffusion-equipment': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/diffusion-equipment.mdx'),
+    'diffusion-maintenance': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/diffusion-maintenance.mdx'),
+    'diffusion-practice': () =>
+      import('@/content/sources/hs-thinfilm-diffusion/diffusion-practice.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {

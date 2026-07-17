@@ -1,0 +1,28 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 박막·확산」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_THINFILM_DIFFUSION.sections. 시리즈 최소 태깅 원칙(본문 실증 기준) — deposition/diffusion 축으로 책(ch10·ch7)·daegu(thin-film·doping·oxidation)·NCS(thinfilm 계열)와 자동 상호 연결. chemicals는 본문 서술 실증분만(silane·ammonia — thinfilm-process에 SiH₄ 4·NH₃ 3회 서술, thinfilm-equipment는 각 1회 언급이라 미태깅).",
+  "thinfilm-process": {
+    "topics": ["deposition", "gas-safety"],
+    "chemicals": ["silane", "ammonia"]
+  },
+  "diffusion-process": {
+    "topics": ["diffusion"]
+  },
+  "thinfilm-equipment": {
+    "topics": ["deposition", "gas-safety", "engineering-controls"]
+  },
+  "thinfilm-maintenance": {
+    "topics": ["deposition", "engineering-controls"]
+  },
+  "thinfilm-practice": {
+    "topics": ["deposition"]
+  },
+  "diffusion-equipment": {
+    "topics": ["diffusion", "engineering-controls"]
+  },
+  "diffusion-maintenance": {
+    "topics": ["diffusion", "engineering-controls", "gas-safety"]
+  },
+  "diffusion-practice": {
+    "topics": ["diffusion"]
+  }
+}

@@ -1403,6 +1403,97 @@ export const HS_PHOTO_ETCH: Source = {
   ],
 };
 
+/**
+ * 반도체고 교과서 「반도체 박막·확산」 — 박막(증착)·확산 공정과 장비의
+ * 구조·조작·유지보수 (2015 개정 교육과정, 충청북도교육청 인정 2019-12-26,
+ * P3 「포토·에칭」과 같은 시리즈 자매편). 원자료
+ * data/school-text/20260415_205038_반도체박막확산_에이치앤지_/ 전면 재작성.
+ * ⚠️ 장비 매뉴얼 밀도 시리즈 최고(P-5000 CVD·TEL α-8 퍼니스, 터치 메뉴 시퀀스)
+ * — "장비 일반화 특칙 강화판"(Design §4) 적용, 조작·터치 시퀀스 재현 금지.
+ * 확장: `src/content/sources/hs-thinfilm-diffusion/{module}.mdx` 작성 +
+ * `schoolTextMdx.tsx` 로더 등록 + 아래 sections에 목차 순서대로 추가 (완성 모듈만).
+ */
+export const HS_THINFILM_DIFFUSION: Source = {
+  id: 'hs-thinfilm-diffusion',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 박막·확산',
+  subtitle:
+    '반도체고 교과서 — 박막(증착)·확산 공정부터 CVD 클러스터·퍼니스 장비의 구조·운용·정비까지',
+  attribution: '이재선 외 4인',
+  publisher: '에이치앤지',
+  license: 'fair-use',
+  order: 9,
+  accent: 'school',
+  category: 'hs-textbook',
+  sections: [
+    {
+      id: 'thinfilm-process',
+      href: '/sources/hs-thinfilm-diffusion/thinfilm-process/',
+      title: '박막 공정의 개요',
+      summary: 'PVD와 CVD — 웨이퍼 위에 도체·부도체·반도체 막을 쌓는 법',
+      readingTime: 12,
+      group: '공정의 개요',
+    },
+    {
+      id: 'diffusion-process',
+      href: '/sources/hs-thinfilm-diffusion/diffusion-process/',
+      title: '확산 공정의 개요',
+      summary: '산화와 LP-CVD — 쌓지 않고 스며들어 웨이퍼를 바꾸는 법',
+      readingTime: 9,
+      group: '공정의 개요',
+    },
+    {
+      id: 'thinfilm-equipment',
+      href: '/sources/hs-thinfilm-diffusion/thinfilm-equipment/',
+      title: '박막 장비의 구조 및 기능',
+      summary: '카세트에서 챔버까지 — 매엽식 클러스터 CVD 장비의 몸속 구조',
+      readingTime: 15,
+      group: '박막 장비',
+    },
+    {
+      id: 'thinfilm-maintenance',
+      href: '/sources/hs-thinfilm-diffusion/thinfilm-maintenance/',
+      title: '박막 장비의 조작 및 유지보수',
+      summary: '조작 화면 읽기부터 벤트·리크 체크까지 — CVD 장비 PM의 논리',
+      readingTime: 13,
+      group: '박막 장비',
+    },
+    {
+      id: 'thinfilm-practice',
+      href: '/sources/hs-thinfilm-diffusion/thinfilm-practice/',
+      title: '박막 장비의 실습',
+      summary: '챔버 벤트부터 MFC 교체까지 — 박막 장비 실습 7종',
+      readingTime: 11,
+      group: '박막 장비',
+    },
+    {
+      id: 'diffusion-equipment',
+      href: '/sources/hs-thinfilm-diffusion/diffusion-equipment/',
+      title: '확산 장비의 구조 및 기능',
+      summary: '웨이퍼 수십 장을 한 번에 굽는 배치식 — 수직형 퍼니스의 구조',
+      readingTime: 11,
+      group: '확산 장비',
+    },
+    {
+      id: 'diffusion-maintenance',
+      href: '/sources/hs-thinfilm-diffusion/diffusion-maintenance/',
+      title: '확산 장비의 조작 및 유지보수',
+      summary: '레시피 화면부터 가스라인 리크 체크까지 — 확산로 조작과 정비',
+      readingTime: 14,
+      group: '확산 장비',
+    },
+    {
+      id: 'diffusion-practice',
+      href: '/sources/hs-thinfilm-diffusion/diffusion-practice/',
+      title: '확산 장비의 실습',
+      summary: '오토셔터부터 튜브 분해까지 — 확산로 실습 6종',
+      readingTime: 11,
+      group: '확산 장비',
+    },
+  ],
+};
+
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -1412,6 +1503,7 @@ export const SOURCES: Source[] = [
   HS_BASIC_TECH_1,
   HS_BASIC_TECH_2,
   HS_PHOTO_ETCH,
+  HS_THINFILM_DIFFUSION,
 ];
 
 export function getOrderedSources(): Source[] {
