@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-17T03:06:20.790Z",
+  "lastUpdated": "2026-07-17T09:56:38.626Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -26,10 +26,37 @@
     "hs-textbook-collection",
     "hs-basic-tech-1",
     "hs-basic-tech-2",
-    "hs-photo-etch"
+    "hs-photo-etch",
+    "hs-thinfilm-diffusion"
   ],
-  "primaryFeature": "hs-photo-etch",
+  "primaryFeature": "hs-thinfilm-diffusion",
   "features": {
+    "hs-thinfilm-diffusion": {
+      "phase": "report",
+      "matchRate": 100,
+      "iterationCount": 0,
+      "startedAt": "2026-07-17T03:50:00.000Z",
+      "inherits": "hs-photo-etch(장비 일반화 특칙·장비 기술자 각도, 100%) + hs-basic-tech-2(압축 전략, 100%) + hs-textbook-collection(카테고리 인프라, 97.6%)",
+      "roadmapPosition": "hs-textbook-collection.plan.md §5.3 P4 — 비고 'daegu thin-film/doping/oxidation cross-link 필수'",
+      "cycleType": "category-new-volume",
+      "documents": {
+        "plan": "docs/01-plan/features/hs-thinfilm-diffusion.plan.md",
+        "design": "docs/02-design/features/hs-thinfilm-diffusion.design.md",
+        "analysis": "docs/03-analysis/hs-thinfilm-diffusion.analysis.md",
+        "report": "docs/04-report/hs-thinfilm-diffusion.report.md"
+      },
+      "keyFindings": "5,745줄·페이지 1~248 정순. 3대단원 8중단원(시리즈 최소 모듈·최대 분량 편차 — Ⅱ.1/Ⅲ.2 약 1,300~1,400줄). P3와 같은 시리즈 자매편(에이치앤지·인정번호 -003·이재선 외 4인). 최대 이슈: 8중 6개 중단원이 P-5000 CVD(32회)·TEL α-8 퍼니스 매뉴얼형, 터치 메뉴 시퀀스 노골(설정화면 22곳) → P3 특칙 강화판 필요. 실습이 본문과 상호 참조 구조(실습과제 1~4+). 화학 접점: TEOS 19·SiH₄ 5·NH₃·아르신(silane 등 chemicals id 실존).",
+      "pendingDecisions": "없음",
+      "phaseNumber": 6,
+      "timestamps": {
+        "lastUpdated": "2026-07-17T09:56:38.626Z"
+      },
+      "designSummary": "8모듈 설계(RT 합 96분). Ⅱ.2/Ⅱ.3 경계는 러닝 헤더 혼재로 원문상 모호 → 연속 구간을 같은 배치(C)에 배정해 담당 에이전트가 실습 소단원 표제 기준 자체 확정·보고하는 전략 채택(상호 참조 구조 R-3도 동시 해소). 특칙 강화판(#3~8): 터치 메뉴·설정화면 시퀀스 재현 금지 명시, P-5000·TEL α-8 표기 통일, 배치식 vs 매엽식 학습 축. 실습과제 단위 재구성+같은 소스 상호 SourceRef. 연결: daegu 3(thin-film·doping·oxidation)+책 ChapterRef(ch7·ch10)+NCS(thinfilm-diffusion-equipment 발견·정확히 짝)+P3 권 간 연결(시리즈 첫 적용). 병렬 4배치(B 단독=시리즈 최대 모듈 1,543줄).",
+      "doSummary": "3대단원 8모듈 전량 완주. 파일럿 thinfilm-process 직접 작성·게이트 통과 후 4배치 병렬 Sonnet(A 확산 소형2/B thinfilm-equipment 단독/C 박막 조작+실습 연속/D 확산 조작+실습 연속) 전원 1차 성공. 경계 임무 완수: C가 Ⅱ.2/Ⅱ.3 경계 2130/2131 확정(러닝 헤더 판별 근거), D가 Ⅲ.2/Ⅲ.3 경계를 4871→4810으로 실측 보정. 실습 전수: 박막 7건(가~사, P/T·THK는 교체 후 공통 검증 단계로 판명)+확산 6건(가~바) 전건 커버·안전 무손실(박막 통합+개별, 확산 17항목→6규칙 무손실 압축). 특칙 강화판 검증: 터치 시퀀스 패턴 8모듈 0건, P-5000·TEL α-8 표기 통일(ALPHA 잔존 0), B배치는 화면 설정 740줄을 개념 3문단으로 압축. 리뷰 보정 2건(maintenance 학습목표 모델명 일반화, 파일럿 deep 정의문 재작성 — 재스캔 0). 게이트: typecheck 0/lint 신규 0(ExternalLink는 5월 기존 경고)/build 242p/cross-link 9 sources·126 sections·780 edges/quotes 회귀 0/렌더 8/8·3트랙·홈 6번째 카드. 연결: daegu 3(thin-film·doping·oxidation)+ch7·ch10+NCS(thinfilm-diffusion-equipment 등 3종)+P3 권 간 4건.",
+      "checkSummary": "gap-detector 34항목 대조 — 최초 산출 ✅33 ⚠️1 ❌0(98.5%, 유일 ⚠️는 C5 모델명 빈도 — thinfilm-maintenance P-5000 4회·diffusion-equipment 합 4회로 '모듈당 2~3회' 경미 초과). 오케스트레이터가 출현 맥락 전수 분해로 같은 세션 종결: maintenance는 deep 인용 1+일반화 선언 문장 1 제외 시 본문 3회 기준 내, diffusion-equipment의 P-5000 1회는 특칙 ⑶ 배치식vs매엽식 대비 축 이행 문장(대표 모델 TEL α-8은 3회 기준 내) — P3 선례(NSR 4·TE8500 3~5회 '사례 수준' ✅)와 정합, 무수정 승인 → 34/34 ✅, Match Rate 100%. 게이트 재실행 실측: typecheck 0·lint 신규 0·cross-link 9 sources·126 sections·780 edges·unknown 0·quotes 214 회귀 0. Positive 7건(P3 권 간 4모듈 연결 확대·NCS 4종·터치 시퀀스 전량 추상화·모델명 정규화 TEL ALPHA-805CN→TEL α-8·P/T·THK 참조 구조 정확 재구성·저작권 방어 문구·ChapterRef 확대). 원문 실습 대조: 박막 7/7·확산 6/6·안전 표본 무손실. iterate 불필요, report 진행 권고.",
+      "previousPhase": "check",
+      "autoAdvanced": true
+    },
     "hs-photo-etch": {
       "phase": "report",
       "matchRate": 100,
@@ -401,9 +428,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-17T02:40:06.517Z"
+        "lastUpdated": "2026-07-17T04:20:05.294Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
+      "lastFile": "src/lib/schoolTextMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -968,7 +995,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-17T03:06:20.790Z"
+    "lastActivity": "2026-07-17T09:56:38.626Z"
   },
   "history": [
     {
@@ -3038,6 +3065,36 @@
     {
       "timestamp": "2026-07-17T03:06:20.790Z",
       "feature": "hs-photo-etch",
+      "phase": "report",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T03:48:33.649Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T03:48:35.864Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T04:20:00.592Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T04:20:05.294Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T09:56:38.626Z",
+      "feature": "hs-thinfilm-diffusion",
       "phase": "report",
       "action": "updated"
     }

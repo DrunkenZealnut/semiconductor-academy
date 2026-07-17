@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T03:25:32.451Z",
+  "generatedAt": "2026-07-17T10:48:19.153Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
@@ -8,6 +8,7 @@
     "hs-basic-tech-2",
     "hs-photo-etch",
     "hs-semicon-basics",
+    "hs-thinfilm-diffusion",
     "ncs-semi",
     "osha-scs"
   ],
@@ -602,6 +603,72 @@
     "hs-semicon-basics::mosfet": {
       "topics": [
         "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::thinfilm-process": {
+      "topics": [
+        "deposition",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "silane",
+        "ammonia"
+      ]
+    },
+    "hs-thinfilm-diffusion::diffusion-process": {
+      "topics": [
+        "diffusion"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::thinfilm-equipment": {
+      "topics": [
+        "deposition",
+        "gas-safety",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::thinfilm-maintenance": {
+      "topics": [
+        "deposition",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::thinfilm-practice": {
+      "topics": [
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::diffusion-equipment": {
+      "topics": [
+        "diffusion",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::diffusion-maintenance": {
+      "topics": [
+        "diffusion",
+        "engineering-controls",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-thinfilm-diffusion::diffusion-practice": {
+      "topics": [
+        "diffusion"
       ],
       "hazards": [],
       "chemicals": []
@@ -1479,6 +1546,22 @@
         "sectionId": "etcher-maintenance"
       },
       {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-equipment"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-maintenance"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-equipment"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-maintenance"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cleanroom-facility"
       },
@@ -1659,6 +1742,22 @@
         "sectionId": "semicon-fundamentals"
       },
       {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-process"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-equipment"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-maintenance"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-practice"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "memory-process-development"
       },
@@ -1739,6 +1838,18 @@
       {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-industry"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-process"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-equipment"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "diffusion-maintenance"
       },
       {
         "sourceId": "ncs-semi",
@@ -1961,6 +2072,22 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "metallization"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-process"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-equipment"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-maintenance"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-practice"
       },
       {
         "sourceId": "ncs-semi",
@@ -3077,6 +3204,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-process"
       }
     ],
     "ozone": [
@@ -3309,6 +3440,10 @@
       {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-industry"
+      },
+      {
+        "sourceId": "hs-thinfilm-diffusion",
+        "sectionId": "thinfilm-process"
       },
       {
         "sourceId": "osha-scs",
