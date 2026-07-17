@@ -4,8 +4,8 @@
 > **Project**: SemiconductorAcademy (반도체 산업 유해인자 교육 정적 사이트)  
 > **Feature**: `hs-assembly-inspection` — "반도체 조립·검사" 6대단원 12모듈 신규 자료원  
 > **Completion Date**: 2026-07-17  
-> **Branch**: Pending (사용자 요청 시에만 커밋 — 프로젝트 규칙)  
-> **Commit Status**: Untracked (파일 변경: sources.ts·schoolTextMdx.tsx 수정 + src/content/sources/hs-assembly-inspection/ 신규)
+> **Branch**: `feat/hs-assembly-inspection`  
+> **Commit Status**: 커밋 완료 (feat 60956d4 + chore b863716 + 296393d) — PR [#22](https://github.com/DrunkenZealnut/semiconductor-academy/pull/22) (base: main)
 
 ---
 
@@ -52,7 +52,7 @@
 ## 2. PDCA 사이클 요약
 
 ### 2.1 Plan 단계
-**문서**: `docs/01-plan/features/hs-assembly-inspection.plan.md` (207줄)
+**문서**: `docs/archive/2026-07/hs-assembly-inspection/plan.md` (207줄)
 
 - **핵심 리스크 발견 & 해결**:
   - 모듈 분량 편차 시리즈 최대(14배) + 편성 깊이 불균질 → 형식 12모듈 유지 결정(병합·분할 안 함, RT 차등)
@@ -63,14 +63,14 @@
 - **결정 5건 확정**(2026-07-17 11:10Z):
   1. ✅ **범위**: 6대단원 12중단원 **전량 편입**
   2. ✅ **파일럿**: 목차 순서 "**반도체 조립 개요**" (패키지 구조·8공정 흐름·책 ch13·packaging Process 연결 각도 실증)
-  3. ✅ **모듈화**(이 권 판단): 편성 불균질에도 **형식 12모듈 유지** — Ⅴ·Ⅶ 대형 단독 배정, Ⅱ.1 소형 독립 유지
+  3. ✅ **모듈화**(이 권 판단): 편성 불균질에도 **형식 12모듈 유지** — Ⅴ·Ⅵ 대형 단독 배정, Ⅱ.1 소형 독립 유지
   4. ✅ **실습·유지보수 통합 재구성**(P4 보정 승계): 실습과제 단위 추출·조작 모듈과 상호 SourceRef, PM 점검 항목 동거
   5. ✅ **각도·압축·안전**: "장비 기술자의 눈" + 후공정 보정(기계 동작 중심 — "움직이는 기계의 안전" 학습 축)
 
 - **목표·비목표 확정** (FR 10건·NFR 5건·DoD 9항 명시, §6~7 상세)
 
 ### 2.2 Design 단계
-**문서**: `docs/02-design/features/hs-assembly-inspection.design.md` (137줄)
+**문서**: `docs/archive/2026-07/hs-assembly-inspection/design.md` (137줄)
 
 - **아키텍처 확장 제로**: `hs-textbook-collection` 카테고리 인프라 그대로 재사용, 신규 파일 **0개**
   - `sources.ts`에 `HS_ASSEMBLY_INSPECTION` 등록 (order 10) + sections 배열
@@ -126,7 +126,7 @@
 | B | Sonnet | 1 | **sawing-practice(1191~2271)** | **대형 단독 ~1,081줄** |
 | C | Sonnet | 4 | diebond-process(2272~2346) + diebond-equipment(2347~2521) + diebond-operation(2522~2993) + diebond-practice(2994~3286) | 다이 본딩 연속, epoxy-resin 실증, 실습 2건 |
 | D | Sonnet | 2 | inspection-overview(3287~3603) + probe-test(3604~4785) — **대형 단독** | 검사·프로브 연속, probe 실습 3건 |
-| E | Sonnet | 1 | **particle-counter(4786~5351)** | **단독**, 레이저 안전, 실습 2건 |
+| E | Sonnet | 1 | **particle-counter(4786~5351)** | **단독**, 레이저 안전, 실습 4건 |
 
 **주요 구현 특징**:
 - **파일럿 packaging-overview**: 책 ch13·packaging Process·NCS 연결 각도 실증, 3단 레이어 구성, 검증 게이트 통과
@@ -153,7 +153,7 @@
 ```
 
 ### 2.4 Check 단계 (분석)
-**문서**: `docs/03-analysis/hs-assembly-inspection.analysis.md`  
+**문서**: `docs/archive/2026-07/hs-assembly-inspection/analysis.md`  
 **Match Rate**: **100%** (기준 90% 이상 ✅) — 최초 98.6% → 오케스트레이터 맥락 대조로 종결
 
 | 검증 항목 | 결과 |
@@ -419,7 +419,7 @@
   - diebond-practice.mdx (9분, 실습 1건+PM 점검)
   - inspection-overview.mdx (11분)
   - probe-test.mdx (15분, 단일 모듈 최대, 실습 3건)
-  - particle-counter.mdx (12분, 실습 2건)
+  - particle-counter.mdx (12분, 실습 4건)
 - `src/content/sources/hs-assembly-inspection/_links.json` — cross-link 태깅 신규 (packaging 11·cleanroom 1·engineering-controls 5, ChapterRef 5·SourceRef 6 직접 연결)
 
 **Changed**:
@@ -441,8 +441,8 @@
 
 ### 10.1 브랜치 & 커밋 상태
 
-- **브랜치**: Pending (PR 미생성, 프로젝트 규칙상 사용자 요청 시에만 커밋)
-- **파일 상태**: Untracked
+- **브랜치**: `feat/hs-assembly-inspection` (PR #22, base: main)
+- **파일 상태**: 커밋 완료 (feat 60956d4 + chore b863716 + 296393d)
   - `src/lib/sources.ts` (HS_ASSEMBLY_INSPECTION 추가)
   - `src/lib/schoolTextMdx.tsx` (REGISTRY 확장)
   - `src/content/sources/hs-assembly-inspection/*.mdx` (12파일)
@@ -563,8 +563,8 @@
 
 ## 문서 참고
 
-- **Plan**: `docs/01-plan/features/hs-assembly-inspection.plan.md`
-- **Design**: `docs/02-design/features/hs-assembly-inspection.design.md`
-- **Analysis**: `docs/03-analysis/hs-assembly-inspection.analysis.md`
+- **Plan**: `docs/archive/2026-07/hs-assembly-inspection/plan.md`
+- **Design**: `docs/archive/2026-07/hs-assembly-inspection/design.md`
+- **Analysis**: `docs/archive/2026-07/hs-assembly-inspection/analysis.md`
 - **상속 선례**: `docs/04-report/hs-thinfilm-diffusion.report.md`(100%), `hs-photo-etch.report.md`(100%)
 - **상태 파일**: `.bkit/state/pdca-status.json` (hs-assembly-inspection)

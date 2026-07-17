@@ -1,7 +1,7 @@
 # Gap 분석 — hs-assembly-inspection (Check)
 
 > **Feature**: `hs-assembly-inspection` · **분석일**: 2026-07-17 · **분석자**: gap-detector Agent(12모듈 5배치 원문 전수 대조) + 오케스트레이터 게이트 재실행·종결 검증
-> **기준**: `docs/02-design/features/hs-assembly-inspection.design.md` §1~7
+> **기준**: `docs/archive/2026-07/hs-assembly-inspection/design.md` §1~7
 > **구현**: `src/lib/sources.ts`(HS_ASSEMBLY_INSPECTION) · `src/lib/schoolTextMdx.tsx` · `src/content/sources/hs-assembly-inspection/`(MDX 12 + `_links.json`) · `src/data/cross-link.json`
 
 ## 결과 요약
@@ -112,6 +112,6 @@
 
 ## 참고 문서
 
-- Plan: `docs/01-plan/features/hs-assembly-inspection.plan.md`
-- Design: `docs/02-design/features/hs-assembly-inspection.design.md`
+- Plan: `docs/archive/2026-07/hs-assembly-inspection/plan.md`
+- Design: `docs/archive/2026-07/hs-assembly-inspection/design.md`
 - 선례: `docs/03-analysis/hs-thinfilm-diffusion.analysis.md`(100%) · `hs-photo-etch.analysis.md`(100%)
