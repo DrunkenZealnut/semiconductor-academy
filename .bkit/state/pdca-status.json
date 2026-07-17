@@ -30,9 +30,10 @@
   "primaryFeature": "hs-basic-tech-2",
   "features": {
     "hs-basic-tech-2": {
-      "phase": "report",
+      "phase": "completed",
       "matchRate": 100,
       "iterationCount": 0,
+      "completedAt": "2026-07-16T23:52:24.000Z",
       "startedAt": "2026-07-17T09:00:00.000Z",
       "inherits": "hs-basic-tech-1(재구성 방식·카테고리 인프라 확장 실증, Match Rate 94.8%) + hs-textbook-collection(카테고리 인프라, 97.6%) + daegu-hs-textbook(재구성 방식 원형)",
       "roadmapPosition": "hs-textbook-collection.plan.md §5.3 P2",
@@ -50,9 +51,9 @@
       "phaseNumber": 6,
       "previousPhase": "check",
       "branch": "feat/hs-basic-tech-2",
-      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/19 — 오픈(리뷰 대기)",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/19 — 머지 완료 (merge commit f078f69, 2026-07-16T23:52:24Z, base: main). CodeRabbit 자동 리뷰 트리거했으나 ~20분 무응답으로 리뷰 없이 머지 — 추후 PR 코멘트 확인 시 후속 반영 필요",
       "timestamps": {
-        "lastUpdated": "2026-07-17T12:15:00.000Z"
+        "lastUpdated": "2026-07-16T23:52:24.000Z"
       },
       "autoAdvanced": true
     },
