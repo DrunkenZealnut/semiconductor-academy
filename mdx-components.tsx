@@ -3,6 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import { LayeredExplain } from '@/components/content/LayeredExplain';
 import { Term } from '@/components/content/Term';
 import { Callout } from '@/components/content/Callout';
+import { SafetyDisclaimer } from '@/components/content/SafetyDisclaimer';
 import { SourceQuote } from '@/components/content/SourceQuote';
 import { HazardBadge } from '@/components/content/HazardBadge';
 import { ChapterNav } from '@/components/content/ChapterNav';
@@ -17,6 +18,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     LayeredExplain,
     Term,
     Callout,
+    SafetyDisclaimer,
     SourceQuote,
     HazardBadge,
     ChapterNav,

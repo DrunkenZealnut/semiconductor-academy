@@ -1,0 +1,50 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 인프라 일반」 Ⅳ 산업안전과 건강관리. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_SEMICON_INFRA.sections. 본문 실증 기준(원문 대조 검증 완료) — 안전 허브로서 책 ch04~17·OSHA part-1a~4·process·hs 기술모듈과 양방향 연계. 원문에 있으나 chemicals.json id가 없는 물질(에틸렌글리콜·톨루엔·질산 등)과, 원문 미명시 물질은 태깅 제외.",
+  "safety-management": {
+    "topics": ["cleanroom", "ppe", "engineering-controls", "industrial-hygiene", "exposure-monitoring"]
+  },
+  "safety-diffusion": {
+    "topics": ["gas-safety", "ppe", "engineering-controls", "emergency-response", "occupational-disease", "exposure-monitoring"],
+    "hazards": ["toxic", "acute-toxic", "corrosive", "pyrophoric", "carcinogen"],
+    "chemicals": ["arsine", "phosphine", "silane", "dichlorosilane", "fluorine", "ammonia", "phosphorus-oxychloride", "hydrofluoric-acid", "sulfuric-acid", "hydrogen-peroxide"]
+  },
+  "safety-photo": {
+    "topics": ["photolithography", "liquid-chemicals", "engineering-controls", "ppe", "occupational-disease"],
+    "hazards": ["toxic", "acute-toxic", "corrosive", "sensitizer", "reproductive-toxin", "carcinogen"],
+    "chemicals": ["hmds", "isopropyl-alcohol", "pgmea", "tmah", "benzene"]
+  },
+  "safety-etch": {
+    "topics": ["etching", "liquid-chemicals", "compressed-gas", "gas-safety", "engineering-controls", "ppe", "occupational-disease"],
+    "hazards": ["corrosive", "toxic", "acute-toxic", "carcinogen", "compressed-gas", "oxidizer"],
+    "chemicals": ["hydrofluoric-acid", "sulfuric-acid", "hydrogen-peroxide", "ammonia", "chlorine", "ozone"]
+  },
+  "safety-deposition": {
+    "topics": ["deposition", "gas-safety", "engineering-controls", "ppe", "occupational-disease", "exposure-monitoring"],
+    "hazards": ["toxic", "acute-toxic", "corrosive", "pyrophoric", "flammable"],
+    "chemicals": ["silane", "dichlorosilane", "diborane", "phosphine", "ammonia", "tungsten-hexafluoride", "hydrofluoric-acid", "ozone", "isopropyl-alcohol"]
+  },
+  "safety-ion-implant": {
+    "topics": ["ion-implantation", "gas-safety", "engineering-controls", "ppe", "exposure-monitoring", "occupational-disease"],
+    "hazards": ["toxic", "acute-toxic", "carcinogen"],
+    "chemicals": ["arsine", "phosphine", "boron-trifluoride", "arsenic"]
+  },
+  "safety-cmp": {
+    "topics": ["cmp", "liquid-chemicals", "engineering-controls", "ppe"],
+    "hazards": ["corrosive", "toxic"],
+    "chemicals": ["silica-slurry", "ceria-slurry", "ammonia", "hydrofluoric-acid"]
+  },
+  "safety-backend-mechanical": {
+    "topics": ["packaging", "liquid-chemicals", "engineering-controls", "ppe", "occupational-disease"],
+    "hazards": ["corrosive", "acute-toxic", "sensitizer", "toxic"],
+    "chemicals": ["tmah", "epoxy-resin"]
+  },
+  "safety-backend-chemical": {
+    "topics": ["packaging", "liquid-chemicals", "ppe", "engineering-controls", "occupational-disease"],
+    "hazards": ["carcinogen", "sensitizer", "corrosive", "toxic"],
+    "chemicals": ["benzene", "antimony-trioxide", "epoxy-resin", "hydrogen-peroxide", "sulfuric-acid", "solder-flux"]
+  },
+  "safety-backend-test": {
+    "topics": ["packaging", "engineering-controls", "ppe", "occupational-disease", "exposure-monitoring"],
+    "hazards": ["toxic", "acute-toxic", "carcinogen"]
+  }
+}
