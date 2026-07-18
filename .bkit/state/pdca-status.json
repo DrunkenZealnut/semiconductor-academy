@@ -465,7 +465,7 @@
         "started": "2026-05-29T13:14:23.400Z",
         "lastUpdated": "2026-07-18T14:45:31.330Z"
       },
-      "lastFile": "/Users/zealnutkim/orca/workspaces/SemiconductorAcademy/safedata-injection/src/components/content/SafetyDisclaimer.tsx"
+      "lastFile": "src/components/content/SafetyDisclaimer.tsx"
     },
     "quote-index": {
       "phase": "do",
@@ -933,7 +933,7 @@
       "keyFindings": "안전 단원 원문 ~2,200줄(3842~6042). 확산=아르신/포스핀 급성중독·용혈성빈혈, 포토=HMDS/PR/TMAH, 공정별 3부(유해요인·건강영향·작업환경관리) 구조로 기존 모듈·책 ch06~12·OSHA part-2/3와 1:1. 원문은 메인 체크아웃 data/school-text에 실존(워크트리 미추적).",
       "designSummary": "목차 재검증으로 Plan 잠정안 정정: 세정 모듈 없음·후공정 전체(후면연마·절단·접착·몰드·마킹·도금·솔더볼·TDBI·X선) 포함. hs-semicon-infra(order 12) 신규권, 안전 트랙 Ⅳ만 완주. 10모듈 3그룹(안전보건1+전공정6+후공정3), RT~82분. 신규 인프라 0(카테고리·라우트·로더·뱃지 재사용). _links.json 본문실증 태깅으로 책 ch04~17·OSHA part-1a~4·process·hs 기술모듈·화학물질(arsine·benzene·epoxy-resin·antimony-trioxide·lead 등)과 양방향 연계. 병렬 4배치+파일럿 safety-diffusion.",
       "phaseNumber": 3,
-      "lastFile": "/Users/zealnutkim/orca/workspaces/SemiconductorAcademy/safedata-injection/mdx-components.tsx",
+      "lastFile": "mdx-components.tsx",
       "doSummary": "hs-semicon-infra(order 12) 신규권 등록, 산업안전 트랙 10모듈 완주(안전보건1+전공정6+후공정3). 파일럿 safety-diffusion 직접 작성·계약검증 후 9모듈 Sonnet 병렬(3+3+3). 원문 대조로 안전정확성 검증: photo 벤젠 실증(4237), deposition 9물질 전량 원문 명시, backend-mechanical TMAH(후면연마)·에폭시(die attach) 실증. 부정확 근사태그 ethylene-glycol-ether 2건 제외(원문 에틸렌글리콜≠에테르류), backend-chemical 납 미태깅(원문 무연솔더 Sn-Ag-Cu). OCR 오배치 tip(증착·식각·CMP) 에이전트가 정확 배제. 게이트 전통과: typecheck 0·lint 신규0·cross-link 12src/162sec/edges 857→1105(+248)/unknown 0·build 281p SSG·자리표시 0·quotes 214 회귀0·홈 9번째 카드·양방향 148참조. 신규 인프라 0(라우트·로더파일·카테고리·뱃지 재사용).",
       "checkSummary": "gap-detector 10항목 대조 최초 97%(Critical/Major 0, Minor 1=§5 예시표 stale+deposition flammable 검토). Minor 2건 즉시 반영: §5 illustrative 주석·safety-deposition flammable 추가 → 재빌드 edges 1105→1107·unknownChemicals []. FR-1~7 전건 ✅, 안전정확성 표본검증(용혈성빈혈·폐부종·후두암·백혈병 기전 정합, 화학물질 26종 전부 실재), 본문실증으로 Design §5 예시와 갈린 지점(diffusion 10종 확대·lead 제외·글리콜에테르 제외)은 구현이 옳음. Match Rate ~99%, iterate 불필요, report 권고.",
       "previousPhase": "do",

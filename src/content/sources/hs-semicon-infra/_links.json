@@ -4,7 +4,7 @@
     "topics": ["cleanroom", "ppe", "engineering-controls", "industrial-hygiene", "exposure-monitoring"]
   },
   "safety-diffusion": {
-    "topics": ["gas-safety", "ppe", "engineering-controls", "emergency-response", "occupational-disease", "exposure-monitoring"],
+    "topics": ["diffusion", "gas-safety", "ppe", "engineering-controls", "emergency-response", "occupational-disease", "exposure-monitoring"],
     "hazards": ["toxic", "acute-toxic", "corrosive", "pyrophoric", "carcinogen"],
     "chemicals": ["arsine", "phosphine", "silane", "dichlorosilane", "fluorine", "ammonia", "phosphorus-oxychloride", "hydrofluoric-acid", "sulfuric-acid", "hydrogen-peroxide"]
   },

@@ -108,7 +108,7 @@
   - `src/lib/schoolTextMdx.tsx` — 10모듈 로더 등록
   - `src/content/sources/hs-semicon-infra/{module}.mdx` — 10파일
   - `src/content/sources/hs-semicon-infra/_links.json` — 통제 어휘 태깅
-  - `src/components/safety/SafetyDisclaimer.tsx` — 신규(Simplify)
+  - `src/components/content/SafetyDisclaimer.tsx` — 신규(Simplify)
 
 ### Check — Gap 분석 & 정합도 (2026-07-18)
 
@@ -172,7 +172,7 @@
 
 ## 산출물 인벤토리
 
-### 신규 파일 (11개)
+### 신규 파일 (12개) + 수정 3
 
 | 파일 | 종류 | 내용 | 라인/크기 |
 |------|------|------|----------|
@@ -189,9 +189,10 @@
 | `src/content/sources/hs-semicon-infra/safety-backend-chemical.mdx` | MDX | 후공정 ②(몰드·마킹·도금·솔더볼·벤젠·납·플럭스) | ~270줄 |
 | `src/content/sources/hs-semicon-infra/safety-backend-test.mdx` | MDX | 후공정 ③(열적테스트·X선·전리방사선·VOC·톨루엔) | ~200줄 |
 | `src/content/sources/hs-semicon-infra/_links.json` | JSON | 통제 어휘 태깅(10모듈 topics·hazards·chemicals, 화학물질 26종) | ~100줄 |
-| `src/components/safety/SafetyDisclaimer.tsx` | React | 교육용 고지 컴포넌트(Simplify) | ~30줄 |
+| `src/components/content/SafetyDisclaimer.tsx` | React | 교육용 고지 컴포넌트(Simplify) | ~15줄 |
+| `mdx-components.tsx` (수정) | TypeScript | SafetyDisclaimer 전역 MDX 등록 | ~2줄 추가 |
 
-**합계**: 신규 MDX 10 + 설정 3 + 컴포넌트 1 + 데이터 1 = **15 신규 파일·수정**. 총 ~2,500줄 MDX + 보강.
+**합계**: 신규 MDX 10 + `_links.json` 1 + 컴포넌트 1 = **신규 12파일**, 수정 3(`sources.ts`·`schoolTextMdx.tsx`·`mdx-components.tsx`) + 자동 재생성 `cross-link.json`. 총 ~2,500줄 MDX + 보강.
 
 ### 빌드 산출물 (자동 재생성, 수동 편집 금지)
 

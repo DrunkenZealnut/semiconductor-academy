@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-18T14:46:02.007Z",
+  "generatedAt": "2026-07-18T15:27:51.943Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
@@ -846,6 +846,7 @@
     },
     "hs-semicon-infra::safety-diffusion": {
       "topics": [
+        "diffusion",
         "gas-safety",
         "ppe",
         "engineering-controls",
@@ -2329,6 +2330,10 @@
       {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-fundamentals"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
       },
       {
         "sourceId": "hs-thinfilm-diffusion",
