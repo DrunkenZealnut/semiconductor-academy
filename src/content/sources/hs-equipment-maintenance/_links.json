@@ -1,0 +1,47 @@
+{
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 장비 유지 보수」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_EQUIPMENT_MAINTENANCE.sections. 본문 실증 기준 태깅 + 권 간 연결 최대(로드맵 비고 'NCS 장비 트랙과 강한 교차' — 각 MDX 본문의 SourceRef/ChapterRef로 이행). Ⅱ 공정장비(process-*)는 각 공정 topic으로 책 ch·P3~P5·NCS 장비 자동 연결. Ⅲ 요소기술은 gas-safety/compressed-gas/engineering-controls + 가스 hazards(포스핀 자연발화·아르신 독성·O2 산화·크라이오 -196℃ 원문 실증). Ⅴ 관리는 engineering-controls/ppe/industrial-hygiene. chemicals는 본문에 기능이 서술된 것만(hmds 감광막 접착·HF 식각/세정·Cl2 식각 가스·EMC=epoxy-resin 몰딩). industry-trend(산업 개요)·design-concept-mechanical(설계 개념)·design-control-software(제어 SW)는 특정 공정·유해인자 미실증으로 무태깅.",
+  "industry-trend": {},
+  "process-wafer-photo": {
+    "topics": ["wafer-fab", "photolithography"],
+    "chemicals": ["hmds", "hydrofluoric-acid"]
+  },
+  "process-etch-deposition": {
+    "topics": ["etching", "deposition", "gas-safety"],
+    "chemicals": ["chlorine"]
+  },
+  "process-frontend-backend": {
+    "topics": ["ion-implantation", "diffusion", "cmp", "packaging", "gas-safety"],
+    "chemicals": ["hydrofluoric-acid", "epoxy-resin"]
+  },
+  "element-vacuum-gas": {
+    "topics": ["gas-safety", "compressed-gas", "engineering-controls"],
+    "hazards": ["toxic", "pyrophoric", "oxidizer", "compressed-gas", "cryogenic"]
+  },
+  "element-plasma": {
+    "topics": ["engineering-controls"]
+  },
+  "element-pneumatic-thermal": {
+    "topics": ["compressed-gas", "engineering-controls"],
+    "hazards": ["compressed-gas"]
+  },
+  "element-power": {
+    "topics": ["engineering-controls"]
+  },
+  "design-concept-mechanical": {
+    "topics": ["cleanroom", "engineering-controls"]
+  },
+  "design-electrical": {
+    "topics": ["engineering-controls"]
+  },
+  "design-control-software": {},
+  "maintenance-fundamentals": {
+    "topics": ["engineering-controls", "industrial-hygiene"]
+  },
+  "maintenance-setup": {
+    "topics": ["engineering-controls", "gas-safety"]
+  },
+  "maintenance-by-type": {
+    "topics": ["engineering-controls", "ppe", "industrial-hygiene"],
+    "hazards": ["compressed-gas", "cryogenic"]
+  }
+}

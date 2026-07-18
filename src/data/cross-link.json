@@ -1,12 +1,13 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T20:06:25.313Z",
+  "generatedAt": "2026-07-18T02:31:12.372Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
     "hs-assembly-inspection",
     "hs-basic-tech-1",
     "hs-basic-tech-2",
+    "hs-equipment-maintenance",
     "hs-photo-etch",
     "hs-semicon-basics",
     "hs-thinfilm-diffusion",
@@ -542,6 +543,134 @@
       ],
       "hazards": [
         "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::industry-trend": {
+      "topics": [],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::process-wafer-photo": {
+      "topics": [
+        "wafer-fab",
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "hmds",
+        "hydrofluoric-acid"
+      ]
+    },
+    "hs-equipment-maintenance::process-etch-deposition": {
+      "topics": [
+        "etching",
+        "deposition",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "chlorine"
+      ]
+    },
+    "hs-equipment-maintenance::process-frontend-backend": {
+      "topics": [
+        "ion-implantation",
+        "diffusion",
+        "cmp",
+        "packaging",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "epoxy-resin"
+      ]
+    },
+    "hs-equipment-maintenance::element-vacuum-gas": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "toxic",
+        "pyrophoric",
+        "oxidizer",
+        "compressed-gas",
+        "cryogenic"
+      ],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::element-plasma": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::element-pneumatic-thermal": {
+      "topics": [
+        "compressed-gas",
+        "engineering-controls"
+      ],
+      "hazards": [
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::element-power": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::design-concept-mechanical": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::design-electrical": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::design-control-software": {
+      "topics": [],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::maintenance-fundamentals": {
+      "topics": [
+        "engineering-controls",
+        "industrial-hygiene"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::maintenance-setup": {
+      "topics": [
+        "engineering-controls",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-equipment-maintenance::maintenance-by-type": {
+      "topics": [
+        "engineering-controls",
+        "ppe",
+        "industrial-hygiene"
+      ],
+      "hazards": [
+        "compressed-gas",
+        "cryogenic"
       ],
       "chemicals": []
     },
@@ -1474,6 +1603,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "17-industrial-health-view"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-fundamentals"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
       }
     ],
     "wafer-fab": [
@@ -1504,6 +1641,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-wafer-photo"
       },
       {
         "sourceId": "hs-photo-etch",
@@ -1566,6 +1707,10 @@
       {
         "sourceId": "hs-assembly-inspection",
         "sectionId": "particle-counter"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "design-concept-mechanical"
       },
       {
         "sourceId": "hs-photo-etch",
@@ -1656,6 +1801,42 @@
       {
         "sourceId": "hs-basic-tech-2",
         "sectionId": "pneumatics-maintenance"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-plasma"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-pneumatic-thermal"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-power"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "design-concept-mechanical"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "design-electrical"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-fundamentals"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-setup"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
       },
       {
         "sourceId": "hs-photo-etch",
@@ -1858,6 +2039,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
+      },
+      {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-fundamentals"
       },
@@ -1942,6 +2127,22 @@
       {
         "sourceId": "hs-basic-tech-2",
         "sectionId": "pneumatics-practice"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-etch-deposition"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-setup"
       },
       {
         "sourceId": "hs-photo-etch",
@@ -2050,6 +2251,10 @@
         "sectionId": "photo"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-wafer-photo"
+      },
+      {
         "sourceId": "hs-photo-etch",
         "sectionId": "photo-process"
       },
@@ -2128,6 +2333,10 @@
         "sectionId": "cleaning"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-etch-deposition"
+      },
+      {
         "sourceId": "hs-photo-etch",
         "sectionId": "etch-process"
       },
@@ -2192,6 +2401,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "metallization"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-etch-deposition"
       },
       {
         "sourceId": "hs-thinfilm-diffusion",
@@ -2264,6 +2477,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
+      },
+      {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-fundamentals"
       },
@@ -2300,6 +2517,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
       },
       {
         "sourceId": "ncs-semi",
@@ -2394,6 +2615,10 @@
       {
         "sourceId": "hs-assembly-inspection",
         "sectionId": "probe-test"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
       },
       {
         "sourceId": "hs-semicon-basics",
@@ -2508,7 +2733,53 @@
         "sectionId": "17-industrial-health-view"
       }
     ],
+    "compressed-gas": [
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-pneumatic-thermal"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
     "ppe": [
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
+      },
       {
         "sourceId": "hs-photo-etch",
         "sectionId": "fab-cleanroom"
@@ -2598,40 +2869,6 @@
       {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
-      }
-    ],
-    "compressed-gas": [
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "cleaning-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "gas-materials"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "thinfilm-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "implant-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "utility-operation"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "vacuum-plasma-maintenance"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "chemical-gas-maintenance"
       },
       {
         "sourceId": "osha-scs",
@@ -2766,6 +3003,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-diffusion-equipment"
       },
@@ -2842,6 +3083,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
       },
       {
         "sourceId": "ncs-semi",
@@ -3102,6 +3347,18 @@
         "sectionId": "pneumatics-practice"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-pneumatic-thermal"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cleaning-process-gas"
       },
@@ -3134,6 +3391,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
       },
       {
         "sourceId": "ncs-semi",
@@ -3172,6 +3437,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
       },
       {
         "sourceId": "ncs-semi",
@@ -3278,6 +3547,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-wafer-photo"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
       },
       {
         "sourceId": "hs-semicon-basics",
@@ -3502,6 +3779,10 @@
         "sectionId": "photo"
       },
       {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-wafer-photo"
+      },
+      {
         "sourceId": "hs-photo-etch",
         "sectionId": "photo-process"
       }
@@ -3528,6 +3809,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "etch"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-etch-deposition"
       },
       {
         "sourceId": "hs-photo-etch",
@@ -3670,6 +3955,10 @@
       {
         "sourceId": "hs-assembly-inspection",
         "sectionId": "diebond-practice"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "process-frontend-backend"
       }
     ],
     "solder-flux": [
