@@ -66,7 +66,7 @@
 
 - **typecheck** 에러 0 · **lint** 에러 0(exit 0)
 - **`build`** exit 0 — 270p SSG, hs-equipment-maintenance 14/14 모듈 HTML 생성
-- **`build:cross-link`** — **11 sources · 152 sections · 854 bidirectional edges · unknown 0** (topics 310·hazards 142·chemicals 119 tagged, 미등록 어휘 경고 0) — Do 기록과 정확히 일치
+- **`build:cross-link`** — **11 sources · 152 sections · 857 bidirectional edges · unknown 0** (topics 311·hazards 142·chemicals 119 tagged, 미등록 어휘 경고 0) — G-3 태깅 반영 최종값
 - **`quotes.json`** — HEAD 대비 diff 0(회귀 없음)
 - **통제어휘 정합** — `_links.json` topics/hazards 전건 schema-enum 유효, chemicals 4종(hmds·hydrofluoric-acid·chlorine·epoxy-resin) chemicals.json 실존
 - **코어 무수정(NFR-4)** — 변경 추적 파일은 sources.ts·schoolTextMdx.tsx(의도된 등록)·cross-link.json(빌드 산출물)뿐, 기존 10자료원·공용 라우트·컴포넌트 무변경

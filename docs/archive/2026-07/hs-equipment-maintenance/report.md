@@ -85,7 +85,7 @@
 
 - **OCR 노이즈 전량 정제**: 162~274 중복 블록 dedup, 이모지 원문자(🚺=①) 복원, 오식(교등학교·확습·딘원·바도치) 정정, 표 파편 보류.
 - **Fable 리뷰**: `maintenance-by-type`(안전핵심)·`design-electrical`(인터로크 3계층·EMO·안전PLC IEC 61508)·`element-vacuum-gas`(포스핀 자연발화·아르신 극독성) 정밀 검증, 근접 패러프레이즈 0.
-- **게이트 전부 통과**: typecheck·lint 0, build 270p SSG(14/14), cross-link 11 sources·152 sections·854 edges·unknown 0, quotes 214 회귀 0, 특칙 조작 시퀀스 0, 이미지 0, footer 14/14.
+- **게이트 전부 통과**: typecheck·lint 0, build 270p SSG(14/14), cross-link 11 sources·152 sections·857 edges(G-3 태깅 후 최종)·unknown 0, quotes 214 회귀 0, 특칙 조작 시퀀스 0, 이미지 0, footer 14/14.
 
 ### 2.4 Check 단계 (분석)
 **문서**: `docs/03-analysis/hs-equipment-maintenance.analysis.md`

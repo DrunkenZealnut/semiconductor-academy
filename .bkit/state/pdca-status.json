@@ -446,7 +446,7 @@
         "started": "2026-05-29T08:19:09.344Z",
         "lastUpdated": "2026-07-17T22:37:30.469Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/schoolTextMdx.tsx"
+      "lastFile": "src/lib/schoolTextMdx.tsx"
     },
     "content": {
       "phase": "do",
@@ -654,7 +654,7 @@
         "started": "2026-07-12T02:14:52.667Z",
         "lastUpdated": "2026-07-16T12:45:41.663Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/[module]/page.tsx"
+      "lastFile": "src/app/sources/[source]/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
