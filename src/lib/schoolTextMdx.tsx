@@ -135,6 +135,36 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
     'diffusion-practice': () =>
       import('@/content/sources/hs-thinfilm-diffusion/diffusion-practice.mdx'),
   },
+  'hs-equipment-maintenance': {
+    'industry-trend': () =>
+      import('@/content/sources/hs-equipment-maintenance/industry-trend.mdx'),
+    'process-wafer-photo': () =>
+      import('@/content/sources/hs-equipment-maintenance/process-wafer-photo.mdx'),
+    'process-etch-deposition': () =>
+      import('@/content/sources/hs-equipment-maintenance/process-etch-deposition.mdx'),
+    'process-frontend-backend': () =>
+      import('@/content/sources/hs-equipment-maintenance/process-frontend-backend.mdx'),
+    'element-vacuum-gas': () =>
+      import('@/content/sources/hs-equipment-maintenance/element-vacuum-gas.mdx'),
+    'element-plasma': () =>
+      import('@/content/sources/hs-equipment-maintenance/element-plasma.mdx'),
+    'element-pneumatic-thermal': () =>
+      import('@/content/sources/hs-equipment-maintenance/element-pneumatic-thermal.mdx'),
+    'element-power': () =>
+      import('@/content/sources/hs-equipment-maintenance/element-power.mdx'),
+    'design-concept-mechanical': () =>
+      import('@/content/sources/hs-equipment-maintenance/design-concept-mechanical.mdx'),
+    'design-electrical': () =>
+      import('@/content/sources/hs-equipment-maintenance/design-electrical.mdx'),
+    'design-control-software': () =>
+      import('@/content/sources/hs-equipment-maintenance/design-control-software.mdx'),
+    'maintenance-fundamentals': () =>
+      import('@/content/sources/hs-equipment-maintenance/maintenance-fundamentals.mdx'),
+    'maintenance-setup': () =>
+      import('@/content/sources/hs-equipment-maintenance/maintenance-setup.mdx'),
+    'maintenance-by-type': () =>
+      import('@/content/sources/hs-equipment-maintenance/maintenance-by-type.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {

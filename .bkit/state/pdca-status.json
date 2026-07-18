@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-17T19:41:00.000Z",
+  "lastUpdated": "2026-07-18T12:30:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -29,8 +29,22 @@
     "hs-photo-etch",
     "hs-thinfilm-diffusion"
   ],
-  "primaryFeature": "hs-assembly-inspection",
+  "primaryFeature": null,
   "features": {
+    "hs-equipment-maintenance": {
+      "phase": "archived",
+      "matchRate": 96,
+      "iterationCount": 0,
+      "startedAt": "2026-07-17T21:24:00.000Z",
+      "completedAt": "2026-07-18T12:00:00.000Z",
+      "archivedAt": "2026-07-18T12:15:00.000Z",
+      "archivedTo": "docs/archive/2026-07/hs-equipment-maintenance/",
+      "branch": "main",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/23",
+      "inherits": "hs-assembly-inspection(P5 — 특칙 강화판·움직이는 기계의 안전 축, 100%) + hs-thinfilm-diffusion(P4 — 장비 유형 일반화·요소기술 접점, 100%) + hs-basic-tech-2(P2 — 신규 콘텐츠 유형 CAD 선례, 100%) + hs-textbook-collection(카테고리 인프라, 97.6%)",
+      "cycleType": "category-new-volume",
+      "summary": "「반도체 장비 유지 보수」(왕현철 외 3인·충남반도체마이스터고, 2022 개정·충남 인정 22-충남-78-고교-26-007, 7,048줄 시리즈 최대급) 5대단원 22중단원→병합 14모듈, 사이트 11번째 자료원(MDX 2,634줄·RT ~131분·order 11)·8권 교과서 카테고리 신규 8권 완주. Match 96%→Gap 3건(P2: G-1 크라이오 온도·G-2 모델명·G-3 태깅) 전건 수정→실질 100%·iterate 0. 판권 R-1 Design 선행 해소. Ⅱ 중복 연결 위임·Ⅲ·Ⅴ 신규 집중·Ⅳ P2 CAD 방식. '정지 상태 정비 안전' 학습축 신설(LOTO·인터로크·EMO·안전PLC·SEMI S2/S8) — P5 확대. 연결 시리즈 최다: NCS 장비 트랙 24건/16섹션(FR-7 6배)·P1~P5 권간 18·책 ch5~14 ChapterRef 16(dead-link 0). 6배치 병렬 Sonnet. 게이트 전부 통과(typecheck·lint 0·build 270p SSG 14/14·cross-link 11 sources·152 sections·857 edges·unknown 0·quotes 214 회귀 0). 커밋 미완료(사용자 요청 시)."
+    },
     "hs-thinfilm-diffusion": {
       "phase": "report",
       "matchRate": 100,
@@ -430,7 +444,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-07-17T12:49:36.888Z"
+        "lastUpdated": "2026-07-17T22:37:30.469Z"
       },
       "lastFile": "src/lib/schoolTextMdx.tsx"
     },
@@ -640,7 +654,7 @@
         "started": "2026-07-12T02:14:52.667Z",
         "lastUpdated": "2026-07-16T12:45:41.663Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/[module]/page.tsx"
+      "lastFile": "src/app/sources/[source]/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
@@ -1011,7 +1025,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-17T14:32:20.584Z"
+    "lastActivity": "2026-07-17T22:37:30.469Z"
   },
   "history": [
     {
@@ -3149,6 +3163,30 @@
       "feature": "hs-assembly-inspection",
       "phase": "archived",
       "action": "feature_archived"
+    },
+    {
+      "timestamp": "2026-07-17T22:05:22.012Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T22:05:34.251Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T22:31:06.511Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-17T22:37:30.469Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
     }
   ]
 }
