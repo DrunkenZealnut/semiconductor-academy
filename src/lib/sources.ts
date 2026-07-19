@@ -7,7 +7,8 @@
  */
 
 import { chapters } from './chapters';
-import type { Chapter, Source, SourceSection } from './types';
+import type { Chapter, Source, SourceCategory, SourceSection } from './types';
+import { SOURCE_CATEGORY_LABELS } from './types';
 
 function chapterToSection(c: Chapter): SourceSection {
   return {
@@ -1864,6 +1865,36 @@ export const SOURCES: Source[] = [
 
 export function getOrderedSources(): Source[] {
   return [...SOURCES].sort((a, b) => a.order - b.order);
+}
+
+export interface SourceGroup {
+  category: SourceCategory;
+  label: string;
+  sources: Source[];
+}
+
+/**
+ * order 순 자료원을 UI 그룹으로 분할.
+ * - `standalone`: category 없는 독립 자료원
+ * - `groups`: category별 묶음 (category 등장 순서 유지, 라벨은 SOURCE_CATEGORY_LABELS 파생)
+ * category를 순회하므로 새 category 추가 시 자동으로 그룹이 생긴다 (하드코딩·무음 탈락 없음).
+ */
+export function getGroupedSources(): { standalone: Source[]; groups: SourceGroup[] } {
+  const ordered = getOrderedSources();
+  const standalone = ordered.filter((s) => !s.category);
+  const byCategory = new Map<SourceCategory, Source[]>();
+  for (const s of ordered) {
+    if (!s.category) continue;
+    const list = byCategory.get(s.category) ?? [];
+    list.push(s);
+    byCategory.set(s.category, list);
+  }
+  const groups = [...byCategory.entries()].map(([category, sources]) => ({
+    category,
+    label: SOURCE_CATEGORY_LABELS[category],
+    sources,
+  }));
+  return { standalone, groups };
 }
 
 export function getSource(id: string): Source | undefined {

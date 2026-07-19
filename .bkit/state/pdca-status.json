@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-19T00:54:18.131Z",
+  "lastUpdated": "2026-07-19T05:09:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -29,7 +29,8 @@
     "hs-photo-etch",
     "hs-thinfilm-diffusion",
     "safedata-injection",
-    "safedata-injection Gap 분석"
+    "safedata-injection Gap 분석",
+    "menu-재구성"
   ],
   "primaryFeature": "safedata-injection",
   "features": {
@@ -424,9 +425,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:17:58.360Z",
-        "lastUpdated": "2026-07-16T05:21:45.702Z"
+        "lastUpdated": "2026-07-19T04:48:03.417Z"
       },
-      "lastFile": "src/components/layout/LearningPathSection.tsx"
+      "lastFile": "src/components/layout/Header.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -954,6 +955,30 @@
       },
       "previousPhase": "check",
       "autoAdvanced": true
+    },
+    "menu-restructure": {
+      "phase": "archived",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "startedAt": "2026-07-19T04:41:50.290Z",
+      "completedAt": "2026-07-19T05:09:00.000Z",
+      "archivedAt": "2026-07-19T05:09:00.000Z",
+      "archivedTo": "docs/archive/2026-07/menu-restructure/",
+      "branch": "DrunkenZealnut/menu-재구성",
+      "note": "헤더 네비 7개→4축(자료원 드롭다운·공정·유해물질 사전·검색) 재구성. getGroupedSources() 셀렉터 신설로 중복 그룹핑 로직 3곳→1곳 통합(/simplify). Match 98%, Gap 0건."
+    },
+    "menu-재구성": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-19T04:47:09.623Z",
+        "lastUpdated": "2026-07-19T04:47:18.538Z"
+      },
+      "lastFile": "src/lib/sources.ts"
     }
   },
   "pipeline": {
@@ -1075,7 +1100,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-19T00:54:18.131Z"
+    "lastActivity": "2026-07-19T04:48:03.417Z"
   },
   "history": [
     {
@@ -3295,6 +3320,66 @@
     {
       "timestamp": "2026-07-19T00:54:18.131Z",
       "feature": "content",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T03:56:10.204Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T03:56:38.306Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:41:50.290Z",
+      "feature": "menu-restructure",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:09.623Z",
+      "feature": "menu-재구성",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:18.538Z",
+      "feature": "menu-재구성",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:27.540Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:37.508Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:47.948Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:47:53.624Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-19T04:48:03.417Z",
+      "feature": "layout",
       "phase": "do",
       "action": "updated"
     }
