@@ -2,17 +2,16 @@ import { Sparkles, Lightbulb } from 'lucide-react';
 import { Disclosure } from '@/components/ui/Disclosure';
 import type { ReactNode } from 'react';
 
+type DeepQuote = { quote: ReactNode; sourcePage?: number; sourceSection?: string };
+type DeepSummary = { summary: ReactNode; sourceSection?: string };
+
 interface LayeredExplainProps {
   hook: ReactNode;
   easy: {
     analogy: ReactNode;
     illustration?: ReactNode;
   };
-  deep?: {
-    quote?: ReactNode;
-    sourcePage?: number;
-    sourceSection?: string;
-  };
+  deep?: DeepQuote | DeepSummary;
 }
 
 export function LayeredExplain({ hook, easy, deep }: LayeredExplainProps) {
@@ -40,8 +39,8 @@ export function LayeredExplain({ hook, easy, deep }: LayeredExplainProps) {
         )}
       </div>
 
-      {/* Layer 3: Deep — only rendered when an actual quote exists */}
-      {deep?.quote && (
+      {/* Layer 3a: Deep — 원문 인용(verbatim) */}
+      {deep && 'quote' in deep && deep.quote && (
         <Disclosure
           title={`📖 학술 원본 보기${
             deep.sourcePage ? ` (p.${deep.sourcePage})` : ''
@@ -55,6 +54,19 @@ export function LayeredExplain({ hook, easy, deep }: LayeredExplainProps) {
               — 「반도체 산업의 유해인자」 p.{deep.sourcePage}
             </p>
           )}
+        </Disclosure>
+      )}
+
+      {/* Layer 3b: Deep — 요약/재서술(paraphrase) */}
+      {deep && 'summary' in deep && deep.summary && (
+        <Disclosure
+          title={`📘 자료 정리 보기${
+            deep.sourceSection ? ` — ${deep.sourceSection}` : ''
+          }`}
+        >
+          <div className="border-l-4 border-slate-300 pl-4 text-slate-700 dark:border-slate-600 dark:text-slate-300">
+            {deep.summary}
+          </div>
         </Disclosure>
       )}
     </div>
