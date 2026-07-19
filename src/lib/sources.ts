@@ -1747,6 +1747,106 @@ export const HS_EQUIPMENT_MAINTENANCE: Source = {
   ],
 };
 
+export const HS_SEMICON_INFRA: Source = {
+  id: 'hs-semicon-infra',
+  kind: 'textbook',
+  language: 'ko',
+  title: '반도체 인프라 일반',
+  subtitle:
+    '반도체고 교과서 — 산업안전과 건강관리: 공정별 유해요인·건강영향·작업환경관리 (전·후공정 전체)',
+  attribution: '서울시교육청 인정',
+  publisher: '서울특별시교육청',
+  license: 'fair-use',
+  order: 12,
+  accent: 'school',
+  category: 'hs-textbook',
+  // 이번 사이클 = Ⅳ '산업안전과 건강관리' 트랙만 완주. 완성 모듈만 등록(로더와 짝).
+  // 나머지 3단원(개요·전기설비·공조)은 후속 사이클 로드맵.
+  // 등록 순서 = 교과서 목차 순서(제조환경 → 전공정 → 후공정) = 이전/다음 내비.
+  sections: [
+    {
+      id: 'safety-management',
+      href: '/sources/hs-semicon-infra/safety-management/',
+      title: '안전보건 관리와 제조 환경',
+      summary: '클린룸·방진복부터 산업안전보건법·위험성평가까지 — 반도체 안전의 토대',
+      readingTime: 10,
+      group: '안전보건 기초',
+    },
+    {
+      id: 'safety-diffusion',
+      href: '/sources/hs-semicon-infra/safety-diffusion/',
+      title: '확산 공정 안전',
+      summary: '위험은 멈췄을 때 새어 나온다 — 확산로 PM 작업의 아르신·불산 노출과 용혈성 빈혈',
+      readingTime: 9,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-photo',
+      href: '/sources/hs-semicon-infra/safety-photo/',
+      title: '포토 공정 안전',
+      summary: '감광액·현상액의 두 얼굴 — HMDS·PR 유기용제·TMAH와 천식·생식독성·벤젠',
+      readingTime: 8,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-etch',
+      href: '/sources/hs-semicon-infra/safety-etch/',
+      title: '식각 공정 안전',
+      summary: '깎아 내는 힘의 대가 — 습식 산·건식 플라즈마 가스와 화상·후두암',
+      readingTime: 8,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-deposition',
+      href: '/sources/hs-semicon-infra/safety-deposition/',
+      title: '증착 공정 안전',
+      summary: '쌓는 가스의 위험 — 실란의 자연발화와 밀폐 공간 질식',
+      readingTime: 7,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-ion-implant',
+      href: '/sources/hs-semicon-infra/safety-ion-implant/',
+      title: '이온 주입 공정 안전',
+      summary: '보이지 않는 두 위험 — 도판트 독성 가스와 전리 방사선',
+      readingTime: 8,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-cmp',
+      href: '/sources/hs-semicon-infra/safety-cmp/',
+      title: '연마(CMP) 공정 안전',
+      summary: '갈아 내며 튀는 것들 — 슬러리·강알칼리 미스트와 피부 화상',
+      readingTime: 6,
+      group: '전공정 안전',
+    },
+    {
+      id: 'safety-backend-mechanical',
+      href: '/sources/hs-semicon-infra/safety-backend-mechanical/',
+      title: '후공정 안전 ① 후면연마·절단·칩접착',
+      summary: '칩을 자르고 붙일 때 — TMAH 화상·실리콘 분진·에폭시 천식',
+      readingTime: 9,
+      group: '후공정 안전',
+    },
+    {
+      id: 'safety-backend-chemical',
+      href: '/sources/hs-semicon-infra/safety-backend-chemical/',
+      title: '후공정 안전 ② 몰드·마킹·도금·솔더볼',
+      summary: '열로 굳히고 도금할 때 — EMC 벤젠·삼산화안티몬과 발암 위험',
+      readingTime: 10,
+      group: '후공정 안전',
+    },
+    {
+      id: 'safety-backend-test',
+      href: '/sources/hs-semicon-infra/safety-backend-test/',
+      title: '후공정 안전 ③ 열적 테스트·X선 검사',
+      summary: '가열·투과 검사의 뒷면 — 휘발성 유기물과 전리 방사선',
+      readingTime: 6,
+      group: '후공정 안전',
+    },
+  ],
+};
+
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -1759,6 +1859,7 @@ export const SOURCES: Source[] = [
   HS_THINFILM_DIFFUSION,
   HS_ASSEMBLY_INSPECTION,
   HS_EQUIPMENT_MAINTENANCE,
+  HS_SEMICON_INFRA,
 ];
 
 export function getOrderedSources(): Source[] {

@@ -182,6 +182,9 @@ function extractLayeredExplain(src, chapterId, chapterMeta) {
     if (innerEnd === -1) continue;
     const deepBody = block.slice(innerBrace + 1, innerEnd);
 
+    // summary(요약) 전용 블록 제외: deep 객체에 quote 속성(줄 시작 위치)이 없으면 skip.
+    // 라인 스캐너 방침에 맞춘 property-position 가드 — 본문 산문의 'quote:' 오탐 방지.
+    if (!/\n\s*quote\s*:/.test(deepBody)) continue;
     const pageMatch = deepBody.match(/sourcePage\s*:\s*(\d+)/);
     const sectionMatch = deepBody.match(/sourceSection\s*:\s*['"]([^'"]+)['"]/);
     const quoteIdx = deepBody.indexOf('quote:');

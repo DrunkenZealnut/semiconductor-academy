@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-07-18T16:35:19+09:00",
+  "lastUpdated": "2026-07-18T14:45:34.493Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -27,9 +27,11 @@
     "hs-basic-tech-1",
     "hs-basic-tech-2",
     "hs-photo-etch",
-    "hs-thinfilm-diffusion"
+    "hs-thinfilm-diffusion",
+    "safedata-injection",
+    "safedata-injection Gap 분석"
   ],
-  "primaryFeature": null,
+  "primaryFeature": "safedata-injection",
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -461,9 +463,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T13:14:23.400Z",
-        "lastUpdated": "2026-05-29T13:14:23.400Z"
+        "lastUpdated": "2026-07-18T14:45:31.330Z"
       },
-      "lastFile": "src/components/content/LayeredExplain.tsx"
+      "lastFile": "src/components/content/SafetyDisclaimer.tsx"
     },
     "quote-index": {
       "phase": "do",
@@ -908,6 +910,50 @@
       "inherits": "hs-thinfilm-diffusion(특칙 강화판·실습과제 단위 재구성, 100%) + hs-photo-etch(특칙 원형·장비 기술자 각도, 100%) + hs-textbook-collection(카테고리 인프라, 97.6%)",
       "cycleType": "category-new-volume",
       "summary": "에이치앤지 「반도체 조립·검사」(시리즈 3권째, 5,662줄 OCR) 6대단원 12모듈 전량 재구성 — 사이트 10번째 자료원(MDX 1,937줄·RT 123분·order 10), 첫 후공정 권. 당일 완결(~3.5h), Match Rate 100%(raw 98.6%→Low-1 모델명 맥락 종결)·iterate 0. 파일럿+5배치 병렬 Sonnet(서브에이전트 파일 쓰기 격리 이슈 → 텍스트 반환 전환으로 전량 회수). 실습과제 13/13·조작 시퀀스 0·원문 이미지 0. 로드맵 P5 비고(packaging Process 연결)를 packaging 태깅+책 ch13 ChapterRef 5건으로 이행, NCS 4종+P3 fab-cleanroom 권 간+daegu 연결(FR-10 초과). '움직이는 기계의 안전' 학습 축 신설(78건/9모듈) — P6·P7 재사용 권장. 게이트: typecheck·lint 0, build 12/12 SSG, cross-link 10 sources·138 sections·800 edges·unknown 0, quotes 214 회귀 0. 커밋 미완료(사용자 요청 시 진행)."
+    },
+    "safedata-injection": {
+      "phase": "completed",
+      "matchRate": 99,
+      "iterationCount": 0,
+      "startedAt": "2026-07-18T09:40:00.000Z",
+      "cycleType": "category-new-volume(safety track) + cross-link-hub",
+      "inherits": "PRODUCT-DIRECTION(C) + cross-link-system + daegu-hs-textbook(고교 재작성·저작권)",
+      "documents": {
+        "plan": "docs/01-plan/features/safedata-injection.plan.md",
+        "design": "docs/02-design/features/safedata-injection.design.md",
+        "analysis": "docs/03-analysis/safedata-injection.analysis.md",
+        "report": "docs/04-report/safedata-injection.report.md"
+      },
+      "branch": "DrunkenZealnut/safedata-injection",
+      "summary": "「반도체 인프라 일반」(서울시교육청) '산업안전과 건강관리' 단원을 hs-textbook 신규권(hs-semicon-infra)으로 자료원화(공정별 유해요인→건강영향→작업환경관리 6~8모듈), OSHA+「반도체 유해인자」로 보강. 안전 모듈을 허브 삼아 기존 기술 모듈(포토·에칭/박막·확산 등)·책·OSHA·공정·화학물질과 양방향 cross-link. 사용자 확정: C안(둘 다). 유해물질사전 주입 방향 폐기.",
+      "pendingDecisions": "D-4 OSHA part-1a/1b/4 태그 보강(권장)·D-5 전리방사선 어휘(exposure-monitoring 재사용 기본)·D-6 후공정 병합·D-7 order 실측 — Do에서 확정",
+      "timestamps": {
+        "lastUpdated": "2026-07-19T00:00:00+09:00"
+      },
+      "keyFindings": "안전 단원 원문 ~2,200줄(3842~6042). 확산=아르신/포스핀 급성중독·용혈성빈혈, 포토=HMDS/PR/TMAH, 공정별 3부(유해요인·건강영향·작업환경관리) 구조로 기존 모듈·책 ch06~12·OSHA part-2/3와 1:1. 원문은 메인 체크아웃 data/school-text에 실존(워크트리 미추적).",
+      "designSummary": "목차 재검증으로 Plan 잠정안 정정: 세정 모듈 없음·후공정 전체(후면연마·절단·접착·몰드·마킹·도금·솔더볼·TDBI·X선) 포함. hs-semicon-infra(order 12) 신규권, 안전 트랙 Ⅳ만 완주. 10모듈 3그룹(안전보건1+전공정6+후공정3), RT~82분. 신규 인프라 0(카테고리·라우트·로더·뱃지 재사용). _links.json 본문실증 태깅으로 책 ch04~17·OSHA part-1a~4·process·hs 기술모듈·화학물질(arsine·benzene·epoxy-resin·antimony-trioxide·lead 등)과 양방향 연계. 병렬 4배치+파일럿 safety-diffusion.",
+      "phaseNumber": 3,
+      "lastFile": "mdx-components.tsx",
+      "doSummary": "hs-semicon-infra(order 12) 신규권 등록, 산업안전 트랙 10모듈 완주(안전보건1+전공정6+후공정3). 파일럿 safety-diffusion 직접 작성·계약검증 후 9모듈 Sonnet 병렬(3+3+3). 원문 대조로 안전정확성 검증: photo 벤젠 실증(4237), deposition 9물질 전량 원문 명시, backend-mechanical TMAH(후면연마)·에폭시(die attach) 실증. 부정확 근사태그 ethylene-glycol-ether 2건 제외(원문 에틸렌글리콜≠에테르류), backend-chemical 납 미태깅(원문 무연솔더 Sn-Ag-Cu). OCR 오배치 tip(증착·식각·CMP) 에이전트가 정확 배제. 게이트 전통과: typecheck 0·lint 신규0·cross-link 12src/162sec/edges 857→1105(+248)/unknown 0·build 281p SSG·자리표시 0·quotes 214 회귀0·홈 9번째 카드·양방향 148참조. 신규 인프라 0(라우트·로더파일·카테고리·뱃지 재사용).",
+      "checkSummary": "gap-detector 10항목 대조 최초 97%(Critical/Major 0, Minor 1=§5 예시표 stale+deposition flammable 검토). Minor 2건 즉시 반영: §5 illustrative 주석·safety-deposition flammable 추가 → 재빌드 edges 1105→1107·unknownChemicals []. FR-1~7 전건 ✅, 안전정확성 표본검증(용혈성빈혈·폐부종·후두암·백혈병 기전 정합, 화학물질 26종 전부 실재), 본문실증으로 Design §5 예시와 갈린 지점(diffusion 10종 확대·lead 제외·글리콜에테르 제외)은 구현이 옳음. Match Rate ~99%, iterate 불필요, report 권고.",
+      "previousPhase": "do",
+      "completedAt": "2026-07-18T11:00:00+09:00",
+      "reportSummary": "hs-semicon-infra(반도체 인프라 일반 산업안전 트랙) 10모듈 완주·Match 99%. C안(신설+연계). edges 857→1107(+250)·26 chemicals·281 SSG. simplify로 SafetyDisclaimer 컴포넌트 추출. 후속: 인프라 나머지 3단원·세정 안전·OSHA part-1a/1b/4 태그 보강(D-4). 커밋 미완료(요청 시).",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/24 — feat a86cc4e + chore(pdca) 35a8109. 브랜치 DrunkenZealnut/safedata-injection→main. 리뷰 대기."
+    },
+    "safedata-injection Gap 분석": {
+      "phase": "act",
+      "phaseNumber": 5,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-07-18T14:39:51.757Z",
+        "lastUpdated": "2026-07-18T14:39:51.758Z"
+      },
+      "previousPhase": "check",
+      "autoAdvanced": true
     }
   },
   "pipeline": {
@@ -1029,7 +1075,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-07-17T22:37:30.469Z"
+    "lastActivity": "2026-07-18T14:45:34.493Z"
   },
   "history": [
     {
@@ -3189,6 +3235,54 @@
     {
       "timestamp": "2026-07-17T22:37:30.469Z",
       "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:12:53.101Z",
+      "feature": "safedata-injection",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:13:01.002Z",
+      "feature": "safedata-injection",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:29:46.487Z",
+      "feature": "safedata-injection",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:29:51.651Z",
+      "feature": "safedata-injection",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:39:51.758Z",
+      "feature": "safedata-injection Gap 분석",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:45:31.330Z",
+      "feature": "content",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:45:33.439Z",
+      "feature": "safedata-injection",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-18T14:45:34.493Z",
+      "feature": "safedata-injection",
       "phase": "do",
       "action": "updated"
     }
