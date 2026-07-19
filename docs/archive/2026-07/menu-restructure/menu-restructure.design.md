@@ -1,7 +1,7 @@
 # Design — 헤더 메뉴 재구성: 자료원 드롭다운 + 공정 + 유해물질사전 + 검색
 
 > **Feature**: `menu-restructure` · **작성일**: 2026-07-19 · **Level**: Dynamic
-> **Plan**: `docs/01-plan/features/menu-restructure.plan.md`
+> **Plan**: `./menu-restructure.plan.md`
 > **범위**: 헤더 네비 4축 재구성 + 자료원 드롭다운 신규. URL·콘텐츠·홈 무수정.
 
 ---

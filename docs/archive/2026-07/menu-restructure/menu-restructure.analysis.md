@@ -2,7 +2,7 @@
 
 > **Feature**: `menu-restructure` · **분석일**: 2026-07-19 · **Phase**: Check
 > **Agent**: bkit:gap-detector
-> **설계(진실)**: `docs/02-design/features/menu-restructure.design.md`
+> **설계(진실)**: `./menu-restructure.design.md`
 > **구현**: `src/components/layout/SourcesDropdown.tsx`(신규) · `src/components/layout/Header.tsx`(수정)
 
 ## 분석 개요
@@ -25,7 +25,7 @@
 | §1 헤더 구성 | 데스크톱 4축(자료원 드롭다운·공정·유해물질 사전·검색) | Match | Header.tsx:38-52 `<SourcesDropdown/>` + navItems 3 |
 | §1 | 우측 유틸(Font·Theme·Logout) 불변 | Match | Header.tsx:49-51 |
 | §1 | 로고 `반도체 아카데미`→`/` 불변 | Match | Header.tsx:33-36 |
-| §2 데이터 파생 | `getOrderedSources()`+`filter(!category)`/`filter(===hs-textbook)` → 3+9 | Match | Header.tsx:21-24, Dropdown:10-13 |
+| §2 데이터 파생 | `getGroupedSources()`(category 동적 순회, `SourceGroup.sources` 반환) → standalone 3 + groups[hs-textbook].sources 9 | Match | sources.ts:`getGroupedSources`, Header.tsx/Dropdown 소비 |
 | §2 | 하드코딩 없음, `SOURCE_CATEGORY_LABELS` 파생 | Match | 레지스트리 파생 (sources.ts:1865 순수함수) |
 | §2 | href `/sources/${id}/` | Match | Dropdown:75, Header.tsx:84,98 |
 | §3 a11y | `aria-haspopup="menu"`·`aria-expanded` | Match | Dropdown:52-53 |

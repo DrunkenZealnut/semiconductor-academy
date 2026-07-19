@@ -427,7 +427,7 @@
         "started": "2026-05-29T08:17:58.360Z",
         "lastUpdated": "2026-07-19T04:48:03.417Z"
       },
-      "lastFile": "/Users/zealnutkim/orca/workspaces/SemiconductorAcademy/menu-재구성/src/components/layout/Header.tsx"
+      "lastFile": "src/components/layout/Header.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -978,7 +978,7 @@
         "started": "2026-07-19T04:47:09.623Z",
         "lastUpdated": "2026-07-19T04:47:18.538Z"
       },
-      "lastFile": "/Users/zealnutkim/orca/workspaces/SemiconductorAcademy/menu-재구성/src/lib/sources.ts"
+      "lastFile": "src/lib/sources.ts"
     }
   },
   "pipeline": {

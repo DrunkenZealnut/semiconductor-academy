@@ -31,7 +31,7 @@
 | 관점 | 실제 결과 |
 |------|---------|
 | **Problem (문제 해결)** | 헤더 네비 7개 항목 → **4개 축으로 압축**, 12개 자료원이 헤더에서 직접 진입 불가 → **드롭다운으로 order 순 12개 노출**(독립 3 + 반도체 고등학교 교과서 9). 책 특권 제거, 검색 진입점 단일화. |
-| **Solution (기술 해결)** | `SourcesDropdown.tsx` 신규(aria-expanded/menu/menuitem, ESC·외부클릭·포커스 관리), `Header.tsx` navItems 3개 축소, `getGroupedSources()` 신규 셀렉터로 복제 로직 3곳 → 1곳 통합. 자료원 추가 시 헤더 자동 반영(하드코딩 제거). |
+| **Solution (기술 해결)** | `SourcesDropdown.tsx` 신규(aria-expanded/menu/menuitem, ESC·외부클릭·포커스 관리), `Header.tsx` navItems 3개 축소, `getGroupedSources()` 신규 셀렉터로 이번 diff의 복제 로직 2곳(Header·SourcesDropdown) → 1곳 통합. 자료원 추가 시 헤더 자동 반영(하드코딩 제거). |
 | **Function & UX Effect (기능·UX)** | ✅ 데스크톱 드롭다운 hover/click 토글 + ESC 닫힘 ✅ 모바일 accordion(Disclosure 재사용) ✅ 12개 자료원 1~2클릭 도달 ✅ 자료원 위계 균질화(order 순) ✅ "검색" 단일 진입점(`/quotes/`, 추후 `/search/` 승격 가능) ✅ 유틸 버튼(글자크기·테마·로그아웃) 우측 위치 불변. 정적 export 281페이지 성공. |
 | **Core Value (핵심 가치)** | `homepage-learning-hub`(홈 IA 승격)에서 구축한 "멀티소스 학습 허브" 아이덴티티를 **전역 고정 헤더로 관철** — 어느 페이지에서든 12개 자료원·공정·유해물질·검색이라는 사이트 4대 축으로 즉시 이동, 일관되고 명확한 학습 네비게이션 확보. |
 
@@ -40,7 +40,7 @@
 ## 2. PDCA Cycle Summary
 
 ### 2.1 Plan
-- **Document**: `docs/01-plan/features/menu-restructure.plan.md`
+- **Document**: `./menu-restructure.plan.md`
 - **Goal**: 헤더 네비 4축 재구성(자료원 드롭다운·공정·유해물질 사전·검색)
 - **Approach**: 
   - `getOrderedSources()` + `SOURCE_CATEGORY_LABELS` 레지스트리 파생 (하드코딩 금지)
@@ -50,7 +50,7 @@
   - MVP 검색: `/quotes/` 재사용, 통합 `/search/`는 후속 feature
 
 ### 2.2 Design
-- **Document**: `docs/02-design/features/menu-restructure.design.md`
+- **Document**: `./menu-restructure.design.md`
 - **Key Decisions**:
   1. **자료원 드롭다운 (SourcesDropdown.tsx)**
      - 데스크톱: absolute 패널(`w-72`), click 토글, hover 스타일
@@ -72,20 +72,20 @@
   - `src/components/layout/SourcesDropdown.tsx` (신규, 약 110줄)
     - `useState(open)`, `useRef` for trigger/panel
     - `useEffect`: keydown(ESC), mousedown(외부클릭) 리스너
-    - `getOrderedSources()` + `filter(!category)` / `filter(===hs-textbook)`
+    - `getGroupedSources()`로 `{ standalone, groups }` 파생 → `groups.map()`으로 category 순회 렌더
     - 마크업: button(aria-haspopup/aria-expanded), menu/menuitem roles, ChevronDown icon(aria-hidden)
   
   - `src/components/layout/Header.tsx` (수정)
-    - import: `SourcesDropdown`, 데이터 파생(`getOrderedSources`, `SOURCE_CATEGORY_LABELS`)
+    - import: `SourcesDropdown`, 데이터 파생(`getGroupedSources`)
     - navItems 3개 축소(공정/유해물질/검색)
     - 데스크톱 nav: `<SourcesDropdown/>` + Link 3개
-    - 모바일 메뉴: Disclosure 재사용해 자료원 accordion + 평면 링크 3개
+    - 모바일 메뉴: Disclosure 재사용해 자료원 accordion + 평면 링크 3개(`groups.map()`으로 동일 순회)
   
   - **품질 개선 적용** (분석 후 추가)
     - `src/lib/sources.ts`: `getGroupedSources()` 신규 셀렉터
       - standalone: `filter(!s.category)` (독립 3)
-      - groups[0]: `{ category: 'hs-textbook', items: 9 }`
-      - 이전 복제 로직(SourcesDropdown·Header·SourcePicker) 3곳 → 1곳 통합
+      - groups: category를 `Map`으로 동적 순회해 생성, 각 원소 `{ category, label, sources }`(현재 `hs-textbook` 1개뿐이나 category 추가 시 자동 확장)
+      - 이전 복제 로직(SourcesDropdown·Header, 기존 SourcePicker는 별도 파일로 이번 범위 밖) 2곳 → 1곳 통합
     - SourcesDropdown.tsx, Header.tsx: `getGroupedSources()` 소비
     - Header.tsx: `cn()` no-op 호출 + 미사용 import 제거
 
@@ -95,7 +95,7 @@
   - 품질: 리팩터링 커밋 (getGroupedSources 추가, 로직 통합)
 
 ### 2.4 Check (분석)
-- **Analysis Document**: `docs/03-analysis/menu-restructure.analysis.md`
+- **Analysis Document**: `./menu-restructure.analysis.md`
 - **Design Match Rate**: **98%** ✅
 - **Gaps Found**: 0건 (Missing/Inconsistency 없음)
 - **Additional Observations**:
@@ -135,7 +135,7 @@
 | 파일 | 변경 | 효과 |
 |------|------|------|
 | `src/components/layout/Header.tsx` | navItems 3개로 축소, 데스크톱에 `<SourcesDropdown/>`, 모바일 Disclosure accordion, 데이터 파생 | 헤더 항목 7→4, 자료원 12개 직접 진입 |
-| `src/lib/sources.ts` | `getGroupedSources()` 신규 셀렉터 추가 | 복제 로직 3곳→1곳 통합, 도메인 레이어 강화 |
+| `src/lib/sources.ts` | `getGroupedSources()` 신규 셀렉터 추가 | Header·SourcesDropdown 복제 로직 2곳→1곳 통합, 도메인 레이어 강화(SourcePicker.tsx는 이번 범위 밖 — 후속 과제) |
 
 ### 3.3 의존성
 - **신규 의존성**: 0개
@@ -145,7 +145,7 @@
   - `clsx/classnames` (cn)
   - `next/link` (라우팅)
   - `src/components/ui/Disclosure.tsx` (모바일 accordion)
-  - `src/lib/sources.ts` (`getOrderedSources`, `SOURCE_CATEGORY_LABELS`, `getGroupedSources`)
+  - `src/lib/sources.ts` (`getGroupedSources` — 내부에서 `getOrderedSources`·`SOURCE_CATEGORY_LABELS` 사용)
 
 ### 3.4 메트릭
 | 항목 | 값 |
@@ -155,7 +155,7 @@
 | Match Rate (Design vs 구현) | 98% |
 | Gap/누락 | 0건 |
 | 신규 의존성 | 0 |
-| 복제 로직 통합 | 3곳 → 1곳 (`getGroupedSources`) |
+| 복제 로직 통합 | 2곳 → 1곳 (`getGroupedSources`, SourcePicker는 후속 과제) |
 | 정적 export 빌드 성공 | ✅ (281페이지) |
 | typecheck/lint 통과 | ✅✅ |
 
@@ -173,7 +173,7 @@
 ## 4. Gap 분석 요약
 
 ### 4.1 Design-Implementation 대조 결과
-**Source**: `docs/03-analysis/menu-restructure.analysis.md`
+**Source**: `./menu-restructure.analysis.md`
 
 | 영역 | 판정 | 설명 |
 |------|------|------|
@@ -195,43 +195,47 @@
 자료원 그룹 분할 로직 (복제됨):
 ├── Header.tsx: getOrderedSources() → filter(!category) / filter(===hs-textbook)
 ├── SourcesDropdown.tsx: 동일 로직
-└── SourcePicker.tsx: 동일 로직 (기존)
-→ 변경 시 3곳 모두 수정 필요 (오류 위험)
+└── SourcePicker.tsx: 동일 로직 (기존, 이번 diff 범위 밖 — 미변경)
+→ 변경 시 3곳(Header·SourcesDropdown·SourcePicker) 모두 수정 필요 (오류 위험)
 ```
 
 ### 5.2 개선 3건 적용
 
 #### 1️⃣ getGroupedSources() 신규 (src/lib/sources.ts)
 ```ts
-export function getGroupedSources() {
+export function getGroupedSources(): { standalone: Source[]; groups: SourceGroup[] } {
   const ordered = getOrderedSources();
-  return {
-    standalone: ordered.filter((s) => !s.category),
-    groups: [
-      {
-        category: 'hs-textbook',
-        label: SOURCE_CATEGORY_LABELS['hs-textbook'],
-        items: ordered.filter((s) => s.category === 'hs-textbook'),
-      },
-    ],
-  };
+  const standalone = ordered.filter((s) => !s.category);
+  const byCategory = new Map<SourceCategory, Source[]>();
+  for (const s of ordered) {
+    if (!s.category) continue;
+    const list = byCategory.get(s.category) ?? [];
+    list.push(s);
+    byCategory.set(s.category, list);
+  }
+  const groups = [...byCategory.entries()].map(([category, sources]) => ({
+    category,
+    label: SOURCE_CATEGORY_LABELS[category],
+    sources,
+  }));
+  return { standalone, groups };
 }
 ```
-- **효과**: 그룹 분할 로직을 도메인 레이어(sources.ts)로 단일화
-- **재사용**: SourcesDropdown·Header·SourcePicker 3곳에서 `getGroupedSources()` 호출 1줄로 통합
+- **효과**: 그룹 분할 로직을 도메인 레이어(sources.ts)로 단일화. category를 `Map`으로 동적 순회하므로 category가 늘어도 자동으로 groups에 반영(하드코딩·무음 탈락 없음)
+- **재사용**: Header·SourcesDropdown 2곳에서 `getGroupedSources()` 호출 1줄로 통합. SourcePicker.tsx는 이번 diff 범위 밖이라 미적용 — 후속 과제로 남김
 
 #### 2️⃣ SourcesDropdown.tsx & Header.tsx 변경
 ```ts
-// 변경 전 (3줄)
+// 변경 전 (3줄, 하드코딩 필터)
 const ordered = getOrderedSources();
 const standalone = ordered.filter((s) => !s.category);
 const hsTextbooks = ordered.filter((s) => s.category === 'hs-textbook');
 
-// 변경 후 (1줄)
+// 변경 후 (1줄 + groups 순회)
 const { standalone, groups } = getGroupedSources();
-const [{ items: hsTextbooks }] = groups;
+// 렌더 시: groups.map((g) => <... g.label, g.sources.map(...) ...>)
 ```
-- **효과**: 간결함(3줄→1줄), 위험 감소(복제 로직 제거)
+- **효과**: 간결함(3줄→1줄), 위험 감소(복제 로직 제거), category 확장에도 렌더 코드 무수정
 
 #### 3️⃣ Header.tsx no-op 코드 제거
 ```ts
@@ -322,10 +326,10 @@ const [{ items: hsTextbooks }] = groups;
 
 | Phase | Document | Path |
 |-------|----------|------|
-| Plan | 헤더 메뉴 재구성 기획 | `docs/01-plan/features/menu-restructure.plan.md` |
-| Design | 기술 설계서 | `docs/02-design/features/menu-restructure.design.md` |
-| Check | Gap 분석 | `docs/03-analysis/menu-restructure.analysis.md` |
-| Report | 완료 보고서 | `docs/04-report/features/menu-restructure.report.md` ← 본 문서 |
+| Plan | 헤더 메뉴 재구성 기획 | `./menu-restructure.plan.md` |
+| Design | 기술 설계서 | `./menu-restructure.design.md` |
+| Check | Gap 분석 | `./menu-restructure.analysis.md` |
+| Report | 완료 보고서 | `./menu-restructure.report.md` ← 본 문서 |
 
 ---
 
