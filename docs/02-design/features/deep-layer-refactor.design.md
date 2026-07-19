@@ -19,7 +19,7 @@
 **목표**
 - `deep` 레이어에서 **원문 인용(verbatim)** 과 **요약/재서술(paraphrase)** 을 데이터 모델·UI 양쪽에서 명확히 구분한다.
 - 요약은 "학술 원본"이 아닌 별도 프레임으로 렌더한다.
-- 인용 추출이 요약을 절대 집어가지 않도록 **구조적으로(safe-by-construction)** 보장한다.
+- 인용 추출 시 요약 블록을 property-position 가드로 제외한다 (라인 스캐너 방침 유지).
 
 **비목표**
 - 챕터 17개(책 원문 verbatim, `sourcePage` 보유) — 불변. 정확히 표기됨.
@@ -47,7 +47,7 @@
 
 ## 4. 설계 (접근 B — 필드 분리)
 
-`deep`를 **discriminated union**으로 만든다. 필드명이 곧 의미를 갖고, 추출은 `quote`만 대상으로 하므로 요약은 구조적으로 추출 불가.
+`deep`를 **discriminated union**으로 만든다. 필드명이 곧 의미를 갖고, 추출은 property-position 가드로 요약 블록을 건너뛴다.
 
 ### 4.1 데이터 모델 (`LayeredExplain.tsx`)
 
@@ -76,14 +76,14 @@ interface LayeredExplainProps {
 
 1. **필드 개명**: `deep={{` 블록 내 `quote:` → `summary:` (106개, 각 1회)
 2. **`(재서술)` 마커 제거** (프레임이 대체하므로 중복):
-   - 접미형 ` (재서술)'` → `'` — **102개**
+   - 접미형: sourceSection 끝의 `(재서술)`(앞 공백 포함) 제거 — **102개**
    - embedded형 `, 재서술)'` → `)'` — **4개** (예: `(확산 장비의 실습, 재서술)` → `(확산 장비의 실습)`)
 
 코드모드는 `scripts/`에 일회용 스크립트로 작성 후 실행하고, 커밋에는 결과 diff만 포함(스크립트는 폐기 또는 별도 보관).
 
 ### 4.4 추출 가드 (`extract-quotes.mjs`)
 
-기능 변경 불필요(chapters·osha만 스캔, 둘 다 `quote` 유지). **방어적 가드**만 추가: deep 블록에 `quote:`가 없으면(=`summary` 전용) skip. 향후 textbook 스캔이 추가돼도 요약은 추출 대상에서 원천 배제.
+기능 변경 불필요(chapters·osha만 스캔, 둘 다 `quote` 유지). **방어적 가드** 추가: deep 블록에 property-position `quote:`(줄 시작)가 없으면(=`summary` 전용) skip. 라인 스캐너 방침에 맞춘 휴리스틱 가드로, 완전 파싱은 아니지만 산문의 `quote:` 오탐을 피하고 향후 textbook 스캔이 추가돼도 요약 블록을 건너뛴다.
 
 ## 5. 범위 & 브랜치 시퀀싱
 
@@ -112,7 +112,7 @@ interface LayeredExplainProps {
 
 ## 8. 결정 로그
 
-1. **접근 B(필드 분리)** 채택 — CodeRabbit 제안과 일치, 필드명=의미, 추출 safe-by-construction. (A 판별필드·C 문자열 스니핑 반려: 각각 이름/내용 불일치·취약성)
+1. **접근 B(필드 분리)** 채택 — CodeRabbit 제안과 일치, 필드명=의미, 추출은 property-position 가드로 요약 제외. (A 판별필드·C 문자열 스니핑 반려: 각각 이름/내용 불일치·취약성)
 2. **요약 라벨** = `"📘 자료 정리 보기"` (대안 "원문 요약 보기"/"자세히 보기"는 단일 문자열 변경으로 대체 가능)
 3. **ncs-semi(84)** = `quote` 유지 (능력단위 목표 원문 인용 판정)
 4. **`(재서술)` 마커** = 제거 (프레임이 비-verbatim을 이미 표기)

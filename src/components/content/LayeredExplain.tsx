@@ -2,8 +2,9 @@ import { Sparkles, Lightbulb } from 'lucide-react';
 import { Disclosure } from '@/components/ui/Disclosure';
 import type { ReactNode } from 'react';
 
-type DeepQuote = { quote: ReactNode; sourcePage?: number; sourceSection?: string };
-type DeepSummary = { summary: ReactNode; sourceSection?: string };
+// quote/summary는 상호배타 — 둘 다 지정하면(양쪽 disclosure 렌더) 타입 에러.
+type DeepQuote = { quote: ReactNode; sourcePage?: number; sourceSection?: string; summary?: never };
+type DeepSummary = { summary: ReactNode; sourceSection?: string; quote?: never };
 
 interface LayeredExplainProps {
   hook: ReactNode;
