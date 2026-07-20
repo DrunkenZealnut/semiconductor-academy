@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-20T00:10:18.727Z",
+  "generatedAt": "2026-07-20T03:17:27.521Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
@@ -10,6 +10,7 @@
     "hs-equipment-maintenance",
     "hs-photo-etch",
     "hs-semicon-basics",
+    "hs-semicon-infra",
     "hs-thinfilm-diffusion",
     "ncs-semi",
     "osha-scs"
@@ -832,6 +833,222 @@
       "hazards": [],
       "chemicals": []
     },
+    "hs-semicon-infra::safety-management": {
+      "topics": [
+        "cleanroom",
+        "ppe",
+        "engineering-controls",
+        "industrial-hygiene",
+        "exposure-monitoring"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-semicon-infra::safety-diffusion": {
+      "topics": [
+        "diffusion",
+        "gas-safety",
+        "ppe",
+        "engineering-controls",
+        "emergency-response",
+        "occupational-disease",
+        "exposure-monitoring"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "corrosive",
+        "pyrophoric",
+        "carcinogen"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "silane",
+        "dichlorosilane",
+        "fluorine",
+        "ammonia",
+        "phosphorus-oxychloride",
+        "hydrofluoric-acid",
+        "sulfuric-acid",
+        "hydrogen-peroxide"
+      ]
+    },
+    "hs-semicon-infra::safety-photo": {
+      "topics": [
+        "photolithography",
+        "liquid-chemicals",
+        "engineering-controls",
+        "ppe",
+        "occupational-disease"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "corrosive",
+        "sensitizer",
+        "reproductive-toxin",
+        "carcinogen"
+      ],
+      "chemicals": [
+        "hmds",
+        "isopropyl-alcohol",
+        "pgmea",
+        "tmah",
+        "benzene"
+      ]
+    },
+    "hs-semicon-infra::safety-etch": {
+      "topics": [
+        "etching",
+        "liquid-chemicals",
+        "compressed-gas",
+        "gas-safety",
+        "engineering-controls",
+        "ppe",
+        "occupational-disease"
+      ],
+      "hazards": [
+        "corrosive",
+        "toxic",
+        "acute-toxic",
+        "carcinogen",
+        "compressed-gas",
+        "oxidizer"
+      ],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "sulfuric-acid",
+        "hydrogen-peroxide",
+        "ammonia",
+        "chlorine",
+        "ozone"
+      ]
+    },
+    "hs-semicon-infra::safety-deposition": {
+      "topics": [
+        "deposition",
+        "gas-safety",
+        "engineering-controls",
+        "ppe",
+        "occupational-disease",
+        "exposure-monitoring"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "corrosive",
+        "pyrophoric",
+        "flammable"
+      ],
+      "chemicals": [
+        "silane",
+        "dichlorosilane",
+        "diborane",
+        "phosphine",
+        "ammonia",
+        "tungsten-hexafluoride",
+        "hydrofluoric-acid",
+        "ozone",
+        "isopropyl-alcohol"
+      ]
+    },
+    "hs-semicon-infra::safety-ion-implant": {
+      "topics": [
+        "ion-implantation",
+        "gas-safety",
+        "engineering-controls",
+        "ppe",
+        "exposure-monitoring",
+        "occupational-disease"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "carcinogen"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "boron-trifluoride",
+        "arsenic"
+      ]
+    },
+    "hs-semicon-infra::safety-cmp": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals",
+        "engineering-controls",
+        "ppe"
+      ],
+      "hazards": [
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": [
+        "silica-slurry",
+        "ceria-slurry",
+        "ammonia",
+        "hydrofluoric-acid"
+      ]
+    },
+    "hs-semicon-infra::safety-backend-mechanical": {
+      "topics": [
+        "packaging",
+        "liquid-chemicals",
+        "engineering-controls",
+        "ppe",
+        "occupational-disease"
+      ],
+      "hazards": [
+        "corrosive",
+        "acute-toxic",
+        "sensitizer",
+        "toxic"
+      ],
+      "chemicals": [
+        "tmah",
+        "epoxy-resin"
+      ]
+    },
+    "hs-semicon-infra::safety-backend-chemical": {
+      "topics": [
+        "packaging",
+        "liquid-chemicals",
+        "ppe",
+        "engineering-controls",
+        "occupational-disease"
+      ],
+      "hazards": [
+        "carcinogen",
+        "sensitizer",
+        "corrosive",
+        "toxic"
+      ],
+      "chemicals": [
+        "benzene",
+        "antimony-trioxide",
+        "epoxy-resin",
+        "hydrogen-peroxide",
+        "sulfuric-acid",
+        "solder-flux"
+      ]
+    },
+    "hs-semicon-infra::safety-backend-test": {
+      "topics": [
+        "packaging",
+        "engineering-controls",
+        "ppe",
+        "occupational-disease",
+        "exposure-monitoring"
+      ],
+      "hazards": [
+        "toxic",
+        "acute-toxic",
+        "carcinogen"
+      ],
+      "chemicals": []
+    },
     "hs-thinfilm-diffusion::thinfilm-process": {
       "topics": [
         "deposition",
@@ -1611,6 +1828,10 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "maintenance-by-type"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
       }
     ],
     "wafer-fab": [
@@ -1715,6 +1936,10 @@
       {
         "sourceId": "hs-photo-etch",
         "sectionId": "fab-cleanroom"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
       },
       {
         "sourceId": "ncs-semi",
@@ -1847,6 +2072,46 @@
         "sectionId": "etcher-maintenance"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
         "sourceId": "hs-thinfilm-diffusion",
         "sectionId": "thinfilm-equipment"
       },
@@ -1973,6 +2238,26 @@
         "sectionId": "etch-process"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cmp-slurry-materials"
       },
@@ -2045,6 +2330,10 @@
       {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-fundamentals"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
       },
       {
         "sourceId": "hs-thinfilm-diffusion",
@@ -2159,6 +2448,22 @@
       {
         "sourceId": "hs-semicon-basics",
         "sectionId": "semicon-industry"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
       },
       {
         "sourceId": "hs-thinfilm-diffusion",
@@ -2287,6 +2592,10 @@
         "sectionId": "photo-practice"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
       },
@@ -2357,6 +2666,10 @@
         "sectionId": "etch-practice"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "process-development"
       },
@@ -2405,6 +2718,10 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-etch-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
       },
       {
         "sourceId": "hs-thinfilm-diffusion",
@@ -2485,6 +2802,10 @@
         "sectionId": "semicon-fundamentals"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "system-process-development"
       },
@@ -2521,6 +2842,10 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-frontend-backend"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
       },
       {
         "sourceId": "ncs-semi",
@@ -2625,6 +2950,18 @@
         "sectionId": "semicon-industry"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "package-assembly-development"
       },
@@ -2719,6 +3056,26 @@
         "sectionId": "16-occupational-disease"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "quality-control"
       }
@@ -2731,6 +3088,38 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "17-industrial-health-view"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
       }
     ],
     "compressed-gas": [
@@ -2741,6 +3130,10 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "element-pneumatic-thermal"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
       },
       {
         "sourceId": "ncs-semi",
@@ -2785,6 +3178,46 @@
         "sectionId": "fab-cleanroom"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "photo-equipment"
       },
@@ -2803,6 +3236,44 @@
       {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
+      }
+    ],
+    "emergency-response": [
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-assembly"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-verification"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
       }
     ],
     "sds-label": [
@@ -2839,40 +3310,6 @@
       {
         "sourceId": "osha-scs",
         "sectionId": "part-1a"
-      }
-    ],
-    "emergency-response": [
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-assembly"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "material-safety"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-design"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-verification"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-safety"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-1b"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-3"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
       }
     ],
     "cryogenic": [
@@ -2923,6 +3360,34 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       },
       {
         "sourceId": "ncs-semi",
@@ -3007,6 +3472,14 @@
         "sectionId": "element-vacuum-gas"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "thinfilm-diffusion-equipment"
       },
@@ -3087,6 +3560,42 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
       },
       {
         "sourceId": "ncs-semi",
@@ -3203,6 +3712,34 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "material-safety"
       },
@@ -3239,6 +3776,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "oxidation"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
       },
       {
         "sourceId": "ncs-semi",
@@ -3309,12 +3850,40 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
       }
     ],
     "reproductive-toxin": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
       },
       {
         "sourceId": "ncs-semi",
@@ -3357,6 +3926,10 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "maintenance-by-type"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
       },
       {
         "sourceId": "ncs-semi",
@@ -3443,6 +4016,10 @@
         "sectionId": "element-vacuum-gas"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "cmp-slurry-materials"
       },
@@ -3472,6 +4049,20 @@
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
+    ],
+    "sensitizer": [
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      }
     ]
   },
   "byChemical": {
@@ -3495,6 +4086,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
       },
       {
         "sourceId": "osha-scs",
@@ -3561,6 +4160,22 @@
         "sectionId": "semicon-industry"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       },
@@ -3585,6 +4200,18 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       }
     ],
     "sulfuric-acid": [
@@ -3617,6 +4244,18 @@
         "sectionId": "semicon-industry"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
       }
@@ -3647,6 +4286,22 @@
         "sectionId": "cleaning"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
         "sourceId": "hs-thinfilm-diffusion",
         "sectionId": "thinfilm-process"
       }
@@ -3659,6 +4314,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
       }
     ],
     "arsine": [
@@ -3687,6 +4350,14 @@
         "sectionId": "semicon-fundamentals"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3713,6 +4384,18 @@
         "sectionId": "semicon-fundamentals"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3735,6 +4418,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3747,6 +4434,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
       }
     ],
     "boron-tribromide": [
@@ -3767,6 +4458,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
       }
     ],
     "hmds": [
@@ -3785,6 +4480,10 @@
       {
         "sourceId": "hs-photo-etch",
         "sectionId": "photo-process"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
       }
     ],
     "tmah": [
@@ -3799,6 +4498,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
       }
     ],
     "chlorine": [
@@ -3823,6 +4530,10 @@
         "sectionId": "semicon-industry"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3835,6 +4546,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
       },
       {
         "sourceId": "osha-scs",
@@ -3855,6 +4570,10 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3867,6 +4586,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "metallization"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
       },
       {
         "sourceId": "osha-scs",
@@ -3891,6 +4614,14 @@
         "sectionId": "semicon-industry"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
         "sourceId": "hs-thinfilm-diffusion",
         "sectionId": "thinfilm-process"
       },
@@ -3909,6 +4640,14 @@
         "sectionId": "thin-film"
       },
       {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
         "sourceId": "osha-scs",
         "sectionId": "part-3"
       }
@@ -3921,6 +4660,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
       }
     ],
     "ceria-slurry": [
@@ -3931,6 +4674,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
       }
     ],
     "lead": [
@@ -3959,18 +4706,34 @@
       {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-frontend-backend"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       }
     ],
     "solder-flux": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       }
     ],
     "antimony-trioxide": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       }
     ],
     "benzene": [
@@ -3981,6 +4744,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
       }
     ],
     "arsenic": [
@@ -4003,6 +4774,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
       }
     ],
     "ethylene-glycol-ether": [

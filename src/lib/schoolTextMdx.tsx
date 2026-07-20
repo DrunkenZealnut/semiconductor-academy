@@ -165,6 +165,25 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
     'maintenance-by-type': () =>
       import('@/content/sources/hs-equipment-maintenance/maintenance-by-type.mdx'),
   },
+  'hs-semicon-infra': {
+    'safety-management': () =>
+      import('@/content/sources/hs-semicon-infra/safety-management.mdx'),
+    'safety-diffusion': () =>
+      import('@/content/sources/hs-semicon-infra/safety-diffusion.mdx'),
+    'safety-photo': () => import('@/content/sources/hs-semicon-infra/safety-photo.mdx'),
+    'safety-etch': () => import('@/content/sources/hs-semicon-infra/safety-etch.mdx'),
+    'safety-deposition': () =>
+      import('@/content/sources/hs-semicon-infra/safety-deposition.mdx'),
+    'safety-ion-implant': () =>
+      import('@/content/sources/hs-semicon-infra/safety-ion-implant.mdx'),
+    'safety-cmp': () => import('@/content/sources/hs-semicon-infra/safety-cmp.mdx'),
+    'safety-backend-mechanical': () =>
+      import('@/content/sources/hs-semicon-infra/safety-backend-mechanical.mdx'),
+    'safety-backend-chemical': () =>
+      import('@/content/sources/hs-semicon-infra/safety-backend-chemical.mdx'),
+    'safety-backend-test': () =>
+      import('@/content/sources/hs-semicon-infra/safety-backend-test.mdx'),
+  },
 };
 
 export function listSchoolTextSourceIds(): string[] {
