@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">반도체 아카데미</h3>
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              공정 원리부터 유해인자·안전·직무까지, 4개 자료원으로 배우는 반도체 학습 사이트.
+              공정 원리부터 유해인자·안전·직무까지, 여러 자료원으로 배우는 반도체 학습 사이트.
             </p>
           </div>
 

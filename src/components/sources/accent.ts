@@ -1,7 +1,7 @@
 import type { Source } from '@/lib/types';
 
 /**
- * accent별 카드 테두리 클래스 — SourcePicker(홈 카드)·RelatedItemCard(cross-link 카드) 공용.
+ * accent별 카드 테두리 클래스 — PerspectiveCatalog(홈 카드)·RelatedItemCard(cross-link 카드) 공용.
  * accent 추가 시 여기 한 곳만 수정 (typed Record라 누락은 typecheck가 잡음).
  */
 export const SOURCE_ACCENT_BORDER: Record<NonNullable<Source['accent']>, string> = {

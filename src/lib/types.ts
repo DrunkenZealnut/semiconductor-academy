@@ -189,9 +189,10 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
 
 export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper' | 'textbook';
 export type SourceLanguage = 'ko' | 'en';
-/** 자료원 묶음 관리 단위 — kind(자료 유형)와 별개로 홈 UI에서 그룹으로 렌더된다.
- *  값 추가 시 SOURCE_CATEGORY_LABELS(typecheck가 강제)와 함께 SourcePicker의 그룹
- *  렌더(현재 hs-textbook 전용 섹션)도 확장해야 홈에서 무음 탈락하지 않는다. */
+/** 자료원 묶음 관리 단위 — kind(자료 유형)와 별개의 분류 축.
+ *  값 추가 시 SOURCE_CATEGORY_LABELS(typecheck가 강제)를 함께 확장한다.
+ *  (홈 PerspectiveCatalog는 category가 아닌 accent축으로 군집하므로 category 추가만으로
+ *   홈에서 무음 탈락하지는 않는다.) */
 export type SourceCategory = 'hs-textbook';
 export type SourceLicense =
   | 'fair-use'

@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { ArrowRight, Activity, Compass, Cpu, FlaskConical, Info } from 'lucide-react';
-import { LearningPathSection } from '@/components/layout/LearningPathSection';
+import { PerspectiveCatalog } from '@/components/layout/PerspectiveCatalog';
 import { PlatformHero } from '@/components/layout/PlatformHero';
+import { RoleQuickEntry } from '@/components/layout/RoleQuickEntry';
 import { SpecialSection } from '@/components/layout/SpecialSection';
 import { ProcessDiagram } from '@/components/process/ProcessDiagram';
-import { SourcePicker } from '@/components/sources/SourcePicker';
 import { SOURCES } from '@/lib/sources';
 import { buildMetadata } from '@/lib/seo';
 
 const TOTAL_UNITS = SOURCES.reduce((n, s) => n + s.sections.length, 0);
 
 export const metadata = buildMetadata({
-  description: `학술서·OSHA·NCS·고교 교과서 4개 자료원, ${TOTAL_UNITS}개 학습 단위로 배우는 반도체 — 공정 원리부터 유해인자·안전·직무까지 중·고등학생 눈높이로 풀어드려요.`,
+  description: `학술서·OSHA·NCS·고교 교과서 네 갈래 자료원, ${TOTAL_UNITS}개 학습 단위로 배우는 반도체 — 공정 원리부터 유해인자·안전·직무까지 중·고등학생 눈높이로 풀어드려요.`,
 });
 
 export default function HomePage() {
@@ -19,9 +19,9 @@ export default function HomePage() {
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <PlatformHero />
 
-      <SourcePicker />
+      <RoleQuickEntry />
 
-      <LearningPathSection />
+      <PerspectiveCatalog />
 
       <SpecialSection
         tone="process"
@@ -120,7 +120,7 @@ function FooterLinks() {
         <li className="basis-full" aria-hidden />
         <li className="inline-flex items-center gap-1 text-xs">
           <Info aria-hidden className="size-3" />
-          4개 자료원으로 만든 학습 사이트 — 출처는 각 페이지와 사이트 소개에서 확인하세요
+          여러 자료원으로 만든 학습 사이트 — 출처는 각 페이지와 사이트 소개에서 확인하세요
         </li>
       </ul>
     </section>

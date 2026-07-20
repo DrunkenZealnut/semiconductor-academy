@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Compass, Layers, Library } from 'lucide-react';
 import { SOURCES } from '@/lib/sources';
 
+const SOURCE_COUNT = SOURCES.length;
 const TOTAL_UNITS = SOURCES.reduce((n, s) => n + s.sections.length, 0);
 
 export function PlatformHero() {
@@ -48,7 +49,7 @@ export function PlatformHero() {
       </div>
 
       <p className="mx-auto mt-6 text-xs text-slate-500 dark:text-slate-500">
-        4개 자료원 · {TOTAL_UNITS}개 학습 단위 · 전부 무료
+        자료원 {SOURCE_COUNT}개 · {TOTAL_UNITS}개 학습 단위 · 전부 무료
       </p>
     </section>
   );
