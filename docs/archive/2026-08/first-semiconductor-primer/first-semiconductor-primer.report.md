@@ -1,9 +1,9 @@
 # 「처음 배우는 반도체」 입문서 자료원 완주 보고서
 
 > **Feature**: `first-semiconductor-primer`
-> **사이클**: Plan(2026-08-08) → Design(08-08) → Do(08-08~09) → Check(08-09) → Report(08-09)
+> **사이클**: Plan(2026-08-08) → Design(08-08) → Do(08-08~09) → Check(08-09) → Report(08-09) → Archive(08-09)
 > **최종 Match Rate**: **96.0%** (기준 90% ✅) · iterate 0회
-> **PR**: [#27](https://github.com/DrunkenZealnut/semiconductor-academy/pull/27) · 커밋 3건 (`e18cd4c` → `8abffa2` → `0391cca`)
+> **PR**: [#27](https://github.com/DrunkenZealnut/semiconductor-academy/pull/27) · 커밋 5건 (`e18cd4c` → `8abffa2` → `0391cca` → `f773bea` → `c22c73d`)
 
 ---
 
@@ -285,7 +285,7 @@ Gap: High 0 · Medium 0 · Low 2 (분량, 무수정 승인)
 
 - [x] CodeRabbit 리뷰 15건 반영 + 1건 보류 회신
 - [x] 판권 게이트 종결 · 문서 3종 갱신
-- [ ] `/pdca archive first-semiconductor-primer` — 사이클 문서 아카이브
+- [x] `/pdca archive first-semiconductor-primer` — `docs/archive/2026-08/first-semiconductor-primer/`로 이동 완료
 
 ### 8.2 후속 고려
 
@@ -303,13 +303,17 @@ Gap: High 0 · Medium 0 · Low 2 (분량, 무수정 승인)
 ### 9.1 브랜치 & 커밋
 
 ```text
-main
+feat/first-semiconductor-primer  →  main (PR #27)
 ├─ e18cd4c  feat(first-semiconductor-primer): 97모듈 자료원 신설
 │             114 files · +16,352 / −1,401
 ├─ 8abffa2  fix(first-semiconductor): CodeRabbit PR #27 리뷰 15건 반영
 │             15 files · +186 / −75
-└─ 0391cca  chore(first-semiconductor): 판권 확인(D-1) 종결
-              5 files · +41 / −26
+├─ 0391cca  chore(first-semiconductor): 판권 확인(D-1) 종결
+│             5 files · +41 / −26
+├─ f773bea  docs(pdca): 완주 보고서 — Match Rate 96.0%
+│             4 files · +380 / −20
+└─ c22c73d  docs(pdca): 아카이브 — PDCA 사이클 종결
+              8 files · +45 / −15
 ```
 
 ### 9.2 빌드 검증
