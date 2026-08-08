@@ -1858,7 +1858,7 @@ export const HS_SEMICON_INFRA: Source = {
  * ⚠️ sections에 등록하되 schoolTextMdx REGISTRY에 로더가 없으면 빌드는 통과하고
  * "본문 준비 중" 자리표시가 배포된다 — 완성 모듈만 등록할 것.
  *
- * Design: docs/02-design/features/first-semiconductor-primer.design.md
+ * Design: docs/archive/2026-08/first-semiconductor-primer/first-semiconductor-primer.design.md
  */
 export const FIRST_SEMI: Source = {
   id: 'first-semiconductor',

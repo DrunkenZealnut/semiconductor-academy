@@ -2,7 +2,7 @@
 
 > **Feature**: `first-semiconductor-primer` · **분석일**: 2026-08-09
 > **분석 방식**: 오케스트레이터 직접 실측(스크립트 기반 기계 판정 — 세션 지시에 따라 서브에이전트 미사용). 판정 근거를 전부 재현 가능한 측정으로 고정해 자기검증 편향을 억제.
-> **기준**: `docs/01-plan/features/first-semiconductor-primer.plan.md` §6 FR·§7 NFR·§10 DoD + `docs/02-design/features/first-semiconductor-primer.design.md` §1~8
+> **기준**: `docs/archive/2026-08/first-semiconductor-primer/first-semiconductor-primer.plan.md` §6 FR·§7 NFR·§10 DoD + `docs/archive/2026-08/first-semiconductor-primer/first-semiconductor-primer.design.md` §1~8
 > **구현**: `src/lib/sources.ts`(FIRST_SEMI) · `src/lib/schoolTextMdx.tsx` · `src/lib/types.ts` · `src/lib/cross-link/schema.ts` · `src/data/schema-enum.json` · `src/content/sources/first-semiconductor/`(MDX 97 + `_links.json`) · 소급 태깅 `_links.json` 4파일 · `src/components/layout/PerspectiveCatalog.tsx`
 
 ## 결과 요약

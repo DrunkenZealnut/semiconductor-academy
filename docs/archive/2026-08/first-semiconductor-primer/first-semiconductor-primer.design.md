@@ -2,7 +2,7 @@
 
 > **Feature**: `first-semiconductor-primer`
 > **작성일**: 2026-08-08 · **Level**: Dynamic
-> **Plan**: `docs/01-plan/features/first-semiconductor-primer.plan.md`
+> **Plan**: `docs/archive/2026-08/first-semiconductor-primer/first-semiconductor-primer.plan.md`
 > **선례**: `hs-textbook-collection`(공용 라우트·통합 로더) · `daegu-hs-textbook`(권당 표준) · `cross-link-system`(어휘 스키마)
 
 ---

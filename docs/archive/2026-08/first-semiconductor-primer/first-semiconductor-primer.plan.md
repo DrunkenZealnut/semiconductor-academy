@@ -51,7 +51,7 @@
 | 9장 | 반도체의 최첨단기술 | 078~088 (11) | More Moore / More than Moore | **공백** (EUV·FinFET·차세대 메모리) |
 | | **합계** | **88** | **9** | |
 
-> ✏️ **2026-08-08 Design 정정**: 최초 작성 시 4장 COLUMN이 목차 OCR 손상으로 누락돼 COLUMN을 8개로 셌다. Design Step 0 전수 매핑에서 4장 COLUMN(「미세화의 기본 원리 '스케일링 법칙'」 p.114)을 발견 — **전 9장 각 1개 = 9개**, 총 97모듈로 정정. 상세: `docs/02-design/features/first-semiconductor-primer.design.md` §0 V-1.
+> ✏️ **2026-08-08 Design 정정**: 최초 작성 시 4장 COLUMN이 목차 OCR 손상으로 누락돼 COLUMN을 8개로 셌다. Design Step 0 전수 매핑에서 4장 COLUMN(「미세화의 기본 원리 '스케일링 법칙'」 p.114)을 발견 — **전 9장 각 1개 = 9개**, 총 97모듈로 정정. 상세: `docs/archive/2026-08/first-semiconductor-primer/first-semiconductor-primer.design.md` §0 V-1.
 
 - **OCR 손상 구간**: 4장(041~047) 목차 셀이 병합 붕괴, 5장 장 제목이 "日が出いる。…"로 파손, 항목 번호 헤딩이 88개 중 약 20개만 온전. 6장 제목도 "世**王**체의 기초"류 오인식 존재.
 - → **88항목 전수 매핑(번호 ↔ 제목 ↔ 본문 라인 스팬)이 Design의 첫 관문**(§5.1 Step 0). 목차 표 + 본문 헤딩 + 페이지 마커 3중 대조로 확정한다.

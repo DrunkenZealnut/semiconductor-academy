@@ -6,9 +6,10 @@
     "level": "Dynamic"
   },
   "currentPdca": {
-    "feature": "first-semiconductor-primer",
-    "phase": "completed",
+    "feature": null,
+    "phase": "archived",
     "matchRate": 96,
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-08-09",
+    "lastArchived": "first-semiconductor-primer"
   }
 }
