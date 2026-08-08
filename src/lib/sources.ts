@@ -1870,9 +1870,14 @@ export const FIRST_SEMI: Source = {
   title: '처음 배우는 반도체',
   subtitle: '입문서 — 88개 주제로 훑는 반도체 전 분야, 한 편에 2분',
   // 참고문헌 8건이 전부 菊地正典 저·감수(일본실업출판사)라 원저자는 그 계열로 판단되나
-  // 한국어판 판권 페이지가 스캔본에 없어 역자·출판사·발행연도 미확인 (Design §7 D-1).
-  attribution: '菊地正典(기쿠치 마사노리)',
-  publisher: '한국어판 판권 확인 중',
+  // 한국어판 판권 페이지가 스캔본에 없어 역자·출판사·발행연도는 미확인이다.
+  // Design §7 D-1(판권 확인)은 2026-08-09 사용자 결정으로 종결 — 이 사이트는 개인 학습용
+  // 이고 middleware 로그인 게이트 뒤에서만 열람되는 비공개 운영이라 배포 판권 확인이
+  // 불요하다. 미확인 정보를 표기하지 않도록 publisher는 생략한다(optional 필드라
+  // SourceHeader·SourceModuleArticle·disclosureFor 모두 없는 경우로 분기).
+  // 괄호 없이 병기 — publisher가 없어 disclosureFor가 `(attribution 지음)` 분기를 타므로
+  // 원어를 괄호로 묶으면 `((菊地正典))` 꼴로 중첩된다. 한국어 사이트라 한글 독음을 앞에 둔다.
+  attribution: '기쿠치 마사노리 菊地正典',
   license: 'fair-use',
   order: 13,
   // accent는 홈 PerspectiveCatalog의 '관점' 군집을 그대로 결정한다
