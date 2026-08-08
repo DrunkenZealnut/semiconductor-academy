@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-20T03:17:27.521Z",
+  "generatedAt": "2026-08-08T19:24:05.296Z",
   "sources": [
     "daegu-hs-process",
     "epi-semi-hazards",
+    "first-semiconductor",
     "hs-assembly-inspection",
     "hs-basic-tech-1",
     "hs-basic-tech-2",
@@ -403,6 +404,764 @@
         "ozone"
       ]
     },
+    "first-semiconductor::001-what-is-semiconductor": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::002-semiconductor-types": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::003-silicon": {
+      "topics": [
+        "device-physics",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::004-silicon-solid-forms": {
+      "topics": [
+        "device-physics",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::005-n-type-silicon": {
+      "topics": [
+        "device-physics",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::006-p-type-silicon": {
+      "topics": [
+        "device-physics",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::007-energy-band-1": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::008-energy-band-2": {
+      "topics": [
+        "device-physics",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::009-compound-semiconductor": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-1-oxide-organic": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::010-resistor": {
+      "topics": [
+        "device-physics",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::011-capacitor": {
+      "topics": [
+        "device-physics",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::012-pn-diode": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::013-photodiode": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::014-led": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::015-laser-diode": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::016-transistor-types": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::017-nmos": {
+      "topics": [
+        "device-physics",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::018-pmos": {
+      "topics": [
+        "device-physics",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::019-cmos": {
+      "topics": [
+        "device-physics",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::020-jfet": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::021-mesfet": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::022-bjt": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-2-transistor-birth": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::023-integrated-circuit": {
+      "topics": [
+        "ic-design",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::024-ic-classification": {
+      "topics": [
+        "ic-design",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::025-integration-scale": {
+      "topics": [
+        "advanced-node",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::026-ic-by-function": {
+      "topics": [
+        "ic-design",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::027-boolean-algebra": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::028-not-gate": {
+      "topics": [
+        "logic-circuit",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::029-or-gate": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::030-and-gate": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::031-adder": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::032-subtractor": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::033-comparator": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::034-mpu": {
+      "topics": [
+        "logic-circuit",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::035-mcu": {
+      "topics": [
+        "logic-circuit",
+        "ic-design",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::036-dsp": {
+      "topics": [
+        "logic-circuit",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::037-asic": {
+      "topics": [
+        "ic-design",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::038-pld": {
+      "topics": [
+        "ic-design",
+        "logic-circuit",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::039-system-ic": {
+      "topics": [
+        "ic-design",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::040-ccd": {
+      "topics": [
+        "device-physics",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-3-first-computer": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::041-flip-flop": {
+      "topics": [
+        "memory-device",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::042-memory-structure": {
+      "topics": [
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::043-dram": {
+      "topics": [
+        "memory-device",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::044-sram": {
+      "topics": [
+        "memory-device",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::045-mask-rom": {
+      "topics": [
+        "memory-device",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::046-flash-memory": {
+      "topics": [
+        "memory-device",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::047-multi-level-cell": {
+      "topics": [
+        "memory-device",
+        "advanced-node"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-4-scaling-law": {
+      "topics": [
+        "advanced-node",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::048-ic-development": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::049-hierarchical-design": {
+      "topics": [
+        "ic-design",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::050-design-rule": {
+      "topics": [
+        "ic-design",
+        "advanced-node"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::051-device-design": {
+      "topics": [
+        "ic-design",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::052-process-design": {
+      "topics": [
+        "ic-design",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-5-industry-split": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::053-silicon-abundance": {
+      "topics": [
+        "wafer-fab",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::054-polysilicon": {
+      "topics": [
+        "wafer-fab",
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::055-cz-growth": {
+      "topics": [
+        "wafer-fab",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::056-wafer-slicing": {
+      "topics": [
+        "wafer-fab",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::057-wafer-quality": {
+      "topics": [
+        "wafer-fab",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::058-epi-soi": {
+      "topics": [
+        "wafer-fab",
+        "deposition",
+        "advanced-node"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-6-wafer-requirements": {
+      "topics": [
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::059-front-back-end": {
+      "topics": [
+        "wafer-fab",
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::060-feol-1": {
+      "topics": [
+        "wafer-fab",
+        "photolithography",
+        "etching"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::061-feol-2": {
+      "topics": [
+        "wafer-fab",
+        "ion-implantation",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::062-beol": {
+      "topics": [
+        "wafer-fab",
+        "deposition",
+        "cmp"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::063-thin-film": {
+      "topics": [
+        "deposition",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::064-lithography": {
+      "topics": [
+        "photolithography",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::065-etching": {
+      "topics": [
+        "etching",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::066-doping": {
+      "topics": [
+        "ion-implantation",
+        "diffusion",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::067-thermal-process": {
+      "topics": [
+        "diffusion",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::068-cmp": {
+      "topics": [
+        "cmp",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::069-cleaning": {
+      "topics": [
+        "liquid-chemicals",
+        "cleanroom",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::070-wafer-test": {
+      "topics": [
+        "wafer-fab",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-7-cleanroom": {
+      "topics": [
+        "cleanroom",
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::071-dicing": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::072-die-bonding": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::073-wire-bonding": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::074-molding": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::075-lead-finish": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::076-package-types": {
+      "topics": [
+        "packaging",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::077-final-test": {
+      "topics": [
+        "packaging",
+        "memory-device"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-8-reliability": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::078-larger-wafer": {
+      "topics": [
+        "advanced-node",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::079-strained-silicon": {
+      "topics": [
+        "advanced-node",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::080-finfet": {
+      "topics": [
+        "advanced-node",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::081-immersion-double-patterning": {
+      "topics": [
+        "advanced-node",
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::082-euv": {
+      "topics": [
+        "advanced-node",
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::083-maskless-imprint": {
+      "topics": [
+        "advanced-node",
+        "photolithography",
+        "etching"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::084-emerging-memory": {
+      "topics": [
+        "memory-device",
+        "advanced-node"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::085-feram-mram": {
+      "topics": [
+        "memory-device",
+        "advanced-node",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::086-pram-reram": {
+      "topics": [
+        "memory-device",
+        "advanced-node",
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::087-high-k-metal-gate": {
+      "topics": [
+        "advanced-node",
+        "device-physics",
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::088-low-k-dram-capacitor": {
+      "topics": [
+        "advanced-node",
+        "memory-device",
+        "deposition"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "first-semiconductor::col-9-more-moore": {
+      "topics": [
+        "advanced-node",
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "hs-assembly-inspection::packaging-overview": {
       "topics": [
         "packaging"
@@ -545,6 +1304,13 @@
       "hazards": [
         "compressed-gas"
       ],
+      "chemicals": []
+    },
+    "hs-basic-tech-2::digital-circuits": {
+      "topics": [
+        "logic-circuit"
+      ],
+      "hazards": [],
       "chemicals": []
     },
     "hs-equipment-maintenance::industry-trend": {
@@ -717,14 +1483,16 @@
     },
     "hs-photo-etch::exposure-equipment": {
       "topics": [
-        "photolithography"
+        "photolithography",
+        "advanced-node"
       ],
       "hazards": [],
       "chemicals": []
     },
     "hs-photo-etch::stepper-structure": {
       "topics": [
-        "photolithography"
+        "photolithography",
+        "advanced-node"
       ],
       "hazards": [],
       "chemicals": []
@@ -815,8 +1583,16 @@
         "hydrofluoric-acid"
       ]
     },
+    "hs-semicon-basics::physical-properties": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "hs-semicon-basics::semicon-fundamentals": {
       "topics": [
+        "device-physics",
         "diffusion",
         "ion-implantation"
       ],
@@ -826,9 +1602,38 @@
         "phosphine"
       ]
     },
+    "hs-semicon-basics::passive-components": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-semicon-basics::diode": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-semicon-basics::bjt": {
+      "topics": [
+        "device-physics"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "hs-semicon-basics::mosfet": {
       "topics": [
+        "device-physics",
         "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "hs-semicon-basics::cmos-image-sensor": {
+      "topics": [
+        "device-physics"
       ],
       "hazards": [],
       "chemicals": []
@@ -1137,6 +1942,7 @@
     },
     "ncs-semi::memory-process-development": {
       "topics": [
+        "memory-device",
         "wafer-fab",
         "diffusion",
         "ion-implantation",
@@ -1725,6 +2531,50 @@
       ],
       "chemicals": []
     },
+    "ncs-semi::architecture-design": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::digital-circuit-design": {
+      "topics": [
+        "ic-design",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::analog-circuit-design": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::design-verification": {
+      "topics": [
+        "ic-design",
+        "logic-circuit"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::auto-layout-design": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "ncs-semi::custom-layout-design": {
+      "topics": [
+        "ic-design"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
     "osha-scs::part-1a": {
       "topics": [
         "ghs",
@@ -1864,6 +2714,90 @@
         "sectionId": "oxidation"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "003-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "004-silicon-solid-forms"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "052-process-design"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "053-silicon-abundance"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "054-polysilicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "055-cz-growth"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "056-wafer-slicing"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "057-wafer-quality"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "058-epi-soi"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-6-wafer-requirements"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "059-front-back-end"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "060-feol-1"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "061-feol-2"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "062-beol"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "063-thin-film"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "064-lithography"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "067-thermal-process"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "068-cmp"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "069-cleaning"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "070-wafer-test"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "078-larger-wafer"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-wafer-photo"
       },
@@ -1924,6 +2858,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "process-overview"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "069-cleaning"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-7-cleanroom"
       },
       {
         "sourceId": "hs-assembly-inspection",
@@ -1990,6 +2932,14 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "065-etching"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-7-cleanroom"
       },
       {
         "sourceId": "hs-assembly-inspection",
@@ -2218,6 +3168,10 @@
         "sectionId": "cleaning"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "069-cleaning"
+      },
+      {
         "sourceId": "hs-photo-etch",
         "sectionId": "photo-process"
       },
@@ -2324,6 +3278,14 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "066-doping"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "067-thermal-process"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-frontend-backend"
       },
@@ -2396,6 +3358,10 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cleaning"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "066-doping"
       },
       {
         "sourceId": "hs-basic-tech-1",
@@ -2556,6 +3522,26 @@
         "sectionId": "photo"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "060-feol-1"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "064-lithography"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "081-immersion-double-patterning"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "082-euv"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "083-maskless-imprint"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-wafer-photo"
       },
@@ -2642,6 +3628,18 @@
         "sectionId": "cleaning"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "060-feol-1"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "065-etching"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "083-maskless-imprint"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-etch-deposition"
       },
@@ -2714,6 +3712,30 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "metallization"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "054-polysilicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "058-epi-soi"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "062-beol"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "063-thin-film"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "087-high-k-metal-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "088-low-k-dram-capacitor"
       },
       {
         "sourceId": "hs-equipment-maintenance",
@@ -2794,6 +3816,34 @@
         "sectionId": "doping"
       },
       {
+        "sourceId": "first-semiconductor",
+        "sectionId": "005-n-type-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "006-p-type-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "008-energy-band-2"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "045-mask-rom"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "055-cz-growth"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "061-feol-2"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "066-doping"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "process-frontend-backend"
       },
@@ -2838,6 +3888,18 @@
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "056-wafer-slicing"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "062-beol"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "068-cmp"
       },
       {
         "sourceId": "hs-equipment-maintenance",
@@ -2896,6 +3958,42 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "059-front-back-end"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "071-dicing"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "072-die-bonding"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "073-wire-bonding"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "074-molding"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "075-lead-finish"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "076-package-types"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "077-final-test"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-8-reliability"
       },
       {
         "sourceId": "hs-assembly-inspection",
@@ -3120,6 +4218,548 @@
       {
         "sourceId": "hs-semicon-infra",
         "sectionId": "safety-backend-test"
+      }
+    ],
+    "device-physics": [
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "001-what-is-semiconductor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "002-semiconductor-types"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "003-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "004-silicon-solid-forms"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "005-n-type-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "006-p-type-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "007-energy-band-1"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "008-energy-band-2"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "009-compound-semiconductor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-1-oxide-organic"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "010-resistor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "011-capacitor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "012-pn-diode"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "013-photodiode"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "014-led"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "015-laser-diode"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "016-transistor-types"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "017-nmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "018-pmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "019-cmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "020-jfet"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "021-mesfet"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "022-bjt"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-2-transistor-birth"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "023-integrated-circuit"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "024-ic-classification"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "028-not-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "040-ccd"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "043-dram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "044-sram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "046-flash-memory"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-4-scaling-law"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "051-device-design"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "053-silicon-abundance"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "057-wafer-quality"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "061-feol-2"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "079-strained-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "080-finfet"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "085-feram-mram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "086-pram-reram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "087-high-k-metal-gate"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "physical-properties"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "semicon-fundamentals"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "passive-components"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "diode"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "bjt"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "mosfet"
+      },
+      {
+        "sourceId": "hs-semicon-basics",
+        "sectionId": "cmos-image-sensor"
+      }
+    ],
+    "ic-design": [
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "010-resistor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "023-integrated-circuit"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "024-ic-classification"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "025-integration-scale"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "026-ic-by-function"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "034-mpu"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "035-mcu"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "036-dsp"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "037-asic"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "038-pld"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "039-system-ic"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "040-ccd"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "048-ic-development"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "049-hierarchical-design"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "050-design-rule"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "051-device-design"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "052-process-design"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-5-industry-split"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "076-package-types"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-9-more-moore"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "architecture-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "digital-circuit-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "analog-circuit-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "design-verification"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "auto-layout-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "custom-layout-design"
+      }
+    ],
+    "memory-device": [
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "011-capacitor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "026-ic-by-function"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "035-mcu"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "038-pld"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "039-system-ic"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "041-flip-flop"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "042-memory-structure"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "043-dram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "044-sram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "045-mask-rom"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "046-flash-memory"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "047-multi-level-cell"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "070-wafer-test"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "077-final-test"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "084-emerging-memory"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "085-feram-mram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "086-pram-reram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "088-low-k-dram-capacitor"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "memory-process-development"
+      }
+    ],
+    "logic-circuit": [
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "017-nmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "018-pmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "019-cmos"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "027-boolean-algebra"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "028-not-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "029-or-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "030-and-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "031-adder"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "032-subtractor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "033-comparator"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "034-mpu"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "035-mcu"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "036-dsp"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "037-asic"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "038-pld"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-3-first-computer"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "041-flip-flop"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "049-hierarchical-design"
+      },
+      {
+        "sourceId": "hs-basic-tech-2",
+        "sectionId": "digital-circuits"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "digital-circuit-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "design-verification"
+      }
+    ],
+    "advanced-node": [
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "025-integration-scale"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "047-multi-level-cell"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-4-scaling-law"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "050-design-rule"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "058-epi-soi"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "078-larger-wafer"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "079-strained-silicon"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "080-finfet"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "081-immersion-double-patterning"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "082-euv"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "083-maskless-imprint"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "084-emerging-memory"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "085-feram-mram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "086-pram-reram"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "087-high-k-metal-gate"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "088-low-k-dram-capacitor"
+      },
+      {
+        "sourceId": "first-semiconductor",
+        "sectionId": "col-9-more-moore"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "exposure-equipment"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "stepper-structure"
       }
     ],
     "compressed-gas": [

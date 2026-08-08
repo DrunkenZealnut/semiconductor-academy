@@ -1,0 +1,99 @@
+<LayeredExplain
+  hook="칩을 성능이 아니라 '무슨 일을 하는가'로 줄 세우면 네 갈래가 나와요"
+  easy={{
+    analogy: (
+      <p>
+        IC를 직업으로 비유하면 이래요. <strong>메모리</strong>는 창고지기 — 맡아 두었다가
+        달라면 꺼내 줘요. <strong>마이콤</strong>은 관리자 — 계산하고 명령을 내려요.{' '}
+        <strong>ASIC</strong>은 맞춤 장인 — 특정 고객의 특정 용도만을 위해 만들어져요.{' '}
+        <strong>시스템 IC</strong>는 이 셋을 한 사람이 다 하는 만능 직원이고요. 앞의 둘은
+        시장에서 사 오는 <strong>규격품</strong>, 뒤의 둘은 주문 제작이에요.
+      </p>
+    ),
+  }}
+  deep={{
+    sourceSection: '「처음 배우는 반도체」 3장 026 — 기능에 따른 분류',
+    summary: (
+      <>
+        <p>
+          MOS-IC는 기능에 따라 <strong>메모리 IC · 마이콤 IC · ASIC · 시스템 IC</strong>로
+          크게 나뉜다. 메모리는 휘발성(DRAM·SRAM)과 비휘발성(MROM·플래시)으로 갈리고,
+          마이콤은 MPU·MCU와 주변 제어 회로를 포함한다. ASIC은 특정 용도용 주문형 IC로{' '}
+          <strong>USIC</strong>(특정 고객용)과 <strong>ASSP</strong>(특정 용도 표준품)로
+          나뉘며, USIC은 다시 반주문형(GA·CB-IC·ECA·PLD/FPGA)과 전주문형으로 갈린다.
+          시스템 IC는 CPU·메모리·로직·주변 회로를 한 칩에 담는다. 메모리·마이콤은
+          규격 IC, ASIC·시스템 IC는 주문형 IC로 분류된다.
+        </p>
+        <p className="mt-2">
+          핵심 용어: DRAM·SRAM·MROM, MPU·MCU, ASIC·USIC·ASSP, GA·CB-IC·ECA·PLD·FPGA,
+          시스템 IC.
+        </p>
+      </>
+    ),
+  }}
+/>
+
+<Callout type="info" title="이 항목에서 얻어 갈 것">
+  네 갈래 IC가 각각 무슨 일을 하는지, '규격품과 주문품'이라는 축이 왜 중요한지, 그리고
+  ASIC 안의 복잡한 약어들이 어떤 기준으로 나뉘는지 설명할 수 있어요.
+</Callout>
+
+## 1. 메모리 IC — 맡아 두었다 꺼내 주는 칩
+
+정보를 기억했다가 필요할 때 내주는 반도체예요. 가장 큰 갈림길은{' '}
+<strong>전원을 끄면 잊는가</strong>예요.
+
+| | 종류 | 성격 |
+|------|------|------|
+| 휘발성 | DRAM | 기억 보존 동작(리프레시)이 필요한 읽기·쓰기 메모리 |
+| 휘발성 | SRAM | 보존 동작이 불필요한 읽기·쓰기 메모리 |
+| 비휘발성 | MROM | 제조 단계에서 내용이 정해지는 읽기 전용 메모리 |
+| 비휘발성 | 플래시 메모리 | 쓰기·삭제가 가능한 비휘발성 메모리 |
+
+## 2. 마이콤 IC — 계산하고 지시하는 칩
+
+컴퓨터의 중앙 연산처리를 맡는 갈래예요. 연산이 주 임무인{' '}
+<strong>MPU</strong>(초소형 연산처리 장치), 제어가 주 임무인{' '}
+<strong>MCU</strong>(초소형 제어 장치), 그리고 입출력 등 주변 기기를 다루는 주변 회로가
+여기 들어가요.
+
+## 3. ASIC — 특정 용도를 위한 주문형
+
+메모리와 마이콤이 시장에서 사 오는 <strong>규격품</strong>이라면, ASIC은 특정 용도를
+위해 <strong>주문 제작</strong>하는 IC예요. 안쪽 갈래가 좀 복잡한데, 두 번의 갈림길로
+정리하면 쉬워요.
+
+<strong>첫 번째 갈림길 — 누구를 위한 것인가</strong>
+
+- <strong>USIC</strong> : 특정 고객만을 위한 IC
+- <strong>ASSP</strong> : 특정 용도를 위해 만들되 여러 고객에게 파는 표준품
+
+<strong>두 번째 갈림길 — USIC을 얼마나 처음부터 만드나</strong>
+
+- <strong>전주문형</strong> : 바닥부터 전부 설계
+- <strong>반주문형</strong> : 미리 준비된 구조를 활용해 설계 기간을 줄임
+  - <strong>GA</strong>(게이트 어레이) — 가장 간편한 주문 방식
+  - <strong>CB-IC / SCA</strong>(셀 베이스) — 검증된 블록을 쌓아 올리는 빌딩블록 방식
+  - <strong>ECA</strong>(내장형 셀 어레이) — 게이트 어레이에 메모리 셀을 더한 형태
+  - <strong>PLD·FPGA</strong> — 완성된 뒤에도 사용자가 기능을 프로그램할 수 있는 규격형 로직
+
+## 4. 시스템 IC — 한 칩에 시스템 전체를
+
+CPU, 메모리, 로직, 주변 회로를 <strong>한 칩에 모두</strong> 담은 것이 시스템 IC예요.
+기판 위에 여러 칩을 늘어놓던 것을 칩 하나로 압축한 셈이니, 023에서 본 "조립을 안쪽으로
+가져오기"가 시스템 수준에서 다시 한번 일어난 것이라고 볼 수 있어요.
+
+<Callout type="tip" title="더 깊이 보려면">
+  여기서 이름만 나온 것들은 뒤에서 하나씩 다뤄져요 — MPU는 034, MCU는 035, ASIC은 037,
+  PLD·FPGA는 038, 시스템 IC는 039, 메모리는 4장 전체예요. 실제 설계 현장에서 이런 제품
+  종류가 어떻게 기획되는지는{' '}
+  <SourceRef source="ncs-semi" section="product-planning" label="NCS 반도체 제품 기획" />에서
+  이어져요.
+</Callout>
+
+---
+
+<div className="text-xs italic text-slate-500">
+출처: 「처음 배우는 반도체」 3장 026 '기능에 따른 MOS-IC의 분류'(66∼67쪽)의 분류 체계와
+약어표를 근거로 전면 재작성했습니다. 원문 문장과 도판은 사용하지 않았습니다.
+</div>

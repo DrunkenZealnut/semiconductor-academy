@@ -1,0 +1,123 @@
+<LayeredExplain
+  hook="트랜지스터를 나누는 첫 질문 — 캐리어가 한 종류냐, 두 종류냐"
+  easy={{
+    analogy: (
+      <p>
+        트랜지스터는 <strong>신호를 키우거나 켜고 끄는</strong> 소자예요. 종류가 많아 헷갈리지만
+        갈림길은 단순해요. 첫 질문은 <strong>"전자와 양공 중 몇 종류가 일하나"</strong>예요 —
+        한 종류만 쓰면 <strong>유니폴라</strong>(단극), 둘 다 쓰면{' '}
+        <strong>바이폴라</strong>(양극). 유니폴라는 <strong>전압</strong>으로 조작하고 바이폴라는{' '}
+        <strong>전류</strong>로 조작해요. 이 두 축만 잡으면 나머지 이름들은 곁가지예요.
+      </p>
+    ),
+  }}
+  deep={{
+    sourceSection: '「처음 배우는 반도체」 2장 016 — 트랜지스터의 종류',
+    summary: (
+      <>
+        <p>
+          트랜지스터는 전기신호 <strong>증폭</strong>과 <strong>스위치</strong> 기능을 갖는
+          대표적 반도체 소자로, 1947년 미국 벨 연구소(BTL)에서 처음 발명됐다. 크게{' '}
+          <strong>유니폴라(단극)형</strong>과 <strong>바이폴라(2극)형</strong>으로 나뉜다.
+          유니폴라형은 전자나 양공 중 <strong>하나의 운반자</strong>만 동작에 관여하고{' '}
+          <strong>전압(전기장)</strong>으로 동작하므로 <strong>FET</strong>(전기장 효과
+          트랜지스터)라 불린다. 바이폴라형은 <strong>두 운반자가 모두</strong> 관여하고{' '}
+          <strong>전류</strong>로 동작하며, p-n-p형과 n-p-n형이 있다. FET은 게이트 구조에
+          따라 <strong>MOSFET·JFET·MESFET</strong>으로 나뉘고, 운반자에 따라 n채널형(전자)·
+          p채널형(양공)으로 갈린다. 또한 MOSFET·MESFET에는 게이트 전압이 없으면 전류가 흐르지
+          않는 <strong>증강형</strong>과 없어도 흐르는 <strong>고갈형</strong>이 있으며,
+          JFET은 고갈형만 존재한다.
+        </p>
+        <p className="mt-2">
+          핵심 용어: 증폭·스위치, 유니폴라(FET)·바이폴라, MOSFET·JFET·MESFET, n채널·p채널,
+          증강형·고갈형, p-n-p·n-p-n.
+        </p>
+      </>
+    ),
+  }}
+/>
+
+<Callout type="info" title="이 항목에서 얻어 갈 것">
+  트랜지스터 종류를 세 개의 축(캐리어 수 / 게이트 구조 / 동작 모드)으로 정리할 수 있어요.
+</Callout>
+
+## 1. 트랜지스터가 하는 두 가지 일
+
+- <strong>증폭</strong> — 작은 신호를 큰 신호로 키워요.
+- <strong>스위치</strong> — 전류를 켜고 끊어요.
+
+1947년 미국 벨 연구소에서 처음 발명된 뒤 다양한 형태로 개발·개량돼 왔어요(그 발명
+이야기는 2장 COLUMN에 있어요). 3장부터 나오는 논리회로는 트랜지스터의{' '}
+<strong>스위치</strong> 기능만 쓰고, 아날로그 회로는 <strong>증폭</strong> 기능을 주로 써요.
+
+## 2. 첫 번째 축 — 캐리어가 몇 종류인가
+
+| | 유니폴라(단극)형 | 바이폴라(2극)형 |
+|---|---|---|
+| 관여하는 캐리어 | <strong>한 종류</strong>(전자 또는 양공) | <strong>두 종류 모두</strong> |
+| 무엇으로 동작 | <strong>전압</strong>(전기장) | <strong>전류</strong> |
+| 다른 이름 | <strong>FET</strong>(전기장 효과 트랜지스터) | 바이폴라 트랜지스터 |
+| 종류 | MOSFET, JFET, MESFET | p-n-p형, n-p-n형 |
+
+'유니(uni-)'와 '바이(bi-)'는 각각 하나와 둘을 뜻해요. 이름에 캐리어 종류 수가 들어 있는
+셈이죠.
+
+FET이라는 이름은 <strong>전기장(Field)의 효과(Effect)로 동작</strong>한다는 뜻이에요.
+게이트에 전압을 걸면 전기장이 생기고, 그 전기장이 채널을 만들거나 없애요 — 게이트가 채널에{' '}
+<strong>직접 닿지 않는다</strong>는 점이 특징이에요(011의 MOS 용량 구조를 떠올리면 돼요).
+
+## 3. 두 번째 축 — 게이트를 무엇으로 만드나
+
+FET은 게이트 구조에 따라 셋으로 갈려요.
+
+| 종류 | 게이트 구조 | 다루는 항목 |
+|---|---|---|
+| <strong>MOSFET</strong> | 금속(또는 다결정 실리콘) - 산화막 - 반도체 | 017·018 |
+| <strong>JFET</strong> | p-n 접합을 게이트로 | 020 |
+| <strong>MESFET</strong> | 금속-반도체 접합(쇼트키)을 게이트로 | 021 |
+
+가장 널리 쓰이는 것은 MOSFET이에요. 3장 025에서 "가장 대표적인 IC는 MOS-IC"라고 했던
+그 MOS죠.
+
+## 4. 세 번째 축 — 채널 극성과 동작 모드
+
+<strong>채널 극성</strong> — 전류를 나르는 캐리어가 무엇인가로 갈려요.
+
+- <strong>n채널형</strong> — 전자가 운반자 (017)
+- <strong>p채널형</strong> — 양공이 운반자 (018)
+
+<strong>동작 모드</strong> — 게이트 전압이 없을 때 어떤 상태인가로 갈려요.
+
+| 모드 | 게이트 전압 0V일 때 | 비유 |
+|---|---|---|
+| <strong>증강형</strong> | 전류가 <strong>흐르지 않음</strong> | 평소 닫힌 밸브 |
+| <strong>고갈형</strong> | 전류가 <strong>흐름</strong> | 평소 열린 밸브 |
+
+MOSFET과 MESFET에는 두 모드가 다 있지만, <strong>JFET은 고갈형만</strong> 있어요 — 구조상
+게이트 전압 없이도 채널이 이미 존재하니까요(020에서 이유를 봐요).
+
+## 5. 정리하면
+
+트랜지스터 이름을 만나면 이렇게 읽으면 돼요.
+
+<strong>"n채널 · 증강형 · MOSFET"</strong>
+= 전자가 나르고 · 평소엔 닫혀 있고 · 산화막 게이트를 쓰는 전기장 효과 트랜지스터
+
+017에서 다룰 소자가 정확히 이것이에요. 세 개의 축이 각각 한 단어씩 이름에 들어가는
+구조라, 낯선 약어를 만나도 어느 칸에 속하는지 짚어낼 수 있어요.
+
+<Callout type="tip" title="더 깊이 보려면">
+  각 종류의 상세는 017(nMOS)·018(pMOS)·020(JFET)·021(MESFET)·022(바이폴라)에 있어요.
+  둘을 짝지어 쓰는 CMOS는 019예요. 트랜지스터의 발명 이야기는 2장 COLUMN,
+  MOS 트랜지스터의 상세는{' '}
+  <SourceRef source="hs-semicon-basics" section="mosfet" label="「반도체 기초」 MOSFET" />과{' '}
+  <SourceRef source="hs-semicon-basics" section="bjt" label="같은 책 BJT" />에서
+  이어져요.
+</Callout>
+
+---
+
+<div className="text-xs italic text-slate-500">
+출처: 「처음 배우는 반도체」 2장 016 '대표적인 트랜지스터의 종류'(44∼45쪽)의 분류표와
+설명을 근거로 전면 재작성했습니다. 원문 문장과 도판은 사용하지 않았습니다.
+</div>

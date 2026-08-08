@@ -27,7 +27,9 @@ function IconFor({ accent }: { accent: Accent }) {
 /** 관점 라벨·앵커 — accent축이 곧 관점(원리·위험·안전·직무)이라 자료원 추가 시 자동 편입된다.
  *  Record<Accent>라 accent 유니온에 값이 추가되면 typecheck가 항목 누락을 잡는다. */
 const PERSPECTIVE_META: Record<Accent, { label: string; anchorId: string }> = {
-  school: { label: '원리 · 학교에서 배우는 그대로', anchorId: 'cluster-principle' },
+  // 교과서 9권 + 입문서가 함께 묶이므로 '학교에서 배우는 그대로'를 일반화했다
+  // (first-semiconductor-primer Do 단계 — 학교 교재가 아닌 입문서 편입).
+  school: { label: '원리 · 기초부터 차근차근', anchorId: 'cluster-principle' },
   book: { label: '위험 · 왜 위험한가', anchorId: 'cluster-risk' },
   osha: { label: '안전 · 어떻게 다루나', anchorId: 'cluster-safety' },
   standard: { label: '직무 · 현장에서 무슨 일을', anchorId: 'cluster-job' },
