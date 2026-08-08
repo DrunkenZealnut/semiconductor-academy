@@ -1,0 +1,294 @@
+{
+  "$comment": "Cross-link tags for 입문서 「처음 배우는 반도체」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts FIRST_SEMI.sections. 항목당 최소 1 topic 원칙(Design §4.2) — 이 자료원은 얇은 진입점 97개로 기존 자료원에 링크를 뿌리는 역할이라 태깅 누락 모듈을 두지 않는다. 97모듈 전량 등록 완료(B1~B5).",
+  "001-what-is-semiconductor": {
+    "topics": ["device-physics"]
+  },
+  "002-semiconductor-types": {
+    "topics": ["device-physics"]
+  },
+  "003-silicon": {
+    "topics": ["device-physics", "wafer-fab"]
+  },
+  "004-silicon-solid-forms": {
+    "topics": ["device-physics", "wafer-fab"]
+  },
+  "005-n-type-silicon": {
+    "topics": ["device-physics", "ion-implantation"]
+  },
+  "006-p-type-silicon": {
+    "topics": ["device-physics", "ion-implantation"]
+  },
+  "007-energy-band-1": {
+    "topics": ["device-physics"]
+  },
+  "008-energy-band-2": {
+    "topics": ["device-physics", "ion-implantation"]
+  },
+  "009-compound-semiconductor": {
+    "topics": ["device-physics"]
+  },
+  "col-1-oxide-organic": {
+    "topics": ["device-physics"]
+  },
+  "010-resistor": {
+    "topics": ["device-physics", "ic-design"]
+  },
+  "011-capacitor": {
+    "topics": ["device-physics", "memory-device"]
+  },
+  "012-pn-diode": {
+    "topics": ["device-physics"]
+  },
+  "013-photodiode": {
+    "topics": ["device-physics"]
+  },
+  "014-led": {
+    "topics": ["device-physics"]
+  },
+  "015-laser-diode": {
+    "topics": ["device-physics"]
+  },
+  "016-transistor-types": {
+    "topics": ["device-physics"]
+  },
+  "017-nmos": {
+    "topics": ["device-physics", "logic-circuit"]
+  },
+  "018-pmos": {
+    "topics": ["device-physics", "logic-circuit"]
+  },
+  "019-cmos": {
+    "topics": ["device-physics", "logic-circuit"]
+  },
+  "020-jfet": {
+    "topics": ["device-physics"]
+  },
+  "021-mesfet": {
+    "topics": ["device-physics"]
+  },
+  "022-bjt": {
+    "topics": ["device-physics"]
+  },
+  "col-2-transistor-birth": {
+    "topics": ["device-physics"]
+  },
+  "023-integrated-circuit": {
+    "topics": ["ic-design", "device-physics"]
+  },
+  "024-ic-classification": {
+    "topics": ["ic-design", "device-physics"]
+  },
+  "025-integration-scale": {
+    "topics": ["advanced-node", "ic-design"]
+  },
+  "026-ic-by-function": {
+    "topics": ["ic-design", "memory-device"]
+  },
+  "027-boolean-algebra": {
+    "topics": ["logic-circuit"]
+  },
+  "028-not-gate": {
+    "topics": ["logic-circuit", "device-physics"]
+  },
+  "029-or-gate": {
+    "topics": ["logic-circuit"]
+  },
+  "030-and-gate": {
+    "topics": ["logic-circuit"]
+  },
+  "031-adder": {
+    "topics": ["logic-circuit"]
+  },
+  "032-subtractor": {
+    "topics": ["logic-circuit"]
+  },
+  "033-comparator": {
+    "topics": ["logic-circuit"]
+  },
+  "034-mpu": {
+    "topics": ["logic-circuit", "ic-design"]
+  },
+  "035-mcu": {
+    "topics": ["logic-circuit", "ic-design", "memory-device"]
+  },
+  "036-dsp": {
+    "topics": ["logic-circuit", "ic-design"]
+  },
+  "037-asic": {
+    "topics": ["ic-design", "logic-circuit"]
+  },
+  "038-pld": {
+    "topics": ["ic-design", "logic-circuit", "memory-device"]
+  },
+  "039-system-ic": {
+    "topics": ["ic-design", "memory-device"]
+  },
+  "040-ccd": {
+    "topics": ["device-physics", "ic-design"]
+  },
+  "col-3-first-computer": {
+    "topics": ["logic-circuit"]
+  },
+  "041-flip-flop": {
+    "topics": ["memory-device", "logic-circuit"]
+  },
+  "042-memory-structure": {
+    "topics": ["memory-device"]
+  },
+  "043-dram": {
+    "topics": ["memory-device", "device-physics"]
+  },
+  "044-sram": {
+    "topics": ["memory-device", "device-physics"]
+  },
+  "045-mask-rom": {
+    "topics": ["memory-device", "ion-implantation"]
+  },
+  "046-flash-memory": {
+    "topics": ["memory-device", "device-physics"]
+  },
+  "047-multi-level-cell": {
+    "topics": ["memory-device", "advanced-node"]
+  },
+  "col-4-scaling-law": {
+    "topics": ["advanced-node", "device-physics"]
+  },
+  "048-ic-development": {
+    "topics": ["ic-design"]
+  },
+  "049-hierarchical-design": {
+    "topics": ["ic-design", "logic-circuit"]
+  },
+  "050-design-rule": {
+    "topics": ["ic-design", "advanced-node"]
+  },
+  "051-device-design": {
+    "topics": ["ic-design", "device-physics"]
+  },
+  "052-process-design": {
+    "topics": ["ic-design", "wafer-fab"]
+  },
+  "col-5-industry-split": {
+    "topics": ["ic-design"]
+  },
+  "053-silicon-abundance": {
+    "topics": ["wafer-fab", "device-physics"]
+  },
+  "054-polysilicon": {
+    "topics": ["wafer-fab", "deposition"]
+  },
+  "055-cz-growth": {
+    "topics": ["wafer-fab", "ion-implantation"]
+  },
+  "056-wafer-slicing": {
+    "topics": ["wafer-fab", "cmp"]
+  },
+  "057-wafer-quality": {
+    "topics": ["wafer-fab", "device-physics"]
+  },
+  "058-epi-soi": {
+    "topics": ["wafer-fab", "deposition", "advanced-node"]
+  },
+  "col-6-wafer-requirements": {
+    "topics": ["wafer-fab"]
+  },
+  "059-front-back-end": {
+    "topics": ["wafer-fab", "packaging"]
+  },
+  "060-feol-1": {
+    "topics": ["wafer-fab", "photolithography", "etching"]
+  },
+  "061-feol-2": {
+    "topics": ["wafer-fab", "ion-implantation", "device-physics"]
+  },
+  "062-beol": {
+    "topics": ["wafer-fab", "deposition", "cmp"]
+  },
+  "063-thin-film": {
+    "topics": ["deposition", "wafer-fab"]
+  },
+  "064-lithography": {
+    "topics": ["photolithography", "wafer-fab"]
+  },
+  "065-etching": {
+    "topics": ["etching", "engineering-controls"]
+  },
+  "066-doping": {
+    "topics": ["ion-implantation", "diffusion", "gas-safety"]
+  },
+  "067-thermal-process": {
+    "topics": ["diffusion", "wafer-fab"]
+  },
+  "068-cmp": {
+    "topics": ["cmp", "wafer-fab"]
+  },
+  "069-cleaning": {
+    "topics": ["liquid-chemicals", "cleanroom", "wafer-fab"]
+  },
+  "070-wafer-test": {
+    "topics": ["wafer-fab", "memory-device"]
+  },
+  "col-7-cleanroom": {
+    "topics": ["cleanroom", "engineering-controls"]
+  },
+  "071-dicing": {
+    "topics": ["packaging"]
+  },
+  "072-die-bonding": {
+    "topics": ["packaging"]
+  },
+  "073-wire-bonding": {
+    "topics": ["packaging"]
+  },
+  "074-molding": {
+    "topics": ["packaging"]
+  },
+  "075-lead-finish": {
+    "topics": ["packaging"]
+  },
+  "076-package-types": {
+    "topics": ["packaging", "ic-design"]
+  },
+  "077-final-test": {
+    "topics": ["packaging", "memory-device"]
+  },
+  "col-8-reliability": {
+    "topics": ["packaging"]
+  },
+  "078-larger-wafer": {
+    "topics": ["advanced-node", "wafer-fab"]
+  },
+  "079-strained-silicon": {
+    "topics": ["advanced-node", "device-physics"]
+  },
+  "080-finfet": {
+    "topics": ["advanced-node", "device-physics"]
+  },
+  "081-immersion-double-patterning": {
+    "topics": ["advanced-node", "photolithography"]
+  },
+  "082-euv": {
+    "topics": ["advanced-node", "photolithography"]
+  },
+  "083-maskless-imprint": {
+    "topics": ["advanced-node", "photolithography", "etching"]
+  },
+  "084-emerging-memory": {
+    "topics": ["memory-device", "advanced-node"]
+  },
+  "085-feram-mram": {
+    "topics": ["memory-device", "advanced-node", "device-physics"]
+  },
+  "086-pram-reram": {
+    "topics": ["memory-device", "advanced-node", "device-physics"]
+  },
+  "087-high-k-metal-gate": {
+    "topics": ["advanced-node", "device-physics", "deposition"]
+  },
+  "088-low-k-dram-capacitor": {
+    "topics": ["advanced-node", "memory-device", "deposition"]
+  },
+  "col-9-more-moore": {
+    "topics": ["advanced-node", "ic-design"]
+  }
+}

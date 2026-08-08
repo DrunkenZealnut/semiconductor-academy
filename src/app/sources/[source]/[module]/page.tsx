@@ -58,7 +58,7 @@ function disclosureFor(source: Source): string {
     : SOURCE_KIND_LABELS[source.kind];
   const byline = source.publisher
     ? `(${source.attribution} 지음, ${source.publisher})`
-    : `(${source.attribution})`;
+    : `(${source.attribution} 지음)`;
   return `${groupLabel} 「${source.title}」${byline}의 내용을 고등학생 눈높이로 전면 재작성했습니다. 원문 문장·도판은 사용하지 않으며, 각 단원 하단에 원문 단원·페이지를 표기합니다.`;
 }
 

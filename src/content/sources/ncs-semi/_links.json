@@ -1,5 +1,5 @@
 {
-  "$comment": "Cross-link tags for NCS 반도체 학습모듈. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts NCS_SEMI.sections. Glob-discovered by scripts/build-cross-link-index.mjs.",
+  "$comment": "Cross-link tags for NCS 반도체 학습모듈. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts NCS_SEMI.sections. Glob-discovered by scripts/build-cross-link-index.mjs. [2026-08-08 first-semiconductor-primer] 설계·검증·레이아웃 트랙은 통제 어휘에 대응 축이 없어 미태깅 상태였다. ic-design·logic-circuit·memory-device 신설로 태깅 가능해져 6개 설계 모듈을 추가하고 memory-process-development에 memory-device를 보탰다(Design §4.3).",
   "system-process-development": {
     "topics": [
       "wafer-fab",
@@ -18,6 +18,7 @@
   },
   "memory-process-development": {
     "topics": [
+      "memory-device",
       "wafer-fab",
       "diffusion",
       "ion-implantation",
@@ -512,6 +513,38 @@
       "toxic",
       "compressed-gas",
       "acute-toxic"
+    ]
+  },
+  "architecture-design": {
+    "topics": [
+      "ic-design"
+    ]
+  },
+  "digital-circuit-design": {
+    "topics": [
+      "ic-design",
+      "logic-circuit"
+    ]
+  },
+  "analog-circuit-design": {
+    "topics": [
+      "ic-design"
+    ]
+  },
+  "design-verification": {
+    "topics": [
+      "ic-design",
+      "logic-circuit"
+    ]
+  },
+  "auto-layout-design": {
+    "topics": [
+      "ic-design"
+    ]
+  },
+  "custom-layout-design": {
+    "topics": [
+      "ic-design"
     ]
   }
 }

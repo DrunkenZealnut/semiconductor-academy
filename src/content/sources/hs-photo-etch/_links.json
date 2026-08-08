@@ -1,5 +1,5 @@
 {
-  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 포토·에칭」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_PHOTO_ETCH.sections. 시리즈 최소 태깅 원칙(본문 실증 기준)을 따르되, 이 권은 주제가 통제 어휘와 정면 교차해 전 모듈 태깅 — photolithography/etching 축으로 책(ch8·ch9)·daegu(photo·etch)·NCS 포토·에칭 트랙과 자동 상호 연결된다. chemicals는 본문에 실제 등장·서술된 것만(hmds — photo-process 7회 / chlorine — etch-process Cl₂ 서술).",
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 포토·에칭」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_PHOTO_ETCH.sections. 시리즈 최소 태깅 원칙(본문 실증 기준)을 따르되, 이 권은 주제가 통제 어휘와 정면 교차해 전 모듈 태깅 — photolithography/etching 축으로 책(ch8·ch9)·daegu(photo·etch)·NCS 포토·에칭 트랙과 자동 상호 연결된다. chemicals는 본문에 실제 등장·서술된 것만(hmds — photo-process 7회 / chlorine — etch-process Cl₂ 서술). [2026-08-08] advanced-node 신설 — 미세화가 노광 기술 한계와 직결되므로 노광 장비·스테퍼 모듈에 축을 보탰다(Design §4.3).",
   "process-overview": {
     "topics": ["wafer-fab"]
   },
@@ -17,10 +17,10 @@
     "topics": ["photolithography", "liquid-chemicals"]
   },
   "exposure-equipment": {
-    "topics": ["photolithography"]
+    "topics": ["photolithography", "advanced-node"]
   },
   "stepper-structure": {
-    "topics": ["photolithography"]
+    "topics": ["photolithography", "advanced-node"]
   },
   "track-operation": {
     "topics": ["photolithography", "liquid-chemicals"]
