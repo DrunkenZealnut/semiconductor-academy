@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-09T06:06:23.702Z",
+  "lastUpdated": "2026-08-09T07:00:54.921Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1007,9 +1007,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-08T21:41:56.515Z",
-        "lastUpdated": "2026-08-09T06:06:23.702Z"
+        "lastUpdated": "2026-08-09T07:00:54.921Z"
       },
-      "lastFile": "/Users/zealnutkim/orca/workspaces/SemiconductorAcademy/새로운책등록/src/lib/sources.ts"
+      "lastFile": "src/lib/sources.ts"
     },
     "cert-equip-maintenance": {
       "phase": "archived",
@@ -1163,7 +1163,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-09T06:06:23.702Z"
+    "lastActivity": "2026-08-09T07:00:54.921Z"
   },
   "history": [
     {
@@ -3726,6 +3726,12 @@
     },
     {
       "timestamp": "2026-08-09T06:06:23.702Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T07:00:54.921Z",
       "feature": "새로운책등록",
       "phase": "do",
       "action": "updated"

@@ -1869,7 +1869,7 @@ export const CERT_EQUIP_MAINT: Source = {
   attribution: '김종주 외',
   publisher: '에듀크라운',
   license: 'fair-use',
-  order: 13,
+  order: 14,
   accent: 'standard',
   sections: [
     {

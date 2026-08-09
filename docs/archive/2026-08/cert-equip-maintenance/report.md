@@ -17,7 +17,7 @@
 |------|------|
 | **Feature** | 「반도체설비보전기능사 필기시험문제」(김종주 외, 에듀크라운, OCR 17,860줄 518쪽) 이론편 Part 01~10(13모듈) 전량 3단 레이어 재구성 + 신규 `SourceKind: 'exam-prep'` + cross-link 87개+ 인라인 커멘트 |
 | **상속** | `hs-textbook-collection`(공용 라우트·로더·저작권 원칙) + `cross-link-system`(통제 어휘) + 직전 권별 사이클(hs-basic-tech·hs-photo-etch 선례) |
-| **로드맵 위치** | 직무 클러스터 신규 자료원 (order 13, accent `standard`) |
+| **로드맵 위치** | 직무 클러스터 신규 자료원 (최종 order 14, accent `standard` — 설계 시점 13에서 main 병합 시 `first-semiconductor` order 13과 충돌해 14로 재배정. 이하 본문의 order 13 언급은 설계·구현 당시 기록) |
 | **범위** | **전량 편입**(이론편 Part 01~10, 13모듈 완주) + 병렬 13배치 Sonnet 서브에이전트 구현 + 저작권 준수(이미지 0·문장 전면 재작성·출처 표기) + 전 자료원 상호 연결(87개+ 커멘트) |
 | **시작 일시** | 2026-08-08 21:00Z (Plan/Design 승인) |
 | **완료 일시** | 2026-08-09 (Report 작성, 검증 완료) |

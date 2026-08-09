@@ -21,13 +21,15 @@
 
 ## 2. Source 등록 스펙
 
-```
+```text
 id: 'cert-equip-maintenance' · kind: 'exam-prep' · language: 'ko'
 title: '반도체설비보전기능사 필기'
 subtitle: '국가기술자격 수험서 — 공정·설비·자동화·안전 이론을 시험 눈높이로, 전 자료원 연결 학습'
 attribution: '김종주 외' · publisher: '에듀크라운' · year: 생략(OCR 미확인)
-license: 'fair-use' · order: 13 · accent: 'standard' · category: 없음
+license: 'fair-use' · order: 14 · accent: 'standard' · category: 없음
 ```
+
+> **사후 정정(2026-08-09, PR #28 CodeRabbit 리뷰 반영)**: 설계 시점엔 order 13이었으나, main 병합 시 같은 사이클에서 독립 병합된 `first-semiconductor`(입문서)가 먼저 order 13을 확정해 `cert-equip-maintenance`를 **order 14**로 재배정했다. 아래 §4 이하의 order 13 언급은 설계 시점 기록이므로 그대로 둔다.
 
 ### sections (등록 순서 = 책 목차 = 이전/다음 내비)
 
