@@ -187,7 +187,14 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
 // Design: docs/02-design/features/multi-source-learning-platform.design.md §3.1
 // ─────────────────────────────────────────────────────────────
 
-export type SourceKind = 'book' | 'training-program' | 'standard' | 'guide' | 'paper' | 'textbook';
+export type SourceKind =
+  | 'book'
+  | 'training-program'
+  | 'standard'
+  | 'guide'
+  | 'paper'
+  | 'textbook'
+  | 'exam-prep';
 export type SourceLanguage = 'ko' | 'en';
 /** 자료원 묶음 관리 단위 — kind(자료 유형)와 별개의 분류 축.
  *  값 추가 시 SOURCE_CATEGORY_LABELS(typecheck가 강제)를 함께 확장한다.
@@ -253,6 +260,7 @@ export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
   guide: '가이드',
   paper: '논문',
   textbook: '교과서',
+  'exam-prep': '수험서',
 };
 
 export const SOURCE_CATEGORY_LABELS: Record<SourceCategory, string> = {
@@ -267,6 +275,7 @@ export const SOURCE_KIND_UNIT_LABELS: Record<SourceKind, string> = {
   guide: '섹션',
   paper: '섹션',
   textbook: '단원',
+  'exam-prep': 'Part',
 };
 
 export const SOURCE_LANGUAGE_LABELS: Record<SourceLanguage, string> = {
