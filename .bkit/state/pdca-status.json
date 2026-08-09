@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-09T05:45:00.000Z",
+  "lastUpdated": "2026-08-09T07:00:54.921Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -30,9 +30,10 @@
     "hs-thinfilm-diffusion",
     "safedata-injection",
     "safedata-injection Gap 분석",
-    "menu-재구성"
+    "menu-재구성",
+    "새로운책등록"
   ],
-  "primaryFeature": null,
+  "primaryFeature": "safedata-injection",
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -997,6 +998,30 @@
         "lastUpdated": "2026-07-20T10:05:00.000Z"
       }
     },
+    "새로운책등록": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-08-08T21:41:56.515Z",
+        "lastUpdated": "2026-08-09T07:00:54.921Z"
+      },
+      "lastFile": "src/lib/sources.ts"
+    },
+    "cert-equip-maintenance": {
+      "phase": "archived",
+      "matchRate": 98,
+      "iterationCount": 2,
+      "startedAt": "2026-08-08T21:00:00.000Z",
+      "completedAt": "2026-08-09T09:20:00.000Z",
+      "archivedAt": "2026-08-09T09:30:00.000Z",
+      "archivedTo": "docs/archive/2026-08/cert-equip-maintenance/",
+      "branch": "DrunkenZealnut/새로운책등록",
+      "note": "국가기술자격 수험서 「반도체설비보전기능사 필기」 13모듈 신규 자료원(exam-prep kind). gap-detector 1차 97% -> 즉시보수 5건 -> pdca-iterator 2회 반복 -> 최종 추정 98~99%. 커밋 미완료(사용자 요청 시)."
+    },
     "first-semiconductor-primer": {
       "phase": "archived",
       "matchRate": 96,
@@ -1138,7 +1163,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-08T20:00:39.245Z"
+    "lastActivity": "2026-08-09T07:00:54.921Z"
   },
   "history": [
     {
@@ -3434,6 +3459,42 @@
       "action": "created"
     },
     {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "pilot-gate-passed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b1-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b2-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b3-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b4-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b5-completed-all-97"
+    },
+    {
       "timestamp": "2026-08-08T05:25:35.028Z",
       "feature": "cross-link",
       "phase": "do",
@@ -3500,12 +3561,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "pilot-gate-passed"
-    },
-    {
       "timestamp": "2026-08-08T11:26:55.730Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3530,12 +3585,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b1-completed"
-    },
-    {
       "timestamp": "2026-08-08T11:59:17.094Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3546,12 +3595,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b2-completed"
     },
     {
       "timestamp": "2026-08-08T12:23:32.164Z",
@@ -3566,12 +3609,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b3-completed"
-    },
-    {
       "timestamp": "2026-08-08T12:36:32.214Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3582,12 +3619,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b4-completed"
     },
     {
       "timestamp": "2026-08-08T12:59:37.312Z",
@@ -3606,19 +3637,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b5-completed-all-97"
-    },
-    {
-      "timestamp": "2026-08-09T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "check",
-      "action": "analyzed",
-      "matchRate": 94
     },
     {
       "timestamp": "2026-08-08T19:17:50.516Z",
@@ -3645,11 +3663,78 @@
       "action": "updated"
     },
     {
+      "timestamp": "2026-08-08T21:41:56.515Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:41:59.543Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:01.499Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:38.189Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:46.893Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:53.434Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "check",
+      "action": "analyzed",
+      "matchRate": 94
+    },
+    {
+      "timestamp": "2026-08-09T00:14:28.392Z",
+      "feature": "cert-equip-maintenance 분석 문서 작성",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T00:50:54.413Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
       "feature": "first-semiconductor-primer",
       "event": "archived",
       "at": "2026-08-09T05:45:00.000Z",
       "matchRate": 96,
       "archivedTo": "docs/archive/2026-08/first-semiconductor-primer/"
+    },
+    {
+      "timestamp": "2026-08-09T06:06:23.702Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T07:00:54.921Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
     }
   ]
 }

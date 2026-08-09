@@ -194,6 +194,7 @@ export type SourceKind =
   | 'guide'
   | 'paper'
   | 'textbook'
+  | 'exam-prep'
   | 'primer';
 export type SourceLanguage = 'ko' | 'en';
 /** 자료원 묶음 관리 단위 — kind(자료 유형)와 별개의 분류 축.
@@ -260,6 +261,7 @@ export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
   guide: '가이드',
   paper: '논문',
   textbook: '교과서',
+  'exam-prep': '수험서',
   primer: '입문서',
 };
 
@@ -275,6 +277,7 @@ export const SOURCE_KIND_UNIT_LABELS: Record<SourceKind, string> = {
   guide: '섹션',
   paper: '섹션',
   textbook: '단원',
+  'exam-prep': 'Part',
   // 견개(2쪽)당 1항목 구성의 입문서 — 원서 목차가 '항목 번호'로 매겨진다
   primer: '항목',
 };

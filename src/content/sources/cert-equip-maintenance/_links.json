@@ -1,0 +1,81 @@
+{
+  "$comment": "Cross-link tags for 수험서 「반도체설비보전기능사 필기」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts CERT_EQUIP_MAINT.sections. 본문 실증 기준 태깅(모듈 작성 에이전트 보고 + 언급 빈도 검수) — 공정 Part는 해당 공정 topic으로 책 ch·교과서·NCS와 자동 연결, 안전 Part는 controls/hygiene축. chemicals는 기능·위험이 실질 서술된 것만(표 목록 1~2회 언급·개별 설명 문단 없음은 제외: 벤젠·삼불화붕소·암모니아·이소프로필알코올 in chemical-facility). automation-plc·electrical-facility·environment-management는 인터록·차단기·스크러버 등 공학적 통제 실증으로 engineering-controls만(PDCA 백로그 G-6 재검토, 2026-08-09: exposure-monitoring·chemical-inventory·ppe 후보 재검토했으나 본문 실증 부족으로 미채택 — 사유는 iteration report 참고). chemical-facility의 storage-compatibility는 §6 공통 원칙(가연성-산화성 분리 보관, 부식성 건냉 밀폐 보관)으로 본문 실증(PDCA 백로그 G-7, 2026-08-09).",
+  "intro": {
+    "topics": ["cleanroom", "wafer-fab"]
+  },
+  "photo-process": {
+    "topics": ["photolithography"],
+    "chemicals": ["hmds", "tmah"]
+  },
+  "etch-process": {
+    "topics": ["etching", "gas-safety"],
+    "chemicals": ["chlorine"]
+  },
+  "diffusion-process": {
+    "topics": ["diffusion", "ion-implantation"],
+    "chemicals": ["arsine", "phosphine", "boron-trifluoride", "phosphorus-oxychloride", "silane"]
+  },
+  "deposition-process": {
+    "topics": ["deposition", "gas-safety"],
+    "hazards": ["pyrophoric", "toxic"],
+    "chemicals": ["silane", "tungsten-hexafluoride", "dichlorosilane"]
+  },
+  "clean-cmp-process": {
+    "topics": ["cmp", "liquid-chemicals"],
+    "chemicals": [
+      "hydrofluoric-acid",
+      "hydrogen-peroxide",
+      "sulfuric-acid",
+      "ammonia",
+      "silica-slurry",
+      "isopropyl-alcohol"
+    ]
+  },
+  "assembly-process": {
+    "topics": ["packaging"],
+    "chemicals": ["epoxy-resin", "lead", "solder-flux"]
+  },
+  "automation-plc": {
+    "topics": ["engineering-controls"]
+  },
+  "pneumatics-hydraulics": {
+    "topics": ["compressed-gas"],
+    "hazards": ["compressed-gas"]
+  },
+  "industrial-safety": {
+    "topics": [
+      "industrial-hygiene",
+      "emergency-response",
+      "ppe",
+      "engineering-controls",
+      "exposure-monitoring"
+    ]
+  },
+  "electrical-facility": {
+    "topics": ["engineering-controls"]
+  },
+  "chemical-facility": {
+    "topics": [
+      "gas-safety",
+      "compressed-gas",
+      "chemical-inventory",
+      "engineering-controls",
+      "storage-compatibility"
+    ],
+    "hazards": ["toxic", "pyrophoric", "corrosive", "compressed-gas", "flammable", "oxidizer"],
+    "chemicals": [
+      "arsine",
+      "phosphine",
+      "diborane",
+      "silane",
+      "dichlorosilane",
+      "chlorine",
+      "hydrofluoric-acid",
+      "sulfuric-acid",
+      "hydrogen-peroxide"
+    ]
+  },
+  "environment-management": {
+    "topics": ["engineering-controls"]
+  }
+}

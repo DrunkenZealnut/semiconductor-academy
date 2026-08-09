@@ -1849,6 +1849,138 @@ export const HS_SEMICON_INFRA: Source = {
 };
 
 /**
+ * 국가기술자격 수험서 「반도체설비보전기능사 필기」 — 시험 과목 순서 그대로
+ * 공정·설비·자동화·안전 이론을 재구성하고, 각 모듈에서 다른 자료원(교과서·책·
+ * OSHA·NCS)으로의 인라인 커멘트로 심화 학습을 안내한다(허브 색인 역할).
+ * 원자료 `data/반도체설비보전기능사/`(OCR 추출) 전면 재작성 — daegu 저작권 원칙
+ * 일괄(원문 문장·도판·문제 미사용, 개념·수치만 근거 + 원저자·발행처 표기).
+ * 문제편(예상문제·기출)은 재작성 비대상. 발행연도는 OCR 미확인으로 생략.
+ * 확장: `src/content/sources/cert-equip-maintenance/{module}.mdx` 작성 +
+ * `schoolTextMdx.tsx` REGISTRY 로더 등록 + 아래 sections에 목차 순서대로 추가.
+ * Design: docs/archive/2026-08/cert-equip-maintenance/design.md (아카이브됨)
+ */
+export const CERT_EQUIP_MAINT: Source = {
+  id: 'cert-equip-maintenance',
+  kind: 'exam-prep',
+  language: 'ko',
+  title: '반도체설비보전기능사 필기',
+  subtitle:
+    '국가기술자격 수험서 — 공정·설비·자동화·안전 이론을 시험 눈높이로, 전 자료원 연결 학습',
+  attribution: '김종주 외',
+  publisher: '에듀크라운',
+  license: 'fair-use',
+  order: 14,
+  accent: 'standard',
+  sections: [
+    {
+      id: 'intro',
+      href: '/sources/cert-equip-maintenance/intro/',
+      title: '반도체 입문',
+      summary:
+        '반도체의 정의부터 클린룸 복장·FAB 라인·웨이퍼 제조·공정 전체 지도까지 — 시험의 출발점',
+      readingTime: 12,
+      group: '반도체 기초',
+    },
+    {
+      id: 'photo-process',
+      href: '/sources/cert-equip-maintenance/photo-process/',
+      title: '사진공정기술',
+      summary: 'PR 도포·노광·현상·검사 네 단계와 트랙·노광 장비 — 회로를 새기는 사진공정의 전 과정',
+      readingTime: 13,
+      group: '전공정 기술',
+    },
+    {
+      id: 'etch-process',
+      href: '/sources/cert-equip-maintenance/etch-process/',
+      title: '식각공정기술',
+      summary: '습식과 건식, 등방성과 이방성 — 플라즈마로 회로를 깎는 식각의 원리와 장비',
+      readingTime: 13,
+      group: '전공정 기술',
+    },
+    {
+      id: 'diffusion-process',
+      href: '/sources/cert-equip-maintenance/diffusion-process/',
+      title: '확산공정기술',
+      summary: '산화·확산·이온주입 — 고온과 이온빔으로 웨이퍼에 전기 성질을 심는 세 가지 방법',
+      readingTime: 12,
+      group: '전공정 기술',
+    },
+    {
+      id: 'deposition-process',
+      href: '/sources/cert-equip-maintenance/deposition-process/',
+      title: 'CVD·PVD 공정기술',
+      summary: 'APCVD에서 ALD까지 — 웨이퍼에 박막을 쌓는 모든 방법과 장비 계보',
+      readingTime: 14,
+      group: '전공정 기술',
+    },
+    {
+      id: 'clean-cmp-process',
+      href: '/sources/cert-equip-maintenance/clean-cmp-process/',
+      title: '세정·CMP 공정기술',
+      summary: '웨이퍼를 씻는 세정과 갈아서 평평하게 만드는 CMP — 오염과 단차를 지우는 기술',
+      readingTime: 12,
+      group: '전공정 기술',
+    },
+    {
+      id: 'assembly-process',
+      href: '/sources/cert-equip-maintenance/assembly-process/',
+      title: '반도체 조립공정기술',
+      summary: '백그라인딩부터 마킹까지 — 웨이퍼가 검은 칩이 되는 조립 공정 전 단계',
+      readingTime: 13,
+      group: '후공정 기술',
+    },
+    {
+      id: 'automation-plc',
+      href: '/sources/cert-equip-maintenance/automation-plc/',
+      title: '자동화 공정기술',
+      summary: '시퀀스 제어와 PLC, 센서와 모터 — 반도체 설비를 스스로 움직이게 하는 기술',
+      readingTime: 13,
+      group: '자동화·공유압',
+    },
+    {
+      id: 'pneumatics-hydraulics',
+      href: '/sources/cert-equip-maintenance/pneumatics-hydraulics/',
+      title: '공유압 일반',
+      summary: '압축 공기와 기름의 힘 — 밸브·실린더·회로 기호로 읽는 설비 구동 기술',
+      readingTime: 13,
+      group: '자동화·공유압',
+    },
+    {
+      id: 'industrial-safety',
+      href: '/sources/cert-equip-maintenance/industrial-safety/',
+      title: '반도체 산업안전',
+      summary: '안전관리 조직부터 방재 시스템·비상 대응·PSM까지 — 설비 기술자의 안전 기본기',
+      readingTime: 13,
+      group: '안전관리·환경',
+    },
+    {
+      id: 'electrical-facility',
+      href: '/sources/cert-equip-maintenance/electrical-facility/',
+      title: '반도체 전기설비',
+      summary: '수변전에서 정전기까지 — 팹을 멈추지 않는 전기 인프라와 전기 안전',
+      readingTime: 8,
+      group: '안전관리·환경',
+    },
+    {
+      id: 'chemical-facility',
+      href: '/sources/cert-equip-maintenance/chemical-facility/',
+      title: '반도체 화공설비',
+      summary: 'CGSS와 CCSS — 위험한 가스·약액을 팹 구석구석 안전하게 보내는 중앙공급 시스템',
+      readingTime: 10,
+      group: '안전관리·환경',
+    },
+    {
+      id: 'environment-management',
+      href: '/sources/cert-equip-maintenance/environment-management/',
+      title: '반도체 환경',
+      summary: 'ISO 14001과 스크러버 — 팹 밖으로 나가는 물·공기를 책임지는 환경 관리',
+      readingTime: 9,
+      group: '안전관리·환경',
+    },
+  ],
+};
+
+/**
  * 입문서 「처음 배우는 반도체」 — 독립 자료원 (category 없음).
  *
  * 원서는 견개(2쪽)당 1항목 구성이라 항목 = 모듈로 1:1 대응한다(88항목 + 장별 COLUMN 9
@@ -2674,7 +2806,6 @@ export const FIRST_SEMI: Source = {
     },
   ],
 };
-
 export const SOURCES: Source[] = [
   EPI_BOOK,
   OSHA_SCS,
@@ -2689,6 +2820,7 @@ export const SOURCES: Source[] = [
   HS_EQUIPMENT_MAINTENANCE,
   HS_SEMICON_INFRA,
   FIRST_SEMI,
+  CERT_EQUIP_MAINT,
 ];
 
 export function getOrderedSources(): Source[] {

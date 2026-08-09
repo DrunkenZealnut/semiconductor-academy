@@ -4,7 +4,7 @@ import type { ComponentType } from 'react';
  * 공용 모듈 라우트 자료원의 MDX 로더 (source → module 2단 레지스트리).
  * 이름은 교과서 카테고리에서 출발했으나 실제 역할은 공용 라우트
  * `/sources/[source]/[module]`이 담당하는 **모든** 자료원의 레지스트리다
- * (교과서 8권 + 독립 자료원 first-semiconductor).
+ * (교과서 8권 + 독립 자료원 first-semiconductor·cert-equip-maintenance).
  * daegu-hs-process는 전용 라우트 + daeguMdx.tsx 유지 — 여기 등록 금지(라우트 이중 생성).
  * 새 자료원 추가: REGISTRY에 source 항목 + 모듈 로더 등록, sources.ts sections에도
  * 완성 모듈만 함께 등록. 주의 — sections에만 등록하고 로더를 빠뜨리면 빌드는 통과하고
@@ -336,6 +336,33 @@ const REGISTRY: Record<string, Record<string, () => Promise<{ default: Component
       import('@/content/sources/hs-semicon-infra/safety-backend-chemical.mdx'),
     'safety-backend-test': () =>
       import('@/content/sources/hs-semicon-infra/safety-backend-test.mdx'),
+  },
+  'cert-equip-maintenance': {
+    intro: () => import('@/content/sources/cert-equip-maintenance/intro.mdx'),
+    'photo-process': () =>
+      import('@/content/sources/cert-equip-maintenance/photo-process.mdx'),
+    'etch-process': () =>
+      import('@/content/sources/cert-equip-maintenance/etch-process.mdx'),
+    'diffusion-process': () =>
+      import('@/content/sources/cert-equip-maintenance/diffusion-process.mdx'),
+    'deposition-process': () =>
+      import('@/content/sources/cert-equip-maintenance/deposition-process.mdx'),
+    'clean-cmp-process': () =>
+      import('@/content/sources/cert-equip-maintenance/clean-cmp-process.mdx'),
+    'assembly-process': () =>
+      import('@/content/sources/cert-equip-maintenance/assembly-process.mdx'),
+    'automation-plc': () =>
+      import('@/content/sources/cert-equip-maintenance/automation-plc.mdx'),
+    'pneumatics-hydraulics': () =>
+      import('@/content/sources/cert-equip-maintenance/pneumatics-hydraulics.mdx'),
+    'industrial-safety': () =>
+      import('@/content/sources/cert-equip-maintenance/industrial-safety.mdx'),
+    'electrical-facility': () =>
+      import('@/content/sources/cert-equip-maintenance/electrical-facility.mdx'),
+    'chemical-facility': () =>
+      import('@/content/sources/cert-equip-maintenance/chemical-facility.mdx'),
+    'environment-management': () =>
+      import('@/content/sources/cert-equip-maintenance/environment-management.mdx'),
   },
 };
 

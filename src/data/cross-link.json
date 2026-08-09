@@ -1,7 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-08T19:24:05.296Z",
+  "generatedAt": "2026-08-09T07:05:29.655Z",
   "sources": [
+    "cert-equip-maintenance",
     "daegu-hs-process",
     "epi-semi-hazards",
     "first-semiconductor",
@@ -224,6 +225,158 @@
       "topics": [
         "industrial-hygiene",
         "occupational-disease"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::intro": {
+      "topics": [
+        "cleanroom",
+        "wafer-fab"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::photo-process": {
+      "topics": [
+        "photolithography"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "hmds",
+        "tmah"
+      ]
+    },
+    "cert-equip-maintenance::etch-process": {
+      "topics": [
+        "etching",
+        "gas-safety"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "chlorine"
+      ]
+    },
+    "cert-equip-maintenance::diffusion-process": {
+      "topics": [
+        "diffusion",
+        "ion-implantation"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "boron-trifluoride",
+        "phosphorus-oxychloride",
+        "silane"
+      ]
+    },
+    "cert-equip-maintenance::deposition-process": {
+      "topics": [
+        "deposition",
+        "gas-safety"
+      ],
+      "hazards": [
+        "pyrophoric",
+        "toxic"
+      ],
+      "chemicals": [
+        "silane",
+        "tungsten-hexafluoride",
+        "dichlorosilane"
+      ]
+    },
+    "cert-equip-maintenance::clean-cmp-process": {
+      "topics": [
+        "cmp",
+        "liquid-chemicals"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "hydrofluoric-acid",
+        "hydrogen-peroxide",
+        "sulfuric-acid",
+        "ammonia",
+        "silica-slurry",
+        "isopropyl-alcohol"
+      ]
+    },
+    "cert-equip-maintenance::assembly-process": {
+      "topics": [
+        "packaging"
+      ],
+      "hazards": [],
+      "chemicals": [
+        "epoxy-resin",
+        "lead",
+        "solder-flux"
+      ]
+    },
+    "cert-equip-maintenance::automation-plc": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::pneumatics-hydraulics": {
+      "topics": [
+        "compressed-gas"
+      ],
+      "hazards": [
+        "compressed-gas"
+      ],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::industrial-safety": {
+      "topics": [
+        "industrial-hygiene",
+        "emergency-response",
+        "ppe",
+        "engineering-controls",
+        "exposure-monitoring"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::electrical-facility": {
+      "topics": [
+        "engineering-controls"
+      ],
+      "hazards": [],
+      "chemicals": []
+    },
+    "cert-equip-maintenance::chemical-facility": {
+      "topics": [
+        "gas-safety",
+        "compressed-gas",
+        "chemical-inventory",
+        "engineering-controls",
+        "storage-compatibility"
+      ],
+      "hazards": [
+        "toxic",
+        "pyrophoric",
+        "corrosive",
+        "compressed-gas",
+        "flammable",
+        "oxidizer"
+      ],
+      "chemicals": [
+        "arsine",
+        "phosphine",
+        "diborane",
+        "silane",
+        "dichlorosilane",
+        "chlorine",
+        "hydrofluoric-acid",
+        "sulfuric-acid",
+        "hydrogen-peroxide"
+      ]
+    },
+    "cert-equip-maintenance::environment-management": {
+      "topics": [
+        "engineering-controls"
       ],
       "hazards": [],
       "chemicals": []
@@ -2672,6 +2825,10 @@
         "sectionId": "17-industrial-health-view"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "industrial-safety"
+      },
+      {
         "sourceId": "hs-equipment-maintenance",
         "sectionId": "maintenance-fundamentals"
       },
@@ -2696,6 +2853,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "05-wafer"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "intro"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -2856,6 +3017,10 @@
         "sectionId": "04-cleanroom"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "intro"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "process-overview"
       },
@@ -2928,6 +3093,26 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "04-cleanroom"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "automation-plc"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "industrial-safety"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "electrical-facility"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "environment-management"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -3160,6 +3345,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
       },
@@ -3270,6 +3459,10 @@
         "sectionId": "07-diffusion"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "oxidation"
       },
@@ -3338,6 +3531,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "etch-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -3518,6 +3723,10 @@
         "sectionId": "08-photolithography"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "photo-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
       },
@@ -3616,6 +3825,10 @@
         "sectionId": "09-etching"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "etch-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "etch"
       },
@@ -3704,6 +3917,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -3812,6 +4029,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
       },
@@ -3880,6 +4101,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -3958,6 +4183,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "assembly-process"
       },
       {
         "sourceId": "first-semiconductor",
@@ -4122,6 +4351,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "ncs-semi",
         "sectionId": "materials-quality-control"
       },
@@ -4134,6 +4367,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "ncs-semi",
@@ -4152,6 +4389,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "16-occupational-disease"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "industrial-safety"
       },
       {
         "sourceId": "hs-semicon-infra",
@@ -4218,6 +4459,176 @@
       {
         "sourceId": "hs-semicon-infra",
         "sectionId": "safety-backend-test"
+      }
+    ],
+    "compressed-gas": [
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "pneumatics-hydraulics"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-pneumatic-thermal"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "cleaning-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "gas-materials"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "thinfilm-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "implant-process-gas"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "utility-operation"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "chemical-gas-maintenance"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "emergency-response": [
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "industrial-safety"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-assembly"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "material-safety"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-verification"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-safety"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-3"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
+      }
+    ],
+    "ppe": [
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "industrial-safety"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
+      },
+      {
+        "sourceId": "hs-photo-etch",
+        "sectionId": "fab-cleanroom"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-management"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-diffusion"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-photo"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-etch"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-deposition"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-ion-implant"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-cmp"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-mechanical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-chemical"
+      },
+      {
+        "sourceId": "hs-semicon-infra",
+        "sectionId": "safety-backend-test"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "photo-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "wafer-level-test"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "equipment-electrical-design"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-1b"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-2"
       }
     ],
     "device-physics": [
@@ -4762,160 +5173,6 @@
         "sectionId": "stepper-structure"
       }
     ],
-    "compressed-gas": [
-      {
-        "sourceId": "hs-equipment-maintenance",
-        "sectionId": "element-vacuum-gas"
-      },
-      {
-        "sourceId": "hs-equipment-maintenance",
-        "sectionId": "element-pneumatic-thermal"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-etch"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "cleaning-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "gas-materials"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "thinfilm-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "implant-process-gas"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "utility-operation"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "vacuum-plasma-maintenance"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "chemical-gas-maintenance"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
-      }
-    ],
-    "ppe": [
-      {
-        "sourceId": "hs-equipment-maintenance",
-        "sectionId": "maintenance-by-type"
-      },
-      {
-        "sourceId": "hs-photo-etch",
-        "sectionId": "fab-cleanroom"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-management"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-diffusion"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-photo"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-etch"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-deposition"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-ion-implant"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-cmp"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-backend-mechanical"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-backend-chemical"
-      },
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-backend-test"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "photo-equipment"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "wafer-level-test"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-design"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-1b"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-2"
-      }
-    ],
-    "emergency-response": [
-      {
-        "sourceId": "hs-semicon-infra",
-        "sectionId": "safety-diffusion"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-assembly"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "material-safety"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-design"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-electrical-verification"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "equipment-safety"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-1b"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-3"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
-      }
-    ],
     "sds-label": [
       {
         "sourceId": "ncs-semi",
@@ -4972,6 +5229,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -5100,6 +5361,14 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "thin-film"
       },
@@ -5168,6 +5437,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -5406,6 +5683,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
       },
@@ -5532,6 +5813,14 @@
     ],
     "compressed-gas": [
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "pneumatics-hydraulics"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
       },
@@ -5600,41 +5889,11 @@
         "sectionId": "part-4"
       }
     ],
-    "cryogenic": [
-      {
-        "sourceId": "daegu-hs-process",
-        "sectionId": "equipment-parameters"
-      },
-      {
-        "sourceId": "hs-equipment-maintenance",
-        "sectionId": "element-vacuum-gas"
-      },
-      {
-        "sourceId": "hs-equipment-maintenance",
-        "sectionId": "maintenance-by-type"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "optical-equipment-maintenance"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "etch-equipment"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "metrology-equipment"
-      },
-      {
-        "sourceId": "ncs-semi",
-        "sectionId": "vacuum-plasma-maintenance"
-      },
-      {
-        "sourceId": "osha-scs",
-        "sectionId": "part-4"
-      }
-    ],
     "oxidizer": [
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
       {
         "sourceId": "daegu-hs-process",
         "sectionId": "etch"
@@ -5670,6 +5929,40 @@
       {
         "sourceId": "osha-scs",
         "sectionId": "part-2"
+      }
+    ],
+    "cryogenic": [
+      {
+        "sourceId": "daegu-hs-process",
+        "sectionId": "equipment-parameters"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "element-vacuum-gas"
+      },
+      {
+        "sourceId": "hs-equipment-maintenance",
+        "sectionId": "maintenance-by-type"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "optical-equipment-maintenance"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "etch-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "metrology-equipment"
+      },
+      {
+        "sourceId": "ncs-semi",
+        "sectionId": "vacuum-plasma-maintenance"
+      },
+      {
+        "sourceId": "osha-scs",
+        "sectionId": "part-4"
       }
     ],
     "reactive": [
@@ -5720,6 +6013,10 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "process-overview"
       },
@@ -5766,6 +6063,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -5834,6 +6139,14 @@
         "sectionId": "14-chemicals-usage"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "cmp"
       },
@@ -5862,6 +6175,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -5912,6 +6233,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "14-chemicals-usage"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -5974,6 +6299,14 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "equipment-parameters"
       },
@@ -6010,6 +6343,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "11-ion-implantation"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -6050,6 +6391,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "thin-film"
       },
@@ -6070,6 +6415,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "07-diffusion"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -6110,6 +6459,10 @@
         "sectionId": "08-photolithography"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "photo-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
       },
@@ -6136,6 +6489,10 @@
         "sectionId": "09-etching"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "photo-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "photo"
       },
@@ -6152,6 +6509,14 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "09-etching"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "etch-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -6206,6 +6571,10 @@
         "sectionId": "11-ion-implantation"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "doping"
       },
@@ -6224,6 +6593,10 @@
         "sectionId": "09-etching"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "metallization"
       },
@@ -6240,6 +6613,18 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "10-deposition"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "diffusion-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -6276,6 +6661,14 @@
         "sectionId": "10-deposition"
       },
       {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "deposition-process"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "chemical-facility"
+      },
+      {
         "sourceId": "daegu-hs-process",
         "sectionId": "thin-film"
       },
@@ -6296,6 +6689,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "12-cmp"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "clean-cmp-process"
       },
       {
         "sourceId": "daegu-hs-process",
@@ -6324,12 +6721,20 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "assembly-process"
       }
     ],
     "epoxy-resin": [
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "assembly-process"
       },
       {
         "sourceId": "hs-assembly-inspection",
@@ -6360,6 +6765,10 @@
       {
         "sourceId": "epi-semi-hazards",
         "sectionId": "13-packaging"
+      },
+      {
+        "sourceId": "cert-equip-maintenance",
+        "sectionId": "assembly-process"
       },
       {
         "sourceId": "hs-semicon-infra",
