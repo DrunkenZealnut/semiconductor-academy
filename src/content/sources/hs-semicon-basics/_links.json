@@ -1,5 +1,5 @@
 {
-  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_SEMI_BASICS.sections. 소자·물성 중심 권이라 최소 태깅 원칙 — 통제 어휘(공정·유해인자 중심)와 실제로 겹치는 모듈만 등록하고, 어휘에 맞지 않는 모듈(careers/physical-properties/passive-components/diode/bjt/cmos-image-sensor)은 생략한다(링크 미노출이 정상).",
+  "$comment": "Cross-link tags for 반도체고 교과서 「반도체 기초」. Schema: src/lib/cross-link/schema.ts. Section IDs match src/lib/sources.ts HS_SEMI_BASICS.sections. 원래는 '통제 어휘가 공정·유해인자 중심이라 소자 모듈은 태깅 생략'이 이 권의 정책이었으나, first-semiconductor-primer 사이클에서 device-physics 축이 신설되며 그 전제가 해소됐다(Design §4.3) — 소자·물성 모듈을 device-physics로 태깅한다. careers는 여전히 대응 축이 없어 생략.",
   "semicon-overview": {
     "topics": ["wafer-fab"]
   },
@@ -7,11 +7,26 @@
     "topics": ["packaging", "gas-safety"],
     "chemicals": ["sulfuric-acid", "chlorine", "silane", "hydrofluoric-acid"]
   },
+  "physical-properties": {
+    "topics": ["device-physics"]
+  },
   "semicon-fundamentals": {
-    "topics": ["diffusion", "ion-implantation"],
+    "topics": ["device-physics", "diffusion", "ion-implantation"],
     "chemicals": ["arsine", "phosphine"]
   },
+  "passive-components": {
+    "topics": ["device-physics"]
+  },
+  "diode": {
+    "topics": ["device-physics"]
+  },
+  "bjt": {
+    "topics": ["device-physics"]
+  },
   "mosfet": {
-    "topics": ["wafer-fab"]
+    "topics": ["device-physics", "wafer-fab"]
+  },
+  "cmos-image-sensor": {
+    "topics": ["device-physics"]
   }
 }

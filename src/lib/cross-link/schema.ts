@@ -12,7 +12,13 @@
  */
 
 // ─────────────────────────────────────────────────────────────
-// Topic — 주제축 (현재 21개, Plan §6.2 ≤22 한도)
+// Topic — 주제축 (현재 28개, ≤28 한도)
+//
+// 한도 이력: cross-link-system Plan §6.2는 ≤22를 뒀다. 그 근거는 자료원 2개(책·OSHA)
+// 시절의 "수동 태깅 인지 부담 억제"였다. 자료원 13개·태깅 섹션 200+ 인 현재는 축 부족으로
+// 인한 연결 누락이 더 큰 비용이라, first-semiconductor-primer Design §4.1에서 ≤28로
+// 재설정하고 설계·회로축 5종을 신설했다. 추가 확장은 같은 기준(실제 역방향 연결 ≥1건이
+// 생기는가)으로 판단할 것 — 연결 0인 topic은 어휘 오염이므로 철회한다.
 // ─────────────────────────────────────────────────────────────
 
 export const TOPICS = [
@@ -44,6 +50,12 @@ export const TOPICS = [
   'occupational-disease',
   'exposure-monitoring',
   'industrial-hygiene',
+  // device & design (first-semiconductor-primer Design §4.1)
+  'device-physics',
+  'logic-circuit',
+  'memory-device',
+  'ic-design',
+  'advanced-node',
 ] as const;
 
 export type Topic = (typeof TOPICS)[number];
@@ -72,6 +84,11 @@ export const TOPIC_LABELS: Record<Topic, string> = {
   'occupational-disease': '직업병',
   'exposure-monitoring': '노출 모니터링',
   'industrial-hygiene': '산업위생',
+  'device-physics': '소자 물리',
+  'logic-circuit': '논리회로',
+  'memory-device': '메모리 소자',
+  'ic-design': 'IC 설계',
+  'advanced-node': '미세화·차세대',
 };
 
 // ─────────────────────────────────────────────────────────────

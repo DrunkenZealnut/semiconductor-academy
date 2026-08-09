@@ -24,7 +24,12 @@
     "emergency-response",
     "occupational-disease",
     "exposure-monitoring",
-    "industrial-hygiene"
+    "industrial-hygiene",
+    "device-physics",
+    "logic-circuit",
+    "memory-device",
+    "ic-design",
+    "advanced-node"
   ],
   "hazards": [
     "flammable",
