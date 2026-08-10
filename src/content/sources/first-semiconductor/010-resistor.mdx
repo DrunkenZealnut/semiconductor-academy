@@ -64,10 +64,43 @@
 
 ## 3. 칩 안에서 저항을 만드는 두 방법
 
-| 방법 | 무엇으로 |
-|---|---|
-| 확산층 저항 | 실리콘 기판에 불순물을 넣은 p형 또는 n형 <strong>확산 영역</strong> |
-| 다결정 실리콘 저항 | 기판 위에 형성한 <strong>다결정 실리콘 층</strong>(004) |
+<CompareCards
+  caption="칩 안에서 저항을 만드는 두 방법"
+  columns={[
+    { title: '확산층 저항', tone: 'silicon-p' },
+    { title: '다결정 실리콘 저항', tone: 'poly' },
+  ]}
+  rows={[
+    {
+      aspect: '무엇으로',
+      values: [
+        <>실리콘 기판에 불순물을 넣은 p형·n형 <strong>확산 영역</strong></>,
+        <>기판 위에 형성한 <strong>다결정 실리콘 층</strong>(004)</>,
+      ],
+    },
+    { aspect: '자리', values: ['기판 안', '기판 위'] },
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>방법</th>
+          <th>무엇으로</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>확산층 저항</td>
+          <td>실리콘 기판에 불순물을 넣은 p형 또는 n형 <strong>확산 영역</strong></td>
+        </tr>
+        <tr>
+          <td>다결정 실리콘 저항</td>
+          <td>기판 위에 형성한 <strong>다결정 실리콘 층</strong>(004)</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 둘 다 직육면체 모양으로 만들고, 저항값은 이 식으로 정해져요.
 

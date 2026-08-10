@@ -49,6 +49,23 @@
 전 공정을 마친 웨이퍼에는 칩이 수백~수천 개 들어 있어요. 이것들을{' '}
 <strong>하나씩</strong> 검사해요.
 
+<NodeGraph
+  idPrefix="070-prober"
+  caption="바늘을 대어 묻는 장치 구성"
+  grid={[4, 1]}
+  nodes={[
+    { id: 'tester', label: '테스터', kind: 'block', at: [0, 0] },
+    { id: 'card', label: '프로브 카드', kind: 'block', at: [1, 0] },
+    { id: 'probe', label: '프로브(바늘)', kind: 'device', at: [2, 0] },
+    { id: 'wafer', label: '웨이퍼', kind: 'io', at: [3, 0] },
+  ]}
+  edges={[
+    { from: 'tester', to: 'card', label: '신호' },
+    { from: 'card', to: 'probe' },
+    { from: 'probe', to: 'wafer', label: '접촉' },
+  ]}
+/>
+
 | 구성 | 역할 |
 |---|---|
 | <strong>웨이퍼 프로버</strong> | 웨이퍼를 올려 놓고 위치를 옮기는 측정용 스테이지 |
@@ -58,6 +75,16 @@
 
 프로브 카드에서 전원선·접지선·입출력 신호선이 나와 테스터에 연결돼요. 그리고 IC마다
 패드 배열이 다르니 <strong>제품별로 전용 프로브 카드</strong>가 필요해요.
+
+<FlowSteps
+  caption="묻고, 판정하고, 고쳐 쓴다"
+  steps={[
+    { id: 'probe', label: '프로브 검사', sub: '바늘을 대어 묻는다' },
+    { id: 'judge', label: '판정', sub: '양품·불량 구분' },
+    { id: 'redun', label: '리던던시', sub: '예비 회로로 대체', tone: 'accent' },
+    { id: 'trim', label: '트리밍', sub: '레이저로 퓨즈를 끊는다' },
+  ]}
+/>
 
 ## 2. 판정 방법
 

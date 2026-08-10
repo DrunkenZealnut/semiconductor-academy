@@ -20,6 +20,33 @@ MOS 트랜지스터를 미세화할 때의 기본 원리를 <strong>스케일링
 
 전원 전압을 1/k로 낮추려면 아래 값들을 함께 맞춰야 해요.
 
+<TreeBranch
+  caption="전원 전압을 1/k로 낮추려면 함께 맞춰야 하는 값들"
+  root="스케일링 (배율 k)"
+  branches={[
+    {
+      label: '소자 구조',
+      children: [
+        { label: '게이트 길이 L', note: '1/k' },
+        { label: '채널 폭 W', note: '1/k' },
+        { label: '절연막 두께 T_OX', note: '1/k' },
+        { label: 'p-n 접합 깊이 X_j', note: '1/k' },
+        { label: '기판 불순물 농도 N_d', note: 'k배 — 혼자 반대 방향' },
+      ],
+    },
+    {
+      label: '회로 특성',
+      children: [
+        { label: '전기장 E', note: '1 (일정) — 이것이 목표' },
+        { label: '전압 V', note: '1/k' },
+        { label: '용량 C', note: '1/k' },
+        { label: '지연 시간 d', note: '1/k' },
+        { label: '소비전력 P', note: '1/k²' },
+      ],
+    },
+  ]}
+/>
+
 | 파라미터 | 스케일링 |
 |------|:---:|
 | **소자 구조** | |

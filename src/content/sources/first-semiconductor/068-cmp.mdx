@@ -63,6 +63,25 @@
 
 ## 2. CMP — 화학과 기계를 함께
 
+<LayerStack
+  idPrefix="068-cmp"
+  caption="CMP 전후 — 다음 층을 쌓으려면 바닥이 평평해야 한다"
+  layers={[
+    {
+      id: 'before',
+      label: 'CMP 전 — 아래 패턴을 따라 울퉁불퉁',
+      tone: 'oxide',
+      height: 40,
+      wells: [
+        { label: '솟은 부분', tone: 'metal', side: 'left' },
+        { label: '꺼진 부분', tone: 'substrate', side: 'right' },
+      ],
+    },
+    { id: 'after', label: 'CMP 후 — 평탄', tone: 'oxide', height: 28 },
+    { id: 'sub', label: '기판·아래 층', tone: 'substrate', height: 34 },
+  ]}
+/>
+
 <strong>CMP</strong>(Chemical Mechanical Polishing)의 동작은 이래요.
 
 1. 연마 입자를 포함한 연마액 — <strong>슬러리</strong>를 웨이퍼 표면에 흘려요.

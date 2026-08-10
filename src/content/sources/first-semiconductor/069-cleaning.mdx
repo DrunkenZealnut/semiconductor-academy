@@ -61,6 +61,29 @@
 
 ## 2. 화학용액 세정 — 이름마다 역할이 있다
 
+<CompareCards
+  caption="용액마다 잡는 오염이 다르다"
+  columns={[
+    { title: 'APM', tone: 'resist' },
+    { title: 'DHF · BHF · FPM', tone: 'oxide' },
+    { title: 'SPM', tone: 'metal' },
+  ]}
+  rows={[
+    {
+      aspect: '제거 대상',
+      values: [
+        <strong key="a">파티클·유기물</strong>,
+        '자연산화막 · 금속',
+        <strong key="b">금속·유기물</strong>,
+      ],
+    },
+    {
+      aspect: '조성',
+      values: ['NH₄OH / H₂O₂ / H₂O', 'HF 계열', 'H₂SO₄ / H₂O₂'],
+    },
+  ]}
+/>
+
 | 이름 | 조성 | 제거 대상 |
 |---|---|---|
 | <strong>APM</strong> | NH₄OH / H₂O₂ / H₂O (수산화암모늄·과산화수소·물) | <strong>파티클·유기물</strong> |

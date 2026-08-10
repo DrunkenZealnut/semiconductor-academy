@@ -59,6 +59,23 @@
 | 기기의 경박단소화 | 기판에 꽂을 부품 수가 줄어듦 |
 | 기기 비용 절감 | 부품 수·조립 공정 감소 |
 
+<NodeGraph
+  idPrefix="039-soc"
+  caption="기판 위에 늘어놓던 칩들이 한 칩 안으로"
+  grid={[3, 2]}
+  nodes={[
+    { id: 'b1', label: '칩 A', kind: 'block', at: [0, 0] },
+    { id: 'b2', label: '칩 B', kind: 'block', at: [0, 1] },
+    { id: 'board', label: '기판 배선', kind: 'io', at: [1, 0] },
+    { id: 'soc', label: '시스템 IC\n(한 칩)', kind: 'device', at: [2, 0] },
+  ]}
+  edges={[
+    { from: 'b1', to: 'board' },
+    { from: 'b2', to: 'board' },
+    { from: 'board', to: 'soc', label: '내부 배선으로' },
+  ]}
+/>
+
 ## 3. 치르는 대가 — 설계와 검증
 
 문제는 규모예요. 거대한 회로를 설계하고 그 동작과 성능을 <strong>검증</strong>하려면

@@ -77,6 +77,51 @@
 이때 결정적인 일이 벌어져요 — 굳는 실리콘 원자들이{' '}
 <strong>종자 결정의 결정 방위를 그대로 따라</strong> 배열돼요.
 
+<LabeledFigure
+  caption="CZ법 — 씨앗을 담갔다 천천히 끌어올린다"
+  viewBox="0 0 640 300"
+  labels={[
+    { x: 400, y: 40, text: '피아노선 — 천천히 말아 올린다', pointTo: [318, 40] },
+    { x: 400, y: 96, text: '자라난 단결정 잉곳', pointTo: [352, 110] },
+    { x: 400, y: 176, text: '종자 결정(seed)\n여기서 방위가 정해진다', pointTo: [340, 178] },
+    { x: 400, y: 246, text: '석영 도가니 — 반대로 회전', pointTo: [372, 250] },
+    { x: 92, y: 246, text: '용융 실리콘', anchor: 'end' },
+  ]}
+>
+  {/* 인상 방향 화살표 */}
+  <line x1={320} y1={30} x2={320} y2={12} className="stroke-brand-500" strokeWidth={2} />
+  <path d="M 314 20 L 320 8 L 326 20 z" className="fill-brand-500" />
+  <line x1={320} y1={40} x2={320} y2={96} className="stroke-slate-400 dark:stroke-slate-500" strokeWidth={1.5} />
+
+  {/* 잉곳 */}
+  <path
+    d="M 296 96 L 344 96 L 344 168 L 296 168 z"
+    className="fill-slate-300 stroke-slate-400 dark:fill-slate-600 dark:stroke-slate-500"
+    strokeWidth={1.5}
+  />
+  {/* 종자 → 잉곳으로 넓어지는 목 */}
+  <path
+    d="M 312 168 L 328 168 L 336 186 L 304 186 z"
+    className="fill-brand-500/30 stroke-brand-500"
+    strokeWidth={1.5}
+  />
+
+  {/* 도가니 */}
+  <path
+    d="M 190 200 L 450 200 L 434 268 L 206 268 z"
+    className="fill-transparent stroke-slate-400 dark:stroke-slate-500"
+    strokeWidth={2}
+  />
+  {/* 용융액 */}
+  <path
+    d="M 200 214 L 440 214 L 428 262 L 212 262 z"
+    className="fill-amber-200/70 dark:fill-amber-900/50"
+  />
+  {/* 회전 방향 */}
+  <text x={232} y={196} fontSize={11} className="fill-slate-500 dark:fill-slate-400">↻ 회전</text>
+  <text x={344} y={62} fontSize={11} className="fill-slate-500 dark:fill-slate-400">↺ 반대 회전</text>
+</LabeledFigure>
+
 즉 <strong>씨앗 하나가 전체의 방향을 정해요</strong>. 그래서 용융액이 없어질 때까지
 계속하면 거의 전체가 완전한 단결정인 실리콘 봉(잉곳)을 얻을 수 있죠.
 

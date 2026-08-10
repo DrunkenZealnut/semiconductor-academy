@@ -43,12 +43,50 @@
 
 입력이 둘이니 경우의 수는 넷이에요.
 
-| 입력 A | 입력 B | 출력 Y |
-|:---:|:---:|:---:|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 1 |
+<TruthTable
+  caption="OR 진리값표 — 0이 되는 줄은 맨 위 하나뿐"
+  inputs={['입력 A', '입력 B']}
+  outputs={['출력 Y']}
+  rows={[
+    [0, 0, 0],
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>입력 A</th>
+          <th>입력 B</th>
+          <th>출력 Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 표를 통째로 외울 필요는 없어요. <strong>"0이 되는 경우는 딱 한 줄"</strong>이라고
 기억하면 돼요 — 둘 다 0일 때만 0, 나머지는 전부 1.
@@ -81,10 +119,50 @@ C…에 출력 Y 하나) 구조이고, 2입력을 이해하면 그대로 확장�
 2. <strong>뒷부분</strong> — X를 입력으로 받는 NOT 회로예요. X를 뒤집으면 비로소 우리가
    원하는 OR이 나와요.
 
-| 입력 A, B | 중간 노드 X | 최종 출력 Y |
-|------|:---:|:---:|
-| 둘 다 0 | 1 | 0 |
-| 그 밖의 조합 | 0 | 1 |
+<NodeGraph
+  idPrefix="029-or-cmos"
+  caption="CMOS OR — NOR을 만들고 뒤집는 2단 구성"
+  note="중간 노드 X는 둘 다 0일 때만 1이고, NOT이 이를 뒤집어 OR이 된다."
+  grid={[5, 3]}
+  nodes={[
+    { id: 'a', label: 'A', kind: 'io', at: [0, 0] },
+    { id: 'b', label: 'B', kind: 'io', at: [0, 2] },
+    { id: 'nor', label: 'NOR 부', kind: 'block', at: [1, 1] },
+    { id: 'x', label: 'X', kind: 'io', at: [2, 1] },
+    { id: 'not', label: 'NOT 부', kind: 'block', at: [3, 1] },
+    { id: 'y', label: 'Y', kind: 'io', at: [4, 1] },
+  ]}
+  edges={[
+    { from: 'a', to: 'nor' },
+    { from: 'b', to: 'nor' },
+    { from: 'nor', to: 'x' },
+    { from: 'x', to: 'not' },
+    { from: 'not', to: 'y' },
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>입력 A, B</th>
+          <th>중간 노드 X</th>
+          <th>최종 출력 Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>둘 다 0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>그 밖의 조합</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 왜 이렇게 돌아갈까요? CMOS에서는 <strong>출력이 뒤집힌 형태(NOR·NAND)가 더 적은
 트랜지스터로 만들어지기</strong> 때문이에요. 그래서 실제 회로는 "NOR을 만들고 뒤집어

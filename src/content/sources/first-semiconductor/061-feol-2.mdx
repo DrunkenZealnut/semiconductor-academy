@@ -46,6 +46,21 @@
 
 ## 1. 트랜지스터가 만들어지는 순서
 
+<FlowSteps
+  caption="트랜지스터가 만들어지는 순서 (i)~(p)"
+  orientation="column"
+  steps={[
+    { id: 'i', label: '(i) 게이트 절연막', sub: 'SiO₂ 열산화' },
+    { id: 'j', label: '(j) 다결정 실리콘', sub: 'CVD' },
+    { id: 'k', label: '(k) 게이트 패터닝 + 얕은 주입', sub: '인·붕소 — 소스/드레인 시작', tone: 'accent' },
+    { id: 'l', label: '(l) 측벽 형성', sub: '전면 SiO₂ 후 이방성 식각' },
+    { id: 'm', label: '(m) 진한 주입', sub: '측벽에 자기 정합 — n⁺·p⁺', tone: 'accent' },
+    { id: 'n', label: '(n) 니켈 스퍼터링·열처리', sub: '닿은 곳만 NiSi₂로' },
+    { id: 'o', label: '(o) 살리사이드 완성', sub: '남은 니켈만 불산으로 제거' },
+    { id: 'p', label: '(p) CMP 완전 평탄화', sub: '전면 SiO₂ 성장 후' },
+  ]}
+/>
+
 | 단계 | 무엇을 |
 |:---:|---|
 | (i) | <strong>게이트 절연막</strong>(SiO₂) 성장 — 열산화 |
@@ -59,6 +74,31 @@
 
 2장 017에서 본 구조 — p형 기판, 게이트 절연막, 게이트 전극, 소스·드레인 — 가 여기서
 차례로 만들어져요.
+
+<LayerStack
+  idPrefix="061-salicide"
+  caption="(p)까지 끝났을 때의 단면"
+  layers={[
+    { id: 'ild', label: 'CMP로 평탄화한 SiO₂', tone: 'oxide', height: 22 },
+    {
+      id: 'gate',
+      label: '게이트 + 측벽',
+      tone: 'poly',
+      height: 28,
+      wells: [{ label: 'NiSi₂ (살리사이드)', tone: 'metal', side: 'center' }],
+    },
+    {
+      id: 'sub',
+      label: 'p형 기판',
+      tone: 'silicon-p',
+      height: 52,
+      wells: [
+        { label: 'n⁺ 소스', tone: 'silicon-n-heavy', side: 'left' },
+        { label: 'n⁺ 드레인', tone: 'silicon-n-heavy', side: 'right' },
+      ],
+    },
+  ]}
+/>
 
 ## 2. 셀프 얼라인 — 게이트가 자가 된다
 

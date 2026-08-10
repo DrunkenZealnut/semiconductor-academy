@@ -105,6 +105,18 @@
 검증은 두 가지예요 — <strong>DRC</strong>(설계법칙 체크)로 050의 설계 기준을 어기지
 않았는지 보고, 신호가 지나는 경로를 세밀하게 확인해요.
 
+<FlowSteps
+  caption="설계 도구의 연쇄 — 그리고 되돌아가는 길"
+  orientation="column"
+  steps={[
+    { id: 'rtl', label: 'RTL + 제약', sub: '속도·전력·면적' },
+    { id: 'syn', label: '논리 합성', sub: '→ 게이트 레벨 넷리스트', tone: 'accent' },
+    { id: 'sta', label: 'STA', sub: '정적 타이밍 분석' },
+    { id: 'sim', label: '시뮬레이터', sub: '기능 동작 검증' },
+  ]}
+  loop={{ from: 'sim', to: 'rtl', label: '문제가 나오면 위 단계로 되돌아간다' }}
+/>
+
 ## 3. 피드백 — 아래에서 위로 되돌아가기
 
 탑다운이라고 해서 한 방향으로만 흐르지 않아요. 아래층에서 문제가 발견되면{' '}
@@ -113,6 +125,23 @@
 예를 들어 레이아웃에서 타이밍이 안 맞으면 논리 설계로 돌아가고, 그래도 안 되면 기능
 설계나 아키텍처까지 거슬러 올라가기도 하죠. 그래서 실제 설계는 여러 번의 왕복으로
 이뤄져요.
+
+<NodeGraph
+  idPrefix="049-layers"
+  caption="네 개의 층 — 위에서 아래로 내려간다"
+  grid={[1, 4]}
+  nodes={[
+    { id: 'sys', label: '시스템 레벨', kind: 'block', at: [0, 0] },
+    { id: 'rtl', label: 'RTL 레벨', kind: 'block', at: [0, 1] },
+    { id: 'gate', label: '게이트 레벨', kind: 'block', at: [0, 2] },
+    { id: 'layout', label: '레이아웃 레벨', kind: 'device', at: [0, 3] },
+  ]}
+  edges={[
+    { from: 'sys', to: 'rtl' },
+    { from: 'rtl', to: 'gate' },
+    { from: 'gate', to: 'layout' },
+  ]}
+/>
 
 ## 4. 칩 안쪽만이 아니다
 

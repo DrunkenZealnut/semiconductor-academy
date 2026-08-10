@@ -75,6 +75,17 @@ MRAM의 기억 소자는 <strong>자기 터널 접합(MTJ)</strong>이에요. �
 
 값을 읽는 원리는 <strong>저항 차이</strong>예요.
 
+<LayerStack
+  idPrefix="085-mtj"
+  caption="MRAM — 자성층 두 장의 방향으로 0과 1을 읽는다"
+  layers={[
+    { id: 'free', label: '자유층 — 방향이 바뀐다', tone: 'accent', height: 24 },
+    { id: 'barrier', label: '절연 장벽', tone: 'oxide', height: 14 },
+    { id: 'pin', label: '고정층 — 방향이 고정', tone: 'metal', height: 24 },
+  ]}
+  annotations={[{ at: 'barrier', text: '평행 = 저저항(0)\n반평행 = 고저항(1)' }]}
+/>
+
 | 두 층의 자화 방향 | 저항 | 값 |
 |------|------|:---:|
 | 같은 방향 (평행) | 저저항 | 0 |
@@ -88,6 +99,16 @@ MRAM의 기억 소자는 <strong>자기 터널 접합(MTJ)</strong>이에요. �
 
 - <strong>전류 자기장 방식</strong> — 주변에 전류를 흘려 자기장을 만들어 가변층을 돌려요.
 - <strong>스핀 전류 방식</strong> — 전류 자체의 스핀을 이용해 가변층의 자화를 직접 돌려요.
+
+<CompareCards
+  caption="무엇으로 기억을 만드는가"
+  columns={[{ title: 'FRAM', tone: 'oxide' }, { title: 'MRAM', tone: 'metal' }]}
+  rows={[
+    { aspect: '물리량', values: ['남아 있는 전기적 치우침(분극)', '자성층 두 장의 자화 방향'] },
+    { aspect: '읽는 법', values: ['치우침의 방향', '평행/반평행에 따른 저항 차'] },
+    { aspect: '재료', values: ['PZT · SBT 산화물', '자성 다층막(MTJ)'] },
+  ]}
+/>
 
 ## 3. 두 후보의 성격 차이
 

@@ -46,12 +46,67 @@
 
 ## 1. 재료로 나누는 축
 
-| 큰 갈래 | 세부 | 예 |
-|---|---|---|
-| 무기물 | <strong>원소 반도체</strong> — 단일 원소 | 실리콘(Si), 저마늄(Ge), 탄소(C), 텔루륨(Te) |
-| 무기물 | <strong>화합물 반도체</strong> — 두 종류 이상 원소 | 2원계: GaAs, GaN, InP, SiC / 3원계: AlGaAs |
-| 무기물 | <strong>산화물 반도체</strong> — 금속 산화물 | ZnO, ITO, IGZO |
-| 유기물 | <strong>유기물 반도체</strong> | 테트라센, 안트라센 |
+<TreeBranch
+  caption="재료로 나누는 축"
+  root="반도체"
+  branches={[
+    {
+      label: '무기물 — 원소 반도체',
+      note: '단일 원소',
+      children: ['실리콘 Si', '저마늄 Ge', '탄소 C', '텔루륨 Te'],
+    },
+    {
+      label: '무기물 — 화합물 반도체',
+      note: '두 종류 이상 원소',
+      children: [
+        { label: '2원계', note: 'GaAs · GaN · InP · SiC' },
+        { label: '3원계', note: 'AlGaAs' },
+      ],
+    },
+    {
+      label: '무기물 — 산화물 반도체',
+      note: '금속 산화물',
+      children: ['ZnO', 'ITO', 'IGZO'],
+    },
+    {
+      label: '유기물 — 유기물 반도체',
+      children: ['테트라센', '안트라센'],
+    },
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>큰 갈래</th>
+          <th>세부</th>
+          <th>예</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>무기물</td>
+          <td><strong>원소 반도체</strong> — 단일 원소</td>
+          <td>실리콘(Si), 저마늄(Ge), 탄소(C), 텔루륨(Te)</td>
+        </tr>
+        <tr>
+          <td>무기물</td>
+          <td><strong>화합물 반도체</strong> — 두 종류 이상 원소</td>
+          <td>2원계: GaAs, GaN, InP, SiC / 3원계: AlGaAs</td>
+        </tr>
+        <tr>
+          <td>무기물</td>
+          <td><strong>산화물 반도체</strong> — 금속 산화물</td>
+          <td>ZnO, ITO, IGZO</td>
+        </tr>
+        <tr>
+          <td>유기물</td>
+          <td><strong>유기물 반도체</strong></td>
+          <td>테트라센, 안트라센</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 화합물 반도체는 <strong>구성 원소가 몇 종류인가</strong>로 다시 나뉘어요. 두 종류면
 2원계, 세 종류면 3원계죠. 원소를 늘리면 성질을 더 세밀하게 조절할 수 있어요 — 원소의

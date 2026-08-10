@@ -46,14 +46,75 @@
 
 017의 구조에서 p와 n을 서로 바꾸면 그대로 p채널 MOS가 돼요.
 
-| | n채널형 (017) | <strong>p채널형</strong> |
-|---|---|---|
-| 기판 | p형 | <strong>n형</strong> |
-| 소스·드레인 | n⁺ 영역 | <strong>p⁺ 영역</strong> |
-| 게이트 절연막 | SiO₂ | SiO₂ (같음) |
-| 게이트 전극 | 다결정 실리콘 | 다결정 실리콘 (같음) |
+<CompareCards
+  caption="017의 구조에서 극성만 전부 뒤집는다"
+  columns={[
+    { title: 'n채널형 (017)', tone: 'silicon-n' },
+    { title: 'p채널형', tone: 'silicon-p' },
+  ]}
+  emphasis={[0, 1]}
+  rows={[
+    { aspect: '기판', values: ['p형', <strong key="a">n형</strong>] },
+    { aspect: '소스·드레인', values: ['n⁺ 영역', <strong key="b">p⁺ 영역</strong>] },
+    { aspect: '게이트 절연막', values: ['SiO₂', 'SiO₂ (같음)'] },
+    { aspect: '게이트 전극', values: ['다결정 실리콘', '다결정 실리콘 (같음)'] },
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>n채널형 (017)</th>
+          <th>p채널형</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>기판</td>
+          <td>p형</td>
+          <td><strong>n형</strong></td>
+        </tr>
+        <tr>
+          <td>소스·드레인</td>
+          <td>n⁺ 영역</td>
+          <td><strong>p⁺ 영역</strong></td>
+        </tr>
+        <tr>
+          <td>게이트 절연막</td>
+          <td>SiO₂</td>
+          <td>SiO₂ (같음)</td>
+        </tr>
+        <tr>
+          <td>게이트 전극</td>
+          <td>다결정 실리콘</td>
+          <td>다결정 실리콘 (같음)</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 게이트 쪽은 그대로예요. 바뀌는 건 <strong>반도체의 전도성</strong>뿐이죠.
+
+<LayerStack
+  idPrefix="018-pmos"
+  caption="p채널 MOS 단면 — 017과 극성이 전부 반대"
+  layers={[
+    { id: 'gate', label: '게이트 전극 (다결정 실리콘)', tone: 'poly', height: 30 },
+    { id: 'oxide', label: '게이트 절연막 SiO₂ (같음)', tone: 'oxide', height: 20 },
+    {
+      id: 'substrate',
+      label: 'n형 실리콘 기판',
+      tone: 'silicon-n',
+      height: 78,
+      wells: [
+        { label: 'p⁺ 소스', tone: 'silicon-p-heavy', side: 'left' },
+        { label: 'p⁺ 드레인', tone: 'silicon-p-heavy', side: 'right' },
+      ],
+    },
+  ]}
+  annotations={[{ at: 'oxide/substrate', text: '음전압을 걸면\n양공의 길이 열린다' }]}
+/>
 
 ## 2. 동작도 뒤집힌다
 

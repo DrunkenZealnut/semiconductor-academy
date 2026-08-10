@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-09T05:45:00.000Z",
+  "lastUpdated": "2026-08-10T02:54:31.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -30,9 +30,11 @@
     "hs-thinfilm-diffusion",
     "safedata-injection",
     "safedata-injection Gap 분석",
-    "menu-재구성"
+    "menu-재구성",
+    "diagram-component-set",
+    "diagram"
   ],
-  "primaryFeature": null,
+  "primaryFeature": "diagram-component-set",
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -451,9 +453,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-05-29T08:19:09.344Z",
-        "lastUpdated": "2026-08-08T20:00:35.696Z"
+        "lastUpdated": "2026-08-09T13:20:45.436Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/sources.ts"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/mdx-components.tsx"
     },
     "content": {
       "phase": "do",
@@ -1017,6 +1019,42 @@
       "archivedAt": "2026-08-09T05:45:00.000Z",
       "archivedTo": "docs/archive/2026-08/first-semiconductor-primer/",
       "mergedAt": "2026-08-08T21:31:54Z"
+    },
+    "diagram-component-set": {
+      "phase": "check",
+      "matchRate": 93.6,
+      "iterationCount": 1,
+      "startedAt": "2026-08-09T00:53:03.000Z",
+      "planDoc": "docs/01-plan/features/diagram-component-set.plan.md",
+      "planMethod": "plan-plus (brainstorming 4단계)",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 — 자체 다이어그램 확대",
+      "notes": "도해 컴포넌트 8종 신설 + first-semiconductor 97모듈 전수 적용. 전원 정적 SVG(서버 컴포넌트), 파일럿 게이트 후 확대.",
+      "designDoc": "docs/02-design/features/diagram-component-set.design.md",
+      "designNote": "V-1 정정: 컴포넌트 8종 → 12종 (커버리지 구멍 22모듈). Step 0 배치 전수 매핑 97/97 = 100%.",
+      "doProgress": {
+        "step0_baseline": "done — docs/02-design/features/diagram-component-set.baseline.md",
+        "step1_tier1": "done — tokens/types/DiagramFrame + LayerStack·CompareCards·FlowSteps·NodeGraph·TruthTable + mdx-components 등록",
+        "step2_pilot": "done(부분) — 017·059·019·029·063 적용. 게이트 G-2·G-4·G-5·G-6·G-7 통과, G-1·G-3(육안) 미확인",
+        "step3_tier2": "done — ValueBars·TreeBranch·LatticeDiagram·CurvePlot·Timeline·ScaleRuler·LabeledFigure 구현 + 12종 전역 등록",
+        "step4_rollout": "done(주 도해) — 97/97 모듈에 주 도해 적용. 보조 도해는 10/36 (26개 미적용)",
+        "step5_docs": "done — 선행 §5.2 3단 재정의(V-7) · §5.1 도해 자수 예외 · usage.md 신설 · CLAUDE.md 등재"
+      },
+      "designCorrections": "V-3(idPrefix 범위) · V-4(col-8 CurvePlot→CompareCards) · V-5(자수 측정 정규식이 도해 JSX를 불규칙 삼킴 → 블록 단위 제거로 수정)",
+      "analysisDoc": "docs/03-analysis/diagram-component-set.analysis.md",
+      "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 26건 채움, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)"
+    },
+    "diagram": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-08-09T08:38:56.085Z",
+        "lastUpdated": "2026-08-10T02:10:15.573Z"
+      },
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LatticeDiagram.tsx"
     }
   },
   "pipeline": {
@@ -1132,13 +1170,33 @@
         "phase": "check",
         "feature": "multi-source-learning-platform",
         "at": "2026-05-30T19:30:00.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "diagram-component-set",
+        "at": "2026-08-09T00:53:03.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "diagram-component-set",
+        "at": "2026-08-09T06:05:51.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "diagram-component-set",
+        "at": "2026-08-09T13:17:56.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "diagram-component-set",
+        "at": "2026-08-10T02:12:16.000Z"
       }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-08T20:00:39.245Z"
+    "lastActivity": "2026-08-10T02:10:15.573Z"
   },
   "history": [
     {
@@ -3650,6 +3708,207 @@
       "at": "2026-08-09T05:45:00.000Z",
       "matchRate": 96,
       "archivedTo": "docs/archive/2026-08/first-semiconductor-primer/"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "plan",
+      "at": "2026-08-09T00:53:03.000Z",
+      "doc": "docs/01-plan/features/diagram-component-set.plan.md"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "design",
+      "at": "2026-08-09T06:05:51.000Z",
+      "doc": "docs/02-design/features/diagram-component-set.design.md"
+    },
+    {
+      "timestamp": "2026-08-09T08:38:56.085Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:39:13.112Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:39:40.677Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:40:10.379Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:40:42.094Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:40:59.488Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T08:41:13.061Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T12:06:07.231Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T12:06:15.250Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T12:06:23.725Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T12:06:29.371Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T12:07:19.700Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "do",
+      "at": "2026-08-09T13:17:56.000Z"
+    },
+    {
+      "timestamp": "2026-08-09T13:18:19.157Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:18:38.019Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:18:45.777Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:18:46.804Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:19:15.970Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:19:39.225Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:19:50.494Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:20:10.290Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:20:25.498Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:20:33.416Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:20:39.201Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T13:20:45.436Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "do_tier2_done",
+      "at": "2026-08-09T13:25:39.000Z"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "do_rollout_primary_done",
+      "at": "2026-08-09T15:34:54.000Z",
+      "note": "97/97 주 도해 · 빌드 102kB·379페이지 무변"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "do_done",
+      "at": "2026-08-09T23:32:28.000Z"
+    },
+    {
+      "timestamp": "2026-08-10T02:10:09.451Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-10T02:10:15.573Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "check",
+      "at": "2026-08-10T02:12:16.000Z",
+      "matchRate": 78.1
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "act",
+      "at": "2026-08-10T02:54:31.000Z",
+      "matchRate": 93.6
     }
   ]
 }

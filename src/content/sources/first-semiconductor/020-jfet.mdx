@@ -56,6 +56,26 @@
 
 ## 2. n채널 JFET의 구조와 동작
 
+<LayerStack
+  idPrefix="020-jfet"
+  caption="게이트가 절연막이 아니라 p-n 접합이다"
+  layers={[
+    { id: 'gate', label: 'p형 게이트 영역', tone: 'silicon-p', height: 28 },
+    { id: 'dep', label: '접합의 고갈층 — 이것이 채널을 좁힌다', tone: 'oxide', height: 20 },
+    {
+      id: 'ch',
+      label: 'n형 채널 — 처음부터 열려 있다',
+      tone: 'silicon-n',
+      height: 64,
+      wells: [
+        { label: '소스', tone: 'metal', side: 'left' },
+        { label: '드레인', tone: 'metal', side: 'right' },
+      ],
+    },
+  ]}
+  annotations={[{ at: 'dep', text: '역방향 전압을 키우면\n고갈층이 넓어져 길이 좁아진다' }]}
+/>
+
 구조는 단순해요. <strong>n형 실리콘</strong>의 양끝에서 소스(S)와 드레인(D) 전극이 나오고,
 윗면과 아랫면 근방에 <strong>p형 영역</strong>이 게이트로 형성돼 있어요.
 

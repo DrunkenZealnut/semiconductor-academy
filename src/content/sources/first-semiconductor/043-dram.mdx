@@ -55,6 +55,23 @@
 
 셀 하나에는 배선 두 줄이 지나가요.
 
+<NodeGraph
+  idPrefix="043-cell"
+  caption="DRAM 셀 — 트랜지스터 1 + 커패시터 1"
+  grid={[3, 2]}
+  nodes={[
+    { id: 'wl', label: '워드선 WL', kind: 'io', at: [0, 0] },
+    { id: 'tr', label: 'nmos: 선택 트랜지스터', kind: 'device', at: [1, 0] },
+    { id: 'cap', label: 'C: 커패시터', kind: 'device', at: [2, 0] },
+    { id: 'dl', label: '디지트선 DL', kind: 'io', at: [1, 1] },
+  ]}
+  edges={[
+    { from: 'wl', to: 'tr', label: '게이트' },
+    { from: 'dl', to: 'tr', label: '드레인' },
+    { from: 'tr', to: 'cap' },
+  ]}
+/>
+
 | 배선 | 연결 위치 | 역할 |
 |------|------|------|
 | 워드선 (WL) | 선택 트랜지스터의 게이트 | "너 지금 열려라" — 어느 줄의 셀을 다룰지 고름 |

@@ -75,6 +75,7 @@ shareScore 정렬, 그룹당 maxPerGroup 제한. UI는 `src/components/cross-lin
 - 단순 정적 페이지는 `page.mdx` 직접 사용 (about, cleanroom 등).
 - **MDX 동적 렌더링**: 동적 라우트에서는 MDX를 직접 import할 수 없어 **로더 레지스트리**를 쓴다 — `src/lib/chaptersMdx.tsx`(`loadChapterMdx`), `oshaMdx.tsx`, `processMdx.tsx`. 새 MDX 추가 시 해당 레지스트리에 항목 등록 필요.
 - MDX 커스텀 컴포넌트는 `mdx-components.tsx`의 `useMDXComponents`에 전역 등록 (`LayeredExplain`, `Term`, `Callout`, `SourceQuote`, `ProcessDiagram` 등).
+- **자체 도해 세트** `src/components/diagram/` 12종(`LayerStack`·`CompareCards`·`FlowSteps`·`NodeGraph`·`TruthTable`·`ValueBars`·`TreeBranch`·`LatticeDiagram`·`CurvePlot`·`Timeline`·`ScaleRuler`·`LabeledFigure`) — 전부 **서버 컴포넌트**(JS 번들 무증가), 색은 `tokens.ts`에서만. 원문 이미지를 베끼지 않고 개념·수치만 근거로 그린다. 사용 규약: `docs/02-design/features/diagram-component-set.usage.md`
 
 ## 핵심 콘텐츠 패턴: 3단 레이어
 

@@ -109,12 +109,51 @@
 
 ## 4. 세 방법 비교
 
-| | 열산화 | CVD | 스퍼터링 |
-|---|---|---|---|
-| 원리 | 실리콘이 <strong>산화</strong> | <strong>화학</strong> 반응 | <strong>물리적</strong> 충돌 |
-| 재료 출처 | 웨이퍼 자신 + 산소 | 원료 가스 | 타깃 덩어리 |
-| 주 용도 | SiO₂ 절연막 | 절연막·반도체막·금속 | 금속 박막 |
-| 대표 사례 | 게이트 절연막 | 다결정 실리콘, W 플러그 | Al 배선, Ti/TiN |
+<CompareCards
+  caption="막을 쌓는 세 가지 길"
+  columns={[
+    { title: '열산화', tone: 'oxide' },
+    { title: 'CVD', tone: 'poly' },
+    { title: '스퍼터링', tone: 'metal' },
+  ]}
+  emphasis={[0]}
+  rows={[
+    {
+      aspect: '원리',
+      values: [
+        <><strong>산화</strong> — 실리콘 자신이 변한다</>,
+        <><strong>화학</strong> 반응</>,
+        <><strong>물리적</strong> 충돌</>,
+      ],
+    },
+    {
+      aspect: '재료 출처',
+      values: ['웨이퍼 자신 + 산소', '원료 가스', '타깃 덩어리'],
+    },
+    {
+      aspect: '주 용도',
+      values: ['SiO₂ 절연막', '절연막·반도체막·금속', '금속 박막'],
+    },
+    {
+      aspect: '대표 사례',
+      values: ['게이트 절연막', '다결정 실리콘, W 플러그', 'Al 배선, Ti/TiN'],
+    },
+  ]}
+/>
+
+세 방법이 만드는 막은 쌓이는 자리도 달라요. 열산화막은 실리콘을 **파고들며** 자라고,
+CVD·스퍼터링 막은 표면 **위에 얹혀요**.
+
+<LayerStack
+  idPrefix="063-film"
+  caption="같은 '박막'이라도 자리가 다르다"
+  layers={[
+    { id: 'dep', label: 'CVD·스퍼터링 막 — 위에 얹힌다', tone: 'metal', height: 26 },
+    { id: 'ox', label: '열산화막 — 실리콘을 소모하며 자란다', tone: 'oxide', height: 26 },
+    { id: 'si', label: '실리콘 웨이퍼', tone: 'substrate', height: 46 },
+  ]}
+  annotations={[{ at: 'ox/si', text: '이 경계가\n아래로 내려간다' }]}
+/>
 
 <Callout type="tip" title="더 깊이 보려면">
   이 막들을 실제로 쓰는 흐름은 060~062, 쌓은 막을 깎아 내는 공정은 065(식각)에 있어요.

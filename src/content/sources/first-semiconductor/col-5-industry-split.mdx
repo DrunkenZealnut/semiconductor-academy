@@ -7,6 +7,18 @@
 
 설계부터 제조까지의 일을 <strong>누가 어디까지 맡느냐</strong>로 회사의 성격이 갈려요.
 
+<TreeBranch
+  caption="설계와 제조를 어떻게 나눠 갖느냐"
+  root="반도체 업태"
+  depth={2}
+  branches={[
+    { label: 'IDM (수직 통합형)', note: '설계 ✓ · 제조 ✓ — 전부 자사에서' },
+    { label: '팹라이트 (FabLite)', note: '설계 ✓ · 제조 일부 — 일부를 외부 위탁' },
+    { label: '팹리스 (FabLess)', note: '설계 ✓ · 제조 ✗ — 100% 위탁' },
+    { label: '파운드리 (Foundry)', note: '설계 ✗ · 제조 ✓ — 제조만 수탁' },
+  ]}
+/>
+
 | 업태 | 설계 | 제조 | 성격 |
 |---|:---:|:---:|---|
 | <strong>IDM</strong> (수직 통합형) | ✓ | ✓ | 전부 자사에서 |

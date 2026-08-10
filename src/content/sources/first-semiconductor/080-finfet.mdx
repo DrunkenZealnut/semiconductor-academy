@@ -70,6 +70,39 @@ SOI 기판(절연층 위에 실리콘을 올린 기판) 위에 섬 모양의 실
 실리콘 층을 세우고 그것으로 소스와 드레인을 이어요. 그리고 이 지느러미를 게이트
 절연막과 <strong>역U자(∩) 모양의 게이트 전극</strong>으로 덮어요.
 
+<LabeledFigure
+  caption="게이트가 채널을 몇 면에서 감싸는가"
+  viewBox="0 0 640 210"
+  labels={[
+    { x: 96, y: 186, text: '평면형 — 1면', anchor: 'middle' },
+    { x: 320, y: 186, text: '더블 게이트 — 2면', anchor: 'middle' },
+    { x: 544, y: 186, text: 'FinFET — 3면', anchor: 'middle' },
+    { x: 544, y: 44, text: '역U자 게이트가\n양옆과 윗면을 덮는다', anchor: 'middle' },
+  ]}
+>
+  {/* 평면형 — 위에서만 */}
+  <rect x={40} y={120} width={112} height={34} rx={4}
+    className="fill-sky-100 stroke-slate-400 dark:fill-sky-950 dark:stroke-slate-500" strokeWidth={1.5} />
+  <rect x={40} y={104} width={112} height={12} rx={2}
+    className="fill-violet-200 stroke-slate-400 dark:fill-violet-900 dark:stroke-slate-500" strokeWidth={1.5} />
+
+  {/* 더블 게이트 — 위아래 */}
+  <rect x={264} y={120} width={112} height={26} rx={4}
+    className="fill-sky-100 stroke-slate-400 dark:fill-sky-950 dark:stroke-slate-500" strokeWidth={1.5} />
+  <rect x={264} y={104} width={112} height={12} rx={2}
+    className="fill-violet-200 stroke-slate-400 dark:fill-violet-900 dark:stroke-slate-500" strokeWidth={1.5} />
+  <rect x={264} y={150} width={112} height={12} rx={2}
+    className="fill-violet-200 stroke-slate-400 dark:fill-violet-900 dark:stroke-slate-500" strokeWidth={1.5} />
+
+  {/* FinFET — 세운 지느러미를 역U자로 */}
+  <rect x={528} y={78} width={32} height={80} rx={3}
+    className="fill-sky-100 stroke-slate-400 dark:fill-sky-950 dark:stroke-slate-500" strokeWidth={1.5} />
+  <path d="M 512 158 L 512 74 Q 512 66 520 66 L 568 66 Q 576 66 576 74 L 576 158"
+    fill="none" className="stroke-violet-500" strokeWidth={11} strokeLinecap="round" />
+  <rect x={488} y={158} width={112} height={10} rx={2}
+    className="fill-slate-200 stroke-slate-400 dark:fill-slate-700 dark:stroke-slate-500" strokeWidth={1.5} />
+</LabeledFigure>
+
 | 구조 | 게이트가 덮는 면 | 통제력 |
 |------|:---:|------|
 | 평면형 | 1면 (윗면) | 채널이 짧아지면 부족 |

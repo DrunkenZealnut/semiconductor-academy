@@ -66,6 +66,25 @@ DSP가 맡는 실시간 처리는 대략 이런 것들이에요.
 
 ## 3. 안을 들여다보면
 
+<NodeGraph
+  idPrefix="036-dsp"
+  caption="DSP 안 — 명령과 데이터를 따로 둔다"
+  grid={[3, 2]}
+  nodes={[
+    { id: 'pmem', label: '프로그램\n메모리', kind: 'block', at: [0, 0] },
+    { id: 'dmem', label: '데이터\n메모리', kind: 'block', at: [0, 1] },
+    { id: 'mac', label: 'MAC', kind: 'device', at: [1, 0] },
+    { id: 'alu', label: 'ALU', kind: 'device', at: [1, 1] },
+    { id: 'out', label: '출력', kind: 'io', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'pmem', to: 'mac' },
+    { from: 'dmem', to: 'alu' },
+    { from: 'mac', to: 'out' },
+    { from: 'alu', to: 'out' },
+  ]}
+/>
+
 | 블록 | 하는 일 |
 |------|------|
 | MAC (곱하기 더하기 연산기) | 곱한 값들을 계속 더해 나가는 연산 전담 |

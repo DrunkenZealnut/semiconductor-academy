@@ -67,6 +67,19 @@ p형 쪽에는 <strong>음전하</strong>가 남아요(불순물 이온이 고�
 이 내부 전위가 <strong>더 이상의 확산을 막는 벽</strong>이 돼요. 그래서 고갈층은 어느
 두께에서 멈추고 안정한 상태가 유지돼요.
 
+<LayerStack
+  idPrefix="012-junction"
+  caption="p-n 접합 단면 — 경계에 운반자가 없는 층이 남는다"
+  layers={[
+    { id: 'p', label: 'p형 영역 — 애노드(A) 쪽', tone: 'silicon-p', height: 44 },
+    { id: 'dep', label: '고갈층(공핍층) — 운반자가 거의 없다', tone: 'oxide', height: 26 },
+    { id: 'n', label: 'n형 영역 — 캐소드(C) 쪽', tone: 'silicon-n', height: 44 },
+  ]}
+  annotations={[
+    { at: 'dep', text: '양쪽에 갈라진 전하가\n내부 전위(벽)를 만든다' },
+  ]}
+/>
+
 ## 3. 순방향 — 벽을 낮추면 흐른다
 
 애노드(p형)에 +, 캐소드(n형)에 −를 걸어 봐요. 외부 전압이 내부 전위와{' '}

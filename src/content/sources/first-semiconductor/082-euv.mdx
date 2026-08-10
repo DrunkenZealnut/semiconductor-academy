@@ -46,6 +46,16 @@
 081에서 본 액침 노광과 더블 패터닝은 193nm 광원을 유지하면서 꾀를 낸 방법이었어요.
 EUV는 정면 돌파예요 — <strong>파장 자체를 13.5nm로</strong> 줄였죠.
 
+<ValueBars
+  caption="파장을 한 자릿수 줄였다"
+  unit="nm"
+  scale="log"
+  rows={[
+    { label: 'ArF 엑시머 레이저', value: 193 },
+    { label: 'EUV', value: 13.5, tone: 'accent' },
+  ]}
+/>
+
 | 광원 | 파장 |
 |------|:---:|
 | ArF 엑시머 레이저 | 193nm |
@@ -57,6 +67,15 @@ EUV는 정면 돌파예요 — <strong>파장 자체를 13.5nm로</strong> 줄�
 
 이점은 해상도만이 아니에요. <strong>초점 심도가 깊고</strong> 생산성도 높을 것으로
 기대됐어요.
+
+<ScaleRuler
+  caption="파장이 한 자릿수 줄었다"
+  marks={[
+    { label: 'EUV 13.5nm', meters: 13.5e-9 },
+    { label: 'ArF 193nm', meters: 193e-9 },
+  ]}
+  refs={[{ label: '실리콘 원자 반지름 약 0.1nm', meters: 111e-12 }]}
+/>
 
 ## 2. 그런데 모든 물질이 이 빛을 삼킨다
 

@@ -48,6 +48,24 @@
 
 ## 1. 두 토막으로 나뉜다
 
+<FlowSteps
+  caption="IC 제조 전체 흐름 — 이 장(7장)과 다음 장(8장)의 지도"
+  steps={[
+    { id: 'front', label: '전 공정', sub: '웨이퍼에 소자와 배선을 만든다 (약 80%)', tone: 'accent' },
+    { id: 'back', label: '후 공정', sub: '칩으로 잘라 포장·검사한다' },
+  ]}
+  branch={[
+    {
+      at: 'front',
+      label: '전 공정은 다시 두 겹으로',
+      steps: [
+        { id: 'feol', label: 'FEOL', sub: '소자 형성 · 060·061' },
+        { id: 'beol', label: 'BEOL', sub: '배선 형성 · 062' },
+      ],
+    },
+  ]}
+/>
+
 | | 전 공정 (확산 공정) | 후 공정 |
 |---|---|---|
 | 무엇을 | 웨이퍼에 <strong>소자와 배선</strong>을 만듦 | 칩으로 잘라 <strong>포장·검사</strong> |

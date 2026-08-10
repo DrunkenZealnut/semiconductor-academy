@@ -45,6 +45,23 @@
 
 메모리의 얼개는 두 종류의 선으로 이루어져요.
 
+<NodeGraph
+  idPrefix="042-array"
+  caption="격자와 교차점 — 모든 메모리가 쓰는 공통 얼개"
+  grid={[3, 2]}
+  nodes={[
+    { id: 'x', label: '워드선\n(X어드레스)', kind: 'io', at: [0, 0] },
+    { id: 'cell', label: '셀 (교차점)', kind: 'device', at: [1, 0] },
+    { id: 'y', label: '비트선\n(Y어드레스)', kind: 'io', at: [1, 1] },
+    { id: 'io', label: '데이터 입출력', kind: 'io', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'x', to: 'cell', label: '줄 선택' },
+    { from: 'y', to: 'cell', label: '데이터' },
+    { from: 'y', to: 'io' },
+  ]}
+/>
+
 | 이름 | 다른 이름 | 개수 | 역할 |
 |------|------|:---:|------|
 | 워드선 | X어드레스 | n개 | "몇 번째 줄을 다룰지" 고름 |
@@ -91,6 +108,27 @@
 '만능 메모리'라는 목표가 왜 어려운지도 여기서 짐작할 수 있어요.
 
 ## 4. 두 가지 분류 축
+
+<TreeBranch
+  caption="메모리를 가르는 두 축"
+  root="메모리"
+  branches={[
+    {
+      label: '전원이 끊기면?',
+      children: [
+        { label: '휘발성', note: 'DRAM · SRAM' },
+        { label: '비휘발성', note: 'MROM · 플래시' },
+      ],
+    },
+    {
+      label: '쓸 수 있나?',
+      children: [
+        { label: '읽기·쓰기', note: 'RAM 계열' },
+        { label: '읽기 전용', note: 'ROM 계열' },
+      ],
+    },
+  ]}
+/>
 
 메모리를 나누는 축은 둘이에요.
 

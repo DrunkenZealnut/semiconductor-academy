@@ -73,10 +73,32 @@
 기억하죠. 셀 개수는 그대로인데 용량이 두 배가 되니, 원리적으로 같은 칩 크기로 두 배
 용량을 얻어요.
 
+<CompareCards
+  caption="같은 칸에 몇 값을 담느냐"
+  columns={[{ title: '2개 값 (SLC)', tone: 'silicon-n' }, { title: '4개 값 (MLC)', tone: 'accent' }]}
+  rows={[
+    { aspect: '부유 게이트 전자', values: ['있음 / 없음', '많음 / 중간 / 적음 / 없음'] },
+    { aspect: 'V_TH', values: ['높음 / 낮음', '4단계'] },
+    { aspect: '셀당 비트', values: ['1비트', '2비트'] },
+  ]}
+/>
+
 ## 3. 단계를 늘릴수록 무엇을 치르나
 
 단계는 더 쪼갤 수 있어요. 실제로 오늘날 NAND 플래시는 원서가 쓰인 시점보다 훨씬 멀리
 갔어요.
+
+<ValueBars
+  caption="셀 하나에 담는 전압 레벨 수"
+  unit="단계"
+  rows={[
+    { label: 'SLC (1비트)', value: 2 },
+    { label: 'MLC (2비트)', value: 4, tone: 'accent' },
+    { label: 'TLC (3비트)', value: 8 },
+    { label: 'QLC (4비트)', value: 16 },
+  ]}
+  note="레벨이 촘촘해질수록 구분이 어려워진다 — 그것이 대가다."
+/>
 
 | 이름 | 셀당 비트 | 전압 레벨 |
 |---|:---:|:---:|

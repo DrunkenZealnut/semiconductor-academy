@@ -48,6 +48,21 @@
 
 ## 1. 무엇과 무엇을 잇나
 
+<NodeGraph
+  idPrefix="073-bond"
+  caption="무엇과 무엇을 잇나"
+  grid={[3, 1]}
+  nodes={[
+    { id: 'pad', label: '본딩 패드\n약 100μm', kind: 'io', at: [0, 0] },
+    { id: 'wire', label: '금선\n지름 20~50μm', kind: 'device', at: [1, 0] },
+    { id: 'lead', label: '리드 전극', kind: 'io', at: [2, 0] },
+  ]}
+  edges={[
+    { from: 'pad', to: 'wire' },
+    { from: 'wire', to: 'lead' },
+  ]}
+/>
+
 | 이름 | 위치 | 크기 |
 |---|---|---|
 | <strong>본딩 패드</strong> | 칩 표면 <strong>주변부</strong> | 약 100μm |
@@ -85,6 +100,16 @@
 
 이 일련의 동작이 <strong>약 100분의 1초</strong>에 처리돼요. 칩에 따라{' '}
 <strong>본딩점이 2,000개가 넘는</strong> 것도 있으니, 속도가 곧 생산성이죠.
+
+<FlowSteps
+  caption="와이어 본딩 네 단계"
+  steps={[
+    { id: 'ball', label: '① 볼 형성', sub: '금선 끝을 녹여 공 모양으로' },
+    { id: 'first', label: '② 1차 본딩', sub: '칩의 본딩 패드에 압착' },
+    { id: 'loop', label: '③ 루프 형성', sub: '선을 늘어뜨려 리드로' },
+    { id: 'second', label: '④ 2차 본딩', sub: '리드 전극에 압착 후 절단', tone: 'accent' },
+  ]}
+/>
 
 ## 4. 온도를 낮추는 기술
 

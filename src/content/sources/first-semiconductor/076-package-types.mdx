@@ -51,6 +51,27 @@
 
 <strong>축 ① 실장 방법</strong>
 
+<TreeBranch
+  caption="패키지를 가르는 두 축"
+  root="패키지"
+  branches={[
+    {
+      label: '기판에 어떻게 붙나',
+      children: [
+        { label: '스루홀 실장형', note: '리드가 곧게 아래로 · 구멍에 꽂아 땜납' },
+        { label: '표면 실장형(SMD)', note: '리드가 휘어짐 · 올려놓고 땜납 · 구멍 불필요' },
+      ],
+    },
+    {
+      label: '단자를 어디에 두나',
+      children: [
+        { label: '페리페럴형', note: '패키지 주변부 · 단자 수 적음' },
+        { label: '에어리어 어레이형', note: '아래 전체 면 · 단자 많이 배치 가능' },
+      ],
+    },
+  ]}
+/>
+
 | | 스루홀 실장형 | 표면 실장형 (SMD) |
 |---|---|---|
 | 리드 모양 | <strong>곧게 아래로</strong> 뻗음 | <strong>휘어져</strong> 있음 |

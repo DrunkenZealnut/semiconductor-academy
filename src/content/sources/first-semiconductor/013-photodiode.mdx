@@ -49,6 +49,16 @@
 이유는 간단해요. 빛이 <strong>p-n 접합까지 도달해야</strong> 하니까요. 표면층이 두꺼우면
 빛이 거기서 다 흡수되어 접합에 닿지 못해요.
 
+<LayerStack
+  idPrefix="013-photodiode"
+  caption="포토 다이오드 단면 — 수광면 p형만 유독 얇다"
+  layers={[
+    { id: 'p', label: 'p형 수광면 — 보통 1μm 이하', tone: 'silicon-p', height: 16 },
+    { id: 'n', label: 'n형 영역', tone: 'silicon-n', height: 64 },
+  ]}
+  annotations={[{ at: 'p/n', text: '빛이 여기까지 닿아야\n전류가 생긴다' }]}
+/>
+
 ## 2. 빛이 전류가 되는 네 단계
 
 <strong>① 전자·양공 쌍 생성</strong>
@@ -81,13 +91,50 @@
 
 ## 3. 재료에 따라 보이는 빛이 다르다
 
-| 재료 | 최대 감도 파장 |
-|---|---|
-| Si (실리콘) | 940nm |
-| Ge-APD (저마늄) | 1.0~1.5μm |
-| InGaAs (인듐갈륨비소) | 1.55~2.3μm |
-| PbS (황화납) | 2.2~2.4μm |
-| PbSe (셀레늄화납) | 4μm |
+<ValueBars
+  caption="재료가 정하는 최대 감도 파장 — 오른쪽일수록 긴 파장(적외선)"
+  unit="m"
+  scale="log"
+  rows={[
+    { label: 'Si (실리콘)', value: 940e-9, note: '940nm' },
+    { label: 'Ge-APD', range: [1.0e-6, 1.5e-6], note: '1.0~1.5μm' },
+    { label: 'InGaAs', range: [1.55e-6, 2.3e-6], note: '1.55~2.3μm' },
+    { label: 'PbS (황화납)', range: [2.2e-6, 2.4e-6], note: '2.2~2.4μm' },
+    { label: 'PbSe', value: 4e-6, note: '4μm' },
+  ]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>재료</th>
+          <th>최대 감도 파장</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Si (실리콘)</td>
+          <td>940nm</td>
+        </tr>
+        <tr>
+          <td>Ge-APD (저마늄)</td>
+          <td>1.0~1.5μm</td>
+        </tr>
+        <tr>
+          <td>InGaAs (인듐갈륨비소)</td>
+          <td>1.55~2.3μm</td>
+        </tr>
+        <tr>
+          <td>PbS (황화납)</td>
+          <td>2.2~2.4μm</td>
+        </tr>
+        <tr>
+          <td>PbSe (셀레늄화납)</td>
+          <td>4μm</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 왜 재료마다 다를까요? 1장 007의 <strong>금지대역</strong>이 답이에요. 전자를 뛰어오르게
 하려면 빛의 에너지가 금지대역보다 커야 해요. 금지대역이 좁은 재료는 에너지가 작은

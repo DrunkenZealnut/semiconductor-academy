@@ -57,6 +57,17 @@ IC 개발도 <strong>시장 조사와 수요 예측</strong>에서 시작해요.
 
 ## 2. 설계는 위에서 아래로 네 단계
 
+<FlowSteps
+  caption="설계는 위에서 아래로 네 단계"
+  orientation="column"
+  steps={[
+    { id: 'sys', label: '시스템 설계', sub: '칩 크기·성능·지표, HW/SW 분담' },
+    { id: 'func', label: '기능 설계', sub: '회로의 동작과 기능 — HDL' },
+    { id: 'logic', label: '논리 설계', sub: '논리 게이트 레벨로 변환 — 자동 합성 툴' },
+    { id: 'layout', label: '레이아웃 설계', sub: '배치와 배선 — CAD', tone: 'accent' },
+  ]}
+/>
+
 | 단계 | 무엇을 정하나 | 도구 |
 |---|---|---|
 | <strong>시스템 설계</strong> | 칩 크기·성능·지표, 하드웨어와 소프트웨어의 분담, 전체 구성 | — |

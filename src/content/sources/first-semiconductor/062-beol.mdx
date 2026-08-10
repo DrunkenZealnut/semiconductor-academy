@@ -47,6 +47,21 @@
 
 ## 1. 소자에서 위로 올라가기
 
+<FlowSteps
+  caption="배선을 쌓는 순서 (q)~(w)"
+  orientation="column"
+  steps={[
+    { id: 'q', label: '(q) 컨택홀', sub: '절연막에 전극 접속용 창' },
+    { id: 'r', label: '(r) W 플러그', sub: '텅스텐 채우고 CMP' },
+    { id: 's', label: '(s) 1층 배선', sub: '알루미늄 스퍼터링 + 패터닝' },
+    { id: 't', label: '(t) 홈·스루홀 식각', sub: '층간 절연막 + CMP 후' },
+    { id: 'u', label: '(u) 구리 도금', sub: 'Ti·TiN 장벽층 + 전해 도금' },
+    { id: 'v', label: '(v) 다마신 배선', sub: 'CMP로 깎아 홈 안에만', tone: 'accent' },
+    { id: 'w', label: '(w) 보호막', sub: 'SiON' },
+  ]}
+  loop={{ from: 't', to: 'v', label: '(t)~(v)를 반복해 다층 배선을 쌓는다' }}
+/>
+
 | 단계 | 무엇을 |
 |:---:|---|
 | (q) | 절연막에 <strong>컨택홀</strong>(전극 접속용 창) 뚫기 |
@@ -56,6 +71,19 @@
 | (u) | Ti·TiN 스퍼터링(장벽층) + <strong>구리 전해 도금</strong> |
 | (v) | CMP로 깎아 홈·스루홀 안에만 구리를 남김 → <strong>다마신 배선</strong> |
 | (w) | <strong>보호막</strong>(SiON) 형성 |
+
+<LayerStack
+  idPrefix="062-stack"
+  caption="소자 위로 배선이 층층이 올라간다"
+  layers={[
+    { id: 'pass', label: '보호막 SiON', tone: 'oxide', height: 18 },
+    { id: 'cu', label: '2층 배선 — 구리 다마신', tone: 'metal', height: 24 },
+    { id: 'ild2', label: '층간 절연막 + 스루홀', tone: 'oxide', height: 22 },
+    { id: 'al', label: '1층 배선 — 알루미늄', tone: 'metal', height: 22 },
+    { id: 'w', label: 'W 플러그가 지나는 절연막', tone: 'oxide', height: 22 },
+    { id: 'dev', label: '소자 (FEOL 결과)', tone: 'poly', height: 26 },
+  ]}
+/>
 
 ## 2. 층과 층을 잇는 구멍
 

@@ -98,6 +98,27 @@ MOSFET과 MESFET에는 두 모드가 다 있지만, <strong>JFET은 고갈형만
 
 ## 5. 정리하면
 
+<TreeBranch
+  caption="트랜지스터를 가르는 세 축"
+  root="트랜지스터"
+  branches={[
+    {
+      label: '유니폴라형 (FET)',
+      note: '캐리어 한 종류 · 전압으로 동작',
+      children: [
+        { label: 'MOSFET', note: '017·018' },
+        { label: 'JFET', note: '020' },
+        { label: 'MESFET', note: '021' },
+      ],
+    },
+    {
+      label: '바이폴라형',
+      note: '캐리어 두 종류 · 전류로 동작',
+      children: ['p-n-p형', 'n-p-n형'],
+    },
+  ]}
+/>
+
 트랜지스터 이름을 만나면 이렇게 읽으면 돼요.
 
 <strong>"n채널 · 증강형 · MOSFET"</strong>
