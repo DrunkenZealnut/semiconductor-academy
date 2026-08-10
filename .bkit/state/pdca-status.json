@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-10T13:15:33.000Z",
+  "lastUpdated": "2026-08-10T14:00:55.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -32,11 +32,9 @@
     "safedata-injection Gap 분석",
     "menu-재구성",
     "새로운책등록",
-    "diagram-component-set",
-    "diagram",
     "diagram-component-set — Match Rate 78.1%"
   ],
-  "primaryFeature": "diagram-component-set",
+  "primaryFeature": null,
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -1047,7 +1045,7 @@
       "mergedAt": "2026-08-08T21:31:54Z"
     },
     "diagram-component-set": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 93.6,
       "iterationCount": 1,
       "startedAt": "2026-08-09T00:53:03.000Z",
@@ -1075,7 +1073,10 @@
       "completedAt": "2026-08-10T09:00:03.000Z",
       "diffStat": "+5709/-342 · 127 files (PR #29 최종)",
       "mergedAt": "2026-08-10T13:15:33.000Z",
-      "codeRabbitReview": "1차 3건 전량 반영 (Major 2: pdca-status 보조 수량 10/36→43/43, CLAUDE.md 배포 계약 Vercel 정정 / Minor 1: commit 필드 해시-only 분리). 재리뷰는 머지 시점 PENDING"
+      "codeRabbitReview": "1차 3건 전량 반영 (Major 2: pdca-status 보조 수량 10/36→43/43, CLAUDE.md 배포 계약 Vercel 정정 / Minor 1: commit 필드 해시-only 분리). 재리뷰는 머지 시점 PENDING",
+      "archivedAt": "2026-08-10T14:00:55.000Z",
+      "archivedTo": "docs/archive/2026-08/diagram-component-set/",
+      "livingDocs": "docs/02-design/features/diagram-component-set.{usage,baseline}.md — 지속 참조 자산이라 아카이브 제외"
     },
     "diagram": {
       "phase": "do",
@@ -1243,6 +1244,11 @@
         "phase": "report",
         "feature": "diagram-component-set",
         "at": "2026-08-10T09:00:03.000Z"
+      },
+      {
+        "phase": "archived",
+        "feature": "diagram-component-set",
+        "at": "2026-08-10T14:00:55.000Z"
       }
     ]
   },
@@ -4046,6 +4052,13 @@
       "event": "merged",
       "at": "2026-08-10T13:15:33.000Z",
       "mergeCommit": "3bb46b5"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "archived",
+      "at": "2026-08-10T14:00:55.000Z",
+      "matchRate": 93.6,
+      "archivedTo": "docs/archive/2026-08/diagram-component-set/"
     }
   ]
 }

@@ -6,10 +6,10 @@
     "level": "Dynamic"
   },
   "currentPdca": {
-    "feature": "diagram-component-set",
-    "phase": "completed",
+    "feature": null,
+    "phase": "archived",
     "matchRate": 93.6,
     "updatedAt": "2026-08-10",
-    "lastArchived": "first-semiconductor-primer"
+    "lastArchived": "diagram-component-set"
   }
 }
