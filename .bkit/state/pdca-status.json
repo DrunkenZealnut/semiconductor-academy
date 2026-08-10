@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-10T09:00:11.528Z",
+  "lastUpdated": "2026-08-10T13:15:33.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1069,11 +1069,13 @@
       "analysisDoc": "docs/03-analysis/diagram-component-set.analysis.md",
       "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 43건 전량 적용, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)",
       "branch": "feat/diagram-component-set",
-      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/29",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/29 — 머지 완료 (merge commit 3bb46b5, 2026-08-10T13:15:06Z, base main)",
       "commit": "8db9620",
       "reportDoc": "docs/04-report/diagram-component-set.report.md",
       "completedAt": "2026-08-10T09:00:03.000Z",
-      "diffStat": "+5709/-342 · 127 files (PR #29 최종)"
+      "diffStat": "+5709/-342 · 127 files (PR #29 최종)",
+      "mergedAt": "2026-08-10T13:15:33.000Z",
+      "codeRabbitReview": "1차 3건 전량 반영 (Major 2: pdca-status 보조 수량 10/36→43/43, CLAUDE.md 배포 계약 Vercel 정정 / Minor 1: commit 필드 해시-only 분리). 재리뷰는 머지 시점 PENDING"
     },
     "diagram": {
       "phase": "do",
@@ -4038,6 +4040,12 @@
       "feature": "diagram-component-set — Match Rate 78.1%",
       "phase": "act",
       "action": "updated"
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "merged",
+      "at": "2026-08-10T13:15:33.000Z",
+      "mergeCommit": "3bb46b5"
     }
   ]
 }
