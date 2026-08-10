@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-10T02:54:31.000Z",
+  "lastUpdated": "2026-08-10T02:59:38.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1041,7 +1041,10 @@
       },
       "designCorrections": "V-3(idPrefix 범위) · V-4(col-8 CurvePlot→CompareCards) · V-5(자수 측정 정규식이 도해 JSX를 불규칙 삼킴 → 블록 단위 제거로 수정)",
       "analysisDoc": "docs/03-analysis/diagram-component-set.analysis.md",
-      "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 26건 채움, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)"
+      "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 26건 채움, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)",
+      "branch": "feat/diagram-component-set",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/29",
+      "commit": "8db9620 — 127 files, +5438/-84"
     },
     "diagram": {
       "phase": "do",
@@ -3909,6 +3912,12 @@
       "event": "act",
       "at": "2026-08-10T02:54:31.000Z",
       "matchRate": 93.6
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "pr_created",
+      "at": "2026-08-10T02:59:38.000Z",
+      "pr": 29
     }
   ]
 }
