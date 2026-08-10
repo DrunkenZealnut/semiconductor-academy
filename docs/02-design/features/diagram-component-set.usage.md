@@ -29,7 +29,9 @@
 
 ### 97모듈 실적용 (2026-08-10)
 
-주 도해 97 + 보조 10 = **107 인스턴스**. `LayerStack` 21 · `CompareCards` 18 · `FlowSteps` 14 · `ValueBars` 12 · `TreeBranch` 10 · `NodeGraph` 10 · `TruthTable` 9 · `LatticeDiagram` 6 · `ScaleRuler` 3 · `LabeledFigure` 2 · `CurvePlot` 1 · `Timeline` 1.
+주 도해 97 + 보조 43 = **140 인스턴스**. `LayerStack` 28 · `CompareCards` 26 · `FlowSteps` 19 · `NodeGraph` 15 · `ValueBars` 13 · `TreeBranch` 11 · `TruthTable` 9 · `LatticeDiagram` 7 · `CurvePlot` 4 · `ScaleRuler` 4 · `Timeline` 2 · `LabeledFigure` 2.
+
+배치표(Design §1.2) **미이행 0건**. 계획 131 대비 9건은 초과 적용분이다.
 
 ---
 
@@ -43,7 +45,9 @@
 - **연도·치수**: 원문이 밝히지 않았으면 표기하지 않는다. `Timeline`의 `year`는 문자열이므로 `'이후'` 같은 표기가 가능하다.
 - **계열 채우기**: 원문이 한 값만 제시했으면 그 값만 그린다. 앞뒤 세대를 상식으로 채우지 않는다.
 
-> 실제로 97모듈 적용 중 이 규칙이 **6건**을 되돌렸다 — `col-8` 욕조곡선(원문에 없음 → 배정 자체를 교체), `col-2` 인텔 창립 연도, `078` 웨이퍼 지름 세대, `047` V_TH(정성값이라 곡선 불가), `050` 노드 이력, `col-7` 클래스 등급.
+> 실제로 이 사이클에서 규칙이 **9건**을 되돌렸다 — `col-8` 욕조곡선(원문에 없음 → 배정 자체를 교체), `001` 저항률 상한(`1e14`), `087` High-k 유전율(원서는 재료명만), `col-2`·`col-3` 연도, `078` 웨이퍼 지름 세대, `047` V_TH(정성값이라 곡선 불가), `050` 노드 이력, `col-7` 클래스 등급.
+>
+> 특히 `001`·`087`은 **다른 표에서 값을 끌어오거나 상식으로 채운** 경우였다. 도해를 채우다 보면 자연스럽게 손이 가는 지점이니 주의한다.
 
 ### 2.2 `idPrefix` — 전역 id를 만드는 2종만 필수
 
