@@ -31,6 +31,7 @@
     "safedata-injection",
     "safedata-injection Gap 분석",
     "menu-재구성",
+    "새로운책등록",
     "diagram-component-set",
     "diagram"
   ],
@@ -999,6 +1000,30 @@
         "lastUpdated": "2026-07-20T10:05:00.000Z"
       }
     },
+    "새로운책등록": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-08-08T21:41:56.515Z",
+        "lastUpdated": "2026-08-09T07:00:54.921Z"
+      },
+      "lastFile": "src/lib/sources.ts"
+    },
+    "cert-equip-maintenance": {
+      "phase": "archived",
+      "matchRate": 98,
+      "iterationCount": 2,
+      "startedAt": "2026-08-08T21:00:00.000Z",
+      "completedAt": "2026-08-09T09:20:00.000Z",
+      "archivedAt": "2026-08-09T09:30:00.000Z",
+      "archivedTo": "docs/archive/2026-08/cert-equip-maintenance/",
+      "branch": "DrunkenZealnut/새로운책등록",
+      "note": "국가기술자격 수험서 「반도체설비보전기능사 필기」 13모듈 신규 자료원(exam-prep kind). gap-detector 1차 97% -> 즉시보수 5건 -> pdca-iterator 2회 반복 -> 최종 추정 98~99%. 커밋 미완료(사용자 요청 시)."
+    },
     "first-semiconductor-primer": {
       "phase": "archived",
       "matchRate": 96,
@@ -1203,17 +1228,6 @@
   },
   "history": [
     {
-      "event": "plan_created",
-      "feature": "site-login-gate",
-      "at": "2026-07-15T23:45:43.000Z"
-    },
-    {
-      "event": "feature_completed",
-      "feature": "site-login-gate",
-      "matchRate": 100,
-      "at": "2026-07-16T03:00:00.000Z"
-    },
-    {
       "event": "feature_completed",
       "feature": "semiconductor-academy-site",
       "matchRate": 95,
@@ -1224,6 +1238,78 @@
       "feature": "chapter-based-restructure",
       "matchRate": 97,
       "at": "2026-05-27T17:45:00.000Z"
+    },
+    {
+      "timestamp": "2026-05-29T08:17:58.360Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:17.919Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:38.617Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:18:42.668Z",
+      "feature": "chapters",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:19:09.344Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:20:04.394Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:35.912Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:42.807Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:46.691Z",
+      "feature": "SemiconductorAcademy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:38:58.794Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T08:41:39.446Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-29T13:14:23.400Z",
+      "feature": "content",
+      "phase": "do",
+      "action": "updated"
     },
     {
       "event": "feature_completed",
@@ -1381,78 +1467,6 @@
       "at": "2026-05-29T20:05:00.000Z"
     },
     {
-      "timestamp": "2026-05-29T08:17:58.360Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:18:17.919Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:18:38.617Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:18:42.668Z",
-      "feature": "chapters",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:19:09.344Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:20:04.394Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:38:35.912Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:38:42.807Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:38:46.691Z",
-      "feature": "SemiconductorAcademy",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:38:58.794Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T08:41:39.446Z",
-      "feature": "layout",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-29T13:14:23.400Z",
-      "feature": "content",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
       "timestamp": "2026-05-30T00:44:35.624Z",
       "feature": "quote-index",
       "phase": "do",
@@ -1481,16 +1495,6 @@
       "feature": "layout",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "event": "plan_created",
-      "feature": "multi-source-learning-platform",
-      "at": "2026-05-30T18:00:00.000Z"
-    },
-    {
-      "event": "design_created",
-      "feature": "multi-source-learning-platform",
-      "at": "2026-05-30T18:30:00.000Z"
     },
     {
       "timestamp": "2026-05-30T01:42:16.376Z",
@@ -1559,49 +1563,6 @@
       "action": "updated"
     },
     {
-      "event": "do_completed",
-      "feature": "multi-source-learning-platform",
-      "commit": "acd234e",
-      "scope": "Phase A+B only (Phase C deferred to separate cycle)",
-      "at": "2026-05-30T19:00:00.000Z"
-    },
-    {
-      "event": "check_completed",
-      "feature": "multi-source-learning-platform",
-      "matchRate": 96,
-      "scope": "Phase A+B",
-      "criticalCount": 0,
-      "majorCount": 0,
-      "minorCount": 4,
-      "at": "2026-05-30T19:30:00.000Z"
-    },
-    {
-      "event": "feature_completed",
-      "feature": "multi-source-learning-platform",
-      "matchRate": 96,
-      "scope": "Phase A+B (Phase C deferred to separate cycle)",
-      "at": "2026-05-30T20:10:00.000Z"
-    },
-    {
-      "event": "feature_archived",
-      "feature": "multi-source-learning-platform",
-      "archivedTo": "docs/archive/2026-05/multi-source-learning-platform/",
-      "preserveSummary": true,
-      "at": "2026-05-30T20:30:00.000Z"
-    },
-    {
-      "event": "plan_created",
-      "feature": "cross-link-system",
-      "inherits": "multi-source-learning-platform (Phase C split)",
-      "at": "2026-05-30T20:45:00.000Z"
-    },
-    {
-      "event": "design_created",
-      "feature": "cross-link-system",
-      "designPrinciple": "Extensibility-first per user request",
-      "at": "2026-05-30T21:15:00.000Z"
-    },
-    {
       "timestamp": "2026-05-30T02:28:01.897Z",
       "feature": "cross-link",
       "phase": "do",
@@ -1668,6 +1629,119 @@
       "action": "updated"
     },
     {
+      "timestamp": "2026-05-30T05:17:48.681Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T05:20:02.090Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T05:20:26.039Z",
+      "feature": "quotes",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T07:56:59.151Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:15:31.802Z",
+      "feature": "ui",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:15:42.342Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:16:09.020Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:16:20.169Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:16:27.318Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-05-30T12:16:35.406Z",
+      "feature": "quote-index",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "event": "plan_created",
+      "feature": "multi-source-learning-platform",
+      "at": "2026-05-30T18:00:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "multi-source-learning-platform",
+      "at": "2026-05-30T18:30:00.000Z"
+    },
+    {
+      "event": "do_completed",
+      "feature": "multi-source-learning-platform",
+      "commit": "acd234e",
+      "scope": "Phase A+B only (Phase C deferred to separate cycle)",
+      "at": "2026-05-30T19:00:00.000Z"
+    },
+    {
+      "event": "check_completed",
+      "feature": "multi-source-learning-platform",
+      "matchRate": 96,
+      "scope": "Phase A+B",
+      "criticalCount": 0,
+      "majorCount": 0,
+      "minorCount": 4,
+      "at": "2026-05-30T19:30:00.000Z"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "multi-source-learning-platform",
+      "matchRate": 96,
+      "scope": "Phase A+B (Phase C deferred to separate cycle)",
+      "at": "2026-05-30T20:10:00.000Z"
+    },
+    {
+      "event": "feature_archived",
+      "feature": "multi-source-learning-platform",
+      "archivedTo": "docs/archive/2026-05/multi-source-learning-platform/",
+      "preserveSummary": true,
+      "at": "2026-05-30T20:30:00.000Z"
+    },
+    {
+      "event": "plan_created",
+      "feature": "cross-link-system",
+      "inherits": "multi-source-learning-platform (Phase C split)",
+      "at": "2026-05-30T20:45:00.000Z"
+    },
+    {
+      "event": "design_created",
+      "feature": "cross-link-system",
+      "designPrinciple": "Extensibility-first per user request",
+      "at": "2026-05-30T21:15:00.000Z"
+    },
+    {
       "event": "do_completed",
       "feature": "cross-link-system",
       "extensibilityTest": "passed (test-source add/remove, 0 core code change)",
@@ -1716,24 +1790,6 @@
       "at": "2026-05-31T00:15:00.000Z"
     },
     {
-      "timestamp": "2026-05-30T05:17:48.681Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T05:20:02.090Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T05:20:26.039Z",
-      "feature": "quotes",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
       "event": "do_completed",
       "feature": "quotes-source-filter",
       "scope": "QuoteCard union + extract-quotes OSHA 4 패턴 + QuoteIndex source 필터 + page.tsx 헤더. 117 quotes (91 book + 26 OSHA), 0 selector miss",
@@ -1768,12 +1824,6 @@
       "feature": "quotes-source-filter-polish",
       "inherits": "quotes-source-filter archive — Minor 3건 (M5 focus-visible + M1 partTitle 동기화 + Happy C 실측)",
       "at": "2026-05-31T01:45:00.000Z"
-    },
-    {
-      "timestamp": "2026-05-30T07:56:59.151Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
     },
     {
       "event": "do_completed",
@@ -1811,42 +1861,6 @@
       "inherits": "quotes-source-filter-polish archive — FilterButton helper → @/components/ui/Chip 추출",
       "cycleType": "micro-cycle",
       "at": "2026-05-31T03:15:00.000Z"
-    },
-    {
-      "timestamp": "2026-05-30T12:15:31.802Z",
-      "feature": "ui",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T12:15:42.342Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T12:16:09.020Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T12:16:20.169Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T12:16:27.318Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
-    },
-    {
-      "timestamp": "2026-05-30T12:16:35.406Z",
-      "feature": "quote-index",
-      "phase": "do",
-      "action": "updated"
     },
     {
       "event": "do_completed",
@@ -2463,18 +2477,6 @@
       "detail": "IA(A안 신규 Source)·파일럿(공정설비/진공/플라즈마)·출처표기(원저자·발행처 명시) 확정 — Plan 문서 갱신 완료"
     },
     {
-      "timestamp": "2026-07-14T08:05:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "decision_revised",
-      "detail": "작업 순서를 책 목차 순서로 변경 — 파일럿: 공정 설비와 파라미터 → 반도체 공정 개요"
-    },
-    {
-      "timestamp": "2026-07-14T08:20:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "design_created",
-      "detail": "Design 문서 작성 — NCS 패턴 재사용, 파일럿 process-overview MDX 계약·검증 계획 확정"
-    },
-    {
       "timestamp": "2026-07-14T08:03:46.718Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -2517,6 +2519,12 @@
       "action": "updated"
     },
     {
+      "timestamp": "2026-07-14T08:05:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "decision_revised",
+      "detail": "작업 순서를 책 목차 순서로 변경 — 파일럿: 공정 설비와 파라미터 → 반도체 공정 개요"
+    },
+    {
       "timestamp": "2026-07-14T08:05:02.309Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -2541,22 +2549,22 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-07-14T08:50:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "do_completed",
-      "detail": "파일럿 구현 완료 — 인프라(kind textbook·accent school·DAEGU_HS·로더·라우트) + process-overview MDX + _links.json. typecheck/lint/build/cross-link/quotes 전부 통과, 정적 산출물 실측 확인."
-    },
-    {
-      "timestamp": "2026-07-14T09:15:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "check_completed",
-      "detail": "gap-detector 96% — FZ 용어 갭 즉시 수정·재빌드 통과, Design stale 표기 2건 정정. Report 진행 가능."
-    },
-    {
       "timestamp": "2026-07-14T08:18:40.506Z",
       "feature": "daegu-hs-textbook",
       "phase": "report",
       "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T08:20:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "design_created",
+      "detail": "Design 문서 작성 — NCS 패턴 재사용, 파일럿 process-overview MDX 계약·검증 계획 확정"
+    },
+    {
+      "timestamp": "2026-07-14T08:50:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "do_completed",
+      "detail": "파일럿 구현 완료 — 인프라(kind textbook·accent school·DAEGU_HS·로더·라우트) + process-overview MDX + _links.json. typecheck/lint/build/cross-link/quotes 전부 통과, 정적 산출물 실측 확인."
     },
     {
       "timestamp": "2026-07-14T08:55:24.982Z",
@@ -2619,16 +2627,16 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-07-14T09:45:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "simplify_completed",
-      "detail": "/simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과."
-    },
-    {
       "timestamp": "2026-07-14T09:12:00.000Z",
       "feature": "daegu-hs-textbook",
       "event": "report_completed",
       "detail": "완료 보고서 작성 — Match Rate 96%, 파일럿(신규 인프라+모듈 1/10) 완료. 브랜치 DrunkenZealnut/daeguhighschool_text, 커밋 미실행(사용자 요청 대기)."
+    },
+    {
+      "timestamp": "2026-07-14T09:15:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "check_completed",
+      "detail": "gap-detector 96% — FZ 용어 갭 즉시 수정·재빌드 통과, Design stale 표기 2건 정정. Report 진행 가능."
     },
     {
       "timestamp": "2026-07-14T09:32:49.485Z",
@@ -2643,16 +2651,10 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-07-14T10:30:00.000Z",
+      "timestamp": "2026-07-14T09:45:00.000Z",
       "feature": "daegu-hs-textbook",
-      "event": "full_expansion_completed",
-      "detail": "병렬 9에이전트로 나머지 모듈 초안 작성(각 원문 페이지 재확인·OCR 오류 정정·사실관계 검증 포함) → sources.ts/daeguMdx.tsx/_links.json 통합 등록 → typecheck/lint/build(10페이지 SSG)/cross-link(94섹션)/quotes(회귀0) 전부 통과. 10/10 모듈 완성."
-    },
-    {
-      "timestamp": "2026-07-14T10:45:00.000Z",
-      "feature": "daegu-hs-textbook",
-      "event": "pushed_pr_created",
-      "detail": "커밋 0e4572b 생성, origin/DrunkenZealnut/daeguhighschool_text 푸시, PR #12 → main 생성"
+      "event": "simplify_completed",
+      "detail": "/simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과."
     },
     {
       "timestamp": "2026-07-14T10:11:36.244Z",
@@ -2661,10 +2663,22 @@
       "action": "updated"
     },
     {
+      "timestamp": "2026-07-14T10:30:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "full_expansion_completed",
+      "detail": "병렬 9에이전트로 나머지 모듈 초안 작성(각 원문 페이지 재확인·OCR 오류 정정·사실관계 검증 포함) → sources.ts/daeguMdx.tsx/_links.json 통합 등록 → typecheck/lint/build(10페이지 SSG)/cross-link(94섹션)/quotes(회귀0) 전부 통과. 10/10 모듈 완성."
+    },
+    {
       "timestamp": "2026-07-14T10:34:03.000Z",
       "feature": "daegu-hs-textbook",
       "event": "merged",
       "detail": "PR #12 → main 머지 완료(merge commit 003f840). CodeRabbit 재리뷰 5건 전부 resolved 확인 후 사용자 승인으로 머지."
+    },
+    {
+      "timestamp": "2026-07-14T10:45:00.000Z",
+      "feature": "daegu-hs-textbook",
+      "event": "pushed_pr_created",
+      "detail": "커밋 0e4572b 생성, origin/DrunkenZealnut/daeguhighschool_text 푸시, PR #12 → main 생성"
     },
     {
       "timestamp": "2026-07-14T11:05:00.000Z",
@@ -2757,16 +2771,16 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-07-14T12:50:00.000Z",
-      "feature": "homepage-learning-hub",
-      "event": "check_completed",
-      "detail": "gap-detector 98% — metadata 파생화·문서 수치 오기 즉시 수정, 재빌드 통과. Report 진행 가능."
-    },
-    {
       "timestamp": "2026-07-14T12:24:17.425Z",
       "feature": "homepage-learning-hub",
       "phase": "report",
       "action": "updated"
+    },
+    {
+      "timestamp": "2026-07-14T12:50:00.000Z",
+      "feature": "homepage-learning-hub",
+      "event": "check_completed",
+      "detail": "gap-detector 98% — metadata 파생화·문서 수치 오기 즉시 수정, 재빌드 통과. Report 진행 가능."
     },
     {
       "timestamp": "2026-07-14T13:10:00.000Z",
@@ -2809,6 +2823,11 @@
       "feature": "daegu-safety-enrichment",
       "phase": "report",
       "action": "updated"
+    },
+    {
+      "event": "plan_created",
+      "feature": "site-login-gate",
+      "at": "2026-07-15T23:45:43.000Z"
     },
     {
       "timestamp": "2026-07-16T01:42:20.646Z",
@@ -2893,6 +2912,12 @@
       "feature": "site-login-gate",
       "phase": "report",
       "action": "updated"
+    },
+    {
+      "event": "feature_completed",
+      "feature": "site-login-gate",
+      "matchRate": 100,
+      "at": "2026-07-16T03:00:00.000Z"
     },
     {
       "timestamp": "2026-07-16T03:21:43.318Z",
@@ -3495,6 +3520,42 @@
       "action": "created"
     },
     {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "pilot-gate-passed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b1-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b2-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b3-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b4-completed"
+    },
+    {
+      "timestamp": "2026-08-08T00:00:00.000Z",
+      "feature": "first-semiconductor-primer",
+      "phase": "do",
+      "action": "batch-b5-completed-all-97"
+    },
+    {
       "timestamp": "2026-08-08T05:25:35.028Z",
       "feature": "cross-link",
       "phase": "do",
@@ -3561,12 +3622,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "pilot-gate-passed"
-    },
-    {
       "timestamp": "2026-08-08T11:26:55.730Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3591,12 +3646,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b1-completed"
-    },
-    {
       "timestamp": "2026-08-08T11:59:17.094Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3607,12 +3656,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b2-completed"
     },
     {
       "timestamp": "2026-08-08T12:23:32.164Z",
@@ -3627,12 +3670,6 @@
       "action": "updated"
     },
     {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b3-completed"
-    },
-    {
       "timestamp": "2026-08-08T12:36:32.214Z",
       "feature": "SemiconductorAcademy",
       "phase": "do",
@@ -3643,12 +3680,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b4-completed"
     },
     {
       "timestamp": "2026-08-08T12:59:37.312Z",
@@ -3667,19 +3698,6 @@
       "feature": "SemiconductorAcademy",
       "phase": "do",
       "action": "updated"
-    },
-    {
-      "timestamp": "2026-08-08T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "do",
-      "action": "batch-b5-completed-all-97"
-    },
-    {
-      "timestamp": "2026-08-09T00:00:00.000Z",
-      "feature": "first-semiconductor-primer",
-      "phase": "check",
-      "action": "analyzed",
-      "matchRate": 94
     },
     {
       "timestamp": "2026-08-08T19:17:50.516Z",
@@ -3706,11 +3724,59 @@
       "action": "updated"
     },
     {
+      "timestamp": "2026-08-08T21:41:56.515Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:41:59.543Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:01.499Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:38.189Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:46.893Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-08T21:42:53.434Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T00:00:00.000Z",
       "feature": "first-semiconductor-primer",
-      "event": "archived",
-      "at": "2026-08-09T05:45:00.000Z",
-      "matchRate": 96,
-      "archivedTo": "docs/archive/2026-08/first-semiconductor-primer/"
+      "phase": "check",
+      "action": "analyzed",
+      "matchRate": 94
+    },
+    {
+      "timestamp": "2026-08-09T00:14:28.392Z",
+      "feature": "cert-equip-maintenance 분석 문서 작성",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T00:50:54.413Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
     },
     {
       "feature": "diagram-component-set",
@@ -3719,10 +3785,29 @@
       "doc": "docs/01-plan/features/diagram-component-set.plan.md"
     },
     {
+      "feature": "first-semiconductor-primer",
+      "event": "archived",
+      "at": "2026-08-09T05:45:00.000Z",
+      "matchRate": 96,
+      "archivedTo": "docs/archive/2026-08/first-semiconductor-primer/"
+    },
+    {
       "feature": "diagram-component-set",
       "event": "design",
       "at": "2026-08-09T06:05:51.000Z",
       "doc": "docs/02-design/features/diagram-component-set.design.md"
+    },
+    {
+      "timestamp": "2026-08-09T06:06:23.702Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-09T07:00:54.921Z",
+      "feature": "새로운책등록",
+      "phase": "do",
+      "action": "updated"
     },
     {
       "timestamp": "2026-08-09T08:38:56.085Z",

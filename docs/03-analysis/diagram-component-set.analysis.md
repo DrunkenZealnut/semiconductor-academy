@@ -240,7 +240,7 @@ Match Rate **78.1%** < 90% → **`/pdca iterate diagram-component-set`**
 | 도해 인스턴스 | **140** (주 97 + 보조 43) |
 | 배치표 이행 | **미이행 0건** |
 | 컴포넌트별 | LayerStack 28 · CompareCards 26 · FlowSteps 19 · NodeGraph 15 · ValueBars 13 · TreeBranch 11 · TruthTable 9 · LatticeDiagram 7 · CurvePlot 4 · ScaleRuler 4 · Timeline 2 · LabeledFigure 2 |
-| 빌드 | `typecheck` 0 · `lint` diagram 경고 0 · First Load JS **102kB 무증가** · 라우트 1.72kB/125kB · SSG **379/379** |
+| 빌드 | `typecheck` 0 · `lint` diagram 경고 0 · First Load JS **102kB 무증가** · 라우트 1.72kB/125kB · SSG **393/393** (main 병합으로 14번째 자료원 13모듈이 더해져 379→393. 도해 작업 자체의 증가는 0) |
 | 자수 | 97모듈 전부 §5.1 범위 내 |
 
 ### 7.4 Match Rate 재산출
