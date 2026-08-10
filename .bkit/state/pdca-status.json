@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-10T02:59:38.000Z",
+  "lastUpdated": "2026-08-10T09:00:11.528Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -33,7 +33,8 @@
     "menu-재구성",
     "새로운책등록",
     "diagram-component-set",
-    "diagram"
+    "diagram",
+    "diagram-component-set — Match Rate 78.1%"
   ],
   "primaryFeature": "diagram-component-set",
   "features": {
@@ -1046,7 +1047,7 @@
       "mergedAt": "2026-08-08T21:31:54Z"
     },
     "diagram-component-set": {
-      "phase": "check",
+      "phase": "completed",
       "matchRate": 93.6,
       "iterationCount": 1,
       "startedAt": "2026-08-09T00:53:03.000Z",
@@ -1061,15 +1062,18 @@
         "step1_tier1": "done — tokens/types/DiagramFrame + LayerStack·CompareCards·FlowSteps·NodeGraph·TruthTable + mdx-components 등록",
         "step2_pilot": "done(부분) — 017·059·019·029·063 적용. 게이트 G-2·G-4·G-5·G-6·G-7 통과, G-1·G-3(육안) 미확인",
         "step3_tier2": "done — ValueBars·TreeBranch·LatticeDiagram·CurvePlot·Timeline·ScaleRuler·LabeledFigure 구현 + 12종 전역 등록",
-        "step4_rollout": "done(주 도해) — 97/97 모듈에 주 도해 적용. 보조 도해는 10/36 (26개 미적용)",
+        "step4_rollout": "done — 97/97 모듈 주 도해 + 보조 43/43. 도해 인스턴스 140, 배치표 미이행 0건",
         "step5_docs": "done — 선행 §5.2 3단 재정의(V-7) · §5.1 도해 자수 예외 · usage.md 신설 · CLAUDE.md 등재"
       },
       "designCorrections": "V-3(idPrefix 범위) · V-4(col-8 CurvePlot→CompareCards) · V-5(자수 측정 정규식이 도해 JSX를 불규칙 삼킴 → 블록 단위 제거로 수정)",
       "analysisDoc": "docs/03-analysis/diagram-component-set.analysis.md",
-      "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 26건 채움, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)",
+      "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 43건 전량 적용, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)",
       "branch": "feat/diagram-component-set",
       "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/29",
-      "commit": "8db9620 — 127 files, +5438/-84"
+      "commit": "8db9620",
+      "reportDoc": "docs/04-report/diagram-component-set.report.md",
+      "completedAt": "2026-08-10T09:00:03.000Z",
+      "diffStat": "+5709/-342 · 127 files (PR #29 최종)"
     },
     "diagram": {
       "phase": "do",
@@ -1083,6 +1087,20 @@
         "lastUpdated": "2026-08-10T02:10:15.573Z"
       },
       "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LatticeDiagram.tsx"
+    },
+    "diagram-component-set — Match Rate 78.1%": {
+      "phase": "act",
+      "phaseNumber": 5,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-08-10T09:00:11.527Z",
+        "lastUpdated": "2026-08-10T09:00:11.527Z"
+      },
+      "previousPhase": "check",
+      "autoAdvanced": true
     }
   },
   "pipeline": {
@@ -1218,13 +1236,18 @@
         "phase": "check",
         "feature": "diagram-component-set",
         "at": "2026-08-10T02:12:16.000Z"
+      },
+      {
+        "phase": "report",
+        "feature": "diagram-component-set",
+        "at": "2026-08-10T09:00:03.000Z"
       }
     ]
   },
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-10T02:10:15.573Z"
+    "lastActivity": "2026-08-10T09:00:11.528Z"
   },
   "history": [
     {
@@ -4003,6 +4026,18 @@
       "event": "pr_created",
       "at": "2026-08-10T02:59:38.000Z",
       "pr": 29
+    },
+    {
+      "feature": "diagram-component-set",
+      "event": "report",
+      "at": "2026-08-10T09:00:03.000Z",
+      "matchRate": 93.6
+    },
+    {
+      "timestamp": "2026-08-10T09:00:11.528Z",
+      "feature": "diagram-component-set — Match Rate 78.1%",
+      "phase": "act",
+      "action": "updated"
     }
   ]
 }

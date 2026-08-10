@@ -4,16 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 프로젝트 개요
 
-반도체 산업의 유해인자를 중·고등학생·일반인이 이해할 수 있게 풀어주는 교육용 **정적 사이트**.
+반도체 산업의 유해인자를 중·고등학생·일반인이 이해할 수 있게 풀어주는 교육용 **웹사이트**.
 학술서 「반도체 산업의 유해인자」(윤충식 외)와 OSHA Semiconductor Chemical Safety 자료를
-비유·일러스트·인터랙티브 다이어그램으로 재구성한다. Next.js 15 App Router + `output: 'export'`
-(완전 정적 SSG) → GitHub Pages 배포.
+비유·일러스트·인터랙티브 다이어그램으로 재구성한다. Next.js 15 App Router → **Vercel 배포**.
+모든 동적 라우트를 `generateStaticParams`로 빌드 타임 전개해 사실상 전 페이지가 SSG로 생성되지만,
+`output: 'export'`는 쓰지 않는다 — 로그인 게이트(`src/middleware.ts`)가 서버 런타임을 요구한다.
 
 ## 명령어
 
 ```bash
 npm run dev         # 개발 서버 (포트 3016) — predev가 데이터 스크립트 먼저 실행
-npm run build       # 정적 export → out/ — prebuild가 데이터 스크립트 먼저 실행
+npm run build       # 프로덕션 빌드 (.next/) — prebuild가 데이터 스크립트 먼저 실행
 npm run typecheck   # tsc --noEmit (data/, docs/ 제외)
 npm run lint        # next lint (next/core-web-vitals + next/typescript)
 
@@ -67,9 +68,9 @@ npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 
 `cross-link.json`을 읽어 런타임 조회 (`lookupRelated`, `lookupByChemical`) — 자기 참조 제외, source.order 정렬,
 shareScore 정렬, 그룹당 maxPerGroup 제한. UI는 `src/components/cross-link/`.
 
-## 라우팅 (정적 export 패턴)
+## 라우팅 (빌드 타임 전개 패턴)
 
-모든 동적 라우트는 `generateStaticParams`로 빌드 타임에 전개된다 (서버 런타임 없음).
+모든 동적 라우트는 `generateStaticParams`로 빌드 타임에 전개된다 — 미들웨어를 제외하면 페이지 렌더에 서버 런타임이 필요 없다.
 
 - `src/app/chapter/[slug]/`, `process/[slug]/`, `chemicals/[id]/`, `sources/[source]/`, `sources/osha-scs/[part]/`
 - 단순 정적 페이지는 `page.mdx` 직접 사용 (about, cleanroom 등).
@@ -83,10 +84,11 @@ shareScore 정렬, 그룹당 maxPerGroup 제한. UI는 `src/components/cross-lin
 
 ## 배포 / 설정
 
-- **GitHub Pages**: `.github/workflows/deploy.yml`, main push 트리거. `out/` 업로드.
-- **basePath**: `next.config.mjs`가 `NEXT_PUBLIC_BASE_PATH` env로 주입 (CI에서 `/semiconductor-academy`, 로컬 dev는 빈 문자열). 링크/asset 경로는 이 basePath를 가정해야 한다.
+- **Vercel**: main push 트리거. `output: 'export'`·`.github/workflows/deploy.yml`은 **없다** — 과거 GitHub Pages 배포 시절의 흔적이 문서에 남아 있었으나 2026-08-10에 정정했다.
+- **미들웨어**: `src/middleware.ts`가 세션 쿠키로 전 경로를 보호한다(로그인 게이트). 이것이 정적 export를 쓸 수 없는 이유다. 로컬에서 페이지를 확인하려면 먼저 `/login`을 거쳐야 한다.
+- **basePath**: `next.config.mjs`가 `NEXT_PUBLIC_BASE_PATH` env로 주입 (미설정 시 빈 문자열). 링크/asset 경로는 이 basePath를 가정해야 한다.
 - **SEO**: `src/lib/seo.ts`의 `buildMetadata`로 페이지 메타 생성 (basePath·SITE_URL 반영). 각 동적 라우트는 `generateMetadata`에서 호출.
-- `images: { unoptimized: true }`, `trailingSlash: true` (정적 export 필수 설정).
+- `images: { unoptimized: true }`, `trailingSlash: true`.
 - import 별칭: `@/*` → `src/*`.
 
 ## PDCA 워크플로우 (docs/)
