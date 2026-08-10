@@ -43,6 +43,21 @@
 정보를 기억했다가 필요할 때 내주는 반도체예요. 가장 큰 갈림길은{' '}
 <strong>전원을 끄면 잊는가</strong>예요.
 
+<TreeBranch
+  caption="메모리 IC의 두 갈래"
+  root="메모리 IC"
+  branches={[
+    { label: '휘발성', note: '전원이 끊기면 잊는다', children: [
+      { label: 'DRAM', note: '리프레시 필요' },
+      { label: 'SRAM', note: '보존 동작 불필요' },
+    ] },
+    { label: '비휘발성', note: '전원이 끊겨도 남는다', children: [
+      { label: 'MROM', note: '제조 단계에서 내용 확정' },
+      { label: '플래시 메모리', note: '쓰기·삭제 가능' },
+    ] },
+  ]}
+/>
+
 | | 종류 | 성격 |
 |------|------|------|
 | 휘발성 | DRAM | 기억 보존 동작(리프레시)이 필요한 읽기·쓰기 메모리 |

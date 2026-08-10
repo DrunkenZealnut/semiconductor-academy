@@ -48,12 +48,53 @@
 
 n채널·증강형 MOS 트랜지스터를 층별로 보면 이래요.
 
-| 위치 | 구성 |
-|---|---|
-| 기판 | <strong>p형</strong> 실리콘 |
-| 기판 표면 근방 | <strong>n⁺ 영역 두 개</strong> — 소스와 드레인 (고농도 n형 불순물) |
-| 두 영역 사이 위 | <strong>게이트 절연막</strong> (SiO₂) |
-| 절연막 위 | <strong>게이트 전극</strong> (다결정 실리콘) |
+<LayerStack
+  idPrefix="017-nmos"
+  caption="n채널 MOS 트랜지스터 단면 — 아래에서 위로"
+  layers={[
+    { id: 'gate', label: '게이트 전극 (다결정 실리콘)', tone: 'poly', height: 30 },
+    { id: 'oxide', label: '게이트 절연막 SiO₂', tone: 'oxide', height: 20 },
+    {
+      id: 'substrate',
+      label: 'p형 실리콘 기판',
+      tone: 'silicon-p',
+      height: 78,
+      wells: [
+        { label: 'n⁺ 소스', tone: 'silicon-n-heavy', side: 'left' },
+        { label: 'n⁺ 드레인', tone: 'silicon-n-heavy', side: 'right' },
+      ],
+    },
+  ]}
+  annotations={[{ at: 'oxide/substrate', text: '게이트에 양전압을 걸면\n여기에 채널이 생긴다' }]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>위치</th>
+          <th>구성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>기판</td>
+          <td><strong>p형</strong> 실리콘</td>
+        </tr>
+        <tr>
+          <td>기판 표면 근방</td>
+          <td><strong>n⁺ 영역 두 개</strong> — 소스와 드레인 (고농도 n형 불순물)</td>
+        </tr>
+        <tr>
+          <td>두 영역 사이 위</td>
+          <td><strong>게이트 절연막</strong> (SiO₂)</td>
+        </tr>
+        <tr>
+          <td>절연막 위</td>
+          <td><strong>게이트 전극</strong> (다결정 실리콘)</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 'n⁺'의 플러스 기호는 <strong>고농도</strong>를 뜻해요 — 1장 005의 도핑을 진하게 한 영역이죠.
 
@@ -112,6 +153,22 @@ MOS가 ON"이라고 했던 것이 바로 이 동작이에요.
 게이트 전압을 여러 값으로 두고 각각 곡선을 그리면, <strong>게이트가 전류를 얼마나 잘
 통제하는지</strong>가 한눈에 보여요. 이 그래프가 소자 설계와 회로 설계를 잇는 공통
 언어예요.
+
+<CurvePlot
+  caption="I_D–V_D 특성 — 게이트 전압마다 곡선이 하나씩"
+  note="원서는 곡선의 형상만 서술한다. 눈금 수치는 원문에 없어 표기하지 않았다."
+  axes={{ x: { label: '드레인 전압 V_D' }, y: { label: '드레인 전류 I_D' } }}
+  curves={[
+    {
+      label: 'V_G 큼',
+      emphasis: true,
+      points: [[0, 0], [0.18, 0.5], [0.35, 0.78], [0.6, 0.88], [1, 0.92]],
+    },
+    { label: '중간', points: [[0, 0], [0.16, 0.32], [0.32, 0.5], [0.6, 0.57], [1, 0.6]] },
+    { label: '작음', points: [[0, 0], [0.14, 0.16], [0.3, 0.25], [0.6, 0.29], [1, 0.31]] },
+    { label: 'V_TH 미만', points: [[0, 0], [1, 0.02]] },
+  ]}
+/>
 
 <Callout type="tip" title="더 깊이 보려면">
   거울상인 p채널형은 018, 둘을 짝지어 쓰는 CMOS는 019에 있어요. 게이트 아래에서 벌어지는

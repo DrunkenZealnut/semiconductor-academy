@@ -73,6 +73,19 @@
 
 ## 2. 이온 주입법 — 박아 넣는다
 
+<CompareCards
+  caption="불순물을 넣는 두 방법"
+  columns={[
+    { title: '열확산법', tone: 'oxide' },
+    { title: '이온 주입법', tone: 'accent' },
+  ]}
+  rows={[
+    { aspect: '방식', values: ['열로 스며들게 한다', '가속해서 박아 넣는다'] },
+    { aspect: '제어 변수', values: ['온도 · 시간 · 가스 양', '도즈 · 가속 에너지'] },
+    { aspect: '정해지는 것', values: ['확산 속도 · 깊이 · 농도', '총량(농도) · 깊이'] },
+  ]}
+/>
+
 미세화가 진행되며 요구가 달라졌어요.
 
 - 농도와 <strong>프로파일(깊이 분포)</strong>을 더 정확히 제어해야 함
@@ -90,6 +103,17 @@
 
 장치는 에너지에 따라 나뉘어요 — 저속·중속기는 수~수십 keV, 고속기는 수백 eV에서 수
 MeV까지 다뤄요.
+
+<LayerStack
+  idPrefix="066-profile"
+  caption="두 방법이 만드는 불순물 분포가 다르다"
+  layers={[
+    { id: 'surface', label: '표면 — 열확산은 여기서 스며든다', tone: 'silicon-n-heavy', height: 20 },
+    { id: 'mid', label: '중간 깊이 — 이온 주입의 피크가 여기 박힌다', tone: 'silicon-n', height: 30 },
+    { id: 'deep', label: '깊은 곳', tone: 'silicon-p', height: 42 },
+  ]}
+  annotations={[{ at: 'mid', text: '가속 에너지가\n피크 깊이를 정한다' }]}
+/>
 
 ## 3. 주입기 안에서 벌어지는 일
 

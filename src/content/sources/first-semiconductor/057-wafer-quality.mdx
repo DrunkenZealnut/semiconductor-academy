@@ -91,6 +91,16 @@ IC의 생산수율·성능·신뢰성을 좌우해요.
 바로 그 산소가 게터링용 결함을 만드는 재료가 돼요. <strong>없애는 게 아니라 원하는 만큼
 맞추는</strong> 값이었던 이유예요.
 
+<LayerStack
+  idPrefix="057-gettering"
+  caption="쓰이는 곳은 표면 몇 μm — 불순물은 그 아래로 몰아낸다"
+  layers={[
+    { id: 'dz', label: '무결함층(DZ) — 소자가 실제로 만들어지는 곳', tone: 'silicon-n', height: 22 },
+    { id: 'bulk', label: '벌크 — 일부러 만든 결함이 불순물을 붙잡는다', tone: 'substrate', height: 58 },
+  ]}
+  annotations={[{ at: 'bulk', text: '내부 게터링(IG)이\n여기서 일어난다' }]}
+/>
+
 ## 4. 세 가지 게터링
 
 | 종류 | 방법 |

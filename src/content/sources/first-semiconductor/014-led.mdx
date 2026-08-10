@@ -57,6 +57,16 @@ p-n 접합에 <strong>순방향 전압</strong>을 걸면(p에 +, n에 −) 012�
 012의 일반 다이오드에서도 재결합은 일어나요. 다만 실리콘에서는 그 에너지가 주로 열로
 빠져나가고, LED용 재료에서는 <strong>빛으로 잘 나오도록</strong> 만들어져 있어요.
 
+<LayerStack
+  idPrefix="014-led"
+  caption="재결합은 접합면에서 일어난다"
+  layers={[
+    { id: 'p', label: 'p형 — 양공을 공급', tone: 'silicon-p', height: 36 },
+    { id: 'j', label: '접합면 — 전자와 양공이 만나 빛이 난다', tone: 'accent', height: 20 },
+    { id: 'n', label: 'n형 — 전자를 공급', tone: 'silicon-n', height: 36 },
+  ]}
+/>
+
 ## 2. 색은 금지대역이 정한다
 
 방출되는 빛의 에너지는 <strong>금지대역 크기</strong>와 같아요. 그래서 규칙이 단순해요.
@@ -68,6 +78,23 @@ p-n 접합에 <strong>순방향 전압</strong>을 걸면(p에 +, n에 −) 012�
 
 여기서 1장 009의 이야기가 결정적으로 쓰여요 — <strong>화합물 반도체는 재료 조합과 조성을
 바꿔 금지대역 폭을 조절할 수 있어요</strong>. 그러니 원하는 색을 만들 수 있죠.
+
+<ValueBars
+  caption="색은 파장이 정하고, 파장은 재료가 정한다"
+  unit="nm"
+  rows={[
+    { label: '자외선', value: 380, note: 'GaN' },
+    { label: '파랑', value: 450, note: 'InGaN' },
+    { label: '초록', value: 512, note: 'InGaN' },
+    { label: '노랑', value: 590, note: 'GaAsP' },
+    { label: '주황', value: 610, note: 'AlGaInP' },
+    { label: '빨강', value: 700, note: 'AlGaAs 등' },
+    { label: '적외선', value: 1300, note: 'InGaAsP' },
+  ]}
+  note="파장이 길수록 빛의 에너지가 작다 — 금지대역이 좁은 재료가 맡는다."
+/>
+
+원문 표는 색 순서로 정리돼 있어요.
 
 | 색 | 파장 | 재료 |
 |---|:---:|---|

@@ -45,6 +45,12 @@
 
 ## 1. 세 가지 배열
 
+<LatticeDiagram caption="① 단결정 — 전체가 규칙적" arrangement="crystal" />
+
+<LatticeDiagram caption="② 다결정 — 규칙적인 입자들이 무작위로 모임" arrangement="poly" />
+
+<LatticeDiagram caption="③ 비정질 — 규칙성 없이 불규칙" arrangement="amorphous" />
+
 | 형태 | 구조 | 다른 이름 |
 |---|---|---|
 | <strong>단결정</strong> | 전체가 규칙적으로 배열 | — |
@@ -61,6 +67,19 @@
 ## 2. 성능은 가지런한 순서
 
 세 형태에 트랜지스터 같은 소자를 만들어 보면 성능 차이가 뚜렷해요.
+
+<CompareCards
+  caption="가지런한 순서대로 성능이 좋다"
+  columns={[
+    { title: '단결정', tone: 'silicon-n' },
+    { title: '다결정', tone: 'poly' },
+    { title: '비정질', tone: 'resist' },
+  ]}
+  rows={[
+    { aspect: '전자 속도', values: ['가장 빠름', '중간', '가장 느림'] },
+    { aspect: '누설 전류', values: ['가장 적음', '중간', '가장 많음'] },
+  ]}
+/>
 
 | | 전자 속도 | 누설 전류 |
 |---|---|---|

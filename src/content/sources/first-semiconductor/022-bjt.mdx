@@ -66,6 +66,17 @@ FET이 한 종류만 쓰는 유니폴라였던 것과 대비돼요.
 
 ## 2. n-p-n형의 동작
 
+<LayerStack
+  idPrefix="022-bjt"
+  caption="n-p-n 세 층 — 가운데 베이스가 유독 얇다"
+  layers={[
+    { id: 'e', label: '에미터 (n형) — 캐리어를 내보냄', tone: 'silicon-n', height: 40 },
+    { id: 'b', label: '베이스 (p형) — 흐름을 조절', tone: 'silicon-p', height: 16 },
+    { id: 'c', label: '컬렉터 (n형) — 캐리어를 거둬들임', tone: 'silicon-n', height: 48 },
+  ]}
+  annotations={[{ at: 'b', text: '얇기 때문에 전자 대부분이\n재결합 없이 통과한다' }]}
+/>
+
 <strong>① 순방향 전압을 건다</strong>
 베이스와 에미터 사이에 순방향 전압 V_EB를 걸어요. 일정 값 이상이어야 하는데, 실리콘
 바이폴라에서는 <strong>약 0.6V</strong>예요(012의 p-n 접합이 열리는 전압이죠).
@@ -116,6 +127,17 @@ I_C를 그려요.
 
 017의 MOS가 <strong>게이트 전압</strong>을 파라미터로 썼던 것과 비교하면, 파라미터가
 전압에서 전류로 바뀐 것이 바이폴라의 성격을 그대로 보여 줘요.
+
+<CurvePlot
+  caption="I_C–V_CE 특성 — 베이스 전류를 파라미터로"
+  note="원서는 축과 파라미터만 밝힌다. 곡선은 형상만 나타냈고 눈금 수치는 표기하지 않았다."
+  axes={{ x: { label: '컬렉터 전압 V_CE' }, y: { label: '컬렉터 전류 I_C' } }}
+  curves={[
+    { label: 'I_B 큼', emphasis: true, points: [[0, 0], [0.12, 0.72], [0.3, 0.82], [1, 0.88]] },
+    { label: '중간', points: [[0, 0], [0.11, 0.46], [0.3, 0.53], [1, 0.58]] },
+    { label: '작음', points: [[0, 0], [0.1, 0.22], [0.3, 0.26], [1, 0.3]] },
+  ]}
+/>
 
 ## 5. 지금은 어디에 쓰이나
 

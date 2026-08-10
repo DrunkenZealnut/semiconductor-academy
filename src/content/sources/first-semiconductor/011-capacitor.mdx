@@ -69,6 +69,17 @@
 <strong>O</strong>xide(SiO₂ 절연막) - <strong>S</strong>emiconductor(p형 실리콘 기판).
 아래에서 위로 실리콘, 절연막, 금속을 쌓은 샌드위치죠.
 
+<LayerStack
+  idPrefix="011-mos-cap"
+  caption="MOS 용량 — 이름 그대로의 세 층"
+  layers={[
+    { id: 'm', label: 'Metal — 알루미늄 전극', tone: 'metal', height: 26 },
+    { id: 'o', label: 'Oxide — SiO₂ 절연막', tone: 'oxide', height: 22 },
+    { id: 's', label: 'Semiconductor — p형 실리콘 기판', tone: 'silicon-p', height: 60 },
+  ]}
+  annotations={[{ at: 'o/s', text: '전압에 따라 이 표면이\n축적·공핍·반전으로 바뀐다' }]}
+/>
+
 ## 3. MOS 용량은 전압에 따라 두 얼굴
 
 p형 기판을 접지하고 금속 전극에 게이트 전압 V_G를 걸어 보면 표면 상태가 단계적으로 바뀌어요.
@@ -111,6 +122,23 @@ p형 기판을 접지하고 금속 전극에 게이트 전압 V_G를 걸어 보�
 바뀌어요 — <strong>반전</strong>이에요. 이때 용량은 측정 주파수에 따라 달라져요. 저주파에서는
 반전층이 전극처럼 따라와 다시 C_G에 가까워지고, 고주파에서는 반전층이 신호를 못 따라가
 공핍 상태의 낮은 값을 유지해요.
+
+<CurvePlot
+  caption="C–V 특성 — 전압에 따라 두 얼굴"
+  note="원서는 구간별 용량 관계(축적=C_G, 공핍=C_G와 C_Si 직렬)만 서술한다. 눈금 수치는 원문에 없어 표기하지 않았다."
+  axes={{ x: { label: '게이트 전압 V_G' }, y: { label: '용량 C' } }}
+  curves={[
+    {
+      label: '',
+      emphasis: true,
+      points: [[0, 0.9], [0.28, 0.88], [0.4, 0.6], [0.55, 0.32], [0.7, 0.25], [1, 0.25]],
+    },
+  ]}
+  markers={[
+    { at: [0.3, 0.88], label: 'V_FB' },
+    { at: [0.66, 0.26], label: 'V_TH' },
+  ]}
+/>
 
 ## 4. 이것이 트랜지스터의 심장
 

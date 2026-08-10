@@ -49,6 +49,15 @@
 
 전 공정을 마친 웨이퍼는 <strong>뒷면 연삭(BG, Back Grinding)</strong>으로 두께를 줄여요.
 
+<ScaleRuler
+  caption="자르기 전에 먼저 얇게 간다"
+  marks={[
+    { label: '전 공정 완료 0.775mm', meters: 0.775e-3 },
+    { label: '연삭 후 0.300mm 이하', meters: 0.3e-3 },
+  ]}
+  refs={[{ label: '신용카드 약 0.76mm', meters: 0.76e-3 }]}
+/>
+
 | | 두께 |
 |---|---|
 | 전 공정 완료 시 | 0.775mm (6장 056) |
@@ -59,6 +68,15 @@
 
 앞서는 두께가 필요했어요 — 공정 중 웨이퍼가 휘거나 깨지지 않으려면요. 그 역할이 끝났으니
 이제 덜어 내는 거죠.
+
+<FlowSteps
+  caption="얇게 갈고 나서 자른다"
+  steps={[
+    { id: 'grind', label: '뒷면 연삭', sub: '0.775mm → 0.300mm 이하' },
+    { id: 'tape', label: 'UV 테이프 부착', sub: '붙였다 떼는 절묘함' },
+    { id: 'dice', label: '다이싱', sub: '스크라이브 라인을 따라', tone: 'accent' },
+  ]}
+/>
 
 ## 2. 자를 자리는 이미 마련돼 있다
 

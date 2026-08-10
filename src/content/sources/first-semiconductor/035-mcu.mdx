@@ -42,6 +42,29 @@
 
 MCU 칩 하나에 담기는 것들을 8비트 제품 기준으로 늘어놓으면 이래요.
 
+<NodeGraph
+  idPrefix="035-mcu"
+  caption="MCU 한 칩 안의 블록 구성"
+  grid={[3, 3]}
+  nodes={[
+    { id: 'cpu', label: 'CPU', kind: 'block', at: [1, 1] },
+    { id: 'mem', label: 'RAM / ROM', kind: 'block', at: [0, 1] },
+    { id: 'ad', label: 'A/D · D/A', kind: 'io', at: [2, 0] },
+    { id: 'ser', label: '직렬 I/F', kind: 'io', at: [2, 1] },
+    { id: 'tm', label: '타이머', kind: 'block', at: [1, 0] },
+    { id: 'int', label: '끼어들기', kind: 'block', at: [1, 2] },
+    { id: 'mul', label: '곱하기·나누기', kind: 'block', at: [2, 2] },
+  ]}
+  edges={[
+    { from: 'mem', to: 'cpu' },
+    { from: 'tm', to: 'cpu' },
+    { from: 'int', to: 'cpu' },
+    { from: 'cpu', to: 'ser' },
+    { from: 'cpu', to: 'mul' },
+    { from: 'ad', to: 'cpu' },
+  ]}
+/>
+
 | 블록 | 역할 |
 |------|------|
 | CPU | 계산과 판단 |

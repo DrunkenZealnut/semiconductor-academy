@@ -78,11 +78,36 @@ MOS 트랜지스터의 통제력은 게이트 용량(C)에 달려 있고, 용량
 
 게이트 절연막 재료의 변천은 이랬어요.
 
+<LayerStack
+  idPrefix="087-hkmg"
+  caption="게이트 적층 — 절연막과 전극을 함께 바꿨다"
+  layers={[
+    { id: 'metal', label: '메탈 게이트 전극', tone: 'metal', height: 26 },
+    { id: 'hk', label: 'High-k 절연막 (HfSiON 등)', tone: 'accent', height: 20 },
+    { id: 'si', label: '실리콘 기판', tone: 'silicon-p', height: 46 },
+  ]}
+  annotations={[{ at: 'hk', text: '유전율을 올려\n두께 여유를 되찾는다' }]}
+/>
+
 | 재료 | 특징 |
 |------|------|
 | SiO₂ (ε ≈ 4.2) | 출발점 — 열산화로 쉽게 만들 수 있는 고품질 막 |
 | 질화 SiO₂ | p채널 MOS의 다결정 실리콘 게이트에서 붕소가 막으로 침입하는 것을 막음 |
 | **HfSiON** (하프늄 질화 산화막) 등 | 유력한 High-k 후보 |
+
+<CompareCards
+  caption="절연막을 바꾸니 전극도 바꿔야 했다"
+  columns={[{ title: '기존 조합', tone: 'oxide' }, { title: 'High-k / 메탈 게이트', tone: 'accent' }]}
+  rows={[
+    { aspect: '절연막', values: ['SiO₂ (ε ≈ 4.2)', 'HfSiON 등 고유전율 막'] },
+    { aspect: '전극', values: ['다결정 실리콘', '금속'] },
+    {
+      aspect: '바꾼 이유',
+      values: ['수 원자층까지 얇아져 누설·발열 심각', '등가적으로 두꺼운 막으로 같은 용량 확보'],
+    },
+  ]}
+  note="원서는 SiO₂의 ε≈4.2만 수치로 제시하고 High-k 쪽은 재료명만 든다."
+/>
 
 ## 3. 전극도 함께 바꿔야 했다
 

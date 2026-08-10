@@ -52,6 +52,29 @@ p채널이 OFF, 입력이 0이면 그 반대였죠. 즉 <strong>둘 중 하나�
 않아요</strong>. 상태를 유지하는 동안에는 전력을 거의 쓰지 않고, 상태가 바뀌는 순간에만
 잠깐 소비하죠.
 
+<NodeGraph
+  idPrefix="019-inverter"
+  caption="CMOS 인버터 — 입력 하나가 두 소자의 게이트를 함께 움직인다"
+  note="점선은 게이트 제어, 실선은 전류 경로. 둘 중 하나는 반드시 닫혀 있다."
+  grid={[3, 5]}
+  nodes={[
+    { id: 'vdd', label: 'V_DD 전원', kind: 'io', at: [1, 0] },
+    { id: 'pmos', label: 'pmos: p채널 MOS', kind: 'device', at: [1, 1] },
+    { id: 'in', label: '입력 A', kind: 'io', at: [0, 2] },
+    { id: 'out', label: '출력 Y', kind: 'io', at: [2, 2] },
+    { id: 'nmos', label: 'nmos: n채널 MOS', kind: 'device', at: [1, 3] },
+    { id: 'gnd', label: 'GND 접지', kind: 'io', at: [1, 4] },
+  ]}
+  edges={[
+    { from: 'vdd', to: 'pmos' },
+    { from: 'pmos', to: 'out' },
+    { from: 'nmos', to: 'out' },
+    { from: 'nmos', to: 'gnd' },
+    { from: 'in', to: 'pmos', style: 'dashed' },
+    { from: 'in', to: 'nmos', style: 'dashed' },
+  ]}
+/>
+
 ## 2. 대가와 이득
 
 | | 단일 채널 소자 | CMOS |
@@ -72,10 +95,50 @@ p채널이 OFF, 입력이 0이면 그 반대였죠. 즉 <strong>둘 중 하나�
 해법이 <strong>우물</strong>이에요. 기판에 반대 전도형의 불순물을 <strong>비교적 깊게</strong>{' '}
 넣어 국소적인 영역을 만드는 거죠.
 
-| 위치 | 만드는 소자 |
-|---|---|
-| p형 실리콘 기판 (그대로) | <strong>n채널 MOS</strong> |
-| n형 <strong>우물층</strong> | <strong>p채널 MOS</strong> |
+<LayerStack
+  idPrefix="019-well"
+  caption="단일 우물 CMOS 단면 — 한 기판에 두 타입을 담는 법"
+  layers={[
+    {
+      id: 'device',
+      label: '소자 영역',
+      tone: 'substrate',
+      height: 34,
+      wells: [
+        { label: 'n채널 MOS', tone: 'poly', side: 'left' },
+        { label: 'p채널 MOS', tone: 'poly', side: 'right' },
+      ],
+    },
+    {
+      id: 'sub',
+      label: 'p형 실리콘 기판',
+      tone: 'silicon-p',
+      height: 74,
+      wells: [{ label: 'n형 우물', tone: 'silicon-n', side: 'right' }],
+    },
+  ]}
+  annotations={[{ at: 'sub', text: 'p채널형은 이 우물\n안에서만 만들어진다' }]}
+  altTable={
+    <table>
+      <thead>
+        <tr>
+          <th>위치</th>
+          <th>만드는 소자</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>p형 실리콘 기판 (그대로)</td>
+          <td><strong>n채널 MOS</strong></td>
+        </tr>
+        <tr>
+          <td>n형 <strong>우물층</strong></td>
+          <td><strong>p채널 MOS</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
 
 이렇게 우물이 한 종류만 쓰이면 <strong>단일 우물</strong>이라 불러요. 목적에 따라 두
 종류를 쓰는 <strong>이중 우물</strong>, 세 종류를 쓰는 <strong>삼중 우물</strong>도 있어요 —

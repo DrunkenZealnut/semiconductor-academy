@@ -45,6 +45,21 @@
 
 ## 1. 여덟 단계 따라가기
 
+<FlowSteps
+  caption="FEOL 앞부분 여덟 단계 (a)~(h)"
+  orientation="column"
+  steps={[
+    { id: 'a', label: '(a) 웨이퍼 준비', sub: '300mm · 775μm p형' },
+    { id: 'b', label: '(b) 막 두 겹 형성', sub: 'SiO₂ 열산화 → Si₃N₄ CVD' },
+    { id: 'c', label: '(c) 노광', sub: '레지스트 도포 후 마스크 통과' },
+    { id: 'd', label: '(d) 현상', sub: '레지스트에 패턴이 드러남' },
+    { id: 'e', label: '(e) 홈 파기', sub: '건식 식각 — Si₃N₄·SiO₂·Si' },
+    { id: 'f', label: '(f) 두꺼운 SiO₂', sub: '레지스트 제거 후 전면 CVD' },
+    { id: 'g', label: '(g) CMP', sub: '깎아서 홈 안에만 남김' },
+    { id: 'h', label: '(h) 인 이온 주입', sub: 'Si₃N₄ 제거 후 일부만 덮고', tone: 'accent' },
+  ]}
+/>
+
 | 단계 | 무엇을 | 어떤 공정 |
 |:---:|---|---|
 | (a) | 300mm·775μm <strong>p형 웨이퍼</strong> 준비 | (6장 완성품) |
@@ -57,6 +72,22 @@
 | (h) | Si₃N₄ 제거 → 일부를 덮고 <strong>인 이온 주입</strong> | 리소그래피 + 이온 주입 |
 
 ## 2. 두 가지가 만들어졌다
+
+<LayerStack
+  idPrefix="060-result"
+  caption="여덟 단계가 끝나면 남는 단면"
+  layers={[
+    {
+      id: 'top',
+      label: '표면',
+      tone: 'substrate',
+      height: 26,
+      wells: [{ label: 'STI (홈 속 SiO₂)', tone: 'oxide', side: 'left' }],
+    },
+    { id: 'well', label: '인 주입으로 만든 영역', tone: 'silicon-n', height: 30 },
+    { id: 'sub', label: 'p형 실리콘 기판', tone: 'silicon-p', height: 46 },
+  ]}
+/>
 
 <strong>① 소자 분리 — (e)~(g)</strong>
 

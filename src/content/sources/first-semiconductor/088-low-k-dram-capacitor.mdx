@@ -98,6 +98,16 @@ Low-k 재료의 변천은 유전율이 계단식으로 <strong>내려가요</str
 | 다공성 MSQ | 약 2.1 |
 | **에어갭** (공기) | 약 1 |
 
+<CompareCards
+  caption="목적이 반대라 방향도 반대"
+  columns={[{ title: 'DRAM 용량막', tone: 'accent' }, { title: '층간 절연막', tone: 'oxide' }]}
+  rows={[
+    { aspect: '목적', values: ['전하를 많이 담기', '신호를 빠르게 보내기'] },
+    { aspect: '유전율', values: ['높일수록 좋음', '낮출수록 좋음'] },
+    { aspect: '방향', values: ['SiO₂ → 페로브스카이트', 'SiO₂ → 에어갭'] },
+  ]}
+/>
+
 ## 3. 구멍을 뚫어 유전율을 낮추는 발상
 
 Low-k 재료의 뒤쪽 항목에 붙은 <strong>'다공성'</strong>(porous)이라는 말이 흥미로워요.
@@ -113,6 +123,23 @@ Low-k 재료의 뒤쪽 항목에 붙은 <strong>'다공성'</strong>(porous)이�
 물론 대가가 있어요. 구멍이 많아지면 막이 약해져서 이후 공정(CMP처럼 힘을 주는 공정)을
 버티기 어렵고, 수분이 스며들거나 열이 잘 빠지지 않는 문제도 생겨요. 그래서 유전율을
 낮추는 경쟁은 곧 <strong>기계적 강도와의 타협</strong>이기도 해요.
+
+<ValueBars
+  caption="같은 값을 두고 정반대로 달리는 두 싸움"
+  unit="유전율 ε"
+  scale="log"
+  rows={[
+    { label: 'DRAM 용량막 ↑', value: 4.2, note: 'SiO₂', tone: 'oxide' },
+    { label: '  → Si₃N₄', value: 7.5 },
+    { label: '  → Ta₂O₅', value: 25 },
+    { label: '  → 페로브스카이트', value: 50, note: '초과', tone: 'accent' },
+    { label: '층간 절연막 ↓', value: 4.2, note: 'SiO₂', tone: 'oxide' },
+    { label: '  → SiCOH', value: 3 },
+    { label: '  → 다공성 MSQ', value: 2.1 },
+    { label: '  → 에어갭', value: 1, note: '공기', tone: 'accent' },
+  ]}
+  note="위 넷은 올리는 싸움, 아래 넷은 내리는 싸움 — 출발점은 같은 SiO₂다."
+/>
 
 ## 4. 두 방향을 한 문장으로
 

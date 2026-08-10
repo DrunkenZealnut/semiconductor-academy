@@ -55,6 +55,15 @@ SRAM(트랜지스터 6개)과 비교하면 얼마나 유리한지 짐작되죠. 
 워드선(WL)과 비트선(BL)의 교점에 트랜지스터를 놓는데, 이 트랜지스터들을 어떻게 잇느냐로
 두 갈래가 나와요.
 
+<CompareCards
+  caption="직렬이냐 병렬이냐가 성격을 가른다"
+  columns={[{ title: 'NAND형', tone: 'accent' }, { title: 'NOR형' }]}
+  rows={[
+    { aspect: '접속', values: ['직렬', '병렬'] },
+    { aspect: '강점', values: ['고집적화·저비용', '동작 속도, 주변 회로가 단순'] },
+  ]}
+/>
+
 | | NAND형 | NOR형 |
 |------|------|------|
 | 접속 | 직렬 | 병렬 |
@@ -64,6 +73,25 @@ SRAM(트랜지스터 6개)과 비교하면 얼마나 유리한지 짐작되죠. 
 직렬로 이으면 배선과 접속공이 줄어 빽빽해지지만, 여러 트랜지스터를 거쳐야 하니 속도가
 떨어져요. 병렬은 그 반대죠. 이 갈림길은 다음 항목의 플래시 메모리에도 똑같이 나타나요 —
 대용량 저장 매체가 왜 NAND형인지가 여기서 설명돼요.
+
+<NodeGraph
+  idPrefix="045-array"
+  caption="셀을 잇는 방식이 다르다"
+  grid={[4, 2]}
+  nodes={[
+    { id: 'wl', label: '워드선', kind: 'io', at: [0, 0] },
+    { id: 'nand', label: 'NAND형\n직렬 연결', kind: 'block', at: [1, 0] },
+    { id: 'nor', label: 'NOR형\n병렬 연결', kind: 'block', at: [1, 1] },
+    { id: 'dense', label: '고집적·저비용', kind: 'io', at: [2, 0] },
+    { id: 'fast', label: '빠름·단순', kind: 'io', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'wl', to: 'nand' },
+    { from: 'wl', to: 'nor' },
+    { from: 'nand', to: 'dense' },
+    { from: 'nor', to: 'fast' },
+  ]}
+/>
 
 ## 3. '쓰기'의 세 가지 방법
 

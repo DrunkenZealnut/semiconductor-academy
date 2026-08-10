@@ -47,6 +47,16 @@ NOT 회로는 입력 하나(A), 출력 하나(Y)예요. 논리식은 이렇게 �
 가능한 모든 입력에 대해 출력이 무엇인지 적어 놓은 표를{' '}
 <strong>진리값표</strong>라고 해요. 입력이 하나뿐이니 경우의 수도 둘뿐이에요.
 
+<TruthTable
+  caption="NOT — 들어온 것을 뒤집는다"
+  inputs={['입력 A']}
+  outputs={['출력 Y']}
+  rows={[
+    [0, 1],
+    [1, 0],
+  ]}
+/>
+
 | 입력 A | 출력 Y |
 |:---:|:---:|
 | 0 | 1 |
@@ -63,6 +73,26 @@ NOT 회로는 입력 하나(A), 출력 하나(Y)예요. 논리식은 이렇게 �
 전기 회로의 켜짐·꺼짐으로 그대로 표현된다는 것 — 이게 디지털 회로의 출발점이에요.
 
 ## 3. CMOS로 만든 NOT
+
+<NodeGraph
+  idPrefix="028-not"
+  caption="입력 하나가 두 소자를 반대로 움직인다"
+  grid={[3, 3]}
+  nodes={[
+    { id: 'vdd', label: 'V_DD', kind: 'io', at: [1, 0] },
+    { id: 'p', label: 'pmos: p채널', kind: 'device', at: [1, 1] },
+    { id: 'a', label: '입력 A', kind: 'io', at: [0, 1] },
+    { id: 'y', label: '출력 Y', kind: 'io', at: [2, 1] },
+    { id: 'n', label: 'nmos: n채널', kind: 'device', at: [1, 2] },
+  ]}
+  edges={[
+    { from: 'vdd', to: 'p' },
+    { from: 'p', to: 'y' },
+    { from: 'n', to: 'y' },
+    { from: 'a', to: 'p', style: 'dashed' },
+    { from: 'a', to: 'n', style: 'dashed' },
+  ]}
+/>
 
 실제 칩에서는 <strong>CMOS</strong>로 만들어요. 전원 전압 V_DD를 'H(높음) = 1', 접지
 전압 0V를 'L(낮음) = 0'에 대응시켜요.

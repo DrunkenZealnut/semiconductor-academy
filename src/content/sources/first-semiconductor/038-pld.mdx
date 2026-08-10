@@ -50,6 +50,18 @@
 사용자가 산 뒤에 <strong>외부에서 전기신호로 프로그래밍</strong>해 원하는 로직 LSI로
 바꾸는 방식이죠. 필요한 도구도 비교적 저렴한 CAD 장치예요.
 
+<CompareCards
+  caption="회로를 언제 확정하느냐가 전부를 가른다"
+  columns={[{ title: 'ASIC', tone: 'oxide' }, { title: 'PLD', tone: 'accent' }]}
+  rows={[
+    { aspect: '회로 확정 시점', values: ['제조 시(공장)', '구입 후(사용자)'] },
+    { aspect: '마스크 설계비', values: ['필요', '불필요'] },
+    { aspect: '개발 기간', values: ['김', '짧음'] },
+    { aspect: '칩 단가', values: ['낮음(대량 시)', '높음'] },
+    { aspect: '유리한 상황', values: ['대량 생산', '시작품·소량·검증용'] },
+  ]}
+/>
+
 | | ASIC | PLD |
 |------|------|------|
 | 회로 확정 시점 | 제조 시(공장) | 구입 후(사용자) |

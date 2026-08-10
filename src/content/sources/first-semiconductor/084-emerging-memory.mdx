@@ -43,6 +43,16 @@
 
 4장을 되짚어 보면 메모리마다 잘하는 것과 못하는 것이 뚜렷했어요.
 
+<CompareCards
+  caption="이상적인 메모리라면 둘의 장점만 가져야 한다"
+  columns={[{ title: 'DRAM', tone: 'silicon-n' }, { title: '플래시', tone: 'silicon-p' }]}
+  rows={[
+    { aspect: '비휘발성', values: ['✗ 꺼지면 잊음', '✓'] },
+    { aspect: '쓰기 속도', values: ['빠름 (10ns)', '느림 (1ms 이상)'] },
+    { aspect: '재기입 횟수', values: ['사실상 무제한', '약 10만 회'] },
+  ]}
+/>
+
 | | DRAM | 플래시 |
 |------|------|------|
 | 비휘발성 | ✗ (꺼지면 잊음) | ✓ |

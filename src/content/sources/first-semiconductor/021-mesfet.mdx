@@ -89,6 +89,26 @@ MOS(Metal-Oxide-Semiconductor)와 비교하면 차이가 한눈에 보이죠 —
 
 고출력 GaAs MESFET의 구성을 보면 이래요.
 
+<LayerStack
+  idPrefix="021-mesfet"
+  caption="금속을 반도체에 직접 붙여 게이트로 쓴다"
+  layers={[
+    {
+      id: 'top',
+      label: '전극층',
+      tone: 'substrate',
+      height: 30,
+      wells: [
+        { label: '소스 (옴 접촉)', tone: 'metal', side: 'left' },
+        { label: '게이트 (쇼트키)', tone: 'accent', side: 'center' },
+      ],
+    },
+    { id: 'ch', label: '채널층 n-GaAs — 전자가 흐르는 길', tone: 'silicon-n', height: 34 },
+    { id: 'sub', label: '반절연성 GaAs 기판 — 소자 간 격리', tone: 'substrate', height: 44 },
+  ]}
+  annotations={[{ at: 'top/ch', text: '절연막이 없다 —\n금속이 반도체에 직접 닿는다' }]}
+/>
+
 | 부분 | 재료 | 역할 |
 |---|---|---|
 | 기판 | 반절연성 GaAs (s.i. GaAs) | 소자 간 격리 |

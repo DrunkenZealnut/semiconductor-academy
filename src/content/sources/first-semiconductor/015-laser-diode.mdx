@@ -62,6 +62,17 @@
 014의 LED와 재결합으로 빛을 낸다는 점은 같아요. 결정적 차이는{' '}
 <strong>빛을 어떻게 다루느냐</strong>예요.
 
+<LayerStack
+  idPrefix="015-laser"
+  caption="굴절률이 큰 활성층을 작은 층으로 감싸 빛을 가둔다"
+  layers={[
+    { id: 'p', label: 'p형 장벽층(클래딩) — 굴절률 작음', tone: 'silicon-p', height: 34 },
+    { id: 'act', label: '활성층 — 여기서 빛이 발생 (굴절률 큼)', tone: 'accent', height: 22 },
+    { id: 'n', label: 'n형 장벽층(클래딩) — 굴절률 작음', tone: 'silicon-n', height: 34 },
+  ]}
+  annotations={[{ at: 'act', text: '굴절률 차이가\n빛을 가두는 벽' }]}
+/>
+
 | 층 | 역할 | 굴절률 |
 |---|---|---|
 | p형 <strong>장벽층</strong>(클래딩) | 양공을 공급 | 작음 |

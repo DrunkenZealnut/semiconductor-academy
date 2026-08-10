@@ -74,7 +74,26 @@
 이렇게 만든 것이 <strong>에피 웨이퍼</strong>예요. 새로 자란 층에는 COP가 없으니 그 위에
 회로를 만들면 되죠. 054에서 다결정 실리콘을 만들 때 쓴 CVD와 같은 계열의 기술이에요.
 
+<LayerStack
+  idPrefix="058-epi"
+  caption="에피 웨이퍼 — 위에 한 겹 새로 키운다"
+  layers={[
+    { id: 'epi', label: '에피택셜층 — 결함 없는 새 결정', tone: 'silicon-n', height: 24 },
+    { id: 'sub', label: '프라임 웨이퍼 (COP 등 결함 있음)', tone: 'substrate', height: 56 },
+  ]}
+/>
+
 ## 3. SOI — 절연막을 속에 묻는다
+
+<LayerStack
+  idPrefix="058-soi"
+  caption="SOI — 절연막을 속에 묻는다"
+  layers={[
+    { id: 'top', label: '소자를 만드는 실리콘층', tone: 'silicon-n', height: 22 },
+    { id: 'box', label: '매립 산화막 (BOX)', tone: 'oxide', height: 20 },
+    { id: 'base', label: '지지 기판', tone: 'substrate', height: 44 },
+  ]}
+/>
 
 전혀 다른 방향의 진화도 있어요. <strong>SOI</strong>(Silicon On Insulator, 절연막 위의
 실리콘)예요.

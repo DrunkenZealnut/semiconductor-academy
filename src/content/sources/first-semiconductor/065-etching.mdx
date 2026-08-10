@@ -92,6 +92,34 @@
 
 ## 4. 어디에 무엇을 쓰나
 
+<LayerStack
+  idPrefix="065-etch"
+  caption="같은 '깎기'라도 파이는 모양이 다르다"
+  note="건식은 아래로만, 습식은 사방으로 — 마스크 아래까지 파고든다."
+  layers={[
+    {
+      id: 'mask',
+      label: '마스크(포토레지스트)',
+      tone: 'resist',
+      height: 22,
+      wells: [{ label: '열린 창', tone: 'substrate', side: 'center' }],
+    },
+    { id: 'film', label: '깎이는 막', tone: 'oxide', height: 42 },
+    { id: 'sub', label: '기판', tone: 'substrate', height: 34 },
+  ]}
+  annotations={[{ at: 'film', text: '건식: 창 아래로만 수직\n습식: 옆으로도 퍼짐' }]}
+/>
+
+<CompareCards
+  caption="가스로 깎느냐, 액체로 녹이느냐"
+  columns={[{ title: '건식 식각', tone: 'accent' }, { title: '습식 식각', tone: 'oxide' }]}
+  rows={[
+    { aspect: '방향성', values: ['이방성 — 아래로만 파짐', '등방성 — 사방으로 퍼짐'] },
+    { aspect: '손상', values: ['있을 수 있음', '거의 없음'] },
+    { aspect: '주 용도', values: ['고정밀 미세 패턴', '웨이퍼 전면 제거 등'] },
+  ]}
+/>
+
 | | 건식 식각 | 습식 식각 |
 |---|---|---|
 | 방향성 | <strong>이방성</strong>(아래로만 파짐) | <strong>등방성</strong>(사방으로 퍼짐) |

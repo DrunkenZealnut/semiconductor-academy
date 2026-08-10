@@ -51,6 +51,19 @@
 > 트랩에 가두는 전하 트랩 방식</strong>(CTF)을 주로 쓰고, 프로그램·소거의 전하 이동 방식도
 > 달라요. 아래 설명은 부유 게이트 계열의 동작으로 읽어 주세요.
 
+<LayerStack
+  idPrefix="046-flash"
+  caption="게이트가 두 층 — 아래층은 사방이 절연막"
+  layers={[
+    { id: 'cg', label: '제어 게이트 (CG) — 외부에서 조작', tone: 'poly', height: 26 },
+    { id: 'ono', label: '절연막', tone: 'oxide', height: 14 },
+    { id: 'fg', label: '부유 게이트 (FG) — 어디에도 연결되지 않는다', tone: 'accent', height: 24 },
+    { id: 'tox', label: '터널 절연막', tone: 'oxide', height: 14 },
+    { id: 'sub', label: '실리콘 기판', tone: 'silicon-p', height: 44 },
+  ]}
+  annotations={[{ at: 'fg', text: '전자가 여기 갇히면\n전원을 끊어도 남는다' }]}
+/>
+
 | 층 | 이름 | 성격 |
 |------|------|------|
 | 위 | 제어 게이트 (CG) | 일반적인 게이트 역할 — 외부에서 전압을 걸어 조작 |

@@ -41,6 +41,18 @@
 
 <strong>Y = A · B</strong> ("Y는 A 앤드 B")
 
+<TruthTable
+  caption="AND — 1이 되는 줄은 맨 아래 하나뿐"
+  inputs={['입력 A', '입력 B']}
+  outputs={['출력 Y']}
+  rows={[
+    [0, 0, 0],
+    [0, 1, 0],
+    [1, 0, 0],
+    [1, 1, 1],
+  ]}
+/>
+
 | 입력 A | 입력 B | 출력 Y |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
@@ -66,6 +78,27 @@ OR과 정확히 거울상이에요. OR은 "0이 되는 줄이 하나", AND는{' 
 | AND | 직렬(한 줄로) | 모든 길이 다 열려야 통함 |
 
 ## 3. CMOS로 만든 AND
+
+<NodeGraph
+  idPrefix="030-and"
+  caption="NAND를 만들고 뒤집는 2단 구성"
+  grid={[5, 3]}
+  nodes={[
+    { id: 'a', label: 'A', kind: 'io', at: [0, 0] },
+    { id: 'b', label: 'B', kind: 'io', at: [0, 2] },
+    { id: 'nand', label: 'NAND 부', kind: 'block', at: [1, 1] },
+    { id: 'x', label: 'X', kind: 'io', at: [2, 1] },
+    { id: 'not', label: 'NOT 부', kind: 'block', at: [3, 1] },
+    { id: 'y', label: 'Y', kind: 'io', at: [4, 1] },
+  ]}
+  edges={[
+    { from: 'a', to: 'nand' },
+    { from: 'b', to: 'nand' },
+    { from: 'nand', to: 'x' },
+    { from: 'x', to: 'not' },
+    { from: 'not', to: 'y' },
+  ]}
+/>
 
 OR과 마찬가지로 두 부분 구조예요. 앞부분이 <strong>AND의 반대(NAND)</strong>를 만들고,
 뒷부분 NOT이 그걸 뒤집어 AND를 완성해요.

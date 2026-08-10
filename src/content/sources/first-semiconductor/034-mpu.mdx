@@ -54,6 +54,19 @@
 
 MPU의 기본 설계사양을 <strong>아키텍처</strong>라고 해요. 크게 두 갈래예요.
 
+<CompareCards
+  caption="두 갈래 설계 철학"
+  columns={[{ title: 'CISC', tone: 'oxide' }, { title: 'RISC', tone: 'accent' }]}
+  rows={[
+    { aspect: '지향', values: ['기능 중시', '고속성 중시'] },
+    { aspect: '명령 세트', values: ['다기능·다양함', '기본적이고 개수가 적음'] },
+    { aspect: '명령 길이', values: ['가변', '고정'] },
+    { aspect: '하드웨어', values: ['복잡 (부담 큼)', '간단 (부담 작음)'] },
+    { aspect: '소프트웨어', values: ['부담 작음', '부담 큼'] },
+    { aspect: '주 무대', values: ['개인용 컴퓨터의 규격형 MPU', '워크스테이션·서버·게임기'] },
+  ]}
+/>
+
 | | CISC (복합 명령 세트) | RISC (축소 명령 세트) |
 |------|------|------|
 | 지향 | 기능 중시 | 고속성 중시 |

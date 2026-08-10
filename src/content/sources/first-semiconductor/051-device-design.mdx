@@ -48,6 +48,21 @@
 
 CMOS-IC의 단면을 층별로 보면 이런 항목들을 정해야 해요.
 
+<LayerStack
+  idPrefix="051-stack"
+  caption="아래에서 위로 정해 나가는 단면"
+  layers={[
+    { id: 'pass', label: '⑧ 보호막 (SiON 등)', tone: 'oxide', height: 20 },
+    { id: 'wire', label: '⑦ 배선 (Al 등)', tone: 'metal', height: 22 },
+    { id: 'barrier', label: '⑥ 장벽층 (Ti, TiN)', tone: 'metal', height: 14 },
+    { id: 'ild', label: '⑤ 층간 절연막', tone: 'oxide', height: 22 },
+    { id: 'dev', label: '③④ n채널·p채널 MOS', tone: 'poly', height: 26 },
+    { id: 'well', label: '② 우물층', tone: 'silicon-n', height: 24 },
+    { id: 'sub', label: '① 실리콘 기판 — p형/n형, 저항률, 산소 농도', tone: 'silicon-p', height: 34 },
+  ]}
+  note="⑨ 소자 분리(깊이·몰딩 막)는 이 단면을 세로로 가르며 들어간다."
+/>
+
 | # | 요소 | 정하는 값 |
 |:--:|---|---|
 | 1 | 실리콘 기판 | p형/n형, <strong>저항률</strong>, 산소 농도 |
