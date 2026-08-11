@@ -47,6 +47,10 @@ export function ScaleRuler({ marks, refs = [], caption, note, altTable }: Props)
         aria-label={caption ?? '크기 비교 눈금'}
       >
         <title>{caption ?? '크기 비교 눈금'}</title>
+        <desc>
+          {`로그 눈금 위 ${marks.map((m) => m.label).join(', ')}` +
+            (refs.length ? `. 참조: ${refs.map((r) => r.label).join(', ')}` : '')}
+        </desc>
 
         <line
           x1={DIM.pad}

@@ -91,13 +91,15 @@ III족 불순물(붕소)을 넣으면 반대쪽에 준위가 생겨요 —{' '}
 
 <LayerStack
   idPrefix="008-levels"
+  orientation="band"
   caption="불순물 준위는 금지대역 '가장자리'에 놓인다"
+  note="띠(전도띠·충만띠)와 달리 도너·억셉터는 폭이 거의 없는 '준위'라 강조색으로 구분했다."
   layers={[
-    { id: 'cond', label: '전도띠', tone: 'silicon-n', height: 26 },
+    { id: 'cond', label: '전도띠', tone: 'band-conduction', height: 26 },
     { id: 'donor', label: '주개(도너) 준위 — 전도띠 바로 아래 44~49meV', tone: 'accent', height: 18 },
-    { id: 'gap', label: '금지대역', tone: 'oxide', height: 34 },
+    { id: 'gap', label: '금지대역', tone: 'band-gap', height: 34 },
     { id: 'acceptor', label: '받개(억셉터) 준위 — 충만띠 바로 위 45meV', tone: 'accent', height: 18 },
-    { id: 'val', label: '충만띠', tone: 'silicon-p', height: 26 },
+    { id: 'val', label: '충만띠', tone: 'band-valence', height: 26 },
   ]}
 />
 

@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, STROKE, TEXT, TEXT_MUTED } from './tokens';
+import { DIM, TONE, STROKE, TEXT, TEXT_MUTED } from './tokens';
 import type { DiagramCommon } from './types';
 
 type Center = 'Si' | 'P' | 'B' | 'As' | 'Ga';
@@ -64,6 +64,12 @@ export function LatticeDiagram({
         aria-label={caption ?? `${center} 원자의 결합 구조`}
       >
         <title>{caption ?? `${center} 원자의 결합 구조`}</title>
+        <desc>
+          {`${center} 원자와 이웃 실리콘 ${bonded}개의 공유 결합.` +
+            (spare ? ' 다섯 번째 손의 전자가 결합에 쓰이지 않고 남는다.' : '') +
+            (vacancy ? ' 손이 하나 모자라 빈자리(양공)가 생긴다.' : '') +
+            (arrangement !== 'crystal' ? ` 배열: ${arrangement === 'poly' ? '다결정' : '비정질'}.` : '')}
+        </desc>
 
         {neighbors.map((n, i) => {
           const nx = cx + n.dx + n.jx;
@@ -94,7 +100,7 @@ export function LatticeDiagram({
                 cx={nx}
                 cy={ny}
                 r={R}
-                className={`fill-slate-200 ${STROKE} dark:fill-slate-700`}
+                className={`${TONE.substrate.fill} ${STROKE}`}
                 strokeWidth={DIM.stroke}
               />
               <text
@@ -133,7 +139,7 @@ export function LatticeDiagram({
           cx={cx}
           cy={cy}
           r={R + 3}
-          className={`${isDopant ? 'fill-brand-500/20' : 'fill-slate-200 dark:fill-slate-700'} ${STROKE}`}
+          className={`${isDopant ? 'fill-brand-500/20' : TONE.substrate.fill} ${STROKE}`}
           strokeWidth={isDopant ? DIM.stroke * 2 : DIM.stroke}
         />
         <text x={cx} y={cy + 5} fontSize={DIM.font + 1} textAnchor="middle" className={TEXT}>

@@ -23,5 +23,5 @@ export { ScaleRuler } from './ScaleRuler';
 export { LabeledFigure } from './LabeledFigure';
 
 export { DiagramFrame } from './DiagramFrame';
-export { DIM, TONE, type Tone } from './tokens';
+export { DIM, TONE, NODE_KIND, type Tone, type NodeKind } from './tokens';
 export type { DiagramCommon, SvgDiagramCommon } from './types';

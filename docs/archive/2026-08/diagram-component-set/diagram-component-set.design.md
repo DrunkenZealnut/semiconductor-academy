@@ -254,18 +254,20 @@ interface DiagramCommon {
 
 | # | 컴포넌트 | props (공통 props 외) |
 |:--:|---|---|
-| 1 | `LayerStack` | `layers: {id, label, tone, height?, wells?: {label, tone, side?}[]}[]`, `orientation?: 'vertical'\|'band'`, `annotations?: {at: LayerId \| \`${LayerId}/${LayerId}\`, text}[]` — `at`은 **층 `id` 또는 두 층 경계**(`'gate/oxide'`) |
+| 1 | `LayerStack` | `layers: {id, label, tone, height?, wells?: {label, tone, side?}[]}[]`, `orientation?: 'vertical'\|'band'` ✅ **구현 완료**(diagram-set-finishing), `annotations?: {at, text}[]` — `at`은 **층 id**(`'oxide'`) **또는 두 층 경계**(`'oxide/substrate'`) |
 | 2 | `FlowSteps` | `steps: Step[]`(`Step = {id, label, sub?, tone?}`), `loop?: {from: StepId, to: StepId, label}`, `branch?: {at: StepId, label, steps: Step[]}[]` — 분기 자식도 `Step`, 최상위 `steps`와 **중복 기재 금지**, `orientation?: 'auto'\|'row'\|'column'` |
 | 3 | `CompareCards` | `columns: {title, tone?}[]`, `rows: {aspect, values: ReactNode[]}[]`, `emphasis?: number[]` |
-| 4 | `TruthTable` | `inputs: string[]`, `outputs: string[]`, `rows: (0\|1)[][]`, `highlight?: (row) => boolean` — **0/1만** 담는다. 정성값 표(`'0 (GND에 연결)'` 등)는 `NodeGraph` 라벨이나 `CompareCards`로 보낸다 |
-| 5 | `ValueBars` | `rows: {label, value?, range?: [min,max], note?}[]`(`value`·`range` 택일), `unit`, `scale?: 'linear'\|'log'`, `direction?: 'up'\|'down'\|'diverging'` — `range`는 001 저항률 구간·067 온도대처럼 **구간이 논지**인 배정에 필수 |
+| 4 | `TruthTable` | `inputs: string[]`, `outputs: string[]`, `rows: (0\|1)[][]`, `highlight?: 0\|1\|null`(강조할 출력값. 함수형에서 단순화 — 서버 컴포넌트 간 함수 전달을 피한다) — **0/1만** 담는다. 정성값 표(`'0 (GND에 연결)'` 등)는 `NodeGraph` 라벨이나 `CompareCards`로 보낸다 |
+| 5 | `ValueBars` | `rows: {label, value?, range?: [min,max], note?, tone?: Tone}[]`(`value`·`range` 택일), `unit`, `scale?: 'linear'\|'log'`, `direction?: 'up'\|'down'\|'diverging'` — `range`는 001 저항률 구간·067 온도대처럼 **구간이 논지**인 배정에 필수 |
 | 6 | `ScaleRuler` | `marks: {label, meters}[]`, `refs?: {label, meters}[]` (일상 기준 병기) |
-| 7 | `NodeGraph` | `nodes: {id, label, kind: 'block'\|'device'\|'io', at?: [col,row]}[]`, `edges: {from, to, label?, style?}[]`, `grid?: [cols,rows]` |
-| 8 | `TreeBranch` | `root: string`, `branches: {label, children?: (string\|{label, children})[]}[]`, `depth?: 2\|3` |
-| 9 | `CurvePlot` | `axes: {x: {label, ticks?}, y: {label, ticks?}}`, `curves: {label, points: [number,number][], tone?}[]`, `markers?: {at, label}[]` |
-| 10 | `LatticeDiagram` | `center: 'Si'\|'P'\|'B'\|…`, `arrangement?: 'crystal'\|'poly'\|'amorphous'`, `highlight?: 'free-electron'\|'hole'\|null` |
-| 11 | `Timeline` | `events: {year, label, note?}[]`, `span?: [from,to]`, `emphasis?: number[]` |
-| 12 | `LabeledFigure` | `children: ReactNode`(인라인 SVG), `labels: {x, y, text, anchor?}[]`, `viewBox` |
+| 7 | `NodeGraph` | `nodes: {id, label, kind?: 'block'\|'device'\|'io'(기본 block), at: [col,row](필수 — 자동 배선을 하지 않으므로 좌표가 반드시 필요)}[]`, `edges: {from, to, label?, style?}[]`, `grid?: [cols,rows]` |
+| 8 | `TreeBranch` | `root: string`, `branches: {label, note?, children?: (string\|{label, note?, children?})[]}[]`, `depth?: 2\|3` |
+| 9 | `CurvePlot` | `axes: {x: {label, ticks?}, y: {label, ticks?}}`, `curves: {label, points: [number,number][], emphasis?: boolean}[]`(색 대신 강조 여부 — 곡선은 tone 팔레트가 아니라 강조/보통 2단만 쓴다), `markers?: {at, label}[]` |
+| 10 | `LatticeDiagram` | `center?: 'Si'\|'P'\|'B'\|'As'\|'Ga'`(기본 `'Si'`), `arrangement?: 'crystal'\|'poly'\|'amorphous'`, `highlight?: 'free-electron'\|'hole'\|null` |
+| 11 | `Timeline` | `events: {year, label, note?}[]`, `emphasis?: number[]` — ~~`span?`~~ **삭제**(diagram-set-finishing): 사용처 2곳이 전부 이벤트 목록만 쓰고, 세로 목록 렌더에는 시간 축 자체가 없어 현행 모델과 맞지 않는다 |
+| 12 | `LabeledFigure` | `children: ReactNode`(인라인 SVG), `labels?: {x, y, text, pointTo?: [x,y], anchor?}[]`, `viewBox?`, `desc?`(생략 시 labels 텍스트 나열) |
+
+> ✏️ **2026-08-11 `diagram-set-finishing` G-7 정정**: 위 표 7행을 **구현에 맞춰** 고쳤다(`TruthTable.highlight`·`NodeGraph.kind/at`·`CurvePlot.emphasis`·`LabeledFigure`·`ValueBars.tone`·`TreeBranch.note`·`LatticeDiagram.center`). 구현이 설계보다 나은 판단을 한 곳은 그 근거를 괄호에 남겼다. 이로써 **시그니처만 있고 미구현인 prop 0건**이 된다.
 
 ### 2.3 `CurvePlot` 데이터 출처 규약
 
@@ -304,7 +306,9 @@ interface DiagramCommon {
 
 `viewBox` 기준 폭 **640**, 층 높이 **40**, 선 굵기 **1.5**, 모서리 반경 **4**, 여백 **16**. 전 컴포넌트가 이 값을 참조해 나란히 놓았을 때 굵기·글자가 어긋나지 않게 한다.
 
-**글자 크기**: 사이트에 본문 글자 토글이 있다(`globals.css`의 `.font-sm/md/lg .prose` → 16/18/21px, `FontSizeToggle`). 도해는 `.prose` 안에 렌더되므로 라벨을 px로 고정하면 토글과 어긋난다 → SVG `<text>`는 `font-size: 0.8em` 같은 **상대 단위**를 쓰고, `viewBox` 좌표계가 아니라 CSS로 크기를 준다.
+**글자 크기** — ✏️ **2026-08-11 계약 확정** (`diagram-set-finishing` C-1): **viewBox 절대 단위를 쓴다.** 본문 글자 토글(`globals.css`의 `.font-sm/md/lg .prose`, `FontSizeToggle`)과 **연동하지 않는다**.
+
+> 초판은 `0.8em` 같은 상대 단위를 지시했으나 구현이 절대값을 택했고, 그 판단이 기록되지 않은 것이 Gap의 실체였다. 확정 근거: SVG 내부에서 `em`은 부모의 **CSS px**를 참조하는데 `viewBox`는 **사용자 좌표계**다. 둘을 섞으면 도해가 스케일로 작아져도 글자는 그대로여서 375px에서 라벨이 도형을 넘친다. 접근성은 ⓐ 브라우저 확대(SVG는 벡터라 무손실) ⓑ 표 병치·`altTable`의 텍스트 대안으로 확보한다.
 
 **긴 라벨**: SVG `<text>`는 자동 줄바꿈이 없다. 라벨은 **12자 이내**를 원칙으로 하고, 넘치면 저작자가 `label`에 `\n`을 넣어 `<tspan>`으로 분할한다(컴포넌트가 `\n` 기준으로 나눈다). "게이트 절연막 SiO₂"처럼 불가피하게 긴 라벨은 층 밖 지시선(`annotations`)으로 뺀다.
 
@@ -312,7 +316,7 @@ interface DiagramCommon {
 
 ## 4. 접근성 · 다크모드 · 반응형 규약
 
-- **접근성**: 루트 `<svg role="img" aria-labelledby>` + `<title>`·`<desc>`. 그리고 도해 아래 `<details><summary>표로 보기</summary>`에 **동일 정보의 표**를 넣는다(`altTable`). 도해 안 글자는 `<text>`로 넣어 선택·검색 가능. `altTable`이 렌더하는 `<table>`은 `mdx-components.tsx`의 마크다운 `table` 래핑(`overflow-x-auto`)을 타지 않으므로 **컴포넌트가 직접 같은 래퍼를 붙인다**.
+- **접근성**: 루트 `<svg role="img" aria-label>` + `<title>`·`<desc>` (✏️ 2026-08-11: `aria-labelledby`는 6종 전부에 내부 id를 요구해 V-3의 `idPrefix` 2종 축소와 충돌한다 → `aria-label` 유지, `<desc>`는 데이터에서 자동 생성). 그리고 도해 아래 `<details><summary>표로 보기</summary>`에 **동일 정보의 표**를 넣는다(`altTable`). 도해 안 글자는 `<text>`로 넣어 선택·검색 가능. `altTable`이 렌더하는 `<table>`은 `mdx-components.tsx`의 마크다운 `table` 래핑(`overflow-x-auto`)을 타지 않으므로 **컴포넌트가 직접 같은 래퍼를 붙인다**.
 - **다크모드**: Tailwind `dark:` 유틸만 사용. SVG에 하드코딩 색 금지 — 위반 시 다크에서 대비가 깨진다.
 - **반응형**: `viewBox` + `w-full h-auto`. `FlowSteps`는 `orientation: 'auto'`에서 `sm:` 미만이면 세로 배치. 넓은 도해(`CompareCards` 다열, `NodeGraph`)는 `overflow-x-auto` 컨테이너로 감싸 **본문이 가로 스크롤되지 않게** 한다.
   > ⚠️ 이는 Plan NFR-5("모바일 375px에서 가로 스크롤 없음 — 전 도해")의 **완화**다. 도해 자체는 자기 컨테이너 안에서 스크롤될 수 있고, 금지되는 것은 **페이지 본문의 가로 스크롤**이다. 640 폭 단면도를 375px에 욱여넣으면 라벨이 읽히지 않으므로 이 편이 낫다고 판단했다. G-1이 "본문 가로 스크롤 0"을 측정한다.
@@ -424,7 +428,7 @@ interface DiagramCommon {
 
 > 초판은 "030 진리표 3개"라고 적었으나 실제로는 **진리표 1개 + 대조표 1 + 상태표 1**이다(design-validator M-1). 대조표는 §1.2에서 030에 `CompareCards`를 배정하지 않았으므로 **표로 남긴다** — 세 표를 모두 도해로 바꾸지 않는다는 뜻이며, 이것이 하한 방어에도 유리하다.
 
-**방침**: §5.1 측정 기준에 예외를 추가한다 — **도해로 대체된 표는 원래 자수를 그대로 산입**한다(`altTable`에 동일 정보가 남으므로 정보량은 줄지 않는다).
+**방침**: §5.1 측정 기준에 예외를 추가한다 — **도해로 대체된 표는 원래 자수를 그대로 산입**한다. 대부분은 **표를 지우지 않고 도해와 병치**하고(89모듈), 실제로 대체한 경우에만 `altTable`에 같은 표를 남기므로 어느 쪽이든 정보량이 줄지 않는다. (✏️ 2026-08-11 `diagram-set-finishing` C-2 — 초판은 근거를 `altTable`로만 적었다.)
 
 **재현성 확보**: "원래 자수"가 파일 밖 기억에만 있으면 §5.1이 재계산 불가능해진다(design-validator M-4). Do 착수 **전에** 97모듈 자수를 측정해 `docs/02-design/features/diagram-component-set.baseline.md`에 표로 고정하고, 이후 판정은 `현재 자수 + baseline 대비 도해 대체분`으로 한다. 측정 방법은 §5.1 문단과 동일(공백·JSX·마크다운 기호 제외).
 
