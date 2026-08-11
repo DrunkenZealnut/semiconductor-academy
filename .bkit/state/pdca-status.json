@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-11T04:02:15.000Z",
+  "lastUpdated": "2026-08-11T13:30:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1107,7 +1107,7 @@
       "autoAdvanced": true
     },
     "diagram-set-finishing": {
-      "phase": "check",
+      "phase": "completed",
       "matchRate": 97.3,
       "iterationCount": 0,
       "startedAt": "2026-08-11T01:43:42.000Z",
@@ -1131,7 +1131,17 @@
       "branch": "feat/diagram-set-finishing",
       "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/30",
       "commit": "75c9ff6",
-      "diffStat": "+680/-68 · 20 files"
+      "diffStat": "+680/-68 · 20 files",
+      "previousPhase": "check",
+      "completedAt": "2026-08-11T13:30:00.000Z",
+      "documents": {
+        "plan": "docs/01-plan/features/diagram-set-finishing.plan.md",
+        "design": "docs/02-design/features/diagram-set-finishing.design.md",
+        "analysis": "docs/03-analysis/diagram-set-finishing.analysis.md",
+        "report": "docs/04-report/diagram-set-finishing.report.md"
+      },
+      "reportSummary": "Match Rate 97.3%(48항목 중 46.70) · Act 0 — Check 안에서 즉시수정 7건으로 종결. 6건 전량 처리: 구현 2(LayerStack band 모드+밴드 tone 3종·SVG 6종 <desc> 자동생성) · 정리 2(Timeline.span 시그니처 삭제·tokens 우회 2건 상수화) · 계약 확정 2(C-1 viewBox 절대단위 확정 토글 미연동 · C-2 표 병치를 altTable 대안으로 명문화). 코드 +130/-36(10파일) vs 문서 +492/-25(8파일) — 사이클의 절반이 문서를 실제에 맞추는 일. Report 단계에서 전 게이트 재실측: typecheck 0 · lint diagram 0 · First Load JS 102kB · SSG 393/393(prerender HTML 389) · 019 rx=\"4\" 9건 유지(vertical 무회귀) · 007 패턴참조 0·rx=\"0\" 3·<desc> 렌더 · 008 rx=\"0\" 5 · 055·080 <desc> fallback 확인. Report 단계 발견·수정 1건: Plan DoD \"G-1·G-3 육안확인 목록 정리\"가 미이행 — Check M-4가 백로그 완료표시만 갱신하고 육안확인 줄을 손대지 않아 렌더가 바뀐 007·008이 인계 목록에서 빠져 있었다 → _INDEX.md에 007·008 우선 항목 + 확인 지점 4개(rx=0 구분·E축 겹침·점선 빈공간 가독·밴드 tone 50/950 다크 대비) 추가. 잔존 Low 2(L-2 tone 문자열 분기·L-3 화살촉 색 리터럴) 의도적 보류, L-4는 개선으로 재분류. Positive 5(문서정정 8건>목록 6건·desc 최소규칙 초과·band 접두어 분기·tokens 주석 근거·M-2 잠복버그 선차단). CodeRabbit PR #30 4건 전량 반영. 교훈: 자기 검증 스크립트를 믿지 말 것 — Do ⑦의 props 대조 스크립트가 \"불일치 0\"을 냈으나 gap-detector가 7행 불일치 적발(optional prop만 얕게 훑고 제외목록 과도). 선행 사이클도 자기검증 4번 실패 — \"판정 스크립트 양성 대조군\" 백로그 유지. 미완: 007·008 육안 확인(로그인 게이트 뒤·사람만 가능, 밴드 tone 다크 대비 최우선). Claude 초벌 — 밴드 에너지 폭 비율은 원문 근거 없이 시각적 균형으로 배분, 사람 검수 권장.",
+      "remainingBacklog": "L-2 ToneStyle.dashed 추상화(밴드 3종·분기 1곳이라 현재 과설계) · L-3 ARROW_FILL 상수(2곳) · 007·008 육안 확인(사람) · Gap 판정 스크립트 양성 대조군(선행 백로그 유지) · 도해 타 자료원 확대(213모듈+책 17장)"
     }
   },
   "pipeline": {
