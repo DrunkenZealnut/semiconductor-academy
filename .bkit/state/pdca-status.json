@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-10T14:00:55.000Z",
+  "lastUpdated": "2026-08-11T02:55:45.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -32,9 +32,10 @@
     "safedata-injection Gap 분석",
     "menu-재구성",
     "새로운책등록",
-    "diagram-component-set — Match Rate 78.1%"
+    "diagram-component-set — Match Rate 78.1%",
+    "diagram-set-finishing"
   ],
-  "primaryFeature": null,
+  "primaryFeature": "diagram-set-finishing",
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -1104,6 +1105,29 @@
       },
       "previousPhase": "check",
       "autoAdvanced": true
+    },
+    "diagram-set-finishing": {
+      "phase": "check",
+      "matchRate": 97.3,
+      "iterationCount": 0,
+      "startedAt": "2026-08-11T01:43:42.000Z",
+      "planDoc": "docs/01-plan/features/diagram-set-finishing.plan.md",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 (diagram-component-set 파생) 6건",
+      "inherits": "diagram-component-set(93.6%) — 12종 신설 + 97모듈 적용 후 남긴 미완",
+      "notes": "구현 2(band 모드·<desc>) · 정리 2(Timeline.span 삭제·tokens 우회) · 계약 확정 2(글자 크기·altTable). 도해 확대 전 계약 고정이 목적. G-1·G-3 육안 확인은 비목표(사람만 가능)",
+      "designDoc": "docs/02-design/features/diagram-set-finishing.design.md",
+      "contracts": "C-1 글자 크기 viewBox 절대 단위 확정(토글 미연동) · C-2 표 병치를 altTable 대안으로 명문화 — 둘 다 코드 변경 없이 문서를 실제에 맞추는 항목",
+      "doProgress": {
+        "step1_tokens": "done — 밴드 tone 3종(band-conduction/gap/valence) + NODE_KIND 이관",
+        "step2_band": "done — LayerStack orientation='band' (rx=0 · 에너지 축 · 금지대역 점선 · 패턴 미적용)",
+        "step3_007_008": "done — silicon-n/p·oxide 오용을 band-* tone으로 교정, 008 준위는 accent 유지",
+        "step4_desc": "done — SVG 6종 전부 데이터 자동 생성 <desc>",
+        "step5_cleanup": "done — Timeline.span 문서 삭제, NodeGraph.KIND_FILL·LatticeDiagram 리터럴 → tokens 참조",
+        "step6_docs": "done — 선행 Design 4건 · 선행 Plan FR-8 · first-semiconductor §5.1 · usage.md 3건",
+        "step7_gates": "done — G-1~G-7 전부 통과"
+      },
+      "analysisDoc": "docs/03-analysis/diagram-set-finishing.analysis.md",
+      "checkNote": "1차 84.0% → Check 중 즉시수정 7건 반영 97.3%. G-7(props 표 7행 불일치)은 Do 단계 자기검증 스크립트가 놓친 것 — 선행 백로그 \"판정 스크립트 양성 대조군\"의 필요성 재확인"
     }
   },
   "pipeline": {
@@ -1249,6 +1273,26 @@
         "phase": "archived",
         "feature": "diagram-component-set",
         "at": "2026-08-10T14:00:55.000Z"
+      },
+      {
+        "phase": "plan",
+        "feature": "diagram-set-finishing",
+        "at": "2026-08-11T01:43:42.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "diagram-set-finishing",
+        "at": "2026-08-11T02:09:17.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "diagram-set-finishing",
+        "at": "2026-08-11T02:11:59.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "diagram-set-finishing",
+        "at": "2026-08-11T02:55:45.000Z"
       }
     ]
   },
@@ -4059,6 +4103,34 @@
       "at": "2026-08-10T14:00:55.000Z",
       "matchRate": 93.6,
       "archivedTo": "docs/archive/2026-08/diagram-component-set/"
+    },
+    {
+      "feature": "diagram-set-finishing",
+      "event": "plan",
+      "at": "2026-08-11T01:43:42.000Z",
+      "doc": "docs/01-plan/features/diagram-set-finishing.plan.md"
+    },
+    {
+      "feature": "diagram-set-finishing",
+      "event": "design",
+      "at": "2026-08-11T02:09:17.000Z",
+      "doc": "docs/02-design/features/diagram-set-finishing.design.md"
+    },
+    {
+      "feature": "diagram-set-finishing",
+      "event": "do",
+      "at": "2026-08-11T02:11:59.000Z"
+    },
+    {
+      "feature": "diagram-set-finishing",
+      "event": "do_done",
+      "at": "2026-08-11T02:16:37.000Z"
+    },
+    {
+      "feature": "diagram-set-finishing",
+      "event": "check",
+      "at": "2026-08-11T02:55:45.000Z",
+      "matchRate": 97.3
     }
   ]
 }

@@ -1,8 +1,6 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, STROKE, TEXT, TEXT_MUTED, splitLabel } from './tokens';
+import { DIM, STROKE, TEXT, TEXT_MUTED, splitLabel, NODE_KIND, type NodeKind } from './tokens';
 import type { SvgDiagramCommon } from './types';
-
-type NodeKind = 'block' | 'device' | 'io';
 
 interface Node {
   id: string;
@@ -30,12 +28,6 @@ interface Props extends SvgDiagramCommon {
 const CELL_H = 72;
 const NODE_H = 40;
 
-const KIND_FILL: Record<NodeKind, string> = {
-  block: 'fill-slate-100 dark:fill-slate-800',
-  device: 'fill-violet-100 dark:fill-violet-950',
-  io: 'fill-brand-500/10 dark:fill-brand-500/20',
-};
-
 const DEVICE_PREFIX = /^(nmos|pmos|R|C|D):\s*/;
 
 /**
@@ -57,6 +49,7 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
   });
 
   const byId = new Map(nodes.map((n) => [n.id, n]));
+  const ioLabels = nodes.filter((n) => n.kind === 'io').map((n) => n.label.replace(/\n/g, ' '));
   const arrowId = `${idPrefix}-arrow`;
 
   /** from → to 직교 경로. 같은 행/열이면 직선, 아니면 수평 → 수직 L자. */
@@ -88,6 +81,10 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
         aria-label={caption ?? '연결 구조도'}
       >
         <title>{caption ?? '연결 구조도'}</title>
+        <desc>
+          {`${nodes.length}개 요소가 ${edges.length}개 연결선으로 이어진 구조도.` +
+            (ioLabels.length ? ` 입출력: ${ioLabels.join(', ')}` : '')}
+        </desc>
 
         <defs>
           <marker
@@ -150,7 +147,7 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
                 width={nodeW}
                 height={NODE_H}
                 rx={kind === 'io' ? NODE_H / 2 : DIM.radius}
-                className={`${KIND_FILL[kind]} ${STROKE}`}
+                className={`${NODE_KIND[kind]} ${STROKE}`}
                 strokeWidth={DIM.stroke}
               />
               {badge && (

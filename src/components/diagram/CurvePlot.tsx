@@ -53,6 +53,11 @@ export function CurvePlot({ axes, curves, markers = [], caption, note, altTable 
         aria-label={caption ?? `${axes.x.label} 대 ${axes.y.label} 특성`}
       >
         <title>{caption ?? `${axes.x.label} 대 ${axes.y.label} 특성`}</title>
+        <desc>
+          {`가로축 ${axes.x.label}, 세로축 ${axes.y.label}. 곡선 ${curves.length}개` +
+            (curves.some((c) => c.label) ? ` (${curves.map((c) => c.label).filter(Boolean).join(', ')})` : '') +
+            (markers.length ? `. 표시 지점: ${markers.map((m) => m.label).join(', ')}` : '')}
+        </desc>
 
         {/* 축 */}
         <line x1={x0} y1={y0} x2={x0 + PLOT_W} y2={y0} className={STROKE} strokeWidth={DIM.stroke} />

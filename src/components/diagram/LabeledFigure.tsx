@@ -19,6 +19,8 @@ interface Props extends DiagramCommon {
   labels?: Label[];
   /** 기본 `0 0 640 320`. */
   viewBox?: string;
+  /** 도해 내용 서술. 생략하면 labels 텍스트를 나열한다. */
+  desc?: string;
 }
 
 /**
@@ -32,10 +34,13 @@ export function LabeledFigure({
   children,
   labels = [],
   viewBox = `0 0 ${DIM.width} 320`,
+  desc,
   caption,
   note,
   altTable,
 }: Props) {
+  const autoDesc =
+    desc ?? labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ');
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
@@ -45,6 +50,7 @@ export function LabeledFigure({
         aria-label={caption ?? '도해'}
       >
         <title>{caption ?? '도해'}</title>
+        {autoDesc && <desc>{autoDesc}</desc>}
         {children}
         {labels.map((l, i) => (
           <g key={`label-${i}`}>

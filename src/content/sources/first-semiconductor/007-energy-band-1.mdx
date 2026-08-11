@@ -54,11 +54,12 @@
 
 <LayerStack
   idPrefix="007-band"
-  caption="에너지 띠 — 위에서 아래로"
+  orientation="band"
+  caption="에너지 띠 — 위로 갈수록 에너지가 높다"
   layers={[
-    { id: 'cond', label: '전도띠 — 거의 비어 있음. 올라온 전자는 자유', tone: 'silicon-n', height: 34 },
-    { id: 'gap', label: '금지대역 — 전자가 존재할 수 없다', tone: 'oxide', height: 40 },
-    { id: 'val', label: '충만띠 — 전자로 가득 차 움직일 수 없음', tone: 'silicon-p', height: 34 },
+    { id: 'cond', label: '전도띠 — 거의 비어 있음. 올라온 전자는 자유', tone: 'band-conduction', height: 34 },
+    { id: 'gap', label: '금지대역 — 전자가 존재할 수 없다', tone: 'band-gap', height: 40 },
+    { id: 'val', label: '충만띠 — 전자로 가득 차 움직일 수 없음', tone: 'band-valence', height: 34 },
   ]}
   annotations={[{ at: 'gap', text: '이 폭이 물질의\n성격을 가른다' }]}
 />

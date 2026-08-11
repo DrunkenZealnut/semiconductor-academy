@@ -27,7 +27,13 @@ export type Tone =
   | 'poly'
   | 'resist'
   | 'substrate'
-  | 'accent';
+  | 'accent'
+  // 에너지 밴드 전용 — 재료가 아니라 에너지 축을 나타낸다.
+  // 재료 tone과 색 계열을 겹치지 않게 골랐고, mark가 없어 채움 패턴이 적용되지 않는다
+  // (p/n 도핑 도해로 오독되는 것을 막는다).
+  | 'band-conduction'
+  | 'band-gap'
+  | 'band-valence';
 
 interface ToneStyle {
   /** SVG 채움 클래스 (라이트/다크 쌍). */
@@ -48,7 +54,22 @@ export const TONE: Record<Tone, ToneStyle> = {
   poly: { fill: 'fill-violet-200 dark:fill-violet-900', label: '폴리실리콘' },
   resist: { fill: 'fill-emerald-200 dark:fill-emerald-900', label: '감광제' },
   substrate: { fill: 'fill-slate-200 dark:fill-slate-700', label: '기판' },
+  'band-conduction': { fill: 'fill-teal-50 dark:fill-teal-950', label: '전도띠' },
+  'band-gap': { fill: 'fill-transparent', label: '금지대역' },
+  'band-valence': { fill: 'fill-indigo-50 dark:fill-indigo-950', label: '충만띠' },
   accent: { fill: 'fill-brand-500', label: '강조' },
+};
+
+/**
+ * `NodeGraph`의 노드 종류별 채움. 재료(`TONE`)와는 다른 축이라 병합하지 않고 나란히 둔다.
+ * 컴포넌트 안에 두면 tokens를 우회하게 되므로 여기서 관리한다.
+ */
+export type NodeKind = 'block' | 'device' | 'io';
+
+export const NODE_KIND: Record<NodeKind, string> = {
+  block: 'fill-slate-100 dark:fill-slate-800',
+  device: 'fill-violet-100 dark:fill-violet-950',
+  io: 'fill-brand-500/10 dark:fill-brand-500/20',
 };
 
 /** 공통 선·글자 클래스. */
