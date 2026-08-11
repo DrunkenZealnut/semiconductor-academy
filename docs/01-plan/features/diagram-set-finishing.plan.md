@@ -30,9 +30,12 @@
 |---|:--:|:--:|
 | first-semiconductor | 97 | **97** |
 | ncs-semi | 84 | 0 |
-| hs-* 계열 6종 | 71 | 0 |
+| hs-* 계열 **8종** | **96** | 0 |
 | cert-equip-maintenance | 13 | 0 |
 | daegu-hs-process · osha-scs | 20 | 0 |
+| **미적용 소계** | **213** | |
+
+검산: 84 + 96 + 13 + 20 = **213** (책 17장은 별도). 확대 후 도해 보유 모듈은 97 + 213 = **310**이 된다.
 
 6건 중 **글자 크기 단위**와 **`altTable` 방침**은 도해가 붙은 모든 모듈에 영향을 준다. 확대 후에 바꾸면 손봐야 할 모듈이 97에서 310으로 늘어난다.
 
@@ -102,7 +105,7 @@ Design에서 확정하되, Plan 단계에서 선택지와 무게를 기록해 �
 | FR-4 | 글자 크기 계약 확정 + Design §3.2 정정 | P0 |
 | FR-5 | `altTable` 계약 확정 + Plan FR-8 재정의 + 선행 §5.1 근거 문장 정정 | P0 |
 | FR-6 | tokens 우회 2건을 `TONE` 참조로 교체 | P1 |
-| FR-7 | SVG 6종에 `<desc>` 추가 (`role="img"` + `aria-labelledby` 연결) | P1 |
+| FR-7 | SVG 6종에 `<desc>` 추가 — **`role="img"` + `aria-label` 유지**(✏️ Design §5 결정: `aria-labelledby`는 6종 전부에 내부 id를 요구해 선행 V-3의 `idPrefix` 2종 축소와 충돌한다. 스크린리더가 `aria-label`을 우선 읽으므로 접근성 손실 없음) | P1 |
 | FR-8 | `usage.md`에 확정 계약 반영 | P1 |
 | FR-9 | Design §2.2 props 표와 구현 100% 일치 검증 | P1 |
 

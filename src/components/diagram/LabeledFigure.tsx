@@ -39,8 +39,9 @@ export function LabeledFigure({
   note,
   altTable,
 }: Props) {
+  // desc·labels가 모두 없어도 <desc>를 비우지 않는다 — SVG 6종 전부 설명을 갖는다는 계약.
   const autoDesc =
-    desc ?? labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ');
+    desc || labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ') || caption || '도해';
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
@@ -50,7 +51,7 @@ export function LabeledFigure({
         aria-label={caption ?? '도해'}
       >
         <title>{caption ?? '도해'}</title>
-        {autoDesc && <desc>{autoDesc}</desc>}
+        <desc>{autoDesc}</desc>
         {children}
         {labels.map((l, i) => (
           <g key={`label-${i}`}>

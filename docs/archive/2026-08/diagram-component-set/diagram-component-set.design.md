@@ -254,7 +254,7 @@ interface DiagramCommon {
 
 | # | 컴포넌트 | props (공통 props 외) |
 |:--:|---|---|
-| 1 | `LayerStack` | `layers: {id, label, tone, height?, wells?: {label, tone, side?}[]}[]`, `orientation?: 'vertical'\|'band'` ✅ **구현 완료**(diagram-set-finishing), `annotations?: {at: LayerId \| \`${LayerId}/${LayerId}\`, text}[]` — `at`은 **층 `id` 또는 두 층 경계**(`'gate/oxide'`) |
+| 1 | `LayerStack` | `layers: {id, label, tone, height?, wells?: {label, tone, side?}[]}[]`, `orientation?: 'vertical'\|'band'` ✅ **구현 완료**(diagram-set-finishing), `annotations?: {at, text}[]` — `at`은 **층 id**(`'oxide'`) **또는 두 층 경계**(`'oxide/substrate'`) |
 | 2 | `FlowSteps` | `steps: Step[]`(`Step = {id, label, sub?, tone?}`), `loop?: {from: StepId, to: StepId, label}`, `branch?: {at: StepId, label, steps: Step[]}[]` — 분기 자식도 `Step`, 최상위 `steps`와 **중복 기재 금지**, `orientation?: 'auto'\|'row'\|'column'` |
 | 3 | `CompareCards` | `columns: {title, tone?}[]`, `rows: {aspect, values: ReactNode[]}[]`, `emphasis?: number[]` |
 | 4 | `TruthTable` | `inputs: string[]`, `outputs: string[]`, `rows: (0\|1)[][]`, `highlight?: 0\|1\|null`(강조할 출력값. 함수형에서 단순화 — 서버 컴포넌트 간 함수 전달을 피한다) — **0/1만** 담는다. 정성값 표(`'0 (GND에 연결)'` 등)는 `NodeGraph` 라벨이나 `CompareCards`로 보낸다 |
