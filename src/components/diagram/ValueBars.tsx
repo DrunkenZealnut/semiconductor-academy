@@ -61,7 +61,7 @@ export function ValueBars({
       : String(v);
 
   return (
-    <DiagramFrame caption={caption} note={note ?? `단위: ${unit}`} altTable={altTable}>
+    <DiagramFrame caption={caption} note={note} altTable={altTable}>
       <ul className="space-y-2">
         {rows.map((r) => {
           const bar = r.tone ? TONE[r.tone].fill.replace(/fill-/g, 'bg-') : 'bg-brand-500';
@@ -88,9 +88,18 @@ export function ValueBars({
           );
         })}
       </ul>
-      {scale === 'log' && (
+      {/*
+        단위는 **note와 독립으로** 항상 보여 준다.
+        예전에는 `note={note ?? `단위: ${unit}`}`이었는데, note를 주면 단위가 조용히
+        사라졌다 — 사이트 전체 ValueBars 29건 중 20건이 무단위로 렌더되고 있었고
+        네 번의 Check와 세 번의 gap-detector를 모두 통과했다. `unit`이 필수 prop인데
+        표시가 선택적이었던 것이 원인이다.
+      */}
+      {(unit || scale === 'log') && (
         <p className="mt-2 text-center text-xs text-slate-400 dark:text-slate-500">
-          가로축은 로그 눈금 — 막대 한 칸이 자릿수 하나에 해당한다
+          {unit && `단위: ${unit}`}
+          {unit && scale === 'log' && ' · '}
+          {scale === 'log' && '가로축은 로그 눈금 — 막대 한 칸이 자릿수 하나에 해당한다'}
         </p>
       )}
     </DiagramFrame>
