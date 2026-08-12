@@ -137,7 +137,10 @@ function split(text) {
     }
     if (!closed) {
       // 미종료는 경고가 아니라 **위반**이다 — MDX 렌더가 깨지거나 본문이 삼켜진다.
-      unterminated.push(i + 1);
+      // 범위도 기록해 body·C-13·idPrefix 집계에서 뺀다. 깨진 마크업을 본문으로
+      // 남기면 도해 라벨이 **자기 자신의 깨진 줄**을 닻으로 삼아 C-8·C-12가
+      // 거짓 통과할 수 있다 — 거짓 위반보다 나쁜 방향이다.
+      unterminated.push({ line: i + 1, start: i, end: j - 1 });
       continue; // i는 그대로 — 외부 반복문이 다음 줄부터 새 시작을 찾는다
     }
     blocks.push({ start: i, end: j, text: lines.slice(i, j + 1).join('\n') });
@@ -145,8 +148,9 @@ function split(text) {
   }
   const inBlock = new Set();
   for (const b of blocks) for (let k = b.start; k <= b.end; k += 1) inBlock.add(k);
+  for (const u of unterminated) for (let k = u.start; k <= u.end; k += 1) inBlock.add(k);
   const body = lines.filter((_, k) => !inBlock.has(k)).join('\n');
-  return { lines, blocks, body, unterminated };
+  return { lines, blocks, body, unterminated, inBlock };
 }
 
 /** 도해 블록에서 사람이 읽는 문자열만 뽑는다 — 레이아웃 파라미터는 콘텐츠가 아니다. */
@@ -414,11 +418,11 @@ function matchPlan(planEntries, used, blockTexts) {
 
 function checkModule(path, tones) {
   const text = readFileSync(path, 'utf8');
-  const { lines, blocks, body, unterminated } = split(text);
+  const { lines, blocks, body, unterminated, inBlock: excluded } = split(text);
   const normBody = normalize(body);
   const issues = [];
-  for (const ln of unterminated) {
-    issues.push({ check: 'C-17', detail: `닫히지 않은 도해 블록 (L${ln}) — \`/>\`로 끝나는 줄이 없다` });
+  for (const u of unterminated) {
+    issues.push({ check: 'C-17', detail: `닫히지 않은 도해 블록 (L${u.line}) — \`/>\`로 끝나는 줄이 없다` });
   }
 
   const used = [];
@@ -564,7 +568,7 @@ function checkModule(path, tones) {
   // C-4는 블록 앞뒤 빈 줄만 보고, G-6(자수)은 삽입만 있으면 통과한다. 그 사이로
   // 이 결함이 세 웨이브 중 두 번 통과했다(W1 cmos-image-sensor · W3 industrial-safety).
   // 두 번째는 내가 첫 번째를 "고친" 직후 같은 파일에서 냈고, gap-detector가 잡았다.
-  const inBlock = (i) => blocks.some((b) => i >= b.start && i <= b.end);
+  const inBlock = (i) => excluded.has(i);
   // 볼드 수식(`**I = V / R [A]**`)·인라인 코드로 끝나는 줄도 문장 끝으로 본다.
   const PROSE_END = /(?:[.!?:;>|})"'\]—…]|\*\*|`)$/;
   let fence = false;
@@ -598,7 +602,12 @@ function checkModule(path, tones) {
     used,
     issues,
     blockTexts: blocks.map((b) => b.text),
-    idPrefixes: [...text.matchAll(/idPrefix="([^"]+)"/g)].map((m) => m[1]),
+    // idPrefix도 미종료 범위를 뺀 줄에서만 모은다.
+    idPrefixes: lines
+      .filter((_, k) => !excluded.has(k) || blocks.some((b) => k >= b.start && k <= b.end))
+      .join('\n')
+      .match(/idPrefix="([^"]+)"/g)
+      ?.map((s) => s.slice('idPrefix="'.length, -1)) ?? [],
   };
 }
 
