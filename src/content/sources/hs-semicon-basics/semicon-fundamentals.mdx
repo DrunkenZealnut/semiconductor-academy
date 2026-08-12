@@ -59,12 +59,41 @@ semiconductor)라 해요. 절대온도 0K에서는 모든 전자가 공유결합
 <Term id="doping">도핑</Term>이에요. 4족인 실리콘에 무엇을 넣느냐가 반도체의 '성격'을
 정해요.
 
+<CompareCards
+  caption="무엇을 넣느냐가 반도체의 성격을 정한다"
+  columns={[
+    { title: 'n형 반도체', tone: 'silicon-n' },
+    { title: 'p형 반도체', tone: 'silicon-p' },
+  ]}
+  rows={[
+    { aspect: '넣는 불순물', values: ['15족: 인(P), 비소(As) — 도너', '13족: 붕소(B) — 억셉터'] },
+    { aspect: '남거나 비는 것', values: ['최외각 5개 중 4개만 결합 → 전자 1개 남음', '최외각 3개뿐 → 결합 자리 하나가 빔'] },
+    { aspect: '다수 캐리어', values: ['전자', '정공'] },
+    { aspect: '격자 속 불순물', values: ['양이온 (As → As⁺ + e⁻)', '음이온 (B → B⁻ + h⁺)'] },
+  ]}
+  emphasis={[2]}
+/>
+
 | | n형 반도체 | p형 반도체 |
 |------|------|------|
 | 넣는 불순물 | 15족: 인(P), 비소(As) — <strong>도너</strong> | 13족: 붕소(B) — <strong>억셉터</strong> |
 | 원리 | 최외각 5개 중 4개만 결합, 남은 전자 1개가 쉽게 자유전자로 | 최외각 3개뿐이라 결합 자리 하나가 비어 정공으로 |
 | 다수 캐리어 | 전자 (n₀ ≫ p₀) | 정공 (p₀ ≫ n₀) |
 | 격자 속 불순물의 상태 | 양이온 (As → As⁺ + e⁻) | 음이온 (B → B⁻ + h⁺) |
+
+<LatticeDiagram
+  caption="n형 — 인(P)이 들어오면 전자 하나가 남는다"
+  center="P"
+  highlight="free-electron"
+  note="최외각 5개 중 4개만 이웃과 결합하고, 남은 전자 1개가 쉽게 자유전자가 된다."
+/>
+
+<LatticeDiagram
+  caption="p형 — 붕소(B)가 들어오면 결합 자리가 빈다"
+  center="B"
+  highlight="hole"
+  note="최외각이 3개뿐이라 결합 자리 하나가 비고, 그 빈자리가 정공이 된다."
+/>
 
 이렇게 도핑되어 캐리어 농도가 진성 농도와 달라진 반도체를 <strong>외인성
 반도체</strong>(Extrinsic semiconductor)라 해요. 농도가 높은 쪽이 <strong>다수

@@ -89,6 +89,21 @@ Semiconductor gases span a wide range from inert to highly toxic. Key categories
 - Toxic hydride gases
 - Highly energetic materials (organometallics)
 
+<TreeBranch
+  caption="Seven categories from inert to highly toxic"
+  root="Semiconductor gases"
+  depth={2}
+  branches={[
+    { label: 'Inert gases', note: 'Simple asphyxiants' },
+    { label: 'Flammable gases' },
+    { label: 'Pyrophoric gases' },
+    { label: 'Oxidizing gases' },
+    { label: 'Corrosive gases' },
+    { label: 'Toxic hydride gases' },
+    { label: 'Highly energetic materials', note: 'Organometallics' },
+  ]}
+/>
+
 ---
 
 ## 5. Common Gas Controls
@@ -141,6 +156,39 @@ A complete hazardous gas control system is built in layers:
 | 10 | **Regulator** | Controls gas pressure |
 | 11 | **Gas control panel** | System of components for proper and safe gas flow to downstream equipment |
 | 12 | **Excess flow device** | Automatically shuts off gas if flow rate exceeds set point — prevents uncontrolled release |
+
+<NodeGraph
+  idPrefix="osha-p4-gascontrol"
+  caption="Twelve components, built in layers"
+  nodes={[
+    { id: 'cyl', label: 'Source gas cylinder', kind: 'io', at: [0, 0] },
+    { id: 'rfo', label: 'Restrictive Flow Orifice', kind: 'device', at: [1, 0] },
+    { id: 'valve', label: 'Pneumatic shut-off valve', kind: 'device', at: [2, 0] },
+    { id: 'reg', label: 'Regulator', kind: 'device', at: [3, 0] },
+    { id: 'panel', label: 'Gas control panel', kind: 'block', at: [4, 0] },
+    { id: 'encl', label: 'Enclosure', kind: 'block', at: [0, 1] },
+    { id: 'exh', label: 'Exhaust connection', kind: 'device', at: [1, 1] },
+    { id: 'flow', label: 'Flow sensor', kind: 'device', at: [2, 1] },
+    { id: 'leak', label: 'Gas release sensor', kind: 'device', at: [3, 1] },
+    { id: 'excess', label: 'Excess flow device', kind: 'device', at: [4, 1] },
+    { id: 'mon', label: 'Monitoring station', kind: 'block', at: [2, 2] },
+    { id: 'sig', label: 'Shutdown signal', kind: 'io', at: [3, 2] },
+  ]}
+  edges={[
+    { from: 'cyl', to: 'rfo', label: 'limits gas escape' },
+    { from: 'rfo', to: 'valve' },
+    { from: 'valve', to: 'reg', label: 'remote shutdown point' },
+    { from: 'reg', to: 'panel', label: 'controls gas pressure' },
+    { from: 'panel', to: 'excess', label: 'safe flow downstream' },
+    { from: 'encl', to: 'cyl', label: 'containment', style: 'dashed' },
+    { from: 'exh', to: 'encl', label: 'draws released gas away', style: 'dashed' },
+    { from: 'flow', to: 'mon', label: 'gas flow rate', style: 'dashed' },
+    { from: 'leak', to: 'mon', label: 'detects gas leaks', style: 'dashed' },
+    { from: 'mon', to: 'sig' },
+    { from: 'sig', to: 'valve', label: 'shuts the valve', style: 'dashed' },
+  ]}
+  note="Purge gas evacuates hazardous gas before any piping is disconnected."
+/>
 
 ### Inert Purge Gas
 

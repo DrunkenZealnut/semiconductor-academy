@@ -149,6 +149,20 @@ CVD는 하나의 방법이 아니라 압력과 에너지 공급 방식에 따라
 | 알신 | AsH3 | 0.05 | 가수 분해되어 HF 생성, 마늘 냄새 |
 | 암모니아 | NH3 | 25 | 폭발성 15~28% |
 
+<ValueBars
+  caption="박막 공정 가스의 허용 농도(TWA)"
+  unit="ppm"
+  scale="log"
+  rows={[
+    { label: '알신(AsH3)', value: 0.05, note: '가수 분해되어 HF 생성, 마늘 냄새', tone: 'accent' },
+    { label: '디보란(B2H6)', value: 0.1, note: '무취' },
+    { label: '포스핀(PH3)', value: 0.3, note: '자연 발화성' },
+    { label: '실란(SiH4)', value: 0.5, note: '자연 발화성, 불쾌한 냄새' },
+    { label: '암모니아(NH3)', value: 25 },
+  ]}
+  note="가장 위험한 알신은 무취가 아니라 마늘 냄새가 난다 — 디보란이 무취다."
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체용 박막 공정 가스 제조 — 2-1. 가스 재료의 종류와 특성 파악 [표 2-4] 박막 공정용 특수 가스의 유해성(발췌)</div>
 
 <Callout type="warning" title="맹독성 가스, 숫자로 보면 더 무섭다">

@@ -42,6 +42,19 @@
 
 진공은 도달한 압력 수준에 따라 저진공·고진공·초고진공 세 단계로 나뉘고, 각 단계는 원리가 다른 펌프가 맡아요. 목표 진공도와 공정 특성에 맞춰 펌프를 단독으로 쓰거나 여러 대를 조합해요.
 
+<ValueBars
+  caption="진공의 세 단계 — 로그 축이어야 세 펌프의 구간이 다 보인다"
+  unit="Torr"
+  scale="log"
+  direction="down"
+  rows={[
+    { label: '저진공 펌프', range: [1e-3, 760], note: '로터리 베인·드라이·루츠 펌프' },
+    { label: '고진공 펌프', range: [1e-9, 1e-3], note: '터보 분자 펌프', tone: 'accent' },
+    { label: '초고진공 펌프', range: [1e-12, 1e-9], note: '크라이오 펌프·이온 펌프' },
+  ]}
+  note="760Torr가 1기압이고 1Torr는 약 133.3Pa다. 한 펌프로 전 구간을 덮을 수 없어 직렬로 이어 쓴다."
+/>
+
 | 구분 | 대략적인 진공도(Torr) | 사용하는 펌프 |
 |---|---|---|
 | 저진공 펌프 | 대기압(760)∼10⁻³ | 로터리 베인 펌프, 드라이 펌프, 루츠 펌프 |
@@ -104,6 +117,33 @@
 
 가스를 화학적 성질이 아니라 공정에서 맡는 역할로도 나눠 볼 수 있어요.
 
+<TreeBranch
+  caption="공정 가스 — 무엇을 하려는 가스인가"
+  root="공정 가스"
+  branches={[
+    {
+      label: '만든다',
+      children: [{ label: '증착 가스', note: 'SiH₄·TEOS·NH₃·N₂O·WF₆ — 박막의 원료' }],
+    },
+    {
+      label: '깎는다',
+      children: [{ label: '식각 가스', note: 'CF₄·SF₆·Cl₂·HBr·O₂' }],
+    },
+    {
+      label: '성질을 바꾼다',
+      children: [{ label: '도핑 가스', note: 'PH₃·AsH₃·B₂H₆ — 불순물을 주입' }],
+    },
+    {
+      label: '치우고 감싼다',
+      children: [
+        { label: '세정 가스', note: 'NF₃·C₂F₆·O₃ — 챔버 내부 부산물 제거' },
+        { label: '분위기 가스', note: 'N₂·H₂·Ar·He — 공정 환경 조성, 열처리' },
+      ],
+    },
+  ]}
+  note="도핑 가스는 극독성이다 — 아르신(AsH₃)의 허용 농도는 0.005ppm이고 무색무취라 감지가 매우 어렵다."
+/>
+
 | 분류 | 역할 | 가스의 예 |
 |---|---|---|
 | 증착 가스 | 박막을 만드는 원료 | SiH₄, TEOS, NH₃, N₂O, WF₆ |
@@ -148,6 +188,27 @@ MFC는 내부 열식 센서로 가스 배관의 상류·하류 온도 차를 재
 가스가 새어 나가면 인명 사고와 장비 손상으로 이어질 수 있어요. 그래서 가스 검출, 환기, 유해 가스 처리(스크러버), 비상 대응을 하나의 체계로 묶어 관리해요.
 
 ### 가스 검출과 환기
+
+<NodeGraph
+  idPrefix="element-gas-defense"
+  caption="유해 가스를 막는 마지막 방어선"
+  nodes={[
+    { id: 'cyl', label: '가스 실린더', kind: 'io', at: [0, 0] },
+    { id: 'reg', label: '감압 레귤레이터', kind: 'device', at: [1, 0] },
+    { id: 'mfc', label: 'MFC', kind: 'device', at: [2, 0] },
+    { id: 'chamber', label: '챔버', kind: 'block', at: [3, 0] },
+    { id: 'detect', label: '가스 검출기', kind: 'device', at: [1, 1] },
+    { id: 'scrub', label: '스크러버', kind: 'device', at: [3, 1] },
+  ]}
+  edges={[
+    { from: 'cyl', to: 'reg', label: '고압' },
+    { from: 'reg', to: 'mfc', label: '감압' },
+    { from: 'mfc', to: 'chamber', label: '정밀 계량' },
+    { from: 'detect', to: 'reg', label: '누설 감지', style: 'dashed' },
+    { from: 'chamber', to: 'scrub', label: '배기 정화' },
+  ]}
+  note="검출기는 전기 화학식(독성 가스에 선택성)·반도체식(가연성 가스에 빠른 응답)·적외선식(비파괴 분자 검출)으로 나뉜다. MFC는 정확도 ±1% F.S., 응답 2∼5초다."
+/>
 
 | 검출기 타입 | 특징 |
 |---|---|

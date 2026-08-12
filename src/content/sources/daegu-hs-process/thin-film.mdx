@@ -170,6 +170,23 @@ CVD는 PVD의 고진공 대신 대기압에서 저진공(약 100∼10⁻¹Pa) �
 
 플라즈마를 쓰지 않는 CVD에서 일어나는 화학 반응은 몇 가지 유형으로 정리할 수 있어요.
 
+<TreeBranch
+  caption="CVD 반응 다섯 유형 — 무엇으로 고체를 만드나"
+  root="CVD 반응"
+  branches={[
+    { label: '열로 쪼갠다', children: [{ label: '열분해(Pyrolysis)', note: 'SiH₄ → Si + 2H₂, 약 650℃' }] },
+    { label: '수소로 되돌린다', children: [{ label: '환원(Reduction)', note: 'SiCl₄ + 2H₂ ⇌ Si + 4HCl, 약 1,200℃' }] },
+    {
+      label: '다른 원소를 붙인다',
+      children: [
+        { label: '산화(Oxidation)', note: 'SiH₄ + O₂ ⇌ SiO₂ + 2H₂, 약 400℃' },
+        { label: '질화(Nitridation)', note: '3SiH₂Cl₂ + 4NH₃ → Si₃N₄ + 6HCl + 6H₂, 약 700℃' },
+        { label: '가수분해(Hydrolysis)', note: '2AlCl₃ + 3H₂O → Al₂O₃ + 6HCl' },
+      ],
+    },
+  ]}
+/>
+
 | 반응 유형 | 예시 반응식 |
 |------|------|
 | 열분해(Pyrolysis) | SiH₄(g) → Si(s)+2H₂(g), 약 650℃ |
@@ -201,6 +218,17 @@ CVD는 특히 공정 압력에 따라 성격이 크게 갈려요. 압력이 높�
 MFP가 약 700m, 공정 압력대(10⁻¹Pa)에서는 약 7cm, 대기압(10⁵Pa)에서는 약 70nm로 압력에 따라 자릿수가
 달라져요. 대기압에서는 기체가 70nm만 날아가도 서로 부딪혀 방향을 바꾸므로 웨이퍼 표면 사방에서
 고르게 도달하지만, 저압에서는 어느 정도 방향성을 유지한 채 도달해요.
+
+<CompareCards
+  caption="CVD 세 갈래 — 압력과 에너지를 어떻게 쓰나"
+  columns={[{ title: 'APCVD' }, { title: 'LPCVD' }, { title: 'PECVD', tone: 'accent' }]}
+  rows={[
+    { aspect: '공정 압력', values: ['상압 — 약 760Torr', '수십 Torr∼수 mTorr', '저진공 + 플라즈마'] },
+    { aspect: '강점', values: ['장비 단순·저렴, 저온에서 빠르게 증착', '고순도, 균일도·단차 피복성 우수', '400℃ 이하 저온에서도 진행, 단일 웨이퍼로 빠름'] },
+    { aspect: '약점', values: ['단차 피복성 나쁨, 기상 반응 파티클·불순물 오염', '성장이 느리고 고온·배치식', '플라즈마 손상과 수소 등 불순물'] },
+  ]}
+  note="LPCVD는 석영로에서 웨이퍼 100∼200장을 동시에 처리하는 배치식이다."
+/>
 
 | 구분 | 공정 압력 | 특징 | 대표 적용 |
 |------|------|------|------|
@@ -268,6 +296,21 @@ CVD와 ALD의 근본적인 차이는 소스 공급 방식에 있어요. CVD는 �
 이 차이가 ALD를 미세 구조 시대의 핵심 공정으로 만든 이유예요.
 
 ## 6. PVD·CVD·ALD, 한눈에 비교하기
+
+<CompareCards
+  caption="세 증착법 — 원리부터 두께 조절까지"
+  columns={[{ title: 'PVD' }, { title: 'CVD', tone: 'accent' }, { title: 'ALD' }]}
+  rows={[
+    { aspect: '증착 원리', values: ['물리적 기화·충돌', '기체의 화학 반응', '화학 반응을 원자층 단위 반쪽 주기로 분리'] },
+    { aspect: '공정 압력', values: ['고진공', '대기압∼중진공', '저진공'] },
+    { aspect: '재료 다양성', values: ['넓음 — 원리상 대부분의 고체', '반응 기체가 있는 물질로 제한', '적합한 전구체가 개발된 물질로 제한'] },
+    { aspect: '단차 피복성', values: ['상대적으로 낮음', '양호∼우수', '매우 우수 — 90% 이상'] },
+    { aspect: '증착 속도', values: ['비교적 빠름', '중간∼빠름', '느림'] },
+    { aspect: '두께 조절', values: ['상대적으로 어려움', '비교적 용이', '사이클 단위로 매우 정밀'] },
+    { aspect: '대표 예', values: ['Al·Ti/TiN, OLED 형광체', 'SiO₂·Si₃N₄·W, PSG', 'FinFET High-k 게이트 산화막, DRAM 유전막'] },
+  ]}
+  emphasis={[3, 5]}
+/>
 
 | | PVD | CVD | ALD |
 |------|------|------|------|

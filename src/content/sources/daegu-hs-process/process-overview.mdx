@@ -42,6 +42,22 @@
 작업</strong>이에요. 막을 쌓고 → 무늬를 새기고 → 깎아내고 → 채우는 사이클을 수백 번 돌려서
 원하는 구조의 칩을 만들죠. 업계에서 흔히 쓰는 8대 공정 분류는 다음과 같아요.
 
+<FlowSteps
+  caption="8대 공정 — 무늬를 그리고, 깎고, 쌓고, 잇는다"
+  orientation="column"
+  steps={[
+    { id: 'photo', label: 'Photo (포토)', sub: '빛으로 회로 무늬를 웨이퍼에 옮겨 그린다', tone: 'resist' },
+    { id: 'etch', label: 'Etch (식각)', sub: '무늬 밖 필요 없는 부분을 깎아낸다' },
+    { id: 'cvd', label: 'CVD (증착)', sub: '화학 반응으로 얇은 막을 쌓는다' },
+    { id: 'metal', label: 'Metal (금속 배선)', sub: '소자들을 전기가 다니는 길로 잇는다', tone: 'metal' },
+    { id: 'diff', label: 'Diffusion (확산)', sub: '열로 불순물을 퍼뜨리거나 막을 키운다' },
+    { id: 'imp', label: 'Implant (이온 주입)', sub: '불순물 이온을 쏘아 넣어 전기 성질을 바꾼다' },
+    { id: 'cmp', label: 'CMP (연마)', sub: '울퉁불퉁해진 표면을 평평하게 갈아낸다' },
+    { id: 'clean', label: 'Clean (세정)', sub: '공정 사이사이 오염물을 씻어낸다' },
+  ]}
+  note="이 유닛 공정들이 층마다 반복되며 회로를 층층이 쌓아 올린다."
+/>
+
 | 유닛 공정 | 무슨 일을 할까 |
 |------|------|
 | Photo (포토) | 빛으로 회로 무늬를 웨이퍼에 옮겨 그려요 |
@@ -67,6 +83,28 @@
 
 전공정을 더 세밀하게 나누면 세 구간이 돼요.
 
+<TreeBranch
+  caption="전공정을 세 구간으로 — 무엇을 만드는 구간인가"
+  root="전공정 구간"
+  branches={[
+    {
+      label: 'FEOL',
+      note: 'Front-End-Of-Line',
+      children: [{ label: '트랜지스터 같은 소자 자체', note: '게이트·소스·드레인' }],
+    },
+    {
+      label: 'MOL',
+      note: 'Middle-Of-Line',
+      children: [{ label: '소자의 단자와 배선을 잇는 연결 통로', note: '컨택트·플러그' }],
+    },
+    {
+      label: 'BEOL',
+      note: 'Back-End-Of-Line',
+      children: [{ label: '소자들을 연결하는 금속 배선망' }],
+    },
+  ]}
+/>
+
 | 구간 | 이름 | 만드는 것 |
 |------|------|------|
 | FEOL | Front-End-Of-Line | 트랜지스터 같은 소자 자체 (게이트·소스·드레인) |
@@ -81,6 +119,18 @@
 <Term id="wafer">웨이퍼</Term>는 실리콘 단결정을 얇게 썰어 만든 원판으로, 모든 공정이
 진행되는 받침대 역할을 해요. 먼저 커다란 단결정 덩어리(<Term id="ingot">잉곳</Term>)를
 길러야 하는데, 대표적인 두 방법이 있어요.
+
+<CompareCards
+  caption="단결정을 키우는 두 방식 — 도가니를 쓰느냐"
+  columns={[{ title: '초크랄스키(CZ)', tone: 'accent' }, { title: '플로트존(FZ)' }]}
+  rows={[
+    { aspect: '원리', values: ['녹은 실리콘(녹는점 1,420℃)에 시드를 담가 돌리며 천천히 끌어올려 굳힌다', '폴리실리콘 잉곳을 RF 코일로 부분 가열하며 이동시켜 재결정화한다'] },
+    { aspect: '장점', values: ['비용이 적고 큰 지름 생산 가능, 남은 실리콘 재사용', '도가니를 쓰지 않아 고순도 결정 성장'] },
+    { aspect: '한계', values: ['도가니 접촉으로 순도에 한계', '지름을 키우기 어렵다'] },
+    { aspect: '주 용도', values: ['일반 반도체 — 대구경화에 유리', '고순도가 필요한 전력 소자(Power Device)'] },
+  ]}
+  emphasis={[3]}
+/>
 
 | | 초크랄스키(CZ) 방식 | 플로트존(Float-Zone, FZ) 방식 |
 |------|------|------|

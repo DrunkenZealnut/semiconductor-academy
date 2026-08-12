@@ -46,6 +46,25 @@
 
 반도체 장비의 제어 시스템은 여러 공정 모듈을 방사형으로 연결한 클러스터 툴 구조를 세 층의 컴퓨터가 나눠 관장해요.
 
+<NodeGraph
+  idPrefix="design-electrical-tiers"
+  caption="제어 구조 — CTC·TMC·PMC의 계층"
+  nodes={[
+    { id: 'ctc', label: 'CTC', kind: 'io', at: [1, 0] },
+    { id: 'tmc', label: 'TMC', kind: 'device', at: [0, 1] },
+    { id: 'pmc', label: 'PMC', kind: 'device', at: [2, 1] },
+    { id: 'transfer', label: '이송 모듈', kind: 'block', at: [0, 2] },
+    { id: 'process', label: '공정 모듈', kind: 'block', at: [2, 2] },
+  ]}
+  edges={[
+    { from: 'ctc', to: 'tmc', label: '이송 명령' },
+    { from: 'ctc', to: 'pmc', label: '공정 명령' },
+    { from: 'tmc', to: 'transfer' },
+    { from: 'pmc', to: 'process' },
+  ]}
+  note="CTC가 전체를 지휘하고, TMC는 웨이퍼 이송을, PMC는 공정 챔버를 맡는다."
+/>
+
 | 제어기 | 위치 | 맡는 일 |
 |---|---|---|
 | <strong>CTC</strong>(Cluster Tool Computer) | 최상위 | 클러스터 툴 전체를 관장하고 TMC·PMC를 제어, 상위 호스트 시스템과 통신 |
@@ -57,6 +76,25 @@ CTC·TMC·PMC 사이는 기본적으로 이더넷 통신으로 연결돼서 고�
 ## 3. 전원 설계 — 큰 전기부터 작은 전기까지
 
 장비 안의 전기는 쓰임에 따라 몇 단으로 나눠 설계돼요. 그 중심에는 <strong>주전원 분배반(MPD; Main Power Distribution)</strong>이 있어요 — 외부에서 들어오는 전원을 각 모듈의 사양에 맞게 나눠 주는 중앙 집중식 전력 분배 시스템이에요.
+
+<TreeBranch
+  caption="전원 설계 — 큰 전기부터 작은 전기까지"
+  root="전원"
+  branches={[
+    {
+      label: '주전원',
+      children: [{ label: '3상 고전압', note: '히터·RF 발생기·펌프 등 큰 부하' }],
+    },
+    {
+      label: '제어 전원',
+      children: [{ label: '단상·DC 저전압', note: '센서·PLC·릴레이 등 제어계' }],
+    },
+    {
+      label: '보호',
+      children: [{ label: '접지·차폐', note: '안전과 신호 품질의 기초' }],
+    },
+  ]}
+/>
 
 | 구분 | 상·전압·전류 | 공급 대상 |
 |---|---|---|
@@ -120,6 +158,15 @@ CTC·TMC·PMC 사이는 기본적으로 이더넷 통신으로 연결돼서 고�
 ### 계층적 안전 구조
 
 인터로크는 한 겹이 아니라 세 겹으로 설계돼요.
+
+<FlowSteps
+  caption='인터로크 — "멈춤이 곧 안전"'
+  steps={[
+    { id: 'i1', label: '1차 보호', sub: '센서·액추에이터 — 현장에서 직접 작동하는 안전 기능' },
+    { id: 'i2', label: '2차 보호', sub: '제어 시스템 — 논리적으로 판단하는 안전 기능' },
+    { id: 'i3', label: '3차 보호', sub: '시스템 전체 — 통합적으로 총괄하는 안전 기능', tone: 'accent' },
+  ]}
+/>
 
 | 보호 단계 | 담당 레벨 | 하는 일 |
 |:-:|---|---|

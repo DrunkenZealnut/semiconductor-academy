@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-11T13:30:00.000Z",
+  "lastUpdated": "2026-08-12T14:00:00.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -33,9 +33,10 @@
     "menu-재구성",
     "새로운책등록",
     "diagram-component-set — Match Rate 78.1%",
-    "diagram-set-finishing"
+    "diagram-set-finishing",
+    "diagram-expansion"
   ],
-  "primaryFeature": "diagram-set-finishing",
+  "primaryFeature": "diagram-expansion",
   "features": {
     "hs-equipment-maintenance": {
       "phase": "archived",
@@ -1050,11 +1051,11 @@
       "matchRate": 93.6,
       "iterationCount": 1,
       "startedAt": "2026-08-09T00:53:03.000Z",
-      "planDoc": "docs/01-plan/features/diagram-component-set.plan.md",
+      "planDoc": "docs/archive/2026-08/diagram-component-set/diagram-component-set.plan.md",
       "planMethod": "plan-plus (brainstorming 4단계)",
       "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 — 자체 다이어그램 확대",
       "notes": "도해 컴포넌트 8종 신설 + first-semiconductor 97모듈 전수 적용. 전원 정적 SVG(서버 컴포넌트), 파일럿 게이트 후 확대.",
-      "designDoc": "docs/02-design/features/diagram-component-set.design.md",
+      "designDoc": "docs/archive/2026-08/diagram-component-set/diagram-component-set.design.md",
       "designNote": "V-1 정정: 컴포넌트 8종 → 12종 (커버리지 구멍 22모듈). Step 0 배치 전수 매핑 97/97 = 100%.",
       "doProgress": {
         "step0_baseline": "done — docs/02-design/features/diagram-component-set.baseline.md",
@@ -1065,12 +1066,12 @@
         "step5_docs": "done — 선행 §5.2 3단 재정의(V-7) · §5.1 도해 자수 예외 · usage.md 신설 · CLAUDE.md 등재"
       },
       "designCorrections": "V-3(idPrefix 범위) · V-4(col-8 CurvePlot→CompareCards) · V-5(자수 측정 정규식이 도해 JSX를 불규칙 삼킴 → 블록 단위 제거로 수정)",
-      "analysisDoc": "docs/03-analysis/diagram-component-set.analysis.md",
+      "analysisDoc": "docs/archive/2026-08/diagram-component-set/diagram-component-set.analysis.md",
       "checkNote": "1차 78.1% → Act 반영 93.6%. 보조 43건 전량 적용, 배치표 미이행 0. 잔존: G-1·G-3 육안 확인(사람)",
       "branch": "feat/diagram-component-set",
       "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/29 — 머지 완료 (merge commit 3bb46b5, 2026-08-10T13:15:06Z, base main)",
       "commit": "8db9620",
-      "reportDoc": "docs/04-report/diagram-component-set.report.md",
+      "reportDoc": "docs/archive/2026-08/diagram-component-set/diagram-component-set.report.md",
       "completedAt": "2026-08-10T09:00:03.000Z",
       "diffStat": "+5709/-342 · 127 files (PR #29 최종)",
       "mergedAt": "2026-08-10T13:15:33.000Z",
@@ -1107,15 +1108,15 @@
       "autoAdvanced": true
     },
     "diagram-set-finishing": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 97.3,
       "iterationCount": 0,
       "startedAt": "2026-08-11T01:43:42.000Z",
-      "planDoc": "docs/01-plan/features/diagram-set-finishing.plan.md",
+      "planDoc": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.plan.md",
       "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 (diagram-component-set 파생) 6건",
       "inherits": "diagram-component-set(93.6%) — 12종 신설 + 97모듈 적용 후 남긴 미완",
       "notes": "구현 2(band 모드·<desc>) · 정리 2(Timeline.span 삭제·tokens 우회) · 계약 확정 2(글자 크기·altTable). 도해 확대 전 계약 고정이 목적. G-1·G-3 육안 확인은 비목표(사람만 가능)",
-      "designDoc": "docs/02-design/features/diagram-set-finishing.design.md",
+      "designDoc": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.design.md",
       "contracts": "C-1 글자 크기 viewBox 절대 단위 확정(토글 미연동) · C-2 표 병치를 altTable 대안으로 명문화 — 둘 다 코드 변경 없이 문서를 실제에 맞추는 항목",
       "doProgress": {
         "step1_tokens": "done — 밴드 tone 3종(band-conduction/gap/valence) + NODE_KIND 이관",
@@ -1126,22 +1127,107 @@
         "step6_docs": "done — 선행 Design 4건 · 선행 Plan FR-8 · first-semiconductor §5.1 · usage.md 3건",
         "step7_gates": "done — G-1~G-7 전부 통과"
       },
-      "analysisDoc": "docs/03-analysis/diagram-set-finishing.analysis.md",
+      "analysisDoc": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.analysis.md",
       "checkNote": "1차 84.0% → Check 중 즉시수정 7건 반영 97.3%. G-7(props 표 7행 불일치)은 Do 단계 자기검증 스크립트가 놓친 것 — 선행 백로그 \"판정 스크립트 양성 대조군\"의 필요성 재확인",
       "branch": "feat/diagram-set-finishing",
-      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/30",
+      "pullRequest": "https://github.com/DrunkenZealnut/semiconductor-academy/pull/30 — 머지 완료 (merge commit 57e50db291787bc2bac69a4516867858eb228802, 2026-08-11T06:57:57Z, base main). 커밋 4(feat 75c9ff6 → chore dc5c189 PR 정보 → fix f3fbb94 CodeRabbit 4건 → docs 3354505 보고서+육안확인 인계목록). 체크 4/4 pass(CodeRabbit·GitGuardian·Vercel×2), mergeStateStatus CLEAN. CodeRabbit 재리뷰 추가 지적 0.",
       "commit": "75c9ff6",
       "diffStat": "+680/-68 · 20 files",
-      "previousPhase": "check",
+      "previousPhase": "completed",
       "completedAt": "2026-08-11T13:30:00.000Z",
       "documents": {
-        "plan": "docs/01-plan/features/diagram-set-finishing.plan.md",
-        "design": "docs/02-design/features/diagram-set-finishing.design.md",
-        "analysis": "docs/03-analysis/diagram-set-finishing.analysis.md",
-        "report": "docs/04-report/diagram-set-finishing.report.md"
+        "plan": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.plan.md",
+        "design": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.design.md",
+        "analysis": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.analysis.md",
+        "report": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.report.md"
       },
       "reportSummary": "Match Rate 97.3%(48항목 중 46.70) · Act 0 — Check 안에서 즉시수정 7건으로 종결. 6건 전량 처리: 구현 2(LayerStack band 모드+밴드 tone 3종·SVG 6종 <desc> 자동생성) · 정리 2(Timeline.span 시그니처 삭제·tokens 우회 2건 상수화) · 계약 확정 2(C-1 viewBox 절대단위 확정 토글 미연동 · C-2 표 병치를 altTable 대안으로 명문화). 코드 +130/-36(10파일) vs 문서 +492/-25(8파일) — 사이클의 절반이 문서를 실제에 맞추는 일. Report 단계에서 전 게이트 재실측: typecheck 0 · lint diagram 0 · First Load JS 102kB · SSG 393/393(prerender HTML 389) · 019 rx=\"4\" 9건 유지(vertical 무회귀) · 007 패턴참조 0·rx=\"0\" 3·<desc> 렌더 · 008 rx=\"0\" 5 · 055·080 <desc> fallback 확인. Report 단계 발견·수정 1건: Plan DoD \"G-1·G-3 육안확인 목록 정리\"가 미이행 — Check M-4가 백로그 완료표시만 갱신하고 육안확인 줄을 손대지 않아 렌더가 바뀐 007·008이 인계 목록에서 빠져 있었다 → _INDEX.md에 007·008 우선 항목 + 확인 지점 4개(rx=0 구분·E축 겹침·점선 빈공간 가독·밴드 tone 50/950 다크 대비) 추가. 잔존 Low 2(L-2 tone 문자열 분기·L-3 화살촉 색 리터럴) 의도적 보류, L-4는 개선으로 재분류. Positive 5(문서정정 8건>목록 6건·desc 최소규칙 초과·band 접두어 분기·tokens 주석 근거·M-2 잠복버그 선차단). CodeRabbit PR #30 4건 전량 반영. 교훈: 자기 검증 스크립트를 믿지 말 것 — Do ⑦의 props 대조 스크립트가 \"불일치 0\"을 냈으나 gap-detector가 7행 불일치 적발(optional prop만 얕게 훑고 제외목록 과도). 선행 사이클도 자기검증 4번 실패 — \"판정 스크립트 양성 대조군\" 백로그 유지. 미완: 007·008 육안 확인(로그인 게이트 뒤·사람만 가능, 밴드 tone 다크 대비 최우선). Claude 초벌 — 밴드 에너지 폭 비율은 원문 근거 없이 시각적 균형으로 배분, 사람 검수 권장.",
-      "remainingBacklog": "L-2 ToneStyle.dashed 추상화(밴드 3종·분기 1곳이라 현재 과설계) · L-3 ARROW_FILL 상수(2곳) · 007·008 육안 확인(사람) · Gap 판정 스크립트 양성 대조군(선행 백로그 유지) · 도해 타 자료원 확대(213모듈+책 17장)"
+      "remainingBacklog": "L-2 ToneStyle.dashed 추상화(밴드 3종·분기 1곳이라 현재 과설계) · L-3 ARROW_FILL 상수(2곳) · 007·008 육안 확인(사람) · Gap 판정 스크립트 양성 대조군(선행 백로그 유지) · 도해 타 자료원 확대(213모듈+책 17장)",
+      "mergedAt": "2026-08-11T06:57:57Z",
+      "mergeCommit": "57e50db291787bc2bac69a4516867858eb228802",
+      "archivedAt": "2026-08-11T07:20:00.000Z",
+      "archivedTo": "docs/archive/2026-08/diagram-set-finishing/",
+      "reportDoc": "docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.report.md",
+      "livingDocs": "docs/02-design/features/diagram-component-set.{usage,baseline}.md — 지속 참조 자산이라 아카이브 제외(_INDEX.md 기록 정책). 이 사이클이 usage.md §1 선택표에 band 행, §2.3을 표 병치 원칙으로, §3에 C-1 글자 크기 계약을 반영했다."
+    },
+    "diagram-expansion": {
+      "phase": "check",
+      "matchRate": 91.7,
+      "iterationCount": 2,
+      "startedAt": "2026-08-11T07:45:00.000Z",
+      "planDoc": "docs/01-plan/features/diagram-expansion.plan.md",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 (diagram-component-set 파생) — \"도해 세트의 타 자료원 확대\"",
+      "inherits": "diagram-component-set(93.6%) 12종+T1/T2/T3 판정 · diagram-set-finishing(97.3%) C-1·C-2 계약 · hs-textbook-collection(umbrella plan 패턴)",
+      "cycleType": "umbrella plan + 웨이브별 후속 사이클 로드맵",
+      "notes": "백로그 전제를 실측으로 정정한 것이 이 Plan의 핵심 — \"213모듈 균일\"이 아니다. ncs-semi는 이미 원문 도판 345장(4.1/모듈), 책 17장은 80장(4.7/모듈) 보유. 진짜 시각자료 0은 129모듈(hs-* 8종 96 + cert-equip 13 + daegu 10 + osha 10). first-semiconductor가 도해를 받은 이유는 \"글만 있어서\"가 아니라 원문 도판 336개를 저작권상 전면 미사용했기 때문 — 도판 보유 101모듈에 균일 적용하면 같은 내용을 두 번 그린다.",
+      "scale": "전체 230모듈 51,276줄 = 기준선(97모듈 13,055줄)의 3.93배. 시각자료 0인 129모듈만 25,262줄(1.94배). 기준선 사이클은 2일·Check 1차 78.1%·Act 1회였고 가장 어려운 단계가 Step 0 전수 배치 매핑 — 3.9배가 되면 매핑 품질이 먼저 무너져 웨이브 분할이 필수.",
+      "waves": {
+        "W1": "교과서 핵심 4권 파일럿 — hs-basic-tech-1·hs-semicon-basics·hs-photo-etch·hs-thinfilm-diffusion / 45모듈 7,574줄. 기초2+공정2를 섞어 교과서 유형 배치 패턴 확정",
+        "W2": "교과서 잔여 4권 + daegu — hs-basic-tech-2·hs-equipment-maintenance·hs-assembly-inspection·hs-semicon-infra·daegu-hs-process / 61모듈 12,056줄",
+        "W3": "수험서 + OSHA — cert-equip-maintenance·osha-scs / 23모듈 5,632줄. 구조 이질(osha는 영문·LayeredExplain 0·목록 60/모듈)로 뒤로 배치. W3 종료 = 시각자료 0 전량 소진(129)",
+        "W4": "도판 보유 선별 보완 — ncs-semi 84 + 책 17 / 101모듈 26,014줄. 도판이 못 하는 것만(개념 대조·자릿수 차·논리 구조). 전수 적용 아님, W3 종료 시 재판단"
+      },
+      "pendingDecisions": "81.8% < 90% 게이트 미통과. ⓐG-9 육안 확인 먼저(권고 — 미룰수록 회수 대상이 W1 109→W2 255→W3 약 300으로 늘어난다) ⓑ/pdca iterate로 G-4·G-7 스크립트 확장 먼저. W3(cert-equip 13 + osha 10)의 D-4는 여전히 미결.",
+      "lessonsApplied": "선행 3사이클 교훈 §4.3에 명문화 — ①자기 검증 스크립트 불신(양성 대조군 FR-8, 3사이클 미해결 백로그) ②DoD를 검증 매트릭스에 1:1(diagram-set-finishing에서 DoD 1항목이 매트릭스에 없어 97.3%가 미이행을 가림) ③규칙 문장 복제를 규칙 단위로 검색(M-3) ④배치표 미이행 전수 대조",
+      "selfVerified": "★FR-8 양성 대조군을 Do에서 2회 실행 — G-7 스크립트에 타 모듈 값(436nm·1350)을 주입해 검출되는지 먼저 확인한 뒤 판정을 신뢰했다. 좁힌 스크립트도 주입을 계속 잡아냄을 재확인. 3사이클 미해결 백로그를 Design·Do 양쪽에서 이행.",
+      "previousPhase": "do",
+      "designDoc": "docs/02-design/features/diagram-expansion.design.md",
+      "decisions": "D-2 전수 129/129 · D-3 W1 4권 45모듈(기초2+공정2) · D-1 W4는 로드맵 유지+W3 후 재판단 · D-4 osha-scs는 W3에서 실물 확인 후 결정(오케스트레이터 이연 — 지금 정하면 실물 없이 판정하는 것이 되어 선행 사이클의 \"원문 근거 없는 배정\" 실패를 반복)",
+      "designSummary": [
+        "W1 Step 0 전수 배치 매핑 45행 확정 — 주 45(전수 커버리지) · 보조 56 · ⚠조건부 6 = 계획 101 인스턴스(2.24/모듈, 기준선 1.44의 1.56배). 기준선과 다른 점 2건을 규약화: ①데이터 출처가 원문 스캔본이 아니라 MDX 본문(이미 원문 검증 완료) — 45모듈 병렬이라 \"모듈 간 값 이동\"이 새 함정 ②C-2 표 병치로 본문 무수정 → 자수 ±0 → 자료원별 baseline.md 불필요, altTable 미사용. 자료원 유형 2종 판정: 개념형(구조 LayerStack/LatticeDiagram 1순위)·장비공정형(절차 FlowSteps/NodeGraph 1순위). 장비 일반화 특칙 승계 — 장비 화면·버튼 배치를 그리지 않는다(diffusion-maintenance 조정단말기·thinfilm-maintenance 조작화면이 걸리는 지점). 컴포넌트 분포 성격 차: TreeBranch 11→20(교과서가 분류 체계로 서술 + *-practice 4모듈이 실습을 계열로 묶음), LayerStack 28→14·NodeGraph 15→6(단면·회로 대신 계통·절차 중심), ValueBars 13→2(T3 자릿수 조건이 실제로 억제), LabeledFigure 2→7(눈금·투상법·해칭 등 12종에 전용이 없는 도형이 기계·제도에 모임 — usage.md §4 \"전용 SVG 회귀\" 경고에 가장 근접, Check 재확인), TruthTable·CurvePlot 0(전수 커버리지가 12종 전량 사용을 뜻하지 않음). 파일럿 5모듈: physical-properties(band 모드 타 자료원 첫 적용)·mosfet(idPrefix)·photo-process(장비공정형)·etch-practice(실습 목록형 TreeBranch — 최고 불확실)·process-overview(T3 조건부). 검증 G-1~G-12를 DoD와 1:1 대응 — 선행 사이클이 DoD 1항목을 매트릭스에 안 올려 97.3%가 미이행을 가린 실패의 교정."
+      ],
+      "pilotModules": "physical-properties · mosfet · photo-process · etch-practice · process-overview (5) — 통과 조건에 육안 확인 G-9 포함(선행 두 사이클이 미완으로 넘긴 항목)",
+      "doProgress": {
+        "step1_pilot": "done — 파일럿 5모듈 15 인스턴스, G-1~G-7 통과",
+        "step2_batches": "done — W1 45/45(109) + W2 61/61(146) = 106모듈 · 255 인스턴스. 전수 커버리지 106/106",
+        "step3_conditional": "done — ⚠조건부 6건 판정: 채택 1(dc-circuits CurvePlot 3파형 — 본문이 형상 서술) · 탈락 5(semicon-fundamentals 이동도 8.3배 · semicon-industry 시장규모 21.5배 · exposure-equipment 광원파장 2.26배 · thinfilm-equipment 누출률 · pneumatics-basics 보일샤를 형상 미서술) — 전부 T3 자릿수 차 2 미달. 추가 탈락 1: drafting-standards ScaleRuler(A0~A4가 4배 = 자릿수 차 0.6이고 크기 감각보다 1:√2 비율이 논지) → FlowSteps 접기 순서로 대체",
+        "step4_docs": "done — usage.md 실적용 ② 신설 + §2.1 MDX 본문 규약 + §3 규약 3건 정정(scrollable 초판 오류·CompareCards 2~3열·Timeline 연도 조건·tone 13종) + §4.1 신설 + 대체 판정표 + ⚠조건부 수치 근거. _INDEX.md 백로그 갱신 + W1 파생 백로그 6건 신설",
+        "step5_gates": "done — G-1~G-8·G-10~G-12 통과 · G-9 육안 확인 미완(사람)"
+      },
+      "pilotVerdict": "G-1 typecheck 0·lint diagram 0 / G-2 SSG 393·First Load JS 102kB 무증가 / G-3 5모듈 15 도해 전량 렌더 / G-5 MDX 색 리터럴 0·pattern id 미정의 참조 0 / G-6 ★본문 무수정 실증 — 삭제 줄 0, 294 insertions only (Design §1.2 \"C-2 표 병치가 검증을 단순하게 만든다\" 주장이 수치로 증명) / G-7 모듈 간 값 이동 0건. 검증 항목 3건 판정 확정: ①band 모드가 007·008 밖에서 정상 동작(rx=0 3개·패턴 참조 0 — 패턴 억제가 새 맥락에서도 유효) ②idPrefix 2개(mosfet-moscap/mosfet-structure)가 충돌 없이 분리, 모든 url(#)이 정의된 id를 가리킴 ③T3 조건 통과 — ScaleRuler의 Å~μm이 10⁻¹⁰~10⁻⁶으로 자릿수 차 4 (기준 2 이상 충족)",
+      "findings": [
+        "FlowSteps.loop.from/to가 구현에서 전혀 해석되지 않는다 — loop.label만 렌더한다. 선행 사이클 G-7이 잡은 CurvePlot.curves[].tone?와 같은 유형(시그니처만 있고 구현 없음). 현재 사용처가 없어 미발현이었고 process-overview가 첫 사용처. Check에서 props 표 정정 또는 구현 여부 판단 필요",
+        "Design §4는 mosfet을 \"LayerStack 2개\"로 적었으나 §2.1 매핑은 주1+보조2(LayerStack 1개)였다 — 문서 내부 불일치. Do에서 MOS 커패시터(§1) LayerStack을 추가해 §4 의도대로 맞췄다(초과 1건, 미이행 아님). Check에서 §2.1 표 정정",
+        "G-7 검증 스크립트 1차판이 오탐 4건을 냈다 — height/emphasis 같은 레이아웃 파라미터를 콘텐츠 수치로 오인. 추출 범위를 문자열 리터럴로 좁혀 해소. 스크립트 한계 1건 잔존: 유니코드 상첨자(10⁷)는 \\d로 매칭되지 않아 놓친다",
+        "ScaleRuler 라벨을 \"1 Å/1 nm/1 μm\"에서 본문 표 첫 열의 단위명(\"옹스트롬(Å)\" 등)으로 교체 — 의미는 같았으나 문자열이 본문에 없어 G-7 문자 수준 근거를 확보했다",
+        "usage.md §3이 \"넓은 도해(CompareCards 다열·NodeGraph·CurvePlot)는 scrollable로 자기 컨테이너 안에서 스크롤\"이라 적었으나 scrollable을 DiagramFrame에 넘기는 것은 LabeledFigure·NodeGraph·CurvePlot 3종뿐이고 CompareCards는 아니다. CompareCards는 grid repeat(n,1fr)로 압착되므로 4열 이상은 375px에서 위험 — usage.md 문서 오류 또는 CompareCards 누락 버그. Check 판단",
+        "★G-6(삭제 줄 0)만으로는 문단 분할을 잡지 못한다 — 문단 중간에 블록을 삽입하면 삭제 0이면서 <p>가 둘로 쪼개진다. cmos-image-sensor에서 실제 발생(발견·수정). 별도로 usage.md §2.4 앞뒤 빈 줄 전수 검사가 필요하며, 그 검사가 \"/> 뒤 빈 줄 누락\" 2건(cmos-image-sensor·photo-process)을 추가 적발했다. Check 게이트에 G-6b로 승격 권고",
+        "BJT 4개 동작영역을 Design이 배정한 CompareCards 대신 TreeBranch로 변경 — CompareCards 4열은 usage.md §1의 \"2~3열\" 규약을 벗어나고 scrollable도 적용되지 않는다. E-B/C-B 바이어스 2×2 구조라 트리가 오히려 정확. Design §2.1 정정 대상",
+        "12종에 공핍영역·광학층용 tone이 없다 — diode PN 접합의 공핍영역은 band-gap tone을 쓰면 tone 오용(band-*는 에너지 전용)이라 2층+경계 annotation으로 처리했고, CIS 마이크로렌즈·컬러필터는 oxide·resist로 근사했다. PN 접합은 diode·mosfet·bjt 3모듈에 반복 등장하므로 usage.md §4 승격 기준(3모듈 이상)에 걸린다 — 후속 백로그",
+        "★G-7 검사기를 두 번 정련했다 — 1차는 레이아웃 파라미터(height·emphasis·at·value)를 콘텐츠 수치로 오인해 오탐, 2차는 표기 차이로 오탐 4건(본문 0.7[V] vs 도해 0.7V · 표 열제목에 단위가 있는 841×1189 vs 841×1189mm). 대괄호 단위·단위 부착을 정규화해 해소. 매 정련 후 양성 대조군 4건(436nm·1350·0.235nm·9999rpm)을 재주입해 검사기가 눈멀지 않았음을 확인했다 — 이것이 3사이클 미해결 백로그(FR-8)의 실제 이행 방식이다",
+        "Design §7 배치 수치 오류 — C는 \"잔여 13\"이 아니라 12, D는 \"잔여 7\"이 아니라 8이다(합계 40은 정확). 파일럿이 hs-photo-etch에서 3모듈을 가져간 것을 §7이 반영하지 못했다. Check에서 정정",
+        "Timeline·ScaleRuler 배정 각 1건이 탈락·대체됐다 — exposure-equipment 4세대는 본문에 연도가 없어 Timeline(year 필수)이 부적합해 FlowSteps로(연도 창작 금지), drafting-standards A0~A4는 T3 미달로 FlowSteps로. 반면 etcher-maintenance는 Timeline year가 문자열이라 PM 주기(Daily~연간)에 적용 가능했다 — 새 용법",
+        "tone 오용 2건을 사전 차단 — thinfilm-process에서 존재하지 않는 tone \"nitride\"를 쓰려다 발견해 poly로 교정, 같은 도해의 wells 오용(층덮임 s/b를 well로 표현)도 annotation으로 정리. Tone 목록은 13종뿐이며 공핍영역·광학층·질화막용 tone이 없다 — 후속 백로그"
+      ],
+      "w1Result": "45/45 모듈 · 109 인스턴스(2.42/모듈, Check 보완 후). 컴포넌트 실제 vs 계획: FlowSteps 27/20(+7) · TreeBranch 25/20(+5) · CompareCards 22/25(-3) · LayerStack 12/14(-2) · NodeGraph 6/6 · LatticeDiagram 5/3(+2) · ValueBars 2/2 · CurvePlot 1/0(+1) · Timeline 1/2(-1) · ScaleRuler 1/2(-1) · TruthTable 0/0 · ★LabeledFigure 0/7(-7). LabeledFigure를 7건 → 0건으로 줄인 것이 가장 큰 계획 이탈이며 의도적이다 — usage.md §4가 경고한 \"남용 시 전용 SVG 회귀\"를 피하려고 배정 7건을 전부 기존 컴포넌트로 대체했다(저항 색띠→FlowSteps 읽기순서 · 버니어캘리퍼스→FlowSteps 눈금읽기 · 정투상→FlowSteps 투상면확장 · 해칭→CompareCards 해칭/스머징 · 광학계→FlowSteps 빛의경로 · 정렬포커스→FlowSteps 3단계 · 파스칼→미적용). 결과적으로 12종 중 LabeledFigure·TruthTable 2종 미사용, 인라인 SVG 0줄.",
+      "gateResult": "G-1 typecheck 0·lint diagram 0 / G-2 SSG 393·102kB 무증가 / G-3 주 도해 45/45 미이행 0 / G-4 102 인스턴스 ≥ 계획 101 / G-5 색 리터럴 0·idPrefix 중복 0·pattern 미정의 참조 0 / G-6 ★삭제 줄 0 — 1,753 insertions only(45파일) / G-6b 빈 줄 규약 위반 0 / G-7 모듈 간 값 이동 0건(도해 102개 전수) / G-8 cross-link·quotes 회귀 0",
+      "analysisDoc": "docs/03-analysis/diagram-expansion-w2.analysis.md",
+      "checkNote": "1차 gap-detector 가중 92.1%/그룹균등 85.8% → Check 즉시수정 11건 → 91.7%(12게이트 중 11). ★핵심 사건: gap-detector가 내 자기 보고를 반증했다. Do 종료 시 \"배치표 미이행 0\"이라 보고했으나 그것은 주 도해만 센 것이고 보조 7건이 미이행이었다(Plan FR-4 위반). 손으로 재확인해 7건 전부 사실 확인 후 전건 보완 → 102→109 인스턴스. High 1건 G-12도 사실이었다 — 양성 대조군을 4회 실행했으나 전부 heredoc 인라인이라 파일로 남기지 않았다(실천은 있고 산출물이 없음). scripts/verify-diagram-placement.mjs 작성으로 종결 — C-1~C-6 6개 검사 + 양성 5·음성 1 대조군 내장, 자기 검사 실패 시 본 검사를 실행하지 않고 exit 2. 작성 직후 실제 위반 1건(diffusion-practice 빈 줄) 적발. Medium 4건(보조 미이행·usage.md 표현·조건부 근거 미기록·대체 근거 미기록) 전건 해소. 자체 발견 2건: etcher-structure 플라스마에 band-gap 쓰려던 tone 오용(내가 몇 시간 전 usage.md에 금지로 쓴 항목) · thinfilm-process의 없는 tone nitride. Low 2건 유지(Design §2·§3 내부 충돌 · drawing-methods 정보 손실). 교훈: 양성 대조군은 필요조건이나 충분조건이 아니다 — 검사 범위가 좁으면 대조군도 그 안에서만 작동한다. 보조 미이행은 배치표를 JSON으로 만들어 기계 대조(C-1)해야 잡힌다.",
+      "artifacts": "scripts/verify-diagram-placement.mjs (판정 스크립트 · 3사이클 미해결 백로그 FR-8 종결) · docs/02-design/features/diagram-expansion.w1-plan.json (배치표 45모듈 102배정 · C-1 대조용) · docs/02-design/features/diagram-expansion.w2-design.md (W2 배치 매핑 61행) · diagram-expansion.w2-plan.json · scripts/verify-diagram-placement.mjs C-7 추가 + 분포 출력 · docs/02-design/features/diagram-c7-allow.json",
+      "w2Result": "W2 61/61 모듈 · 146 인스턴스(2.39/모듈) · 배치표 미이행 0. hs-semicon-infra 10/21 · daegu 10/29 · hs-assembly-inspection 12/28 · hs-basic-tech-2 15/35 · hs-equipment-maintenance 14/33. ★TruthTable 첫 사용(digital-circuits 진리표 9개) — 세 실적용 합쳐 12종 전부 실전 투입(LabeledFigure만 §4.1 판정에 따라 0). 분포: TreeBranch 49 · CompareCards 37 · FlowSteps 34 · NodeGraph 12 · ValueBars 5 · LayerStack 5 · TruthTable 2 · Timeline 2. W1 대비 TreeBranch 26→49(분류 체계가 다섯 자료원 전부의 뼈대) · NodeGraph 6→12(제어 계층·장비 구성) · LayerStack 15→5(단면보다 계통·절차). hs-semicon-infra 9모듈이 동일 3단 구조(노출→건강영향→관리)라 반복 억제 규칙 적용 — TreeBranch 7·CompareCards 2·FlowSteps 1로 갈랐다. 게이트: typecheck 0 · SSG 393 · 102kB · 삭제 줄 0(4,247 insertions only · 106파일) · C-1~C-6 전항 통과.",
+      "w2Findings": "★배치표 JSON 기계 대조가 손으로 센 것보다 강했다 — 4건 적발: ①w2-design §2.6 집계표 오류(기재 보조 96·계획 157 vs 실제 85·146) — W1에서 보조 미이행 7건을 놓친 것과 같은 \"손으로 센 집계\" 실패 유형, 이번엔 배정 단계에서 잡힘 ②daegu 대체 5건이 미기록이라 미이행으로 잡힘 → §2.7 대체 기록 신설 후 JSON 갱신(대체와 미이행을 구별하려면 배치표도 갱신해야 한다) ③maintenance-by-type 보조 TreeBranch 1건 미이행 ④★industry-trend에서 개별 점유율을 합산한 \"79.5%\"를 본문에 없는 값으로 적발 — usage.md §2.1 위반을 스크립트가 막았다. ⚠조건부 판정: 채택 0 · 탈락 3(photo 광원파장 436→13.5nm=32배(1.51자릿수) · industry-trend 점유율(%는 합이 100) · ac-circuits CurvePlot은 정류 파형을 FlowSteps로 대체). T3 채택 사례: element-vacuum-gas 진공도 760~10⁻⁹Torr(12자릿수) · safety-management 클린룸 클래스 1~100 · equipment-parameters 압력 · element-pneumatic-thermal 온도.",
+      "w2CheckNote": "★핵심 사건: 스크립트가 \"전 항목 통과\"를 냈는데 결함이 있었다. gap-detector가 caption 수량 불일치를 지적하고 추적하니 ★조용한 잘림 5건 — Do 단계 표 추출에 [:6]·[:7] 슬라이스를 써서 표가 경고 없이 잘렸고 그 데이터로 도해를 만들었다. daegu/process-overview 8공정→6(CMP·Clean 누락, caption은 \"8대 공정\") · daegu/photo 7단계→6(하드 베이크) · photomask 10→8(클리닝·페리클) · electropneumatic 7회로→6(오프 딜레이) · equipment-manufacturing 7→6(패키징, 본문\"일곱\" vs caption\"여섯\" 자기모순). 5건 전부 caption이 정답을 알고 있었고 모순이 파일 안에 나란히 적혀 있었다 — 아무 검사도 그걸 보지 않았다. → C-7(수량 일치) 신설 + 양성 대조군. 오탐 7건은 diagram-c7-allow.json에 근거와 함께 등재(조용히 통과 방지). 추가 수정 4건: development-drawings가 §4에 없는 작도 절차를 창작(H-1, 가장 무거움 — 제도 과목에서 틀린 절차를 가르침) → CompareCards 대체 · digital-circuits 5단계 라벨 3개가 본문 용어와 불일치 → 축자 교체 · metallization TiN 층 반전(본문은 \"실리사이드-텅스텐 계면\") → 위치 정정 · probe-test caption/내용 불일치. 에이전트 오류 1건 반증: \"본문에 세 축이 없다\"는 틀렸다 — §2 제목이 정확히 \"정밀 접촉을 만드는 세 축\"(70행). 실제 문제는 caption이 §2 제목을 옮겼는데 그린 것은 표1 구성이라는 점. 1차 50.0%(가중) → Check 즉시수정 9건 → 81.8%(11게이트 중 9.0).",
+      "w2Remaining": "G-9 육안 확인 0점 — 누적 255 인스턴스 미확인, 3사이클 연속 이연. 에이전트가 비용을 실증(잘림 5건·자기모순·caption 불일치는 페이지 한 번 열면 즉시 보인다) · G-4 0.5 — C-1이 타입만 대조해 \"주제 단위 미이행\"이 구조적 불가시. 배치표 JSON에 subject·section 필드 추가 필요 · G-7 0.5 — C-2가 수치만 봄. 용어 유입을 못 잡아 H-1·H-2가 통과했다. C-8(용어 대조) 신설 필요. Low 3: diebond-operation·diebond-process 표 0개(도해가 유일 표현, 원서 대조 필요) · 도해 2개 연속 3건 · hs-semicon-infra 9모듈 단조성.",
+      "w2Lesson": "대조군은 검사 범위를 넓혀 주지 않는다. W2 스크립트는 대조군을 갖고 자기검사를 통과했고 그래도 5건을 놓쳤다 — 틀려서가 아니라 caption 수량 대조 항목이 없어서다. 결함 원인은 조용한 잘림이고, 이는 이 확대에서 반복된 \"손으로 옮긴 집계\"(W1 보조 7건·W2 계획 157·W2 분포표)와 뿌리가 같다 — 중간 산출물을 검산 없이 신뢰한 것. W3 절차: ①표 읽을 때 슬라이스 금지, 자르면 버린 행 수를 출력 ②배치표에 subject 추가 ③G-9를 게이트가 아니라 관문으로.",
+      "actSummary": "W2 Act(iterate) — G-4·G-7 해소. 배치표를 Design §2에서 생성(build-diagram-plan.mjs), C-1 주제 대조·C-8 용어 출처·C-9 참조 정합 신설(전부 양성 대조군 포함). 찾은 것: 창작 8건·계획 이탈 11건·Design 표 어긋남 19곳·배치표 누락 배정 2건. 잔존 G-9(육안 확인) 0.0 — 사람만 가능, 누적 255 인스턴스",
+      "gates": "10.0/11 = 90.9% (G-9만 0.0)",
+      "reportDoc": "docs/04-report/diagram-expansion.report.md",
+      "reportScope": "W1·W2 완주 중간 보고 (umbrella 진행 중 — W3 23모듈·W4 101모듈 잔여, 아카이브 대상 아님)",
+      "completedWaves": "W1 45모듈 91.7% · W2 61모듈 90.9% — 합계 106모듈 255 인스턴스",
+      "blockingForW3": "G-9 육안 확인 255 인스턴스 (사람만 가능)",
+      "w3": "Do 완주 — cert-equip-maintenance 13 + osha-scs 10(5파트×en/ko) = 23모듈 60 인스턴스. D-4 확정(en·ko 양쪽), C-10 미러 정합 신설, TruthTable 대체(행 라벨 없음)",
+      "cumulative": "W1 109 + W2 146 + W3 60 + W4 34 = **349 인스턴스** / 129 + 27 = 156모듈",
+      "checks": "C-1~C-16, 대조군 24건",
+      "remaining": "G-9 육안 확인 315 인스턴스(사람 몫) · W4 101모듈 선별 판단(D-1)",
+      "designDocW3": "docs/02-design/features/diagram-expansion.w3-design.md",
+      "analysisDocW3": "docs/03-analysis/diagram-expansion-w3.analysis.md",
+      "w3Check": "92.3% (13게이트 중 12.0) — G-9만 0.0. 자체 검사기 C-12 신설이 W2에서 3건, gap-detector가 검사기 통과분에서 8건 추가 적발(문단 쪼갬 1·창작 부연 2·caption 수량 3·ko 라벨 en 유입 2). 전건 수정. C-13(문단 무손상) 신설, 허용목록 키에 자료원 네임스페이스 부여(잠재 오통과 제거)",
+      "w4": "완주 — 27모듈 34 인스턴스(CompareCards 11·ValueBars 9·TreeBranch 9·Timeline 3·FlowSteps 2). D-1 확정(101→29 계획, 실제 27: G-14 중복으로 03·15 전량 탈락). 도판 425장이 덮는 것은 전량 탈락(§2.4에 13건 기록). LayerStack·NodeGraph 0 = 판정 작동. C-14·C-15 신설",
+      "designDocW4": "docs/02-design/features/diagram-expansion.w4-design.md",
+      "analysisDocW4": "docs/03-analysis/diagram-expansion-w4.analysis.md",
+      "w4Check": "91.7% (12게이트 중 11.0, G-3 비적용) — G-9만 0.0. G-14(중복 0) 신설 게이트 통과: 도판 캡션 전수 대조로 13건 탈락. 즉시수정 3건(caption에 내가 계산한 자릿수 값 — 어느 검사도 못 잡음). G-14 자동화 시도 실패 기록",
+      "waveResults": "W1 91.7% · W2 90.9% · W3 92.3% · W4 91.7% — 네 웨이브 전부 게이트 통과",
+      "w4Act": "C-16(계산값 서술) 신설 — 7건 검출·오탐 0. 5건 수정(그중 2건은 \"열두 자릿수\"가 실측 14.9자릿수로 과소 주장), 예외 2건은 note 중복 정리로 최종 제거. gap-detector 96.7% 지적 12건 전건 반영 — 최대 발견은 ValueBars 단위 소실(사이트 29건 중 20건, 기준선 사이클부터)"
     }
   },
   "pipeline": {
@@ -4151,6 +4237,46 @@
       "event": "pr_created",
       "at": "2026-08-11T04:02:15.000Z",
       "pr": 30
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "plan",
+      "at": "2026-08-11T07:45:00.000Z",
+      "doc": "docs/01-plan/features/diagram-expansion.plan.md"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "design",
+      "at": "2026-08-11T08:15:00.000Z",
+      "doc": "docs/02-design/features/diagram-expansion.design.md"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "do",
+      "at": "2026-08-12T00:30:00.000Z"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "do_done",
+      "at": "2026-08-12T05:00:00.000Z"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "check",
+      "at": "2026-08-12T07:00:00.000Z",
+      "matchRate": 91.7,
+      "doc": "docs/03-analysis/diagram-expansion.analysis.md"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "w2_done",
+      "at": "2026-08-12T12:00:00.000Z"
+    },
+    {
+      "feature": "diagram-expansion",
+      "event": "check_w2",
+      "at": "2026-08-12T14:00:00.000Z",
+      "matchRate": 81.8
     }
   ]
 }

@@ -175,6 +175,36 @@
 | 비결정 | 질화규소(Si₃N₄) | 부도체 | 반도체 소자와 집적회로의 절연막 |
 | 비결정 | 산화알루미늄(Al₂O₃) | 부도체 | 반도체 소자와 집적회로의 절연막 |
 
+<TreeBranch
+  caption="결정 구조가 가르는 세 갈래 — 같은 갈래 안에도 부도체가 있다"
+  root="반도체 재료"
+  branches={[
+    {
+      label: '단결정',
+      children: [
+        { label: '실리콘(Si)', note: '고성능 전자 소자와 집적회로' },
+        { label: '게르마늄(Ge)', note: '수광/광검출 소자, 이미지센서' },
+        { label: '갈륨비소(GaAs)·인듐인(InP) 계열', note: '초고속/초고주파 전자 소자' },
+        { label: '알루미늄갈륨비소(AlGaAs) 계열', note: '이종 접합을 이용한 초고주파' },
+      ],
+    },
+    {
+      label: '다결정',
+      children: [{ label: '폴리실리콘(polysilicon)', note: '태양전지, MOSFET의 게이트' }],
+    },
+    {
+      label: '비결정',
+      children: [
+        { label: '비결정 실리콘(a-Si)', note: '태양전지, 대면적 디스플레이' },
+        { label: '비결정 산화물 반도체(AOS)', note: '대면적 디스플레이용 트랜지스터' },
+        { label: '실리카(SiO₂)', note: '부도체 — 절연막' },
+        { label: '질화규소(Si₃N₄)', note: '부도체 — 절연막' },
+        { label: '산화알루미늄(Al₂O₃)', note: '부도체 — 절연막' },
+      ],
+    },
+  ]}
+/>
+
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 2-2 (p.31) · 김동명(2017)</p>
 
 ### 나. 진성 반도체와 불순물 반도체

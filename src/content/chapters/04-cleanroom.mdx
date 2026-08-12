@@ -155,6 +155,22 @@
 | ISO 7 (Class 10,000) | 60∼90 | 0.051∼0.076 | 15∼20 |
 | ISO 8 (Class 100,000) | 5∼48 | 0.005∼0.041 | 5∼15 |
 
+<ValueBars
+  caption="등급이 올라가면 공기를 얼마나 자주 바꿔야 하나"
+  unit="ACH"
+  scale="log"
+  rows={[
+    { label: 'ISO 1∼2', range: [360, 600], tone: 'accent' },
+    { label: 'ISO 3 (Class 1)', range: [360, 540] },
+    { label: 'ISO 4 (Class 10)', range: [300, 540] },
+    { label: 'ISO 5 (Class 100)', range: [240, 480] },
+    { label: 'ISO 6 (Class 1,000)', range: [150, 240] },
+    { label: 'ISO 7 (Class 10,000)', range: [60, 90] },
+    { label: 'ISO 8 (Class 100,000)', range: [5, 48] },
+  ]}
+  note="시간당 공기 교환 횟수(ACH). 등급이 깨끗해질수록 공기를 더 자주 바꿔야 한다."
+/>
+
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 4-2 (p.58) · 이지혜(2013), Jaisinghani(2003)</p>
 
 등급이 높아질수록(숫자가 작아질수록) 공기를 훨씬 자주 갈아 끼우고, 기류도 빠르게 흘려보내고,
@@ -252,6 +268,21 @@
 | 기타 공정 | SA | Class 1000 | 23±2 | 45±10 |
 | 조립 공정 | front | Class 1000 | 23±5 | 45±10 |
 | 조립 공정 | mold | Class 10,000 | 23±5 | 45±10 |
+
+<ValueBars
+  caption="공정마다 요구하는 청정도가 다르다 — 포토가 가장 깐깐하다"
+  unit="Class"
+  scale="log"
+  rows={[
+    { label: '포토 공정 (PA)', value: 1, tone: 'accent' },
+    { label: '확산 공정 (SA)', value: 10 },
+    { label: '기타 공정 (PA)', range: [1, 10] },
+    { label: '기타 공정 (SA)', value: 1000 },
+    { label: '조립 공정 (front)', value: 1000 },
+    { label: '조립 공정 (mold)', value: 10000 },
+  ]}
+  note="미국 Class 기준. 숫자가 작을수록 깨끗하다 — 포토 공정과 조립 mold 사이가 가장 멀다."
+/>
 
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 4-3 (p.61), 국내 12인치 웨이퍼 생산 공정 기준</p>
 

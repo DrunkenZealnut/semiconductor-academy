@@ -1,0 +1,711 @@
+{
+  "_coverage": "full",
+  "_comment": "Design docs/02-design/features/diagram-expansion.w2-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w2).",
+  "_substitutions": "daegu 5건 대체 반영 (2026-08-12) — 근거: diagram-expansion.w2-design.md §2.7. thin-film LayerStack→CompareCards · doping LatticeDiagram→CompareCards · metallization ValueBars→FlowSteps(T3 미달) · cmp FlowSteps→TreeBranch · cleaning FlowSteps→TreeBranch | Check 추가 1건: development-drawings FlowSteps→CompareCards (§4에 보조선·교점법이 없어 절차를 창작한 것이었다 — 본문이 말하는 \"평면이면 직선·곡면이면 곡선\"으로 교체)",
+  "digital-circuits": [
+    {
+      "component": "TruthTable",
+      "subject": "— 기본 논리 게이트"
+    },
+    {
+      "component": "TruthTable",
+      "subject": "전가산기"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "논리 회로 설계 5단계"
+    }
+  ],
+  "ac-circuits": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — R·L·C가 교류에서 다르게 구는 법"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "직류 전원 4단계"
+    }
+  ],
+  "arduino-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "8개 실습의 입력→출력 계열"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "LED 5개 순차 점등"
+    }
+  ],
+  "microprocessor-basics": [
+    {
+      "component": "NodeGraph",
+      "subject": "마이크로컴퓨터 3대 부품"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "기억장치 RAM/ROM 계열"
+    }
+  ],
+  "microprocessor-practice": [
+    {
+      "component": "FlowSteps",
+      "subject": "코드가 칩에 들어가기까지 4단계"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "실습 변형 대조"
+    }
+  ],
+  "electropneumatic-circuits": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — a·b·c접점"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "기본 논리 회로 7가지"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "신호가 움직임이 되는 다섯 실행 단계"
+    }
+  ],
+  "electrohydraulic-circuits": [
+    {
+      "component": "TreeBranch",
+      "subject": "밸브 세 갈래"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "중립 위치 형식"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "논리 회로"
+    }
+  ],
+  "hydraulics-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "8개 실습의 회로 차이 계열"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "실습 공통 절차"
+    }
+  ],
+  "pneumatics-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "세 실습이 쌓아 올리는 것"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "직접 조작 vs 파일럿 조작"
+    }
+  ],
+  "pneumatics-maintenance": [
+    {
+      "component": "TreeBranch",
+      "subject": "고장 증상 5가지와 원인"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "공압 실린더 관리 3단계"
+    }
+  ],
+  "machine-tools": [
+    {
+      "component": "TreeBranch",
+      "subject": "선반의 네 기둥"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "평형 vs 산형"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "다단축 가공"
+    }
+  ],
+  "equipment-manufacturing": [
+    {
+      "component": "TreeBranch",
+      "subject": "가공법 두 갈래"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "미세 가공 단계"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "정밀 가공 도전 과제"
+    }
+  ],
+  "cad-drafting": [
+    {
+      "component": "CompareCards",
+      "subject": "손 제도 vs CAD"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "명령어 갈래"
+    }
+  ],
+  "special-projections": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 축측·사·투시 투상"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "축측 투상 세 종류"
+    }
+  ],
+  "development-drawings": [
+    {
+      "component": "TreeBranch",
+      "subject": "전개법과 알맞은 입체"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "상관선의 모양 평면·곡면"
+    }
+  ],
+  "industry-trend": [
+    {
+      "component": "TreeBranch",
+      "subject": "장비 개발 5단계와 직무"
+    }
+  ],
+  "maintenance-fundamentals": [
+    {
+      "component": "CompareCards",
+      "subject": "예방 보전 vs 사후 보전"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "유지 보수 다섯 얼굴"
+    }
+  ],
+  "maintenance-setup": [
+    {
+      "component": "FlowSteps",
+      "subject": "셋업 6단계"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "검수 6단계"
+    }
+  ],
+  "maintenance-by-type": [
+    {
+      "component": "TreeBranch",
+      "subject": "장비 유형별 정비 5계열"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "진공 펌프 종류"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "광학 장비 진단"
+    }
+  ],
+  "design-concept-mechanical": [
+    {
+      "component": "FlowSteps",
+      "subject": "장비가 태어나는 네 단계"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "팹 안의 자리"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "유틸리티"
+    }
+  ],
+  "design-electrical": [
+    {
+      "component": "NodeGraph",
+      "subject": "CTC·TMC·PMC 제어 계층"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "전원 설계 계열"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "인터로크 보호 단계"
+    }
+  ],
+  "design-control-software": [
+    {
+      "component": "NodeGraph",
+      "subject": "PC와 PLC가 나눠 맡는 일"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "통신 네트워크·SECS/GEM"
+    }
+  ],
+  "element-vacuum-gas": [
+    {
+      "component": "ValueBars",
+      "subject": "— 진공 세 단계와 펌프"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "공정 가스 세 얼굴"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "유해 가스 마지막 방어선"
+    }
+  ],
+  "element-power": [
+    {
+      "component": "CompareCards",
+      "subject": "일반 전원 vs 제어 전원"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "노이즈 종류와 제거"
+    }
+  ],
+  "element-plasma": [
+    {
+      "component": "NodeGraph",
+      "subject": "RF 전력 시스템"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "왜 식각·증착에 플라스마를 쓰나"
+    }
+  ],
+  "element-pneumatic-thermal": [
+    {
+      "component": "FlowSteps",
+      "subject": "압축 공기가 만들어지는 3단계"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "공정별 온도 범위"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "열 기술 방식"
+    }
+  ],
+  "process-wafer-photo": [
+    {
+      "component": "CompareCards",
+      "subject": "초크랄스키 vs 플로트존"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "잉곳→웨이퍼 가공 5종"
+    }
+  ],
+  "process-etch-deposition": [
+    {
+      "component": "CompareCards",
+      "subject": "습식 vs 건식 에칭"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "건식 챔버 다섯 계통"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "3열 APCVD/LPCVD/PECVD"
+    }
+  ],
+  "process-frontend-backend": [
+    {
+      "component": "FlowSteps",
+      "subject": "후공정 흐름"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "이온 주입 장비 구성"
+    }
+  ],
+  "packaging-overview": [
+    {
+      "component": "FlowSteps",
+      "subject": "조립 공정 8단계 지도"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "패키지의 네 가지 일"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "TSOP vs FBGA"
+    }
+  ],
+  "inspection-overview": [
+    {
+      "component": "CompareCards",
+      "subject": "웨이퍼 레벨 vs 패키지 레벨 검사"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "프로브 테스트 단계"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "패키지 테스트 종류"
+    }
+  ],
+  "sawing-process": [
+    {
+      "component": "TreeBranch",
+      "subject": "쏘잉 공정 여섯 요소"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "장비별 웨이퍼 크기·재질"
+    }
+  ],
+  "sawing-equipment": [
+    {
+      "component": "NodeGraph",
+      "subject": "쏘잉 머신 네 계통"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "테이프 마운터"
+    }
+  ],
+  "sawing-operation": [
+    {
+      "component": "FlowSteps",
+      "subject": "준비 → 본 작업 → 종료"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "안전 수칙과 이유"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "절삭 방식"
+    }
+  ],
+  "sawing-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "실습과제와 점검 부위 계열"
+    },
+    {
+      "component": "Timeline",
+      "subject": "점검 주기"
+    }
+  ],
+  "diebond-process": [
+    {
+      "component": "LayerStack",
+      "subject": "리드 프레임 위에 칩이 올라선 단면"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "다이 본더가 하는 두 갈래 일"
+    }
+  ],
+  "diebond-equipment": [
+    {
+      "component": "NodeGraph",
+      "subject": "서보·마운트·디스펜서·옵틱 구성"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "리드 프레임의 여정"
+    }
+  ],
+  "diebond-operation": [
+    {
+      "component": "FlowSteps",
+      "subject": "초기화 → 에폭시 셋팅 → 카세트 로딩"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "조작의 큰 그림"
+    }
+  ],
+  "diebond-practice": [
+    {
+      "component": "Timeline",
+      "subject": "점검 주기"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "유지보수 부위별 관리"
+    }
+  ],
+  "probe-test": [
+    {
+      "component": "NodeGraph",
+      "subject": "프로버의 세 축"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "셋업→테스트 조작 논리"
+    }
+  ],
+  "particle-counter": [
+    {
+      "component": "FlowSteps",
+      "subject": "빛이 지나가는 길"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "검출 방식 강점·약점"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "측정 용어"
+    }
+  ],
+  "safety-photo": [
+    {
+      "component": "TreeBranch",
+      "subject": "작업 단계별 노출 물질"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "공정 단계별 노출 지점"
+    }
+  ],
+  "safety-etch": [
+    {
+      "component": "CompareCards",
+      "subject": "습식이냐 기체냐"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "건강 영향 계열"
+    }
+  ],
+  "safety-diffusion": [
+    {
+      "component": "TreeBranch",
+      "subject": "'멈췄을 때' 새어 나오는 위험"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "정비 시 노출 차단 순서"
+    }
+  ],
+  "safety-deposition": [
+    {
+      "component": "TreeBranch",
+      "subject": "물질 구분"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "밀폐 중 vs 열 때"
+    }
+  ],
+  "safety-cmp": [
+    {
+      "component": "TreeBranch",
+      "subject": "문을 여는 순간의 노출"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "슬러리 취급 관리"
+    }
+  ],
+  "safety-ion-implant": [
+    {
+      "component": "TreeBranch",
+      "subject": "가스와 방사선 두 갈래"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "두 위험의 대책 차이"
+    }
+  ],
+  "safety-backend-chemical": [
+    {
+      "component": "TreeBranch",
+      "subject": "네 공정, 네 노출 순간"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "화학물질 취급 공통 원칙"
+    }
+  ],
+  "safety-backend-test": [
+    {
+      "component": "TreeBranch",
+      "subject": "같은 '검사'인데 다른 위험"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "공정별 노출 대조"
+    }
+  ],
+  "safety-backend-mechanical": [
+    {
+      "component": "FlowSteps",
+      "subject": "— 후면 연마 → 절단 → 칩 접착"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "공정별 유해 물질"
+    }
+  ],
+  "safety-management": [
+    {
+      "component": "CompareCards",
+      "subject": "클린룸과 방진복, 무엇을 지키나"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "FED·ISO 등급별 입자수"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "보호구 착용 순서"
+    }
+  ],
+  "process-overview": [
+    {
+      "component": "FlowSteps",
+      "subject": "8대 공정"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "CZ vs FZ"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "전공정 세 구간"
+    }
+  ],
+  "photo": [
+    {
+      "component": "FlowSteps",
+      "subject": "포토 공정 7단계"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "광원의 세 계보"
+    }
+  ],
+  "etch": [
+    {
+      "component": "CompareCards",
+      "subject": "습식 vs 건식 식각"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "막질별 식각 가스"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "3열 CCP·ICP·ECR"
+    }
+  ],
+  "thin-film": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — PVD · CVD · ALD"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "CVD 반응 다섯 유형"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "APCVD·LPCVD·PECVD"
+    }
+  ],
+  "oxidation": [
+    {
+      "component": "CompareCards",
+      "subject": "건식산화 vs 습식산화"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "LOCOS vs STI"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "산화막 성장"
+    }
+  ],
+  "doping": [
+    {
+      "component": "CompareCards",
+      "subject": "확산 vs 이온주입"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "3열 어닐링 방식"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "동종·이종에피"
+    }
+  ],
+  "metallization": [
+    {
+      "component": "TreeBranch",
+      "subject": "배선 재료와 자리"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "구리 전해도금 3반응"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "텅스텐 플러그 단면"
+    }
+  ],
+  "cmp": [
+    {
+      "component": "NodeGraph",
+      "subject": "CMP 장비 구성"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "CMP 세 목적"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "막 종류별 슬러리"
+    }
+  ],
+  "cleaning": [
+    {
+      "component": "CompareCards",
+      "subject": "습식세정 vs 건식세정"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "오염 종류와 문제"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "세정 약액 계열"
+    }
+  ],
+  "equipment-parameters": [
+    {
+      "component": "ValueBars",
+      "subject": "— 진공 압력"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "공정 설비 챔버 구성"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "플라즈마 반응"
+    }
+  ]
+}

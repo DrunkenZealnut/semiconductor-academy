@@ -27,6 +27,43 @@ After completing this course, you will be able to:
 | 8 | Corrosive Liquids | Corrosive | Painful penetrating burns |
 | 9 | Hazardous Byproducts | Variable | Can combine to create new hazards |
 
+<TreeBranch
+  caption="Nine categories, grouped by primary hazard"
+  root="Extremely hazardous chemicals"
+  branches={[
+    {
+      label: 'Toxic',
+      children: [
+        { label: 'Toxic Hydride Gases', note: 'Flammable, sometimes pyrophoric' },
+        { label: 'Corrosive Gases', note: 'Burns on contact with moisture in tissues' },
+        { label: 'Oxidizing Gases', note: 'Increases fire/explosion risk with combustibles' },
+      ],
+    },
+    {
+      label: 'Flammable',
+      children: [
+        { label: 'Pyrophoric Gases', note: 'Ignite on contact with air' },
+        { label: 'Silane', note: 'Explosion risk, associated with deaths' },
+        { label: 'Flammable Gases', note: 'Significant fire risk during release' },
+      ],
+    },
+    {
+      label: 'Pyrophoric / Water-reactive',
+      children: [
+        { label: 'Highly Energetic Materials', note: 'Explosion or toxic/corrosive vapor exposure' },
+      ],
+    },
+    {
+      label: 'Corrosive',
+      children: [{ label: 'Corrosive Liquids', note: 'Painful penetrating burns' }],
+    },
+    {
+      label: 'Variable',
+      children: [{ label: 'Hazardous Byproducts', note: 'Can combine to create new hazards' }],
+    },
+  ]}
+/>
+
 ---
 
 ## 1. Toxic Hydride Gases
@@ -220,6 +257,18 @@ A release of an extremely hazardous chemical is a **very serious event**.
 - **Avoid becoming an additional casualty**
 - Once safe, report relevant information about the event to responders
 - Follow directions from responders
+
+<FlowSteps
+  caption="Emergency response — evacuate first, report once you are safe"
+  orientation="column"
+  steps={[
+    { id: 'er1', label: 'Evacuate', sub: 'To the designated assembly area — your safety is paramount', tone: 'accent' },
+    { id: 'er2', label: 'Make sure you are safe', sub: 'Before assisting anyone else — avoid becoming an additional casualty' },
+    { id: 'er3', label: 'Report to responders', sub: 'Once safe, report relevant information about the event' },
+    { id: 'er4', label: 'Follow directions', sub: 'From responders' },
+  ]}
+  note="You may remotely shut down gas — never attempt to shut it off at the cylinder."
+/>
 
 ---
 

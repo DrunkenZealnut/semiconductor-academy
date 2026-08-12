@@ -1,16 +1,20 @@
 {
-  "sessionCount": 38,
+  "sessionCount": 39,
   "lastSession": {
-    "startedAt": "2026-08-11T05:44:55.321Z",
+    "startedAt": "2026-08-12T07:13:42.516Z",
     "platform": "claude",
     "level": "Dynamic"
   },
   "currentPdca": {
-    "feature": "diagram-set-finishing",
-    "phase": "completed",
-    "matchRate": 97.3,
-    "updatedAt": "2026-08-11",
-    "lastArchived": "diagram-component-set",
-    "reportDoc": "docs/04-report/diagram-set-finishing.report.md"
+    "feature": "diagram-expansion",
+    "phase": "check",
+    "updatedAt": "2026-08-12",
+    "lastArchived": "diagram-set-finishing",
+    "planDoc": "docs/01-plan/features/diagram-expansion.plan.md",
+    "designDoc": "docs/02-design/features/diagram-expansion.design.md",
+    "matchRate": 91.7,
+    "analysisDoc": "docs/03-analysis/diagram-expansion-w4.analysis.md",
+    "note": "W4 Check 91.7% + Act(C-16) 완료. 네 웨이브 349 인스턴스 전 항목 통과. 검사 C-1~C-16·대조군 24. gap-detector 12건·C-16 7건 전건 반영. 최대 발견: ValueBars 단위 소실(컴포넌트 수정, 20건 영향). 남은 것은 G-9 육안확인 349건 · G-14 중복판정(둘 다 자동화 불가). 다음: /pdca report diagram-expansion",
+    "reportDoc": "docs/04-report/diagram-expansion.report.md"
   }
 }

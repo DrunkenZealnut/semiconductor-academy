@@ -1,0 +1,194 @@
+{
+  "_coverage": "selective",
+  "_comment": "Design docs/02-design/features/diagram-expansion.w4-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w4).",
+  "01-risks-of-new-tech": [
+    {
+      "component": "CompareCards",
+      "subject": "기대했던 효과 vs 나중에 드러난 부작용"
+    }
+  ],
+  "02-semiconductor": [
+    {
+      "component": "TreeBranch",
+      "subject": "결정 구조로 가르는 반도체 재료"
+    }
+  ],
+  "04-cleanroom": [
+    {
+      "component": "ValueBars",
+      "subject": "공정별 요구 공기 청정도"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "등급별 공기 교환 횟수 ACH (5~600"
+    }
+  ],
+  "05-wafer": [
+    {
+      "component": "FlowSteps",
+      "subject": "웨이퍼 제조 열한 단계와 산업보건 위험"
+    }
+  ],
+  "06-cleaning": [
+    {
+      "component": "TreeBranch",
+      "subject": "클리닝 방식·방법·대상 오염 물질"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "오염 물질 분류"
+    }
+  ],
+  "07-diffusion": [
+    {
+      "component": "CompareCards",
+      "subject": "확산 vs 이온 주입"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "화학물질·공정·건강 위험"
+    }
+  ],
+  "09-etching": [
+    {
+      "component": "TreeBranch",
+      "subject": "박막별 식각 성분과 가스 화합물"
+    }
+  ],
+  "10-deposition": [
+    {
+      "component": "ValueBars",
+      "subject": "증착 가스 TWA"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "CVD vs PVD"
+    }
+  ],
+  "11-ion-implantation": [
+    {
+      "component": "TreeBranch",
+      "subject": "족별 대표 불순물과 상태"
+    }
+  ],
+  "12-cmp": [
+    {
+      "component": "CompareCards",
+      "subject": "산화막 슬러리 vs 금속막 슬러리"
+    }
+  ],
+  "13-packaging": [
+    {
+      "component": "FlowSteps",
+      "subject": "패키징 아홉 단계와 주요 유해인자"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "EMC 성분과 기능"
+    }
+  ],
+  "14-chemicals-usage": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 기간 Ⅰ·Ⅱ·Ⅲ 화학물질 공급 방식·자동화 변화"
+    }
+  ],
+  "16-occupational-disease": [
+    {
+      "component": "ValueBars",
+      "subject": "생식독성 위험도 RR·OR 95% 신뢰구간"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "유의한 암종과 연관 직무 요인"
+    }
+  ],
+  "17-industrial-health-view": [
+    {
+      "component": "CompareCards",
+      "subject": "반도체 산업 vs 산업보건 연구의 격차"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "주체별로 할 수 있는 일"
+    }
+  ],
+  "08-photolithography": [
+    {
+      "component": "Timeline",
+      "subject": "노광 세대"
+    }
+  ],
+  "gas-materials": [
+    {
+      "component": "ValueBars",
+      "subject": "특수가스 허용농도 TLV"
+    }
+  ],
+  "etching-process-gas": [
+    {
+      "component": "ValueBars",
+      "subject": "식각 가스 허용농도 TLV"
+    }
+  ],
+  "thinfilm-process-gas": [
+    {
+      "component": "ValueBars",
+      "subject": "박막 가스 허용농도 TWA"
+    }
+  ],
+  "cleanroom-facility": [
+    {
+      "component": "ValueBars",
+      "subject": "동작별 먼지 발생량"
+    }
+  ],
+  "metal-target-materials": [
+    {
+      "component": "ValueBars",
+      "subject": "금속 비저항 구간"
+    }
+  ],
+  "photo-process-materials": [
+    {
+      "component": "Timeline",
+      "subject": "노광 세대 아홉 단계"
+    }
+  ],
+  "lithography-materials": [
+    {
+      "component": "Timeline",
+      "subject": "노광 세대 다섯 단계"
+    }
+  ],
+  "architecture-design": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 설계할 제품 vs 경쟁제품 A·B"
+    }
+  ],
+  "equipment-board-design": [
+    {
+      "component": "CompareCards",
+      "subject": "CPLD vs FPGA"
+    }
+  ],
+  "metrology-equipment": [
+    {
+      "component": "CompareCards",
+      "subject": "주사전자현미경 vs 광학현미경"
+    }
+  ],
+  "productivity": [
+    {
+      "component": "CompareCards",
+      "subject": "2002년 vs 2003년 생산성 지표"
+    }
+  ],
+  "robustness-testing": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — ESD 세 모델"
+    }
+  ]
+}

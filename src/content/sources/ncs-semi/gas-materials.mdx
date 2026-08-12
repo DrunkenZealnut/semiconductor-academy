@@ -73,6 +73,21 @@
 | 염소 | Cl2 | 1 |
 | 6불화유황 | SF6 | 1000 |
 
+<ValueBars
+  caption="허용농도(TLV)가 작을수록 조금만 새도 위험하다"
+  unit="ppm"
+  scale="log"
+  rows={[
+    { label: '아르신(AsH3)', value: 0.05, tone: 'accent' },
+    { label: '불소(F2)', value: 0.1 },
+    { label: '포스핀(PH3)', value: 0.3 },
+    { label: '시란(SiH4)', value: 0.5 },
+    { label: '염소(Cl2)', value: 1 },
+    { label: '6불화유황(SF6)', value: 1000 },
+  ]}
+  note="표에서는 같은 크기의 글자여서 차이가 보이지 않는다."
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체용 가스 재료 제조 — 3-3. 도출된 문제점에 대한 해결방안 강구 [표 3-6] 반도체 공정가스와 허용농도(발췌)</div>
 
 숫자만 보면 감이 안 올 수 있는데, 아르신은 0.05ppm — 공기 2천만분의 1만 섞여 있어도 허용치를

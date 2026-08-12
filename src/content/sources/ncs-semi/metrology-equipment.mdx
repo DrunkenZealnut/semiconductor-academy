@@ -68,6 +68,18 @@ MI 장비 운영 = 사진·식각 같은 패터닝 공정이 끝난 뒤, 그 결
 | 배율 | 10~30만 배 | 10~1,000배 |
 | 주 용도 | Sub-micron 검사 | Micro scale 검사 |
 
+<CompareCards
+  caption="전자빔이냐 빛이냐 — 분해능과 배율이 갈린다"
+  columns={[{ title: '주사전자현미경(SEM)', tone: 'accent' }, { title: '광학현미경' }]}
+  rows={[
+    { aspect: '광원', values: ['전자빔 — 파장 0.6nm', '자외선·가시광선 200~750nm'] },
+    { aspect: '매질', values: ['진공(10⁻⁵ Torr 이하)', '대기 중'] },
+    { aspect: '분해능', values: ['일반 SEM 3~5nm, FE-SEM 0.5~2nm', '가시 영역 200nm'] },
+    { aspect: '배율', values: ['10~30만 배', '10~1,000배'] },
+    { aspect: '주 용도', values: ['Sub-micron 검사', 'Micro scale 검사'] },
+  ]}
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 MI 장비 운영 — 1-1. 측정원리 이해 &lt;표 1-1&gt; 전자현미경과 광학현미경의 비교</div>
 
 <ImageFigure

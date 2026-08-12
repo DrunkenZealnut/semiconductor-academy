@@ -2,7 +2,7 @@
 
 > **Feature**: `diagram-set-finishing`
 > **작성일**: 2026-08-11 · **Level**: Dynamic
-> **Plan**: `docs/01-plan/features/diagram-set-finishing.plan.md`
+> **Plan**: `docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.plan.md`
 > **선행 사이클**: `diagram-component-set`(2026-08-10, 93.6%) — 이 사이클이 닫는 미완 6건의 출처
 
 ---

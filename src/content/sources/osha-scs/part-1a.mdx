@@ -71,6 +71,17 @@ Define and classify the hazards of chemical products and communicate health and 
 2. **Health hazards** — adverse effects on health (short-term or long-term)
 3. **Environmental hazards** — pollution of rivers, streams, lakes; endangering aquatic life
 
+<TreeBranch
+  caption="Three types of hazards"
+  root="Hazards"
+  depth={2}
+  branches={[
+    { label: 'Physical hazards', note: 'Corrosivity, flammability, explosive potential' },
+    { label: 'Health hazards', note: 'Adverse effects on health — short-term or long-term' },
+    { label: 'Environmental hazards', note: 'Pollution of rivers, streams, lakes; endangering aquatic life' },
+  ]}
+/>
+
 ### GHS Pictograms
 
 Nine standardized pictograms: black hazard symbol on white background within a red diamond frame. Each conveys specific information about a chemical's hazards.
@@ -173,6 +184,15 @@ May produce acute (short-term) or chronic (long-term) health effects. Can cause 
 | ≤ 2 | Corrosive acid | Sulfuric, hydrochloric, nitric acid |
 | 7 | Neutral | Water |
 | ≥ 11.5 | Corrosive base (alkali) | Ammonium hydroxide, TMAH |
+
+<CompareCards
+  caption="Both ends of the pH scale are corrosive — the middle is not"
+  columns={[{ title: 'Corrosive acid' }, { title: 'Neutral' }, { title: 'Corrosive base' }]}
+  rows={[
+    { aspect: 'pH', values: ['≤ 2', '7', '≥ 11.5'] },
+    { aspect: 'Examples', values: ['Sulfuric, hydrochloric, nitric acid', 'Water', 'Ammonium hydroxide, TMAH'] },
+  ]}
+/>
 
 ### 6.3 Hydrofluoric Acid (HF) — Special Hazard
 

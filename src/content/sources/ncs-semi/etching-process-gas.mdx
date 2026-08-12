@@ -163,6 +163,20 @@
 | 삼불화 질소 | NF3 | 10 |
 | 육불화 황 | SF6 | 1,000 |
 
+<ValueBars
+  caption="식각 가스의 허용 농도(TLV) — 로그 축으로 봐야 차이가 보인다"
+  unit="ppm"
+  scale="log"
+  rows={[
+    { label: '불소(F2)', value: 0.1, tone: 'accent' },
+    { label: '염소(Cl2)', value: 1 },
+    { label: '삼불화 염소(ClF3)', value: 3 },
+    { label: '불화수소(HF)', value: 3 },
+    { label: '삼불화 질소(NF3)', value: 10 },
+    { label: '육불화 황(SF6)', value: 1000 },
+  ]}
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체용 식각 공정 가스 제조 — 3-2. 문제점에 대한 해결 방안 도출 [표 3-5] 반도체 식각 공정 가스와 허용 농도(발췌)</div>
 
 숫자가 작을수록 아주 적은 양만 마셔도 위험하다는 뜻이에요. 같은 '불연성' 가스로 분류되는
