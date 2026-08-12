@@ -115,8 +115,18 @@ function split(text) {
   const blocks = [];
   for (let i = 0; i < lines.length; i += 1) {
     if (!open.test(lines[i])) continue;
+    // 종료는 **줄 끝의 `/>`** 다. `/>` 단독 줄만 인정하면 한 줄로 닫는 블록
+    // (`<LatticeDiagram caption="…" arrangement="crystal" />`)에서 종료를 못 찾아
+    // j가 파일 끝까지 가고, 그 뒤 모든 줄이 inBlock에 들어가 body가 비어 버린다.
+    // 그러면 C-2·C-8·C-12가 "본문에 없다"로 폭증한다 — 검출 실패가 아니라
+    // 위반 폭증으로 나타나 원인 추적이 어렵다.
     let j = i;
-    while (j < lines.length && lines[j].trim() !== '/>') j += 1;
+    while (j < lines.length && !/\/>\s*$/.test(lines[j])) j += 1;
+    // 종료를 못 찾았으면 블록을 확장하지 않는다(파일 끝까지 삼키는 것을 막는다).
+    if (j >= lines.length) {
+      console.log(`⚠ 닫히지 않은 도해 블록 (L${i + 1}) — 블록으로 세지 않는다`);
+      continue;
+    }
     blocks.push({ start: i, end: j, text: lines.slice(i, j + 1).join('\n') });
     i = j;
   }
@@ -788,12 +798,15 @@ if (bogus) {
   console.error(`❌ 알 수 없는 인자 "${bogus}" — 웨이브는 ${Object.keys(WAVES).join('·')} 중 하나`);
   process.exit(2);
 }
-const sources = wave ? WAVES[wave] : Object.values(WAVES).flat();
-console.log(wave ? `범위: ${wave} (${sources.length}개 자료원)` : `범위: 전 웨이브 (${sources.length}개 자료원)`);
-if (waveArg && !WAVES[waveArg]) {
-  console.error(`❌ 알 수 없는 웨이브 "${waveArg}" — ${Object.keys(WAVES).join('·')} 중 하나`);
+// 웨이브 검증은 **sources 계산보다 먼저** 한다. `--wave=bogus`는 `--`로 시작해
+// bogus 검사를 통과하므로, 검증이 뒤에 있으면 WAVES[wave]가 undefined가 되어
+// sources.length에서 TypeError가 터지고 안내 메시지에 도달하지 못한다.
+if (wave && !WAVES[wave]) {
+  console.error(`❌ 알 수 없는 웨이브 "${wave}" — ${Object.keys(WAVES).join('·')} 중 하나`);
   process.exit(2);
 }
+const sources = wave ? WAVES[wave] : Object.values(WAVES).flat();
+console.log(wave ? `범위: ${wave} (${sources.length}개 자료원)` : `범위: 전 웨이브 (${sources.length}개 자료원)`);
 
 const plan = planArg && existsSync(planArg) ? JSON.parse(readFileSync(planArg, 'utf8')) : null;
 /**
@@ -856,7 +869,9 @@ for (const src of sources) {
       if (keys.some((key) => ALLOW[key])) reviewed.push(issues.splice(k, 1)[0]);
     }
     if (reviewed.length) c7Reviewed += reviewed.length;
-    modShape.set(mod, { used: [...used], prefixes: [...idPrefixes] });
+    // 키에 자료원을 넣는다. 파일명만 쓰면 자료원 간 동명 모듈이 서로를 덮어쓰고,
+    // 전 웨이브 실행에서 한 자료원의 X와 다른 자료원의 X.ko가 미러 쌍으로 잡힌다.
+    modShape.set(`${srcName}/${mod}`, { used: [...used], prefixes: [...idPrefixes] });
     for (const i of issues) allIssues.push({ mod, ...i });
   }
   console.log(`  ${srcName.padEnd(26)} 모듈 ${String(files.length).padStart(2)}  인스턴스 ${String(sub).padStart(3)}`);

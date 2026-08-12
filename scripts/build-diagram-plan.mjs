@@ -109,18 +109,45 @@ const nextTop = md.slice(from).search(/\n## [^#]/);
 const body = nextTop < 0 ? md.slice(from) : md.slice(from, from + nextTop);
 
 const plan = {};
-const rowRe = /^\|\s*`([a-z0-9][a-z0-9.-]*)`\s*\|(.+?)\|(.+?)\|(.+?)\|\s*$/gm;
-let m;
-let rows = 0;
-while ((m = rowRe.exec(body)) !== null) {
-  const [, mod, mainCell, , auxCell] = m;
+/**
+ * 매핑 표는 **4열**이다: 모듈 | 주 도해 | 근거 | 보조.
+ *
+ * 고정 정규식(`\|(.+?)\|(.+?)\|(.+?)\|`)으로 파싱하면 두 가지로 조용히 틀린다 —
+ * 5열 이상이면 마지막 그룹이 나머지 열을 `|`째로 흡수해 **비고 열의 코드 스팬이 보조
+ * 배정으로 읽히고**, 3열이면 행 자체가 매치되지 않아 **말없이 건너뛴다**.
+ * §2에는 3열 표(§2.4 탈락·채택 판정 기록)가 섞여 있어 후자가 실제로 일어난다 —
+ * 지금은 그것이 우연히 맞는 동작이지만, 열 수가 하나 늘면 조용히 틀린다.
+ *
+ * 그래서 열 수를 **먼저 검증**하고, 기대와 다르면 세어서 보고한다.
+ */
+const MAPPING_COLS = 4;
+const rowStart = /^\|\s*`([a-z0-9][a-z0-9.-]*)`\s*\|/;
+let rowsSeen = 0;
+let skipped = 0;
+for (const line of body.split('\n')) {
+  const head = line.match(rowStart);
+  if (!head) continue;
+  // `| a | b | c |` → ['a','b','c']. 앞뒤 빈 칸을 버린다.
+  const cols = line.replace(/^\|/, '').replace(/\|\s*$/, '').split('|');
+  if (cols.length !== MAPPING_COLS) { skipped += 1; continue; }
+  const [, mainCell, , auxCell] = cols;
   const entries = [...parseCell(mainCell, { primary: true }), ...parseCell(auxCell, { primary: false })];
   if (!entries.length) continue;
-  plan[mod] = entries;
-  rows += 1;
+  const mod = head[1];
+  // 같은 모듈이 여러 절의 표에 나오면 **덮어쓰지 않고 병합**한다.
+  // 덮어쓰면 먼저 읽은 배정이 조용히 사라진다 — 이 스크립트가 막으려는 바로 그 유형이다.
+  const acc = plan[mod] ?? (plan[mod] = []);
+  for (const e of entries) {
+    if (acc.some((x) => x.component === e.component && x.subject === e.subject)) continue;
+    acc.push(e);
+  }
+  rowsSeen += 1;
 }
+const modCount = Object.keys(plan).length;
 
-console.log(`${DESIGN[wave]} → 모듈 ${rows} · 배정 ${Object.values(plan).reduce((a, v) => a + v.length, 0)}`);
+if (skipped) console.log(`ℹ 4열이 아닌 행 ${skipped}건은 건너뛰었다 (§2.4 판정 기록 등 3열 표)`);
+if (rowsSeen !== modCount) console.log(`ℹ 표 행 ${rowsSeen} → 모듈 ${modCount} (같은 모듈이 여러 표에 등장해 병합됨)`);
+console.log(`${DESIGN[wave]} → 모듈 ${modCount} · 배정 ${Object.values(plan).reduce((a, v) => a + v.length, 0)}`);
 const noSubject = Object.entries(plan).flatMap(([k, v]) => v.filter((e) => !e.subject).map((e) => `${k}::${e.component}`));
 if (noSubject.length) console.log(`⚠ subject 없는 배정 ${noSubject.length}건: ${noSubject.slice(0, 6).join(', ')}`);
 

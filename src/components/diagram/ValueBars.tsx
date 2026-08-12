@@ -95,8 +95,9 @@ export function ValueBars({
         네 번의 Check와 세 번의 gap-detector를 모두 통과했다. `unit`이 필수 prop인데
         표시가 선택적이었던 것이 원인이다.
       */}
+      {/* 대비: 단위·로그 눈금은 값 해석에 필요한 정보라 note와 같은 slate-500을 쓴다. */}
       {(unit || scale === 'log') && (
-        <p className="mt-2 text-center text-xs text-slate-400 dark:text-slate-500">
+        <p className="mt-2 text-center text-xs text-slate-500 dark:text-slate-400">
           {unit && `단위: ${unit}`}
           {unit && scale === 'log' && ' · '}
           {scale === 'log' && '가로축은 로그 눈금 — 막대 한 칸이 자릿수 하나에 해당한다'}
