@@ -24,6 +24,7 @@
  *   C-9  참조 정합      — NodeGraph edges의 from/to가 선언된 node id를 가리키는가
  *   C-10 미러 정합      — {X}.ko.mdx와 {X}.mdx의 컴포넌트 순서가 같고 idPrefix가 겹치지 않는가
  *                        (표를 잘린 상태로 읽어 도해를 만드는 사고를 잡는다 — W2에서 5건 발생)
+ *   C-17 블록 종료      — 도해 블록이 `/>`로 닫히는가 (다음 블록의 `/>`를 먹지 않는가)
  *   C-16 계산값 서술    — caption/note/sub의 크기 비율·자릿수 주장("다섯 자릿수 차"·"열 배")이
  *                        그 모듈 본문에 있는가. 한국어 수사는 아라비아 숫자로 환산해 대조한다
  *                        (W4 Check에서 손으로 3건 발견 — 기존 검사는 아라비아 숫자만 보거나
@@ -113,6 +114,7 @@ function split(text) {
   const lines = text.split('\n');
   const open = new RegExp(`^<(${COMPONENTS.join('|')})\\b`);
   const blocks = [];
+  const unterminated = [];
   for (let i = 0; i < lines.length; i += 1) {
     if (!open.test(lines[i])) continue;
     // 종료는 **줄 끝의 `/>`** 다. `/>` 단독 줄만 인정하면 한 줄로 닫는 블록
@@ -120,12 +122,23 @@ function split(text) {
     // j가 파일 끝까지 가고, 그 뒤 모든 줄이 inBlock에 들어가 body가 비어 버린다.
     // 그러면 C-2·C-8·C-12가 "본문에 없다"로 폭증한다 — 검출 실패가 아니라
     // 위반 폭증으로 나타나 원인 추적이 어렵다.
+    // 종료를 찾되 **다음 블록의 시작을 넘지 않는다.** 넘으면 미종료 블록이 다음 블록의
+    // `/>`를 자기 종료로 삼아 두 블록이 경고 없이 합쳐지고 사이 본문이 사라진다 —
+    // EOF까지 삼키던 버그를 고치면서 내가 만든 회귀다(CodeRabbit PR #32 증분 리뷰).
+    // 순서가 중요하다: **새 블록 시작을 종료 검사보다 먼저** 본다.
+    // 종료를 먼저 보면 다음 블록의 `<NodeGraph … />` 줄이 종료로 인정돼 break에
+    // 도달하지 못한다 — 자기검사가 이 실수를 잡았다.
     let j = i;
-    while (j < lines.length && !/\/>\s*$/.test(lines[j])) j += 1;
-    // 종료를 못 찾았으면 블록을 확장하지 않는다(파일 끝까지 삼키는 것을 막는다).
-    if (j >= lines.length) {
-      console.log(`⚠ 닫히지 않은 도해 블록 (L${i + 1}) — 블록으로 세지 않는다`);
-      continue;
+    let closed = false;
+    while (j < lines.length) {
+      if (j > i && open.test(lines[j])) break; // 다음 블록 시작 — 미종료로 처리
+      if (/\/>\s*$/.test(lines[j])) { closed = true; break; }
+      j += 1;
+    }
+    if (!closed) {
+      // 미종료는 경고가 아니라 **위반**이다 — MDX 렌더가 깨지거나 본문이 삼켜진다.
+      unterminated.push(i + 1);
+      continue; // i는 그대로 — 외부 반복문이 다음 줄부터 새 시작을 찾는다
     }
     blocks.push({ start: i, end: j, text: lines.slice(i, j + 1).join('\n') });
     i = j;
@@ -133,7 +146,7 @@ function split(text) {
   const inBlock = new Set();
   for (const b of blocks) for (let k = b.start; k <= b.end; k += 1) inBlock.add(k);
   const body = lines.filter((_, k) => !inBlock.has(k)).join('\n');
-  return { lines, blocks, body };
+  return { lines, blocks, body, unterminated };
 }
 
 /** 도해 블록에서 사람이 읽는 문자열만 뽑는다 — 레이아웃 파라미터는 콘텐츠가 아니다. */
@@ -401,9 +414,12 @@ function matchPlan(planEntries, used, blockTexts) {
 
 function checkModule(path, tones) {
   const text = readFileSync(path, 'utf8');
-  const { lines, blocks, body } = split(text);
+  const { lines, blocks, body, unterminated } = split(text);
   const normBody = normalize(body);
   const issues = [];
+  for (const ln of unterminated) {
+    issues.push({ check: 'C-17', detail: `닫히지 않은 도해 블록 (L${ln}) — \`/>\`로 끝나는 줄이 없다` });
+  }
 
   const used = [];
   for (const b of blocks) {
@@ -692,6 +708,11 @@ function selfTest(tones) {
       expect: 'C-7',
     },
     {
+      name: 'C-17 미종료 블록이 다음 블록의 /> 를 먹지 않는다',
+      mdx: '본문.\n\n<ValueBars\n  unit="V"\n\n본문 중간.\n\n<NodeGraph idPrefix="x" nodes={[]} edges={[]} />\n',
+      expect: 'C-17',
+    },
+    {
       name: 'C-15 표 가름',
       mdx: '| 가 | 나 |\n|---|---|\n| 1 | 2 |\n\n<TreeBranch\n  root="a"\n/>\n\n| 3 | 4 |\n',
       expect: 'C-15',
@@ -791,9 +812,13 @@ if (argv.includes('--self-test')) process.exit(0);
 
 // 위치 인자(`w1`)도 받는다. 이유: `--wave w1`을 잊고 `w1`만 주면 예전에는 **조용히 전 웨이브**를
 // 훑어 W3 미착수 모듈이 위반으로 쏟아졌다. 범위가 말없이 바뀌는 것이 이 사이클의 대표 실패다.
-const positional = argv.find((a) => WAVES[a]);
+// WAVES 조회는 **고유 키**로만 한다. `WAVES[a]`는 프로토타입 체인을 타므로
+// `--wave=constructor`·`toString`·`__proto__`가 검사를 통과해 쓰레기 값으로 진행한다
+// (실측: constructor → "1개 자료원", __proto__ → "undefined개 자료원").
+const hasWave = (k) => typeof k === 'string' && k !== '' && Object.prototype.hasOwnProperty.call(WAVES, k);
+const positional = argv.find((a) => hasWave(a));
 const wave = waveArg || positional || '';
-const bogus = argv.find((a) => !a.startsWith('--') && !WAVES[a] && !existsSync(a));
+const bogus = argv.find((a) => !a.startsWith('--') && !hasWave(a) && !existsSync(a));
 if (bogus) {
   console.error(`❌ 알 수 없는 인자 "${bogus}" — 웨이브는 ${Object.keys(WAVES).join('·')} 중 하나`);
   process.exit(2);
@@ -801,7 +826,12 @@ if (bogus) {
 // 웨이브 검증은 **sources 계산보다 먼저** 한다. `--wave=bogus`는 `--`로 시작해
 // bogus 검사를 통과하므로, 검증이 뒤에 있으면 WAVES[wave]가 undefined가 되어
 // sources.length에서 TypeError가 터지고 안내 메시지에 도달하지 못한다.
-if (wave && !WAVES[wave]) {
+// `--wave=`(빈 값)도 거부한다 — 예전에는 조용히 전 웨이브로 빠졌다.
+if (waveArg != null && !hasWave(waveArg)) {
+  console.error(`❌ 알 수 없는 웨이브 "${waveArg}" — ${Object.keys(WAVES).join('·')} 중 하나`);
+  process.exit(2);
+}
+if (wave && !hasWave(wave)) {
   console.error(`❌ 알 수 없는 웨이브 "${wave}" — ${Object.keys(WAVES).join('·')} 중 하나`);
   process.exit(2);
 }
