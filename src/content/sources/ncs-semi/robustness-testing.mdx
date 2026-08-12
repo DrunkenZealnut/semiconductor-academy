@@ -71,6 +71,17 @@ JESD22-A115, JESD22-C101)이 정한 저항(R)·인덕턴스(L)·커패시터(C) 
 | MM(기계 모델) | 20Ω | 750nH | 200pF | 100V~200V |
 | CDM(충전 소자 모델) | 20Ω | 5nH | 2pF~10pF | 200V~1kV |
 
+<CompareCards
+  caption="ESD 세 모델 — 무엇을 흉내 내는가에 따라 회로가 다르다"
+  columns={[{ title: 'HBM 인체' }, { title: 'MM 기계' }, { title: 'CDM 충전 소자' }]}
+  rows={[
+    { aspect: '저항(R)', values: ['1.5kΩ', '20Ω', '20Ω'] },
+    { aspect: '인덕턴스(L)', values: ['750nH', '750nH', '5nH'] },
+    { aspect: '커패시터(C)', values: ['100pF', '200pF', '2pF~10pF'] },
+    { aspect: '시험 전압', values: ['2kV 이상', '100V~200V', '200V~1kV'] },
+  ]}
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체 내성 시험 — 2-1. 내성 시험 분석 필요 지식(HBM·MM·CDM 테스트 회로 구성 요소 값 요약 재구성)</div>
 
 CDM은 인덕턴스와 커패시터 값이 가장 작아 방전 지속 시간이 가장 짧지만, 순간 전류 피크는 오히려

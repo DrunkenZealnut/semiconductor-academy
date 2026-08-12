@@ -89,6 +89,31 @@
 | 3족 (p형) | 삼염화붕소 · 삼불화붕소 | 기체 |
 | | 디보레인 | 기체 |
 
+<TreeBranch
+  caption="족이 갈리고, 그 안에서 상태가 갈린다"
+  root="이온 주입 불순물"
+  branches={[
+    {
+      label: '5족 (n형)',
+      children: [
+        { label: '아르신', note: '기체' },
+        { label: '포스핀', note: '기체' },
+        { label: '비소', note: '고체' },
+        { label: '삼산화안티몬', note: '고체' },
+        { label: '삼염화인 · 옥시염화인', note: '액체' },
+        { label: '삼염화안티몬', note: '액체' },
+      ],
+    },
+    {
+      label: '3족 (p형)',
+      children: [
+        { label: '삼염화붕소 · 삼불화붕소', note: '기체' },
+        { label: '디보레인', note: '기체' },
+      ],
+    },
+  ]}
+/>
+
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 11장 본문 (p.196)</p>
 
 <ChemicalCard id="arsine" />

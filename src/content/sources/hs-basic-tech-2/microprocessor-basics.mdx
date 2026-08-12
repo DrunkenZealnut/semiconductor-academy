@@ -90,6 +90,25 @@ CP/M이라는 운영체제와 함께 개인용 컴퓨터의 CPU로 널리 퍼졌
 돼요. "마이크로(Micro)"는 부품 크기가 물리적으로 작다는 뜻이고, "프로세서
 (Processor)"는 중앙처리장치를 줄인 말이에요.
 
+<NodeGraph
+  idPrefix="microcomputer-parts"
+  caption="마이크로컴퓨터 3대 부품 — 지휘하고, 담고, 주고받는다"
+  nodes={[
+    { id: 'cpu', label: 'CPU', kind: 'device', at: [1, 0] },
+    { id: 'reg', label: '레지스터', kind: 'block', at: [0, 0] },
+    { id: 'alu', label: 'ALU', kind: 'block', at: [2, 0] },
+    { id: 'mem', label: '메모리', kind: 'block', at: [1, 1] },
+    { id: 'io', label: 'I/O 포트', kind: 'io', at: [1, 2] },
+  ]}
+  edges={[
+    { from: 'reg', to: 'cpu', label: '값 임시 저장' },
+    { from: 'alu', to: 'cpu', label: '산술·논리 연산' },
+    { from: 'cpu', to: 'mem', label: '프로그램·데이터' },
+    { from: 'cpu', to: 'io', label: '외부 장치와' },
+  ]}
+  note="CPU는 레지스터·ALU·제어장치로 이루어지며 전체 데이터 흐름을 지휘한다."
+/>
+
 | 구성 요소 | 역할 |
 |---|---|
 | CPU | 레지스터(값 임시 저장)·ALU(산술·논리 연산)·제어장치(명령 해석과 흐름 제어)로 구성, 전체 데이터 흐름을 지휘 |
@@ -106,6 +125,30 @@ Check), 운영체제 호출이 필요할 때(Supervisor Call) — 이런 사건�
 ## 5. 기억장치 — RAM과 ROM, 그리고 용량 단위
 
 RAM은 저장 방식에 따라 둘로 나뉘어요.
+
+<TreeBranch
+  caption="기억장치 — 지워지느냐, 남느냐"
+  root="기억장치"
+  branches={[
+    {
+      label: 'RAM — 자유롭게 읽고 쓴다',
+      children: [
+        { label: 'SRAM', note: '플립플롭 — 고속, 재생 불필요, 소용량에 적합' },
+        { label: 'DRAM', note: '커패시터 전하 — 주기적 재생 필요, 저전력·고밀도로 대용량' },
+      ],
+    },
+    {
+      label: 'ROM — 잘 바뀌지 않는다',
+      children: [
+        { label: 'MASK ROM', note: '공장에서 미리 기록, 변경 불가' },
+        { label: 'PROM', note: '1회 기록, 이후 변경 불가' },
+        { label: 'EPROM', note: '여러 번 기록 — 지울 때 자외선' },
+        { label: 'EEPROM', note: '전기 신호로 지우고 다시 쓴다' },
+        { label: 'Flash', note: '읽기는 바이트, 쓰기는 페이지·섹터 — EEPROM의 변형' },
+      ],
+    },
+  ]}
+/>
 
 | 종류 | 저장 원리 | 특징 |
 |---|---|---|

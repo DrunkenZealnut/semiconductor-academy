@@ -39,6 +39,18 @@ There are 16 sections in a chemical Safety Data Sheet, falling into four broad c
 | **Properties** | Physical/chemical properties, stability, reactivity, toxicological information |
 | **Additional Information** | Ecological impact, disposal, transport, regulation, SDS preparation/revision |
 
+<TreeBranch
+  caption="16 sections in four categories"
+  root="Safety Data Sheet"
+  depth={2}
+  branches={[
+    { label: 'Identification', note: 'Substance/mixture, supplier, hazards, composition, ingredients' },
+    { label: 'Emergency & Exposure', note: 'Routes of exposure, first aid, firefighting, accidental release, handling, storage, exposure controls' },
+    { label: 'Properties', note: 'Physical/chemical properties, stability, reactivity, toxicological information' },
+    { label: 'Additional Information', note: 'Ecological impact, disposal, transport, regulation, SDS preparation/revision' },
+  ]}
+/>
+
 ### 2.2 SDS Requirements (GHS)
 
 - The chemical manufacturer, importer, or distributor must provide SDSs with the first shipment and anytime the information changes.
@@ -124,6 +136,19 @@ Examples:
 - Supplied air respirator when changing toxic gas cylinders
 - Chemical gloves over cleanroom gloves, with apron, face shield and goggles when pouring chemicals into a wet bench
 - Steel-toed shoes when handling heavy equipment
+
+<FlowSteps
+  caption="Five methods, most to least effective"
+  orientation="column"
+  steps={[
+    { id: 'h1', label: 'Elimination', sub: 'Redesign the process so the hazard does not exist', tone: 'accent' },
+    { id: 'h2', label: 'Substitution', sub: 'Use a safer process or product instead' },
+    { id: 'h3', label: 'Engineering Controls', sub: 'Ventilation, enclosures, interlocks, toxic gas monitoring' },
+    { id: 'h4', label: 'Administrative Controls', sub: 'Training, job rotation, scheduling, signs and warning labels' },
+    { id: 'h5', label: 'Personal Protective Equipment', sub: 'Last line of protection — only when other methods are inadequate' },
+  ]}
+  note="The last line of protection — only rely on it when other control methods are inadequate, or use it with other methods as an added layer."
+/>
 
 ---
 

@@ -1,0 +1,290 @@
+{
+  "_coverage": "full",
+  "_comment": "Design docs/02-design/features/diagram-expansion.w3-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w3).",
+  "assembly-process": [
+    {
+      "component": "FlowSteps",
+      "subject": "조립 공정 여섯 단계와 무엇이 바뀌나"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "와이어 본딩 세 방식"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "백그라인딩·쏘잉 하위 공정"
+    }
+  ],
+  "automation-plc": [
+    {
+      "component": "TreeBranch",
+      "subject": "자동화를 이루는 다섯 요소"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "릴레이 제어반 vs PLC"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "센서 네 종의 검출 원리"
+    }
+  ],
+  "chemical-facility": [
+    {
+      "component": "TreeBranch",
+      "subject": "가스를 다섯 갈래로 나누면"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "대표 가스 허용농도 TLV"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "화학물질 여섯 갈래"
+    }
+  ],
+  "clean-cmp-process": [
+    {
+      "component": "TreeBranch",
+      "subject": "어디를 깎느냐로 나뉘는 CMP"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "건조기 세 종"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "CMP 장비 구성 요소"
+    }
+  ],
+  "deposition-process": [
+    {
+      "component": "TreeBranch",
+      "subject": "CVD 다섯 유형"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "CVD vs ALD"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "막마다 다른 임무"
+    }
+  ],
+  "diffusion-process": [
+    {
+      "component": "CompareCards",
+      "subject": "확산 vs 이온주입"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "퍼니스 어닐링 vs RTA"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "막 종류별 원료와 주 용도"
+    }
+  ],
+  "electrical-facility": [
+    {
+      "component": "FlowSteps",
+      "subject": "전기가 팹까지 오는 길"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "전압 등급 직류·교류"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "전기적 장애와 대응"
+    }
+  ],
+  "environment-management": [
+    {
+      "component": "FlowSteps",
+      "subject": "폐수 처리 단계"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "팹이 남기는 흔적 대기·수질·폐기물"
+    }
+  ],
+  "etch-process": [
+    {
+      "component": "CompareCards",
+      "subject": "습식 식각 vs 건식 식각"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "챔버를 지키는 장치 계통"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "막질마다 다른 가스"
+    }
+  ],
+  "industrial-safety": [
+    {
+      "component": "TreeBranch",
+      "subject": "화재 급수별 원인 물질과 소화 방법"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "산업위생의 세 잣대"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "화재를 처음 본 사람의 순서"
+    }
+  ],
+  "intro": [
+    {
+      "component": "FlowSteps",
+      "subject": "반도체 8대 공정"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "넣는 불순물과 전류를 만드는 주체"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "반도체가 하는 일곱 가지 역할"
+    }
+  ],
+  "photo-process": [
+    {
+      "component": "FlowSteps",
+      "subject": "사진공정 네 단계와 담당 장비"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "감광제 종류별 남는 부분"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "노광 방식 세 종"
+    }
+  ],
+  "pneumatics-hydraulics": [
+    {
+      "component": "CompareCards",
+      "subject": "공압식 vs 유압식"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "제어밸브 세 분류"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "논리 밸브의 출력 조건"
+    }
+  ],
+  "part-1a": [
+    {
+      "component": "TreeBranch",
+      "subject": "세 가지 유해 유형 / Three types of hazards"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "pH로 가르는 산과 염기 / pH scale acid and base"
+    }
+  ],
+  "part-1a.ko": [
+    {
+      "component": "TreeBranch",
+      "subject": "세 가지 유해 유형 / Three types of hazards"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "pH로 가르는 산과 염기 / pH scale acid and base"
+    }
+  ],
+  "part-1b": [
+    {
+      "component": "FlowSteps",
+      "subject": "유해성 통제 위계 / Hierarchy of Hazard Control"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "SDS 범주별 항 구성 / SDS sections by category"
+    }
+  ],
+  "part-1b.ko": [
+    {
+      "component": "FlowSteps",
+      "subject": "유해성 통제 위계 / Hierarchy of Hazard Control"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "SDS 범주별 항 구성 / SDS sections by category"
+    }
+  ],
+  "part-2": [
+    {
+      "component": "TreeBranch",
+      "subject": "유형별 보관 캐비닛 / Storage rules by cabinet"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "화재 삼각형 / Fire Triangle"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "인화성 가스 LEL·UEL / flammable gases"
+    }
+  ],
+  "part-2.ko": [
+    {
+      "component": "TreeBranch",
+      "subject": "유형별 보관 캐비닛 / Storage rules by cabinet"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "화재 삼각형 / Fire Triangle"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "인화성 가스 LEL·UEL / flammable gases"
+    }
+  ],
+  "part-3": [
+    {
+      "component": "TreeBranch",
+      "subject": "아홉 가지 극위험 범주 / Nine hazardous categories"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "비상 대응 순서 / Emergency Response"
+    }
+  ],
+  "part-3.ko": [
+    {
+      "component": "TreeBranch",
+      "subject": "아홉 가지 극위험 범주 / Nine hazardous categories"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "비상 대응 순서 / Emergency Response"
+    }
+  ],
+  "part-4": [
+    {
+      "component": "NodeGraph",
+      "subject": "유해가스 통제 시스템 / Hazardous Gas Control System"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "가스 분류 / Gas Categorization"
+    }
+  ],
+  "part-4.ko": [
+    {
+      "component": "NodeGraph",
+      "subject": "유해가스 통제 시스템 / Hazardous Gas Control System"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "가스 분류 / Gas Categorization"
+    }
+  ]
+}

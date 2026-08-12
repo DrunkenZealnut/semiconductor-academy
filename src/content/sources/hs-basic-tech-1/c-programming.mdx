@@ -182,6 +182,35 @@ int main(void)
 
 같은 작업을 여러 번 반복하거나 조건에 따라 다르게 실행하고 싶을 때는 <strong>제어문</strong>을 써요.
 
+<TreeBranch
+  caption="제어문 세 계열 — 반복하거나, 갈라지거나, 빠져나가거나"
+  root="제어문"
+  branches={[
+    {
+      label: '반복',
+      note: '같은 작업을 여러 번',
+      children: [
+        { label: 'for', note: '조건을 만족하는 동안 정해진 횟수만큼' },
+        { label: 'while', note: '처음부터 거짓이면 한 번도 실행하지 않음' },
+        { label: 'do ∼ while', note: '먼저 한 번 실행한 뒤 조건을 검사 — 최소 한 번' },
+      ],
+    },
+    {
+      label: '조건',
+      note: '조건에 따라 다르게 실행',
+      children: [
+        { label: 'if ∼ else', note: '참·거짓에 따라 다른 코드' },
+        { label: 'switch ∼ case', note: '정숫값 하나를 여러 case와 비교해 분기' },
+      ],
+    },
+    {
+      label: '빠져나오기',
+      note: '흐름을 즉시 벗어남',
+      children: [{ label: 'break', note: '감싸고 있는 반복문·switch를 즉시 빠져나옴' }],
+    },
+  ]}
+/>
+
 | 제어문 | 동작 |
 |---|---|
 | for(초깃값; 조건식; 증감식) | 조건을 만족하는 동안 정해진 횟수만큼 반복 |

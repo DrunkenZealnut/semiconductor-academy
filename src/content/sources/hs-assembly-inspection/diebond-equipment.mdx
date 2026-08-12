@@ -101,6 +101,27 @@ Dispense Controller)</strong>라는 디스펜서 유닛이 맡아요. 대표 모
 길은 정해져 있어요. 대표적인 200mm급 장비(SL9002)의 겉모습을 기준으로 그
 길을 따라가 볼게요.
 
+<NodeGraph
+  idPrefix="diebond-equipment-layout"
+  caption="다이 본더 구성 — 들어오고, 붙고, 나간다"
+  nodes={[
+    { id: 'loader', label: '로더부', kind: 'io', at: [0, 0] },
+    { id: 'destack', label: '디스태커·스태커', kind: 'block', at: [0, 1] },
+    { id: 'disp', label: '디스펜스 포지션', kind: 'device', at: [1, 1] },
+    { id: 'feed', label: '피드 시스템', kind: 'device', at: [2, 1] },
+    { id: 'optic', label: '옵틱 카메라', kind: 'device', at: [2, 0] },
+    { id: 'unload', label: '언로더부', kind: 'io', at: [3, 1] },
+  ]}
+  edges={[
+    { from: 'loader', to: 'disp', label: '웨이퍼 카세트' },
+    { from: 'destack', to: 'disp', label: '리드 프레임 낱장' },
+    { from: 'disp', to: 'feed', label: '접착제를 받은 프레임' },
+    { from: 'optic', to: 'feed', label: '홀 위치 확인', style: 'dashed' },
+    { from: 'feed', to: 'unload', label: '완성품 → 매거진' },
+  ]}
+  note="옵틱 카메라 시스템은 포토 센서로 리드 프레임의 홀 위치를 읽어 이송 상태를 확인한다. 피드 시스템은 프레임이 겹쳐 들어왔는지도 감지한다."
+/>
+
 | 구성 | 역할 |
 |---|---|
 | 로더(loader)부 | 웨이퍼 카세트가 놓이는 자리 |
@@ -116,6 +137,16 @@ Dispense Controller)</strong>라는 디스펜서 유닛이 맡아요. 대표 모
 옵틱 카메라 시스템이 리드 프레임에 뚫린 구멍 위치를 읽어 지금 이송이 제대로
 되고 있는지 마지막으로 검증해요. 접착과 본딩까지 끝난 제품은 언로더부에
 자리한 매거진에 차곡차곡 담겨 장비 밖으로 나가요.
+
+<FlowSteps
+  caption="리드 프레임의 여정 — 로더에서 언로더까지"
+  steps={[
+    { id: 'f1', label: '디스태커', sub: '리드 프레임을 낱장으로 꺼낸다' },
+    { id: 'f2', label: '디스펜스 포지션', sub: '접착제를 받는다' },
+    { id: 'f3', label: '피드 시스템', sub: '작업 영역으로 이송 — 겹쳐 들어왔는지 감지', tone: 'accent' },
+    { id: 'f4', label: '언로더부', sub: '완성된 제품을 매거진에 담아 장비 밖으로' },
+  ]}
+/>
 
 ## 5. 눈과 인터페이스 — 옵틱 카메라와 조작 화면
 

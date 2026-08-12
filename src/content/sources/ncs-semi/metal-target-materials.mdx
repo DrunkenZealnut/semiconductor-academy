@@ -79,6 +79,21 @@
 | Ti | 42 | 1667 | 8.9 | - |
 | TiN | 25~200 | 2880 | 9.35 | - |
 
+<ValueBars
+  caption="배선 금속의 비저항 — 낮아야 전기가 잘 통한다"
+  unit="μΩcm"
+  scale="log"
+  rows={[
+    { label: 'Cu', value: 2.0, note: '알루미늄보다 낮다', tone: 'accent' },
+    { label: 'Al', range: [2.7, 3.0], note: '배선 금속의 원조' },
+    { label: 'Mo', range: [6, 15] },
+    { label: 'W', range: [6, 15] },
+    { label: 'Ti', value: 42 },
+    { label: 'TiN', range: [25, 200] },
+  ]}
+  note="구리는 표에 2.0보다 작다고만 적혀 있어 그 값을 상한으로 표시했다."
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체용 금속(Target) 재료 제조 — 1-1. 금속 공정 원리 및 재료 파악 [표 1-1] 반도체 소자의 금속 배선 재료의 물리적 특성(발췌)</div>
 
 ## 2. 타깃에서 웨이퍼로 — 스퍼터링의 원리

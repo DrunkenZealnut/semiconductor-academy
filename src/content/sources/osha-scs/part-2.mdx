@@ -25,6 +25,23 @@ To keep burning, a fire also requires a fourth element: a **chemical chain react
 
 In semiconductor fabrication facilities, fires are prevented by **controlling the ignition source**.
 
+<NodeGraph
+  idPrefix="osha-p2-fire"
+  caption="Fabs prevent fire by controlling the ignition source"
+  nodes={[
+    { id: 'fuel', label: 'Fuel source', kind: 'io', at: [0, 0] },
+    { id: 'ox', label: 'Oxidizer', kind: 'io', at: [2, 0] },
+    { id: 'heat', label: 'Heat / Ignition source', kind: 'io', at: [0, 1] },
+    { id: 'fire', label: 'Fire', kind: 'block', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'fuel', to: 'fire', label: 'flammable chemical' },
+    { from: 'ox', to: 'fire', label: 'oxygen in the air' },
+    { from: 'heat', to: 'fire', label: 'a spark' },
+  ]}
+  note="To keep burning, a fire also requires a fourth element — a chemical chain reaction."
+/>
+
 ---
 
 ## 2. Flammable Liquids
@@ -79,6 +96,17 @@ Flammable gases released into the air immediately mix with the air. Each gas mus
 | Methane | 5% | 15% | Narrow |
 | Hydrogen | 4% | 74% | Very wide |
 | Acetylene | 2% | 100% | Extremely wide |
+
+<CompareCards
+  caption="A wider flammable range means any release is dangerous"
+  columns={[{ title: 'Methane' }, { title: 'Hydrogen' }, { title: 'Acetylene' }]}
+  rows={[
+    { aspect: 'LEL', values: ['5%', '4%', '2%'] },
+    { aspect: 'UEL', values: ['15%', '74%', '100%'] },
+    { aspect: 'Flammable Range', values: ['Narrow', 'Very wide', 'Extremely wide'] },
+  ]}
+  emphasis={[2]}
+/>
 
 Hydrogen and acetylene have wide flammable ranges, so **any release is dangerous**.
 
@@ -290,6 +318,31 @@ Toxicity depends on:
 | Corrosive gases | Approved gas cabinet |
 | Toxic liquids | Chemical cabinet |
 | Toxic gases | Approved gas cabinet |
+
+<TreeBranch
+  caption="Four cabinets decide where each chemical goes"
+  root="Storage"
+  branches={[
+    {
+      label: 'Flammable chemical cabinet',
+      children: ['Flammable liquids', 'Combustible liquids'],
+    },
+    {
+      label: 'Chemical cabinet',
+      note: 'Flammable solids NOT with flammable liquids; oxidizers separated from flammable/combustible materials',
+      children: ['Flammable gases', 'Flammable solids', 'Pyrophoric liquids/solids', 'Oxidizers', 'Toxic liquids'],
+    },
+    {
+      label: 'Approved gas cabinet',
+      children: ['Pyrophoric gases', 'Corrosive gases', 'Toxic gases'],
+    },
+    {
+      label: 'Corrosive chemical cabinet',
+      note: 'Do NOT store acids and bases on the same shelf',
+      children: ['Corrosive liquids/solids'],
+    },
+  ]}
+/>
 
 ### Compatibility Chart
 

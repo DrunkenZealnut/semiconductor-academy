@@ -46,6 +46,18 @@ MOSFET을 이해하는 열쇠는 그 가운데 토막인 <strong>MOS 커패시�
 p형(또는 n형) 반도체 기판이죠. p형 기판 기준으로 게이트 전압에 따라 기판 표면의 상태가
 세 단계로 변해요.
 
+<LayerStack
+  idPrefix="mosfet-moscap"
+  caption="MOS 커패시터 — 금속·산화막·반도체 세 겹"
+  layers={[
+    { id: 'gate', label: '게이트 — 금속 또는 도핑된 다결정 실리콘', tone: 'metal' },
+    { id: 'ox', label: '산화막 — 주로 SiO₂', tone: 'oxide' },
+    { id: 'sub', label: 'p형 반도체 기판', tone: 'silicon-p', height: 46 },
+  ]}
+  annotations={[{ at: 'ox/sub', text: '이 표면이 축적 →\n공핍 → 반전으로 바뀐다' }]}
+  note="MOSFET을 이해하는 열쇠가 되는 가운데 토막이다."
+/>
+
 | 게이트 전압 | 상태 | 표면에서 벌어지는 일 |
 |------|------|------|
 | 음전압 | 축적 (Accumulation) | 다수 캐리어인 정공이 표면에 몰려요 |
@@ -71,11 +83,48 @@ MOS 커패시터 양옆에 소스(캐리어 공급)와 드레인(캐리어 회�
 기본이에요 — 채널 형성에는 기판 전위가 꼭 필요하거든요. 채널 극성에 따라 두 형제가
 있어요.
 
+<LayerStack
+  idPrefix="mosfet-structure"
+  caption="nMOS 단면 — MOS 커패시터 양옆에 소스와 드레인을 붙인 꼴"
+  layers={[
+    { id: 'gate', label: '게이트', tone: 'metal' },
+    { id: 'ox', label: '산화막', tone: 'oxide' },
+    {
+      id: 'sub',
+      label: 'p형 기판',
+      tone: 'silicon-p',
+      height: 52,
+      wells: [
+        { label: '소스 n형', tone: 'silicon-n', side: 'left' },
+        { label: '드레인 n형', tone: 'silicon-n', side: 'right' },
+      ],
+    },
+  ]}
+  annotations={[
+    { at: 'gate', text: '3단자로 착각하기 쉽지만\n기판까지 4단자다' },
+    { at: 'sub', text: '소스가 캐리어를 공급하고\n드레인이 회수한다' },
+  ]}
+/>
+
 | | nMOS | pMOS |
 |------|------|------|
 | 기판 / 소스·드레인 | p형 / n형 | n형 / p형 |
 | 채널(On) 캐리어 | 전자 | 정공 |
 | 전류 크기 | 통상 pMOS의 2∼3배 | 전자보다 느린 정공 탓에 작음 |
+
+<CompareCards
+  caption="채널 극성이 가르는 두 형제"
+  columns={[
+    { title: 'nMOS', tone: 'silicon-n' },
+    { title: 'pMOS', tone: 'silicon-p' },
+  ]}
+  rows={[
+    { aspect: '기판 / 소스·드레인', values: ['p형 / n형', 'n형 / p형'] },
+    { aspect: '채널(On) 캐리어', values: ['전자', '정공'] },
+    { aspect: '전류 크기', values: ['통상 pMOS의 2∼3배', '전자보다 느린 정공 탓에 작음'] },
+  ]}
+  emphasis={[2]}
+/>
 
 nMOS 기준으로 게이트·드레인 전압에 따라 동작 영역이 갈려요.
 
@@ -105,6 +154,38 @@ nMOS 기준으로 게이트·드레인 전압에 따라 동작 영역이 갈려�
 
 무어의 법칙을 따라 채널이 짧아지자, 등전기장 스케일링(드나드)이 감당 못 하는 부작용들이
 쏟아졌어요. 묶어서 <strong>단채널 효과(Short Channel Effect)</strong>라 불러요.
+
+<TreeBranch
+  caption="단채널 효과 다섯 가지와 주요 대책"
+  root="단채널 효과"
+  branches={[
+    {
+      label: 'Vt roll-off',
+      note: '공핍영역이 채널을 침범해 문턱 전압이 떨어짐',
+      children: [{ label: '기판 농도↑' }, { label: '얕은 접합' }],
+    },
+    {
+      label: 'DIBL',
+      note: '드레인 전압이 소스 쪽 장벽을 끌어내림',
+      children: [{ label: '기판 농도↑' }],
+    },
+    {
+      label: '펀치-스루',
+      note: '드레인·소스 공핍영역이 맞닿아 게이트 통제 이탈',
+      children: [{ label: '할로(포켓) 도핑' }, { label: '얕은 접합' }],
+    },
+    {
+      label: '속도 포화',
+      note: '강한 전기장에서 캐리어 속도가 한계에 부딪힘',
+      children: [{ label: '재료·구조 개선' }],
+    },
+    {
+      label: '열 캐리어 효과',
+      note: '고에너지 전자가 산화막을 때려 소자를 늙게 함',
+      children: [{ label: 'LDD(저농도 도핑 드레인)' }],
+    },
+  ]}
+/>
 
 | 현상 | 무슨 일 | 주요 대책 |
 |------|------|------|

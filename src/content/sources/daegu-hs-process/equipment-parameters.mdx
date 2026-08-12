@@ -70,6 +70,27 @@ PVD·ALD 같은 증착 공정과 건식 식각 공정에서 특히 클러스터 
 
 ### 웨이퍼를 다루고 살피는 부속 장치
 
+<NodeGraph
+  idPrefix="equipment-parameters-chamber"
+  caption="챔버를 둘러싼 장치들 — 옮기고, 붙잡고, 재고, 정화한다"
+  nodes={[
+    { id: 'robot', label: '로봇팔', kind: 'io', at: [0, 0] },
+    { id: 'chuck', label: '정전척(ESC)', kind: 'device', at: [1, 1] },
+    { id: 'chamber', label: '챔버', kind: 'block', at: [1, 0] },
+    { id: 'mfc', label: 'MFC', kind: 'device', at: [0, 1] },
+    { id: 'scrub', label: '스크러버', kind: 'device', at: [2, 1] },
+    { id: 'panel', label: '모니터링 패널', kind: 'io', at: [2, 0] },
+  ]}
+  edges={[
+    { from: 'robot', to: 'chamber', label: '웨이퍼 로딩' },
+    { from: 'chuck', to: 'chamber', label: '고정·온도 제어' },
+    { from: 'mfc', to: 'chamber', label: '가스 유량' },
+    { from: 'chamber', to: 'scrub', label: '유독 가스 1차 중화' },
+    { from: 'chamber', to: 'panel', style: 'dashed' },
+  ]}
+  note="스크러버는 액체 반응이나 필터로 1차 정화한 뒤 팹 중앙 정화 장치로 전달한다."
+/>
+
 | 장치 | 역할 |
 |---|---|
 | 로봇팔(Robot Arm) | 웨이퍼를 설비 안으로 정확히 옮기고 로딩 |
@@ -142,6 +163,21 @@ PV = nRT (P: 압력, V: 부피, n: 기체의 몰(mol) 수, R: 이상기체 상�
 대기압은 약 1,013hPa(101.3kPa)이고, 반도체 공정에서는 이를 흔히 Torr나 Pa 단위로 표시해요.
 
 1Torr = 133Pa, 1Pa ≈ 0.0075Torr (업계에서는 어림잡아 1Torr ≈ 100Pa로도 통용해요)
+
+<ValueBars
+  caption="진공의 단계 — 로그 축이어야 다섯 단계가 다 보인다"
+  unit="Torr"
+  scale="log"
+  direction="down"
+  rows={[
+    { label: '대기압', value: 760, note: '101.3kPa' },
+    { label: '저진공', range: [25, 760], note: '100kPa∼3kPa' },
+    { label: '중진공', range: [1e-3, 25], note: '3kPa∼100mPa' },
+    { label: '고진공', range: [1e-9, 1e-3], note: '100mPa∼100nPa', tone: 'accent' },
+    { label: '초고진공', range: [1e-12, 1e-9], note: '100nPa∼100pPa' },
+  ]}
+  note="1×10⁻¹² Torr 미만은 '극히 높은 진공'이라 부른다. 완전한 진공(0 Torr)은 도달할 수 없다."
+/>
 
 | 구분 | 압력(Torr) | 압력(Pa) |
 |---|---|---|
@@ -252,6 +288,32 @@ O-ring을, 그 이상에서는 잘 휘는 구리 가스켓을 사용해요.
 일으켜 만드는 이런 저온 플라즈마를 글로우 방전(Glow Discharge) 플라즈마라고 해요.
 
 ### 플라즈마 속 다섯 가지 반응
+
+<TreeBranch
+  caption="플라즈마 속에서 벌어지는 다섯 반응"
+  root="플라즈마 반응"
+  branches={[
+    {
+      label: '전자를 늘린다',
+      children: [{ label: '이온화', note: 'e⁻ + N₂ → N₂⁺ + 2e⁻ — 자유전자를 하나 더 만들어 반응을 이어간다' }],
+    },
+    {
+      label: '에너지를 올린다',
+      children: [
+        { label: '여기(Excitation)', note: 'e⁻ + O₂ → O₂* + e⁻ — 들뜬 상태가 된다' },
+        { label: '해리(Dissociation)', note: 'e⁻ + SiH₄ → e⁻ + SiH₃ + H — 반응성이 강한 라디칼 생성' },
+      ],
+    },
+    {
+      label: '되돌아간다',
+      children: [
+        { label: '재결합', note: 'N₂⁺ + 2e⁻ → e⁻ + N₂ — 이온화의 역반응' },
+        { label: '탈여기·발광', note: 'O₂* → O₂ + hν — 바닥상태로 돌아가며 빛을 방출' },
+      ],
+    },
+  ]}
+  note="플라즈마가 보라색으로 빛나는 이유가 마지막 반응이다."
+/>
 
 | 반응 | 일반식 | 예시 | 의미 |
 |---|---|---|---|

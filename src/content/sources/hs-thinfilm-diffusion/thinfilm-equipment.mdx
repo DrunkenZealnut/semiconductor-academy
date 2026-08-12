@@ -71,6 +71,30 @@ CVD 장비의 대표 사례로 들어요. 장비는 크게 두 덩어리로 나�
 구성할 수 있어서, 한 플랫폼 위에서 여러 공정을 조합해 병렬 처리, 순차 처리,
 또는 둘을 섞은 처리까지 가능해요.
 
+<NodeGraph
+  idPrefix="thinfilm-cluster"
+  caption="클러스터 — 로봇 팔 하나가 모든 챔버에 손이 닿는 방사형 배치"
+  nodes={[
+    { id: 'cassette', label: '카세트 핸들러', kind: 'io', at: [0, 1] },
+    { id: 'loadlock', label: '로드락 챔버', kind: 'block', at: [1, 1] },
+    { id: 'robot', label: '트랜스퍼 로봇', kind: 'device', at: [2, 1] },
+    { id: 'ch1', label: '프로세스 챔버 1', kind: 'block', at: [3, 0] },
+    { id: 'ch2', label: '프로세스 챔버 2', kind: 'block', at: [3, 1] },
+    { id: 'ch3', label: '프로세스 챔버 3', kind: 'block', at: [3, 2] },
+    { id: 'gas', label: '가스 패널', kind: 'device', at: [2, 0] },
+  ]}
+  edges={[
+    { from: 'cassette', to: 'loadlock', label: '대기 → 진공' },
+    { from: 'loadlock', to: 'robot' },
+    { from: 'robot', to: 'ch1' },
+    { from: 'robot', to: 'ch2' },
+    { from: 'robot', to: 'ch3' },
+    { from: 'gas', to: 'ch1', style: 'dashed' },
+    { from: 'gas', to: 'ch2', style: 'dashed' },
+  ]}
+  note="챔버를 한 줄로 늘어놓으면 로봇이 먼 챔버까지 오가야 하지만, 로드락을 중심에 두고 방사형으로 배치하면 팔 길이 하나로 모든 챔버에 닿는다. 프로세스 챔버는 최대 4개까지 붙는다."
+/>
+
 | 구성 장치 | 역할 |
 |---|---|
 | 카세트 핸들러 스테이지 | 웨이퍼가 담긴 카세트를 싣고 내리는 입출구(A·B 두 자리) |
@@ -123,6 +147,23 @@ CVD 장비의 대표 사례로 들어요. 장비는 크게 두 덩어리로 나�
 클램프는 서로 연동되어 있어서 둘 다 제대로 잠기지 않으면 시스템 자체가
 작동하지 않아요 — 압력 차이가 있는 상태에서 덮개가 열리는 사고를
 원천적으로 막는 설계예요.
+
+<LayerStack
+  idPrefix="thinfilm-chamber"
+  caption="챔버 내부 — 가스는 두 단계로 나뉘어 뿌려진다"
+  layers={[
+    { id: 'lid', label: '덮개(Lid) — 워터 매니폴드가 냉각수 순환', tone: 'metal' },
+    { id: 'blocker', label: '블로커 플레이트 — 1차로 흩뿌린다', tone: 'poly' },
+    { id: 'shower', label: '샤워헤드 — 수백 개 구멍으로 2차 균일 분사', tone: 'poly' },
+    { id: 'wafer', label: '웨이퍼', tone: 'substrate' },
+    { id: 'body', label: '몸체(Body)', tone: 'metal', height: 36 },
+  ]}
+  annotations={[
+    { at: 'lid', text: '안전 클램프 2개가 연동 —\n둘 다 잠기지 않으면 작동 불가' },
+    { at: 'shower', text: '두 단계를 거쳐야 막 두께가\n웨이퍼 전면에서 균일해진다' },
+  ]}
+  note="챔버 운전 압력(약 600 Torr)과 대기압(760 Torr) 사이를 가르는 것이 덮개 바깥의 안전 클램프다 — 압력 차이가 있는 상태에서 덮개가 열리는 사고를 원천적으로 막는 설계다."
+/>
 
 가스는 덮개 안에서 두 단계로 나뉘어 뿌려져요. <strong>블로커 플레이트</strong>가
 공정 가스를 1차로 흩뿌리면, 수백 개의 구멍이 뚫린 <strong>샤워헤드</strong>가

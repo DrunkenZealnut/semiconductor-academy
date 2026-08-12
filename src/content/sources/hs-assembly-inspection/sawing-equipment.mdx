@@ -53,6 +53,21 @@
 
 ## 2. 테이프 마운터 — 자르기 전에 붙잡아 두는 장치
 
+<LayerStack
+  idPrefix="sawing-tapemount"
+  caption="테이프 마운터 — 자르기 전에 붙잡아 둔다"
+  layers={[
+    { id: 'wafer', label: '웨이퍼', tone: 'substrate' },
+    { id: 'tape', label: '마운트 테이프 (PVC·UV)', tone: 'resist', height: 26 },
+    { id: 'stage', label: '웨이퍼 스테이지', tone: 'metal', height: 38 },
+  ]}
+  annotations={[
+    { at: 'tape', text: '쏘잉 중 웨이퍼가\n움직이지 않게 붙잡는다' },
+    { at: 'stage', text: '백큠 스위치로\n진공 밀착' },
+  ]}
+  note="타이머가 테이프가 잘 붙도록 온도를 맞추고, 테이핑을 마친 뒤 남는 테이프는 라이너 커터가 잘라낸다."
+/>
+
 | 부품 | 역할 |
 |---|---|
 | 웨이퍼 스테이지 | 웨이퍼를 올려놓는 자리예요 |
@@ -73,6 +88,25 @@
 실제 절단을 담당하는 쏘잉 머신은 부품이 훨씬 많지만, 하는 일을 기준으로
 나누면 네 계통으로 정리돼요. 이 책이 예로 드는 웨이퍼 쏘잉
 머신(DAD640)도 이 네 계통을 그대로 갖추고 있어요.
+
+<NodeGraph
+  idPrefix="sawing-machine"
+  caption="쏘잉 머신 네 계통 — 돌리고, 옮기고, 식히고, 본다"
+  nodes={[
+    { id: 'spindle', label: '스핀들·블레이드', kind: 'device', at: [1, 0] },
+    { id: 'chuck', label: '척 테이블', kind: 'block', at: [1, 1] },
+    { id: 'water', label: '절삭수·공압', kind: 'device', at: [0, 1] },
+    { id: 'vision', label: '비전·조작', kind: 'io', at: [2, 1] },
+    { id: 'wafer', label: '웨이퍼', kind: 'io', at: [1, 2] },
+  ]}
+  edges={[
+    { from: 'spindle', to: 'chuck', label: '절삭' },
+    { from: 'water', to: 'spindle', label: '마찰열 냉각' },
+    { from: 'chuck', to: 'wafer', label: '고정·Y축 이송' },
+    { from: 'vision', to: 'chuck', label: '절단선 확인·제어', style: 'dashed' },
+  ]}
+  note="절삭수는 블레이드의 마찰열을 식히고 절삭 중 나오는 미세 부스러기를 씻어낸다. 누수 감지 센서와 압력 게이지가 함께 붙는다."
+/>
 
 | 계통 | 주요 부품 | 왜 필요한가 |
 |---|---|---|

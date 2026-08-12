@@ -50,6 +50,18 @@
 
 전자를 어떻게 읽어내느냐로 두 갈래가 나뉘어요.
 
+<CompareCards
+  caption="전자를 어떻게 읽어내나 — 두 갈래"
+  columns={[{ title: 'CCD' }, { title: 'CMOS (CIS)', tone: 'accent' }]}
+  rows={[
+    { aspect: '읽기 방식', values: ['이웃 커패시터로 릴레이하듯 직접 전송', '화소의 전하를 전압으로 변환해 읽어 냄'] },
+    { aspect: '강점', values: ['노이즈 적음, 감도·화질·저조도 우수', '원칩 통합·소형화, 대량생산 저비용, 저전력'] },
+    { aspect: '약점', values: ['소비전력 큼, 주변 회로 복잡, 원가 높음', '저조도 감도 낮음, 노이즈 많음'] },
+    { aspect: '주 무대', values: ['고급 디지털 카메라', '스마트폰·태블릿 등 거의 모든 모바일'] },
+  ]}
+  emphasis={[3]}
+/>
+
 | | CCD 이미지 센서 | CMOS 이미지 센서 (CIS) |
 |------|------|------|
 | 읽기 방식 | 전자를 이웃 커패시터로 릴레이하듯 <strong>직접 전송</strong> | 화소의 전하를 <strong>전압으로 변환</strong>해 읽어 냄 |
@@ -68,6 +80,23 @@ CIS 화소는 위에서부터 <strong>마이크로렌즈</strong>(빛 모으기)
 필터</strong>(색 분리) → <strong>포토다이오드</strong>(빛→전기 변환), 그리고 그 아래
 CMOS 회로부로 이루어져요. 포토다이오드에 빛이 들어오면 전자-정공쌍이 생기고 전자는
 n형, 정공은 p형 쪽으로 이동해 전류가 흐르는데, 이 신호를 MOSFET이 받아서 다뤄요.
+
+<LayerStack
+  idPrefix="cis-pixel"
+  caption="CIS 화소 — 위에서부터 네 겹"
+  layers={[
+    { id: 'lens', label: '마이크로렌즈 — 빛 모으기', tone: 'oxide' },
+    { id: 'filter', label: '컬러 필터 — 색 분리 (R·G·B)', tone: 'resist' },
+    { id: 'pd', label: '포토다이오드 — 빛을 전기로', tone: 'silicon-n', height: 38 },
+    { id: 'cmos', label: 'CMOS 회로부', tone: 'substrate', height: 34 },
+  ]}
+  annotations={[
+    { at: 'pd', text: '전자-정공쌍이 생기고\n전자는 n형, 정공은 p형으로' },
+    { at: 'cmos', text: 'MOSFET이 신호를 받는다' },
+  ]}
+  note="빛의 세기에 비례하는 수의 전자가 화소마다 쌓이고, 회로가 그 수를 전압으로 바꾼다."
+/>
+
 변환에는 효율이 따라붙어요 — 광자를 전하로 바꾸는 효율이 <strong>양자
 효율</strong>(Quantum efficiency), 전하를 전압으로 바꾸는 효율이 <strong>변환
 이득</strong>(Conversion gain)이고, 후자는 화소 속 초소형 커패시터가 담당해요.
@@ -80,6 +109,18 @@ n형, 정공은 p형 쪽으로 이동해 전류가 흐르는데, 이 신호를 M
 
 화소를 작게 만들수록 해상도는 오르지만 받는 빛이 줄어요. 그래서 구조가 계속
 진화했어요.
+
+<FlowSteps
+  caption="화소 구조의 진화 — 작아지면서도 빛을 더 받으려면"
+  orientation="column"
+  steps={[
+    { id: 'fsi', label: 'FSI (전면조사)', sub: '포토다이오드가 금속 배선 아래 — 빛이 배선 숲을 지나며 약해진다' },
+    { id: 'bsi', label: 'BSI (후면조사)', sub: '포토다이오드가 배선 위 — 웨이퍼 두 장을 붙이고 TSV로 연결', tone: 'accent' },
+    { id: 'fdti', label: 'F-DTI', sub: '화소 사이 약 0.4μm 격벽으로 간섭(Crosstalk) 차단' },
+    { id: 'vtg', label: 'VTG', sub: '전송 게이트를 수직으로 세워 수광 면적 확대' },
+  ]}
+  note="화소를 작게 만들수록 해상도는 오르지만 받는 빛이 줄어든다 — 구조 진화는 그 맞바꿈을 풀어내는 과정이다."
+/>
 
 | 세대 | 구조 | 핵심 아이디어 |
 |------|------|------|

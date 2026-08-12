@@ -54,6 +54,27 @@
 
 ## 2. 큰 그림 — 본체·제어 랙·챔버
 
+<NodeGraph
+  idPrefix="stepper-structure-overview"
+  caption="본체·제어 랙·챔버 — 셋이 한 몸처럼 움직인다"
+  nodes={[
+    { id: 'chamber', label: '환경 챔버', kind: 'block', at: [0, 0] },
+    { id: 'body', label: '본체', kind: 'block', at: [1, 0] },
+    { id: 'rack', label: '제어·조작 랙', kind: 'io', at: [2, 0] },
+    { id: 'optics', label: '광학계', kind: 'device', at: [1, 1] },
+    { id: 'align', label: '정렬 계통', kind: 'device', at: [0, 1] },
+    { id: 'focus', label: '포커스·위치 측정', kind: 'device', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'chamber', to: 'body', label: '온도·청정도를 지킨다' },
+    { from: 'rack', to: 'body', label: '여러 축을 지휘' },
+    { from: 'body', to: 'optics' },
+    { from: 'body', to: 'align' },
+    { from: 'body', to: 'focus' },
+  ]}
+  note="본체는 노광이 실제로 일어나는 핵심 공간, 제어 랙은 두뇌, 챔버는 외피 역할을 한다."
+/>
+
 이 장비는 크게 세 부분으로 나뉘어요. <strong>본체</strong>는 노광이 실제로 일어나는
 핵심 공간이고, <strong>제어 및 조작 랙</strong>은 본체 곳곳의 장치를 지휘하는 두뇌
 역할을, <strong>챔버(환경 챔버)</strong>는 본체 주위의 온도·청정도를 지키는 외피
@@ -62,6 +83,19 @@
 ## 3. 빛이 웨이퍼까지 가는 길 — 광학계
 
 본체 안에서 빛은 정해진 길을 따라 흘러요.
+
+<FlowSteps
+  caption="빛이 웨이퍼까지 가는 길 — 축소 투영이 실물 장치가 된 모습"
+  orientation="column"
+  steps={[
+    { id: 'src', label: '광원', sub: '초고압 수은(Hg) 램프 — I-Line 365nm' },
+    { id: 'illum', label: '조명 광학계', sub: '빛을 고르게 펴서 레티클 전체에 균일한 밝기로' },
+    { id: 'ret', label: '레티클 스테이지', sub: '패턴이 그려진 레티클을 투영 렌즈 위 정확한 위치에' },
+    { id: 'lens', label: '축소 투영 광학계', sub: '패턴을 1/5배로 줄여 웨이퍼에 초점을 맺는다', tone: 'accent' },
+    { id: 'wafer', label: '웨이퍼 스테이지', sub: '한 구역(1샷)씩 옮겨 전면에 반복해 찍는다' },
+  ]}
+  note="밝기가 한쪽으로 쏠리면 노광량도 쏠려 패턴이 균일하지 않게 된다."
+/>
 
 1. **광원** — 초고압 수은(Hg) 램프가 I-Line(365nm) 파장의 빛을 만들어요.
 2. **조명 광학계** — 이 빛을 고르게 펴서 레티클 전체에 균일한 밝기로 비춰요. 밝기가

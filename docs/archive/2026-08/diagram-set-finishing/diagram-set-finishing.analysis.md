@@ -1,7 +1,7 @@
 # Gap 분석 — 도해 세트 마감
 
 > **Feature**: `diagram-set-finishing` · **분석일**: 2026-08-11 · **Level**: Dynamic
-> **Design**: `docs/02-design/features/diagram-set-finishing.design.md`
+> **Design**: `docs/archive/2026-08/diagram-set-finishing/diagram-set-finishing.design.md`
 > **분석 방법**: `gap-detector` 에이전트 + 오케스트레이터 재검증 및 즉시 수정
 
 ---

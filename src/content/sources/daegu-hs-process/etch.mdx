@@ -99,6 +99,19 @@
 
 ## 4. 습식식각과 건식식각 비교
 
+<CompareCards
+  caption="습식과 건식 — 용액조냐 진공 챔버냐"
+  columns={[{ title: '습식식각(Wet)' }, { title: '건식식각(Dry)', tone: 'accent' }]}
+  rows={[
+    { aspect: '방법', values: ['화학 반응(용액)', '물리·화학 반응(가스)'] },
+    { aspect: '환경/장비', values: ['대기압, 용액조(Bath)', '진공, 챔버'] },
+    { aspect: '방향성', values: ['등방성', '비등방성 가능'] },
+    { aspect: '장점', values: ['저비용·쉬운 공정, 빠른 식각 속도, 좋은 선택비', '높은 정확성, 미세 패터닝 가능'] },
+    { aspect: '단점', values: ['정확성 낮음, 오염 위험, 감광제 아래쪽까지 식각', '고비용·어려운 공정, 낮은 처리량, 상대적으로 낮은 선택비'] },
+  ]}
+  emphasis={[2]}
+/>
+
 | 구분 | 습식식각(Wet Etch) | 건식식각(Dry Etch) |
 |------|------|------|
 | 방법 | 화학 반응(용액) | 물리·화학 반응(가스) |
@@ -205,6 +218,34 @@
 실제로는 훨씬 다양한 가스 조합과 조건이 쓰이지만, 대표적인 박막별 건식식각을 정리하면
 다음과 같아요.
 
+<TreeBranch
+  caption="무엇을 깎느냐가 가스를 정한다"
+  root="막질별 식각"
+  branches={[
+    {
+      label: '염소계 가스',
+      note: 'Cl₂ · HBr · BCl₃',
+      children: [
+        { label: 'Silicon Etch', note: 'Poly Si·Si → Gate, STI' },
+        { label: 'Metal Etch', note: 'Al·W·실리사이드 → Gate, 배선' },
+      ],
+    },
+    {
+      label: '불소계 가스',
+      note: 'CF₄ · CHF₃',
+      children: [
+        { label: 'Oxide Etch', note: 'SiO₂ → Contact' },
+        { label: 'Nitride Etch', note: 'Si₃N₄ → STI, Spacer' },
+      ],
+    },
+    {
+      label: '산소',
+      note: 'O₂',
+      children: [{ label: 'PR Strip', note: '감광제 제거 — 식각 공정 후 세정' }],
+    },
+  ]}
+/>
+
 | 식각 공정 | 대상 물질 | 대표 공정 가스 | 주요 용도 |
 |------|------|------|------|
 | Silicon Etch | Poly Si, Si | Cl₂, HBr 등 | Gate, STI |
@@ -304,6 +345,18 @@ ICP-RIE는 챔버 바깥의 코일로 유도 전자기장(ICP RF Power)을 만�
 2.45GHz 마이크로파로 공명 흡수를 일으켜 전자가 주변 중성 가스와 연쇄 충돌하게
 만드는 방식으로, 이방성이 매우 높아 초미세 패턴에 유리하고 이온 에너지가 낮아 표면
 손상도 적어요.
+
+<CompareCards
+  caption="플라즈마 소스 세 가지 — 압력을 낮추면 밀도가 오른다"
+  columns={[{ title: 'CCP' }, { title: 'ICP', tone: 'accent' }, { title: 'ECR' }]}
+  rows={[
+    { aspect: '압력(mTorr)', values: ['50∼1,000', '0.5∼50', '0.05∼50'] },
+    { aspect: '플라즈마 밀도(개/cm³)', values: ['10⁹∼10¹¹', '10¹⁰∼10¹²', '10¹⁰∼10¹²'] },
+    { aspect: '이온 에너지(eV)', values: ['200∼1,000', '20∼500 (조절 가능)', '20∼30'] },
+  ]}
+  emphasis={[1]}
+  note="ICP는 이온 에너지를 따로 조절할 수 있어 밀도와 에너지를 독립적으로 다룰 수 있다."
+/>
 
 | 공정 변수 | CCP | ICP | ECR |
 |------|------|------|------|

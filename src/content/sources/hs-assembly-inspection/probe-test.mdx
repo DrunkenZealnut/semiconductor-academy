@@ -85,6 +85,24 @@
 
 테스터도 구조를 나눠 보면 역할이 뚜렷해요.
 
+<NodeGraph
+  idPrefix="probe-test-axes"
+  caption="프로버와 테스터 — 정밀 접촉을 만드는 구성"
+  nodes={[
+    { id: 'main', label: '본체(Mainframe)', kind: 'block', at: [1, 0] },
+    { id: 'head', label: '테스트 헤드', kind: 'device', at: [1, 1] },
+    { id: 'wafer', label: '웨이퍼(칩)', kind: 'io', at: [1, 2] },
+    { id: 'ews', label: '워크스테이션(EWS)', kind: 'io', at: [0, 0] },
+    { id: 'prober', label: '프로버', kind: 'device', at: [2, 0] },
+  ]}
+  edges={[
+    { from: 'main', to: 'head', label: '전원·계측 자원' },
+    { from: 'head', to: 'wafer', label: '최전방 접점' },
+    { from: 'ews', to: 'main', label: '프로그램·결과 확인' },
+    { from: 'main', to: 'prober', label: '주변 장비와 통신', style: 'dashed' },
+  ]}
+/>
+
 | 구성 | 역할 |
 |---|---|
 | 본체(Mainframe) | 전원 공급과 계측 자원을 갖추고 프로버 같은 주변 장비와 통신한다 |
@@ -169,6 +187,15 @@
 차단</strong>이라는 공통 안전수칙을 지키며 진행해요.
 
 앞의 두 과제는 이번 단원에서 다룬 흐름의 앞부분만 떼어 낸 연습이에요.
+
+<FlowSteps
+  caption="셋업에서 테스트까지"
+  steps={[
+    { id: 'q1', label: '프로브 셋업', sub: '전원 투입 → 웨이퍼를 로더부에 장착 → 정렬 논리에 따라 맞춘다' },
+    { id: 'q2', label: '테스터 초기화', sub: '시스템 부팅 → 로그인 → 컨트롤러 연결 확인', tone: 'accent' },
+    { id: 'q3', label: '테스트 실행', sub: '프로그램을 불러와 칩과 접촉시킨다' },
+  ]}
+/>
 
 | 실습과제 | 목표 | 준비물 · 장비 | 핵심 절차 |
 |---|---|---|---|

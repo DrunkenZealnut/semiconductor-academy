@@ -94,6 +94,29 @@
 | 비이온성 오염 물질 | 산화물 | SiO₂, 연마제(실리카, 알루미나) | 자연적 산화, 식각 잔여물, CMP |
 | 비이온성 오염 물질 | 다른 유기물 | 왁스, 오일, 수지, 포토레지스트, 포토레지스트 잔여물 | CMP, 포토, 건식 식각, 웨이퍼 취급 |
 
+<TreeBranch
+  caption="오염 물질은 두 갈래 — 이온성이냐 아니냐"
+  root="오염 물질"
+  branches={[
+    {
+      label: '이온성 오염 물질',
+      children: [
+        { label: '금속이온', note: 'Na⁺, Li⁺, K⁺ — 인체, 액체형 화학물질, 원재료' },
+        { label: '다른 음이온', note: 'F⁻, Cl⁻ — 식각, 포토 공정에서 발생' },
+      ],
+    },
+    {
+      label: '비이온성 오염 물질',
+      children: [
+        { label: '금속', note: 'Fe, Ni, Cr, Au, Cu, Ag — 원재료, 웨이퍼 취급 공정, 체임버' },
+        { label: '탄소', note: '건식 식각, 원재료 CVD·PVD' },
+        { label: '산화물', note: 'SiO₂, 연마제 — 자연적 산화, 식각 잔여물, CMP' },
+        { label: '다른 유기물', note: '왁스, 오일, 수지, 포토레지스트, 포토레지스트 잔여물' },
+      ],
+    },
+  ]}
+/>
+
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 6-1 (p.86)</p>
 
 또 다른 분류법으로, 웨이퍼가 놓인 환경에 따라 나누는 방법도 있어요(Baltzinger and Delahaye, 2010).
@@ -158,6 +181,38 @@
 | 건식 클리닝 | Ar 스퍼터링 | Al₂O₃, 자연 산화된 실리카 |
 | 건식 클리닝 | UV/Cl₂ | 금속이온 |
 | 기계적 클리닝 | 드라이아이스, 고압 아르곤 | 입자들 |
+
+<TreeBranch
+  caption="세 갈래 클리닝 — 무엇으로 무엇을 지우나"
+  root="클리닝 방식"
+  branches={[
+    {
+      label: '습식 클리닝',
+      children: [
+        { label: '식각', note: '손상된 실리콘 기판' },
+        { label: '산화/환원', note: '반응 부산물, 유기물, 실릴화된 실리카' },
+        { label: '용해', note: '유기물, 금속 오염물' },
+        { label: '계면활성제', note: '금속 오염물' },
+        { label: '초순수', note: '세척' },
+      ],
+    },
+    {
+      label: '건식 클리닝',
+      children: [
+        { label: '플라스마 방전', note: '실리콘, 실리콘 화합물, 유기물, 탄소' },
+        { label: 'UV/O₃', note: '유기물, 탄소' },
+        { label: '무수 불화수소 가스', note: '자연 산화된 실리카' },
+        { label: 'H₂ 어닐링', note: '자연 산화된 실리카' },
+        { label: 'Ar 스퍼터링', note: 'Al₂O₃, 자연 산화된 실리카' },
+        { label: 'UV/Cl₂', note: '금속이온' },
+      ],
+    },
+    {
+      label: '기계적 클리닝',
+      children: [{ label: '드라이아이스, 고압 아르곤', note: '입자들' }],
+    },
+  ]}
+/>
 
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 6-2 (p.90)</p>
 

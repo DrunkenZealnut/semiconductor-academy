@@ -78,6 +78,21 @@
 | 부산물 | 폴리머 거의 없음 | 폴리머·잔류물 발생 |
 | 주로 쓰이는 곳 | 세정(클리닝) 공정 | 미세 패턴 형성(오늘날 주력) |
 
+<CompareCards
+  caption="담그느냐 플라즈마로 깎느냐 — 방향성이 갈린다"
+  columns={[{ title: '습식 식각' }, { title: '건식 식각' }]}
+  rows={[
+    { aspect: '제거 수단', values: ['화학 용액에 담금', '가스를 플라즈마로 여기'] },
+    { aspect: '식각 방향성', values: ['등방성 — 모든 방향으로 고르게', '이방성 — 수직 방향으로 집중'] },
+    { aspect: '선택비', values: ['높음', '상대적으로 낮음'] },
+    { aspect: 'CD(치수) 조절', values: ['어려움', '정교하게 가능'] },
+    { aspect: '하부 막질 손상', values: ['거의 없음', '이온 충돌로 발생 가능'] },
+    { aspect: '부산물', values: ['폴리머 거의 없음', '폴리머·잔류물 발생'] },
+    { aspect: '주로 쓰이는 곳', values: ['세정(클리닝) 공정', '미세 패턴 형성'] },
+  ]}
+  emphasis={[1]}
+/>
+
 습식 식각은 웨이퍼 여러 장을 한 수조에 통째로 담그는 배치(Batch) 처리라
 단위 시간당 처리량은 높지만, 원하는 부분만 정확히 남기는 패턴 형성에는
 잘 쓰이지 않아요. 그래서 집적도가 높아질수록, 즉 선폭이 좁아질수록
@@ -161,6 +176,17 @@ Etch, 필요량보다 덜 깎임)는 확실한 문제라서 부족한 만큼 추
 | 산화막(컨택·비아·스페이서 식각) | CHF3, CF4, C4F8, SF6 등 불소계 | RF로 가속된 이온 충돌과 C-F 폴리머가 이방성을 만듦 | SiO2 + CF4 → SiF4 + CO + CO2 |
 | 금속막(알루미늄 배선) | Cl2, BCl3 등 염소계 | 붕소(B) 이온이 물리적 식각을 도움 | 2Al + 3Cl2 → 2AlCl3 |
 
+<TreeBranch
+  caption="막질마다 다른 가스 — 산화막은 불소계, 폴리·금속은 염소계"
+  root="막질별 식각 가스"
+  depth={2}
+  branches={[
+    { label: '폴리실리콘', note: 'Cl2 등 염소계 — 선택비가 높지만 폴리머가 많이 생김' },
+    { label: '산화막', note: 'CHF3, CF4, C4F8, SF6 등 불소계 — C-F 폴리머가 이방성을 만듦' },
+    { label: '금속막', note: 'Cl2, BCl3 등 염소계 — 붕소 이온이 물리적 식각을 도움' },
+  ]}
+/>
+
 <Callout type="tip" title="시험 포인트 — 막질과 가스 짝짓기">
   "산화막=불소계(F 계열), 폴리실리콘·금속=염소계(Cl 계열)"라는 짝을
   묻는 문제가 단골로 나와요. 반대로 헷갈려 외우지 않게 주의하세요.
@@ -187,6 +213,30 @@ Etch, 필요량보다 덜 깎임)는 확실한 문제라서 부족한 만큼 추
 | 냉각장치(Chiller) | 식각 중 100℃ 이상 오르는 챔버·웨이퍼 온도를 냉각 |
 | 유량조절장치(MFC) | 가스 유량을 sccm 단위로 정밀 조절 |
 | 종말점 검출기(EPD) | 반응 부산물의 광신호 변화로 식각 종료 시점 감지 |
+
+<NodeGraph
+  idPrefix="cert-etcher-systems"
+  caption="챔버를 지키는 장치들 — 무엇이 무엇을 맡나"
+  nodes={[
+    { id: 'pump', label: '진공 펌프', kind: 'device', at: [0, 0] },
+    { id: 'rf', label: 'RF 발생장치', kind: 'device', at: [1, 0] },
+    { id: 'elec', label: '전극', kind: 'device', at: [2, 0] },
+    { id: 'mfc', label: '유량조절장치(MFC)', kind: 'io', at: [0, 1] },
+    { id: 'chamber', label: '챔버', kind: 'block', at: [1, 1] },
+    { id: 'chiller', label: '냉각장치', kind: 'device', at: [2, 1] },
+    { id: 'esc', label: '정전 척(ESC)', kind: 'device', at: [0, 2] },
+    { id: 'epd', label: '종말점 검출기(EPD)', kind: 'device', at: [2, 2] },
+  ]}
+  edges={[
+    { from: 'pump', to: 'chamber', label: '100mTorr 이하로' },
+    { from: 'rf', to: 'chamber', label: '13.56MHz로 플라즈마' },
+    { from: 'elec', to: 'chamber', label: 'RF 전력 인가' },
+    { from: 'mfc', to: 'chamber', label: 'sccm 단위 가스' },
+    { from: 'chiller', to: 'chamber', label: '온도를 냉각' },
+    { from: 'esc', to: 'chamber', label: '웨이퍼 고정' },
+    { from: 'chamber', to: 'epd', label: '광신호 변화', style: 'dashed' },
+  ]}
+/>
 
 이 구성 요소를 실제 장비 사진과 함께 하나씩 더 깊이 보고 싶다면{' '}
 <SourceRef source="hs-photo-etch" section="etch-equipment" label="「반도체 포토·에칭」 에칭 장비의 구성 요소" />를,

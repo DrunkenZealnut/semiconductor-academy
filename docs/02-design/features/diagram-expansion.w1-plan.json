@@ -1,0 +1,506 @@
+{
+  "_coverage": "full",
+  "_comment": "Design docs/02-design/features/diagram-expansion.design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w1).",
+  "physical-properties": [
+    {
+      "component": "LayerStack",
+      "subject": "— 도체·반도체·부도체를 가르는 에너지 밴드"
+    },
+    {
+      "component": "LatticeDiagram",
+      "subject": "실리콘 결정"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "캐리어"
+    }
+  ],
+  "semicon-fundamentals": [
+    {
+      "component": "LatticeDiagram",
+      "subject": "도핑된 실리콘의 남는 손/빈자리"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "n형/p형"
+    }
+  ],
+  "diode": [
+    {
+      "component": "LayerStack",
+      "subject": "PN 접합 단면과 공핍층"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "순/역방향"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "쇼트키/옴"
+    }
+  ],
+  "mosfet": [
+    {
+      "component": "LayerStack",
+      "subject": "MOSFET 단면"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "nMOS/pMOS"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "단채널 효과별 대책"
+    }
+  ],
+  "bjt": [
+    {
+      "component": "LayerStack",
+      "subject": "npn 3층 적층과 3단자"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "E-B×C-B 바이어스 2×2 동작 영역"
+    }
+  ],
+  "cmos-image-sensor": [
+    {
+      "component": "LayerStack",
+      "subject": "CIS 세 개의 층"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "CCD/CIS"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "화소 구조 세대 진화"
+    }
+  ],
+  "passive-components": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 저항기·축전기·인덕터"
+    }
+  ],
+  "semicon-overview": [
+    {
+      "component": "TreeBranch",
+      "subject": "물질·소자·제품 층위"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "4004 vs 카비레이크"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "DRAM/플래시"
+    }
+  ],
+  "semicon-industry": [
+    {
+      "component": "FlowSteps",
+      "subject": "밸류체인"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "재료·장비 분류"
+    }
+  ],
+  "semicon-careers": [
+    {
+      "component": "TreeBranch",
+      "subject": "직무 계열 분류"
+    }
+  ],
+  "c-basics": [
+    {
+      "component": "FlowSteps",
+      "subject": "소스 코드가 실행 파일이 되기까지"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "언어 분류"
+    }
+  ],
+  "c-programming": [
+    {
+      "component": "TreeBranch",
+      "subject": "제어문 3계열"
+    }
+  ],
+  "dc-circuits": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 직류·교류·맥류"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "키르히호프 전류 법칙 접합점"
+    }
+  ],
+  "drafting-standards": [
+    {
+      "component": "FlowSteps",
+      "subject": "A0→A4 접기 순서"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "도면 요소 필수·선택"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "선의 모양과 용도"
+    }
+  ],
+  "drawing-methods": [
+    {
+      "component": "CompareCards",
+      "subject": "제1각법 vs 제3각법"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "투상면 확장 1→2→3→6개면"
+    }
+  ],
+  "electronic-devices": [
+    {
+      "component": "LatticeDiagram",
+      "subject": "원자에서 시작하는 반도체"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "저항 색띠 읽는 순서"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "다이오드 접합"
+    }
+  ],
+  "hydraulics-equipment": [
+    {
+      "component": "NodeGraph",
+      "subject": "유압 시스템 구성"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "밸브 분류"
+    }
+  ],
+  "measurement": [
+    {
+      "component": "FlowSteps",
+      "subject": "버니어캘리퍼스 눈금 읽기 4단계"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "측정 오차 6종"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "측정/검사"
+    }
+  ],
+  "milling": [
+    {
+      "component": "CompareCards",
+      "subject": "상향 절삭 vs 하향 절삭"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "드릴 설치→탭 순서"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "밀링 3종"
+    }
+  ],
+  "pneumatics-basics": [
+    {
+      "component": "CompareCards",
+      "subject": "3열 — 공압·유압·전기"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "파스칼 원리 면적비·힘비"
+    }
+  ],
+  "pneumatics-equipment": [
+    {
+      "component": "FlowSteps",
+      "subject": "압축기→정화기기→액추에이터→밸브"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "정화기기 역할"
+    }
+  ],
+  "sectional-views": [
+    {
+      "component": "TreeBranch",
+      "subject": "단면도 5종을 가르는 기준"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "해칭 vs 스머징"
+    }
+  ],
+  "process-overview": [
+    {
+      "component": "ScaleRuler",
+      "subject": "Å·nm·μm 반도체의 자"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "전공정→후공정"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "장치산업 6성격"
+    }
+  ],
+  "fab-cleanroom": [
+    {
+      "component": "TreeBranch",
+      "subject": "라인 구조 포함 관계"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "공기 순환 loop"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "청정실 복장 순서"
+    }
+  ],
+  "photo-process": [
+    {
+      "component": "FlowSteps",
+      "subject": "도포→노광→현상→검사"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "감광액 도포 단면"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "불량 항목"
+    }
+  ],
+  "photomask": [
+    {
+      "component": "LayerStack",
+      "subject": "마스크 원판 + 페리클 단면"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "마스크 제작 공정"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "바이너리/PSM"
+    }
+  ],
+  "exposure-equipment": [
+    {
+      "component": "FlowSteps",
+      "subject": "노광 장비 4세대 순서"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "스테퍼/스캐너"
+    }
+  ],
+  "stepper-structure": [
+    {
+      "component": "NodeGraph",
+      "subject": "본체·제어 랙·챔버 계통"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "광원→웨이퍼 광학계 경로"
+    }
+  ],
+  "stepper-operation": [
+    {
+      "component": "FlowSteps",
+      "subject": "정렬 → 포커스·레벨링 → 노광량"
+    }
+  ],
+  "track-equipment": [
+    {
+      "component": "FlowSteps",
+      "subject": "웨이퍼 반송 흐름"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "코터 유닛 막 형성"
+    }
+  ],
+  "track-operation": [
+    {
+      "component": "FlowSteps",
+      "subject": "기동→진행→정지 순서"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "기동 전 충족돼야 하는 공급 조건"
+    }
+  ],
+  "etch-process": [
+    {
+      "component": "CompareCards",
+      "subject": "습식 에칭 vs 건식 에칭"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "막별 에칭 가스"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "건식 식각이 진행되는 다섯 걸음"
+    }
+  ],
+  "etch-equipment": [
+    {
+      "component": "NodeGraph",
+      "subject": "5계통"
+    },
+    {
+      "component": "ValueBars",
+      "subject": "진공 영역별 압력 범위"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "챔버 배열·전원 방식"
+    }
+  ],
+  "etcher-structure": [
+    {
+      "component": "FlowSteps",
+      "subject": "웨이퍼의 여정 ①~⑤"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "전극 유닛"
+    }
+  ],
+  "etcher-maintenance": [
+    {
+      "component": "Timeline",
+      "subject": "PM 주기"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "장비 경고 표시"
+    }
+  ],
+  "photo-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "3 실습 분류"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "신너 필터 교환 절차"
+    }
+  ],
+  "etch-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "7 실습 3계열"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "Step by Step vs Full Auto"
+    }
+  ],
+  "diffusion-process": [
+    {
+      "component": "LayerStack",
+      "subject": "산화막이 자라는 단면"
+    },
+    {
+      "component": "TreeBranch",
+      "subject": "산화막 6역할"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "산화 속도 5변수"
+    }
+  ],
+  "diffusion-equipment": [
+    {
+      "component": "FlowSteps",
+      "subject": "웨이퍼 자동화 여덟 걸음"
+    },
+    {
+      "component": "NodeGraph",
+      "subject": "본체부·제어부"
+    }
+  ],
+  "diffusion-maintenance": [
+    {
+      "component": "FlowSteps",
+      "subject": "T-BAWL: 웨이퍼가 보트에 오르기까지"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "DIAG→EVALUATION→RUN"
+    }
+  ],
+  "diffusion-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "6 실습 분류"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "아웃터 튜브 반출 절차"
+    }
+  ],
+  "thinfilm-process": [
+    {
+      "component": "TreeBranch",
+      "subject": "쌓는 방법 4가지"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "재료 3종·목적 2종"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "층덮임"
+    }
+  ],
+  "thinfilm-equipment": [
+    {
+      "component": "NodeGraph",
+      "subject": "로봇 팔 하나가 지휘하는 클러스터"
+    },
+    {
+      "component": "LayerStack",
+      "subject": "챔버 내부"
+    }
+  ],
+  "thinfilm-maintenance": [
+    {
+      "component": "FlowSteps",
+      "subject": "벤트 → 리크 체크"
+    },
+    {
+      "component": "CompareCards",
+      "subject": "조작 화면 3종"
+    }
+  ],
+  "thinfilm-practice": [
+    {
+      "component": "TreeBranch",
+      "subject": "7 실습 분류"
+    },
+    {
+      "component": "FlowSteps",
+      "subject": "리크 체크 절차"
+    }
+  ]
+}

@@ -45,6 +45,31 @@
 <strong>이동식 유압시스템</strong>, 그리고 항공기의 조종·착륙 장치에 쓰이는
 <strong>항공기 유압시스템</strong>이에요.
 
+<NodeGraph
+  idPrefix="hydraulics-system"
+  caption="유압시스템 기본 구성 — 힘의 세기·방향·빠르기를 각각 다른 밸브가 정한다"
+  nodes={[
+    { id: 'motor', label: '전동기', kind: 'io', at: [0, 1] },
+    { id: 'tank', label: '기름 탱크', kind: 'block', at: [0, 2] },
+    { id: 'pump', label: '유압 펌프', kind: 'device', at: [1, 1] },
+    { id: 'relief', label: '릴리프 밸브', kind: 'device', at: [2, 0] },
+    { id: 'dir', label: '방향 제어 밸브', kind: 'device', at: [2, 1] },
+    { id: 'flow', label: '유량 제어 밸브', kind: 'device', at: [2, 2] },
+    { id: 'act', label: '액추에이터', kind: 'io', at: [3, 1] },
+  ]}
+  edges={[
+    { from: 'motor', to: 'pump', label: '기계 에너지' },
+    { from: 'tank', to: 'pump' },
+    { from: 'pump', to: 'relief', label: '힘의 세기' },
+    { from: 'pump', to: 'dir', label: '방향' },
+    { from: 'pump', to: 'flow', label: '빠르기' },
+    { from: 'relief', to: 'act', style: 'dashed' },
+    { from: 'dir', to: 'act' },
+    { from: 'flow', to: 'act', style: 'dashed' },
+  ]}
+  note="동력원(기름 탱크 + 유압 펌프)이 전동기의 기계 에너지를 유압 에너지로 바꾸고, 배관을 타고 액추에이터(유압 실린더·유압 모터)에 전달돼 일을 한다."
+/>
+
 어느 쪽이든 기본 구성은 같아요. 기름 탱크와 유압 펌프로 이뤄진 <strong>동력원</strong>이
 전동기의 기계 에너지를 유압 에너지로 바꾸고, 이 압력이 배관을 타고
 <strong>액추에이터</strong>(유압 실린더·유압 모터)에 전달돼 일을 해요. 이 압력이
@@ -87,6 +112,38 @@
 ## 4. 유압 제어 밸브 — 압력·방향·유량을 다스리다
 
 유압시스템에서도 밸브는 압력 제어·방향 제어·유량 제어 세 갈래로 나뉘어요.
+
+<TreeBranch
+  caption="유압 밸브 — 압력·방향·유량 세 갈래"
+  root="유압 제어 밸브"
+  branches={[
+    {
+      label: '압력 제어',
+      note: '얼마나 센 힘을 낼지',
+      children: [
+        { label: '릴리프 밸브', note: '최고 압력을 설정값 이하로 제한' },
+        { label: '감압 밸브', note: '높은 압력을 낮춰 일정하게 유지' },
+        { label: '시퀀스 밸브', note: '액추에이터의 작동 순서를 결정' },
+      ],
+    },
+    {
+      label: '방향 제어',
+      note: '어느 쪽으로 움직일지',
+      children: [
+        { label: '방향 제어 밸브', note: '흐름 방향을 바꾸거나 끊는다' },
+        { label: '체크 밸브', note: '정방향만 흐르게 하고 역류를 막는다' },
+      ],
+    },
+    {
+      label: '유량 제어',
+      note: '얼마나 빠르게 움직일지',
+      children: [
+        { label: '교축 밸브', note: '유로를 좁혀 유량과 속도를 다스린다' },
+        { label: '유량조정 밸브', note: '부하·온도가 변해도 유량을 일정하게' },
+      ],
+    },
+  ]}
+/>
 
 | 분류 | 밸브 | 역할 |
 |---|---|---|

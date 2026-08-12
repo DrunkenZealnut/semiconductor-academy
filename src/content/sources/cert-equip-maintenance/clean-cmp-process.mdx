@@ -119,6 +119,16 @@ SC1은 암모니아의 식각 작용과 과산화수소의 산화 작용이 동�
 | IPA Dryer | IPA(이소프로필 알코올) 증기로 물을 치환한 뒤 휘발시킴 | 파티클 적음, 단차 건조 용이 | 화재 위험, 유지비 높음 |
 | Marangoni Dryer | 물과 IPA의 표면장력 차이(마랑고니 효과) 이용 | 물반점 없이 깨끗한 건조 | 넓게 보면 IPA Dryer의 한 갈래 |
 
+<CompareCards
+  caption="물기를 어떻게 없애나 — 건조기 세 종"
+  columns={[{ title: 'Spin Dryer' }, { title: 'IPA Dryer' }, { title: 'Marangoni Dryer' }]}
+  rows={[
+    { aspect: '원리', values: ['고속 회전으로 물기를 털어냄', 'IPA 증기로 물을 치환한 뒤 휘발', '물과 IPA의 표면장력 차이'] },
+    { aspect: '장점', values: ['저렴, 유지 관리 쉬움', '파티클 적음, 단차 건조 용이', '물반점 없이 깨끗한 건조'] },
+    { aspect: '단점', values: ['웨이퍼 파손 가능성, 물반점', '화재 위험, 유지비 높음', 'IPA Dryer의 한 갈래'] },
+  ]}
+/>
+
 과산화수소를 대체하려는 흐름 속에서 새로운 세정 기술도 여럿
 등장했어요. 오존(O₃) 세정은 과산화수소보다 강한 산화력을 내면서도
 해로운 반응 생성물을 남기지 않고, 드라이아이스·아르곤 에어로졸
@@ -171,6 +181,22 @@ CMP 장비는 크게 네 가지 요소로 이뤄져요.
 | 연마제(Slurry) | 실리카(SiO₂) 등을 주성분으로 하는 연마 용액 |
 | 패드 컨디셔너(Pad Conditioner) | 다이아몬드 디스크로 패드 표면을 초기 상태로 되돌림 |
 
+<NodeGraph
+  idPrefix="cert-cmp-parts"
+  caption="네 가지 요소가 연마 패드에서 만난다"
+  nodes={[
+    { id: 'head', label: '웨이퍼 헤드', kind: 'device', at: [1, 0] },
+    { id: 'slurry', label: '연마제(Slurry)', kind: 'io', at: [0, 1] },
+    { id: 'pad', label: '연마 패드', kind: 'device', at: [1, 1] },
+    { id: 'cond', label: '패드 컨디셔너', kind: 'device', at: [2, 1] },
+  ]}
+  edges={[
+    { from: 'head', to: 'pad', label: '회전·가압' },
+    { from: 'slurry', to: 'pad', label: '화학 반응' },
+    { from: 'cond', to: 'pad', label: '표면을 되돌린다', style: 'dashed' },
+  ]}
+/>
+
 <Callout type="tip" title="시험 포인트 — 장치와 소모품을 구분하세요">
   웨이퍼 헤드는 장비의 '일부'지만, 슬러리·패드·패드 컨디셔너의
   다이아몬드 디스크는 다 닳아 없어지는 '소모품'이에요. "다음 중 CMP
@@ -192,6 +218,30 @@ CMP는 무엇을 평탄화하느냐에 따라 크게 두 갈래, 세부적으로
 | 산화막(Oxide) CMP | IMD CMP | 금속 배선과 금속 배선 사이의 절연층 |
 | 금속막(Metal) CMP | W CMP | CVD로 증착한 텅스텐(W) 중 비아홀 바깥의 불필요한 부분 |
 | 금속막(Metal) CMP | Cu CMP | 알루미늄보다 전도도가 좋은 구리(Cu) 배선을 다마신 공정으로 형성 |
+
+<TreeBranch
+  caption="어디를 깎느냐로 두 갈래"
+  root="CMP"
+  branches={[
+    {
+      label: '산화막(Oxide) CMP',
+      note: '절연층을 평탄화한다',
+      children: [
+        { label: 'STI CMP', note: '소자와 소자 사이의 절연층' },
+        { label: 'PMD CMP', note: '소자와 금속 배선 사이의 절연층' },
+        { label: 'IMD CMP', note: '금속 배선과 금속 배선 사이의 절연층' },
+      ],
+    },
+    {
+      label: '금속막(Metal) CMP',
+      note: '금속을 평탄화한다',
+      children: [
+        { label: 'W CMP', note: '비아홀 바깥의 불필요한 텅스텐' },
+        { label: 'Cu CMP', note: '구리 배선을 다마신 공정으로 형성' },
+      ],
+    },
+  ]}
+/>
 
 깎는 대상이 다른 만큼 슬러리의 화학적 성질도 반대예요.
 

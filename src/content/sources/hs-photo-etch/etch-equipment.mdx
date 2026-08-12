@@ -60,6 +60,19 @@
 | 처리 방식 | 일괄 처리(Batch), 단일 챔버 | 개별 처리(Single), 다중 챔버 |
 | 자동화 수준 | 사람이 매번 확인 | 자가진단 기능 + 인터록으로 스스로 점검 |
 
+<CompareCards
+  caption="에칭 장비는 이렇게 바뀌어 왔다"
+  columns={[{ title: '예전 방식' }, { title: '지금 방식', tone: 'accent' }]}
+  rows={[
+    { aspect: '웨이퍼 구경', values: ['4인치(100mm)', '12인치(300mm) — 18인치(450mm)까지 전망'] },
+    { aspect: '로딩', values: ['수동, 챔버에 직접 노출', '자동, 로드락과 공정 챔버를 분리해 결합'] },
+    { aspect: '반송 로봇', values: ['벨트 타입', '픽 앤 플레이스 타입'] },
+    { aspect: '처리 방식', values: ['일괄 처리(Batch), 단일 챔버', '개별 처리(Single), 다중 챔버'] },
+    { aspect: '자동화', values: ['사람이 매번 확인', '자가진단 + 인터록으로 스스로 점검'] },
+  ]}
+  emphasis={[4]}
+/>
+
 인터록은 <strong>어떤 제어장치가 작동 중일 때 다른 특정 장치가 동시에 작동하면 안 되는
 경우, 그 둘 사이에 두는 안전장치</strong>예요. 로드락 문과 챔버 문이 동시에 열리는
 사고를 막는 것도 인터록의 몫이에요. 장비끼리 정보를 주고받는 표준 통신 방식(SECS-II)도
@@ -74,6 +87,19 @@ Through-Put), 웨이퍼가 커져도 고른 결과(Uniformity), 이물질 없는
 
 원하는 에칭이 일어나려면 챔버 안의 가스·압력·온도·고주파 전원이 모두 규격에 맞아야
 해요. 그 첫 번째 조건이 진공이에요.
+
+<ValueBars
+  caption="에칭 챔버가 내려가는 압력 — 로그 축이어야 세 값이 다 보인다"
+  unit="mTorr"
+  scale="log"
+  direction="down"
+  rows={[
+    { label: '대기압', value: 760000, note: '760 Torr' },
+    { label: '에칭 챔버(보통)', value: 100, note: '100 mTorr 이하' },
+    { label: '에칭 챔버(최근)', value: 10, note: '10 mTorr 이하', tone: 'accent' },
+  ]}
+  note="펌프 하나로는 이만큼 낮추기 어려워 터보분자펌프(TMP)·부스터펌프·기계식 펌프를 함께 돌린다."
+/>
 
 대기압은 760Torr인데, 에칭이 일어나는 챔버는 보통 100mTorr 이하 — 최근에는 10mTorr
 이하까지 내려가는 저압을 써요. 펌프 하나로는 이만큼 낮추기 어려워서, 터보분자펌프
@@ -115,6 +141,29 @@ Through-Put), 웨이퍼가 커져도 고른 결과(Uniformity), 이물질 없는
 조절기, Mass Flow Controller)</strong>예요 — 물질마다 다른 비열과 밀도라는 고유한
 성질을 이용해 흐르는 가스의 양을 감지·제어하고, 본체·센서·밸브·바이패스·회로기판·
 피팅으로 이루어져 있어요.
+
+<NodeGraph
+  idPrefix="etch-equipment-systems"
+  caption="챔버를 둘러싼 다섯 개의 제어계"
+  nodes={[
+    { id: 'transfer', label: '반송계', kind: 'io', at: [0, 0] },
+    { id: 'chamber', label: '프로세스 챔버', kind: 'block', at: [1, 1] },
+    { id: 'vac', label: '진공 제어계', kind: 'device', at: [0, 1] },
+    { id: 'gas', label: '가스 제어계', kind: 'device', at: [1, 0] },
+    { id: 'rf', label: '전기(RF) 제어계', kind: 'device', at: [2, 0] },
+    { id: 'temp', label: '온도 제어계', kind: 'device', at: [2, 1] },
+    { id: 'endpoint', label: '공정 제어 — 종점 검출', kind: 'io', at: [1, 2] },
+  ]}
+  edges={[
+    { from: 'transfer', to: 'chamber', label: '웨이퍼' },
+    { from: 'vac', to: 'chamber', label: '압력' },
+    { from: 'gas', to: 'chamber', label: '유량' },
+    { from: 'rf', to: 'chamber', label: '플라스마' },
+    { from: 'temp', to: 'chamber', label: '온도' },
+    { from: 'chamber', to: 'endpoint', label: '언제 멈출지', style: 'dashed' },
+  ]}
+  note="가스 라인에는 인체에 유독한 가스도 섞여 흐르므로, 새는 곳이 있는지 상시 모니터링하는 안전장치가 함께 설치된다."
+/>
 
 | 제어 대상 | 담당 장치 |
 |---|---|

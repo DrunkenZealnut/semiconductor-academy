@@ -34,6 +34,25 @@
 
 반도체 장비의 제어 시스템은 상위의 중앙 공급 제어기에서 모듈별 제어기(PMC·TMC)로 내려가는 분산 제어 구조로 설계돼요. 앞 단원에서 본 CTC·TMC·PMC 구조가 여기서 통신 영역별로 다시 나타나요.
 
+<NodeGraph
+  idPrefix="design-software-pcplc"
+  caption="PC와 PLC가 나눠 맡는 일"
+  nodes={[
+    { id: 'host', label: '호스트(팹)', kind: 'io', at: [0, 0] },
+    { id: 'pc', label: 'PC', kind: 'block', at: [1, 0] },
+    { id: 'plc', label: 'PLC', kind: 'block', at: [1, 1] },
+    { id: 'hmi', label: 'HMI', kind: 'io', at: [2, 0] },
+    { id: 'io', label: '현장 I/O', kind: 'device', at: [1, 2] },
+  ]}
+  edges={[
+    { from: 'host', to: 'pc', label: 'SECS/GEM' },
+    { from: 'pc', to: 'plc', label: '레시피·명령' },
+    { from: 'pc', to: 'hmi', label: '화면·알람' },
+    { from: 'plc', to: 'io', label: '실시간 제어' },
+  ]}
+  note="PC는 레시피 관리·스케줄러·화면을, PLC는 실시간 시퀀스 제어를 맡는다."
+/>
+
 | 영역 | 중심 | 통신 방식 | 역할 |
 |---|---|---|---|
 | CTC 영역 | 상위 허브 | TCP/IP | PMC·TMC를 통합 연결, 상위 호스트와 SECS/GEM 통신 인터페이스 담당 |
@@ -88,6 +107,21 @@ I/O(입력/출력)는 세 갈래로 나뉘어요.
 ## 5. 통신 네트워크와 SECS/GEM — 장비 안팎을 잇는 표준
 
 장비 내부 제어 장치들과 외부 시스템을 잇는 통신은 여러 산업용 표준 프로토콜을 함께 써요.
+
+<TreeBranch
+  caption="장비 안팎을 잇는 표준"
+  root="통신·표준"
+  branches={[
+    {
+      label: '장비 ↔ 팹',
+      children: [{ label: 'SECS/GEM', note: '호스트와 장비가 주고받는 메시지·상태 모델을 정의' }],
+    },
+    {
+      label: '장비 내부',
+      children: [{ label: '필드버스·산업 이더넷', note: 'PLC와 현장 I/O를 잇는다' }],
+    },
+  ]}
+/>
 
 | 네트워크 | 특징 |
 |---|---|

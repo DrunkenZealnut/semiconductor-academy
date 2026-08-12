@@ -127,6 +127,16 @@ A0∼A5가 아날로그 핀이고, 온도·빛·거리 센서처럼 연속된 �
 아두이노는 C/C++ 문법을 그대로 쓰기 때문에 1권에서 익힌 연산자·제어문이
 다 통해요. 여기에 하드웨어를 다루기 위한 전용 함수들이 더해져요.
 
+<FlowSteps
+  caption="LED 5개 순차 점등 — setup에서 loop로"
+  steps={[
+    { id: 'a1', label: 'setup()', sub: '전원이 켜질 때 한 번만 — pinMode로 5개 핀을 OUTPUT으로', tone: 'accent' },
+    { id: 'a2', label: 'loop()', sub: '계속 반복 — digitalWrite로 HIGH, delay로 기다린다' },
+    { id: 'a3', label: '다음 핀으로', sub: '앞의 LED를 LOW로 끄고 다음 핀을 HIGH로' },
+  ]}
+  note="setup()과 loop()의 역할 분담이 아두이노 코드의 골격이다."
+/>
+
 | 명령어 | 기능 | 예시 |
 |---|---|---|
 | setup() | 전원이 켜질 때 한 번만 실행 — 핀 모드·시리얼 통신 초기화 | pinMode·Serial.begin을 이 안에 작성 |
@@ -257,6 +267,32 @@ analogWrite로 색을 단계별로 제어하는 법이에요.
 같은 뼈대(센서 읽기 → 조건·계산 → 출력) 위에서 센서와 출력 장치만 바뀌는
 구조예요. 준비물과 회로는 실습마다 다르지만, 프로그램을 짜는 순서는
 비슷해요.
+
+<TreeBranch
+  caption="센서·모터·무선 실습 — 무엇을 입력받아 무엇을 움직이나"
+  root="아두이노 실습"
+  branches={[
+    {
+      label: '거리·빛·온습도를 읽는다',
+      children: [
+        { label: '③ 초음파 + LCD', note: 'I2C 통신으로 문자·숫자를 출력' },
+        { label: '④ 조도 + 수동 부저', note: 'tone()으로 특정 주파수를 낸다' },
+        { label: '⑤ 온습도(DHT11) + LCD', note: '전용 라이브러리로 복합 센서를 한 번에' },
+      ],
+    },
+    {
+      label: '모터를 돌린다',
+      children: [
+        { label: '⑥ L298N + DC 모터', note: '아날로그 입력을 나눠 방향 분기 + PWM 속도' },
+        { label: '⑦ 스테퍼 드라이버', note: '"몇 도 돌리기"를 스텝 수로 다룬다' },
+      ],
+    },
+    {
+      label: '무선으로 받는다',
+      children: [{ label: '⑧ 블루투스 + 앱인벤터', note: 'SoftwareSerial로 무선 시리얼 수신' }],
+    },
+  ]}
+/>
 
 | 실습 | 입력 → 출력 | 새로 배우는 것 |
 |---|---|---|

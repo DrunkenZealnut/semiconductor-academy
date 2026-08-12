@@ -180,6 +180,16 @@ FPGA는 회로가 이미 굳어진 일반 반도체와 달리, VHDL·Verilog 같
 | 저장 내용 | 전원 없어도 소멸되지 않음 | 전원 없으면 소멸됨 |
 | 회로 규모 | 소규모(수만 Gate) | 대규모(수백만 Gate) |
 
+<CompareCards
+  caption="전원이 꺼지면 무엇이 남나"
+  columns={[{ title: 'CPLD' }, { title: 'FPGA' }]}
+  rows={[
+    { aspect: '기억 방식', values: ['EEPROM', 'SRAM'] },
+    { aspect: '저장 내용', values: ['전원 없어도 소멸되지 않음', '전원 없으면 소멸됨'] },
+    { aspect: '회로 규모', values: ['소규모 — 수만 Gate', '대규모 — 수백만 Gate'] },
+  ]}
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체 장비 보드 설계 — 3-1. FPGA 소자 파악 필요 지식 &lt;표 3-1&gt; CPLD와 FPGA 비교</div>
 
 <Callout type="info" title="FPGA를 쓰면 뭐가 좋을까">

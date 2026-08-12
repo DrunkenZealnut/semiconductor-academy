@@ -62,6 +62,25 @@
 
 CMP를 적용하는 목적은 크게 세 갈래로 나눌 수 있어요.
 
+<TreeBranch
+  caption="CMP는 무엇을 평탄화하나 — 세 목적"
+  root="CMP 목적"
+  branches={[
+    {
+      label: '소자분리 평탄화',
+      children: [{ label: 'STI CMP', note: '소자와 소자 사이 절연 영역을 가장 정밀하게' }],
+    },
+    {
+      label: '막질 평탄화',
+      children: [{ label: 'ILD CMP · IMD CMP', note: '소자층-배선층 사이, 배선층끼리 사이의 절연막' }],
+    },
+    {
+      label: '배선 형성',
+      children: [{ label: 'Poly CMP · Plug CMP · 다마신 CMP', note: '폴리실리콘·컨택트/비아·구리 배선을 깎아 패턴을 완성' }],
+    },
+  ]}
+/>
+
 | 목적 | 대표 공정 | 하는 일 |
 |------|------|------|
 | 소자분리 평탄화 | STI CMP | 소자와 소자 사이를 갈라놓는 절연 영역을 가장 정밀하게 평탄화 |
@@ -104,6 +123,23 @@ CMP라는 이름 그대로, 이 공정은 <strong>기계적 연마</strong>와 <
 ## 3. CMP 장비
 
 CMP 설비는 크게 세 부분으로 이뤄져요.
+
+<NodeGraph
+  idPrefix="cmp-equipment"
+  caption="CMP 장비 — 누르고, 돌리고, 뿌린다"
+  nodes={[
+    { id: 'head', label: '웨이퍼 캐리어(헤드)', kind: 'device', at: [1, 0] },
+    { id: 'wafer', label: '웨이퍼', kind: 'io', at: [1, 1] },
+    { id: 'pad', label: '연마 패드', kind: 'block', at: [1, 2] },
+    { id: 'slurry', label: '슬러리 분사기', kind: 'device', at: [0, 1] },
+  ]}
+  edges={[
+    { from: 'head', to: 'wafer', label: '고정·가압·회전' },
+    { from: 'wafer', to: 'pad', label: '맞닿아 문질러진다' },
+    { from: 'slurry', to: 'pad', label: '화학 약품 + 연마제' },
+  ]}
+  note="연마 패드는 다공성 폴리머(주로 폴리우레탄) 판이다. 화학 작용과 물리적 문지름이 함께 일어나 CMP(화학적 기계 연마)라 부른다."
+/>
 
 | 구성 요소 | 역할 |
 |------|------|
@@ -204,6 +240,16 @@ CMP를 마친 웨이퍼 표면에는 슬러리에서 나온 연마 입자와 화
 연마 입자와 웨이퍼 표면 사이의 제타전위를 조절해 미세 입자를 표면에서 떼어내고, 금속
 불순물은 산이나 알칼리 용액으로 녹여 제거해요. 세정 방법은 슬러리 성분과 깎아낸 막의 종류에
 따라 달라져요.
+
+<CompareCards
+  caption="깎는 막이 다르면 슬러리도 세정도 달라진다"
+  columns={[{ title: 'SiO₂ (산화막)' }, { title: 'W (텅스텐)' }, { title: 'Cu (구리)', tone: 'accent' }]}
+  rows={[
+    { aspect: '슬러리 성분', values: ['실리카(염기성) 또는 산화세륨(중성)', '실리카·알루미나', '알루미나 등'] },
+    { aspect: '세정 방식', values: ['순수 스크럽 후 묽은 불산 식각 / 약액(암모니아수·구연산) + 스크럽', '약액 스크럽 세정', '묽은 불산·전해 음극수, 유기산 세정액 스크럽 후 IPA 증기 건조'] },
+  ]}
+  note="구리는 공정이 가장 까다롭다 — 세정 단계가 여러 겹으로 늘어난다."
+/>
 
 | 막 종류 | 슬러리 성분 | 세정 방식 |
 |------|------|------|

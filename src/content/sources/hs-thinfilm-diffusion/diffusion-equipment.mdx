@@ -84,6 +84,29 @@
 
 ## 2. 몸통과 신경계 — 본체부와 제어부
 
+<NodeGraph
+  idPrefix="diffusion-equipment-body"
+  caption="본체부와 제어부 — 손발과 신경계"
+  nodes={[
+    { id: 'body', label: '본체부', kind: 'block', at: [1, 0] },
+    { id: 'heater', label: '히터챔버', kind: 'device', at: [0, 0] },
+    { id: 'boat', label: '보트 — 웨이퍼 수십 장', kind: 'io', at: [0, 1] },
+    { id: 'util', label: '제어부(utility box)', kind: 'block', at: [1, 1] },
+    { id: 'temp', label: '온도', kind: 'device', at: [2, 0] },
+    { id: 'press', label: '압력', kind: 'device', at: [2, 1] },
+    { id: 'gas', label: '가스', kind: 'device', at: [2, 2] },
+  ]}
+  edges={[
+    { from: 'boat', to: 'heater', label: '밀어 넣는다' },
+    { from: 'heater', to: 'body' },
+    { from: 'util', to: 'temp', label: '읽고 맞춘다' },
+    { from: 'util', to: 'press' },
+    { from: 'util', to: 'gas' },
+    { from: 'util', to: 'body', style: 'dashed' },
+  ]}
+  note="본체부가 손발이고 제어부가 그 손발을 부리는 신경계에 가깝다."
+/>
+
 장비를 이루는 두 덩어리는 <strong>본체부(main body)</strong>와
 <strong>제어부(utility box)</strong>예요. 웨이퍼가 실제로 히터챔버 속에
 들어가 가스와 몸을 맞대고 반응을 일으키는 자리가 본체부라면, 그
@@ -104,6 +127,21 @@
 <strong>I/O 포트 → 카세트 트랜스퍼 → 카세트 스토커 → 트랜스퍼 스테이지 →
 웨이퍼 트랜스퍼 → 보트</strong> 순이고, 언로딩은 그 반대예요. 이 길을
 이루는 자동화 구성 요소들은 다음과 같아요.
+
+<FlowSteps
+  caption="웨이퍼가 그리는 길 — 카세트에서 반응로까지 여덟 걸음"
+  orientation="column"
+  steps={[
+    { id: 'a1', label: '오토 도어', sub: '승강식 문 — 걸리면 안전 센서가 되돌린다' },
+    { id: 'a2', label: '카세트 I/O 포트', sub: '한 번에 2개 — 장수를 세고 90도로 돌린다' },
+    { id: 'a3', label: '카세트 트랜스퍼', sub: '진입 쪽을 2도 위로 기울여 이송' },
+    { id: 'a4', label: '카세트 스토커', sub: '16자리 청정 보관소 — 클린 에어를 흘린다' },
+    { id: 'a5', label: '트랜스퍼 스테이지', sub: '카세트가 제대로 놓였는지 감지' },
+    { id: 'a6', label: '웨이퍼 트랜스퍼', sub: '포크로 1장 또는 5장씩 — 서보 모터로 정밀하게' },
+    { id: 'a7', label: '보트 엘리베이터', sub: '보트를 튜브 속으로 — 캡 플랜지로 밀폐', tone: 'accent' },
+    { id: 'a8', label: '오토 셔터', sub: '반응로 입구를 가로막아 복사열을 가둔다' },
+  ]}
+/>
 
 | 구성 요소 | 역할 |
 |---|---|

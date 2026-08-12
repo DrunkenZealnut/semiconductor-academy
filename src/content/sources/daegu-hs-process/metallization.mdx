@@ -274,6 +274,16 @@ Cu²⁺가 음극(웨이퍼) 쪽에서 전자를 받아 환원되며 구리로 �
 증착해 둔 구리 씨앗층 위에서 일어나기 때문에, 씨앗층의 결정성과 결정립 크기가 이후
 석출되는 구리의 특성을 좌우해요.
 
+<FlowSteps
+  caption="구리 전해 도금 — 녹고, 내놓고, 붙는다"
+  steps={[
+    { id: 'd1', label: '해리', sub: '전해액 속 — CuSO₄ → Cu²⁺ + SO₄²⁻' },
+    { id: 'd2', label: '산화', sub: '양극 — Cu → Cu²⁺ + 2e⁻' },
+    { id: 'd3', label: '환원', sub: '음극(웨이퍼) — Cu²⁺ + 2e⁻ → Cu', tone: 'accent' },
+  ]}
+  note="웨이퍼가 음극이 되어 구리 이온이 표면에서 금속 구리로 환원되며 배선이 채워진다."
+/>
+
 | 반응 | 화학식 |
 |---|---|
 | 해리(전해액 속) | CuSO₄ → Cu²⁺ + SO₄²⁻ |
@@ -308,11 +318,51 @@ Cu²⁺가 음극(웨이퍼) 쪽에서 전자를 받아 환원되며 구리로 �
 
 ## 배선 재료·물질 한눈에 보기
 
+<LayerStack
+  idPrefix="metallization-wplug"
+  caption="텅스텐 플러그 — 좁고 깊은 홀을 채우는 도전 기둥"
+  layers={[
+    { id: 'w', label: '텅스텐(W) 플러그 — CVD로 채운다', tone: 'metal', height: 40 },
+    { id: 'tin', label: 'TiN — 실리사이드-텅스텐 계면 · 불소 확산 방지 · 텅스텐 핵생성 자리', tone: 'poly' },
+    { id: 'sil', label: '실리사이드 — 오믹 컨택트 전극', tone: 'oxide' },
+    { id: 'si', label: '소스·드레인', tone: 'silicon-n', height: 38 },
+  ]}
+  annotations={[
+    { at: 'w', text: 'MOL 컨택트 —\n소자 단자와 배선을 잇는다' },
+    { at: 'sil', text: '저저항 접합을 만든다' },
+  ]}
+/>
+
 | 금속 | 비저항(μΩ·cm) | 비고 |
 |---|---|---|
 | 은(Ag) | 1.59 | 저항은 가장 낮지만 배선 재료로는 거의 쓰이지 않아요 |
 | 구리(Cu) | 1.67 | 현재 BEOL 배선의 주력 재료 (다마신 + 전해 도금) |
 | 알루미늄(Al) | 2.66 | 과거 BEOL 배선의 주력 재료, 저렴하고 다루기 쉬움 |
+
+<TreeBranch
+  caption="배선 재료 — 어느 자리에서 무슨 일을 하나"
+  root="배선 물질"
+  branches={[
+    {
+      label: '컨택트를 만든다',
+      children: [
+        { label: 'TiSi₂ / NiSi / CoSi₂', note: '소스·드레인 컨택트 — 오믹 컨택트 전극(저저항 접합)' },
+        { label: '텅스텐(W)', note: 'MOL 컨택트 플러그 — CVD로 좁고 깊은 홀을 채우는 도전 기둥' },
+      ],
+    },
+    {
+      label: '확산을 막는다',
+      children: [
+        { label: 'TiN', note: '실리사이드-텅스텐 계면, Cu 배선 상부 캡 — 불소·구리 확산 방지, 텅스텐 핵생성 자리' },
+        { label: 'TaN / Ta', note: '구리 배선 하부 — 확산 방지막(TaN) + 접착층(Ta)' },
+      ],
+    },
+    {
+      label: '저항 소자가 된다',
+      children: [{ label: 'WSi₂', note: '레지스터용 저항 물질' }],
+    },
+  ]}
+/>
 
 | 물질 | 주로 쓰이는 자리 | 역할 |
 |---|---|---|

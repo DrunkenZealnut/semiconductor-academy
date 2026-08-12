@@ -54,6 +54,21 @@
 
 물질은 전기가 통하는 정도에 따라 세 갈래로 나뉘고, 칩 안에서 맡는 역할도 갈려요.
 
+<CompareCards
+  caption="세 가지 재료, 칩 안에서 맡는 역할"
+  columns={[
+    { title: '도체', tone: 'metal' },
+    { title: '부도체', tone: 'oxide' },
+    { title: '반도체', tone: 'silicon-n' },
+  ]}
+  rows={[
+    { aspect: '대표 물질', values: ['Al, W, TiN, doped poly-Si', 'Si₃N₄, SiO₂, 산화알루미늄', 'Si, Ge, GaAs'] },
+    { aspect: '칩에서 맡는 역할', values: ['전기를 연결하는 배선', '전기를 차단하는 절연막·보호막', '소자의 몸통'] },
+    { aspect: '증착에 쓰는 공정', values: ['PVD·CVD', 'PECVD·APCVD·SOG', '—'] },
+  ]}
+  note="박막 증착의 목적은 결국 둘이다 — 전기의 길을 놓는 배선과, 그 길이 합선되지 않게 막는 절연."
+/>
+
 | 재료 | 대표 물질 | 칩에서 맡는 역할 |
 |---|---|---|
 | 도체 | Al, W, TiN, 불순물 첨가 다결정 규소(doped poly-Si) | 전기를 연결하는 배선 |
@@ -67,6 +82,29 @@ TaN·Cu)와 CVD(Ti·TiN·W·Cu)가, 절연용으로는 PECVD(SiO₂·Si₃N₄·
 BPSG)·절연막 평탄화(SOG) 공정이 쓰여요.
 
 ## 2. 쌓는 방법 네 가지
+
+<TreeBranch
+  caption="쌓는 방법 네 가지 — 화학이냐, 물리냐"
+  root="박막 증착"
+  branches={[
+    {
+      label: '화학 반응으로',
+      children: [
+        { label: 'CVD(화학 기상 증착)', note: '기체 화합물을 분해·반응시켜 증착 — 상업적으로 가장 널리' },
+        { label: 'ALD(원자층 증착)', note: '원자 한 층 단위 — 극박막' },
+      ],
+    },
+    {
+      label: '물리적으로',
+      children: [{ label: 'PVD(물리적 기상 증착)', note: '에너지로 떼어내 쌓음 — 주로 금속, 스퍼터링·증발법' }],
+    },
+    {
+      label: '전기화학으로',
+      children: [{ label: '전기도금', note: '처리량 높고 40℃ 이하 저온·저단가 — 고집적 IC에는 부적합' }],
+    },
+  ]}
+  note="CVD가 주인공인 이유는 융점보다 낮은 온도에서 만들 수 있고, 순도가 높고, 대량 생산이 가능하고, 공정 조건의 제어 범위가 넓기 때문이다. 대가는 높은 반응 온도와 위험한 가스다."
+/>
 
 | 방법 | 원리 | 특징 |
 |---|---|---|
@@ -143,6 +181,21 @@ SOG는 절연 특성·흡습성의 한계 때문에 단독이 아니라 옥사�
 12HCl + N₂ — 이 있어요.
 
 ## 5. 층덮임 — 얼마나 고르게 덮었나
+
+<LayerStack
+  idPrefix="thinfilm-coverage"
+  caption="층덮임 — 단차의 옆면과 바닥을 얼마나 덮었나"
+  layers={[
+    { id: 'film', label: '증착막 — 평평한 곳 두께 t', tone: 'poly' },
+    { id: 'step', label: '단차(계단)가 있는 표면', tone: 'substrate', height: 52 },
+  ]}
+  annotations={[
+    { at: 'film', text: '평평한 곳 두께를 t로 삼는다' },
+    { at: 'film/step', text: '옆면을 덮은 비율 s/t' },
+    { at: 'step', text: '바닥을 덮은 비율 b/t\n이 둘이 층덮임' },
+  ]}
+  note="층덮임이 나쁘면 배선이 얇아져 끊어지거나 저항이 튄다 — TEOS계 막이나 CVD-TiN이 선택되는 이유가 이 숫자 하나로 수렴한다."
+/>
 
 칩 표면은 평평하지 않아요. 단차(계단)가 있는 표면에 막을 쌓을 때, 평평한 곳 대비
 계단의 <strong>옆면을 덮은 비율(s/t)</strong>과 <strong>바닥을 덮은 비율(b/t)</strong>을

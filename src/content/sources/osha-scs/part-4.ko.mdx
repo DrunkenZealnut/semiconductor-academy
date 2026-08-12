@@ -89,6 +89,21 @@
 - 독성 수소화물 가스
 - 고에너지 물질 (유기금속)
 
+<TreeBranch
+  caption="불활성부터 고독성까지 — 일곱 가지 범주"
+  root="반도체 가스"
+  depth={2}
+  branches={[
+    { label: '불활성 가스', note: '단순 질식제' },
+    { label: '인화성 가스' },
+    { label: '자연발화성 가스' },
+    { label: '산화성 가스' },
+    { label: '부식성 가스' },
+    { label: '독성 수소화물 가스' },
+    { label: '고에너지 물질', note: '유기금속' },
+  ]}
+/>
+
 ---
 
 ## 5. 일반적인 가스 통제 수단
@@ -141,6 +156,39 @@ NFPA 다이아몬드의 어느 항목에서든 3 또는 4 등급을 받은 가�
 | 10 | **레귤레이터** | 가스 압력을 제어 |
 | 11 | **가스 제어 패널** | 하류 장비로 가스를 안전하게 흘려보내기 위한 구성 요소 시스템 |
 | 12 | **과류량 차단장치** | 유량이 설정값을 초과하면 자동으로 가스를 차단 — 통제되지 않은 방출 방지 |
+
+<NodeGraph
+  idPrefix="osha-p4ko-gascontrol"
+  caption="12개 구성 요소가 여러 겹으로 쌓인다"
+  nodes={[
+    { id: 'cyl', label: '소스 가스 실린더', kind: 'io', at: [0, 0] },
+    { id: 'rfo', label: '제한유량구멍(RFO)', kind: 'device', at: [1, 0] },
+    { id: 'valve', label: '공압식 차단 밸브', kind: 'device', at: [2, 0] },
+    { id: 'reg', label: '레귤레이터', kind: 'device', at: [3, 0] },
+    { id: 'panel', label: '가스 제어 패널', kind: 'block', at: [4, 0] },
+    { id: 'encl', label: '인클로저', kind: 'block', at: [0, 1] },
+    { id: 'exh', label: '배기 연결부', kind: 'device', at: [1, 1] },
+    { id: 'flow', label: '유량 센서', kind: 'device', at: [2, 1] },
+    { id: 'leak', label: '가스 방출 센서', kind: 'device', at: [3, 1] },
+    { id: 'excess', label: '과류량 차단장치', kind: 'device', at: [4, 1] },
+    { id: 'mon', label: '모니터링 스테이션', kind: 'block', at: [2, 2] },
+    { id: 'sig', label: '차단 신호', kind: 'io', at: [3, 2] },
+  ]}
+  edges={[
+    { from: 'cyl', to: 'rfo', label: '가스 유출을 제한' },
+    { from: 'rfo', to: 'valve' },
+    { from: 'valve', to: 'reg', label: '원격 차단 가능' },
+    { from: 'reg', to: 'panel', label: '가스 압력을 제어' },
+    { from: 'panel', to: 'excess', label: '하류 장비로 안전하게' },
+    { from: 'encl', to: 'cyl', label: '가스 방출 봉쇄', style: 'dashed' },
+    { from: 'exh', to: 'encl', label: '방출된 가스를 멀리 배출', style: 'dashed' },
+    { from: 'flow', to: 'mon', label: '가스 유량', style: 'dashed' },
+    { from: 'leak', to: 'mon', label: '가스 누출을 감지', style: 'dashed' },
+    { from: 'mon', to: 'sig' },
+    { from: 'sig', to: 'valve', label: '차단 밸브로 전달', style: 'dashed' },
+  ]}
+  note="배관을 분리하기 전에 퍼지 가스로 유해 가스를 배출한다."
+/>
 
 ### 불활성 퍼지 가스
 

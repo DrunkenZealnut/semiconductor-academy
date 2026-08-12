@@ -47,6 +47,22 @@
 
 NPN형을 기준으로 세 부분을 갖춰요 (PNP는 극성만 반대).
 
+<LayerStack
+  idPrefix="bjt-npn"
+  caption="NPN — PN 접합 두 개, 그리고 아주 얇은 베이스"
+  layers={[
+    { id: 'e', label: '이미터 — n형 고농도', tone: 'silicon-n-heavy', height: 34 },
+    { id: 'b', label: '베이스 — p형', tone: 'silicon-p', height: 18 },
+    { id: 'c', label: '콜렉터 — n형 저농도', tone: 'silicon-n', height: 48 },
+  ]}
+  annotations={[
+    { at: 'e', text: '캐리어를 쏟아내는 저수지' },
+    { at: 'b', text: '흐름을 조절하는 문 —\n얇아야 한다' },
+    { at: 'c', text: '캐리어를 받아내는 하류' },
+  ]}
+  note="베이스가 두꺼우면 이미터에서 넘어온 전자가 정공과 재결합해 사라진다. 재결합당하기 전에 콜렉터에 도달하려면 충분히 얇아야 한다."
+/>
+
 | 단자 | 반도체 | 특징 |
 |------|------|------|
 | 이미터 (Emitter) | n형, <strong>고농도</strong> 도핑 | 캐리어를 쏟아내는 저수지 |
@@ -60,6 +76,29 @@ NPN형을 기준으로 세 부분을 갖춰요 (PNP는 극성만 반대).
 ## 2. 네 가지 동작 영역
 
 BJT는 E-B 접합과 C-B 접합 각각의 바이어스 조합으로 네 가지 영역에서 동작해요.
+
+<TreeBranch
+  caption="두 접합의 바이어스 조합이 네 영역을 만든다"
+  root="E-B 접합"
+  branches={[
+    {
+      label: '순방향',
+      note: '이미터가 캐리어를 주입한다',
+      children: [
+        { label: 'C-B 순방향 → 포화', note: '스위칭 On' },
+        { label: 'C-B 역방향 → 활성', note: '증폭기 — 증폭의 주인공' },
+      ],
+    },
+    {
+      label: '역방향',
+      note: '이미터가 주입하지 않는다',
+      children: [
+        { label: 'C-B 순방향 → 역활성', note: '응용 없음' },
+        { label: 'C-B 역방향 → 차단', note: '스위칭 Off' },
+      ],
+    },
+  ]}
+/>
 
 | 영역 | E-B 접합 | C-B 접합 | 용도 |
 |------|------|------|------|

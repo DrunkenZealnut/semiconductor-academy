@@ -90,6 +90,33 @@ Oxide)으로 쓰였고, 누설전류가 적어 초기 D램의 커패시터 유�
 자리(액티브 영역)를 갉아먹는 문제가 커졌어요. 그래서 지금은 STI(Shallow Trench Isolation)
 공정이 널리 쓰여요.
 
+<CompareCards
+  caption="소자를 갈라놓는 두 방법 — 태우느냐 파느냐"
+  columns={[{ title: 'LOCOS' }, { title: 'STI', tone: 'accent' }]}
+  rows={[
+    { aspect: '원리', values: ['질화막으로 가린 부분을 남기고 노출된 Si를 두껍게 열산화', '식각으로 트렌치를 판 뒤 절연 물질로 채운다'] },
+    { aspect: '부피 변화', values: ['산화로 부피 팽창 — 새부리 영역이 생긴다', '부피 팽창 없음'] },
+    { aspect: '장단점', values: ['경사면 덕분에 후속 공정은 쉽지만 미세 소자에서 액티브 영역을 잠식', '깊이·폭을 식각으로 정밀 조절 — 미세 공정에 필수'] },
+  ]}
+  emphasis={[1]}
+/>
+
+<LayerStack
+  idPrefix="oxidation-locos"
+  caption="LOCOS 단면 — 가린 곳은 남고, 드러난 Si가 산화막이 된다"
+  layers={[
+    { id: 'nit', label: '질화막 마스크 — 이 아래는 산화되지 않는다', tone: 'poly' },
+    { id: 'ox', label: '열산화막 — 두껍게 자란다', tone: 'oxide', height: 40 },
+    { id: 'si', label: '실리콘 기판', tone: 'substrate', height: 44 },
+  ]}
+  annotations={[
+    { at: 'nit/ox', text: '마스크 가장자리에서\n산화가 옆으로 파고든다' },
+    { at: 'ox', text: '부피가 팽창해\n새부리 영역이 생긴다' },
+    { at: 'ox/si', text: '경계가 기판 안쪽으로\n밀려 들어간다' },
+  ]}
+  note="경사면 덕분에 후속 공정은 쉽지만, 미세 소자에서는 이 팽창이 액티브 영역을 잠식한다."
+/>
+
 | 구분 | LOCOS | STI |
 |------|------|------|
 | 원리 | 질화막으로 가린 부분을 남기고 노출된 Si를 두껍게 열산화 | 식각으로 트렌치를 판 뒤 절연 물질로 채움 |
@@ -125,6 +152,18 @@ Si(s) + 2H₂O(g) → SiO₂(s) + 2H₂(g)
 습식 쪽이 훨씬 많아요. 그 결과 습식산화가 건식산화보다 훨씬 빠르게 진행돼요.
 
 ### 건식산화 vs 습식산화
+
+<CompareCards
+  caption="산소로 태울까, 수증기로 태울까"
+  columns={[{ title: '건식산화(Dry)' }, { title: '습식산화(Wet)', tone: 'accent' }]}
+  rows={[
+    { aspect: '반응 물질', values: ['산소(O₂)', '수증기(H₂O)'] },
+    { aspect: '성장 속도', values: ['느림', '빠름 — H₂O 용해도가 O₂보다 약 1,000배 크다'] },
+    { aspect: '막질', values: ['치밀하고 우수', '상대적으로 낮음'] },
+    { aspect: '주 용도', values: ['얇고 고품질인 막 — 게이트 산화막 등', '두꺼운 막이 필요할 때'] },
+  ]}
+  emphasis={[1]}
+/>
 
 | 구분 | 건식산화(Dry) | 습식산화(Wet) |
 |------|------|------|

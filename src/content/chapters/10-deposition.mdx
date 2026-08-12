@@ -71,6 +71,19 @@ CVD)**과 **물리기상증착법(physical vapor deposition, PVD)**으로 나뉘
 | 단점 | 위험한 가스의 사용 | 단차 피복성이 좋지 않음 |
 | 적용 공정 | W, TiN, SiO₂, SiN 등 | Ti, TiN, Co, W |
 
+<CompareCards
+  caption="화학 반응이냐 물리적인 힘이냐 — 단차 피복성이 갈린다"
+  columns={[{ title: 'CVD' }, { title: 'PVD' }]}
+  rows={[
+    { aspect: '정의', values: ['반응 기체의 화학적 반응에 의해 증착', '물리적인 힘에 의해 대상 물질을 증착'] },
+    { aspect: '종류', values: ['Thermal CVD, PECVD, LPCVD, APCVD', '증발법, 스퍼터링'] },
+    { aspect: '장점', values: ['단차 피복성이 좋음', '막 조성 조절이 용이 · 접착성 좋음 · 증착 메커니즘 간단'] },
+    { aspect: '단점', values: ['위험한 가스의 사용', '단차 피복성이 좋지 않음'] },
+    { aspect: '적용 공정', values: ['W, TiN, SiO₂, SiN 등', 'Ti, TiN, Co, W'] },
+  ]}
+  emphasis={[3]}
+/>
+
 <p className="text-xs italic text-slate-500">출처: 「반도체 산업의 유해인자」 표 10-1 (p.184∼185)</p>
 
 증착에서 가장 중요한 세 가지는 **전기적 특성**을 잘 살리는 것, **두께의 균일성**, **단차 피복성**
@@ -312,6 +325,24 @@ PECVD 공정의 반응로 온도는 **400℃**예요.
 | 포스핀(PH₃) | FPT | 0.4 | 1 |
 | 실란(SiH₄) | FP | 7 | – |
 | 육플루오르화텅스텐(WF₆) | (T)C | 1(가용성 화합물 기준) | 3 |
+
+<ValueBars
+  caption="증착 가스의 TWA — 로그 축이어야 아르신이 보인다"
+  unit="mg/m³"
+  scale="log"
+  rows={[
+    { label: '아르신(AsH₃)', value: 0.016, tone: 'accent' },
+    { label: '다이보레인(B₂H₆)', value: 0.1 },
+    { label: '포스겐(COCl₂)', value: 0.4 },
+    { label: '포스핀(PH₃)', value: 0.4 },
+    { label: '게르마늄 테트라하이드라이드(GeH₄)', value: 0.6 },
+    { label: '육플루오르화텅스텐(WF₆)', value: 1, note: '가용성 화합물 기준' },
+    { label: '실란(SiH₄)', value: 7 },
+    { label: '암모니아(NH₃)', value: 18 },
+    { label: '이산화탄소(CO₂)', value: 9000 },
+  ]}
+  note="표 16종 중 TWA가 정해진 9종만 그렸다 — 알곤·수소·질소 등은 노출기준이 없다."
+/>
 
 <div className="text-xs italic text-slate-500">
   1) 위험 표기는 원문 그대로(F/T/C/P/Oxidant). 원문에 범례가 함께 스캔되지 않아 정확한 정의는 확인할

@@ -63,6 +63,16 @@
 | 반도체 공정 | 65nm | 65nm | 90nm |
 | 패키지 종류 | BGA-120 | QFP-64/100, BGA-120 | QFP64, BGA216 |
 
+<CompareCards
+  caption="설계할 제품이 경쟁제품과 어느 항목에서 갈리나"
+  columns={[{ title: '설계할 제품', tone: 'accent' }, { title: '경쟁제품 A' }, { title: '경쟁제품 B' }]}
+  rows={[
+    { aspect: '최대 주파수', values: ['96MHz', '48MHz', '100MHz'] },
+    { aspect: '반도체 공정', values: ['65nm', '65nm', '90nm'] },
+    { aspect: '패키지 종류', values: ['BGA-120', 'QFP-64/100, BGA-120', 'QFP64, BGA216'] },
+  ]}
+/>
+
 <div className="text-xs italic text-slate-500">출처: NCS 학습모듈 반도체 아키텍처 설계 — 1-1. 경쟁제품 분석 및 사양 결정 〈표 1-2〉 제품 비교표(일부 항목 재구성)</div>
 
 ### 다. 반도체 공정을 고른다 — 직접 만들까, 맡길까
