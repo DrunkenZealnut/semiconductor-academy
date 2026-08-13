@@ -42,11 +42,14 @@ export function LabeledFigure({
   // desc·labels가 모두 없어도 <desc>를 비우지 않는다 — SVG 6종 전부 설명을 갖는다는 계약.
   const autoDesc =
     desc || labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ') || caption || '도해';
+  // viewBox는 저작자가 주므로 폭을 읽어 최소 폭으로 쓴다. 못 읽으면 기본 폭으로 둔다.
+  const vbWidth = Number(viewBox.trim().split(/\s+/)[2]) || DIM.width;
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         viewBox={viewBox}
         className="mx-auto h-auto w-full"
+        style={{ minWidth: vbWidth }}
         role="img"
         aria-label={caption ?? '도해'}
       >

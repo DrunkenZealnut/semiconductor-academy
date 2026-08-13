@@ -6,7 +6,16 @@
  * 하는 것이 목적이므로, 개별 컴포넌트에서 색을 하드코딩하지 않는다.
  */
 
-/** viewBox 좌표계 기준 치수. */
+/**
+ * viewBox 좌표계 기준 치수.
+ *
+ * `width`는 '설계 폭'이자 SVG 도해의 **최소 렌더 폭**이다. viewBox가 컨테이너에 맞춰
+ * 줄어들면 좌표계 전체가 눌려 글자도 같이 줄어들기 때문이다 — 375px 화면(가용 343px)에서
+ * 640이 눌리면 ×0.54가 되어 라벨 13px이 7.0px, 부라벨 11px이 5.9px로 읽히지 않는다.
+ * 그래서 SVG 6종은 `style={{ minWidth }}`로 이 폭 아래로 줄지 않게 하고,
+ * 좁은 화면에서는 `DiagramFrame scrollable`이 프레임 안에서만 가로로 스크롤되게 한다.
+ * (G-9 육안 확인에서 드러난 결함. 데스크톱 본문은 832px라 오히려 ×1.3로 확대된다.)
+ */
 export const DIM = {
   width: 640,
   layerHeight: 40,
@@ -57,7 +66,11 @@ export const TONE: Record<Tone, ToneStyle> = {
   'band-conduction': { fill: 'fill-teal-50 dark:fill-teal-950', label: '전도띠' },
   'band-gap': { fill: 'fill-transparent', label: '금지대역' },
   'band-valence': { fill: 'fill-indigo-50 dark:fill-indigo-950', label: '충만띠' },
-  accent: { fill: 'fill-brand-500', label: '강조' },
+  // 대비: brand-500은 라이트·다크 어느 쪽에서도 TEXT와 4.5:1을 못 넘긴다(실측 3.97 / 3.36).
+  // 다른 12개 톤과 같은 '라이트=틴트 / 다크=셰이드' 패턴으로 맞춰 양쪽 8:1 이상을 얻는다.
+  // 라이트를 100이 아니라 300으로 두는 이유: 100은 band-valence(indigo-50)와 구분이 안 돼
+  // '강조색으로 구분했다'는 note가 거짓이 된다. 300이면 채도로 확실히 갈린다.
+  accent: { fill: 'fill-brand-300 dark:fill-brand-900', label: '강조' },
 };
 
 /**
@@ -75,7 +88,9 @@ export const NODE_KIND: Record<NodeKind, string> = {
 /** 공통 선·글자 클래스. */
 export const STROKE = 'stroke-slate-400 dark:stroke-slate-500';
 export const TEXT = 'fill-slate-800 dark:fill-slate-100';
-export const TEXT_MUTED = 'fill-slate-500 dark:fill-slate-400';
+// 대비: slate-500은 흰 배경에서는 4.76:1이지만 채운 노드 위(violet-100 등)에서 4.01:1로 떨어진다.
+// 도해 안에서는 가장 어두운 배경이 아니라 '칠해진 배경' 위에 놓이는 것이 기본이라 slate-600으로 둔다.
+export const TEXT_MUTED = 'fill-slate-600 dark:fill-slate-400';
 
 /** 카드형(HTML) 도해가 공유하는 테두리·배경. */
 export const CARD = 'rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900';

@@ -1,6 +1,6 @@
 {
   "_coverage": "selective",
-  "_comment": "Design docs/02-design/features/diagram-expansion.w4-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w4).",
+  "_comment": "Design docs/archive/2026-08/diagram-expansion/diagram-expansion.w4-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w4).",
   "01-risks-of-new-tech": [
     {
       "component": "CompareCards",

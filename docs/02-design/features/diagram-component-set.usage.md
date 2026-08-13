@@ -300,15 +300,41 @@
 
 - **전부 서버 컴포넌트다.** `'use client'`를 붙이지 않는다 — 12종 × 97모듈을 넣고도 First Load JS가 102kB에서 늘지 않은 이유다. 상호작용이 필요하면 별도 클라이언트 컴포넌트를 만들고 번들 영향을 먼저 재라.
 - **글자 크기는 viewBox 절대 단위.** 본문 글자 토글(`FontSizeToggle`)과 연동하지 않는다 — SVG 내부에서 `em`은 부모의 CSS px를, viewBox는 사용자 좌표계를 쓰므로 섞으면 좁은 화면에서 라벨이 도형을 넘친다. 2026-08-11 계약 확정(C-1).
+  > **다만 "절대 단위"는 좌표계 안에서만 절대다.** viewBox 자체가 컨테이너에 맞춰 줄면 글자도 같이 준다 — §3.1이 그 함정과 계약이다.
 - **색은 `tokens.ts`에서만.** SVG에 색을 하드코딩하면 다크 모드에서 대비가 깨진다. `TONE`의 `tone` 키를 쓴다.
 - **색만으로 구분하지 않는다.** p/n은 채움 패턴(`+`/`−`)이 함께 들어가고, 모든 영역에 라벨 텍스트를 병기한다.
 - **긴 라벨은 12자 이내**로. 넘치면 `label`에 `\n`을 넣어 `<tspan>`으로 나누거나, 층 밖 `annotations`로 뺀다.
-- **`scrollable`을 쓰는 것은 3종뿐이다** — `NodeGraph`·`CurvePlot`·`LabeledFigure`가 `DiagramFrame`에 `scrollable`을 넘겨 자기 컨테이너 안에서만 가로 스크롤된다. 페이지 본문은 가로 스크롤되지 않아야 한다.
-  > **2026-08-12 정정**: 초판은 "`CompareCards` 다열"도 여기 포함했으나 **사실이 아니다.** `CompareCards`는 `scrollable`을 넘기지 않고 `grid-template-columns: repeat(n, 1fr)`로 열을 나눈다 — 열이 늘면 스크롤되는 대신 **압착된다.**
-- **`CompareCards`는 2~3열을 지킨다.** 위 이유로 4열 이상은 375px에서 각 열이 좁아져 읽기 어렵다. 항목이 4개 이상이면 `TreeBranch`로 계층화하는 편이 낫다 — W1에서 BJT의 4개 동작 영역(E-B × C-B 바이어스 2×2)을 이렇게 처리했다.
+- **`scrollable`을 쓰는 것은 7종이다** — SVG 6종(`LayerStack`·`NodeGraph`·`LatticeDiagram`·`CurvePlot`·`ScaleRuler`·`LabeledFigure`) + `TruthTable`이 `DiagramFrame`에 `scrollable`을 넘겨 **자기 컨테이너 안에서만** 가로 스크롤된다. 페이지 본문은 가로 스크롤되지 않아야 한다.
+  > **2026-08-12 정정**: 초판은 "`CompareCards` 다열"도 여기 포함했으나 **사실이 아니다.** `CompareCards`는 `scrollable`을 넘기지 않는다.
+  > **2026-08-13 정정**: 그때 "3종뿐"이라 적은 것도 틀렸다 — `ScaleRuler`·`TruthTable`이 이미 넘기고 있었다. G-9에서 `LayerStack`·`LatticeDiagram`을 추가해 **SVG 6종 전부**가 되었다(§3.1).
+- **`CompareCards`는 2~3열을 지킨다.** 실측(2026-08-13, 3열×11행 최대 사례 `chemicals-usage`): **375px에서는 압착되지 않는다** — `sm` 미만에서 `sm:hidden` 카드 목록으로 재배치된다. 압착은 `sm`(640px) **이상**에서 열이 많을 때 생긴다. 3열의 최악은 640px에서 라벨 128px + 데이터열 **147px**(768px 189px · 1440px 227px)로 읽을 수 있고, 4열이면 640px에서 116px로 떨어진다. 항목이 4개 이상이면 `TreeBranch`로 계층화하는 편이 낫다 — W1에서 BJT의 4개 동작 영역(E-B × C-B 바이어스 2×2)을 이렇게 처리했다.
 - **`Timeline`은 원문에 연도가 있을 때만.** `year`가 필수 prop이라 연도가 없으면 창작하게 된다(§2.1 위반). 세대·단계 순서만 있다면 `FlowSteps`를 쓴다 — W1에서 노광 장비 4세대가 이 경우였다.
   다만 `year`는 문자열이므로 **날짜가 아닌 주기에도 쓸 수 있다** — W1에서 PM 주기(`Daily`·`Weekly`·`Monthly`·`3개월`·`반기·연간`)를 `Timeline`으로 그렸다.
 - **`tone`은 13종뿐이다.** `silicon-p`·`silicon-n`·`silicon-p-heavy`·`silicon-n-heavy`·`oxide`·`metal`·`poly`·`resist`·`substrate`·`accent`·`band-conduction`·`band-gap`·`band-valence`. 목록에 없는 이름(`nitride` 등)은 타입 오류가 된다. **공핍영역·광학층·질화막 전용 tone은 없다** — 공핍영역은 두 층 + 경계 `annotation`으로 표현하고(`band-gap`을 빌리면 tone 오용이다 — `band-*`는 에너지 축 전용), 광학층은 `oxide`·`resist`로 근사한다.
+
+### 3.1 SVG 도해는 viewBox 폭 아래로 줄이지 않는다 (2026-08-13 G-9 실증)
+
+**함정**: `className="h-auto w-full"`만 주면 viewBox가 컨테이너 폭에 맞춰 축소되고, **좌표계가 눌리므로 글자도 같이 눌린다.** 375px 화면의 본문 가용 폭은 343px이라 viewBox 640은 **×0.54**가 된다 — `DIM.font` 13px이 **7.0px**, `DIM.fontSmall` 11px이 **5.9px**로 렌더된다. 읽을 수 없다.
+
+`min-w-[18~20rem]`(288~320px)를 붙여 둔 3종도 소용없었다. **가용 폭 343px보다 작아서 최소 폭이 아예 발동하지 않았다.**
+
+**계약**: SVG 6종은 `style={{ minWidth: <viewBox 폭> }}`로 축소를 막고, `DiagramFrame scrollable`이 좁은 화면에서 프레임 안 가로 스크롤을 받는다. 폭은 Tailwind 클래스로 미러하지 않는다 — `min-w-[640px]`라고 적으면 `DIM.width`와 손으로 맞춰야 하는 **세 번째 수동 미러**가 생긴다.
+
+| 컴포넌트 | 최소 폭 |
+|---|---|
+| `LayerStack`·`NodeGraph`·`ScaleRuler` | `DIM.width` (640) |
+| `CurvePlot` | 자체 계산 `width` (508) |
+| `LabeledFigure` | `viewBox` prop에서 읽은 폭 |
+| `LatticeDiagram` | 잘라낸 viewBox 폭 (350, 아래 참고) |
+
+**부수 발견 둘.**
+
+1. **`LatticeDiagram`은 좌표계 폭을 다 쓰지 않았다.** 격자가 쓰는 폭은 258뿐인데 좌표계가 640이라 좌우가 크게 비었고, 옛 `max-w-md`(448px)는 그 빈 폭까지 화면에 맞추느라 ×0.7로 눌렸다 — **데스크톱에서도** `highlight` 문장이 7.7px였다. 빈 여백을 잘라 viewBox를 350으로 좁히니 같은 화면 폭에서 좌표가 1:1이 됐다. **좁아 보이게 하려면 렌더 폭을 줄이지 말고 viewBox를 잘라라.**
+2. **`highlight`은 라벨이 아니라 30자 설명문이다.** `y = height − 6`에 두어 아래쪽 원자와 겹쳐 있었다. 문장을 SVG에 그릴 때는 자리를 높이로 확보한다(`LABEL_H`).
+
+**tone 대비도 여기서 갈렸다.** `accent`는 `fill-brand-500` 하나로 라이트·다크가 같아 `TEXT`와의 대비가 **3.97 / 3.36**이었다(AA 4.5 미달). 나머지 12개 tone이 쓰는 **'라이트=틴트 / 다크=셰이드'** 패턴으로 맞춰 `brand-300 dark:brand-900`으로 고쳤다(8.11 / 9.45). `brand-100`으로 낮추는 안은 `band-valence`(indigo-50)와 구분이 안 돼 **note가 약속한 "강조색으로 구분했다"가 거짓이 되므로** 탈락시켰다. `TEXT_MUTED`도 흰 배경에서는 4.76이지만 칠해진 노드(violet-100) 위에서 4.01로 떨어져 `slate-600`으로 올렸다.
+
+> **새 tone을 추가할 때**: 흰 배경이 아니라 **`TEXT`·`TEXT_MUTED`가 그 tone 위에 올라간 조합**으로 대비를 재라. tone의 유효성(C-3)과 대비는 다른 문제다.
 
 ---
 

@@ -1,20 +1,22 @@
 {
-  "sessionCount": 39,
+  "sessionCount": 40,
   "lastSession": {
-    "startedAt": "2026-08-12T07:13:42.516Z",
+    "startedAt": "2026-08-13T00:18:35.954Z",
     "platform": "claude",
     "level": "Dynamic"
   },
   "currentPdca": {
     "feature": "diagram-expansion",
-    "phase": "check",
+    "phase": "archived",
     "updatedAt": "2026-08-12",
     "lastArchived": "diagram-set-finishing",
-    "planDoc": "docs/01-plan/features/diagram-expansion.plan.md",
-    "designDoc": "docs/02-design/features/diagram-expansion.design.md",
+    "planDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.plan.md",
+    "designDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.design.md",
     "matchRate": 91.7,
-    "analysisDoc": "docs/03-analysis/diagram-expansion-w4.analysis.md",
-    "note": "W4 Check 91.7% + Act(C-16) 완료. 네 웨이브 349 인스턴스 전 항목 통과. 검사 C-1~C-16·대조군 24. gap-detector 12건·C-16 7건 전건 반영. 최대 발견: ValueBars 단위 소실(컴포넌트 수정, 20건 영향). 남은 것은 G-9 육안확인 349건 · G-14 중복판정(둘 다 자동화 불가). 다음: /pdca report diagram-expansion",
-    "reportDoc": "docs/04-report/diagram-expansion.report.md"
+    "analysisDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion-w4.analysis.md",
+    "note": "머지 완료 — #32(7ce01ee) → #31(2e87ef3). main에서 네 웨이브 349 인스턴스 전 항목 통과, 배치표 4건 일치, typecheck 0, SSG 393/393, 102kB. CodeRabbit 4라운드 9건 반영. 남은 것은 G-9 육안확인 349건·G-14 중복판정(둘 다 자동화 불가). 다음: /pdca report 갱신 → /pdca archive",
+    "reportDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.report.md",
+    "archivedTo": "docs/archive/2026-08/diagram-expansion/",
+    "archivedAt": "2026-08-13"
   }
 }

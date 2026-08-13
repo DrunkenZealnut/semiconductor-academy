@@ -1,6 +1,6 @@
 {
   "_coverage": "full",
-  "_comment": "Design docs/02-design/features/diagram-expansion.w2-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w2).",
+  "_comment": "Design docs/archive/2026-08/diagram-expansion/diagram-expansion.w2-design.md §2에서 자동 생성 — 손으로 편집하지 않는다. 배정을 바꿀 때는 Design을 고치고 이 스크립트를 재실행한다(node scripts/build-diagram-plan.mjs w2).",
   "_substitutions": "daegu 5건 대체 반영 (2026-08-12) — 근거: diagram-expansion.w2-design.md §2.7. thin-film LayerStack→CompareCards · doping LatticeDiagram→CompareCards · metallization ValueBars→FlowSteps(T3 미달) · cmp FlowSteps→TreeBranch · cleaning FlowSteps→TreeBranch | Check 추가 1건: development-drawings FlowSteps→CompareCards (§4에 보조선·교점법이 없어 절차를 창작한 것이었다 — 본문이 말하는 \"평면이면 직선·곡면이면 곡선\"으로 교체)",
   "digital-circuits": [
     {

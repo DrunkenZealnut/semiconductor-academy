@@ -38,11 +38,16 @@ const COMPONENTS = [
   'TreeBranch', 'LatticeDiagram', 'CurvePlot', 'Timeline', 'ScaleRuler', 'LabeledFigure',
 ];
 
+/**
+ * 배치표의 출처. 2026-08-13 `diagram-expansion` 아카이브로 경로가 아카이브 폴더로 옮겨졌다.
+ * 아카이브를 가리키는 것이 맞다 — Design §2 표는 **동결된 기록**이어야 하고,
+ * 산출물(OUT)은 그 기록과 계속 일치해야 한다(`--check`). 살아 있는 설정이 아니다.
+ */
 const DESIGN = {
-  w1: 'docs/02-design/features/diagram-expansion.design.md',
-  w2: 'docs/02-design/features/diagram-expansion.w2-design.md',
-  w3: 'docs/02-design/features/diagram-expansion.w3-design.md',
-  w4: 'docs/02-design/features/diagram-expansion.w4-design.md',
+  w1: 'docs/archive/2026-08/diagram-expansion/diagram-expansion.design.md',
+  w2: 'docs/archive/2026-08/diagram-expansion/diagram-expansion.w2-design.md',
+  w3: 'docs/archive/2026-08/diagram-expansion/diagram-expansion.w3-design.md',
+  w4: 'docs/archive/2026-08/diagram-expansion/diagram-expansion.w4-design.md',
 };
 const OUT = {
   w1: 'docs/02-design/features/diagram-expansion.w1-plan.json',

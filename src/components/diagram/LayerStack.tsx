@@ -106,10 +106,11 @@ export function LayerStack({
   const patternId = (tone: string) => `${idPrefix}-pat-${tone}`;
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         viewBox={`0 0 ${DIM.width} ${totalH}`}
         className="h-auto w-full"
+        style={{ minWidth: DIM.width }}
         role="img"
         aria-label={caption ?? (isBand ? '에너지 띠 도해' : '단면 적층도')}
       >

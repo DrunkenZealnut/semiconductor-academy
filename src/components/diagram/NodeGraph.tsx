@@ -76,7 +76,8 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         viewBox={`0 0 ${DIM.width} ${totalH}`}
-        className="h-auto w-full min-w-[20rem]"
+        className="h-auto w-full"
+        style={{ minWidth: DIM.width }}
         role="img"
         aria-label={caption ?? '연결 구조도'}
       >

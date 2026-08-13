@@ -48,7 +48,8 @@ export function CurvePlot({ axes, curves, markers = [], caption, note, altTable 
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        className="mx-auto h-auto w-full min-w-[18rem]"
+        className="mx-auto h-auto w-full"
+        style={{ minWidth: width }}
         role="img"
         aria-label={caption ?? `${axes.x.label} 대 ${axes.y.label} 특성`}
       >
