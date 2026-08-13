@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, STROKE, TEXT, TEXT_MUTED } from './tokens';
+import { DIM, STROKE, TEXT, TEXT_MUTED, svgBox } from './tokens';
 import type { DiagramCommon } from './types';
 
 interface Mark {
@@ -41,9 +41,8 @@ export function ScaleRuler({ marks, refs = [], caption, note, altTable }: Props)
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`0 0 ${DIM.width} ${height}`}
+        {...svgBox(`0 0 ${DIM.width} ${height}`)}
         className="h-auto w-full"
-        style={{ minWidth: DIM.width }}
         role="img"
         aria-label={caption ?? '크기 비교 눈금'}
       >

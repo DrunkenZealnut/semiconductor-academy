@@ -12,7 +12,7 @@
  * `width`는 '설계 폭'이자 SVG 도해의 **최소 렌더 폭**이다. viewBox가 컨테이너에 맞춰
  * 줄어들면 좌표계 전체가 눌려 글자도 같이 줄어들기 때문이다 — 375px 화면(가용 343px)에서
  * 640이 눌리면 ×0.54가 되어 라벨 13px이 7.0px, 부라벨 11px이 5.9px로 읽히지 않는다.
- * 그래서 SVG 6종은 `style={{ minWidth }}`로 이 폭 아래로 줄지 않게 하고,
+ * 그래서 SVG 6종은 아래 `svgBox()`로 이 폭 아래로 줄지 않게 하고,
  * 좁은 화면에서는 `DiagramFrame scrollable`이 프레임 안에서만 가로로 스크롤되게 한다.
  * (G-9 육안 확인에서 드러난 결함. 데스크톱 본문은 832px라 오히려 ×1.3로 확대된다.)
  */
@@ -25,6 +25,30 @@ export const DIM = {
   font: 13,
   fontSmall: 11,
 } as const;
+
+/**
+ * SVG 도해의 크기 계약을 한 곳에서 만든다.
+ *
+ * `viewBox`와 `minWidth`가 **같은 인자에서** 나오므로 둘이 어긋난 상태를 만들 수 없다 —
+ * 컴포넌트마다 각자 맞추게 하면 어긋날 수 있고, 여기서 만들면 어긋날 수 없다.
+ * (`diagram-set-finishing`이 `<desc>`를 prop이 아니라 자동 생성으로 정한 것과 같은 논리:
+ * 저작자 입력 0 · 누락 구조적 불가.)
+ *
+ * 폭은 유한·양수만 받는다. 음수나 `Infinity`가 `minWidth`로 가면 CSS가 그 선언을 버려
+ * **축소 방지가 조용히 사라진다** — 예외보다 나쁜 거짓 통과다(CodeRabbit PR #33 지적).
+ *
+ * `fixed`는 좌표계보다 좁게 그려야 하는 도해용이다(`LatticeDiagram` — viewBox를 잘라 쓴다).
+ *
+ * 검사기는 이 헬퍼를 썼는지만 본다(C-18). Design: `docs/archive/2026-08/diagram-render-gate/diagram-render-gate.design.md` §1 D-8.
+ */
+export function svgBox(viewBox: string, opts?: { fixed?: boolean }) {
+  const parsed = Number(viewBox.trim().split(/\s+/)[2]);
+  const width = Number.isFinite(parsed) && parsed > 0 ? parsed : DIM.width;
+  return {
+    viewBox,
+    style: opts?.fixed ? { width, minWidth: width } : { minWidth: width },
+  };
+}
 
 export type Tone =
   | 'silicon-p'
@@ -59,7 +83,11 @@ export const TONE: Record<Tone, ToneStyle> = {
   'silicon-p-heavy': { fill: 'fill-rose-300 dark:fill-rose-800', label: 'p⁺ 고농도', mark: '+' },
   'silicon-n-heavy': { fill: 'fill-sky-300 dark:fill-sky-800', label: 'n⁺ 고농도', mark: '−' },
   oxide: { fill: 'fill-amber-100 dark:fill-amber-950', label: '절연막' },
-  metal: { fill: 'fill-zinc-400 dark:fill-zinc-500', label: '금속' },
+  // 대비: 다크의 zinc-500은 TEXT와 4.40으로 AA(4.5)에 못 미쳤다(C-19 검출, 사용 36건).
+  // zinc-600은 7.05이고 휘도 0.086으로 다른 다크 tone(rose-950 0.017 · violet-900 0.045 ·
+  // slate-700 0.052)보다 여전히 밝아 '가장 밝은 층 = 금속'이라는 시각 성격이 유지된다.
+  // zinc-700(9.54)은 휘도 0.050으로 slate-700과 구분이 안 돼 기판과 섞인다.
+  metal: { fill: 'fill-zinc-400 dark:fill-zinc-600', label: '금속' },
   poly: { fill: 'fill-violet-200 dark:fill-violet-900', label: '폴리실리콘' },
   resist: { fill: 'fill-emerald-200 dark:fill-emerald-900', label: '감광제' },
   substrate: { fill: 'fill-slate-200 dark:fill-slate-700', label: '기판' },

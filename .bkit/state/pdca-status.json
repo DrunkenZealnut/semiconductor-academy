@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-13T04:45:23.999Z",
+  "lastUpdated": "2026-08-13T07:27:02.811Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -432,7 +432,7 @@
         "started": "2026-05-29T08:17:58.360Z",
         "lastUpdated": "2026-08-08T05:37:04.049Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/PerspectiveCatalog.tsx"
+      "lastFile": "src/components/layout/PerspectiveCatalog.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -458,7 +458,7 @@
         "started": "2026-05-29T08:19:09.344Z",
         "lastUpdated": "2026-08-09T13:20:45.436Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/mdx-components.tsx"
+      "lastFile": "mdx-components.tsx"
     },
     "content": {
       "phase": "do",
@@ -549,7 +549,7 @@
         "started": "2026-05-30T02:28:01.897Z",
         "lastUpdated": "2026-08-08T05:25:43.446Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/cross-link/schema.ts"
+      "lastFile": "src/lib/cross-link/schema.ts"
     },
     "[slug]": {
       "phase": "do",
@@ -666,7 +666,7 @@
         "started": "2026-07-12T02:14:52.667Z",
         "lastUpdated": "2026-08-08T20:00:39.245Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/[module]/page.tsx"
+      "lastFile": "src/app/sources/[source]/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
@@ -1090,9 +1090,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-09T08:38:56.085Z",
-        "lastUpdated": "2026-08-13T04:45:23.999Z"
+        "lastUpdated": "2026-08-13T07:27:02.811Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LabeledFigure.tsx"
+      "lastFile": "src/components/diagram/LayerStack.tsx"
     },
     "diagram-component-set — Match Rate 78.1%": {
       "phase": "act",
@@ -1235,6 +1235,65 @@
       "archivedAt": "2026-08-13",
       "archivedTo": "docs/archive/2026-08/diagram-expansion/",
       "archiveNote": "문서 10건 이동(plan · design umbrella + w2/w3/w4 · analysis 4 · report). ★원위치에 남긴 살아 있는 자산: diagram-expansion.w1~w4-plan.json(검사기 --plan 입력) · diagram-check-allow.json(예외 43건) · diagram-component-set.usage.md(사용 규약) — _INDEX.md 기록 정책. scripts/build-diagram-plan.mjs의 DESIGN 경로 4개를 아카이브로 갱신하고 배치표를 재생성했다(변경은 _comment 1줄씩). 이동 후 재검증: 생성기 --check 4웨이브 일치 · 검사기 4웨이브 전 항목 통과."
+    },
+    "diagram-render-gate": {
+      "phase": "archived",
+      "startedAt": "2026-08-13",
+      "planDoc": "docs/archive/2026-08/diagram-render-gate/diagram-render-gate.plan.md",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그(diagram-expansion 파생) 1번 — \"렌더 계측을 상시 관문으로 둘지\"",
+      "inherits": "diagram-expansion(91.7%, 2026-08-13 아카이브) §4.6 \"정적 검사는 화면을 보지 않는다\" · verify-diagram-placement.mjs C-1~C-17 + 자체검사 25",
+      "planCorrection": "★백로그 전제를 실측으로 정정했다. \"렌더 계측을 상시 관문으로\"는 브라우저 상시 실행으로 읽히지만, G-9 결함 3건 중 둘은 브라우저가 필요 없다 — SVG 축소는 코드 계약(minWidth >= viewBox 폭 + scrollable)으로, 대비는 tailwindcss/theme.css 288색(oklch) + globals.css brand(hex)를 sRGB로 변환해 정적 계산으로 판정된다. 겹침만 브라우저 몫이다.",
+      "feasibilityProof": "정적 대비 계산이 G-9 브라우저 실측 12쌍을 최대 오차 0.06으로 재현했다. 통과분만이 아니라 미달분 3건도 재현 (slate-100/brand-500 3.35 vs 3.36 · slate-800/brand-500 3.99 vs 3.97 · slate-500/violet-100 4.01 vs 4.01) → AA 판정(4.5)이 브라우저와 동일하다. 오차는 oklch 색역 클램핑의 반올림 수준이고 판정 경계에서 뒤집힐 거리가 아니다.",
+      "decisions": "D-1 관문 성격=둘 다(정적 계약 C-18·C-19는 상시 관문, 브라우저 스윕은 심층 검증) · D-2 강제 지점=npm 스크립트 (prebuild 배제 — Vercel 배포 빌드에서도 돌아 브라우저·서버·자격증명을 요구하고 VERCEL env 분기는 구멍이 된다. CI는 저장소에 없어 별도 범위) · D-3 C-19 조합 선택=발생 기반(전 조합 68건 검사 시 12건 미달인데 11건이 TEXT_MUTED이고 대부분 프레임 배경 위라 미발생 — \"발생하지 않는다\"는 검증 불가능한 이유 12건을 예외로 남기면 allowlist 규약을 어긴다) · D-4 임계값=WCAG AA 4.5 고정 (도해 텍스트 최대 14 viewBox 단위로 큰 텍스트 완화 3.0에 닿지 않는다) · D-5 playwright-core devDependency + channel:chrome (npx 캐시는 알파 1.63.0-alpha이고 캐시가 비면 사라진다. G-9 스크립트의 macOS 하드코딩 경로 제거)",
+      "openDecisions": "D-6 TEXT on metal(다크) 4.40을 고칠까 예외로 둘까 — metal은 tone 13종 중 유일하게 다크가 라이트보다 밝다(금속 표현 의도일 수 있어 실물 확인 후 판정) · D-7 브라우저 스윕 범위 — SVG 94페이지×2뷰포트 약 3분(94페이지 1뷰포트 실측 90초), 도해 보유 253모듈이면 약 8분, 전 393페이지면 약 12분. next start에서 재측정 후 결정",
+      "preMeasured": "★관문이 착수 즉시 찾아낼 것 2건을 Plan에서 미리 실측했다(신설 후 0건이 나오면 검사가 눈먼 것이다 — diagram-expansion §4.1 교훈). ⓐ살아있는 결함: 다크 TEXT(slate-100) on TONE.metal(zinc-500) = 4.40. tone:metal이 콘텐츠 36건이고 LayerStack 층 라벨이 그 위에 놓인다. ⓑ미발현 잠복: 다크 TEXT_MUTED on NODE_KIND.io(brand-500/20) = 3.84. NodeGraph badge가 io 노드 안에 그려지는데 콘텐츠 사용 0건 — diagram-set-finishing이 찾은 band+wells 무효 url(#) 참조와 같은 유형(사용처 0이라 미발현이나 쓰면 깨진다). 그 사이클 기준대로 고친다.",
+      "frCount": 7,
+      "gates": "G-1~G-9 (G-4가 핵심 — C-19가 §3의 2건을 실제로 검출해야 한다 · G-5 하드코딩 미러 0 · G-7 자격증명 미노출)",
+      "scopeOut": "라벨 겹침 일반 검사(레이아웃 계산 필요) · HTML 계열 380 인스턴스 대비(사이트 전역 문제) · prop이 있는데 콘텐츠가 안 쓰는 경로 검출(badge·FlowSteps.loop.from/to — C-14의 반대 방향, 후속 백로그) · CI 신설 · altTable 보강",
+      "designDoc": "docs/archive/2026-08/diagram-render-gate/diagram-render-gate.design.md",
+      "planCorrectionInDesign": "★Design 착수 시 Plan의 사실 1건이 틀렸고 그것이 핵심 결정을 뒤집었다. badge는 prop이 아니라 노드 라벨 접두어를 정규식(/^(nmos|pmos|R|C|D):\\s*/)으로 뽑는 파생값이라 MDX에서 badge:로 세면 0이 나온다 — 실제로 14건 쓰이고 전부 device 노드다 (019-cmos·028-not-gate·043-dram·044-sram). G-9 브라우저 측정이 잡은 TEXT_MUTED \"R\" 4.01이 정확히 이것이었는데 Plan에서 계수를 틀렸다. 실제 발생 조합(TEXT_MUTED × device)은 통과한다(라이트 6.36 · 다크 5.79). 깨지는 io 조합(3.84)은 아직 실현되지 않았다. ★이것이 D-3을 뒤집었다 — 발생 기반으로 고르면 io 조합이 검사에서 빠지고 저작자가 kind:\"io\"에 R: 접두어를 쓰는 순간 조용히 깨진다. 컴포넌트를 한 줄도 안 고쳐도 콘텐츠만으로 깨진다. → 콘텐츠가 결정하는 조합은 발생이 아니라 가능성으로 본다(D-9).",
+      "designDecisions": "D-8 C-18은 식 비교가 아니라 svgBox() 헬퍼 사용 검사 — viewBox와 minWidth를 같은 인자에서 만들어 어긋나는 상태를 만들 수 없게 한다. diagram-set-finishing의 <desc> 자동생성과 같은 논리(저작자 입력 0·누락 구조적 불가). 부수 효과로 CodeRabbit이 지적한 유한·양수 가드가 한 곳으로 모인다. 판정은 네 조건의 문자열 존재/부재라 식을 해석하지 않는다 · D-9 C-19 조합은 가능성 기반이되 토큰이 결정하는 것만 — 닫힌 집합 4군(TONE×TEXT 13 · NODE_KIND×TEXT 3 · NODE_KIND×TEXT_MUTED 3 · 프레임×둘). TONE×TEXT_MUTED 26조합 제외 근거는 확인한 구조다(LayerStack의 TEXT_MUTED 3곳이 전부 층 밖 — L139 밴드 E축, L155 좌상단, L266 주석 열) · D-10 좌표가 결정하는 대비는 정적 관문에서 배제하고 브라우저에 맡긴다 — LabeledFigure 과대근사 실측 결과 2모듈에서 최대 64건(080-finfet 4라벨×6채움, 055-cz-growth 5라벨×8채움)이고 TEXT_MUTED와 미달인 채움이 8종(brand-500 라이트 2.06·다크 1.40 등)인데 대부분 거짓이다. ★정적 관문은 토큰이 결정하는 것을, 브라우저는 좌표가 결정하는 것을 본다 — 이것이 D-1(둘 다)의 실질이고 두 층은 중복이 아니라 분업이다 · D-11 예외 키는 가짜 자료원 접두어(_component/LayerStack::C-18::scrollable · _token/TONE.metal::C-19::TEXT@dark) — ALLOW 조회가 단순 객체 키라 형식이 자유롭고 _ 접두어는 기존 주석 키와 정렬이 맞는다 · D-12 TEXT_MUTED 사용처 스냅샷 13건(LayerStack 3·CurvePlot 4·NodeGraph 2·ScaleRuler 2·LatticeDiagram 1·LabeledFigure 1)을 트립와이어로 — D-9의 제외가 지금의 구조에 기대므로 누가 층 안에 쓰면 신호가 나야 한다. 한계: 같은 개수로 위치만 옮기면 못 잡는다 · D-13 Plan D-6 처방 = metal을 zinc-400 dark:zinc-600으로 제안(현 dark:zinc-500) — 한 단계만 내리면 4.5를 넘고 여전히 다른 tone(900/950번대)보다 밝아 금속성이 유지된다. Do에서 실물 확인 후 확정 · Plan D-7 처방 = 브라우저 스윕은 SVG 94페이지 × {375,1440}으로 시작(약 3분)",
+      "selfTestPlan": "자체검사 25 → 30. 음성 12쌍은 G-9 브라우저 실측을 고정한다 — 정적 계산이 브라우저와 갈리는 것이 이 설계의 최대 위험이고, 갈리면 자체검사가 먼저 깨진다. 양성 5(TONE 주입·TEXT_MUTED 되돌림·스냅샷 불일치·svgBox 제거·scrollable 제거)",
+      "designFinding": "저작자 인라인 SVG가 tokens.ts를 우회한다 — LabeledFigure 2모듈이 fill-sky-100·fill-violet-200·fill-amber-200/70·fill-brand-500·fill-brand-500/30 등을 MDX에 직접 쓴다. C-6(색 리터럴 0)이 통과하는 이유는 이것들이 hex가 아니라 Tailwind 클래스라서다 — ★C-6의 사각지대. 후속 백로그로 남긴다.",
+      "implOrder": "① svgBox 신설+6컴포넌트 적용 ② C-19 색 파이프라인+음성 12쌍(판정기를 먼저 검증) ③ C-19 조합집합+스냅샷(metal·io 2건 검출 확인) ④ C-18 네 조건+양성 ⑤ --all·npm 스크립트 2종 ⑥ verify-diagram-render.mjs 이관 ⑦ D-13 metal 판정 ⑧ 문서",
+      "doProgress": {
+        "step1_svgBox": "done — tokens.ts에 svgBox() 신설, SVG 6종 전부 적용. viewBox와 minWidth가 한 인자에서 나와 어긋난 상태를 만들 수 없다. LabeledFigure에만 있던 유한·양수 가드가 한 곳으로 모였다. 리팩터 후 6종 대표 페이지 375px 재측정 — 전부 ×1 동일(350·508·640)",
+        "step2_c19_pipeline": "done — theme.css 288색(oklch→선형 sRGB) + globals.css brand(hex) + tokens.ts를 읽는다. 음성 12쌍(G-9 브라우저 실측)을 자체검사에 고정 — 최대 오차 0.060(허용 0.1). 미달 3건(3.36·3.97·4.01)도 넣어 판정 경계를 고정했다",
+        "step3_c19_combos": "done — 조합 36건(TONE 13×TEXT + NODE_KIND 3×TEXT + 프레임×2, 라이트·다크). ★G-4 충족: Plan §3이 예고한 2건을 정확히 검출(TONE.metal 4.40 · NODE_KIND.io 3.84). 스냅샷 트립와이어 12건",
+        "step4_c18": "done — 네 조건(svgBox 사용·viewBox 중복 금지·minWidth 수동 금지·scrollable)을 문자열 존재/부재로 본다. SVG 6종 통과",
+        "step5_scripts": "done — verify-diagram-placement.mjs --all 신설(경로를 웨이브 키에서 유도, 네 개를 따로 적지 않는다) + npm run verify:diagram / verify:render",
+        "step6_browser": "done — scripts/verify-diagram-render.mjs로 G-9 계측기 4종 이관. playwright-core devDep(^1.62.1) + channel:chrome. 92페이지 × 2뷰포트, 글자 있는 SVG 107개. 서버를 띄우지 않고 없으면 안내 후 exit 2. .env.local 직접 파싱 금지",
+        "step7_d13": "done — metal 다크를 zinc-500 → zinc-600(4.40 → 7.05). 실물 확인: 흰 글자가 선명하고 세 층 중 여전히 가장 밝다. badge를 TEXT_MUTED → TEXT(io 위 3.84 해소 + 9px를 흐리게까지 하지 않는다)",
+        "step8_docs": "done — usage.md §3.1 svgBox 계약표·C-18 · §3.2 채움 위 글자는 TEXT만(TEXT_MUTED 12곳 위치표 + 스냅샷 한계) · §3.3 metal zinc-600 근거 · CLAUDE.md 검증 문장과 명령어 2종"
+      },
+      "doResult": "자체검사 대조군 25 → 34. C-18 SVG 6종 · C-19 조합 36건. 4웨이브 전 항목 통과. typecheck 0 · lint diagram 0 · build exit 0 · First Load JS 102kB 무증가 · SSG 393/393. verify:render 92페이지 × {375,1440} 전 항목 통과(가로 넘침 0 · 글자 축소 0 · 대비 미달 0 · 마커 정합).",
+      "doFindings": [
+        "★자체검사가 제 일을 했다 — 조합 집합에서 ③(NODE_KIND × TEXT_MUTED)을 빼자 \"TEXT_MUTED를 slate-500으로 되돌림\" 양성 대조군이 **무효해졌다**(slate-500은 흰 프레임에서 4.76으로 통과). 본 검사는 그대로 통과하는데 자체검사가 먼저 실패했다. 프레임 조합을 실제로 건드리는 대조군(slate-200/slate-800)으로 교체. 교훈: 검사 범위를 줄이면 대조군도 함께 다시 봐야 한다.",
+        "★D-10이 실증됐다 — 정적 과대근사로는 LabeledFigure에서 최대 64건이 나올 자리인데, 브라우저가 좌표로 실제 배경을 찾으니 **대비 미달 0건**이다. 정적/브라우저 분업이 옳았다.",
+        "badge가 prop이 아니라 라벨 접두어라는 Design §0.1 정정이 처방을 바꿨다 — io 조합은 \"미발생\"이었고, 발생 기반 검사라면 빠졌을 조합이다.",
+        "verify:render의 페이지 수가 94 → 92다. part-2.ko·part-4.ko를 본 라우트로 접었기 때문이고, 이는 G-9 스윕 스크립트가 URL을 파일명에서 만들어 404 2건을 냈던 것을 고친 결과다.",
+        "범위 밖 발견: LayerStack의 채움 패턴(+/−)이 층 라벨과 겹친다(011-capacitor의 \"Semiconductor — p형 실리콘 기판\"에서 확인). 대비가 아니라 배치 문제이고 좌표 기반이라 후속 백로그."
+      ],
+      "remainingForCheck": "G-5(하드코딩 미러 0) 소스 확인 · G-7(자격증명 미노출) 확인 · Check 단계에서 gap-detector 대조",
+      "matchRate": 100,
+      "analysisDoc": "docs/archive/2026-08/diagram-render-gate/diagram-render-gate.analysis.md",
+      "iterationCount": 0,
+      "checkNote": "★핵심 사건: 관문의 근거가 틀렸다(H-1). C-19가 TONE × TEXT_MUTED 26조합을 제외한 유일한 근거는 \"LayerStack의 TEXT_MUTED 3곳이 전부 층 밖\"이었는데, 셋째는 <defs> 안 <pattern>의 마크 글리프(+/−)이고 x={4} y={12}는 16x16 패턴 타일 좌표였다(절대 좌표로 오독). 그 패턴은 층 rect 위에 같은 기하로 덮인다. 실측 AA 미달 3건: silicon-p-heavy 라이트 3.94·다크 3.01 · silicon-n-heavy 다크 2.86 — 8건 5모듈에서 실제 렌더 중. 마크는 \"색만으로 구분하지 않는다\"를 이행하는 색각 이상 대비 장치라 읽히지 않으면 장치가 무력해진다. 조치 순서를 지켰다 — ①--widen-tone-muted로 검사가 3건을 잡는지 먼저 확인(마크 없는 tone 오탐 7건도 함께 확인해 제외 필요성 재확인) ②글리프를 TEXT로 ③실물 확인 ④손으로 읽어 틀린 판단을 기계 규칙으로(checkPatternTextClass). D-12 스냅샷은 개수만 봐서 침묵했다(3 그대로) — Design §7이 적은 \"같은 개수로 위치만 옮기면 못 잡는다\"와 다르고, 처음부터 위치를 잘못 읽은 경우다. gap-detector 18건 중 17건 수용 · 1건(H-2) 프레임 반박 — \"Design은 36이라 적지 않았다\"는 틀렸다(§2.2·usage.md·실행 출력이 36이었고 §1 D-9 표·산술만 42). M-2가 특히 값졌다: verify:render가 아무 도해도 못 봤을 때 \"전 항목 통과\"를 냈다 — 미들웨어가 /login으로 리다이렉트하고 page.goto가 따라가 200을 주므로 status>=400 망에 안 걸리고 /login에는 figure svg가 없어 findings가 0이 된다. figures===0 → exit 2로 막았다.",
+      "checkFindings": "G-5 위반 2건을 제가 먼저 찾아 고쳤다(브라우저 스크립트의 SVG 6종 하드코딩 · C-18의 마커 viewBox 리터럴 지우기). 고치는 중 Design에 없던 조건 하나를 발견해 추가 — style= 중복 전달. JSX는 뒤에 오는 명시 속성이 이기므로 style={{maxWidth}}를 뒤에 주면 svgBox의 minWidth가 통째로 사라진다(minWidth 문자열 검사로는 못 잡는다). C-18 4조건 → 5조건. ★대조군이 조용히 무효해지는 것을 대조군이 잡았다 — 조합에서 ③을 빼자 \"TEXT_MUTED를 slate-500으로 되돌림\" 양성 대조군이 아무것도 검출하지 못했다(slate-500은 프레임 배경에서 4.76 통과). 본 검사는 통과하는데 자체검사가 먼저 실패했다. 교훈: 검사 범위를 넓힐 때 대조군을 더하는 것은 자연스럽지만 줄일 때 기존 대조군이 무효해지는 것은 눈에 띄지 않는다.",
+      "handCountErrors": "★손으로 센 수치가 이 사이클에서 세 번 틀렸다 — Plan §3 badge \"0건\"(실제 14, prop이 아니라 라벨 접두어라 MDX에서 badge:로 셀 수 없었다) · Design D-7 \"94페이지\"(실제 92, part-2.ko·part-4.ko가 본 라우트로 접힌다) · Design D-12 TEXT_MUTED 계 \"12\"(실측 11). diagram-expansion §4.3의 규약(\"문서에 적는 수치는 검사기 출력을 옮긴다\")을 세 번 어겼다. 스냅샷 값 자체는 코드에 11로 맞게 들어갔고 검사가 통과했다 — 틀린 것은 문서뿐이다. 코드는 검사가 지키고 문서는 아무도 지키지 않는다는 것이 이 반복의 구조적 원인이다.",
+      "agentHandling": "gap-detector 첫 실행 실패(600초 무진행) — 마지막 출력 \"The script file appears to have changed since my first read\". ★에이전트가 분석 중인 파일을 내가 동시에 편집했다(도구가 경고한 그것). 결과 0건. 재실행 시 기존 발견 4건을 브리핑에 넣어 중복을 배제하고 내가 확인하지 않은 각도 4건을 지정했다 — 그중 하나(verify:render가 0페이지에서 통과하는 경로)가 M-2로 확인됐다.",
+      "gateResult": "G-1 typecheck 0·lint diagram 0 / G-2 verify:diagram 4/4 전 항목 통과(C-18 SVG 6종·C-19 조합 36건) / G-3 대조군 38(25→+13) / G-4 검출 확인(metal 4.40·io 3.84·H-1 3건, 기제는 양성 대조군 9건으로 상시 재현) / G-5 미러 위반 2건 수정 후 0 / G-6 verify:render 92페이지×{375,1440} 글자 있는 SVG 107개 전 항목 통과 / G-7 자격증명 미노출 / G-8 build exit 0·102kB·SSG 393/393 / G-9 육안 metal 다크 + H-1 마크 글리프 = 9/9 = 100%",
+      "scopeAwareness": "★이 100%가 뜻하지 않는 것을 분석 문서 §5에 적었다 — ⓐSVG 92페이지 중 60페이지가 C-1~C-17 범위 밖(first-semiconductor가 WAVES에 없다. CLAUDE.md의 \"도해를 추가·수정하면 verify:diagram\" 약속과 실제 범위가 어긋난다) ⓑverify:render가 라이트 고정이라 D-10이 브라우저에 넘긴 다크 값(brand-500 1.40·slate-400 1.00)이 두 층 어디에도 안 걸린다 ⓒTEXT_MUTED가 같은 개수로 위치만 옮기면 스냅샷이 못 잡는다 ⓓ라벨 겹침(Do에서 LayerStack 패턴이 층 라벨과 겹치는 것을 육안 발견) ⓔ저작자 인라인 SVG의 색 통제.",
+      "remaining": "R-1 ★WAVES에 first-semiconductor 편입 — SVG 92페이지 중 60페이지가 C-1~C-17 밖이고 CLAUDE.md에 이 사이클이 적은 \"도해를 추가·수정하면 verify:diagram\"이 그 60모듈에는 지켜지지 않는 약속이다(가장 무겁다) · R-2 verify:render 다크 추가(약 6분) · R-3 LayerStack 채움 패턴이 층 라벨과 겹침(Do 육안 발견) · R-4 미사용 prop 검출(FlowSteps.loop) · R-5 예외 키 미실행 · R-6 altTable 9/109",
+      "reportDoc": "docs/archive/2026-08/diagram-render-gate/diagram-render-gate.report.md",
+      "completedAt": "2026-08-13",
+      "reportScope": "Plan→Design→Do→Check→Report 전부 2026-08-13(1일·단일 세션) · Match Rate 100%(게이트 9/9) · Act 0회",
+      "reportNote": "게이트 9개를 Report 단계에서 전항 재실측했다(기록 이관 아님) — 이 사이클에서 손으로 옮긴 수치가 세 번 틀렸기 때문이다. 실측: 대조군 38 · C-18 SVG 6종 5조건 · C-19 조합 36 · TEXT_MUTED 11곳 · typecheck 0 · lint diagram 0 · build exit 0 · 102kB · SSG 393/393 · verify:render 92페이지×2뷰포트 글자 있는 SVG 107개 전 항목 통과. 고친 AA 미달 5건: TONE.metal 4.40(36건) · NODE_KIND.io 3.84(badge 14건) · silicon-p-heavy 3.94/3.01 · silicon-n-heavy 2.86(마크 패턴 도해 29개 중 미달 포함 5개). 변경 수정 15파일 +732/-40 · 신규 4파일 966줄(verify-diagram-render.mjs 265 · plan 174 · design 315 · analysis 212).",
+      "reportLessons": "§5.1 제외의 근거는 검사보다 약하다 — C-19의 36조합은 검사기가 계산하지만 왜 26조합을 뺐는가는 내가 손으로 읽은 판단이었고 틀렸다. 한 사이클에 두 번(badge 0건→14건 · pattern 좌표 오독). 둘 다 파일을 봤는데 잘못 읽었다 → 기계 규칙으로 전환. §5.2 검사 범위를 줄이면 대조군이 조용히 무효해진다 — 선행 사이클의 \"대조군은 필요조건이지 충분조건이 아니다\"에 한 겹 추가. §5.3 손으로 센 수치 3번 틀림(badge 0/14 · 94/92페이지 · TEXT_MUTED 12/11). ★스냅샷 값 자체는 코드에 11로 맞게 들어가 검사가 통과했다 — 틀린 것은 문서뿐이다. 코드는 검사가 지키고 문서는 아무도 지키지 않는다는 것이 이 반복의 구조적 원인. §5.4 고치기 전에 검사가 잡는지 확인한다 — 잡지 못하는 상태에서 고치면 \"고쳤다\"는 사실만 남고 검사가 눈먼 것은 그대로 남는다. §5.5 에이전트 첫 실행 실패는 내 동시 편집 탓이었고 그대로 보고했다. H-1은 직접 재확인 후 수용, H-2는 프레임 반박.",
+      "positiveDeviations": "P-1 백로그가 요구한 것보다 나은 것(브라우저 상시 → 밀리초·의존성 0, 타당성은 실측 12쌍으로 증명) · P-2 Plan에서 관문이 잡을 것을 미리 실측(0건이면 검사가 눈먼 것) · P-3 G-5 위반 2건을 에이전트보다 먼저 발견 · P-4 고치다가 Design에 없던 조건 발견(style= 중복 — minWidth가 통째로 사라진다) · P-5 svgBox가 선행 사이클의 <desc> 자동생성 판단을 재사용 + CodeRabbit PR #33 가드가 한 곳으로 모임 · P-6 D-10 실증(정적 과대근사 64건 자리에서 브라우저 좌표 판정은 0건)",
+      "archivedAt": "2026-08-13",
+      "archivedTo": "docs/archive/2026-08/diagram-render-gate/",
+      "archiveNote": "문서 4건 이동(plan · design · analysis · report). 원위치에 남긴 것: diagram-check-allow.json · diagram-component-set.usage.md · scripts 2종(살아 있는 자산). diagram-expansion과 달리 스크립트가 Design을 **읽지 않는다** — 참조는 주석뿐이라 런타임 의존이 없다. 다만 살아 있는 코드의 주석은 살아 있는 경로를 가리켜야 하므로 3곳을 아카이브 경로로 갱신했다(verify-diagram-placement.mjs · verify-diagram-render.mjs · tokens.ts)."
     }
   },
   "pipeline": {
@@ -1406,7 +1465,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-13T04:45:23.999Z"
+    "lastActivity": "2026-08-13T07:27:02.811Z"
   },
   "history": [
     {
@@ -4389,6 +4448,78 @@
     },
     {
       "timestamp": "2026-08-13T04:45:23.999Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:45:38.523Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:45:49.474Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:45:55.824Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:46:07.405Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:47:05.160Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:47:11.897Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:47:18.127Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:47:28.152Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:47:33.627Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:55:00.445Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T05:55:11.755Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T07:27:02.811Z",
       "feature": "diagram",
       "phase": "do",
       "action": "updated"

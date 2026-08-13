@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, TONE, STROKE, TEXT, TEXT_MUTED } from './tokens';
+import { DIM, TONE, STROKE, TEXT, TEXT_MUTED, svgBox } from './tokens';
 import type { DiagramCommon } from './types';
 
 type Center = 'Si' | 'P' | 'B' | 'As' | 'Ga';
@@ -71,9 +71,8 @@ export function LatticeDiagram({
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`${VB_X} 0 ${VB_W} ${height}`}
+        {...svgBox(`${VB_X} 0 ${VB_W} ${height}`, { fixed: true })}
         className="mx-auto h-auto"
-        style={{ width: VB_W, minWidth: VB_W }}
         role="img"
         aria-label={caption ?? `${center} 원자의 결합 구조`}
       >
