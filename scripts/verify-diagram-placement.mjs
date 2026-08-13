@@ -39,7 +39,7 @@
  * (조용히 통과시키지 않는다 — 침묵이 성공으로 읽히는 것을 막는다).
  */
 
-import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync, mkdirSync, rmSync, mkdtempSync } from 'node:fs';
 import { join } from 'node:path';
 
 const COMPONENTS = [
@@ -298,7 +298,7 @@ function checkContrast(tk, palette, min = 4.5) {
     const bgRes = resolveColor(c.bgTok, palette);
     const fgRes = resolveColor(pickThemeToken(tk[c.fg], c.theme, 'fill-'), palette);
     if (!frame || !bgRes || !fgRes) {
-      issues.push({ check: 'C-19', detail: `색을 해석하지 못했다: ${c.fg} on ${c.bg}(${c.bgTok}) @${c.theme}`, id: `${c.bg}::${c.fg}@${c.theme}` });
+      issues.push({ check: 'C-19', detail: `색을 해석하지 못했다: ${c.fg} on ${c.bg}(${c.bgTok}) @${c.theme}`, id: `${c.bg}::${c.fg}@${c.theme}`, scope: 'token' });
       continue;
     }
     const bg = compositeOver(bgRes, frame.rgb);
@@ -308,6 +308,7 @@ function checkContrast(tk, palette, min = 4.5) {
         check: 'C-19',
         detail: `대비 ${ratio.toFixed(2)} < ${min} — ${c.theme} ${c.fg} on ${c.bg} (${c.bgTok})`,
         id: `${c.bg}::${c.fg}@${c.theme}`,
+        scope: 'token',
       });
     }
   }
@@ -333,6 +334,28 @@ const TEXT_MUTED_SNAPSHOT = {
  * `<pattern>` 안 마크 글리프가 그 예외였다 — 패턴은 층 rect 위에 같은 기하로 덮이므로 배경이 채움이다.
  * **손으로 읽어 틀린 판단을 기계 규칙으로 바꾼다.** 개수만 보는 스냅샷(D-12)은 이것을 못 잡았다.
  */
+/**
+ * 렌더 계약 위반의 예외 키(Design D-11). 네임스페이스는 `check` 값이 아니라
+ * **검사가 태그한 `scope`** 로 정한다 — C-19에는 토큰 단위(대비 조합)와
+ * 컴포넌트 단위(`<pattern>` 글자·스냅샷)가 섞여 있어 `check`만 보면 뒤가 `_token/`을 받는다.
+ *
+ * ★폴백을 두지 않는다. `ALLOW` 조회는 단순 객체 키 조회라 키가 틀리면 **예외가 조용히 무효**가
+ * 되고, 그것이 이 함수를 만든 이유다. 폴백이 있으면 `scope`를 빠뜨린 새 검사가 조용히 잘못된
+ * 접두어를 받아 같은 문제를 되살린다(CodeRabbit PR #34 지적). 누락은 즉시 실패로 끝낸다.
+ */
+function allowKeyOf(issue, { throwOnMissing = false } = {}) {
+  if (issue.scope !== 'component' && issue.scope !== 'token') {
+    const msg = `렌더 계약 위반에 scope가 없다 (check=${issue.check} id=${issue.id}). `
+      + "새 검사는 issues에 scope: 'component' 또는 'token'을 붙여야 한다 — 예외 키의 네임스페이스가 여기서 정해진다.";
+    if (throwOnMissing) throw new Error(msg);
+    console.error(`❌ ${msg}`);
+    process.exit(2);
+  }
+  const ns = issue.scope === 'component' ? '_component' : '_token';
+  const [head, tail] = issue.id.split('::');
+  return `${ns}/${head}::${issue.check}::${tail ?? ''}`;
+}
+
 const checkPatternTextClass = () => checkPatternTextClassIn(DIAGRAM_DIR);
 
 function checkPatternTextClassIn(dir) {
@@ -422,7 +445,7 @@ function checkSvgBoxContractIn(dir) {
   for (const f of files) {
     const name = f.replace(/\.tsx$/, '');
     const src = readFileSync(`${dir}/${f}`, 'utf8');
-    const add = (detail, id) => issues.push({ check: 'C-18', detail: `${name}: ${detail}`, id: `${name}::${id}` });
+    const add = (detail, id) => issues.push({ check: 'C-18', detail: `${name}: ${detail}`, id: `${name}::${id}`, scope: 'component' });
     if (!/\{\.\.\.svgBox\(/.test(src)) add('svgBox()를 쓰지 않는다 — viewBox와 minWidth가 어긋날 수 있다', 'svgBox');
     // `<svg` 여는 태그 안만 본다. 마커 등 다른 요소의 viewBox는 정상이고, 그 값을 리터럴로
     // 지우면(`viewBox="0 0 8 8"`) 마커 좌표가 바뀔 때 오탐하는 새 미러가 된다.
@@ -433,7 +456,7 @@ function checkSvgBoxContractIn(dir) {
     if (/minWidth/.test(src)) add('minWidth를 손으로 쓴다 — svgBox()로 옮겨라', 'minWidth');
     if (!/<DiagramFrame[^>]*\sscrollable/.test(src)) add('scrollable을 넘기지 않아 좁은 화면에서 프레임을 넘친다', 'scrollable');
   }
-  if (files.length === 0) issues.push({ check: 'C-18', detail: 'SVG 컴포넌트를 찾지 못했다 — 경로가 바뀌었다', id: '::none' });
+  if (files.length === 0) issues.push({ check: 'C-18', detail: 'SVG 컴포넌트를 찾지 못했다 — 경로가 바뀌었다', id: '::none', scope: 'component' });
   return issues;
 }
 
@@ -1210,7 +1233,11 @@ function selfTestRender() {
   // dev 서버가 떠 있는 상태(CLAUDE.md가 verify:render를 위해 요구한다)와도 충돌한다.
   // 위 MDX 자체검사(§tmp)가 이미 TMPDIR을 쓰므로 같은 방식으로 맞춘다.
   // 예외가 나도 남지 않도록 try/finally로 감싼다.
-  const probeDir = join(process.env.TMPDIR ?? '/tmp', `dgm-selftest-probe-${process.pid}`);
+  // 실행마다 고유 디렉터리를 만든다. pid만 쓰면 rmSync가 실패해 남은 디렉터리를
+  // 나중에 같은 pid가 재사용할 수 있다(OS가 pid를 돌려쓴다).
+  // ※ 현재 코드에서 그 오염이 실제로 재현되지는 않는다 — 프로브 파일명이 `Probe.tsx` 하나로
+  //   고정돼 항상 덮어쓰기 때문이다. 그래도 한 줄로 이 부류를 통째로 없앨 수 있어 받아들인다.
+  const probeDir = mkdtempSync(join(process.env.TMPDIR ?? '/tmp', 'dgm-selftest-probe-'));
   const runProbe = (label, body, judge) => {
     let found = false;
     try {
@@ -1249,6 +1276,43 @@ function selfTestRender() {
   const snapClean = checkTextMutedSnapshot();
   console.log(`   ${snapClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-19 스냅샷 음성 대조군`);
   if (snapClean.length) { ok = false; console.log(`      ${JSON.stringify(snapClean)}`); }
+
+  // ⑩ 예외 키 네임스페이스 — scope 누락을 조용히 넘기지 않는가 (CodeRabbit PR #34 지적)
+  let threw = false;
+  try { allowKeyOf({ check: 'C-19', id: 'X::y' }, { throwOnMissing: true }); } catch { threw = true; }
+  console.log(`   ${threw ? '✅ 검출' : '❌ 놓침'}  D-11 scope 누락을 실패로 처리한다`);
+  if (!threw) ok = false;
+
+  // 음성 — 태그가 있으면 올바른 접두어를 만든다
+  const keyC = allowKeyOf({ check: 'C-19', id: 'LayerStack::pattern-text', scope: 'component' });
+  const keyT = allowKeyOf({ check: 'C-19', id: 'TONE.metal::TEXT@dark', scope: 'token' });
+  const keyOk = keyC === '_component/LayerStack::C-19::pattern-text'
+    && keyT === '_token/TONE.metal::C-19::TEXT@dark';
+  console.log(`   ${keyOk ? '✅ 통과' : '❌ 형식 불일치'}  D-11 예외 키 형식 음성 대조군`);
+  if (!keyOk) { ok = false; console.log(`      ${keyC} / ${keyT}`); }
+
+  // ★렌더 검사 전건이 scope를 붙이는가 — 새 검사가 태그를 빠뜨리면 여기서 걸린다.
+  //
+  // ★각 검사를 **위반이 나오는 상태**로 돌려야 한다. 건강한 상태에서 C-18과 <pattern> 검사는
+  //   위반을 0건 내므로 검사할 태그가 없고, 대조군이 조용히 헛돈다.
+  //   (초판이 그랬다 — C-18의 태그를 지워도 "통과"가 나왔다. §5.2가 말한 무효화의 또 다른 형태다.)
+  //   대비는 임계값을 99로 올려 전 조합을 위반으로 만들고, 나머지 셋은 프로브를 쓴다.
+  const tagProbeDir = mkdtempSync(join(process.env.TMPDIR ?? '/tmp', 'dgm-selftest-tag-'));
+  let untagged = [];
+  try {
+    writeFileSync(`${tagProbeDir}/Probe.tsx`,
+      '<svg viewBox="0 0 1 1" style={{ minWidth: 1 }}><pattern id="x"><text className={TEXT_MUTED}>+</text></pattern></svg>');
+    untagged = [
+      ...checkSvgBoxContractIn(tagProbeDir),          // 다섯 조건 전부 위반
+      ...checkContrast(tk, pal, 99),                  // 전 조합 위반
+      ...checkPatternTextClassIn(tagProbeDir),        // <pattern> 위반
+      ...checkTextMutedSnapshotWith(snapProbe),       // 스냅샷 불일치
+    ].filter((i) => i.scope !== 'component' && i.scope !== 'token');
+  } finally {
+    rmSync(tagProbeDir, { recursive: true, force: true });
+  }
+  console.log(`   ${untagged.length === 0 ? '✅ 통과' : '❌ 태그 누락'}  D-11 렌더 검사 전건이 scope를 붙인다`);
+  if (untagged.length) { ok = false; console.log(`      ${JSON.stringify(untagged.slice(0, 3))}`); }
 
   return ok;
 }
@@ -1410,12 +1474,7 @@ allIssues.push(...mirrorIssues);
 const renderIssues = [...checkSvgBoxContract(), ...checkContrast(COLOR_TOKENS, PALETTE), ...checkPatternTextClass(), ...checkTextMutedSnapshot()];
 let renderReviewed = 0;
 for (const i of renderIssues) {
-  // 네임스페이스는 `check` 값이 아니라 **검사가 태그한 범위**로 정한다.
-  // C-19에는 토큰 단위(대비 조합)와 컴포넌트 단위(<pattern> 글자·스냅샷)가 섞여 있어
-  // check만 보면 컴포넌트 단위 식별자가 `_token/` 접두어를 받는다.
-  // ALLOW 조회는 단순 객체 키 조회라 키가 틀리면 **예외가 조용히 무효**가 된다.
-  const ns = (i.scope ?? (i.check === 'C-18' ? 'component' : 'token')) === 'component' ? '_component' : '_token';
-  if (ALLOW[`${ns}/${i.id.split('::')[0]}::${i.check}::${i.id.split('::')[1] ?? ''}`]) { renderReviewed += 1; continue; }
+  if (ALLOW[allowKeyOf(i)]) { renderReviewed += 1; continue; }
   allIssues.push({ mod: i.id.split('::')[0], ...i });
 }
 if (renderReviewed) c7Reviewed += renderReviewed;
