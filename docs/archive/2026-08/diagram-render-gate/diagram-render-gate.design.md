@@ -71,7 +71,7 @@ export function svgBox(viewBox: string, opts?: { fixed?: boolean }) {
 
 **C-18 판정** — SVG를 그리는 컴포넌트(`<svg` 를 포함하는 `src/components/diagram/*.tsx`)마다:
 
-| 조건 | 실패 문구 |
+| 충족해야 하는 상태 | **어길 때** 나오는 실패 문구 |
 |---|---|
 | `<svg` 태그에 `{...svgBox(` 스프레드가 있다 | `{Name}: svgBox()를 쓰지 않는다 — viewBox와 minWidth가 어긋날 수 있다` |
 | `<svg` 여는 태그에 `viewBox=`가 없다(스프레드와 중복 금지) | `{Name}: viewBox를 svgBox() 밖에서 또 넘긴다` |
@@ -80,6 +80,8 @@ export function svgBox(viewBox: string, opts?: { fixed?: boolean }) {
 | `DiagramFrame`에 `scrollable`을 넘긴다 | `{Name}: scrollable을 넘기지 않아 좁은 화면에서 프레임을 넘친다` |
 
 **다섯 조건 모두 문자열 존재/부재**라 정규식 오탐 여지가 낮다. 식을 해석하지 않는다.
+
+> 왼쪽 열은 **충족 상태**이고 오른쪽은 그것을 어길 때의 문구다 — 구현(`checkSvgBoxContractIn`)은 예컨대 `viewBox=`가 **있을 때** 위반을 올린다. 표만 읽고 판정 방향을 거꾸로 이해하지 않도록 헤더를 고쳤다(2026-08-13).
 
 > **2026-08-13 Do 정정 2건.**
 > ① 초판은 조건이 **넷**이었다. `style=` 중복 조건을 Do에서 더했다 — JSX는 뒤에 오는 명시 속성이 이기므로(§7 위험) `style={{ maxWidth: … }}`를 뒤에 주면 `svgBox()`의 `minWidth`가 **통째로 사라진다**. `minWidth` 문자열 검사만으로는 이 경우를 못 잡는다.

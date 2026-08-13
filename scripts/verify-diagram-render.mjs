@@ -196,7 +196,9 @@ try {
 
 // 서버를 띄우지 않는다 — 포트·빌드 상태·predev 재실행이라는 부작용을 검사기가 만들면 안 된다.
 try {
-  const probe = await fetch(`${BASE}/login/`, { redirect: 'manual' });
+  // 타임아웃을 준다 — Node의 fetch는 기본 응답 타임아웃이 없어서 서버가 연결만 받고
+  // 응답하지 않으면 여기서 무한히 매달린다. 그러면 아래 안내가 아예 나오지 않는다.
+  const probe = await fetch(`${BASE}/login/`, { redirect: 'manual', signal: AbortSignal.timeout(5000) });
   if (probe.status >= 500) throw new Error(String(probe.status));
 } catch {
   fail(`${BASE} 에 연결할 수 없다. 먼저 \`npm run dev\`(또는 \`npm run start\`)를 띄워라.`);
@@ -251,7 +253,12 @@ for (const [w, h, vpName] of VIEWPORTS) {
   // 미들웨어(src/middleware.ts)가 미인증 요청을 /login으로 **리다이렉트**하고 page.goto는
   // 그것을 따라가 최종 200을 주므로 status>=400 망에 걸리지 않는다. /login에는 figure svg가
   // 없어 findings가 0이 되고 exit 0이 나온다. 세션 쿠키가 실리지 않는 어떤 이유로든 재현된다.
-  if (figures === 0) fail(`${vpName}에서 글자 있는 SVG를 하나도 보지 못했다 — 로그인이 유지되지 않았거나 렌더가 바뀌었다. '통과'로 처리하지 않는다.`);
+  if (figures === 0) {
+    // 로그인 실패 경로(위)와 같게 브라우저를 먼저 닫는다 — fail()은 process.exit(2)라
+    // 닫지 않으면 Chrome 프로세스가 남고, 실패를 반복 확인하는 동안 쌓인다.
+    await browser.close();
+    fail(`${vpName}에서 글자 있는 SVG를 하나도 보지 못했다 — 로그인이 유지되지 않았거나 렌더가 바뀌었다. '통과'로 처리하지 않는다.`);
+  }
 }
 await browser.close();
 

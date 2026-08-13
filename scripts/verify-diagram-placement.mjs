@@ -349,6 +349,7 @@ function checkPatternTextClassIn(dir) {
           check: 'C-19',
           detail: `${name}: <pattern> 안 글자가 TEXT_MUTED다 — 패턴은 채움 위에 덮이므로 배경이 tone이고 대비가 깨진다. TEXT를 써라`,
           id: `${name}::pattern-text`,
+          scope: 'component',
         });
       }
       i = src.indexOf('<pattern', end < 0 ? src.length : end + 1);
@@ -363,13 +364,14 @@ function checkTextMutedSnapshotWith(snapshot) {
   const issues = [];
   for (const [name, expected] of Object.entries(snapshot)) {
     const p = `${DIAGRAM_DIR}/${name}.tsx`;
-    if (!existsSync(p)) { issues.push({ check: 'C-19', detail: `${name}.tsx가 없다 — 스냅샷을 갱신하라`, id: `${name}::snapshot` }); continue; }
+    if (!existsSync(p)) { issues.push({ check: 'C-19', detail: `${name}.tsx가 없다 — 스냅샷을 갱신하라`, id: `${name}::snapshot`, scope: 'component' }); continue; }
     const n = (readFileSync(p, 'utf8').match(/className=\{TEXT_MUTED\}/g) ?? []).length;
     if (n !== expected) {
       issues.push({
         check: 'C-19',
         detail: `${name}의 TEXT_MUTED 사용처가 ${expected} → ${n}으로 달라졌다 — 채움 위에 놓이는지 확인하고 스냅샷을 갱신하라`,
         id: `${name}::snapshot`,
+        scope: 'component',
       });
     }
   }
@@ -404,11 +406,19 @@ function svgOpenTags(src) {
 
 const checkSvgBoxContract = () => checkSvgBoxContractIn(DIAGRAM_DIR);
 
-function checkSvgBoxContractIn(dir) {
-  const issues = [];
-  const files = readdirSync(dir)
+/** C-18이 실제로 검사하는 파일 수 — 출력에 적는 수치의 단일 출처. */
+const svgComponentCount = () => svgComponentFiles(DIAGRAM_DIR).length;
+
+/** SVG를 그리는 컴포넌트 파일 — 목록을 적지 않고 `<svg` 포함 여부로 유도한다(G-5). */
+function svgComponentFiles(dir) {
+  return readdirSync(dir)
     .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
     .filter((f) => readFileSync(`${dir}/${f}`, 'utf8').includes('<svg'));
+}
+
+function checkSvgBoxContractIn(dir) {
+  const issues = [];
+  const files = svgComponentFiles(dir);
   for (const f of files) {
     const name = f.replace(/\.tsx$/, '');
     const src = readFileSync(`${dir}/${f}`, 'utf8');
@@ -1195,29 +1205,36 @@ function selfTestRender() {
     // viewBox를 svgBox 밖에서 또 주는 경우. 마커의 viewBox는 정상이므로 오탐하지 않아야 한다.
     ['C-18 viewBox 중복 전달', 'viewBox', srcOf('LayerStack').replace(/className="h-auto w-full"/, 'viewBox="0 0 1 1" className="h-auto w-full"')],
   ];
-  const probeDir = `${DIAGRAM_DIR}/__selftest__`;
-  for (const [name, cond, mutated] of probes) {
-    mkdirSync(probeDir, { recursive: true });
-    const p = `${probeDir}/Probe.tsx`;
-    writeFileSync(p, mutated);
-    const found = checkSvgBoxContractIn(probeDir).some((i) => i.check === 'C-18' && i.id.endsWith(`::${cond}`));
-    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  ${name}`);
+  // 프로브는 **소스 트리 밖**에 쓴다. 프로브는 의도적으로 깨뜨린 TSX이고
+  // tsconfig의 include가 `**/*.tsx`라 src 안에 남으면 typecheck·lint·build가 깨진다.
+  // dev 서버가 떠 있는 상태(CLAUDE.md가 verify:render를 위해 요구한다)와도 충돌한다.
+  // 위 MDX 자체검사(§tmp)가 이미 TMPDIR을 쓰므로 같은 방식으로 맞춘다.
+  // 예외가 나도 남지 않도록 try/finally로 감싼다.
+  const probeDir = join(process.env.TMPDIR ?? '/tmp', `dgm-selftest-probe-${process.pid}`);
+  const runProbe = (label, body, judge) => {
+    let found = false;
+    try {
+      mkdirSync(probeDir, { recursive: true });
+      writeFileSync(`${probeDir}/Probe.tsx`, body);
+      found = judge(probeDir);
+    } finally {
+      rmSync(probeDir, { recursive: true, force: true });
+    }
+    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  ${label}`);
     if (!found) ok = false;
-    unlinkSync(p);
-    rmSync(probeDir, { recursive: true, force: true });
+  };
+
+  for (const [name, cond, mutated] of probes) {
+    runProbe(name, mutated, (d) =>
+      checkSvgBoxContractIn(d).some((i) => i.check === 'C-18' && i.id.endsWith(`::${cond}`)));
   }
 
   // ⑨ <pattern> 안 글자가 TEXT_MUTED면 잡는다 (H-1 재발 방지)
-  {
-    mkdirSync(probeDir, { recursive: true });
-    const p = `${probeDir}/Probe.tsx`;
-    writeFileSync(p, '<pattern id="x"><text className={TEXT_MUTED}>+</text></pattern>');
-    const found = checkPatternTextClassIn(probeDir).some((i) => i.id.endsWith('::pattern-text'));
-    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  C-19 <pattern> 안 글자가 TEXT_MUTED`);
-    if (!found) ok = false;
-    unlinkSync(p);
-    rmSync(probeDir, { recursive: true, force: true });
-  }
+  runProbe(
+    'C-19 <pattern> 안 글자가 TEXT_MUTED',
+    '<pattern id="x"><text className={TEXT_MUTED}>+</text></pattern>',
+    (d) => checkPatternTextClassIn(d).some((i) => i.id.endsWith('::pattern-text')),
+  );
   const patClean = checkPatternTextClass();
   console.log(`   ${patClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-19 <pattern> 음성 대조군`);
   if (patClean.length) { ok = false; console.log(`      ${JSON.stringify(patClean)}`); }
@@ -1393,14 +1410,23 @@ allIssues.push(...mirrorIssues);
 const renderIssues = [...checkSvgBoxContract(), ...checkContrast(COLOR_TOKENS, PALETTE), ...checkPatternTextClass(), ...checkTextMutedSnapshot()];
 let renderReviewed = 0;
 for (const i of renderIssues) {
-  const ns = i.check === 'C-18' ? '_component' : '_token';
+  // 네임스페이스는 `check` 값이 아니라 **검사가 태그한 범위**로 정한다.
+  // C-19에는 토큰 단위(대비 조합)와 컴포넌트 단위(<pattern> 글자·스냅샷)가 섞여 있어
+  // check만 보면 컴포넌트 단위 식별자가 `_token/` 접두어를 받는다.
+  // ALLOW 조회는 단순 객체 키 조회라 키가 틀리면 **예외가 조용히 무효**가 된다.
+  const ns = (i.scope ?? (i.check === 'C-18' ? 'component' : 'token')) === 'component' ? '_component' : '_token';
   if (ALLOW[`${ns}/${i.id.split('::')[0]}::${i.check}::${i.id.split('::')[1] ?? ''}`]) { renderReviewed += 1; continue; }
   allIssues.push({ mod: i.id.split('::')[0], ...i });
 }
 if (renderReviewed) c7Reviewed += renderReviewed;
 
 console.log(`\n총 인스턴스 ${total} · idPrefix ${prefixSeen.size}개(중복 0 기대)`);
-console.log(`렌더 계약: C-18 SVG ${Object.keys(TEXT_MUTED_SNAPSHOT).length}종 · C-19 조합 ${contrastCombos(COLOR_TOKENS).length}건 대조`);
+// C-18의 대상 수는 **C-18이 실제로 검사한 파일 수**를 센다.
+// TEXT_MUTED_SNAPSHOT의 키 수로 세면 지금은 우연히 같지만(6종), 어느 컴포넌트가 TEXT_MUTED를
+// 안 쓰게 되거나 새 SVG 컴포넌트가 TEXT_MUTED 없이 추가되면 이 출력이 조용히 틀린다.
+// 이 사이클이 "문서에 적는 수치는 검사기 출력을 옮긴다"를 규약으로 세웠으므로,
+// 출력이 틀리면 문서도 함께 틀린다.
+console.log(`렌더 계약: C-18 SVG ${svgComponentCount()}종 · C-19 조합 ${contrastCombos(COLOR_TOKENS).length}건 대조`);
 if (mirrorPairs) console.log(`미러 쌍 ${mirrorPairs}개 대조 (C-10)`);
 if (c7Reviewed) console.log(`검토 완료 예외 ${c7Reviewed}건 (근거: ${ALLOW_PATH})`);
 

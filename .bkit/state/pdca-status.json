@@ -432,7 +432,7 @@
         "started": "2026-05-29T08:17:58.360Z",
         "lastUpdated": "2026-08-08T05:37:04.049Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/layout/PerspectiveCatalog.tsx"
+      "lastFile": "src/components/layout/PerspectiveCatalog.tsx"
     },
     "chapters": {
       "phase": "do",
@@ -458,7 +458,7 @@
         "started": "2026-05-29T08:19:09.344Z",
         "lastUpdated": "2026-08-09T13:20:45.436Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/mdx-components.tsx"
+      "lastFile": "mdx-components.tsx"
     },
     "content": {
       "phase": "do",
@@ -549,7 +549,7 @@
         "started": "2026-05-30T02:28:01.897Z",
         "lastUpdated": "2026-08-08T05:25:43.446Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/lib/cross-link/schema.ts"
+      "lastFile": "src/lib/cross-link/schema.ts"
     },
     "[slug]": {
       "phase": "do",
@@ -666,7 +666,7 @@
         "started": "2026-07-12T02:14:52.667Z",
         "lastUpdated": "2026-08-08T20:00:39.245Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/app/sources/[source]/[module]/page.tsx"
+      "lastFile": "src/app/sources/[source]/[module]/page.tsx"
     },
     "scratchpad": {
       "phase": "do",
@@ -1092,7 +1092,7 @@
         "started": "2026-08-09T08:38:56.085Z",
         "lastUpdated": "2026-08-13T07:27:02.811Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LayerStack.tsx"
+      "lastFile": "src/components/diagram/LayerStack.tsx"
     },
     "diagram-component-set — Match Rate 78.1%": {
       "phase": "act",
