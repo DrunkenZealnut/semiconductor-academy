@@ -21,6 +21,19 @@ const CELL = 96;
 const R = 17;
 
 /**
+ * 이 도해만 viewBox를 잘라 쓴다. 격자가 실제로 쓰는 폭은 258(=이웃 간격±반지름±흔들림)뿐인데
+ * 좌표계 폭은 640이라 좌우가 크게 빈다. 옛 `max-w-md`(448px)는 그 빈 폭까지 화면에 맞추느라
+ * ×0.7로 눌렸고, 그래서 highlight 설명문(11px)이 데스크톱에서도 7.7px로 나왔다.
+ * 빈 여백을 잘라내면 같은 폭에서 좌표가 1:1로 그려져 글자가 설계 크기를 유지한다.
+ * (`VB_X`~`VB_X+VB_W`는 격자 191~449와 highlight 문장 약 170~470을 모두 담는다.)
+ */
+const VB_X = 145;
+const VB_W = 350;
+
+/** highlight 문장이 아래쪽 원자와 겹치지 않도록 확보하는 높이. */
+const LABEL_H = 22;
+
+/**
  * 실리콘 결정의 공유 결합 격자 (주 4 · 보조 1 = 5모듈: 003~006·079).
  * Design §2.2 #10 — V-1에서 신설. 003~006이 거의 같은 구조라 1회 제작으로 전부 커버된다.
  *
@@ -37,7 +50,7 @@ export function LatticeDiagram({
 }: Props) {
   const cx = DIM.width / 2;
   const cy = CELL + DIM.pad;
-  const height = CELL * 2 + DIM.pad * 2;
+  const height = CELL * 2 + DIM.pad * 2 + (highlight ? LABEL_H : 0);
   const valence = VALENCE[center];
   const isDopant = center !== 'Si';
 
@@ -56,10 +69,11 @@ export function LatticeDiagram({
   const vacancy = valence < 4;
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`0 0 ${DIM.width} ${height}`}
-        className="mx-auto h-auto w-full max-w-md"
+        viewBox={`${VB_X} 0 ${VB_W} ${height}`}
+        className="mx-auto h-auto"
+        style={{ width: VB_W, minWidth: VB_W }}
         role="img"
         aria-label={caption ?? `${center} 원자의 결합 구조`}
       >
