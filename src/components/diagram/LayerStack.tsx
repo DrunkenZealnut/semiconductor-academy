@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, TONE, STROKE, TEXT, TEXT_MUTED, splitLabel, type Tone } from './tokens';
+import { DIM, TONE, STROKE, TEXT, TEXT_MUTED, splitLabel, type Tone, svgBox } from './tokens';
 import type { SvgDiagramCommon } from './types';
 
 interface Well {
@@ -108,9 +108,8 @@ export function LayerStack({
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`0 0 ${DIM.width} ${totalH}`}
+        {...svgBox(`0 0 ${DIM.width} ${totalH}`)}
         className="h-auto w-full"
-        style={{ minWidth: DIM.width }}
         role="img"
         aria-label={caption ?? (isBand ? '에너지 띠 도해' : '단면 적층도')}
       >
@@ -152,7 +151,16 @@ export function LayerStack({
               height={16}
               patternUnits="userSpaceOnUse"
             >
-              <text x={4} y={12} fontSize={11} className={TEXT_MUTED}>
+              {/*
+                TEXT_MUTED가 아니라 TEXT를 쓴다. 이 글리프는 장식이 아니라 **색각 이상 대비 장치**다
+                (usage.md §3 "색만으로 구분하지 않는다") — 읽히지 않으면 그 장치가 무력해진다.
+                이 패턴은 층 rect 위에 같은 기하로 덮이므로 배경이 tone 채움이고, TEXT_MUTED로는
+                silicon-p-heavy 라이트 3.94 · 다크 3.01 · silicon-n-heavy 다크 2.86으로
+                AA(4.5) 미달이었다(C-19 검출, 8건 5모듈에서 실제 렌더 중). TEXT는 6.86~14.28.
+                `x`·`y`는 절대 좌표가 아니라 16×16 패턴 타일 안의 좌표다 — 이것을 좌상단 축 라벨로
+                잘못 읽어 C-19가 TONE × TEXT_MUTED를 제외했던 것이 H-1의 원인이다.
+              */}
+              <text x={4} y={12} fontSize={11} className={TEXT}>
                 {TONE[tone as Tone].mark}
               </text>
             </pattern>

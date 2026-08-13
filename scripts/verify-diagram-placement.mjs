@@ -39,7 +39,7 @@
  * (조용히 통과시키지 않는다 — 침묵이 성공으로 읽히는 것을 막는다).
  */
 
-import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 const COMPONENTS = [
@@ -101,6 +101,330 @@ function readTones() {
   const block = t.match(/export type Tone =([\s\S]*?);/);
   if (!block) throw new Error('tokens.ts에서 Tone 목록을 찾지 못했다');
   return [...block[1].matchAll(/'([a-z-]+)'/g)].map((m) => m[1]);
+}
+
+// ── C-18 · C-19 : 렌더 계약 ──────────────────────────────────────────────────
+// docs/archive/2026-08/diagram-render-gate/diagram-render-gate.design.md. G-9 육안 확인이 손으로 잡은 결함군을 상시 검사로 바꾼다.
+// 여기서 보는 것은 **토큰이 결정하는 것**뿐이다 — 무엇이 글자 밑에 오는지가 좌표로
+// 결정되는 경우(LabeledFigure의 저작자 SVG·간선 라벨이 노드를 지나감)는
+// scripts/verify-diagram-render.mjs(브라우저)가 본다. 두 층은 중복이 아니라 분업이다.
+
+const DIAGRAM_DIR = 'src/components/diagram';
+const THEME_CSS = 'node_modules/tailwindcss/theme.css';
+const GLOBALS_CSS = 'src/styles/globals.css';
+
+/** Tailwind v4 팔레트 + 프로젝트 brand 색. 값을 스크립트에 옮겨 적지 않는다(미러 금지). */
+function readPalette() {
+  if (!existsSync(THEME_CSS)) {
+    console.error(`❌ ${THEME_CSS}를 읽을 수 없다 — 색을 못 읽는 것은 '통과'가 아니다.`);
+    process.exit(2);
+  }
+  const pal = {};
+  for (const m of readFileSync(THEME_CSS, 'utf8').matchAll(/--color-([a-z]+)-(\d+):\s*(oklch\([^)]+\))/g)) {
+    (pal[m[1]] ??= {})[m[2]] = m[3];
+  }
+  const brand = {};
+  for (const m of readFileSync(GLOBALS_CSS, 'utf8').matchAll(/--color-brand-(\d+):\s*(#[0-9a-fA-F]{6})/g)) {
+    brand[m[1]] = m[2];
+  }
+  if (Object.keys(pal).length === 0 || Object.keys(brand).length === 0) {
+    console.error('❌ 팔레트가 비었다 — theme.css 또는 globals.css 형식이 바뀌었다.');
+    process.exit(2);
+  }
+  return { pal, brand };
+}
+
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
+
+/** oklch(L% C H) → 선형 sRGB. WCAG 상대휘도는 선형 sRGB에서 바로 계산된다. */
+function oklchToLinear(str) {
+  const m = str.match(/oklch\(\s*([\d.]+)%\s+([\d.]+)\s+([\d.]+)/);
+  if (!m) return null;
+  const L = Number(m[1]) / 100;
+  const C = Number(m[2]);
+  const H = (Number(m[3]) * Math.PI) / 180;
+  const a = C * Math.cos(H);
+  const b = C * Math.sin(H);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const mm = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3;
+  return {
+    r: clamp01(4.0767416621 * l - 3.3077115913 * mm + 0.2309699292 * s),
+    g: clamp01(-1.2684380046 * l + 2.6097574011 * mm - 0.3413193965 * s),
+    b: clamp01(-0.0041960863 * l - 0.7034186147 * mm + 1.7076147010 * s),
+  };
+}
+
+function hexToLinear(hex) {
+  const n = hex.replace('#', '');
+  const f = (v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+  return { r: f(parseInt(n.slice(0, 2), 16)), g: f(parseInt(n.slice(2, 4), 16)), b: f(parseInt(n.slice(4, 6), 16)) };
+}
+
+/** `teal-950` · `brand-300` · `brand-500/20` · `white` · `transparent` → { rgb, a } */
+function resolveColor(token, { pal, brand }) {
+  const [base, alphaStr] = String(token).split('/');
+  const a = alphaStr ? Number(alphaStr) / 100 : 1;
+  if (base === 'transparent') return { rgb: { r: 0, g: 0, b: 0 }, a: 0 };
+  if (base.startsWith('#') && base.length === 7) return { rgb: hexToLinear(base), a };
+  if (base === 'white') return { rgb: { r: 1, g: 1, b: 1 }, a };
+  if (base === 'black') return { rgb: { r: 0, g: 0, b: 0 }, a };
+  const i = base.lastIndexOf('-');
+  const family = base.slice(0, i);
+  const shade = base.slice(i + 1);
+  if (family === 'brand') return brand[shade] ? { rgb: hexToLinear(brand[shade]), a } : null;
+  const v = pal[family]?.[shade];
+  return v ? { rgb: oklchToLinear(v), a } : null;
+}
+
+const compositeOver = (fg, bg) => ({
+  r: fg.rgb.r * fg.a + bg.r * (1 - fg.a),
+  g: fg.rgb.g * fg.a + bg.g * (1 - fg.a),
+  b: fg.rgb.b * fg.a + bg.b * (1 - fg.a),
+});
+const relLuminance = ({ r, g, b }) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
+function contrastRatio(x, y) {
+  const [hi, lo] = [relLuminance(x), relLuminance(y)].sort((a, b) => b - a);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
+/** `'fill-teal-50 dark:fill-teal-950'` 에서 테마별 색 토큰을 뽑는다. */
+function pickThemeToken(cls, theme, prefix) {
+  const parts = String(cls).split(/\s+/);
+  const dark = parts.find((p) => p.startsWith(`dark:${prefix}`))?.slice(`dark:${prefix}`.length);
+  const light = parts.find((p) => p.startsWith(prefix) && !p.startsWith('dark:'))?.slice(prefix.length);
+  return theme === 'dark' ? (dark ?? light) : light;
+}
+
+/** tokens.ts에서 색 토큰을 읽는다 — 하드코딩 미러 금지(G-5). */
+function readColorTokens() {
+  const t = readFileSync(`${DIAGRAM_DIR}/tokens.ts`, 'utf8');
+  const grab = (name) => t.match(new RegExp(`export const ${name} = '([^']+)'`))?.[1];
+  const blockOf = (decl) => {
+    const i = t.indexOf(decl);
+    if (i < 0) return '';
+    const s = t.indexOf('{', i);
+    let depth = 0;
+    for (let j = s; j < t.length; j += 1) {
+      if (t[j] === '{') depth += 1;
+      else if (t[j] === '}') { depth -= 1; if (depth === 0) return t.slice(s + 1, j); }
+    }
+    return '';
+  };
+  const TONE = {};
+  for (const m of blockOf('export const TONE').matchAll(/'?([a-z][a-z-]*)'?:\s*\{[^}]*fill:\s*'([^']+)'/g)) {
+    TONE[m[1]] = m[2];
+  }
+  const NODE_KIND = {};
+  for (const m of blockOf('export const NODE_KIND').matchAll(/(\w+):\s*'([^']+)'/g)) NODE_KIND[m[1]] = m[2];
+  // 프레임 배경은 `CARD`가 아니다. `DiagramFrame`의 `<figure>`에는 배경 클래스가 없어서
+  // (DiagramFrame.tsx L16 `className="not-prose my-6"`) SVG 도해의 실제 배경은 **페이지 body**다.
+  // `CARD`는 tokens.ts 주석대로 "카드형(HTML) 도해"용이고 이 계약과 무관한 이유로 바뀔 수 있다.
+  // 알파 채움(band-gap 투명 · NODE_KIND.io brand-500/10·/20 · LatticeDiagram의 /20)이 전부
+  // 이 값에 걸리므로 globals.css의 body 배경을 읽는다.
+  const css = readFileSync(GLOBALS_CSS, 'utf8');
+  const bodyBg = css.match(/\bbody\s*\{[^}]*background:\s*([^;]+);/)?.[1]?.trim();
+  const darkBodyBg = css.match(/\.dark\s+body\s*\{[^}]*background:\s*([^;]+);/)?.[1]?.trim();
+  if (!bodyBg || !darkBodyBg) {
+    console.error('❌ globals.css에서 body 배경을 읽지 못했다 — 프레임 배경을 모르면 알파 채움 대비를 계산할 수 없다.');
+    process.exit(2);
+  }
+  const out = {
+    TONE,
+    NODE_KIND,
+    TEXT: grab('TEXT'),
+    TEXT_MUTED: grab('TEXT_MUTED'),
+    FRAME: { light: bodyBg, dark: darkBodyBg },
+  };
+  for (const [k, v] of Object.entries(out)) {
+    if (!v || (typeof v === 'object' && Object.keys(v).length === 0)) {
+      console.error(`❌ tokens.ts에서 ${k}를 읽지 못했다 — 형식이 바뀌었다.`);
+      process.exit(2);
+    }
+  }
+  return out;
+}
+
+/**
+ * C-19 대비 — 조합은 **가능성 기반**이되 토큰이 결정하는 것만 본다(Design D-9).
+ * 발생 기반으로 고르면 콘텐츠가 바뀌는 순간(예: `label: 'R: …', kind: 'io'`)
+ * 검사에서 빠진 조합이 조용히 깨진다. 컴포넌트를 한 줄도 안 고쳐도 깨진다.
+ */
+/**
+ * `--widen-tone-muted` — TONE × TEXT_MUTED 26조합을 임시로 켠다.
+ * 상시로 켜면 마크가 없는 tone에서 오탐이 쏟아진다(실측 11건) — 그 조합은 구조상 생기지 않는다.
+ * 검사가 실제로 잡는지 확인할 때만 쓴다(H-1 검출 확인에 썼다).
+ */
+const WIDEN_TONE_MUTED = process.argv.includes('--widen-tone-muted');
+
+function contrastCombos(tk) {
+  const combos = [];
+  for (const theme of ['light', 'dark']) {
+    const frameTok = tk.FRAME[theme];
+    for (const [name, cls] of Object.entries(tk.TONE)) {
+      // ① 층·원자 라벨과 **채움 패턴의 마크 글리프**가 채움 위에 놓인다. 둘 다 TEXT다.
+      //
+      // ★초판은 "TEXT_MUTED는 층 밖"이라며 TONE × TEXT_MUTED를 뺐는데 **틀렸다**.
+      // LayerStack의 <pattern> 안 마크 글리프(+/−)가 TEXT_MUTED였고, 그 패턴은 층 rect 위에
+      // 같은 기하로 덮인다. `x={4} y={12}`를 좌상단 축 라벨로 잘못 읽은 것이 원인이다.
+      // 실측: silicon-p-heavy 라이트 3.94 · 다크 3.01 · silicon-n-heavy 다크 2.86 — 8건 5모듈에서
+      // 실제로 렌더되고 있었다. 마크는 "색만으로 구분하지 않는다"를 이행하는 색각 이상 대비
+      // 장치라 읽히지 않으면 그 장치가 무력해진다. → 글리프를 TEXT로 옮겼다(LayerStack L154).
+      // 이제 채움 위 글자는 TEXT뿐이라 ①이 전부를 덮는다. 그 전제는 patternUsesMuted()가 지킨다.
+      combos.push({ bg: `TONE.${name}`, bgTok: pickThemeToken(cls, theme, 'fill-'), fg: 'TEXT', theme, frameTok });
+      if (WIDEN_TONE_MUTED) {
+        combos.push({ bg: `TONE.${name}`, bgTok: pickThemeToken(cls, theme, 'fill-'), fg: 'TEXT_MUTED', theme, frameTok });
+      }
+    }
+    for (const [name, cls] of Object.entries(tk.NODE_KIND)) {
+      // ② 노드 라벨과 badge가 노드 안에. 둘 다 TEXT다 — badge를 TEXT로 바꾼 뒤
+      //    **노드 안의 글자는 TEXT뿐**이 되었다(NodeGraph L153 주석). kind는 저작자가 정하므로 3종 전부.
+      //    TEXT_MUTED × NODE_KIND를 빼는 근거는 TONE × TEXT_MUTED를 빼는 것과 같다 —
+      //    구조상 노드 안에 오지 않는다. 그 전제가 깨지는지는 D-12 스냅샷이 지킨다.
+      combos.push({ bg: `NODE_KIND.${name}`, bgTok: pickThemeToken(cls, theme, 'fill-'), fg: 'TEXT', theme, frameTok });
+    }
+    // ④ 나머지 전부 — 주석·축 이름·눈금·간선 라벨은 프레임 배경 위에.
+    for (const fg of ['TEXT', 'TEXT_MUTED']) {
+      combos.push({ bg: '프레임', bgTok: frameTok, fg, theme, frameTok });
+    }
+  }
+  return combos;
+}
+
+function checkContrast(tk, palette, min = 4.5) {
+  const issues = [];
+  for (const c of contrastCombos(tk)) {
+    const frame = resolveColor(c.frameTok, palette);
+    const bgRes = resolveColor(c.bgTok, palette);
+    const fgRes = resolveColor(pickThemeToken(tk[c.fg], c.theme, 'fill-'), palette);
+    if (!frame || !bgRes || !fgRes) {
+      issues.push({ check: 'C-19', detail: `색을 해석하지 못했다: ${c.fg} on ${c.bg}(${c.bgTok}) @${c.theme}`, id: `${c.bg}::${c.fg}@${c.theme}` });
+      continue;
+    }
+    const bg = compositeOver(bgRes, frame.rgb);
+    const ratio = contrastRatio(compositeOver(fgRes, bg), bg);
+    if (ratio < min) {
+      issues.push({
+        check: 'C-19',
+        detail: `대비 ${ratio.toFixed(2)} < ${min} — ${c.theme} ${c.fg} on ${c.bg} (${c.bgTok})`,
+        id: `${c.bg}::${c.fg}@${c.theme}`,
+      });
+    }
+  }
+  return issues;
+}
+
+/**
+ * C-19 부속 — `TEXT_MUTED` 사용처 수 스냅샷(Design D-12).
+ * 위 조합에서 `TONE × TEXT_MUTED`를 뺀 근거는 "TEXT_MUTED가 채움 밖에 있다"는 **현재 구조**다.
+ * 누가 층 안에 쓰면 그 전제가 깨지는데 아무 신호도 안 난다. 수가 달라지면 사람이 판정하게 한다.
+ * 한계: 같은 개수로 위치만 옮기면 못 잡는다.
+ */
+const TEXT_MUTED_SNAPSHOT = {
+  // NodeGraph 1 = 간선 라벨만(프레임 배경 위). badge는 TEXT로 옮겼다 — C-19가 io 조합 3.84를 잡았고,
+  // 9px 글자를 흐리게까지 하면 두 겹으로 읽기 어렵다는 판단이 함께 작용했다.
+  LayerStack: 2, CurvePlot: 4, NodeGraph: 1, ScaleRuler: 2, LatticeDiagram: 1, LabeledFigure: 1,
+};
+
+/**
+ * C-19 부속 — `<pattern>` 안의 글자는 `TEXT_MUTED`를 쓰지 않는다.
+ *
+ * ★H-1의 재발 방지. `TONE × TEXT_MUTED` 26조합을 제외한 근거는 "`TEXT_MUTED`가 채움 밖에 있다"였는데,
+ * `<pattern>` 안 마크 글리프가 그 예외였다 — 패턴은 층 rect 위에 같은 기하로 덮이므로 배경이 채움이다.
+ * **손으로 읽어 틀린 판단을 기계 규칙으로 바꾼다.** 개수만 보는 스냅샷(D-12)은 이것을 못 잡았다.
+ */
+const checkPatternTextClass = () => checkPatternTextClassIn(DIAGRAM_DIR);
+
+function checkPatternTextClassIn(dir) {
+  const issues = [];
+  for (const f of readdirSync(dir).filter((x) => x.endsWith('.tsx'))) {
+    const name = f.replace(/\.tsx$/, '');
+    const src = readFileSync(`${dir}/${f}`, 'utf8');
+    let i = src.indexOf('<pattern');
+    while (i >= 0) {
+      const end = src.indexOf('</pattern>', i);
+      const body = src.slice(i, end < 0 ? src.length : end);
+      if (/className=\{TEXT_MUTED\}/.test(body)) {
+        issues.push({
+          check: 'C-19',
+          detail: `${name}: <pattern> 안 글자가 TEXT_MUTED다 — 패턴은 채움 위에 덮이므로 배경이 tone이고 대비가 깨진다. TEXT를 써라`,
+          id: `${name}::pattern-text`,
+        });
+      }
+      i = src.indexOf('<pattern', end < 0 ? src.length : end + 1);
+    }
+  }
+  return issues;
+}
+
+const checkTextMutedSnapshot = () => checkTextMutedSnapshotWith(TEXT_MUTED_SNAPSHOT);
+
+function checkTextMutedSnapshotWith(snapshot) {
+  const issues = [];
+  for (const [name, expected] of Object.entries(snapshot)) {
+    const p = `${DIAGRAM_DIR}/${name}.tsx`;
+    if (!existsSync(p)) { issues.push({ check: 'C-19', detail: `${name}.tsx가 없다 — 스냅샷을 갱신하라`, id: `${name}::snapshot` }); continue; }
+    const n = (readFileSync(p, 'utf8').match(/className=\{TEXT_MUTED\}/g) ?? []).length;
+    if (n !== expected) {
+      issues.push({
+        check: 'C-19',
+        detail: `${name}의 TEXT_MUTED 사용처가 ${expected} → ${n}으로 달라졌다 — 채움 위에 놓이는지 확인하고 스냅샷을 갱신하라`,
+        id: `${name}::snapshot`,
+      });
+    }
+  }
+  return issues;
+}
+
+/**
+ * C-18 최소 폭 계약(Design D-8) — 식을 해석하지 않고 `svgBox()`를 썼는지만 본다.
+ * viewBox와 minWidth를 한 곳에서 만들면 둘이 어긋난 상태를 만들 수 없다.
+ */
+/**
+ * `<svg` 여는 태그의 본문만 뽑는다. JSX라 `{...}` 안에 `>`가 들어갈 수 있어
+ * 중괄호 깊이를 세며 태그 끝(`>`)을 찾는다.
+ */
+function svgOpenTags(src) {
+  const tags = [];
+  let i = src.indexOf('<svg');
+  while (i >= 0) {
+    let depth = 0;
+    let j = i + 4;
+    for (; j < src.length; j += 1) {
+      const ch = src[j];
+      if (ch === '{') depth += 1;
+      else if (ch === '}') depth -= 1;
+      else if (ch === '>' && depth === 0) break;
+    }
+    tags.push(src.slice(i, j));
+    i = src.indexOf('<svg', j);
+  }
+  return tags;
+}
+
+const checkSvgBoxContract = () => checkSvgBoxContractIn(DIAGRAM_DIR);
+
+function checkSvgBoxContractIn(dir) {
+  const issues = [];
+  const files = readdirSync(dir)
+    .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+    .filter((f) => readFileSync(`${dir}/${f}`, 'utf8').includes('<svg'));
+  for (const f of files) {
+    const name = f.replace(/\.tsx$/, '');
+    const src = readFileSync(`${dir}/${f}`, 'utf8');
+    const add = (detail, id) => issues.push({ check: 'C-18', detail: `${name}: ${detail}`, id: `${name}::${id}` });
+    if (!/\{\.\.\.svgBox\(/.test(src)) add('svgBox()를 쓰지 않는다 — viewBox와 minWidth가 어긋날 수 있다', 'svgBox');
+    // `<svg` 여는 태그 안만 본다. 마커 등 다른 요소의 viewBox는 정상이고, 그 값을 리터럴로
+    // 지우면(`viewBox="0 0 8 8"`) 마커 좌표가 바뀔 때 오탐하는 새 미러가 된다.
+    for (const tag of svgOpenTags(src)) {
+      if (/\bviewBox=/.test(tag)) { add('viewBox를 svgBox() 밖에서 또 넘긴다', 'viewBox'); break; }
+      if (/\bstyle=/.test(tag)) { add('style을 svgBox() 밖에서 또 넘긴다 — minWidth를 덮어쓴다', 'style'); break; }
+    }
+    if (/minWidth/.test(src)) add('minWidth를 손으로 쓴다 — svgBox()로 옮겨라', 'minWidth');
+    if (!/<DiagramFrame[^>]*\sscrollable/.test(src)) add('scrollable을 넘기지 않아 좁은 화면에서 프레임을 넘친다', 'scrollable');
+  }
+  if (files.length === 0) issues.push({ check: 'C-18', detail: 'SVG 컴포넌트를 찾지 못했다 — 경로가 바뀌었다', id: '::none' });
+  return issues;
 }
 
 /** 표기 차이를 흡수한다: 본문 `0.7[V]` ↔ 도해 `0.7V`, 열 제목에 단위가 있는 `841×1189`. */
@@ -798,6 +1122,117 @@ function selfTest(tones) {
   console.log(`   ${cleanRatio.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-16 음성 대조군 (본문에 있는 배수 주장)`);
   if (cleanRatio.length) { ok = false; console.log(`      ${JSON.stringify(cleanRatio)}`); }
   unlinkSync(tmp);
+
+  if (!selfTestRender()) ok = false;
+  return ok;
+}
+
+/**
+ * C-18·C-19 자체검사.
+ *
+ * 음성 12쌍이 이 설계의 핵심이다 — **정적 계산이 브라우저와 갈리는 것**이 최대 위험이고,
+ * 12쌍은 G-9에서 브라우저로 실제 측정한 값이다(measure-contrast.mjs 출력).
+ * 계산식을 손대면 본 검사보다 자체검사가 먼저 깨진다.
+ * 통과분만 넣지 않았다 — 미달 3건(3.36·3.97·4.01)도 넣어 **판정 경계**를 고정한다.
+ */
+const CONTRAST_GROUND_TRUTH = [
+  ['slate-100', 'teal-950', 13.23], ['slate-800', 'teal-50', 14.01],
+  ['slate-800', 'indigo-50', 13.07], ['slate-100', 'indigo-950', 14.63],
+  ['slate-800', 'brand-300', 8.11], ['slate-100', 'brand-900', 9.45],
+  ['slate-600', 'violet-100', 6.39], ['slate-100', 'slate-800', 13.34],
+  ['slate-800', 'rose-100', 12.17],
+  // 미달 3건 — 경계가 뒤집히지 않는지 본다
+  ['slate-800', 'brand-500', 3.97], ['slate-100', 'brand-500', 3.36],
+  ['slate-500', 'violet-100', 4.01],
+];
+
+function selfTestRender() {
+  let ok = true;
+  const pal = readPalette();
+  console.log('★ C-19 음성 대조군 (G-9 브라우저 실측 재현)');
+  let worst = 0;
+  for (const [fg, bg, expected] of CONTRAST_GROUND_TRUTH) {
+    const f = resolveColor(fg, pal);
+    const b = resolveColor(bg, pal);
+    if (!f || !b) { console.log(`   ❌ 해석 실패  ${fg} on ${bg}`); ok = false; continue; }
+    // 실측은 흰 프레임 위에서 합성한 값이다(다크는 slate-900). 불투명 색이라 프레임 영향이 없다.
+    const got = contrastRatio(compositeOver(f, b.rgb), b.rgb);
+    worst = Math.max(worst, Math.abs(got - expected));
+  }
+  const pass = worst <= 0.1;
+  console.log(`   ${pass ? '✅ 통과' : '❌ 불일치'}  12쌍 최대 오차 ${worst.toFixed(3)} (허용 0.1)`);
+  if (!pass) ok = false;
+
+  console.log('★ C-18·C-19 양성 대조군 (의도적 오류 주입)');
+  const tk = readColorTokens();
+  const inject = (mut, expect, name) => {
+    const found = checkContrast(mut, pal).some((i) => i.check === expect);
+    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  ${name}`);
+    if (!found) ok = false;
+  };
+  // ① TONE에 회색을 넣으면 다크에서 TEXT와 미달이 된다
+  inject({ ...tk, TONE: { ...tk.TONE, __probe: 'fill-slate-400 dark:fill-slate-400' } }, 'C-19', 'C-19 tone 대비 미달');
+  // ② TEXT_MUTED를 프레임 배경에 가깝게 하면 ④ 조합이 미달이 된다.
+  //    ★옛 대조군은 "slate-500으로 되돌림"이었는데, 조합 집합에서 ③(NODE_KIND × TEXT_MUTED)을
+  //    빼자 **무효해졌다** — slate-500은 흰 프레임에서 4.76으로 통과한다. 자체검사가 그것을 잡았다.
+  //    검사 범위를 줄이면 대조군도 함께 다시 봐야 한다.
+  inject({ ...tk, TEXT_MUTED: 'fill-slate-200 dark:fill-slate-800' }, 'C-19', 'C-19 TEXT_MUTED가 프레임에 묻힘');
+  // ③ 색을 해석할 수 없으면 조용히 통과하지 않는다
+  inject({ ...tk, TONE: { ...tk.TONE, __probe: 'fill-nosuch-999' } }, 'C-19', 'C-19 해석 실패를 통과로 처리하지 않는다');
+
+  // ④⑤ C-18 — 실제 파일을 건드리지 않고 판정 함수의 조건을 확인한다
+  const srcOf = (name) => readFileSync(`${DIAGRAM_DIR}/${name}.tsx`, 'utf8');
+  // ★대조군은 **어느 조건이 발동했는지**까지 확인한다(`cond`).
+  // 조건만 보지 않고 `check === 'C-18'`만 봤을 때: 프로브 ④는 `{...svgBox(` → `viewBox={(`로
+  // 치환하므로 'svgBox' 조건과 'viewBox' 조건이 **동시에** 발동한다. 'svgBox 누락' 조건이 죽어
+  // 있어도 통과했다 — 대조군이 엉뚱한 이유로 통과하는 것은 대조군이 없는 것과 크게 다르지 않다.
+  const probes = [
+    ['C-18 svgBox 누락', 'svgBox', srcOf('LayerStack').replace(/\{\.\.\.svgBox\(/g, 'const _x = (')],
+    ['C-18 scrollable 누락', 'scrollable', srcOf('LayerStack').replace(/ scrollable>/g, '>')],
+    ['C-18 minWidth 수동 작성', 'minWidth', `${srcOf('LayerStack')}\nconst x = { minWidth: 1 };\n`],
+    // svgBox의 style을 뒤에서 덮어쓰는 경우. JSX는 뒤에 오는 명시 속성이 이긴다(Design §7).
+    ['C-18 style 중복 전달', 'style', srcOf('LayerStack').replace(/className="h-auto w-full"/, 'className="h-auto w-full" style={{ maxWidth: 9 }}')],
+    // viewBox를 svgBox 밖에서 또 주는 경우. 마커의 viewBox는 정상이므로 오탐하지 않아야 한다.
+    ['C-18 viewBox 중복 전달', 'viewBox', srcOf('LayerStack').replace(/className="h-auto w-full"/, 'viewBox="0 0 1 1" className="h-auto w-full"')],
+  ];
+  const probeDir = `${DIAGRAM_DIR}/__selftest__`;
+  for (const [name, cond, mutated] of probes) {
+    mkdirSync(probeDir, { recursive: true });
+    const p = `${probeDir}/Probe.tsx`;
+    writeFileSync(p, mutated);
+    const found = checkSvgBoxContractIn(probeDir).some((i) => i.check === 'C-18' && i.id.endsWith(`::${cond}`));
+    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  ${name}`);
+    if (!found) ok = false;
+    unlinkSync(p);
+    rmSync(probeDir, { recursive: true, force: true });
+  }
+
+  // ⑨ <pattern> 안 글자가 TEXT_MUTED면 잡는다 (H-1 재발 방지)
+  {
+    mkdirSync(probeDir, { recursive: true });
+    const p = `${probeDir}/Probe.tsx`;
+    writeFileSync(p, '<pattern id="x"><text className={TEXT_MUTED}>+</text></pattern>');
+    const found = checkPatternTextClassIn(probeDir).some((i) => i.id.endsWith('::pattern-text'));
+    console.log(`   ${found ? '✅ 검출' : '❌ 놓침'}  C-19 <pattern> 안 글자가 TEXT_MUTED`);
+    if (!found) ok = false;
+    unlinkSync(p);
+    rmSync(probeDir, { recursive: true, force: true });
+  }
+  const patClean = checkPatternTextClass();
+  console.log(`   ${patClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-19 <pattern> 음성 대조군`);
+  if (patClean.length) { ok = false; console.log(`      ${JSON.stringify(patClean)}`); }
+
+  // ⑥ 스냅샷 — 기대치를 1 올리면 불일치를 낸다
+  const snapProbe = Object.fromEntries(Object.entries(TEXT_MUTED_SNAPSHOT).map(([k, v], i) => [k, i === 0 ? v + 1 : v]));
+  const snapFound = checkTextMutedSnapshotWith(snapProbe).some((i) => i.check === 'C-19');
+  console.log(`   ${snapFound ? '✅ 검출' : '❌ 놓침'}  C-19 TEXT_MUTED 사용처 스냅샷 불일치`);
+  if (!snapFound) ok = false;
+
+  // 음성 — 현재 구현이 스냅샷과 맞는가
+  const snapClean = checkTextMutedSnapshot();
+  console.log(`   ${snapClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-19 스냅샷 음성 대조군`);
+  if (snapClean.length) { ok = false; console.log(`      ${JSON.stringify(snapClean)}`); }
+
   return ok;
 }
 
@@ -808,9 +1243,39 @@ const waveArg = (argv.find((a) => a.startsWith('--wave')) ?? '').split('=')[1]
 const planArg = (argv.find((a) => a.startsWith('--plan')) ?? '').split('=')[1]
   ?? (argv.includes('--plan') ? argv[argv.indexOf('--plan') + 1] : null);
 
+// `--all` — 4웨이브를 각자의 배치표와 함께 돌린다.
+//
+// 이 옵션이 있는 이유는 편의가 아니다. 아카이브 작업 중 `--plan`을 빼고 돌려 **W4가 전수 판정으로
+// 오판**된 일이 있었다(선별 웨이브인데 "주 도해 없음" 74건이 쏟아졌다). 인자를 손으로 넘기는
+// 구조 자체가 그 오판의 원인이었다. 경로는 웨이브 키에서 유도해 네 개를 따로 적지 않는다.
+// 주의: 이 분기는 자체검사보다 **앞**에 있어 부모 프로세스는 자체검사를 돌지 않는다.
+// 지금은 무해하다 — 판정은 전부 자식이 하고 자식마다 자체검사를 통과해야 진행한다(status 2면 즉시 중단).
+// 앞으로 `--all`이 부모에서 무언가를 판정하게 되면 **그 판정은 무게이트가 된다**. 그때는 이 분기를
+// selfTest 뒤로 옮겨야 한다.
+if (argv.includes('--all')) {
+  const { spawnSync } = await import('node:child_process');
+  const waves = Object.keys(WAVES);
+  let failed = 0;
+  for (const w of waves) {
+    const plan = `docs/02-design/features/diagram-expansion.${w}-plan.json`;
+    if (!existsSync(plan)) {
+      console.error(`❌ ${w}: 배치표가 없다 (${plan}) — 경로 규약이 바뀌었다.`);
+      process.exit(2);
+    }
+    const r = spawnSync(process.execPath, [process.argv[1], `--wave=${w}`, `--plan=${plan}`], { stdio: 'inherit' });
+    if (r.status === 2) process.exit(2); // 자체검사 실패는 즉시 중단
+    if (r.status !== 0) failed += 1;
+    console.log('');
+  }
+  console.log(failed === 0 ? `✅ 전 웨이브 통과 (${waves.join('·')})` : `❌ ${failed}/${waves.length} 웨이브 실패`);
+  process.exit(failed === 0 ? 0 : 1);
+}
+
 const tones = readTones();
 const PROP_FIELDS = readPropFields();
-console.log(`tokens.ts Tone ${tones.length}종 로드\n`);
+const PALETTE = readPalette();
+const COLOR_TOKENS = readColorTokens();
+console.log(`tokens.ts Tone ${tones.length}종 로드 · 팔레트 ${Object.keys(PALETTE.pal).length}계열 + brand ${Object.keys(PALETTE.brand).length}단계\n`);
 
 if (!selfTest(tones)) {
   console.error('\n❌ 자기 검사 실패 — 스크립트가 오류를 놓친다. 본 검사를 실행하지 않는다.');
@@ -923,7 +1388,19 @@ for (const src of sources) {
 const { issues: mirrorIssues, pairs: mirrorPairs } = checkMirrors(modShape);
 allIssues.push(...mirrorIssues);
 
+// C-18 최소 폭 계약 · C-19 대비 — 모듈이 아니라 **컴포넌트·토큰** 단위라 루프 밖에서 한 번만 한다.
+// 예외 키는 가짜 자료원 접두어를 쓴다(Design D-11): `_component/LayerStack::C-18::scrollable`
+const renderIssues = [...checkSvgBoxContract(), ...checkContrast(COLOR_TOKENS, PALETTE), ...checkPatternTextClass(), ...checkTextMutedSnapshot()];
+let renderReviewed = 0;
+for (const i of renderIssues) {
+  const ns = i.check === 'C-18' ? '_component' : '_token';
+  if (ALLOW[`${ns}/${i.id.split('::')[0]}::${i.check}::${i.id.split('::')[1] ?? ''}`]) { renderReviewed += 1; continue; }
+  allIssues.push({ mod: i.id.split('::')[0], ...i });
+}
+if (renderReviewed) c7Reviewed += renderReviewed;
+
 console.log(`\n총 인스턴스 ${total} · idPrefix ${prefixSeen.size}개(중복 0 기대)`);
+console.log(`렌더 계약: C-18 SVG ${Object.keys(TEXT_MUTED_SNAPSHOT).length}종 · C-19 조합 ${contrastCombos(COLOR_TOKENS).length}건 대조`);
 if (mirrorPairs) console.log(`미러 쌍 ${mirrorPairs}개 대조 (C-10)`);
 if (c7Reviewed) console.log(`검토 완료 예외 ${c7Reviewed}건 (근거: ${ALLOW_PATH})`);
 

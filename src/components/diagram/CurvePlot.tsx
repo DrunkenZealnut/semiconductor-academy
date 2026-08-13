@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, STROKE, TEXT, TEXT_MUTED } from './tokens';
+import { DIM, STROKE, TEXT, TEXT_MUTED, svgBox } from './tokens';
 import type { DiagramCommon } from './types';
 
 interface Axis {
@@ -47,9 +47,8 @@ export function CurvePlot({ axes, curves, markers = [], caption, note, altTable 
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`0 0 ${width} ${height}`}
+        {...svgBox(`0 0 ${width} ${height}`)}
         className="mx-auto h-auto w-full"
-        style={{ minWidth: width }}
         role="img"
         aria-label={caption ?? `${axes.x.label} 대 ${axes.y.label} 특성`}
       >

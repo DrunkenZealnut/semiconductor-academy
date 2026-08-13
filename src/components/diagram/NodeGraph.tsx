@@ -1,5 +1,5 @@
 import { DiagramFrame } from './DiagramFrame';
-import { DIM, STROKE, TEXT, TEXT_MUTED, splitLabel, NODE_KIND, type NodeKind } from './tokens';
+import { DIM, STROKE, TEXT, TEXT_MUTED, splitLabel, NODE_KIND, type NodeKind, svgBox } from './tokens';
 import type { SvgDiagramCommon } from './types';
 
 interface Node {
@@ -75,9 +75,8 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
-        viewBox={`0 0 ${DIM.width} ${totalH}`}
+        {...svgBox(`0 0 ${DIM.width} ${totalH}`)}
         className="h-auto w-full"
-        style={{ minWidth: DIM.width }}
         role="img"
         aria-label={caption ?? '연결 구조도'}
       >
@@ -152,11 +151,15 @@ export function NodeGraph({ idPrefix, nodes, edges, grid, caption, note, altTabl
                 strokeWidth={DIM.stroke}
               />
               {badge && (
+                // TEXT_MUTED가 아니라 TEXT를 쓴다. 이유 둘: ⓐ9px 글자를 흐리게까지 하면 두 겹으로
+                // 읽기 어렵다 ⓑ다크에서 TEXT_MUTED는 io 노드(brand-500/20) 위에서 3.84로 AA 미달이고
+                // kind는 저작자가 정하므로 언제든 그 조합이 생긴다(C-19가 검출한 건).
+                // 이 변경으로 **노드 안의 글자는 TEXT뿐**이 되어 C-19의 조합 집합이 닫힌다.
                 <text
                   x={x - nodeW / 2 + 6}
                   y={y - NODE_H / 2 + 12}
                   fontSize={9}
-                  className={TEXT_MUTED}
+                  className={TEXT}
                 >
                   {badge}
                 </text>

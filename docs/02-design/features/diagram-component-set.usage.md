@@ -318,14 +318,22 @@
 
 `min-w-[18~20rem]`(288~320px)를 붙여 둔 3종도 소용없었다. **가용 폭 343px보다 작아서 최소 폭이 아예 발동하지 않았다.**
 
-**계약**: SVG 6종은 `style={{ minWidth: <viewBox 폭> }}`로 축소를 막고, `DiagramFrame scrollable`이 좁은 화면에서 프레임 안 가로 스크롤을 받는다. 폭은 Tailwind 클래스로 미러하지 않는다 — `min-w-[640px]`라고 적으면 `DIM.width`와 손으로 맞춰야 하는 **세 번째 수동 미러**가 생긴다.
+**계약 (2026-08-13 `diagram-render-gate`에서 기계화)**: SVG를 그리는 컴포넌트는 `tokens.ts`의 **`svgBox()`** 를 `<svg>`에 스프레드한다. 손으로 `viewBox`·`minWidth`를 따로 주지 않는다.
 
-| 컴포넌트 | 최소 폭 |
+```tsx
+<svg {...svgBox(`0 0 ${DIM.width} ${totalH}`)} className="h-auto w-full" role="img" …>
+```
+
+`svgBox()`가 폭을 **한 인자에서** 뽑아 `viewBox`와 `minWidth`를 함께 만들므로 **둘이 어긋난 상태를 만들 수 없다.** 폭은 Tailwind 클래스로 미러하지 않는다 — `min-w-[640px]`라고 적으면 `DIM.width`와 손으로 맞춰야 하는 **세 번째 수동 미러**가 생긴다. 유한·양수가 아닌 폭은 `DIM.width`로 떨어진다(음수·`Infinity`가 `minWidth`로 가면 CSS가 그 선언을 버려 **축소 방지가 조용히 사라진다**).
+
+| 컴포넌트 | `svgBox()`에 넘기는 폭 |
 |---|---|
 | `LayerStack`·`NodeGraph`·`ScaleRuler` | `DIM.width` (640) |
 | `CurvePlot` | 자체 계산 `width` (508) |
 | `LabeledFigure` | `viewBox` prop에서 읽은 폭 |
-| `LatticeDiagram` | 잘라낸 viewBox 폭 (350, 아래 참고) |
+| `LatticeDiagram` | 잘라낸 viewBox 폭 (350, `{ fixed: true }` — 아래 참고) |
+
+**검사**: `C-18` — 다섯 조건(`svgBox()` 사용 · `<svg`에 `viewBox` 중복 금지 · `<svg`에 `style` 중복 금지 · `minWidth` 수동 작성 금지 · `scrollable` 전달)을 `npm run verify:diagram`이 본다. 식을 해석하지 않고 **문자열 존재/부재**만 보므로 오탐 여지가 낮다.
 
 **부수 발견 둘.**
 
@@ -335,6 +343,34 @@
 **tone 대비도 여기서 갈렸다.** `accent`는 `fill-brand-500` 하나로 라이트·다크가 같아 `TEXT`와의 대비가 **3.97 / 3.36**이었다(AA 4.5 미달). 나머지 12개 tone이 쓰는 **'라이트=틴트 / 다크=셰이드'** 패턴으로 맞춰 `brand-300 dark:brand-900`으로 고쳤다(8.11 / 9.45). `brand-100`으로 낮추는 안은 `band-valence`(indigo-50)와 구분이 안 돼 **note가 약속한 "강조색으로 구분했다"가 거짓이 되므로** 탈락시켰다. `TEXT_MUTED`도 흰 배경에서는 4.76이지만 칠해진 노드(violet-100) 위에서 4.01로 떨어져 `slate-600`으로 올렸다.
 
 > **새 tone을 추가할 때**: 흰 배경이 아니라 **`TEXT`·`TEXT_MUTED`가 그 tone 위에 올라간 조합**으로 대비를 재라. tone의 유효성(C-3)과 대비는 다른 문제다.
+>
+> **2026-08-13부터 기계가 잰다** — `C-19`가 `TONE` 13종 × `TEXT`, `NODE_KIND` 3종 × `TEXT`, 프레임 배경 × `TEXT`·`TEXT_MUTED`를 라이트·다크 양쪽에서 검사한다(36조합). 색은 `tokens.ts` → `node_modules/tailwindcss/theme.css`(oklch 288색) → `src/styles/globals.css`(brand hex)를 **읽어서** 계산한다. 값을 스크립트에 옮겨 적지 않는다.
+
+### 3.2 채움 위에 놓이는 글자는 `TEXT`만 쓴다 (2026-08-13 계약)
+
+`C-19`가 `TONE × TEXT_MUTED`와 `NODE_KIND × TEXT_MUTED`를 **검사하지 않는** 이유는 그 조합이 구조상 생기지 않기 때문이다 — `TEXT_MUTED`는 전부 프레임 배경 위에 있다.
+
+| 컴포넌트 | `TEXT_MUTED` 위치 |
+|---|---|
+| `LayerStack` 2곳 | 밴드 에너지 축 `E`(`x = DIM.pad + 14`) · 층 오른쪽 주석 열(`x = x2 + 6`) — 둘 다 층 **밖** |
+| `CurvePlot` 4곳 | 눈금·곡선 라벨·표시 지점 — 채움이 없는 영역 |
+| `NodeGraph` 1곳 | 간선 라벨 — 노드 **사이** |
+| ~~`<pattern>` 마크 글리프~~ | **2026-08-13 `TEXT`로 옮김** — 패턴은 층 채움 위에 덮이므로 배경이 tone이었다. `TEXT_MUTED`로는 `silicon-p-heavy` 라이트 3.94·다크 3.01, `silicon-n-heavy` 다크 2.86으로 AA 미달이었고 8건 5모듈에서 실제 렌더 중이었다. 이 글리프는 색각 이상 대비 장치라 읽히지 않으면 장치가 무력해진다 |
+| `ScaleRuler` 2곳 | 눈금 |
+| `LatticeDiagram` 1곳 | 격자 **아래** 설명문 |
+| `LabeledFigure` 1곳 | 저작자가 좌표를 준다 → 정적으로 판정 불가, 브라우저 몫 |
+
+**그래서 채움(도형) 안에 글자를 넣을 때는 `TEXT`를 쓴다.** `NodeGraph`의 badge가 이 규약으로 옮겨졌다 — 옛 구현은 `TEXT_MUTED` 9px였는데 다크에서 `io` 노드(brand-500/20) 위 3.84로 AA 미달이었고, 9px 글자를 흐리게까지 하면 두 겹으로 읽기 어려웠다.
+
+이 전제가 깨지는지는 두 장치가 지킨다 — **`TEXT_MUTED` 사용처 수 스냅샷**(위 표의 합 **11**)과 **`<pattern>` 안 글자가 `TEXT_MUTED`인지 보는 규칙**이다. 후자는 **개수만 보는 스냅샷이 놓친 실제 사고**(위 표의 취소선 행)를 겪고 나서 붙였다 — 글리프가 `TEXT_MUTED`였는데 개수는 3 그대로여서 스냅샷이 침묵했다.
+
+**한계: 같은 개수로 위치만 옮기면 못 잡는다.** `<pattern>` 밖의 새 위치라면 여전히 사람이 봐야 한다.
+
+### 3.3 `metal`은 다크에서 `zinc-600`이다 (2026-08-13 정정)
+
+`dark:fill-zinc-500`은 `TEXT`와 **4.40**으로 AA(4.5)에 못 미쳤다(사용 36건). `zinc-600`은 7.05이고, 휘도 0.086으로 다른 다크 tone(`rose-950` 0.017 · `violet-900` 0.045 · `slate-700` 0.052)보다 **여전히 밝아** '가장 밝은 층 = 금속'이라는 시각 성격이 유지된다. `zinc-700`(9.54)은 휘도 0.050으로 `slate-700`과 구분이 안 돼 기판과 섞인다.
+
+`metal`은 tone 13종에서 **유일하게 다크가 라이트보다 밝다.** 금속 광택을 표현하려는 의도이고, 그 의도 자체는 유지했다.
 
 ---
 
