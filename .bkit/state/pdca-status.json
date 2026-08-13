@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-13T01:40:06.055Z",
+  "lastUpdated": "2026-08-13T04:45:23.999Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1090,9 +1090,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-09T08:38:56.085Z",
-        "lastUpdated": "2026-08-13T01:40:06.055Z"
+        "lastUpdated": "2026-08-13T04:45:23.999Z"
       },
-      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LatticeDiagram.tsx"
+      "lastFile": "/Users/zealnutkim/DEV/SemiconductorAcademy/src/components/diagram/LabeledFigure.tsx"
     },
     "diagram-component-set — Match Rate 78.1%": {
       "phase": "act",
@@ -1168,7 +1168,7 @@
         "W3": "수험서 + OSHA — cert-equip-maintenance·osha-scs / 23모듈 5,632줄. 구조 이질(osha는 영문·LayeredExplain 0·목록 60/모듈)로 뒤로 배치. W3 종료 = 시각자료 0 전량 소진(129)",
         "W4": "도판 보유 선별 보완 — ncs-semi 84 + 책 17 / 101모듈 26,014줄. 도판이 못 하는 것만(개념 대조·자릿수 차·논리 구조). 전수 적용 아님, W3 종료 시 재판단"
       },
-      "pendingDecisions": "81.8% < 90% 게이트 미통과. ⓐG-9 육안 확인 먼저(권고 — 미룰수록 회수 대상이 W1 109→W2 255→W3 약 300으로 늘어난다) ⓑ/pdca iterate로 G-4·G-7 스크립트 확장 먼저. W3(cert-equip 13 + osha 10)의 D-4는 여전히 미결.",
+      "pendingDecisions": "없음 — 전건 종결. ⓐG-9 육안 확인 → 2026-08-13 종결(결함 3건 수정·전수 재검증) ⓑG-4·G-7 스크립트 확장 → Act①에서 C-1 주제·C-8 용어·C-9 참조 신설로 해소 ⓒW3 D-4 → W3 Check에서 확정(osha-scs는 en·ko 양쪽, idPrefix만 다르게 + C-10 미러 검사 신설) ⓓW4 D-1 → W4 Check에서 확정(101모듈 중 27 선별, G-14 중복 판정으로 3건 사후 탈락). ※ 이 필드의 옛 내용(\"81.8% < 90% 게이트 미통과\")은 W2 시점 기록이었다 — 웨이브별 검증 기록은 w1Result·w2CheckNote·w3Check·w4Check에 보존.",
       "lessonsApplied": "선행 3사이클 교훈 §4.3에 명문화 — ①자기 검증 스크립트 불신(양성 대조군 FR-8, 3사이클 미해결 백로그) ②DoD를 검증 매트릭스에 1:1(diagram-set-finishing에서 DoD 1항목이 매트릭스에 없어 97.3%가 미이행을 가림) ③규칙 문장 복제를 규칙 단위로 검색(M-3) ④배치표 미이행 전수 대조",
       "selfVerified": "★FR-8 양성 대조군을 Do에서 2회 실행 — G-7 스크립트에 타 모듈 값(436nm·1350)을 주입해 검출되는지 먼저 확인한 뒤 판정을 신뢰했다. 좁힌 스크립트도 주입을 계속 잡아냄을 재확인. 3사이클 미해결 백로그를 Design·Do 양쪽에서 이행.",
       "previousPhase": "do",
@@ -1183,7 +1183,7 @@
         "step2_batches": "done — W1 45/45(109) + W2 61/61(146) = 106모듈 · 255 인스턴스. 전수 커버리지 106/106",
         "step3_conditional": "done — ⚠조건부 6건 판정: 채택 1(dc-circuits CurvePlot 3파형 — 본문이 형상 서술) · 탈락 5(semicon-fundamentals 이동도 8.3배 · semicon-industry 시장규모 21.5배 · exposure-equipment 광원파장 2.26배 · thinfilm-equipment 누출률 · pneumatics-basics 보일샤를 형상 미서술) — 전부 T3 자릿수 차 2 미달. 추가 탈락 1: drafting-standards ScaleRuler(A0~A4가 4배 = 자릿수 차 0.6이고 크기 감각보다 1:√2 비율이 논지) → FlowSteps 접기 순서로 대체",
         "step4_docs": "done — usage.md 실적용 ② 신설 + §2.1 MDX 본문 규약 + §3 규약 3건 정정(scrollable 초판 오류·CompareCards 2~3열·Timeline 연도 조건·tone 13종) + §4.1 신설 + 대체 판정표 + ⚠조건부 수치 근거. _INDEX.md 백로그 갱신 + W1 파생 백로그 6건 신설",
-        "step5_gates": "done — G-1~G-8·G-10~G-12 통과 · G-9 육안 확인 미완(사람)"
+        "step5_gates": "done — G-1~G-8·G-10~G-14 통과. ★G-9 육안 확인도 2026-08-13 종결(더 이상 미완 아님) — 헤드리스 Chrome 계측으로 결함 3건 적발·수정 후 SVG 94페이지 x {375,1440} 전수 재검증."
       },
       "pilotVerdict": "G-1 typecheck 0·lint diagram 0 / G-2 SSG 393·First Load JS 102kB 무증가 / G-3 5모듈 15 도해 전량 렌더 / G-5 MDX 색 리터럴 0·pattern id 미정의 참조 0 / G-6 ★본문 무수정 실증 — 삭제 줄 0, 294 insertions only (Design §1.2 \"C-2 표 병치가 검증을 단순하게 만든다\" 주장이 수치로 증명) / G-7 모듈 간 값 이동 0건. 검증 항목 3건 판정 확정: ①band 모드가 007·008 밖에서 정상 동작(rx=0 3개·패턴 참조 0 — 패턴 억제가 새 맥락에서도 유효) ②idPrefix 2개(mosfet-moscap/mosfet-structure)가 충돌 없이 분리, 모든 url(#)이 정의된 id를 가리킴 ③T3 조건 통과 — ScaleRuler의 Å~μm이 10⁻¹⁰~10⁻⁶으로 자릿수 차 4 (기준 2 이상 충족)",
       "findings": [
@@ -1406,7 +1406,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-13T01:40:06.055Z"
+    "lastActivity": "2026-08-13T04:45:23.999Z"
   },
   "history": [
     {
@@ -4383,6 +4383,12 @@
     },
     {
       "timestamp": "2026-08-13T01:40:06.055Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-13T04:45:23.999Z",
       "feature": "diagram",
       "phase": "do",
       "action": "updated"

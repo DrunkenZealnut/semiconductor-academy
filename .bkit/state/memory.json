@@ -8,13 +8,13 @@
   "currentPdca": {
     "feature": "diagram-expansion",
     "phase": "archived",
-    "updatedAt": "2026-08-12",
+    "updatedAt": "2026-08-13",
     "lastArchived": "diagram-set-finishing",
     "planDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.plan.md",
     "designDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.design.md",
     "matchRate": 91.7,
     "analysisDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion-w4.analysis.md",
-    "note": "머지 완료 — #32(7ce01ee) → #31(2e87ef3). main에서 네 웨이브 349 인스턴스 전 항목 통과, 배치표 4건 일치, typecheck 0, SSG 393/393, 102kB. CodeRabbit 4라운드 9건 반영. 남은 것은 G-9 육안확인 349건·G-14 중복판정(둘 다 자동화 불가). 다음: /pdca report 갱신 → /pdca archive",
+    "note": "★완주·아카이브(2026-08-13). 머지 #32(7ce01ee) → #31(2e87ef3) 후 main에서 네 웨이브 349 인스턴스 전 항목 통과 · 배치표 4건 일치 · typecheck 0 · SSG 393/393 · 102kB. CodeRabbit 4라운드 9건 반영. ★G-9 육안 확인 종결 — 결함 3건(375px SVG 축소 109 인스턴스 · accent 대비 3.36/3.97 · LatticeDiagram 라벨 겹침)을 수정하고 SVG 94페이지 x {375,1440} 전수 재검증(가로 넘침 0 · 9px 미만 0 · AA 미달 0). G-14(중복 판정)는 자동화 불가로 확정 — 낱말 겹침으로는 주제 중복과 내용 중복을 가릴 수 없어 사람 판정으로 남긴다. 문서 10건을 docs/archive/2026-08/diagram-expansion/으로 이동하고 살아 있는 자산(plan JSON 4 · diagram-check-allow.json · usage.md)은 원위치 유지. 남은 조치: NodeGraph 간선 라벨 9px(판단 완료·미조치) · 렌더 계측의 상시 관문화 판단 · altTable 9/109.",
     "reportDoc": "docs/archive/2026-08/diagram-expansion/diagram-expansion.report.md",
     "archivedTo": "docs/archive/2026-08/diagram-expansion/",
     "archivedAt": "2026-08-13"

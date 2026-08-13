@@ -43,7 +43,10 @@ export function LabeledFigure({
   const autoDesc =
     desc || labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ') || caption || '도해';
   // viewBox는 저작자가 주므로 폭을 읽어 최소 폭으로 쓴다. 못 읽으면 기본 폭으로 둔다.
-  const vbWidth = Number(viewBox.trim().split(/\s+/)[2]) || DIM.width;
+  // 유한·양수만 받는다 — 음수나 Infinity가 그대로 minWidth로 가면 CSS가 그 선언을 버리고
+  // 축소 방지가 조용히 사라진다(이 컴포넌트가 막으려는 결함이 그대로 돌아온다).
+  const parsedVbWidth = Number(viewBox.trim().split(/\s+/)[2]);
+  const vbWidth = Number.isFinite(parsedVbWidth) && parsedVbWidth > 0 ? parsedVbWidth : DIM.width;
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
