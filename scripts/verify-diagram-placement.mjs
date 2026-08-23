@@ -51,6 +51,10 @@ const COMPONENTS = [
 const NEEDS_ID_PREFIX = ['LayerStack', 'NodeGraph'];
 
 const WAVES = {
+  // w0 = 기준선 사이클(diagram-component-set)이 도해를 넣은 자료원.
+  // 관문을 만든 뒤에도 **등록되지 않아 97모듈 140 인스턴스가 C-1~C-17 밖**이었다.
+  // 시간순으로 W1보다 앞이라 w0다. 배치표는 없다(Design D-2 · WAVES_WITHOUT_PLAN).
+  w0: ['first-semiconductor'],
   w1: ['hs-semicon-basics', 'hs-basic-tech-1', 'hs-photo-etch', 'hs-thinfilm-diffusion'],
   w2: ['hs-basic-tech-2', 'hs-equipment-maintenance', 'hs-assembly-inspection',
        'hs-semicon-infra', 'daegu-hs-process'],
@@ -472,6 +476,8 @@ function split(text) {
   const open = new RegExp(`^<(${COMPONENTS.join('|')})\\b`);
   const blocks = [];
   const unterminated = [];
+  /** 자식 영역 — 블록도 본문도 아니다(Design D-9). */
+  const childRegions = [];
   for (let i = 0; i < lines.length; i += 1) {
     if (!open.test(lines[i])) continue;
     // 종료는 **줄 끝의 `/>`** 다. `/>` 단독 줄만 인정하면 한 줄로 닫는 블록
@@ -485,12 +491,53 @@ function split(text) {
     // 순서가 중요하다: **새 블록 시작을 종료 검사보다 먼저** 본다.
     // 종료를 먼저 보면 다음 블록의 `<NodeGraph … />` 줄이 종료로 인정돼 break에
     // 도달하지 못한다 — 자기검사가 이 실수를 잡았다.
+    // 자식을 갖는 형태(`<LabeledFigure …>…</LabeledFigure>`)도 인식한다.
+    // 예전에는 여는 태그 다음 **첫 자식 `<rect … />`**에서 블록이 끝났고, C-17에도 안 걸렸다
+    // — `/>`를 찾긴 찾았고 자리가 틀렸을 뿐이다. 그러면 잘린 나머지가 **본문으로 새어**
+    // normBody에 `<path`·`className`·경로 좌표가 들어가고, C-2는 "본문에 있으면 통과"이므로
+    // 같은 파일의 다른 도해 수치가 SVG 좌표와 겹치면 **거짓 통과**한다(거짓 위반보다 나쁜 방향).
+    // Design D-9 — 자식 영역은 **제3의 범주**다: 블록도 아니고 본문도 아니다.
+    //   블록에 넣지 않는 이유: 인라인 SVG는 좌표 덩어리라 C-2가 모든 수를 쏟아낸다.
+    //   본문에서 빼는 이유: 위의 거짓 통과를 없앤다.
+    // ★여는 태그의 끝은 **중괄호 깊이 0의 `>`**다. 줄 끝 문자만 보면 안 된다 —
+    // `altTable={` 안의 `<table>` 줄이 `>`로 끝나 여는 태그 끝으로 오인된다(실측 9건).
+    // 문자열 안의 괄호도 세지 않는다.
     let j = i;
     let closed = false;
-    while (j < lines.length) {
-      if (j > i && open.test(lines[j])) break; // 다음 블록 시작 — 미종료로 처리
-      if (/\/>\s*$/.test(lines[j])) { closed = true; break; }
-      j += 1;
+    let childrenForm = false;
+    let depth = 0;
+    let quote = null;
+    scan: for (; j < lines.length; j += 1) {
+      if (j > i && depth === 0 && !quote && open.test(lines[j])) break; // 다음 블록 시작
+      const line = lines[j];
+      for (let c = 0; c < line.length; c += 1) {
+        const ch = line[c];
+        if (quote) { if (ch === quote && line[c - 1] !== '\\') quote = null; continue; }
+        if (ch === '\'' || ch === '"' || ch === '`') { quote = ch; continue; }
+        if (ch === '{') { depth += 1; continue; }
+        if (ch === '}') { depth -= 1; continue; }
+        if (ch === '>' && depth === 0) {
+          closed = true;
+          childrenForm = line[c - 1] !== '/';
+          break scan;
+        }
+      }
+      quote = null; // 줄을 넘는 문자열은 이 콘텐츠에 없다 — 넘기면 깊이 추적이 어긋난다
+    }
+    if (closed && childrenForm) {
+      const name = lines[i].match(open)[1];
+      const closeRe = new RegExp(`</${name}>`);
+      let k = j + 1;
+      while (k < lines.length && !closeRe.test(lines[k])) k += 1;
+      if (k >= lines.length) {
+        unterminated.push({ line: i + 1, start: i, end: lines.length - 1 });
+        continue;
+      }
+      // text = 여는 태그까지(내용 검사 대상) · start~end = 닫는 태그까지(인접 검사·본문 제외)
+      blocks.push({ start: i, end: k, text: lines.slice(i, j + 1).join('\n') });
+      childRegions.push({ start: j + 1, end: k });
+      i = k;
+      continue;
     }
     if (!closed) {
       // 미종료는 경고가 아니라 **위반**이다 — MDX 렌더가 깨지거나 본문이 삼켜진다.
@@ -506,8 +553,11 @@ function split(text) {
   const inBlock = new Set();
   for (const b of blocks) for (let k = b.start; k <= b.end; k += 1) inBlock.add(k);
   for (const u of unterminated) for (let k = u.start; k <= u.end; k += 1) inBlock.add(k);
+  // 자식 영역은 블록 span(start~end)에 이미 포함돼 지금은 중복이다. 그래도 남긴다 —
+  // 누가 end를 여는 태그로 되돌리면 이 줄이 유일한 방어가 된다(그 상태를 자체검사 G-4 ③이 잡는다).
+  for (const c of childRegions) for (let k = c.start; k <= c.end; k += 1) inBlock.add(k);
   const body = lines.filter((_, k) => !inBlock.has(k)).join('\n');
-  return { lines, blocks, body, unterminated, inBlock };
+  return { lines, blocks, body, unterminated, inBlock, childRegions };
 }
 
 /** 도해 블록에서 사람이 읽는 문자열만 뽑는다 — 레이아웃 파라미터는 콘텐츠가 아니다. */
@@ -516,6 +566,13 @@ function contentStrings(blockText) {
   for (const pat of [
     /height:\s*\d+/g, /emphasis=\{\[[^\]]*\]\}/g, /meters:\s*[\d.]+e-?\d+/g,
     /\bat:\s*\[\d+,\s*\d+\]/g, /value:\s*\d+/g, /idPrefix="[^"]*"/g,
+    // viewBox는 좌표계 치수다 — 콘텐츠 수치가 아니다(Design D-3′).
+    // 위 목록과 같은 성격이고, W1이 height·emphasis·at·value에서 세운 규약을 잇는다.
+    /viewBox="[^"]*"/g,
+    // refs는 **비교 기준점**이다 — "A4 짧은 변 210mm"·"신용카드 약 0.76mm"처럼 일상 사물에서
+    // 가져오는 것이 그 필드의 목적이라 원문에 없는 것이 정상이다(Design D-4′).
+    // marks(측정 대상)는 지우지 않는다 — 그쪽이 원문 근거를 요구하는 자리다.
+    /refs=\{\[[\s\S]*?\]\}/g,
   ]) s = s.replace(pat, '');
   return [...s.matchAll(/"([^"]*)"|'([^']*)'/g)].map((m) => m[1] ?? m[2]).join(' ');
 }
@@ -634,7 +691,9 @@ function enumeratedCounts(blk) {
     const leaves = (blk.match(/\{\s*label:/g) ?? []).length - br;
     if (leaves > 0) cands.add(leaves);
   }
-  for (const k of ['steps', 'columns', 'layers', 'events', 'marks', 'nodes']) {
+  // `rows`를 뺐던 것이 오탐을 만들었다 — CompareCards는 columns와 rows가 **둘 다 열거**이고
+  // caption이 어느 쪽이든 가리킬 수 있다(023-integrated-circuit "바꾼 네 가지"는 rows 4다).
+  for (const k of ['steps', 'columns', 'rows', 'layers', 'events', 'marks', 'nodes']) {
     const n = topLevelCount(blk, k);
     if (n) cands.add(n);
   }
@@ -685,16 +744,25 @@ function hasAnchor(toks, normBody) {
 
 function orphanLabels(blk, fields = 'label|title|name') {
   const out = [];
-  for (const m of blk.matchAll(new RegExp(String.raw`(?:${fields}):\s*'([^']*)'`, 'g'))) {
+  // `refs`는 **비교 기준점**이라 원문에 없는 것이 정상이다 — C-2와 같은 이유로 여기서도 뺀다
+  // (Design D-4′). C-2에서만 빼고 C-8에서 안 빼면 같은 값이 검사마다 다르게 판정된다:
+  // "머리카락 굵기 약 80μm"·"적혈구 약 8μm"·"신용카드 약 0.76mm"·"A4 짧은 변 210mm" 4건이 그랬다.
+  const scoped = blk.replace(/refs=\{\[[\s\S]*?\]\}/g, '');
+  for (const m of scoped.matchAll(new RegExp(String.raw`(?:${fields}):\s*'([^']*)'`, 'g'))) {
     // `§2 참조` 같은 상호참조는 내용 주장이 아니다 — 검사 대상에서 뺀다.
     if (/^§[\d.~·\s]+참조$/.test(m[1].trim())) continue;
     // 활용된 서술어는 본문과 글자가 맞을 수 없으므로 대조 대상에서 뺀다("쪼갠다"·"식힌다"·"재는 것").
     // 남는 것이 **명사 닻**이다. 명사 닻이 없는 라벨은 C-8이 판단할 근거가 없으므로 건너뛴다.
-    const toks = m[1].split(/[\s·,()\/→~\-–—:+]+/)
+    // `자`는 뺀다 — 청유형 어미이기도 하지만 이 주제에서 `자`로 끝나는 낱말은 거의 전부
+    // 명사다(전자·소자·원자·분자·입자·운반자). w0에서 062-beol "소자 (FEOL 결과)"가 정확히
+    // 이 필터 때문에 닻 '소자'를 잃고 오탐이 됐다 — 본문에 "소자들을 잇습니다"가 있는데도.
+    // `\n`도 가름 문자다 — 렌더러(tokens.ts `splitLabel`)가 줄바꿈으로 쪼개므로 검사기도 쪼갠다.
+    // 안 쪼개면 "프로그램\n메모리"가 한 낱말이 되어 본문의 '메모리'를 닻으로 못 쓴다(w0 036-dsp 2건).
+    const toks = m[1].split(/(?:\\n|[\s·,()\/→~\-–—:+])+/)
       .map((w) => w.replace(/[?!.①-⑳]+$/, '').replace(/^[①-⑳\s]+/, ''))
       .filter((w) => w.length >= 2 && !/^[\d.,%]+$/.test(w) && !C8_SKIP.has(w))
       .map((w) => (/[가-힣]/.test(w) ? stripParticle(w) : w))
-      .filter((w) => !/[가-힣]/.test(w) || !/(?:다|것|서|고|며|면|자|듯|채|김|짐|힘)$/.test(w));
+      .filter((w) => !/[가-힣]/.test(w) || !/(?:다|것|서|고|며|면|듯|채|김|짐|힘)$/.test(w));
     if (toks.length) out.push({ label: m[1], toks });
   }
   return out;
@@ -1043,6 +1111,28 @@ function selfTest(tones) {
   if (!planOk) return false;
 
   const cases = [
+    // ── Design D-9·D-3′·D-4′ 제외 3종이 **과하지 않은가**(G-4) ──
+    // 제외를 넣을 때마다 "제외 대상은 빠지고 **정상 대상은 계속 잡힌다**"를 함께 증명한다.
+    {
+      name: 'G-4 ① 자식 형태에서도 props의 창작 수치는 잡는다',
+      mdx: '본문에는 아무 수치도 없다.\n\n<LabeledFigure\n  caption="436nm 광원"\n  viewBox="0 0 640 210"\n>\n  <rect x={1} y={2} width={3} height={4} />\n</LabeledFigure>\n\n뒤 산문이다.\n',
+      expect: 'C-2',
+    },
+    {
+      name: 'G-4 ⑥ viewBox 밖의 같은 수치는 잡는다',
+      mdx: '본문에는 아무 수치도 없다.\n\n<LabeledFigure\n  caption="640 이라는 수"\n  viewBox="0 0 640 210"\n>\n  <rect x={1} y={2} width={3} height={4} />\n</LabeledFigure>\n\n뒤 산문이다.\n',
+      expect: 'C-2',
+    },
+    {
+      name: 'G-4 ④ refs 제외가 marks를 먹지 않는다',
+      mdx: '본문에는 아무 수치도 없다.\n\n<ScaleRuler\n  caption="크기"\n  marks={[{ label: \'999nm 짜리\', meters: 1e-6 }]}\n  refs={[{ label: \'A4 짧은 변 210mm\', meters: 0.21 }]}\n/>\n',
+      expect: 'C-2',
+    },
+    {
+      name: 'G-4 ⑦ LabeledFigure 밖의 색 리터럴은 잡는다',
+      mdx: '본문.\n\n<LayerStack\n  idPrefix="t"\n  layers={[{ id: "a", label: "a", tone: \'oxide\' }]}\n  note="fill-sky-100"\n/>\n',
+      expect: 'C-6',
+    },
     {
       name: 'C-2 타 모듈 값 이동',
       mdx: '본문에는 100 만 있다.\n\n<CompareCards\n  caption="x"\n  rows={[{ aspect: "a", values: ["436nm"] }]}\n/>\n',
@@ -1067,6 +1157,19 @@ function selfTest(tones) {
       name: 'C-7 수량 불일치',
       mdx: '본문.\n\n<FlowSteps\n  caption="여덟 단계로 진행"\n  steps={[{ id: \'a\' }, { id: \'b\' }]}\n/>\n',
       expect: 'C-7',
+    },
+    {
+      // `rows`를 후보 키에 넣은 것은 **완화**다 — 후보가 늘면 caption 수가 어느 하나와만
+      // 맞아도 통과한다. 어느 후보와도 안 맞으면 여전히 잡히는지 고정한다.
+      name: 'C-7 rows를 넣어도 어느 후보와도 안 맞으면 잡는다',
+      mdx: '본문.\n\n<CompareCards\n  caption="다섯 가지를 비교"\n  columns={[{ title: \'a\' }, { title: \'b\' }]}\n  rows={[{ aspect: \'p\', values: [1, 2] }, { aspect: \'q\', values: [1, 2] }, { aspect: \'r\', values: [1, 2] }, { aspect: \'s\', values: [1, 2] }]}\n/>\n',
+      expect: 'C-7',
+    },
+    {
+      // 음성 — `023-integrated-circuit`의 모양. caption이 columns(2)가 아니라 rows(4)를 가리킨다.
+      name: 'C-7 rows 음성 대조군 (caption이 rows를 가리킨다)',
+      mdx: '본문.\n\n<CompareCards\n  caption="네 가지를 비교"\n  columns={[{ title: \'a\' }, { title: \'b\' }]}\n  rows={[{ aspect: \'p\', values: [1, 2] }, { aspect: \'q\', values: [1, 2] }, { aspect: \'r\', values: [1, 2] }, { aspect: \'s\', values: [1, 2] }]}\n/>\n',
+      expectClean: true,
     },
     {
       name: 'C-7 영문 수량 불일치',
@@ -1114,6 +1217,25 @@ function selfTest(tones) {
       expect: 'C-8',
     },
     {
+      // `자` 끝 낱말을 닻으로 인정한 뒤(w0 062-beol) C-8이 무력해지지 않았음을 증명한다.
+      // 본문에 없는 `자` 끝 낱말은 여전히 잡혀야 한다.
+      name: 'C-8 `자` 끝 낱말도 본문에 없으면 잡는다',
+      mdx: "본문은 전자와 정공만 말한다.\n\n<FlowSteps\n  steps={[{ id: 'a', label: '광자' }]}\n/>\n",
+      expect: 'C-8',
+    },
+    {
+      // `\n`을 가름 문자로 인정한 뒤(w0 036-dsp) 쪼갠 조각이 **전부** 본문에 없으면 잡혀야 한다.
+      name: 'C-8 줄바꿈으로 쪼갠 조각이 모두 없으면 잡는다',
+      mdx: "본문은 연산기만 말한다.\n\n<NodeGraph\n  idPrefix=\"t\"\n  nodes={[{ id: 'a', label: '보조\\n캐시' }]}\n  edges={[]}\n/>\n",
+      expect: 'C-8',
+    },
+    {
+      // 음성 대조군 — 쪼갠 조각 하나가 본문에 있으면 통과해야 한다(036-dsp의 '메모리').
+      name: 'C-8 줄바꿈 음성 대조군 (조각 하나가 본문에 있음)',
+      mdx: "본문은 프로그램용·데이터용으로 분리된 메모리를 말한다.\n\n<NodeGraph\n  idPrefix=\"t\"\n  nodes={[{ id: 'a', label: '보조\\n메모리' }]}\n  edges={[]}\n/>\n",
+      expectClean: true,
+    },
+    {
       name: 'C-6 색 리터럴',
       mdx: '본문.\n\n<LayerStack\n  idPrefix="t"\n  note="fill-rose-100 을 직접 씀"\n/>\n',
       expect: 'C-6',
@@ -1136,6 +1258,14 @@ function selfTest(tones) {
   for (const c of cases) {
     writeFileSync(tmp, c.mdx);
     const { issues } = checkModule(tmp, tones);
+    // `expectClean`은 이 목록 안에 음성 대조군을 둘 수 있게 한다 — 검사를 **느슨하게** 바꿀 때
+    // 양성 대조군만 두면 "무엇을 여전히 잡는가"는 알아도 "무엇을 이제 통과시키는가"는 모른다.
+    if (c.expectClean) {
+      const pass = issues.length === 0;
+      console.log(`   ${pass ? '✅ 통과' : '❌ 거짓 경보'}  ${c.name}`);
+      if (!pass) { ok = false; console.log(`      ${JSON.stringify(issues)}`); }
+      continue;
+    }
     const caught = issues.some((i) => i.check === c.expect);
     console.log(`   ${caught ? '✅ 검출' : '❌ 놓침'}  ${c.name}`);
     if (!caught) ok = false;
@@ -1155,6 +1285,86 @@ function selfTest(tones) {
   console.log(`   ${cleanRatio.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-16 음성 대조군 (본문에 있는 배수 주장)`);
   if (cleanRatio.length) { ok = false; console.log(`      ${JSON.stringify(cleanRatio)}`); }
   unlinkSync(tmp);
+
+  // ── Design D-9·D-4′ 음성 대조군 (G-4) ──
+  // 제외한 영역이 **검출도 안 되고 본문 취급도 안 되는지**를 함께 본다.
+  const negatives = [
+    {
+      name: 'G-4 ② 자식 안 좌표·색 리터럴은 잡지 않는다',
+      // 색 리터럴을 함께 넣는다 — D-9는 자식을 C-2뿐 아니라 **C-6에서도** 뺀다(D-1의 구조적 이행).
+      // C-2만 보던 판정은 그 절반을 증명하지 못했다.
+      // 두 절반은 **서로 다른 장치**가 지킨다: C-2는 `childRegions`(본문에서 뺀다)가,
+      // C-6은 블록의 `text`가 여는 태그까지라는 정의가 지킨다(C-6은 blocks만 훑는다).
+      // 확인: `childRegions.push`를 지우면 이 대조군은 여전히 통과하고,
+      //       `text: lines.slice(i, j + 1)`을 `k + 1`로 바꾸면 실패한다.
+      mdx: '본문에는 아무 수치도 없다.\n\n<LabeledFigure\n  caption="도해"\n  viewBox="0 0 640 210"\n>\n  <path d="M 96 186 L 320 44" className="fill-rose-100" />\n  <rect x={488} y={158} width={112} height={10} />\n</LabeledFigure>\n\n뒤 산문이다.\n',
+      silent: ['C-2', 'C-6'],
+    },
+    {
+      // ★§0.2의 거짓 통과를 직접 겨눈다. 자식 안 문자열이 본문으로 새면
+      //   다른 도해의 라벨이 그것을 닻으로 삼아 C-8이 **거짓 통과**한다.
+      name: 'G-4 ③ 자식 안 문자열은 본문 취급되지 않는다',
+      mdx: '본문에는 아무 낱말도 없다.\n\n<LabeledFigure\n  caption="도해"\n  viewBox="0 0 640 210"\n>\n  <text>깊은전자우물</text>\n</LabeledFigure>\n\n<CompareCards\n  caption="대조"\n  columns={[{ label: \'깊은전자우물\' }]}\n  rows={[{ aspect: \'a\', values: [\'b\'] }]}\n/>\n',
+      expectIssue: 'C-8', // 자식이 본문이면 통과해 버린다 — 여기서는 **잡혀야** 한다
+    },
+    {
+      name: 'G-4 ⑤ refs의 기준점 수치·낱말은 잡지 않는다',
+      // D-4′는 `refs`를 C-2 **와 C-8** 양쪽에서 뺀다. C-2만 보면 절반이 증명되지 않는다 —
+      // 'A4 짧은 변 210mm'는 본문에 없으므로 C-8에서 안 뺐다면 여기서 잡혔을 것이다.
+      // `marks`의 라벨은 **본문에 있는 낱말**로 둔다. 아니면 C-8이 marks에서 터져
+      // refs 제외를 검증하는 이 대조군이 무엇 때문에 실패했는지 알 수 없다(실제로 겪었다).
+      mdx: '본문에는 아무 수치도 없다. 크기만 말한다.\n\n<ScaleRuler\n  caption="크기"\n  marks={[{ label: \'크기\', meters: 1e-6 }]}\n  refs={[{ label: \'A4 짧은 변 210mm\', meters: 0.21 }]}\n/>\n',
+      silent: ['C-2', 'C-8'],
+    },
+  ];
+  for (const n of negatives) {
+    writeFileSync(tmp, n.mdx);
+    const found = checkModule(tmp, tones).issues;
+    if (n.expectIssue) {
+      const hit = found.some((i) => i.check === n.expectIssue);
+      console.log(`   ${hit ? '✅ 검출' : '❌ 놓침'}  ${n.name}`);
+      if (!hit) ok = false;
+    } else {
+      // 제외가 여러 검사에 걸치면 **걸치는 검사를 다 적어야** 한다. C-2만 보던 판정이
+      // D-1(C-6)과 D-4′(C-8)의 절반씩을 증명하지 못한 채 통과하고 있었다.
+      const watch = n.silent ?? ['C-2'];
+      const noisy = found.filter((i) => watch.includes(i.check));
+      console.log(`   ${noisy.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  ${n.name}`);
+      if (noisy.length) { ok = false; console.log(`      ${JSON.stringify(noisy)}`); }
+    }
+    unlinkSync(tmp);
+  }
+
+  // ── D-10 · D-11 시작 단언 대조군 (G-5) ──
+  // 소스 트리에 임시 디렉터리를 만들지 않는다 — 프로브를 소스에 쓰던 실수를 되풀이하지 않는다.
+  {
+    const root = mkdtempSync(join(process.env.TMPDIR ?? '/tmp', 'dgm-registry-'));
+    try {
+      mkdirSync(join(root, 'sources', 'ghost'), { recursive: true });
+      writeFileSync(join(root, 'sources', 'ghost', 'a.mdx'),
+        '본문.\n\n<FlowSteps caption="x" steps={[{ label: \'a\' }]} />\n');
+      const missing = assertRegistryComplete({ root, waves: { w: [] }, hard: false });
+      console.log(`   ${missing.length ? '✅ 검출' : '❌ 놓침'}  D-10 미등록 자료원에 도해가 있으면 잡는다`);
+      if (!missing.length) ok = false;
+
+      // 음성 — 도해가 없는 미등록 디렉터리는 잡지 않는다(processes가 그 경우다)
+      mkdirSync(join(root, 'plainonly'), { recursive: true });
+      writeFileSync(join(root, 'plainonly', 'b.mdx'), '도해가 없는 산문뿐이다.\n');
+      const only = assertRegistryComplete({ root, waves: { w: ['ghost@' + join(root, 'sources', 'ghost')] }, hard: false });
+      console.log(`   ${only.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  D-10 도해 없는 디렉터리는 잡지 않는다`);
+      if (only.length) { ok = false; console.log(`      ${JSON.stringify(only)}`); }
+
+      writeFileSync(join(root, 'sources', 'ghost', 'c.mdx'),
+        '본문.\n\n<LayerStack idPrefix="dup-probe" layers={[{ id: "a", label: "a", tone: \'oxide\' }]} />\n');
+      writeFileSync(join(root, 'sources', 'ghost', 'd.mdx'),
+        '본문.\n\n<LayerStack idPrefix="dup-probe" layers={[{ id: "a", label: "a", tone: \'oxide\' }]} />\n');
+      const dup = assertGlobalIdPrefix({ root, hard: false });
+      console.log(`   ${dup.length ? '✅ 검출' : '❌ 놓침'}  D-11 idPrefix 전역 중복을 잡는다`);
+      if (!dup.length) ok = false;
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
 
   if (!selfTestRender()) ok = false;
   return ok;
@@ -1333,17 +1543,26 @@ const planArg = (argv.find((a) => a.startsWith('--plan')) ?? '').split('=')[1]
 // 지금은 무해하다 — 판정은 전부 자식이 하고 자식마다 자체검사를 통과해야 진행한다(status 2면 즉시 중단).
 // 앞으로 `--all`이 부모에서 무언가를 판정하게 되면 **그 판정은 무게이트가 된다**. 그때는 이 분기를
 // selfTest 뒤로 옮겨야 한다.
+/**
+ * 배치표가 없는 웨이브. **없다고 조용히 넘어가지 않고 여기 적어야** 통과한다.
+ * 목록에 없는 웨이브가 배치표를 잃으면 여전히 exit 2 — 그 가드가 W4 오판을 잡았다.
+ */
+const WAVES_WITHOUT_PLAN = new Set(['w0']);
+
 if (argv.includes('--all')) {
   const { spawnSync } = await import('node:child_process');
   const waves = Object.keys(WAVES);
   let failed = 0;
   for (const w of waves) {
     const plan = `docs/02-design/features/diagram-expansion.${w}-plan.json`;
-    if (!existsSync(plan)) {
+    const hasPlan = existsSync(plan);
+    if (!hasPlan && !WAVES_WITHOUT_PLAN.has(w)) {
       console.error(`❌ ${w}: 배치표가 없다 (${plan}) — 경로 규약이 바뀌었다.`);
       process.exit(2);
     }
-    const r = spawnSync(process.execPath, [process.argv[1], `--wave=${w}`, `--plan=${plan}`], { stdio: 'inherit' });
+    if (!hasPlan) console.log(`※ ${w}: 배치표 없이 돈다 — C-1은 '주 도해 있음'만 본다(WAVES_WITHOUT_PLAN).`);
+    const args = hasPlan ? [`--wave=${w}`, `--plan=${plan}`] : [`--wave=${w}`];
+    const r = spawnSync(process.execPath, [process.argv[1], ...args], { stdio: 'inherit' });
     if (r.status === 2) process.exit(2); // 자체검사 실패는 즉시 중단
     if (r.status !== 0) failed += 1;
     console.log('');
@@ -1352,11 +1571,83 @@ if (argv.includes('--all')) {
   process.exit(failed === 0 ? 0 : 1);
 }
 
+/**
+ * D-10 — 도해를 가진 디렉터리가 `WAVES`에 없으면 **exit 2**.
+ *
+ * 경고가 아닌 이유: 이것은 콘텐츠 위반이 아니라 **검사기가 자기 범위를 주장할 수 없는 상태**다.
+ * 팔레트를 못 읽을 때와 같은 성격이고, "색을 못 읽는 것은 '통과'가 아니다"의 연장이다.
+ * 이 사이클이 존재하는 이유가 first-semiconductor 97모듈이 **조용히 빠져 있던 것**이다.
+ */
+function assertRegistryComplete({ root = 'src/content', waves = WAVES, hard = true } = {}) {
+  const registered = new Set();
+  for (const src of Object.values(waves).flat()) {
+    const [, path] = src.includes('@') ? src.split('@') : [src, join(SRC, src)];
+    registered.add(path);
+  }
+  const anyDiagram = new RegExp(`<(${COMPONENTS.join('|')})[\\s/>]`);
+  const dirs = [];
+  const walk = (dir) => {
+    const entries = readdirSync(dir, { withFileTypes: true });
+    if (entries.some((e) => e.isFile() && e.name.endsWith('.mdx'))) dirs.push(dir);
+    for (const e of entries) if (e.isDirectory()) walk(join(dir, e.name));
+  };
+  walk(root);
+  const missing = [];
+  for (const dir of dirs) {
+    if (registered.has(dir)) continue;
+    const n = readdirSync(dir)
+      .filter((f) => f.endsWith('.mdx'))
+      .filter((f) => anyDiagram.test(readFileSync(join(dir, f), 'utf8'))).length;
+    if (n) missing.push(`${dir} (도해 보유 ${n}모듈)`);
+  }
+  if (missing.length && hard) {
+    console.error('❌ WAVES에 없는 자료원에 도해가 있다 — 검사기가 범위를 주장할 수 없다.');
+    for (const m of missing) console.error(`   ${m}`);
+    console.error('   WAVES에 등록하라. 등록을 잊는 것이 이 검사가 막으려는 실패다.');
+    process.exit(2);
+  }
+  return missing;
+}
+
+/**
+ * D-11 — `idPrefix` 전역 유일성.
+ *
+ * `--all`은 웨이브마다 자식 프로세스라 `prefixSeen`이 프로세스 안에서만 산다 —
+ * **웨이브를 가로지르는 중복을 C-5가 못 본다.** 부모에서 자식 결과를 모으는 배관 대신
+ * 전 콘텐츠를 한 번 훑어 확인한다.
+ */
+function assertGlobalIdPrefix({ root = 'src/content', hard = true } = {}) {
+  const seen = new Map();
+  const dup = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      if (e.isDirectory()) { walk(p); continue; }
+      if (!e.name.endsWith('.mdx')) continue;
+      for (const m of readFileSync(p, 'utf8').matchAll(/idPrefix="([^"]+)"/g)) {
+        if (seen.has(m[1])) dup.push(`${m[1]} — ${seen.get(m[1])} ↔ ${p}`);
+        else seen.set(m[1], p);
+      }
+    }
+  };
+  walk(root);
+  if (dup.length && hard) {
+    console.error('❌ idPrefix가 전역에서 중복이다 — 한 페이지에 함께 오면 pattern·marker 참조가 깨진다.');
+    for (const d of dup) console.error(`   ${d}`);
+    process.exit(2);
+  }
+  return hard ? seen.size : dup;
+}
+
 const tones = readTones();
 const PROP_FIELDS = readPropFields();
 const PALETTE = readPalette();
 const COLOR_TOKENS = readColorTokens();
 console.log(`tokens.ts Tone ${tones.length}종 로드 · 팔레트 ${Object.keys(PALETTE.pal).length}계열 + brand ${Object.keys(PALETTE.brand).length}단계\n`);
+
+assertRegistryComplete();
+const globalPrefixes = assertGlobalIdPrefix();
+console.log(`자료원 등록 완전 · idPrefix 전역 ${globalPrefixes}개 유일\n`);
 
 if (!selfTest(tones)) {
   console.error('\n❌ 자기 검사 실패 — 스크립트가 오류를 놓친다. 본 검사를 실행하지 않는다.');
