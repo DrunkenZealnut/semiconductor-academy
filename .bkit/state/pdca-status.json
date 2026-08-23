@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-13T07:27:02.811Z",
+  "lastUpdated": "2026-08-16T04:52:32.246Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1090,7 +1090,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-09T08:38:56.085Z",
-        "lastUpdated": "2026-08-13T07:27:02.811Z"
+        "lastUpdated": "2026-08-16T04:52:32.246Z"
       },
       "lastFile": "src/components/diagram/LayerStack.tsx"
     },
@@ -1294,6 +1294,39 @@
       "archivedAt": "2026-08-13",
       "archivedTo": "docs/archive/2026-08/diagram-render-gate/",
       "archiveNote": "문서 4건 이동(plan · design · analysis · report). 원위치에 남긴 것: diagram-check-allow.json · diagram-component-set.usage.md · scripts 2종(살아 있는 자산). diagram-expansion과 달리 스크립트가 Design을 **읽지 않는다** — 참조는 주석뿐이라 런타임 의존이 없다. 다만 살아 있는 코드의 주석은 살아 있는 경로를 가리켜야 하므로 3곳을 아카이브 경로로 갱신했다(verify-diagram-placement.mjs · verify-diagram-render.mjs · tokens.ts)."
+    },
+    "diagram-gate-coverage": {
+      "phase": "archived",
+      "startedAt": "2026-08-14",
+      "planDoc": "docs/archive/2026-08/diagram-gate-coverage/diagram-gate-coverage.plan.md",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그(diagram-render-gate 파생) 1번 — WAVES에 first-semiconductor 편입",
+      "inherits": "diagram-render-gate(100%, 2026-08-13 아카이브) 잔존 R-1 · verify-diagram-placement.mjs C-1~C-19 + 자체검사 41",
+      "problem": "★관문을 만든 사이클이 남긴 구멍. diagram-render-gate가 CLAUDE.md에 \"도해를 추가·수정하면 verify:diagram\"을 적었는데, C-1~C-17은 WAVES 등록 자료원만 본다. first-semiconductor 97모듈 140 인스턴스가 전부 밖이다(사이트 도해 489 중 28.6%). 그 사이클은 사실을 CLAUDE.md에 주의로 적는 데서 멈췄다 — 약속을 좁힌 것이지 범위를 넓힌 것이 아니다. processes 9모듈도 미등록이나 도해 0개라 지금은 무해하다(FR-5가 앞으로를 막는다).",
+      "preMeasured": "★착수 전 실측: 관문을 켜면 41건 {\"C-8\":23,\"C-2\":6,\"C-6\":5,\"C-7\":4,\"C-4\":2,\"C-12\":1}. 한 덩어리가 아니라 성격이 넷이다. A.진짜 결함 후보 7건 — C-7 caption 수량 4(023-integrated-circuit \"네 가지\"인데 2 · 044-sram \"여섯 개\"인데 7 · 060-feol-1 \"여덟 단계\"인데 3 · 066-doping \"두 방법\"인데 3) · C-4 빈 줄 2 · C-12 창작 부연 1. C-7 4건은 W2의 \"조용한 잘림\"과 같은 유형 — caption과 내용이 같은 파일에서 어긋나 있고 아무 검사도 보지 않았다. B.검사기 결함 2건 — C-2가 viewBox=\"0 0 640 210\"의 좌표를 콘텐츠 수치로 오인(W1이 height·emphasis에서 고친 것과 같은 부류). C.정책 충돌 8건 — ScaleRuler.refs 3(A4 210mm·신용카드 0.76mm는 일상 사물 기준점이 그 필드의 목적) · LabeledFigure 인라인 SVG 5. D.구조적 검토 대기 23건 — C-8 용어(기존 예외 43건 중 24가 이미 C-8).",
+      "decisions": "D-1 LabeledFigure 블록을 C-6에서 제외(사용자 결정) — usage.md §4가 명시한 탈출구이고 저작자 인라인 SVG가 설계다. 그 안의 대비는 verify:render가 좌표로 판정(선행 D-10). 대가: 저작자 SVG의 색은 정적으로 무통제 · D-2 배치표 없이 등록(사용자 결정) — 기준선이 당시 \"미이행 0건\"을 검증했고 콘텐츠가 안 바뀌었다. C-1은 주 도해 있음(97/97)만 보고 나머지 18개 검사가 바로 살아나는 것이 이득. 아카이브 Design §1.2의 98행 표는 열 형식이 생성기와 달라(모듈 id 백틱 없음·열 의미 상이) 확장 비용이 이득보다 크다 · D-3 C-2의 viewBox 좌표 오인은 예외가 아니라 검사기 수정 · D-4 ScaleRuler.refs를 C-2에서 제외(marks는 계속 검사) · D-5 웨이브 이름 w0(시간순) · D-6 C-8 23건은 개별 판정(전량 예외도 전량 수정도 아니다)",
+      "frCount": 8,
+      "gates": "G-1~G-10. ★G-4가 핵심 — 제외 3종(D-1·D-3·D-4)마다 \"제외 대상은 빠지고 정상 검사 대상은 계속 잡힌다\"를 대조군으로 증명한다. diagram-render-gate에서 대조군이 헛도는 것을 세 번 겪었으므로 위반이 나오는 상태에서 돌아가는지까지 확인한다",
+      "implOrder": "①FR-5 미등록 감지(이 사이클의 원인을 먼저 막는다) ②FR-1 w0 등록 + --all 수정 ③제외 3종 + G-4 대조군(41→31) ④결함 7건 + G-9 육안(31→24) ⑤C-8 23건 개별 판정(→0) ⑥문서·Check",
+      "scopeOut": "웨이브 간 idPrefix 검사(D-8, Design 판단) · 기준선 배치표 복원(D-2 배제) · processes 9모듈(도해 0) · 저작자 SVG 색 통제(D-1) · LayerStack 패턴 겹침(선행 R-3)",
+      "designDoc": "docs/archive/2026-08/diagram-gate-coverage/diagram-gate-coverage.design.md",
+      "designFinding": "★Design 단계에서 확대의 전제가 흔들렸다. split()은 블록 끝을 />로 찾는데 LabeledFigure는 자식을 갖는 유일한 도해 컴포넌트라 여는 태그 다음 첫 자식 <rect … />에서 블록이 끝난다(080-finfet 기준 13줄). C-17(미종료 블록)에 안 걸린다 — />를 찾긴 찾았고 자리가 틀렸을 뿐이다. ★잘린 나머지가 본문(body)으로 샌다: normBody에 <path·<rect·className·경로 좌표(40·104·112·200·400)가 들어간다. 방향이 나쁘다 — C-2는 \"본문에 있으면 통과\"이므로 같은 파일의 다른 도해 수치가 SVG 좌표와 겹치면 거짓 통과한다. C-8도 같다. 그래서 Plan의 41건은 \"부분만 본 결과\"이고, 고치지 않으면 이 사이클이 \"97모듈을 관문에 넣었다\"고 말할 수 없다. 자식 형태를 쓰는 도해는 LabeledFigure 2건뿐임을 실측(TreeBranch.children은 데이터 필드라 무관).",
+      "designDecisions": "D-9 split()이 자식 형태를 인식하고 자식 영역을 제3의 범주로 둔다 — 여는 태그(props)는 블록, 자식(저작자 인라인 SVG)은 검사도 안 하고 본문도 아니다, 그 뒤 산문은 본문. 자식을 블록에 넣지 않는 이유는 인라인 SVG가 좌표 덩어리라 C-2에 넣으면 모든 수를 쏟아내기 때문이고, 본문에서 빼는 이유는 거짓 통과를 없애기 위해서다. ★이 설계가 D-1(사용자 결정)을 구조로 이행한다 — C-6에 예외를 특별히 넣는 대신 자식 영역이 애초에 검사 대상이 아니게 되어 예외 목록이 늘지 않는다 · D-3′ contentStrings에 viewBox=\"…\" 제거 추가(기존 height:·emphasis=·meters:·at:·value:·idPrefix= 목록과 같은 성격, W1 규약을 잇는다) · D-4′ refs={[…]} 전체 제거하되 marks는 유지 — marks는 측정 대상이라 원문 근거가 필요하고 refs는 일상 사물 기준점이라 원문에 없는 것이 정상 · D-10 미등록 자료원은 경고가 아니라 exit 2 — 콘텐츠 위반이 아니라 검사기가 자기 범위를 주장할 수 없는 상태다(팔레트 못 읽을 때와 같은 성격) · D-11 웨이브 간 idPrefix도 시작 단언으로 — --all이 자식 프로세스라 prefixSeen이 프로세스 안에서만 사는 문제를 부모 배관 대신 전역 스캔으로 푼다(실측 85개 중복 0) · D-12 --all의 배치표 부재는 WAVES_WITHOUT_PLAN 명시 목록으로 — W4 오판을 막은 가드를 없애지 않고 예외를 적게 한다",
+      "controlPlan": "자체검사 41 → 50 예상. 대조군 9건이 전부 \"제외가 과하지 않다\"(G-4)를 겨눈다 — 제외를 넷 넣으므로 각각 \"제외 대상은 빠지고 정상 대상은 계속 잡힌다\"를 증명한다. ★음성 ③(자식 안 문자열이 본문 취급되지 않는다)이 가장 중요하다 — §0.2의 거짓 통과를 직접 겨눈다. diagram-render-gate에서 대조군이 헛도는 것을 세 번 겪었으므로 위반이 나오는 상태에서 돌아가는지까지 확인한다.",
+      "implOrderRevised": "★Plan의 순서를 바꿨다. Plan은 FR-5(미등록 감지)를 맨 앞에 뒀으나 D-9가 먼저다 — D-9 없이는 ②의 실측이 오염된 값이고 무엇을 고쳐야 하는지 자체가 D-9에 걸려 있다. ①D-9+대조군①②③ ②w0 등록+D-12(실제 수 측정) ③D-3′·D-4′+대조군④⑤⑥⑦ ④D-10·D-11 시작 단언+대조군⑧⑨ ⑤결함(C-7 4·C-4 2·C-12 1)+G-9 육안 ⑥C-8 개별 판정 ⑦문서·Check",
+      "matchRate": 98,
+      "iterationCount": 0,
+      "archivedAt": "2026-08-16",
+      "archivedTo": "docs/archive/2026-08/diagram-gate-coverage/",
+      "analysisDoc": "docs/archive/2026-08/diagram-gate-coverage/diagram-gate-coverage.analysis.md",
+      "reportDoc": "docs/archive/2026-08/diagram-gate-coverage/diagram-gate-coverage.report.md",
+      "actual": "★실측: 41건 → 0건. 검사기 수정·제외로 22건 소멸(C-8 8 · C-2 6 · C-6 5 · C-4 2 · C-7 1) → 남은 19건을 예외 16 · 고침 3. Design 예상 ≈31이 빗나간 방향이 중요하다 — 어긋난 원인이 둘 다 검사기 쪽이었다. 4웨이브가 전 항목 통과인 상태에서 다섯 번째를 넣자 기존 검사기의 오탐 9건이 처음 드러났다(C-8 8 · C-7 1). 자료원을 늘리는 일은 콘텐츠 검사이면서 검사기 검사다. §2의 경고(\"본문 오염이 사라지면 위반이 늘 수 있다\")는 실현되지 않았다 — C-8은 23→15로 줄기만 했다.",
+      "checkerBugs": "C-8 오탐 8건의 원인 셋: refs 미제외 4(D-4′를 C-2에만 적용했다) · `자`로 끝나는 낱말을 활용 서술어로 오인 2(이 주제에서 `자` 끝은 거의 전부 명사다 — 전자·소자·원자·분자·입자·운반자, 라벨 실측 23건) · `\\n`을 가름 문자로 안 봄 2(렌더러 tokens.ts splitLabel은 줄바꿈으로 쪼개는데 검사기는 \"프로그램\\n메모리\"를 한 낱말로 봐서 본문의 메모리를 닻으로 못 썼다). C-7 1건은 enumeratedCounts가 rows를 후보 키로 안 본 것(023-integrated-circuit caption \"네 가지\" · columns 2 · rows 4). C-4 2건도 오탐 — split()이 블록 끝을 여는 태그로 잡아 자식 SVG 첫 줄이 \"뒤 빈 줄 없음\"으로 보였다. end: k를 end: j로 되돌리면 2건이 그대로 재현된다.",
+      "controlFinding": "★대조군이 통과하면서 공허한 세 번째 방식 — G-4 ②·⑤가 C-2만 보느라 D-1(C-6)·D-4′(C-8)의 절반씩을 증명하지 못한 채 ✅를 내고 있었다. (앞의 둘은 선행 사이클: 범위를 줄여 무효화, 건강한 검사가 0건을 내서 무효화.) silent 목록으로 걸치는 검사를 다 보게 했고, 되돌려 실패하는 것까지 확인했다. 그 과정에서 두 절반을 서로 다른 장치가 지킨다는 것도 드러났다 — C-2는 childRegions가, C-6은 \"블록 텍스트는 여는 태그까지\"라는 정의가. 또 하나: 검사를 느슨하게 바꿀 때는 음성 대조군이 필요하다(C-8 2건 · C-7 1건이 완화였다). 넓힐 때 양성을 더하는 것은 자연스럽지만, 느슨하게 할 때 \"무엇을 이제 통과시키는가\"를 고정하지 않으면 완화가 어디까지 갔는지 아무도 모른다. 루프에 expectClean 추가. 대조군 41 → 56.",
+      "g9Finding": "★★G-9가 자동 검사 전 항목 통과 상태에서 렌더 결함 4건을 잡았다 — LayerStack 층 라벨이 side:left well에 덮여 060-feol-1 \"표면\"은 완전히 사라졌고, 019-cmos·021-mesfet은 아래 획만, 068-cmp는 절반이 잘렸다. 넷 다 새로 들어온 w0이다. 글자가 도형에 가려지는 것은 색 대비로도 폭 넘침으로도 나타나지 않는다 — verify:render가 못 보는 자리이고, G-9가 자동화로 대체되지 않는 이유의 실증이다. 높이를 키워 피하지 않았다(vertical에서 층 두께는 막 두께다) — 라벨이 빈 자리로 옮긴다. ★그 수정에서 판정이 두 번 틀렸고 둘 다 실물이 잡았다: ⓐ세로 겹침만 봐서 065-etching을 오탐으로 올렸다(라벨 왼쪽·well 가운데라 가로로 안 겹친다) → 6→4건 ⓑ\"가장 넓은 빈 자리\"로 배치했더니 멀쩡하던 065-etching 라벨이 오른쪽으로 끌려갔다 → \"왼쪽부터 처음 들어가는 자리\"로 바꿔 원위치. 겹치지 않는 라벨은 움직이지 않아야 한다. 실측 좌표: 019 145.36 · 021 296.68 · 060 190.08 · 068 190.08 · 회귀 확인 065 26 — 전부 well 구간 밖.",
+      "scopeViolation": "★위 LayerStack 수정은 Plan §6·Design §6이 명시적으로 범위 밖에 둔 항목이다. D-13으로 사후 기록했지만 결정 없이 코드를 고친 사실은 없어지지 않아 Match Rate의 범위 준수 축을 80%로 남겼다. 전용 검사도 대조군도 없고 근거는 렌더 좌표 실측뿐이다.",
+      "countErrors": "★손계산이 이 사이클에서만 네 번 틀렸다 — Plan §1.1 \"등록 253모듈\"(실제 156, 253은 156+97. 미등록 비중을 27.7%로 보이게 했는데 실제 38.3%로, 자기 근거를 약하게 적은 오류) · Design 대조군 산식 53(D-10이 양성·음성 둘이라 실제 56) · Plan D-3 viewBox 2건(실제 3 — 055-cz-growth의 640도 viewBox=\"0 0 640 300\"이었다) · 보고서 \"41→0\" 분해 9+16+3=28. 실측표를 고정해 넘겨도 파생 계산을 하는 자리에서 또 틀렸다. 선행 사이클의 기록(\"코드는 검사가 지키고 문서는 아무도 지키지 않는다\")이 반복됐다.",
+      "verification": "verify:diagram 5웨이브 전 항목 통과(대조군 56/56) · typecheck 0 · lint diagram 0 · build SSG 393/393 · First Load JS shared 102 kB 무증가 · verify:render 92페이지×2뷰포트 글자 있는 SVG 107개 전 통과. 변경 8파일 +435/-37. Act 0회(Check 안에서 즉시 수정으로 종결).",
+      "backlog": "★L-3 D-10·D-11 대조군이 hard:false라 exit 2 처분 자체가 미검증 — \"경고가 아니라 실패\"가 D-10의 핵심인데 그 핵심이 대조군 밖이다. 다음 사이클 첫 항목 · R-3 LayerStack 채움 패턴 글리프와 층 라벨 겹침은 여전히 열려 있다(D-13이 고친 것은 wells와의 겹침이고, R-3이 든 017-nmos는 층 높이 78이라 D-13 로직이 발동조차 안 한다) · D-13 배치 규칙에 기계 규칙이 없다(021-mesfet은 빈 구간 25.96 vs 라벨 폭 26.0으로 0.04 차) · 미사용 예외를 잡는 검사가 없다(예외 59건 중 몇이 이미 죽었는지 아무도 모른다) · assertGlobalIdPrefix가 split()을 거치지 않아 자식 영역까지 훑는다(현 영향 0건) · --wave w4 단독 호출이 _coverage:selective를 놓쳐 C-1 74건을 낸다(--all은 정상, HEAD에서도 동일)"
     }
   },
   "pipeline": {
@@ -1465,7 +1498,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-13T07:27:02.811Z"
+    "lastActivity": "2026-08-16T04:52:32.246Z"
   },
   "history": [
     {
@@ -4520,6 +4553,30 @@
     },
     {
       "timestamp": "2026-08-13T07:27:02.811Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-16T04:49:04.243Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-16T04:49:21.380Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-16T04:49:30.483Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-16T04:52:32.246Z",
       "feature": "diagram",
       "phase": "do",
       "action": "updated"

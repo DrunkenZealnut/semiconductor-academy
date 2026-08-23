@@ -21,19 +21,22 @@ npm run lint        # next lint (next/core-web-vitals + next/typescript)
 npm run extract:quotes      # quotes.json 재생성 (MDX → 인용 추출)
 npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 인덱스)
 
-npm run verify:diagram      # 도해 관문 C-1~C-19 (4웨이브) — 브라우저 없이, 밀리초
+npm run verify:diagram      # 도해 관문 C-1~C-19 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 밀리초
 npm run verify:render       # 도해 렌더 심층 검증 (브라우저·서버·자격증명 필요, 약 3분)
 ```
 
 테스트 러너는 없다. 검증은 `typecheck` + `lint` + 빌드 스크립트의 자체 검증 + **도해 관문**으로 한다.
 
-**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-19와 자체검사 대조군 41건이 들어 있고,
+**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-19와 자체검사 대조군 54건이 들어 있고,
 자체검사가 실패하면 본 검사를 실행하지 않고 `exit 2`로 끝낸다(검사기가 눈먼 채로 통과를 내지 않게).
 
-**범위 주의** — 두 종류가 섞여 있다. `C-1~C-17`(배치·수치·용어)은 `WAVES`에 등록된 자료원만 본다.
-`first-semiconductor`는 등록돼 있지 않아 **SVG 도해 92페이지 중 60페이지가 이 검사 밖**이다
-(아카이브 백로그 R-1). 반면 `C-18`(최소 폭 계약)·`C-19`(대비)는 **컴포넌트·토큰 단위**라
-자료원과 무관하게 전량을 지킨다.
+**범위** — 전 자료원이 `WAVES`에 등록돼 있다(w0 `first-semiconductor` 140 · w1 109 · w2 146 · w3 60 · w4 34
+= 도해 489건). 새 자료원을 만들고 등록하지 않으면 조용히 빠지지 않고 **`exit 2`** 다(D-10 시작 단언).
+`C-18`(최소 폭 계약)·`C-19`(대비)는 컴포넌트·토큰 단위라 자료원과 무관하게 전량을 지킨다.
+
+**정적 검사가 일부러 보지 않는 자리가 셋 있다** — `LabeledFigure`의 자식(저작자 인라인 SVG) · `viewBox` ·
+`ScaleRuler.refs`. 각각의 이유와 "대신 무엇이 지키나"는
+`docs/02-design/features/diagram-component-set.usage.md` §2.1.1d에 있다. 넷째를 만들려면 그 표에 줄을 더한다.
 
 `verify:render`는 상시 관문이 아니다 — 브라우저가 있어야만 볼 수 있는 것(실제 축소 배율·**좌표로 결정되는
 대비**·실제 가로 넘침·마커 참조)만 본다. 사이클 종료 시점과 도해를 새로 추가했을 때 돌린다. 자격 증명은

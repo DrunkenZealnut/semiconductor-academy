@@ -41,6 +41,16 @@ interface Props extends SvgDiagramCommon {
 const ANNO_W = 172; // 오른쪽 지시선·텍스트 영역
 const WELL_INSET = 10;
 const AXIS_W = 26; // band 모드의 왼쪽 에너지 축 영역
+const LABEL_INSET = 10;
+const GAP_MARGIN = 6; // well 옆에 라벨을 놓을 때 띄우는 간격
+
+/**
+ * 배치용 글자 폭 근사. 한글은 폰트 크기와 거의 같고 ASCII는 절반쯤이다.
+ * 정확할 필요가 없다 — 라벨이 well을 피할 자리가 있는지만 판단한다.
+ */
+function approxWidth(s: string, font: number) {
+  return [...s].reduce((a, c) => a + (/[가-힣]/.test(c) ? font : font * 0.55), 0);
+}
 
 /**
  * 소자·막의 단면 적층도. 이 자료원 도해의 주력(주 19 · 보조 8 = 27모듈).
@@ -172,6 +182,40 @@ export function LayerStack({
           const wells = layer.wells ?? [];
           const wellH = Math.min(h * 0.55, DIM.layerHeight * 0.6);
           const wellW = bodyW * 0.26;
+          const wellX = (side: Well['side']) =>
+            side === 'left'
+              ? bodyX + WELL_INSET
+              : side === 'right'
+                ? bodyX + bodyW - wellW - WELL_INSET
+                : bodyX + (bodyW - wellW) / 2;
+
+          // 층 라벨의 가로 자리. wells는 라벨보다 **나중에** 그려지므로 겹치면 라벨이 묻힌다.
+          // 세로로 내리는 것(아래 `y`)만으로는 부족했다 — 층이 얕으면 내려도 well 안이다.
+          // G-9(2026-08-16) 실측: `019-cmos`"소자 영역"·`021-mesfet`"전극"·`060-feol-1`"표면"·
+          // `068-cmp`"CMP 전 …" 넷이 `side: 'left'` well에 덮여 아래 획만 보이거나 아예 사라졌다.
+          // 높이를 키워 피하는 방법은 쓰지 않는다 — vertical 모드에서 **층 두께는 막 두께**라
+          // 얇은 표면층을 두껍게 그리면 도해가 거짓말을 한다(usage.md §1).
+          const labelLines = splitLabel(layer.label);
+          const labelW = Math.max(...labelLines.map((l) => approxWidth(l, DIM.font)));
+          const labelY = wells.length ? y + h - 8 : y + h / 2 + 4;
+          let labelX = bodyX + LABEL_INSET;
+          if (wells.length && labelY - DIM.font * 0.73 < y + 4 + wellH) {
+            const spans = wells
+              .map((w) => [wellX(w.side), wellX(w.side) + wellW] as const)
+              .sort((a, b) => a[0] - b[0]);
+            const gaps: [number, number][] = [];
+            let cursor = bodyX + LABEL_INSET;
+            for (const [a, b] of spans) {
+              if (a - cursor > 0) gaps.push([cursor, a - GAP_MARGIN]);
+              cursor = Math.max(cursor, b + GAP_MARGIN);
+            }
+            gaps.push([cursor, bodyX + bodyW - 4]);
+            // **왼쪽부터 처음 들어가는** 빈 자리. '가장 넓은 곳'으로 골랐더니 이미 멀쩡하던
+            // `065-etching`(center well 하나, 왼쪽이 비어 있다)의 라벨이 오른쪽으로 끌려갔다 —
+            // 겹치지 않는 라벨은 움직이지 않아야 한다.
+            const fit = gaps.find(([a, b]) => b - a >= labelW);
+            if (fit) labelX = fit[0];
+          }
 
           return (
             <g key={layer.id}>
@@ -196,27 +240,17 @@ export function LayerStack({
                 />
               )}
 
-              {/* 층 라벨 — wells가 있으면 아래쪽으로 내려 겹침을 피한다. */}
-              <text
-                x={bodyX + 10}
-                y={wells.length ? y + h - 8 : y + h / 2 + 4}
-                fontSize={DIM.font}
-                className={TEXT}
-              >
-                {splitLabel(layer.label).map((line, i) => (
-                  <tspan key={i} x={bodyX + 10} dy={i === 0 ? 0 : DIM.font + 2}>
+              {/* 층 라벨 — wells가 있으면 아래로 내리고, 그래도 겹치면 옆 빈 자리로 옮긴다. */}
+              <text x={labelX} y={labelY} fontSize={DIM.font} className={TEXT}>
+                {labelLines.map((line, i) => (
+                  <tspan key={i} x={labelX} dy={i === 0 ? 0 : DIM.font + 2}>
                     {line}
                   </tspan>
                 ))}
               </text>
 
               {wells.map((w, i) => {
-                const wx =
-                  w.side === 'left'
-                    ? bodyX + WELL_INSET
-                    : w.side === 'right'
-                      ? bodyX + bodyW - wellW - WELL_INSET
-                      : bodyX + (bodyW - wellW) / 2;
+                const wx = wellX(w.side);
                 const wtone = TONE[w.tone];
                 return (
                   <g key={`${layer.id}-well-${i}`}>
