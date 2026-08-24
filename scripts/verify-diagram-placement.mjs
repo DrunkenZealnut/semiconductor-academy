@@ -32,15 +32,24 @@
  *
  * 사용법
  *   node scripts/verify-diagram-placement.mjs                 # 자기 검사 + 전체 검사
+ *   node scripts/verify-diagram-placement.mjs --all           # 5웨이브를 각자의 배치표로 (npm run verify:diagram)
  *   node scripts/verify-diagram-placement.mjs --self-test     # 자기 검사만
  *   node scripts/verify-diagram-placement.mjs --wave w1       # 특정 웨이브만
+ *   node scripts/verify-diagram-placement.mjs --assert-only   # 시작 단언만 (★본 검사를 건너뛴다 — 관문 대용 아님)
+ *
+ * 종료 코드는 계약이다 — 0 통과 · 1 **콘텐츠 위반** · 2 **검사기가 자기 범위를 주장할 수 없음**
+ * (팔레트·토큰·globals.css를 못 읽음 · 콘텐츠 루트 부재 · 미등록 자료원 · 등록된 자료원 디렉터리
+ * 부재 · idPrefix 전역 중복 · 자체검사 실패). `--all` 부모는 2를 중단 신호로 보고 즉시 멈춘다.
  *
  * 배치표는 `--plan` 으로 JSON을 주거나, 없으면 C-1을 건너뛰고 그 사실을 보고한다
  * (조용히 통과시키지 않는다 — 침묵이 성공으로 읽히는 것을 막는다).
  */
 
-import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync, mkdirSync, rmSync, mkdtempSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync, mkdirSync, rmSync, mkdtempSync, symlinkSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+// 종료 코드 대조군이 이 스크립트를 자식으로 띄운다(selfTest는 동기라 동적 import를 쓸 수 없다).
+// `--all` 경로도 같은 것을 쓰므로 그쪽의 동적 import를 이것으로 대체한다.
+import { spawnSync } from 'node:child_process';
 
 const COMPONENTS = [
   'LayerStack', 'CompareCards', 'FlowSteps', 'NodeGraph', 'TruthTable', 'ValueBars',
@@ -99,11 +108,34 @@ function readPropFields() {
   return out;
 }
 
+/**
+ * 없으면 **`exit 2`** 로 끝내며 읽는다.
+ *
+ * 이 검사기의 종료 코드 계약: **1 = 콘텐츠 위반**, **2 = 검사기가 자기 범위를 주장할 수 없음.**
+ * 가드 없이 `readFileSync`를 부르면 ENOENT가 그대로 올라가 Node가 **1**을 낸다 — 잘못된 쪽이다.
+ * 그러면 `--all` 부모가 `status === 2`(중단)가 아니라 **웨이브 실패로 집계하고 계속 진행**해,
+ * 색을 하나도 못 읽는 상태로 남은 웨이브를 "검사"한다.
+ * `theme.css`는 이미 이 가드를 갖고 있었고 `tokens.ts`만 빠져 있었다
+ * (`diagram-gate-exit-contract` D-4 · 대조군 ④).
+ */
+function readOrExit2(path, why) {
+  if (!existsSync(path)) {
+    console.error(`❌ ${path}를 읽을 수 없다 — ${why}`);
+    process.exit(2);
+  }
+  return readFileSync(path, 'utf8');
+}
+
 /** tokens.ts에서 Tone 목록을 읽는다 — 하드코딩하지 않는다(미러 부패 방지). */
 function readTones() {
-  const t = readFileSync('src/components/diagram/tokens.ts', 'utf8');
+  const t = readOrExit2(`${DIAGRAM_DIR}/tokens.ts`, 'tone 목록을 모르면 C-3을 검사할 수 없다.');
   const block = t.match(/export type Tone =([\s\S]*?);/);
-  if (!block) throw new Error('tokens.ts에서 Tone 목록을 찾지 못했다');
+  if (!block) {
+    // throw는 Node가 **1**을 내 '콘텐츠 위반'으로 오분류된다. 형제 readColorTokens는
+    // 같은 부류의 파싱 실패를 이미 exit 2로 처리한다 — 두 호출 지점의 규약을 맞춘다.
+    console.error('❌ tokens.ts에서 Tone 목록을 찾지 못했다 — 형식이 바뀌었다.');
+    process.exit(2);
+  }
   return [...block[1].matchAll(/'([a-z-]+)'/g)].map((m) => m[1]);
 }
 
@@ -128,7 +160,7 @@ function readPalette() {
     (pal[m[1]] ??= {})[m[2]] = m[3];
   }
   const brand = {};
-  for (const m of readFileSync(GLOBALS_CSS, 'utf8').matchAll(/--color-brand-(\d+):\s*(#[0-9a-fA-F]{6})/g)) {
+  for (const m of readOrExit2(GLOBALS_CSS, 'brand 색을 모르면 대비를 계산할 수 없다.').matchAll(/--color-brand-(\d+):\s*(#[0-9a-fA-F]{6})/g)) {
     brand[m[1]] = m[2];
   }
   if (Object.keys(pal).length === 0 || Object.keys(brand).length === 0) {
@@ -202,7 +234,7 @@ function pickThemeToken(cls, theme, prefix) {
 
 /** tokens.ts에서 색 토큰을 읽는다 — 하드코딩 미러 금지(G-5). */
 function readColorTokens() {
-  const t = readFileSync(`${DIAGRAM_DIR}/tokens.ts`, 'utf8');
+  const t = readOrExit2(`${DIAGRAM_DIR}/tokens.ts`, '색 토큰을 못 읽는 것은 통과가 아니다.');
   const grab = (name) => t.match(new RegExp(`export const ${name} = '([^']+)'`))?.[1];
   const blockOf = (decl) => {
     const i = t.indexOf(decl);
@@ -226,7 +258,7 @@ function readColorTokens() {
   // `CARD`는 tokens.ts 주석대로 "카드형(HTML) 도해"용이고 이 계약과 무관한 이유로 바뀔 수 있다.
   // 알파 채움(band-gap 투명 · NODE_KIND.io brand-500/10·/20 · LatticeDiagram의 /20)이 전부
   // 이 값에 걸리므로 globals.css의 body 배경을 읽는다.
-  const css = readFileSync(GLOBALS_CSS, 'utf8');
+  const css = readOrExit2(GLOBALS_CSS, '프레임 배경을 모르면 알파 채움 대비를 계산할 수 없다.');
   const bodyBg = css.match(/\bbody\s*\{[^}]*background:\s*([^;]+);/)?.[1]?.trim();
   const darkBodyBg = css.match(/\.dark\s+body\s*\{[^}]*background:\s*([^;]+);/)?.[1]?.trim();
   if (!bodyBg || !darkBodyBg) {
@@ -1366,7 +1398,177 @@ function selfTest(tones) {
     }
   }
 
+  if (!selfTestExitCode()) ok = false;
   if (!selfTestRender()) ok = false;
+  return ok;
+}
+
+/**
+ * 종료 코드 계약 대조군 (`diagram-gate-exit-contract` D-1~D-4).
+ *
+ * 위의 D-10·D-11 대조군은 `hard: false`로 **반환값**만 본다 — "미등록을 감지한다"까지다.
+ * D-10의 결정문은 *"경고가 아니라 `exit 2`"* 인데 그 **처분**은 아무도 보지 않았다.
+ * 여기서 스크립트를 **자식 프로세스**로 띄워 종료 코드를 단언한다.
+ *
+ * 이음매는 **cwd**다(D-1). 검사기가 전부 cwd 상대 경로로 읽으므로 생산 코드에 검사 전용
+ * 스위치를 만들 필요가 없다 — 환경변수로 root를 재정의하는 안은 **실제 실행에서 잘못
+ * 설정되면 관문이 엉뚱한 트리를 보고 눈먼 채 통과**하므로 버렸다.
+ *
+ * ★**종료 코드만 보면 공허하다**(D-3). 심링크를 안 걸면 `tokens.ts` ENOENT로 먼저 죽는데
+ * 그때도 "실패"지만 D-10 때문이 아니다 — 실측에서 실제로 겪었다. 사유 문자열까지 본다.
+ */
+function selfTestExitCode() {
+  let ok = true;
+  console.log('★ 종료 코드 계약 대조군 (자식 프로세스)');
+
+  // 읽기 전용으로 심링크한다 — 자식은 여기에 아무것도 쓰지 않는다(G-5).
+  const LINKS = [['node_modules'], ['docs'], ['src', 'components'], ['src', 'styles']];
+
+  /**
+   * files: { '상대경로': 내용 }. omitLinks에 적힌 것은 심링크하지 않는다.
+   *
+   * `scaffold`(기본 참)는 **등록된 자료원 디렉터리를 전부 빈 채로** 만든다 — D-14가
+   * "등록됐는데 없다"로 먼저 걸려 다른 대조군을 가리는 것을 막는다. D-14·콘텐츠 루트
+   * 부재를 겨누는 대조군만 `scaffold: false`로 끈다.
+   */
+  const spawnIn = (files, omitLinks = [], scaffold = true) => {
+    const root = mkdtempSync(join(process.env.TMPDIR ?? '/tmp', 'dgm-exit-'));
+    try {
+      mkdirSync(join(root, 'src'), { recursive: true });
+      for (const parts of LINKS) {
+        const rel = parts.join('/');
+        if (omitLinks.includes(rel)) continue;
+        symlinkSync(resolve(...parts), join(root, ...parts));
+      }
+      if (scaffold) {
+        for (const src of Object.values(WAVES).flat()) {
+          const [, path] = src.includes('@') ? src.split('@') : [src, join(SRC, src)];
+          mkdirSync(join(root, path), { recursive: true });
+        }
+      }
+      for (const [rel, body] of Object.entries(files)) {
+        const f = join(root, 'src', 'content', rel);
+        mkdirSync(join(f, '..'), { recursive: true });
+        writeFileSync(f, body);
+      }
+      // `--assert-only`라 자식은 selfTest에 도달하지 않는다 — 재귀가 구조적으로 불가능하다.
+      const r = spawnSync(process.execPath, [process.argv[1], '--assert-only'], {
+        cwd: root,
+        encoding: 'utf8',
+      });
+      return { status: r.status, out: `${r.stdout ?? ''}${r.stderr ?? ''}` };
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  };
+
+  const dgm = (prefix) => `본문.\n\n<LayerStack\n  idPrefix="${prefix}"\n  layers={[]}\n/>\n`;
+  const REGISTERED = WAVES.w0[0]; // 등록된 자료원 이름 하나 — 하드코딩 미러를 만들지 않는다
+
+  const cases = [
+    {
+      // ★하네스 자체를 겨눈다. 이것이 0이 아니면 아래 셋이 전부 공허하다.
+      name: '① 음성 — 정상 트리는 종료 코드를 바꾸지 않는다',
+      files: { [`sources/${REGISTERED}/a.mdx`]: dgm('exit-probe-a') },
+      expect: 0,
+    },
+    {
+      name: '② D-10 미등록 자료원 → exit 2',
+      files: { 'sources/ghost/a.mdx': dgm('exit-probe-ghost') },
+      expect: 2,
+      why: /WAVES에 없는 자료원/,
+    },
+    {
+      name: '③ D-11 idPrefix 전역 중복 → exit 2',
+      files: {
+        [`sources/${REGISTERED}/a.mdx`]: dgm('exit-probe-dup'),
+        [`sources/${REGISTERED}/b.mdx`]: dgm('exit-probe-dup'),
+      },
+      expect: 2,
+      why: /idPrefix가 전역에서 중복/,
+    },
+    {
+      // D-4 — 읽기 실패는 **콘텐츠 위반(1)이 아니라 범위 주장 불가(2)** 여야 한다.
+      name: '④ tokens.ts를 못 읽으면 exit 1이 아니라 exit 2',
+      files: { [`sources/${REGISTERED}/a.mdx`]: dgm('exit-probe-notok') },
+      omitLinks: ['src/components'],
+      expect: 2,
+      // ★`/tokens\.ts/`로는 안 된다 — 성공 배너가 "tokens.ts Tone 13종 로드"를 찍으므로
+      // **D-10 때문에 죽은 실행도** 그 정규식을 만족한다. 이 사이클이 세운 규칙
+      // ("종료 코드만 보면 공허하다")을 사유 정규식이 느슨해서 똑같이 어긴 것이다.
+      why: /tokens\.ts를 읽을 수 없다/,
+    },
+    {
+      // Check H-2 — `tokens.ts`만 막고 `globals.css`를 안 막은 채 "못 읽으면 2"를 공표했었다.
+      name: '⑤ globals.css를 못 읽으면 exit 2',
+      files: { [`sources/${REGISTERED}/a.mdx`]: dgm('exit-probe-glob') },
+      omitLinks: ['src/styles'],
+      expect: 2,
+      why: /globals\.css를 읽을 수 없다/,
+    },
+    {
+      // Check H-2 — 훑을 트리가 없는 것도 "범위를 주장할 수 없음"이다. 예전에는 ENOENT가
+      // 올라가 Node가 1을 냈고, --all 부모가 그것을 웨이브 실패로 세고 계속 갔다.
+      name: '⑥ 콘텐츠 루트가 없으면 exit 2',
+      files: {},
+      scaffold: false,
+      expect: 2,
+      why: /훑을 콘텐츠 트리가 없으면/,
+    },
+    {
+      // Check H-3 — D-10의 거울상. 등록됐는데 디렉터리가 없으면 예전에는 경고 한 줄 뒤
+      // `✅ 전 항목 통과` · exit 0이었다. 도해 없는 빈 sources/ 하나면 D-10은 안 걸린다.
+      name: '⑦ 등록됐는데 디렉터리가 없으면 exit 2 (D-14)',
+      files: { 'sources/.keep': '' },
+      scaffold: false,
+      expect: 2,
+      why: /등록된 자료원의 디렉터리가 없다/,
+    },
+  ];
+
+  // ── M-1 — 부모의 배관을 지나는 대조군 ──
+  // 위 여섯은 `--assert-only`로 자식을 직접 띄우므로 **부모를 지나지 않는다.**
+  // Plan §1.1이 지목한 `if (r.status === 2) process.exit(2)`가 실제로 도는지는 별개 주장이다.
+  //
+  // ★자식을 `--all`로 띄우되 **웨이브 자식이 시작 단언에서 죽는** 상황을 고른다.
+  //   `src/components`를 안 걸면 웨이브 자식이 `readTones`에서 exit 2 — `selfTest`에 도달하지
+  //   않으므로 손자가 생기지 않는다. `--all` 자식이 본 검사까지 가는 시나리오를 쓰면
+  //   **D-2가 막았던 재귀가 그대로 되살아난다**(실제로 한 번 되살렸다).
+  {
+    const root = mkdtempSync(join(process.env.TMPDIR ?? '/tmp', 'dgm-exit-all-'));
+    try {
+      mkdirSync(join(root, 'src', 'content', 'sources'), { recursive: true });
+      for (const parts of LINKS) {
+        if (parts.join('/') === 'src/components') continue;
+        symlinkSync(resolve(...parts), join(root, ...parts));
+      }
+      const r = spawnSync(process.execPath, [process.argv[1], '--all'], { cwd: root, encoding: 'utf8' });
+      const out = `${r.stdout ?? ''}${r.stderr ?? ''}`;
+      const pass = r.status === 2 && !/전 항목 통과/.test(out) && !/웨이브 실패/.test(out);
+      console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ⑧ --all 부모가 자식의 2를 중단 신호로 소비한다`);
+      if (!pass) {
+        ok = false;
+        console.log(`      종료 ${r.status} (기대 2)`);
+        console.log(`      ${(out.match(/❌ [^\n]*|✅ 전 항목 통과|웨이브 실패/)?.[0] ?? '').slice(0, 110)}`);
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+
+  for (const c of cases) {
+    const { status, out } = spawnIn(c.files, c.omitLinks ?? [], c.scaffold !== false);
+    const codeOk = status === c.expect;
+    // 사유까지 본다 — 종료 코드만 맞고 이유가 다르면 그 대조군은 아무것도 증명하지 않는다.
+    const whyOk = !c.why || c.why.test(out);
+    const pass = codeOk && whyOk;
+    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
+    if (!pass) {
+      ok = false;
+      console.log(`      종료 ${status} (기대 ${c.expect})${whyOk ? '' : ' · 사유 불일치'}`);
+      console.log(`      ${(out.match(/❌ [^\n]*/)?.[0] ?? out.split('\n').find(Boolean) ?? '').slice(0, 120)}`);
+    }
+  }
   return ok;
 }
 
@@ -1550,7 +1752,7 @@ const planArg = (argv.find((a) => a.startsWith('--plan')) ?? '').split('=')[1]
 const WAVES_WITHOUT_PLAN = new Set(['w0']);
 
 if (argv.includes('--all')) {
-  const { spawnSync } = await import('node:child_process');
+  // spawnSync는 이제 모듈 상단에서 정적 import한다 (종료 코드 대조군이 동기 문맥에서 쓴다).
   const waves = Object.keys(WAVES);
   let failed = 0;
   for (const w of waves) {
@@ -1591,6 +1793,13 @@ function assertRegistryComplete({ root = 'src/content', waves = WAVES, hard = tr
     if (entries.some((e) => e.isFile() && e.name.endsWith('.mdx'))) dirs.push(dir);
     for (const e of entries) if (e.isDirectory()) walk(join(dir, e.name));
   };
+  // 콘텐츠 루트가 없으면 readdirSync가 ENOENT를 던져 Node가 **1**을 낸다 — 콘텐츠 위반으로
+  // 오분류된다. 훑을 트리가 없는 것은 검사기가 자기 범위를 주장할 수 없는 상태다.
+  if (!existsSync(root)) {
+    if (!hard) return [];
+    console.error(`❌ ${root}가 없다 — 훑을 콘텐츠 트리가 없으면 범위를 주장할 수 없다.`);
+    process.exit(2);
+  }
   walk(root);
   const missing = [];
   for (const dir of dirs) {
@@ -1616,6 +1825,32 @@ function assertRegistryComplete({ root = 'src/content', waves = WAVES, hard = tr
  * **웨이브를 가로지르는 중복을 C-5가 못 본다.** 부모에서 자식 결과를 모으는 배관 대신
  * 전 콘텐츠를 한 번 훑어 확인한다.
  */
+/**
+ * D-14 — 등록된 자료원의 디렉터리가 **실제로 있는가** (Check H-3).
+ *
+ * D-10의 **거울상**이다. 미등록 디렉터리에 도해가 있으면 `exit 2`인데, 반대로 등록됐는데
+ * 디렉터리가 없으면 예전에는 `console.log('⚠ 없는 자료원')` 한 줄 찍고 건너뛰었다 —
+ * **w1 자료원 넷을 전부 지워도 `✅ 전 항목 통과` · exit 0이었다.**
+ * 검사할 것이 사라진 것을 "검사했고 문제없다"로 말하는 것이라, 이 검사기가 막으려는 실패 그 자체다.
+ *
+ * 웨이브 루프가 아니라 **시작 단언**에 둔다 — D-10·D-11과 같은 성격이고, 그 자리라야
+ * `--assert-only`로 종료 코드를 검증할 수 있다(웨이브 루프는 `selfTest` 뒤라 자식이 재귀한다).
+ */
+function assertRegisteredDirs({ waves = WAVES, hard = true } = {}) {
+  const missing = [];
+  for (const src of Object.values(waves).flat()) {
+    const [name, path] = src.includes('@') ? src.split('@') : [src, join(SRC, src)];
+    if (!existsSync(path)) missing.push(`${name} (${path})`);
+  }
+  if (missing.length && hard) {
+    console.error('❌ 등록된 자료원의 디렉터리가 없다 — 검사 대상이 사라졌다.');
+    for (const m of missing) console.error(`   ${m}`);
+    console.error('   WAVES에서 빼거나 디렉터리를 되돌려라. 없는 것을 "통과"로 세지 않는다.');
+    process.exit(2);
+  }
+  return missing;
+}
+
 function assertGlobalIdPrefix({ root = 'src/content', hard = true } = {}) {
   const seen = new Map();
   const dup = [];
@@ -1646,8 +1881,22 @@ const COLOR_TOKENS = readColorTokens();
 console.log(`tokens.ts Tone ${tones.length}종 로드 · 팔레트 ${Object.keys(PALETTE.pal).length}계열 + brand ${Object.keys(PALETTE.brand).length}단계\n`);
 
 assertRegistryComplete();
+assertRegisteredDirs();
 const globalPrefixes = assertGlobalIdPrefix();
 console.log(`자료원 등록 완전 · idPrefix 전역 ${globalPrefixes}개 유일\n`);
+
+// `--assert-only` — 시작 단언(D-10·D-11)만 돌리고 끝낸다.
+//
+// 두 가지 때문에 있다. ⓐ**자체검사의 자식 프로세스가 재귀하지 않게 한다** — 종료 코드 대조군은
+// 이 스크립트를 자식으로 띄우는데, 자식이 `--self-test`로 돌면 자식의 selfTest가 또 자식을 낳는다.
+// 시작 단언이 통과하는 **음성** 대조군이 특히 위험하다(양성은 단언이 selfTest 전에 터져 거기서 끝난다).
+// ⓑ새 자료원을 추가한 사람이 등록 여부만 빠르게 확인할 수 있다.
+//
+// ★이 인자는 **본 검사를 건너뛴다** — `verify:diagram` 대신 쓰면 도해를 하나도 검사하지 않는다.
+if (argv.includes('--assert-only')) {
+  console.log('※ --assert-only: 시작 단언만 확인했다. **본 검사(C-1~C-19)는 돌지 않았다.**');
+  process.exit(0);
+}
 
 if (!selfTest(tones)) {
   console.error('\n❌ 자기 검사 실패 — 스크립트가 오류를 놓친다. 본 검사를 실행하지 않는다.');
@@ -1714,7 +1963,12 @@ for (const src of sources) {
   // `이름@경로` 형식이면 그 경로를 쓴다(W4 `chapters@src/content/chapters`).
   const [srcName, srcPath] = src.includes('@') ? src.split('@') : [src, join(SRC, src)];
   const dir = srcPath;
-  if (!existsSync(dir)) { console.log(`⚠ 없는 자료원: ${srcName}`); continue; }
+  // 여기 도달하기 전에 시작 단언 `assertRegisteredDirs()`가 이미 걸러 낸다(D-14).
+  // 방어로 남겨 둔다 — 시작 단언을 지나 이 자리에 오면 그것이 결함이다.
+  if (!existsSync(dir)) {
+    console.error(`❌ 등록된 자료원 "${srcName}"의 디렉터리가 없다 (${dir}) — 시작 단언을 지나쳤다.`);
+    process.exit(2);
+  }
   const files = readdirSync(dir).filter((f) => f.endsWith('.mdx')).sort();
   let sub = 0;
   for (const f of files) {
