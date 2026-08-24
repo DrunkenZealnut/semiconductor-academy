@@ -21,14 +21,20 @@ npm run lint        # next lint (next/core-web-vitals + next/typescript)
 npm run extract:quotes      # quotes.json 재생성 (MDX → 인용 추출)
 npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 인덱스)
 
-npm run verify:diagram      # 도해 관문 C-1~C-19 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 밀리초
+npm run verify:diagram      # 도해 관문 C-1~C-19 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 약 1.7초
 npm run verify:render       # 도해 렌더 심층 검증 (브라우저·서버·자격증명 필요, 약 3분)
 ```
 
 테스트 러너는 없다. 검증은 `typecheck` + `lint` + 빌드 스크립트의 자체 검증 + **도해 관문**으로 한다.
 
-**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-19와 자체검사 대조군 56건이 들어 있고,
+**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-19와 자체검사 대조군 64건이 들어 있고,
 자체검사가 실패하면 본 검사를 실행하지 않고 `exit 2`로 끝낸다(검사기가 눈먼 채로 통과를 내지 않게).
+
+**종료 코드는 계약이다** — `0` 통과 · `1` **콘텐츠 위반** · `2` **검사기가 자기 범위를 주장할 수 없음**
+(`theme.css`·`tokens.ts`·`globals.css`를 못 읽음 · 콘텐츠 루트 부재 · 미등록 자료원 · **등록된 자료원의
+디렉터리 부재** · `idPrefix` 전역 중복 · 자체검사 실패). `--all` 부모는 `2`를 중단 신호로 보고 즉시
+멈춘다. 대조군 **8건**이 자식 프로세스로 이 처분을 종료 코드와 사유 문자열까지 확인한다.
+`--assert-only`는 시작 단언만 돌리고 끝낸다 — **본 검사를 건너뛰므로 관문 대용으로 쓰지 않는다.**
 
 **범위** — 전 자료원이 `WAVES`에 등록돼 있다(w0 `first-semiconductor` 140 · w1 109 · w2 146 · w3 60 · w4 34
 = 도해 489건). 새 자료원을 만들고 등록하지 않으면 조용히 빠지지 않고 **`exit 2`** 다(D-10 시작 단언).
