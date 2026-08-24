@@ -3,7 +3,7 @@
 > **Feature**: `diagram-gate-exit-contract`
 > **Duration**: 2026-08-23 (1 session)
 > **Owner**: DrunkenZealnut
-> **Predecessor**: [`diagram-gate-coverage`](../archive/2026-08/diagram-gate-coverage/) (L-3 해소 사이클)
+> **Predecessor**: [`diagram-gate-coverage`](../diagram-gate-coverage/) — 그 사이클이 남긴 **L-3**을 닫는다
 
 ---
 
@@ -15,7 +15,7 @@
 |---|---|
 | **기능** | 도해 검사기의 `exit 2` 경로 12개 중 D-10·D-11 두 건에 대해 **종료 코드의 처분을 자식 프로세스로 검증**하는 대조군 신설 |
 | **범위** | **종료 코드 검증만**(소비자·다른 경로는 범위 밖) |
-| **핵심 결정** | 이음매 없음(D-1), 재귀 회피(D-2), 판정은 코드+사유(D-3), `tokens.ts` 가드(D-4) |
+| **핵심 결정** | 이음매는 **cwd**(D-1 — 검사기가 전부 cwd 상대 경로로 읽으므로 **생산 코드에 검사 전용 이음매가 0**이다), 재귀 회피(D-2), 판정은 종료 코드+사유(D-3), `tokens.ts` 가드(D-4) |
 
 ### 결과 요약
 
@@ -270,7 +270,7 @@ if (!selfTest(tones)) { … }
 | # | 게이트 | 충족 | 비고 |
 |:--:|---|:--:|---|
 | **G-1** | typecheck 0 · lint diagram 0 | ✅ | 0 / 0 |
-| **G-2** | `verify:diagram` 5웨이브 전 항목 통과 | ✅ | C-1~C-19 · 대조군 56/56 |
+| **G-2** | `verify:diagram` 5웨이브 전 항목 통과 | ✅ | C-1~C-19 · 대조군 **64/64** |
 | **G-3** | 대조군 56 → 60+ | ✅ | 초과 충족 — 64건 |
 | **G-4** | 처분 비공허성 | ✅ | 6종 전부 되돌려 확인 |
 | **G-5** | 소스 트리 무오염 | ✅ | `git status --short src/` 0줄 |
