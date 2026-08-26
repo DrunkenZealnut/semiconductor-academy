@@ -261,7 +261,7 @@
       "archivedAt": "2026-05-31T01:30:00.000Z",
       "archivedTo": "docs/archive/2026-05/quotes-source-filter/",
       "inherits": "cross-link-system archive (FR-12 polish 정식화)",
-      "summary": "/quotes 통합 인용 인덱스 — 1.5h, 95%, QuoteItem discriminated union + extract-quotes OSHA 4 패턴(Course Overview/LO/Summary/Definition selector 11개) + Source 필터 UI + Fuse keys 6개. 책 91 + OSHA 26 = 117 통합 검색. 0 selector miss, sourceId/language/partId 100% 정합성, Critical/Major 0 Minor 5(polish). 신규 컴포넌트·신규 디자인 토큰·신규 ENV 0. cross-link-system FR-12 deferred polish 정식화(Option B Integration). 4 modified + 1 data regen."
+      "summary": "(저장소 밖: Major 0 Minor 5(polish). 신규 컴포넌트·신규 디자인 토큰·신규 ENV 0. cross-link-system FR-12 deferred polish 정식화(Option B Integration). 4 modified + 1 data regen.)"
     },
     "cross-link-system": {
       "phase": "archived",
@@ -1403,7 +1403,7 @@
         "started": "2026-08-26T01:31:23.437Z",
         "lastUpdated": "2026-08-26T01:34:15.316Z"
       },
-      "lastFile": "/private/tmp/claude-501/-Users-zealnutkim-DEV-SemiconductorAcademy/18a0c4a6-4cb0-452e-a8c5-2b7fb6ee6060/scratchpad/geom/main.js"
+      "lastFile": "(저장소 밖: main.js)"
     }
   },
   "pipeline": {
@@ -3005,7 +3005,7 @@
       "timestamp": "2026-07-14T09:45:00.000Z",
       "feature": "daegu-hs-textbook",
       "event": "simplify_completed",
-      "detail": "/simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과."
+      "detail": "(저장소 밖: simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과.)"
     },
     {
       "timestamp": "2026-07-14T10:11:36.244Z",
