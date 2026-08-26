@@ -464,6 +464,7 @@ function svgOpenTags(src) {
 }
 
 const checkSvgBoxContract = () => checkSvgBoxContractIn(DIAGRAM_DIR);
+const checkGlyphHoleContract = () => checkGlyphHoleContractIn(DIAGRAM_DIR, { expectAny: true });
 
 /** C-18이 실제로 검사하는 파일 수 — 출력에 적는 수치의 단일 출처. */
 const svgComponentCount = () => svgComponentFiles(DIAGRAM_DIR).length;
@@ -493,6 +494,56 @@ function checkSvgBoxContractIn(dir) {
     if (!/<DiagramFrame[^>]*\sscrollable/.test(src)) add('scrollable을 넘기지 않아 좁은 화면에서 프레임을 넘친다', 'scrollable');
   }
   if (files.length === 0) issues.push({ check: 'C-18', detail: 'SVG 컴포넌트를 찾지 못했다 — 경로가 바뀌었다', id: '::none', scope: 'component' });
+  return issues;
+}
+
+/**
+ * C-20 글리프 구멍 계약 (`diagram-label-legibility` D-4).
+ *
+ * 채움 패턴 글리프(`+`/`−`)는 라벨과 같은 `TEXT` 색·비슷한 굵기라 letterform에 섞인다 —
+ * `012-pn-diode`의 "애노드"가 "애노두"로 읽혔다. 글리프를 지울 수는 없다(색각 이상 대비
+ * 장치, usage.md §3). 그래서 **글자 자리에서만** 비운다.
+ *
+ * 이 검사가 보는 것: 패턴을 채운 rect마다 `mask`가 걸려 있고, 그 구멍이 `glyphHole()`을
+ * 거치는가. **구멍이 라벨을 실제로 덮는지는 보지 않는다** — 그것은 좌표라 브라우저 몫이다
+ * (`verify:render`). C-18과 같은 방식으로 **문자열 존재/부재**만 본다.
+ */
+function checkGlyphHoleContractIn(dir, { expectAny = false } = {}) {
+  const issues = [];
+  const files = svgComponentFiles(dir);
+  let sawFill = false;
+  for (const f of files) {
+    const name = f.replace(/\.tsx$/, '');
+    const src = readFileSync(`${dir}/${f}`, 'utf8');
+    // 패턴을 채우는 rect가 없는 컴포넌트는 이 계약과 무관하다.
+    const filled = [...src.matchAll(/fill=\{`url\(#\$\{patternId\([^)]*\)\}\)`\}/g)];
+    if (filled.length === 0) continue;
+    sawFill = true;
+    const add = (detail, id) => issues.push({ check: 'C-20', detail: `${name}: ${detail}`, id: `${name}::${id}`, scope: 'component' });
+
+    const masked = (src.match(/mask=\{`url\(#/g) ?? []).length;
+    if (masked < filled.length) {
+      add(`패턴 채움 ${filled.length}곳 중 ${filled.length - masked}곳에 mask가 없다 — 글리프가 라벨 글자에 섞인다`, 'mask');
+    }
+    // ★`/glyphHole\(/`로는 안 된다 — **함수 정의**(`function glyphHole(box:`)에도 걸려서
+    // 호출을 전부 없애고 정의만 남겨도 통과한다(G-4 되돌림에서 실제로 그랬다).
+    // 호출은 객체 리터럴을 받으므로 `glyphHole({`만 센다.
+    const holes = (src.match(/glyphHole\(\{/g) ?? []).length;
+    if (holes < filled.length) {
+      add(`구멍 ${holes}개 < 패턴 채움 ${filled.length}곳 — glyphHole()을 거치지 않은 마스크가 있다. 타일 격자에 안 맞으면 라벨 옆에 잘린 글리프가 남는다`, 'glyphHole');
+    }
+    // TILE은 <pattern width/height>와 **같은 상수여야** 한다. 리터럴로 되돌리면 미러가 생긴다.
+    if (/<pattern[\s\S]{0,120}?width=\{\d/.test(src)) {
+      add('<pattern>의 크기를 리터럴로 쓴다 — TILE과 어긋나면 구멍이 격자를 벗어난다', 'tile-mirror');
+    }
+  }
+  // ★검사가 **조용히 증발하는** 것을 막는다. 위 정규식은 `patternId(` 라는 헬퍼 이름에 묶여
+  // 있어, 정상 리팩터링(이름 변경·URL을 지역 변수로 추출)만으로 filled=0이 되고 C-20이
+  // 아무것도 검사하지 않은 채 0건을 반환한다 — 음성 대조군은 그때도 ✅를 찍는다.
+  // C-18은 이 방어를 갖고 있다(`SVG 컴포넌트를 찾지 못했다`). C-20에도 둔다.
+  if (expectAny && !sawFill) {
+    issues.push({ check: 'C-20', detail: '패턴 채움을 쓰는 컴포넌트를 하나도 찾지 못했다 — 표기가 바뀌어 검사가 증발했다', id: '::none', scope: 'component' });
+  }
   return issues;
 }
 
@@ -1417,6 +1468,9 @@ function selfTest(tones) {
  * ★**종료 코드만 보면 공허하다**(D-3). 심링크를 안 걸면 `tokens.ts` ENOENT로 먼저 죽는데
  * 그때도 "실패"지만 D-10 때문이 아니다 — 실측에서 실제로 겪었다. 사유 문자열까지 본다.
  */
+// 자식은 **cwd를 바꿔** 돈다 — argv[1]이 상대 경로면(`node scripts/…`) 자식이 못 찾는다.
+const SELF = resolve(process.argv[1]);
+
 function selfTestExitCode() {
   let ok = true;
   console.log('★ 종료 코드 계약 대조군 (자식 프로세스)');
@@ -1452,7 +1506,7 @@ function selfTestExitCode() {
         writeFileSync(f, body);
       }
       // `--assert-only`라 자식은 selfTest에 도달하지 않는다 — 재귀가 구조적으로 불가능하다.
-      const r = spawnSync(process.execPath, [process.argv[1], '--assert-only'], {
+      const r = spawnSync(process.execPath, [SELF, '--assert-only'], {
         cwd: root,
         encoding: 'utf8',
       });
@@ -1542,7 +1596,7 @@ function selfTestExitCode() {
         if (parts.join('/') === 'src/components') continue;
         symlinkSync(resolve(...parts), join(root, ...parts));
       }
-      const r = spawnSync(process.execPath, [process.argv[1], '--all'], { cwd: root, encoding: 'utf8' });
+      const r = spawnSync(process.execPath, [SELF, '--all'], { cwd: root, encoding: 'utf8' });
       const out = `${r.stdout ?? ''}${r.stderr ?? ''}`;
       const pass = r.status === 2 && !/전 항목 통과/.test(out) && !/웨이브 실패/.test(out);
       console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ⑧ --all 부모가 자식의 2를 중단 신호로 소비한다`);
@@ -1689,6 +1743,37 @@ function selfTestRender() {
   console.log(`   ${snapClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-19 스냅샷 음성 대조군`);
   if (snapClean.length) { ok = false; console.log(`      ${JSON.stringify(snapClean)}`); }
 
+  // ── C-20 글리프 구멍 계약 (`diagram-label-legibility`) ──
+  // 패턴 채움 rect가 있는데 마스크가 없으면 글리프가 라벨 글자에 섞인다.
+  {
+    const FILL = 'fill={`url(#${patternId(t)})`}';
+    const probes = [
+      ['C-20 패턴 채움에 mask 누락', 'mask',
+        `<svg {...svgBox('0 0 1 1')}><DiagramFrame scrollable><rect ${FILL} /></DiagramFrame></svg>`],
+      ['C-20 glyphHole()을 안 거친다', 'glyphHole',
+        `<svg {...svgBox('0 0 1 1')}><rect ${FILL} mask={\`url(#m)\`} /><rect x={0} y={0} /></svg>`],
+    ];
+    for (const [label, cond, body] of probes) {
+      runProbe(label, body, (d) =>
+        checkGlyphHoleContractIn(d).some((i) => i.check === 'C-20' && i.id.endsWith(`::${cond}`)));
+    }
+    // ★A-5 — 세 번째 조건(tile-mirror)에 대조군이 없었다. 조건은 있는데 아무도 그것이
+    //   도는지 보지 않는 상태는 이 저장소가 반복해서 겪은 실패다.
+    runProbe('C-20 pattern 크기를 리터럴로 쓰면 잡는다', 
+      `<svg {...svgBox('0 0 1 1')}><pattern id="p" width={16} height={16}><text /></pattern><rect ${FILL} mask={\`url(#m)\`} />{glyphHole({})}</svg>`,
+      (d) => checkGlyphHoleContractIn(d).some((i) => i.id.endsWith('::tile-mirror')));
+
+    // ★A-1 — 표기가 바뀌어 검사가 증발하면 잡는가. 프로브에 패턴 채움을 **하나도** 두지 않는다.
+    runProbe('C-20 패턴 채움을 못 찾으면 증발을 잡는다',
+      `<svg {...svgBox('0 0 1 1')}><rect /></svg>`,
+      (d) => checkGlyphHoleContractIn(d, { expectAny: true }).some((i) => i.id === '::none'));
+
+    // 음성 — 실제 컴포넌트는 계약을 지킨다
+    const holeClean = checkGlyphHoleContract();
+    console.log(`   ${holeClean.length === 0 ? '✅ 통과' : '❌ 거짓 경보'}  C-20 음성 대조군 (실제 컴포넌트)`);
+    if (holeClean.length) { ok = false; console.log(`      ${JSON.stringify(holeClean)}`); }
+  }
+
   // ⑩ 예외 키 네임스페이스 — scope 누락을 조용히 넘기지 않는가 (CodeRabbit PR #34 지적)
   let threw = false;
   try { allowKeyOf({ check: 'C-19', id: 'X::y' }, { throwOnMissing: true }); } catch { threw = true; }
@@ -1764,7 +1849,7 @@ if (argv.includes('--all')) {
     }
     if (!hasPlan) console.log(`※ ${w}: 배치표 없이 돈다 — C-1은 '주 도해 있음'만 본다(WAVES_WITHOUT_PLAN).`);
     const args = hasPlan ? [`--wave=${w}`, `--plan=${plan}`] : [`--wave=${w}`];
-    const r = spawnSync(process.execPath, [process.argv[1], ...args], { stdio: 'inherit' });
+    const r = spawnSync(process.execPath, [SELF, ...args], { stdio: 'inherit' });
     if (r.status === 2) process.exit(2); // 자체검사 실패는 즉시 중단
     if (r.status !== 0) failed += 1;
     console.log('');
@@ -2016,7 +2101,7 @@ allIssues.push(...mirrorIssues);
 
 // C-18 최소 폭 계약 · C-19 대비 — 모듈이 아니라 **컴포넌트·토큰** 단위라 루프 밖에서 한 번만 한다.
 // 예외 키는 가짜 자료원 접두어를 쓴다(Design D-11): `_component/LayerStack::C-18::scrollable`
-const renderIssues = [...checkSvgBoxContract(), ...checkContrast(COLOR_TOKENS, PALETTE), ...checkPatternTextClass(), ...checkTextMutedSnapshot()];
+const renderIssues = [...checkSvgBoxContract(), ...checkGlyphHoleContract(), ...checkContrast(COLOR_TOKENS, PALETTE), ...checkPatternTextClass(), ...checkTextMutedSnapshot()];
 let renderReviewed = 0;
 for (const i of renderIssues) {
   if (ALLOW[allowKeyOf(i)]) { renderReviewed += 1; continue; }

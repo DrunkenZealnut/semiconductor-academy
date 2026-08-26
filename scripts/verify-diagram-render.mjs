@@ -112,6 +112,7 @@ function measureInPage(minFont, minContrast) {
     small: [],
     lowContrast: [],
     markers: { missing: [], dup: [] },
+    glyphHole: [],
     figures: 0,
   };
   const pageBg = parse(getComputedStyle(document.body).backgroundColor) ?? { r: 255, g: 255, b: 255, a: 1 };
@@ -127,7 +128,13 @@ function measureInPage(minFont, minContrast) {
     const cap = (svg.closest('figure')?.querySelector('figcaption')?.innerText ?? '').replace(/\s+/g, ' ').slice(0, 34);
     const frameBg = parse(getComputedStyle(svg.closest('figure')).backgroundColor);
     const base = frameBg && frameBg.a > 0 ? over(frameBg, pageBg) : pageBg;
-    const rects = [...svg.querySelectorAll('rect, circle, ellipse')];
+    // ★**그려지는** 도형만 배경 후보다. `defs`·`mask`·`pattern`·`clipPath`·`symbol` 안의
+    // 도형은 화면에 칠해지지 않는다. 이것을 안 걸렀더니 `LayerStack`이 라벨 자리에 낸
+    // 마스크 구멍(`fill="black"`)이 **가장 작은 포함 사각형**으로 뽑혀 배경이 검정이 됐고,
+    // 멀쩡한 라벨 106건(53영역 × 2뷰포트)이 대비 1.44로 잡혔다.
+    const NOT_PAINTED = 'defs, mask, pattern, clipPath, symbol, marker';
+    const rects = [...svg.querySelectorAll('rect, circle, ellipse')]
+      .filter((r) => !r.closest(NOT_PAINTED));
 
     for (const t of texts) {
       const fs = parseFloat(getComputedStyle(t).fontSize) * k;
@@ -139,11 +146,15 @@ function measureInPage(minFont, minContrast) {
       const cx = bb.x + bb.width / 2;
       const cy = bb.y + bb.height / 2;
       let best = null;
+      // 패턴 채움 rect도 **같은 순회에서** 모은다. 따로 훑으면 getBBox 호출이 두 배가 되고
+      // (글자 × 사각형) 비용이라 3분짜리 검사가 10분을 넘겼다 — 실측.
+      let topmost = null;
       for (const r of rects) {
         let box; try { box = r.getBBox(); } catch { continue; }
         if (cx < box.x || cx > box.x + box.width || cy < box.y || cy > box.y + box.height) continue;
         const area = box.width * box.height;
         if (!best || area < best.area) best = { el: r, area };
+        topmost = r; // 문서 순서상 마지막 = 실제로 맨 위에 칠해진 것
       }
       let bg = base;
       if (best) {
@@ -164,6 +175,45 @@ function measureInPage(minFont, minContrast) {
           onShape: !!best,
           cap,
         });
+      }
+
+      // ★글리프 구멍 계약 (diagram-label-legibility D-4 후단).
+      // 정적 C-20은 "마스크가 있고 glyphHole()을 거쳤다"까지만 본다 — **구멍이 라벨을
+      // 실제로 덮는지**는 좌표라 여기서만 판정된다. 구멍 좌표를 0으로 만들어도 C-20은
+      // 통과한다(Check A-2 실증) — 그 한 줄이 층 44건을 통째로 되돌린다.
+      // ★`best`로 판정하면 **공허하다** — 바탕 rect와 패턴 rect는 기하가 같아 면적이 동률이고,
+      // `area < best.area`가 엄격 비교라 **먼저 그려진 바탕 rect**가 이긴다. 그 rect의 fill은
+      // 패턴이 아니라 클래스라 규칙을 통째로 건너뛴다. 구멍을 0으로 만든 회귀를 주입했더니
+      // 이 규칙이 그대로 통과했다(Check A-2 재현 중 발견). **글자를 덮는 패턴 rect를 직접 찾는다.**
+      // **맨 위 도형**이 패턴일 때만 본다. 글자 위를 덮는 마지막 도형이 불투명하면(예: `metal`
+      // tone의 well) 그 아래 글리프는 이미 가려져 결함이 아니다. "맨 위 **패턴**"으로 골랐더니
+      // `020-jfet`의 «소스»·«드레인»(회색 well 위, 완벽히 읽힘)이 거짓 경보가 됐다 — 실측.
+      if (topmost && /^url\(#/.test(topmost.getAttribute('fill') ?? '')) {
+        const pr = topmost;
+          const mref = (pr.getAttribute('mask') ?? '').match(/^url\(#(.+)\)$/);
+          const mask = mref ? svg.querySelector(`mask[id="${mref[1]}"]`) : null;
+          if (!mask) {
+            out.glyphHole.push({ sample: t.textContent.trim().slice(0, 18), why: '패턴 채움 위인데 마스크가 없다', cap });
+          } else {
+            // 구멍 = 마스크 안에서 검게 칠한 사각형(흰 바탕을 뚫는 것).
+            const holes = [...mask.querySelectorAll('rect')].filter((h) => (h.getAttribute('fill') ?? '') === 'black');
+            // 엄격 포함은 부동소수 기하에 너무 날카롭다 — 실측에서 **0.1 유닛** 모자라
+            // 멀쩡한 라벨 둘이 잡혔다(`060-feol-1`·`015-laser-diode`, 여유 아래 −0.1).
+            // 구멍 경계는 타일 경계이고, 그 다음 타일의 글리프는 타일 위에서 3 유닛쯤
+            // 떨어져 시작한다(11px 글자의 baseline이 타일 안 y=12). 그보다 작은 초과는
+            // 글리프에 닿을 수 없다. 여유를 **2 유닛**으로 두어 그 사이에 선을 긋는다.
+            const SLACK = 2;
+            let covered = false;
+            for (const hr of holes) {
+              let hb; try { hb = hr.getBBox(); } catch { continue; }
+              if (bb.x >= hb.x - SLACK && bb.y >= hb.y - SLACK
+                && bb.x + bb.width <= hb.x + hb.width + SLACK
+                && bb.y + bb.height <= hb.y + hb.height + SLACK) { covered = true; break; }
+            }
+            if (!covered) {
+              out.glyphHole.push({ sample: t.textContent.trim().slice(0, 18), why: '구멍이 글자를 덮지 않는다', cap });
+            }
+          }
       }
     }
   });
@@ -243,6 +293,7 @@ for (const [w, h, vpName] of VIEWPORTS) {
       const what = c.ratio === null ? '글자색 해석 실패' : String(c.ratio);
       findings.push({ url, vpName, kind: '대비', detail: `${what} «${c.sample}»${c.onShape ? ' (도형 위)' : ' (프레임 위)'} — ${c.cap}` });
     }
+    for (const g of m.glyphHole) findings.push({ url, vpName, kind: '글리프 구멍', detail: `${g.why} «${g.sample}» — ${g.cap}` });
     for (const x of m.markers.missing) findings.push({ url, vpName, kind: '마커 미해결', detail: x });
     for (const x of m.markers.dup) findings.push({ url, vpName, kind: '마커 중복', detail: x });
     if ((i + 1) % 25 === 0) process.stderr.write(`  …${vpName} ${i + 1}/${urls.length}\n`);
@@ -264,7 +315,7 @@ await browser.close();
 
 const byKind = findings.reduce((a, f) => ((a[f.kind] = (a[f.kind] ?? 0) + 1), a), {});
 if (findings.length === 0) {
-  console.log('\n✅ 전 항목 통과 — 가로 넘침 0 · 글자 축소 0 · 대비 미달 0 · 마커 정합');
+  console.log('\n✅ 전 항목 통과 — 가로 넘침 0 · 글자 축소 0 · 대비 미달 0 · 글리프 구멍 0 · 마커 정합');
   process.exit(0);
 }
 console.log(`\n❌ ${findings.length}건  ${JSON.stringify(byKind)}\n`);
