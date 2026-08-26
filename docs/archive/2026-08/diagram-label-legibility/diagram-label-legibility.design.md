@@ -18,7 +18,7 @@
 
 가장 얇은 다섯:
 
-```
+```text
 h= 16  013-photodiode      "p형 수광면 — 보통 1μm 이하"
 h= 16  022-bjt             "베이스 (p형) — 흐름을 조절"
 h= 18  hs-semicon-basics/bjt "베이스 — p형"
@@ -67,7 +67,7 @@ B안(뒤판)은 §0.1로 죽었다 — h=16에서 판이 층보다 크다. C안(
 
 §0.3의 실측이 근거다. 스냅하지 않으면 경계에서 글리프가 반만 남아 **라벨 옆에 점 같은 잔여물**이 생긴다.
 
-```
+```text
 x0 = floor((labelX − 4) / 16) × 16      x1 = ceil((labelX + labelW + 4) / 16) × 16
 y0 = floor((labelTop − 2) / 16) × 16    y1 = ceil((labelBottom + 3) / 16) × 16
 ```
