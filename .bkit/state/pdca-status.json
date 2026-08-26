@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-16T04:52:32.246Z",
+  "lastUpdated": "2026-08-26T01:34:15.316Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -35,7 +35,8 @@
     "diagram-component-set — Match Rate 78.1%",
     "diagram-set-finishing",
     "diagram-expansion",
-    "diagram"
+    "diagram",
+    "geom"
   ],
   "primaryFeature": "diagram-expansion",
   "features": {
@@ -260,7 +261,7 @@
       "archivedAt": "2026-05-31T01:30:00.000Z",
       "archivedTo": "docs/archive/2026-05/quotes-source-filter/",
       "inherits": "cross-link-system archive (FR-12 polish 정식화)",
-      "summary": "/quotes 통합 인용 인덱스 — 1.5h, 95%, QuoteItem discriminated union + extract-quotes OSHA 4 패턴(Course Overview/LO/Summary/Definition selector 11개) + Source 필터 UI + Fuse keys 6개. 책 91 + OSHA 26 = 117 통합 검색. 0 selector miss, sourceId/language/partId 100% 정합성, Critical/Major 0 Minor 5(polish). 신규 컴포넌트·신규 디자인 토큰·신규 ENV 0. cross-link-system FR-12 deferred polish 정식화(Option B Integration). 4 modified + 1 data regen."
+      "summary": "(저장소 밖: Major 0 Minor 5(polish). 신규 컴포넌트·신규 디자인 토큰·신규 ENV 0. cross-link-system FR-12 deferred polish 정식화(Option B Integration). 4 modified + 1 data regen.)"
     },
     "cross-link-system": {
       "phase": "archived",
@@ -1090,7 +1091,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-09T08:38:56.085Z",
-        "lastUpdated": "2026-08-16T04:52:32.246Z"
+        "lastUpdated": "2026-08-26T01:06:47.558Z"
       },
       "lastFile": "src/components/diagram/LayerStack.tsx"
     },
@@ -1360,6 +1361,54 @@
       "reportDoc": "docs/archive/2026-08/diagram-gate-exit-contract/diagram-gate-exit-contract.report.md",
       "outcome": "★결정문과 실행을 이었다. exit 2 경로 12개 중 종료 코드로 검증된 것이 0개였고(대조군 56건은 전부 in-process 반환값만 봤다), D-10·D-11의 \"경고가 아니라 실패\"라는 결정문 자체가 검사 밖이었다. 자식 프로세스로 종료 코드와 사유 문자열을 함께 단언하는 대조군 8건을 만들었다. 이음매는 cwd다 — 검사기가 전부 cwd 상대 경로로 읽으므로 임시 디렉터리에 4개를 심링크하고 src/content만 진짜로 만들면 된다. 생산 코드에 검사 전용 이음매 0. exit 2 경로는 19개가 됐고(globals.css·콘텐츠 루트·Tone 파싱·D-14 추가), 종료 코드가 CLAUDE.md·usage.md §2.1.1f에 공표된 계약이 됐다.",
       "lessons": "① 규칙을 만든 자리에서 그 규칙을 어기기 쉽다 — Design D-3이 \"종료 코드만 보면 공허하다\"를 정했는데 ④의 사유 정규식이 성공 배너에 걸려 D-10 때문에 죽은 실행도 만족했다 · ② 고치지 않기로 한 것에 절대 명제를 쓰지 않는다 — 범위 밖으로 미루는 판단과, 미룬 채 \"이러이러하다\"를 공표하는 것은 다르다. 미룬다면 문서에 단서를 남긴다 · ③ 재귀 회피는 인자에 붙는 성질이지 코드베이스에 붙는 성질이 아니다 — --assert-only를 만들어 놓고 다른 인자로 자식을 띄우는 대조군을 새로 쓰자 재귀가 그대로 돌아왔다 · ④ 새 단언은 기존 대조군의 전제를 바꾼다 — D-14를 넣자 최소 트리를 쓰던 ①③이 깨졌다 · ⑤ \"되돌렸는데 통과했다\"를 곧바로 \"공허하다\"로 읽지 않는다 — 되돌림 자체가 불완전할 수 있다(globals.css 가드 두 곳 중 하나만 되돌린 경우) · ⑥ 게이트를 통과시키려고 게이트의 뜻을 바꾸지 않는다 — G-7을 \"빠르다\"에서 \"문서와 맞다\"로 재정의하면 통과시킬 수 있었으나 미충족으로 남겼다"
+    },
+    "diagram-label-legibility": {
+      "phase": "archived",
+      "startedAt": "2026-08-25",
+      "planDoc": "docs/archive/2026-08/diagram-label-legibility/diagram-label-legibility.plan.md",
+      "origin": "docs/archive/2026-08/_INDEX.md 후속 백로그 — diagram-render-gate 파생 R-3(LayerStack 채움 패턴이 층 라벨과 겹친다) + diagram-gate-coverage 파생 D-13 기계 규칙 부재",
+      "inherits": "diagram-gate-exit-contract(97%, 2026-08-24 아카이브) · verify-diagram-placement.mjs C-1~C-19 + 자체검사 대조군 64",
+      "problem": "★+/− 채움 글리프가 층 라벨 글자 속을 지나간다. 같은 TEXT 색·비슷한 굵기라 letterform과 섞여 012-pn-diode의 \"애노드\"가 \"애노두\"처럼 읽힌다. 같은 도해의 oxide 층(mark 없음)은 완전히 깨끗해 대조가 그 자리에 있다. 지금 이것을 잡는 검사가 하나도 없다 — verify:diagram은 소스 문자열만 보고 좌표를 모르며, verify:render는 대비와 넘침만 본다. 글자가 글리프에 섞이는 것은 둘 중 어느 쪽으로도 나타나지 않는다. ★G-9(육안)가 이 부류를 두 번 잡았다 — wells 겹침 4건, 패턴 글리프. 세 번째가 없으려면 기계로 내려야 한다.",
+      "preMeasured": "★착수 전 실측: 패턴이 깔리는 영역(silicon-* tone) 53개 · 27모듈(층 44 · wells 9). 검산 — 012-pn-diode 2개 · 017-nmos 3개로 스크린샷과 일치. 첫 계수는 23개였고 틀렸다(중첩된 wells 객체를 정규식이 못 잡았다). tone: silicon-* 직접 계수라는 다른 방법으로 검산해 53으로 정정했다 — 이 저장소에서 손계산이 반복해서 틀린 그 자리다. ★백로그가 적은 것보다 범위가 넓다: R-3은 \"층 라벨\"만 적었으나 wells 라벨도 같다(017-nmos의 n⁺ 소스·n⁺ 드레인).",
+      "constraints": "★글리프를 없애는 것은 답이 아니다 — +/−는 장식이 아니라 색각 이상 대비 장치다(usage.md §3 \"색만으로 구분하지 않는다\"). 선행 diagram-render-gate가 이 글리프의 대비를 AA로 올리느라 한 항목을 썼다(TEXT_MUTED → TEXT, 8건 5모듈). 지우면 p형·n형을 색으로만 구분하게 된다. 글자와 글리프가 둘 다 살아야 한다 · D-13은 이것을 못 막는다 — 그 배치 규칙은 라벨을 가로로 빈 자리에 옮기는데, 패턴은 영역 전체에 타일로 깔려 옮겨 갈 빈 자리가 없다. 같은 증상의 다른 원인이다.",
+      "openDecisions": "★라벨과 글리프를 어떻게 떼어 놓을 것인가. A.글자 자리에 구멍(mask/clipPath로 라벨 bbox를 뚫는다 — 글리프가 라벨 주변에서 끊겨 패턴의 균질함이 깨질 수 있고, bbox를 좌표로 계산해야 한다) · B.라벨 뒤 판(가장 단순하고 확실하나 얇은 층에서 판이 층을 거의 덮을 수 있다) · C.글리프를 라벨 행에서 비켜 배치(패턴 타일 위상 조절 — 라벨 y가 층마다 달라 타일 하나로 못 맞춘다) · D.라벨을 패턴 밖으로(의미가 바뀐다 — 층 이름이 층 안에 있는 것이 단면도의 규약이고 annotations 자리와 충돌). B가 유력해 보이나 얇은 층에서의 대가를 재야 한다 · ★기계 규칙의 형태도 열려 있다 — 컴포넌트 계약 검사(C-18 방식, 싸고 확실하나 장치가 실제로 효과가 있는지는 안 본다) vs verify:render 확장(브라우저 좌표로 정확하나 상시 관문이 아니다). 둘 다 하는 것이 선행 사이클들의 방식이다 — 정적은 계약, 브라우저는 좌표.",
+      "frCount": 6,
+      "gates": "G-1~G-8. ★G-5(육안)와 G-8(글리프가 여전히 보이는가)이 핵심 — 이 사이클의 판정 기준은 \"읽히는가\"이고 그것은 수치가 아니다. 선행 사이클에서 세로 겹침만 계산해 오탐을 올린 적이 있다(065-etching) — 계산이 실물을 대신하지 못한다.",
+      "implOrder": "①얇은 층 실측(B안의 대가 — 53개의 높이 분포) ②장치 결정 + 한 모듈에 적용해 육안 확인(눈으로 먼저 본다) ③53개 전량 적용 + 육안 표본 재확인 ④기계 규칙(컴포넌트 계약) + 대조군 + 되돌려 실패 확인 ⑤verify:render 확장 여부 판단 ⑥문서·Check",
+      "scopeOut": "LayerStack 외 컴포넌트(다른 11종에는 채움 패턴이 없다) · band 모드(채움 패턴을 쓰지 않는다) · G-7 중복 실행 이음매 · --all --assert-only 무시 · 미사용 예외 검사 · --wave w4 단독 호출의 _coverage 누락",
+      "designDoc": "docs/archive/2026-08/diagram-label-legibility/diagram-label-legibility.design.md",
+      "designFinding": "★B안(라벨 뒤 판)은 높이 분포로 죽었다 — 가장 얇은 층이 h=16인데 라벨 뒤판은 패딩 포함 17~19px이라 판이 층보다 크다. 12개가 h≤30이라 예외 사례가 아니다(013-photodiode 16 · 022-bjt 16 · hs-semicon-basics/bjt 18 · 066-doping 20 · 057-wafer-quality 22) · ★A안(패턴에 마스크 구멍)을 만들어 눈으로 확인했다. 022-bjt 전후 — 전: 세 층 라벨 모두 글리프가 글자를 관통(\"에미터\"에 _가 붙음), 후: 세 라벨 모두 완전히 읽힌다. h=16 최박 층도 통과했다(B안이 죽는 그 자리에서 A안은 산다). 층 색이 남고 라벨 밖 글리프는 그대로 보인다 · ★마스크 경계를 패턴 타일 격자(16)에 스냅해야 한다 — 첫 시제품은 라벨 bbox+패딩4로 뚫었는데 좌우에 · 잔여물이 남았다. 글리프가 타일 안 x=4,y=12에 있어 경계가 타일 중간을 지나면 반만 잘린다. 16의 배수로 바깥쪽 스냅하니 사라졌다 · ★022-bjt 베이스 층의 ⊤ 모양 잘린 글리프는 이 사이클이 만든 것이 아니다 — 마스크를 끄고 찍은 사진에도 똑같이 있다. 층 rect 높이가 타일 글리프를 자르는 기존 현상이다(userSpaceOnUse라 타일 격자가 층 경계에 정렬되지 않는다). 범위 밖 · ★wells는 시제품이 안 건드렸다 — 017-nmos에서 층 라벨은 깨끗해졌으나 wells 라벨(n⁺ 소스·n⁺ 드레인)은 −가 그대로 관통한다. 9건에 같은 장치 필요.",
+      "designDecisions": "D-1 장치는 A안(패턴에 마스크 구멍) — B는 h=16에서 죽고, C(타일 위상)는 라벨 y가 층마다 달라 타일 하나로 못 맞추며, D(라벨을 층 밖으로)는 단면도의 의미를 바꾼다. A만 셋을 동시에 만족한다: 라벨이 읽히고 · 층 색이 남고 · 글리프가 라벨 밖에서 계속 보인다 · D-2 구멍은 패턴 타일 격자(16)에 바깥쪽 스냅. labelX·labelW는 D-13이 이미 계산해 둔 값을 그대로 쓴다(새 미러를 만들지 않는다) · D-3 wells에도 같은 장치(9건). wells 라벨은 textAnchor=middle이라 중심 기준으로 bbox를 잡는다 · ★D-4 기계 규칙은 둘로 나뉜다 — Plan FR-4는 \"D-13도 같은 규칙에 담는다\"고 했으나 하나로 담을 수 없다. R-3은 글리프가 라벨보다 먼저 그려져 색으로 섞이는 것이고, D-13은 wells가 나중에 그려져 덮는 것이다. 판정도 다르다(마스크 구멍이 라벨을 덮는가 vs 라벨에 나중 요소가 겹치는가). 하네스는 공유하고 규칙은 둘로 둔다. 정적 C-20(패턴 rect에 마스크가 걸린다 + 격자 스냅 헬퍼를 거친다 — C-18 방식, 싸지만 마스크가 실제로 라벨을 덮는지는 안 본다) + verify:render 확장(text.getBBox()가 마스크 구멍 안인가 · 라벨 bbox에 나중 요소가 겹치는가). 선행 분업 그대로 — 정적은 계약, 브라우저는 좌표.",
+      "implOrderRevised": "★①장치 적용(층 44건)은 Design 실측 중 끝났다 — 장치를 고르려면 만들어 봐야 했고 만든 것이 그대로 답이었다. 숨기지 않고 적는다. Do는 ②부터: ②wells 9건 확장 ③육안(012-pn-diode · 017-nmos · 최박 2건 전후 대조) ④C-20 정적 규칙 + 대조군 ①②③ + 되돌려 실패 확인 ⑤verify:render 확장 범위 판단 ⑥문서·Check",
+      "controlPlan": "대조군 64 → 67+ 예상. ①패턴 rect에 mask 없음 → C-20 검출 · ②격자 스냅 헬퍼 미경유 → C-20 검출 · ③음성(정상 컴포넌트) · ④(브라우저) 구멍이 라벨보다 좁다. ①②는 C-18의 임시 디렉터리 프로브 방식을 그대로 쓴다.",
+      "doFinding": "★verify:render가 그려지지 않는 도형을 배경으로 읽었다 — 마스크를 넣자 대비 미달 106건(53영역 × 2뷰포트, 이 변경의 정확한 발자국). querySelectorAll('rect, circle, ellipse')가 defs·mask 안까지 골라, 마스크 구멍(fill=black)이 가장 작은 포함 사각형으로 뽑혀 배경이 검정이 됐다(대비 1.44). 마스크를 defs로 옮기는 것으로는 안 고쳐졌다 — querySelectorAll은 defs도 훑는다. 첫 가설이 틀렸고 코드를 읽고서야 찾았다. 배경 후보를 그려지는 도형으로 한정해(defs·mask·pattern·clipPath·symbol·marker 제외) 106 → 0. 이 결함은 원래 있었다 — pattern 안에는 rect가 없어 안 드러났을 뿐이다 · ★주석에 쓴 태그 이름이 C-19를 깨뜨렸다 — glyphHole 주석에 그 태그 이름을 리터럴로 적었더니 checkPatternTextClassIn이 indexOf로 훑어 주석을 여는 태그로 오인하고 뒤의 band 축 TEXT_MUTED까지 삼켰다. 문자열로 훑는 검사가 있는 파일에서는 주석도 코드처럼 읽힌다 · ★선행 사이클의 잠복 결함 — 종료 코드 대조군이 [process.argv[1], …]로 자식을 띄우는데 자식은 cwd를 바꾼다. node scripts/…로 실행하면 상대 경로라 자식이 모듈을 못 찾는다. resolve()로 고쳤다 · ★C-20의 첫 판정이 약했다 — /glyphHole\\(/가 함수 정의에도 걸려 호출을 다 없애고 정의만 남겨도 통과했다(G-4에서 드러났다). glyphHole\\(\\{로 조이고 패턴 채움 수와 비교한다. \"되돌렸는데 통과\"가 이번에는 실험이 아니라 검사가 약한 것이었다 — 둘 다 의심해야 한다.",
+      "verification": "verify:diagram 5웨이브 전 항목 통과(대조군 64 → 69 · C-20 5건) · typecheck 0 · lint diagram 0 · verify:render 전 항목 통과(106초 · 글리프 구멍 항목 신설) · SSG 393/393 · 102 kB 무증가 · 비공허성: A-2 주입 시 정적 통과 / 브라우저 88건 검출.",
+      "matchRate": 94,
+      "iterationCount": 0,
+      "analysisDoc": "docs/archive/2026-08/diagram-label-legibility/diagram-label-legibility.analysis.md",
+      "checkFinding": "★Do를 마치며 \"게이트 8/8 충족\"이라 적었는데 틀렸다. D-4 후단(브라우저 규칙)이 존재하지 않았다. Design D-4가 기계 규칙을 둘로 나눴는데(정적=마스크가 있고 glyphHole을 거쳤다 / 브라우저=구멍이 라벨을 실제로 덮는가) 후자를 안 만들었다. 그런데 G-6을 \"충족 — verify:render 전 항목 통과\"로 닫았다. 참이지만 약속한 새 항목을 안 더한 것을 가린다. Plan §1.2가 이 사이클을 시작한 이유가 \"verify:render는 대비와 넘침만 본다\"였는데 Do가 끝난 시점에도 그대로였다. ★게이트 문구가 참이면서 사실을 가릴 수 있다 — \"전 항목 통과\"는 항목 집합이 고정일 때만 뜻이 있다 · A-2 구멍 좌표를 0으로 해도 C-20 통과(층 44건 회귀) — 정적으로는 못 잡는 설계 한계이고 브라우저 규칙이 덮는다(주입 시 88건 검출) · A-1 filled=0이면 C-20이 조용히 증발(정규식이 patternId 이름에 묶임) → expectAny 단언 + 대조군 · A-5 tile-mirror 조건에 대조군 없음 → 추가 · A-3 labelX 확정과 hole 계산의 순서가 계약인데 표시 없음 → 명시 · ★C-1 폐기한 가설이 규약으로 살아 있었다 — §7.1은 \"defs로는 안 고쳐졌다\"인데 코드 주석·usage.md는 \"defs에 둬야 한다, 안 그러면 오독된다\"였다. 다음 사람이 잘못된 이유로 구조를 지키게 된다. 둘 다 정정.",
+      "ruleIterations": "★브라우저 규칙 판정 대상을 다섯 번 바꿨다. ①best(최소 포함 사각형) → 공허(바탕 rect와 패턴 rect가 면적 동률이라 바탕이 이겨 규칙을 건너뜀. A-2 주입해도 통과) · ②포함 패턴 rect 전부 → 오탐(wells 라벨이 층 패턴 위에도 있어 층 구멍이 안 덮는다고 잡힘) · ③맨 위 패턴 → 오탐(그 위의 불투명 metal well을 못 봄. 020-jfet 육안으로 발견) · ④맨 위 도형이 패턴일 때만 → 오탐 2건(여유 −0.1유닛. 브라우저 좌표 실측으로 발견) · ⑤여유 2유닛 → 통과. 다섯 번 모두 추론이 아니라 측정으로 알았고 3·4차는 \"이제 맞다\"고 판단한 뒤였다. 여유 2유닛은 임의값이 아니다 — 구멍 경계가 타일 경계이고 다음 타일 글리프는 타일 위에서 약 3유닛 떨어져 시작한다(11px 글자 baseline이 타일 안 y=12).",
+      "wrongDiagnosis": "★성능 진단이 틀렸다. Do 중 verify:render가 10분을 넘겨 \"3분 → 10분으로 늘었다\"고 판단하고 두 순회를 합쳤는데, 측정해 보니 106초로 문서상 기준선(\"약 3분\")보다 빠르다. 원인은 규칙이 아니라 서버였다 — 죽었거나 깨진 빌드를 서빙하는 상태에서 waitUntil: networkidle이 매달렸고, A-2 회귀를 주입한 빌드로 서버를 띄운 채 측정한 것도 겹쳤다. 두 순회 합치기는 getBBox 호출을 실제로 줄이므로 유지하되 그 이유로 한 것이 아니었다는 사실을 남긴다.",
+      "agentNote": "gap-detector가 두 번 만에 됐다. 1차는 600초 무진행으로 죽었다(시작 문장만) — 이번엔 내가 파일을 안 건드렸으므로 지난번(분석 중인 파일을 동시 편집)과 원인이 다르다. 2차는 범위를 넷으로 좁히고 이미 확인한 5건을 \"다시 하지 마라\"로 명시해 성공했다. 1차 브리핑은 8항목 + 전수 스캔 요구로 무거웠다. 좁힌 덕에 나온 A-2·B-4가 이 사이클 최고 발견이었다.",
+      "backlog": "★C-2가 가장 무겁다 — 106건을 낸 검사기 결함을 고쳤는데 대조군이 없다(verify:render에 자체검사 하네스 부재). 되돌아가도 아무도 모른다 · B-1 2줄 라벨이 층 밖으로 나가고 거기엔 구멍이 없다(잠복, 브라우저 규칙이 잡는다) · B-3 wells 구멍이 well을 통째로 삼킬 수 있다(여유 한글 약 3자) · lastFile 절대경로가 매 사이클 재생성된다 — 세 사이클 연속 CodeRabbit이 잡았고 세 번 다 손으로 고쳤다. 구조적 해법 필요 · ⊤ 잘린 글리프(층 rect가 타일 글리프를 자른다, 이 사이클이 만든 것 아님) · 선행 백로그 유지(G-7 중복 실행 이음매 · --all --assert-only 무시 · 미사용 예외 검사 · --wave w4 _coverage 누락 · LayerStack 독스트링 모듈 수 표류)",
+      "archivedAt": "2026-08-27",
+      "archivedTo": "docs/archive/2026-08/diagram-label-legibility/",
+      "reportDoc": "docs/archive/2026-08/diagram-label-legibility/diagram-label-legibility.report.md",
+      "outcome": "★독자에게 보이는 결과를 낸 사이클이다. 53개 영역 27모듈의 층 이름이 또렷해졌다 — 앞선 두 사이클(검사기 내부 작업)과 다르다. 패턴 rect에 마스크로 글자 자리만 뚫고 네 변을 타일 격자(16)에 바깥쪽 스냅한다. 층 색이 남고 글리프는 라벨 밖에서 계속 보인다. 기계 규칙은 둘로 나뉜다 — C-20(정적, 마스크가 있고 glyphHole을 거쳤는가) + verify:render(좌표, 구멍이 라벨을 실제로 덮는가). ★분업이 실증됐다: 구멍 좌표를 0으로 만드는 한 줄이 층 44건을 되돌리는데 정적은 통과하고 브라우저가 88건으로 잡는다.",
+      "lessons": "① 게이트 문구가 참이면서 사실을 가릴 수 있다 — \"전 항목 통과\"는 항목 집합이 고정일 때만 뜻이 있다. Do가 G-6을 그렇게 닫아 약속한 새 항목을 안 더한 것을 가렸다 · ② 좌표 판정은 추론으로 맞힐 수 없다 — 브라우저 규칙을 다섯 번 고쳤고 다섯 번 다 측정이 반증했다. 3·4차는 \"이제 맞다\"고 판단한 뒤였다 · ③ 폐기한 가설을 규약에 남기지 않는다 — §7.1이 버린 가설이 코드 주석과 usage.md에 살아 있었다. 다음 사람이 잘못된 이유로 구조를 지킨다 · ④ 느려졌다고 느끼면 재기 전에 원인을 단정하지 않는다 — 10분은 규칙이 아니라 죽은 서버였다(실제 106초) · ⑤ 에이전트에게 주는 일도 범위를 좁혀야 끝난다 — 8항목 브리핑은 600초 무진행으로 죽었고 4항목은 됐다 · ⑥ 문자열로 훑는 검사가 있는 파일에서는 주석도 코드처럼 읽힌다"
+    },
+    "geom": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-08-26T01:31:23.437Z",
+        "lastUpdated": "2026-08-26T01:34:15.316Z"
+      },
+      "lastFile": "(저장소 밖: main.js)"
     }
   },
   "pipeline": {
@@ -1531,7 +1580,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-16T04:52:32.246Z"
+    "lastActivity": "2026-08-26T01:34:15.316Z"
   },
   "history": [
     {
@@ -2961,7 +3010,7 @@
       "timestamp": "2026-07-14T09:45:00.000Z",
       "feature": "daegu-hs-textbook",
       "event": "simplify_completed",
-      "detail": "/simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과."
+      "detail": "(저장소 밖: simplify 4에이전트 리뷰 — 적용 3건(SourceModuleArticle 공용 추출·SOURCE_KIND_UNIT_LABELS 승격·SOURCE_ACCENT_BORDER 통합), 스킵 2건(로더 팩토리·NCS sm:text-right). 재검증 통과.)"
     },
     {
       "timestamp": "2026-07-14T10:11:36.244Z",
@@ -4611,6 +4660,78 @@
     {
       "timestamp": "2026-08-16T04:52:32.246Z",
       "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-25T06:01:55.144Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-25T06:03:11.944Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T00:54:37.147Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T00:54:45.335Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T00:54:58.743Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T00:55:24.546Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:06:38.742Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:06:47.558Z",
+      "feature": "diagram",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:31:23.437Z",
+      "feature": "geom",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:31:39.113Z",
+      "feature": "geom",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:33:50.743Z",
+      "feature": "geom",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-26T01:34:15.316Z",
+      "feature": "geom",
       "phase": "do",
       "action": "updated"
     }

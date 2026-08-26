@@ -53,6 +53,30 @@ function approxWidth(s: string, font: number) {
 }
 
 /**
+ * 채움 패턴 타일 크기. 아래 pattern 요소의 width/height와 **반드시 같아야** 한다.
+ * (주석에 그 태그 이름을 리터럴로 쓰지 않는다 — C-19가 문자열로 훑어 여는 태그로 오인한다.)
+ */
+const TILE = 16;
+
+/**
+ * 라벨 글자 자리에서 채움 글리프를 비우는 **구멍**을 낸다.
+ *
+ * 왜 필요한가: `+`/`−` 글리프는 라벨과 같은 `TEXT` 색·비슷한 굵기라 letterform에 섞인다.
+ * `012-pn-diode`의 "애노드"가 "애노두"로 읽혔다. 글리프를 지울 수는 없다 — 색각 이상
+ * 대비 장치이기 때문이다(usage.md §3). 그래서 **글자 자리에서만** 비운다.
+ *
+ * 네 변을 **타일 격자에 바깥쪽 스냅**한다. 스냅하지 않으면 경계가 타일 중간을 지나
+ * 글리프가 반만 남고, 라벨 옆에 점 같은 잔여물이 생긴다(Design §0.3 실측).
+ */
+function glyphHole(box: { x: number; y: number; w: number; h: number }) {
+  const x0 = Math.floor(box.x / TILE) * TILE;
+  const y0 = Math.floor(box.y / TILE) * TILE;
+  const x1 = Math.ceil((box.x + box.w) / TILE) * TILE;
+  const y1 = Math.ceil((box.y + box.h) / TILE) * TILE;
+  return { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+}
+
+/**
  * 소자·막의 단면 적층도. 이 자료원 도해의 주력(주 19 · 보조 8 = 27모듈).
  * Design §2.2 #1
  */
@@ -115,6 +139,86 @@ export function LayerStack({
 
   const patternId = (tone: string) => `${idPrefix}-pat-${tone}`;
 
+  // ── 라벨 기하 전처리 ──
+  // 마스크를 최상위 <defs>에 두므로 좌표를 여기서 미리 잡는다 — 본문과 defs가 **같은 값**을 쓴다.
+  //
+  // ★defs 배치가 **106건 오탐을 고친 것은 아니다.** 그때 세운 가설("그리기 영역에 두면
+  // 렌더 검사가 마스크 내부 사각형을 배경으로 읽는다")은 옮겨 보고 **틀린 것으로 판명**됐다 —
+  // querySelectorAll은 defs도 훑는다. 실제 고침은 verify-diagram-render.mjs 쪽에서
+  // 배경 후보를 **그려지는 도형**으로 한정한 것이다. defs 배치는 SVG 정석이라 유지할 뿐,
+  // 검사기에 대한 방어가 아니다. (이 문단을 근거로 구조를 바꾸지 마라.)
+  const place = geom.map(({ layer, y, h }) => {
+    const wells = layer.wells ?? [];
+    const wellH = Math.min(h * 0.55, DIM.layerHeight * 0.6);
+    const wellW = bodyW * 0.26;
+    const wellX = (side: Well['side']) =>
+      side === 'left'
+        ? bodyX + WELL_INSET
+        : side === 'right'
+          ? bodyX + bodyW - wellW - WELL_INSET
+          : bodyX + (bodyW - wellW) / 2;
+
+    // 층 라벨의 가로 자리. wells는 라벨보다 **나중에** 그려지므로 겹치면 라벨이 묻힌다.
+    // 세로로 내리는 것만으로는 부족했다 — 층이 얕으면 내려도 well 안이다.
+    // G-9(2026-08-16) 실측: `019-cmos`·`021-mesfet`·`060-feol-1`·`068-cmp` 넷이
+    // `side: 'left'` well에 덮여 아래 획만 보이거나 아예 사라졌다.
+    // 높이를 키워 피하지 않는다 — vertical에서 **층 두께는 막 두께**다(usage.md §1).
+    const labelLines = splitLabel(layer.label);
+    const labelW = Math.max(...labelLines.map((l) => approxWidth(l, DIM.font)));
+    const labelY = wells.length ? y + h - 8 : y + h / 2 + 4;
+    let labelX = bodyX + LABEL_INSET;
+    if (wells.length && labelY - DIM.font * 0.73 < y + 4 + wellH) {
+      const spans = wells
+        .map((w) => [wellX(w.side), wellX(w.side) + wellW] as const)
+        .sort((a, b) => a[0] - b[0]);
+      const gaps: [number, number][] = [];
+      let cursor = bodyX + LABEL_INSET;
+      for (const [a, b] of spans) {
+        if (a - cursor > 0) gaps.push([cursor, a - GAP_MARGIN]);
+        cursor = Math.max(cursor, b + GAP_MARGIN);
+      }
+      gaps.push([cursor, bodyX + bodyW - 4]);
+      // **왼쪽부터 처음 들어가는** 빈 자리. '가장 넓은 곳'으로 골랐더니 이미 멀쩡하던
+      // `065-etching`의 라벨이 오른쪽으로 끌려갔다 — 겹치지 않는 라벨은 움직이지 않아야 한다.
+      const fit = gaps.find(([a, b]) => b - a >= labelW);
+      if (fit) labelX = fit[0];
+    }
+
+    const wellPlaces = wells.map((w, i) => {
+      const wx = wellX(w.side);
+      const wLabelW = approxWidth(w.label, DIM.fontSmall);
+      const wLabelY = y + 4 + wellH / 2 + 4;
+      return {
+        wx,
+        wLabelY,
+        maskId: `${idPrefix}-wm-${layer.id}-${i}`,
+        // wells 라벨은 textAnchor="middle"이라 중심 기준으로 좌우 절반씩 잡는다.
+        hole: glyphHole({
+          x: wx + wellW / 2 - wLabelW / 2 - 4,
+          y: wLabelY - DIM.fontSmall * 0.82 - 2,
+          w: wLabelW + 8,
+          h: DIM.fontSmall * 0.82 + 5,
+        }),
+      };
+    });
+
+    // ★순서가 계약이다 — `labelX`는 위에서 wells 회피로 **옮겨진 뒤**의 값이어야 한다.
+    // 아래 `hole`을 그 확정보다 먼저 계산하면 구멍은 `bodyX + LABEL_INSET`에, 라벨은
+    // 옮겨진 자리에 남는다. 세 정적 조건(mask 수·glyphHole 수·리터럴)은 전부 그대로라
+    // C-20은 통과한다 — 잡는 것은 verify:render의 글리프 구멍 규칙뿐이다.
+    return {
+      wells, wellH, wellW, wellPlaces,
+      labelLines, labelW, labelX, labelY,
+      maskId: `${idPrefix}-lm-${layer.id}`,
+      hole: glyphHole({
+        x: labelX - 4,
+        y: labelY - DIM.font * 0.82 - 2,
+        w: labelW + 8,
+        h: (labelLines.length - 1) * (DIM.font + 2) + DIM.font * 0.82 + 5,
+      }),
+    };
+  });
+
   return (
     <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
       <svg
@@ -157,8 +261,8 @@ export function LayerStack({
             <pattern
               key={tone}
               id={patternId(tone)}
-              width={16}
-              height={16}
+              width={TILE}
+              height={TILE}
               patternUnits="userSpaceOnUse"
             >
               {/*
@@ -175,47 +279,36 @@ export function LayerStack({
               </text>
             </pattern>
           ))}
+
+          {/* 라벨 자리에서 채움 글리프를 비우는 마스크. 그리기 영역이 아니라 여기 둔다(위 주석). */}
+          {!isBand && geom.map(({ layer, y, h }, gi) => {
+            const p = place[gi];
+            const nodes = [];
+            if (TONE[layer.tone].mark) {
+              nodes.push(
+                <mask key={p.maskId} id={p.maskId}>
+                  <rect x={bodyX} y={y} width={bodyW} height={h} fill="white" />
+                  <rect {...p.hole} fill="black" />
+                </mask>,
+              );
+            }
+            for (let i = 0; i < p.wells.length; i += 1) {
+              if (!TONE[p.wells[i].tone].mark) continue;
+              const wp = p.wellPlaces[i];
+              nodes.push(
+                <mask key={wp.maskId} id={wp.maskId}>
+                  <rect x={wp.wx} y={y + 4} width={p.wellW} height={p.wellH} fill="white" />
+                  <rect {...wp.hole} fill="black" />
+                </mask>,
+              );
+            }
+            return nodes;
+          })}
         </defs>
 
-        {geom.map(({ layer, y, h }) => {
+        {geom.map(({ layer, y, h }, gi) => {
           const tone = TONE[layer.tone];
-          const wells = layer.wells ?? [];
-          const wellH = Math.min(h * 0.55, DIM.layerHeight * 0.6);
-          const wellW = bodyW * 0.26;
-          const wellX = (side: Well['side']) =>
-            side === 'left'
-              ? bodyX + WELL_INSET
-              : side === 'right'
-                ? bodyX + bodyW - wellW - WELL_INSET
-                : bodyX + (bodyW - wellW) / 2;
-
-          // 층 라벨의 가로 자리. wells는 라벨보다 **나중에** 그려지므로 겹치면 라벨이 묻힌다.
-          // 세로로 내리는 것(아래 `y`)만으로는 부족했다 — 층이 얕으면 내려도 well 안이다.
-          // G-9(2026-08-16) 실측: `019-cmos`"소자 영역"·`021-mesfet`"전극"·`060-feol-1`"표면"·
-          // `068-cmp`"CMP 전 …" 넷이 `side: 'left'` well에 덮여 아래 획만 보이거나 아예 사라졌다.
-          // 높이를 키워 피하는 방법은 쓰지 않는다 — vertical 모드에서 **층 두께는 막 두께**라
-          // 얇은 표면층을 두껍게 그리면 도해가 거짓말을 한다(usage.md §1).
-          const labelLines = splitLabel(layer.label);
-          const labelW = Math.max(...labelLines.map((l) => approxWidth(l, DIM.font)));
-          const labelY = wells.length ? y + h - 8 : y + h / 2 + 4;
-          let labelX = bodyX + LABEL_INSET;
-          if (wells.length && labelY - DIM.font * 0.73 < y + 4 + wellH) {
-            const spans = wells
-              .map((w) => [wellX(w.side), wellX(w.side) + wellW] as const)
-              .sort((a, b) => a[0] - b[0]);
-            const gaps: [number, number][] = [];
-            let cursor = bodyX + LABEL_INSET;
-            for (const [a, b] of spans) {
-              if (a - cursor > 0) gaps.push([cursor, a - GAP_MARGIN]);
-              cursor = Math.max(cursor, b + GAP_MARGIN);
-            }
-            gaps.push([cursor, bodyX + bodyW - 4]);
-            // **왼쪽부터 처음 들어가는** 빈 자리. '가장 넓은 곳'으로 골랐더니 이미 멀쩡하던
-            // `065-etching`(center well 하나, 왼쪽이 비어 있다)의 라벨이 오른쪽으로 끌려갔다 —
-            // 겹치지 않는 라벨은 움직이지 않아야 한다.
-            const fit = gaps.find(([a, b]) => b - a >= labelW);
-            if (fit) labelX = fit[0];
-          }
+          const p = place[gi];
 
           return (
             <g key={layer.id}>
@@ -237,45 +330,47 @@ export function LayerStack({
                   height={h}
                   rx={radius}
                   fill={`url(#${patternId(layer.tone)})`}
+                  mask={`url(#${p.maskId})`}
                 />
               )}
 
               {/* 층 라벨 — wells가 있으면 아래로 내리고, 그래도 겹치면 옆 빈 자리로 옮긴다. */}
-              <text x={labelX} y={labelY} fontSize={DIM.font} className={TEXT}>
-                {labelLines.map((line, i) => (
-                  <tspan key={i} x={labelX} dy={i === 0 ? 0 : DIM.font + 2}>
+              <text x={p.labelX} y={p.labelY} fontSize={DIM.font} className={TEXT}>
+                {p.labelLines.map((line, i) => (
+                  <tspan key={i} x={p.labelX} dy={i === 0 ? 0 : DIM.font + 2}>
                     {line}
                   </tspan>
                 ))}
               </text>
 
-              {wells.map((w, i) => {
-                const wx = wellX(w.side);
+              {p.wells.map((w, i) => {
                 const wtone = TONE[w.tone];
+                const wp = p.wellPlaces[i];
                 return (
                   <g key={`${layer.id}-well-${i}`}>
                     <rect
-                      x={wx}
+                      x={wp.wx}
                       y={y + 4}
-                      width={wellW}
-                      height={wellH}
+                      width={p.wellW}
+                      height={p.wellH}
                       rx={radius}
                       className={`${wtone.fill} ${STROKE}`}
                       strokeWidth={DIM.stroke}
                     />
                     {!isBand && wtone.mark && (
                       <rect
-                        x={wx}
+                        x={wp.wx}
                         y={y + 4}
-                        width={wellW}
-                        height={wellH}
+                        width={p.wellW}
+                        height={p.wellH}
                         rx={radius}
                         fill={`url(#${patternId(w.tone)})`}
+                        mask={`url(#${wp.maskId})`}
                       />
                     )}
                     <text
-                      x={wx + wellW / 2}
-                      y={y + 4 + wellH / 2 + 4}
+                      x={wp.wx + p.wellW / 2}
+                      y={wp.wLabelY}
                       fontSize={DIM.fontSmall}
                       textAnchor="middle"
                       className={TEXT}

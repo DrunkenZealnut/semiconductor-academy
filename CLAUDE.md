@@ -21,13 +21,13 @@ npm run lint        # next lint (next/core-web-vitals + next/typescript)
 npm run extract:quotes      # quotes.json 재생성 (MDX → 인용 추출)
 npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 인덱스)
 
-npm run verify:diagram      # 도해 관문 C-1~C-19 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 약 1.7초
+npm run verify:diagram      # 도해 관문 C-1~C-20 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 약 1.7초
 npm run verify:render       # 도해 렌더 심층 검증 (브라우저·서버·자격증명 필요, 약 3분)
 ```
 
 테스트 러너는 없다. 검증은 `typecheck` + `lint` + 빌드 스크립트의 자체 검증 + **도해 관문**으로 한다.
 
-**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-19와 자체검사 대조군 64건이 들어 있고,
+**도해를 추가·수정하면 `npm run verify:diagram`을 돌린다.** C-1~C-20과 자체검사 대조군 69건이 들어 있고,
 자체검사가 실패하면 본 검사를 실행하지 않고 `exit 2`로 끝낸다(검사기가 눈먼 채로 통과를 내지 않게).
 
 **종료 코드는 계약이다** — `0` 통과 · `1` **콘텐츠 위반** · `2` **검사기가 자기 범위를 주장할 수 없음**
