@@ -9,7 +9,8 @@
  * 중복이 아니다. G-9에서 잡은 결함 3건 중 겹침·실제 넘침은 좌표를 알아야 판정된다.
  *
  * 상시 관문이 아니다 — 서버와 자격 증명이 필요하고 SVG 92페이지 × 2뷰포트가 약 2.5분이다(자체검사 ⑫가 자식으로 본 검사를 한 번 더 도는 몫 약 46초 포함).
- * (자체검사 `--self-test`만은 서버·자격 증명 없이 약 0.3초에 돈다.)
+ * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다 — 약 50초. setContent 대조군 13건은 0.3초고,
+ *  나머지 전부가 처분 대조군 ⑫의 자식 프로세스 몫이다.)
  * 사이클 종료 시점과 도해를 새로 추가했을 때 돌린다.
  *
  * 자격 증명: process.env.SITE_AUTH_ID · SITE_AUTH_PASSWORD만 읽는다.
@@ -416,14 +417,21 @@ async function selfTestFiguresDisposition() {
 }
 
 async function runSelfTest(chromium) {
+  // ★fixture를 **Chrome 기동 전에** 만든다. `selfTestFixtures()` 안의 `tok()`은 실패 시
+  // `fail()` → `process.exit(2)`이고, exit은 `finally`를 실행하지 않는다 — try 안에서
+  // 부르면 브라우저가 안 닫혀 **좀비 Chrome이 쌓인다.** 이 스크립트는 같은 함정을
+  // `figures === 0` 자리에서 이미 피해 놨다(거기 주석 참고).
+  const fixtures = selfTestFixtures();
+
   const browser = await chromium.launch({ channel: 'chrome', headless: true }).catch(() => null);
   if (!browser) fail('Chrome을 찾지 못했다 — 자체검사에도 브라우저가 필요하다.');
-  const ctx = await browser.newContext({ viewport: [800, 600] && { width: 800, height: 600 } });
+  // 본 검사와 같은 색 구성을 쓴다 — 기본값에 기대지 않는다(본 검사는 colorScheme을 명시한다).
+  const ctx = await browser.newContext({ viewport: { width: 800, height: 600 }, colorScheme: 'light' });
   const page = await ctx.newPage();
   console.log('★ 렌더 판정 대조군 (setContent · 서버 없음)');
   let ok = true;
   try {
-    for (const c of selfTestFixtures()) {
+    for (const c of fixtures) {
       await page.setContent(c.html);
       const o = await page.evaluate(
         ([src, mf, mc]) => new Function(`${src}; return measureInPage(${mf}, ${mc});`)(),
