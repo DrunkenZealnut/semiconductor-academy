@@ -281,11 +281,13 @@ function selfTestFixtures() {
 
   return [
     { name: '① 음성 — 정상 도해에 아무것도 내지 않는다', html: wrap(clean),
+      only: [],
       ok: (o) => o.small.length === 0 && o.lowContrast.length === 0 && o.glyphHole.length === 0
         && o.markers.missing.length === 0 && o.markers.dup.length === 0 && !o.pageOverflow && o.figures === 1 },
 
     { name: '② 가로 넘침을 잡는다',
       html: wrap(clean, '<div style="width:3000px;height:1px"></div>'),
+      only: ['overflow'],
       ok: (o) => !!o.pageOverflow },
 
     { name: '③ 글자 축소 — 하한 바로 아래를 잡는다 (8.8px)',
@@ -294,6 +296,7 @@ function selfTestFixtures() {
       html: wrap(`<svg viewBox="0 0 400 100" width="176" height="44">`
         + `<rect x="0" y="0" width="400" height="100" fill="${bg}"/>`
         + `<text x="10" y="50" font-size="20" fill="${ink}">작다</text></svg>`),
+      only: ['small'],
       ok: (o) => o.small.length === 1 && o.small[0].px < MIN_FONT_PX },
 
     { name: '③b 글자 축소 — 하한 바로 위는 잡지 않는다 (9.6px)',
@@ -301,12 +304,14 @@ function selfTestFixtures() {
       html: wrap(`<svg viewBox="0 0 400 100" width="192" height="48">`
         + `<rect x="0" y="0" width="400" height="100" fill="${bg}"/>`
         + `<text x="10" y="50" font-size="20" fill="${ink}">넉넉하다</text></svg>`),
+      only: [],
       ok: (o) => o.small.length === 0 },
 
     { name: '④ 대비 — AA 미달을 잡는다 (토큰 색)',
       html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
         + `<text x="8" y="52" font-size="14" fill="${near}">묻힌다</text></svg>`),
+      only: ['lowContrast'],
       ok: (o) => o.lowContrast.length === 1 && o.lowContrast[0].ratio < MIN_CONTRAST },
 
     { name: '④b 대비 — AA 통과는 잡지 않는다 (문턱의 반대쪽)',
@@ -320,6 +325,7 @@ function selfTestFixtures() {
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
         + `<rect x="0" y="0" width="200" height="100" fill="url(#p5)"/>`
         + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      only: ['glyphHole'],
       ok: (o) => o.glyphHole.some((g) => /마스크가 없다/.test(g.why)) },
 
     { name: '⑥ 글리프 구멍 — 구멍이 글자를 안 덮으면 잡는다',
@@ -329,6 +335,7 @@ function selfTestFixtures() {
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
         + `<rect x="0" y="0" width="200" height="100" fill="url(#p6)" mask="url(#m6)"/>`
         + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      only: ['glyphHole'],
       ok: (o) => o.glyphHole.some((g) => /덮지 않는다/.test(g.why)) },
 
     { name: '⑦ 마커 미해결을 잡는다',
@@ -336,6 +343,7 @@ function selfTestFixtures() {
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
         + `<text x="8" y="52" font-size="14" fill="${ink}">가</text>`
         + `<path d="M 0 0 L 10 10" marker-end="url(#없는마커)"/></svg>`),
+      only: ['markersMissing'],
       ok: (o) => o.markers.missing.length > 0 },
 
     { name: '⑧ 마커 중복을 잡는다',
@@ -344,11 +352,13 @@ function selfTestFixtures() {
         + `<marker id="dup1" viewBox="0 0 8 8"><path d="M0 0 L8 4 L0 8z"/></marker></defs>`
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
         + `<text x="8" y="52" font-size="14" fill="${ink}">가</text></svg>`),
+      only: ['markersDup'],
       ok: (o) => o.markers.dup.length > 0 },
 
     { name: '⑨ 글자 없는 도해는 figures로 세지 않는다',
       html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/></svg>`),
+      only: [],
       ok: (o) => o.figures === 0 },
 
     { name: '⑩ 회귀 — 마스크 구멍을 배경으로 읽지 않는다 (106건 사건)',
@@ -405,15 +415,56 @@ async function selfTestFiguresDisposition() {
     let out = '';
     child.stdout.on('data', (d) => { out += d; });
     child.stderr.on('data', (d) => { out += d; });
-    const status = await new Promise((ok) => child.on('close', ok));
-    const r = { status };
-    const pass = status === 2 && /하나도 보지 못했다/.test(out);
+    // ★제한 시간을 준다. 안 주면 자식이 안 끝날 때 여기서 **무기한** 매달리고,
+    // 이 대조군은 **본 검사 앞**에서 도니까 `verify:render`가 실패도 못 알린 채 멈춘다.
+    // 이 스크립트는 같은 함정을 서버 탐지 `fetch`에서 이미 피해 놨다(거기 AbortSignal).
+    // 실측 약 46초라 3분이면 넉넉하다 — 느린 기계에서 거짓 실패를 내지 않을 만큼 크고,
+    // 사람이 멈춘 줄 알고 손대기 전에 끝날 만큼 작다.
+    const LIMIT_MS = 180_000;
+    let timedOut = false;
+    const status = await new Promise((ok) => {
+      const timer = setTimeout(() => {
+        timedOut = true;
+        child.kill('SIGKILL');           // 죽이고 **회수까지 기다린다** — close가 이 뒤에 온다
+      }, LIMIT_MS);
+      child.on('close', (code) => { clearTimeout(timer); ok(code); });
+    });
+    const pass = !timedOut && status === 2 && /하나도 보지 못했다/.test(out);
     console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ⑫ 도해를 하나도 못 보면 exit 2 (처분)`);
-    if (!pass) console.log(`      종료 ${r.status} (기대 2) · ${(out.match(/❌ [^\n]*|✅ [^\n]*/)?.[0] ?? '').slice(0, 90)}`);
+    if (!pass) {
+      if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 끝나지 않아 강제 종료했다 — 처분을 확인하지 못했다.`);
+      else console.log(`      종료 ${status} (기대 2) · ${(out.match(/❌ [^\n]*|✅ [^\n]*/)?.[0] ?? '').slice(0, 90)}`);
+    }
     return pass;
   } finally {
     server.close();
   }
+}
+
+/**
+ * ★대조군이 **자기 판정만** 켜는지 본다.
+ *
+ * `ok:` 술어는 노리는 버킷 하나만 봤다 — 이를테면 ②는 `!!o.pageOverflow`뿐이라
+ * 같은 fixture에서 `lowContrast`가 **잘못** 떠도 통과했다. 그러면 대조군은
+ * *"잡는다"* 만 증명하고 *"그것만 잡는다"* 는 증명하지 않는다. **과잉 탐지가 안 보인다.**
+ * 이 사이클이 문턱에서 배운 것(*"한쪽 끝만 보면 문턱이 고정되지 않는다"*)과 같은 병이다.
+ *
+ * `only`에 적은 버킷 **밖**이 하나라도 비어 있지 않으면 실패다. `only`가 없으면 전부 0이어야 한다.
+ * `figures`는 버킷이 아니다 — 개수 자체가 판정이라 각 대조군의 `ok:`가 직접 본다.
+ */
+function offTarget(c, o) {
+  const buckets = {
+    small: o.small.length,
+    lowContrast: o.lowContrast.length,
+    glyphHole: o.glyphHole.length,
+    markersMissing: o.markers.missing.length,
+    markersDup: o.markers.dup.length,
+    overflow: o.pageOverflow ? 1 : 0,
+  };
+  const allowed = new Set(c.only ?? []);
+  return Object.entries(buckets)
+    .filter(([k, n]) => n > 0 && !allowed.has(k))
+    .map(([k, n]) => `${k}=${n}`);
 }
 
 async function runSelfTest(chromium) {
@@ -432,16 +483,33 @@ async function runSelfTest(chromium) {
   let ok = true;
   try {
     for (const c of fixtures) {
-      await page.setContent(c.html);
-      const o = await page.evaluate(
-        ([src, mf, mc]) => new Function(`${src}; return measureInPage(${mf}, ${mc});`)(),
-        [measureInPage.toString(), MIN_FONT_PX, MIN_CONTRAST],
-      );
-      const pass = c.ok(o);
+      // ★대조군 하나가 **예외로** 죽어도 그것은 "통과"가 아니라 **실패**다.
+      // 안 잡으면 예외가 여기서 밖으로 나가 호출자에 catch가 없으니 unhandled rejection이
+      // 되고, Node는 **1**로 끝난다 — 종료 코드 계약상 1은 *콘텐츠 위반*이다.
+      // 자체검사가 터진 것은 **검사기가 자기 범위를 주장할 수 없다**는 뜻이라 2여야 한다.
+      // 실제로 겪었다: 되돌림이 `cap` 선언 앞에 코드를 넣어 TDZ가 나자 `page.evaluate`가
+      // 통째로 터졌고 **`❌ 실패` 줄이 하나도 안 나왔다.** 조용한 것이 가장 나쁘다.
+      let o = null;
+      let boom = null;
+      try {
+        await page.setContent(c.html);
+        o = await page.evaluate(
+          ([src, mf, mc]) => new Function(`${src}; return measureInPage(${mf}, ${mc});`)(),
+          [measureInPage.toString(), MIN_FONT_PX, MIN_CONTRAST],
+        );
+      } catch (e) {
+        boom = e;
+      }
+      const only = boom ? null : offTarget(c, o);
+      const pass = !boom && c.ok(o) && only.length === 0;
       console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
       if (!pass) {
         ok = false;
-        console.log(`      ${JSON.stringify({ small: o.small.length, lowContrast: o.lowContrast.map((x) => x.ratio), glyphHole: o.glyphHole.map((g) => g.sample), markers: o.markers, overflow: !!o.pageOverflow, figures: o.figures })}`);
+        if (boom) console.log(`      대조군이 예외로 죽었다 — ${String(boom?.message ?? boom).split('\n')[0].slice(0, 110)}`);
+        else {
+          if (only.length) console.log(`      ★비대상 판정이 함께 떴다: ${only.join(' · ')} (기대: ${c.only?.join(' · ') || '전부 0'})`);
+          console.log(`      ${JSON.stringify({ small: o.small.length, lowContrast: o.lowContrast.map((x) => x.ratio), glyphHole: o.glyphHole.map((g) => g.sample), markers: o.markers, overflow: !!o.pageOverflow, figures: o.figures })}`);
+        }
       }
     }
   } finally {
