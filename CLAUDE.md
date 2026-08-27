@@ -23,7 +23,7 @@ npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 
 
 npm run verify:diagram      # 도해 관문 C-1~C-20 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 약 1.7초
 npm run verify:render       # 도해 렌더 심층 검증 (브라우저·서버·자격증명 필요, 약 2.5분)
-npm run verify:render -- --self-test   # 렌더 판정 대조군만 (Chrome만 필요 · 약 50초)
+npm run verify:render -- --self-test   # 렌더 판정 대조군 15건만 (Chrome만 필요 · 약 50초)
 ```
 
 테스트 러너는 없다. 검증은 `typecheck` + `lint` + 빌드 스크립트의 자체 검증 + **도해 관문**으로 한다.
@@ -45,7 +45,7 @@ npm run verify:render -- --self-test   # 렌더 판정 대조군만 (Chrome만 �
 `ScaleRuler.refs`. 각각의 이유와 "대신 무엇이 지키나"는
 `docs/02-design/features/diagram-component-set.usage.md` §2.1.1d에 있다. 넷째를 만들려면 그 표에 줄을 더한다.
 
-**`verify:render`도 자체검사를 갖는다** — 판정 대조군 **14건**이 `page.setContent()`로 만든 도해에
+**`verify:render`도 자체검사를 갖는다** — 판정 대조군 **15건**이 `page.setContent()`로 만든 도해에
 판정 함수를 그대로 먹인다. **서버도 자격 증명도 필요 없어** `--self-test`만 따로 돌릴 수 있다(약 50초 —
 그중 46초는 처분 대조군 하나가 자식 프로세스를 돌리는 몫이다).
 본 검사 앞에서 먼저 돌고 실패하면 본 검사를 실행하지 않는다(`exit 2`) — `verify:diagram`과 같은 계약이다.

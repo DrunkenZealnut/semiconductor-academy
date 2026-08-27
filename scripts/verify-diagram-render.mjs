@@ -9,8 +9,8 @@
  * 중복이 아니다. G-9에서 잡은 결함 3건 중 겹침·실제 넘침은 좌표를 알아야 판정된다.
  *
  * 상시 관문이 아니다 — 서버와 자격 증명이 필요하고 SVG 92페이지 × 2뷰포트가 약 2.5분이다(자체검사 ⑫가 자식으로 본 검사를 한 번 더 도는 몫 약 46초 포함).
- * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다 — 약 50초. setContent 대조군 13건은 0.3초고,
- *  나머지 전부가 처분 대조군 ⑫의 자식 프로세스 몫이다.)
+ * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다 — 약 50초. 대조군 15건 중 setContent로 도는
+ *  14건은 0.3초고, 나머지 전부가 처분 대조군 ⑫의 자식 프로세스 몫이다.)
  * 사이클 종료 시점과 도해를 새로 추가했을 때 돌린다.
  *
  * 자격 증명: process.env.SITE_AUTH_ID · SITE_AUTH_PASSWORD만 읽는다.
@@ -115,6 +115,8 @@ function measureInPage(minFont, minContrast) {
     lowContrast: [],
     markers: { missing: [], dup: [] },
     glyphHole: [],
+    /** 판정할 수 없는 구조 — "통과"가 아니라 `exit 2`다. */
+    unsupported: [],
     figures: 0,
   };
   const pageBg = parse(getComputedStyle(document.body).backgroundColor) ?? { r: 255, g: 255, b: 255, a: 1 };
@@ -134,6 +136,19 @@ function measureInPage(minFont, minContrast) {
     // 어느 rect에도 안 들어갔을 뿐이다. 대조군 ⑪이 이것을 고정한다.
     const texts = [...svg.querySelectorAll('text')]
       .filter((t) => t.textContent.trim() && !t.closest(NOT_PAINTED));
+    // ★`<use>`가 `defs`/`symbol` 안의 `<text>`를 가리키면 **글자는 그려지는데** 위 필터가
+    // 원본을 `NOT_PAINTED`로 빼 버려 세 판정을 통째로 빠져나간다. 인스턴스의 변환·상속
+    // 스타일까지 풀어 재려면 별개 설계라, 이 검사기는 **재는 척하지 않고 판정 불가라고 말한다.**
+    // 종료 코드 계약대로 `2`다 — "검사기가 자기 범위를 주장할 수 없음".
+    // 지금 저장소에 `<use>`는 0건이다. 이 가드는 **누가 처음 쓰는 순간** 울리라고 있다.
+    for (const u of svg.querySelectorAll('use')) {
+      const href = u.getAttribute('href') ?? u.getAttribute('xlink:href') ?? '';
+      if (!href.startsWith('#')) continue;
+      const target = svg.ownerDocument.getElementById(href.slice(1));
+      if (target && (target.tagName.toLowerCase() === 'text' || target.querySelector('text'))) {
+        out.unsupported.push({ why: '<use>가 글자를 참조한다 — 인스턴스를 재지 못한다', ref: href.slice(0, 40) });
+      }
+    }
     if (!texts.length) return;
     out.figures += 1;
     const cap = (svg.closest('figure')?.querySelector('figcaption')?.innerText ?? '').replace(/\s+/g, ' ').slice(0, 34);
@@ -355,6 +370,18 @@ function selfTestFixtures() {
       only: ['markersDup'],
       ok: (o) => o.markers.dup.length > 0 },
 
+    { name: '⑬ <use>가 글자를 가리키면 판정 불가라고 말한다 (통과가 아니다)',
+      // `<use>`가 `defs` 안의 글자를 그리면 화면에는 보이는데 `texts` 필터가 원본을
+      // NOT_PAINTED로 빼 버려 세 판정을 통째로 빠져나간다. 재는 척하지 않고 2로 끝낸다.
+      // 저장소에 `<use>`는 0건이다 — 이 대조군은 **누가 처음 쓸 때** 가드가 살아 있게 한다.
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<defs><text id="u13" x="8" y="52" font-size="14" fill="${ink}">숨은 라벨</text></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<use href="#u13"/>`
+        + `<text x="8" y="90" font-size="14" fill="${ink}">보이는 라벨</text></svg>`),
+      only: ['unsupported'],
+      ok: (o) => o.unsupported.length === 1 && /<use>/.test(o.unsupported[0].why) },
+
     { name: '⑨ 글자 없는 도해는 figures로 세지 않는다',
       html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
         + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/></svg>`),
@@ -459,6 +486,7 @@ function offTarget(c, o) {
     glyphHole: o.glyphHole.length,
     markersMissing: o.markers.missing.length,
     markersDup: o.markers.dup.length,
+    unsupported: o.unsupported.length,
     overflow: o.pageOverflow ? 1 : 0,
   };
   const allowed = new Set(c.only ?? []);
@@ -578,6 +606,8 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true }).cat
 if (!browser) fail('Chrome을 띄우지 못했다. Google Chrome이 설치돼 있는지 확인하라.');
 
 const findings = [];
+/** 판정 불가 구조. findings와 **따로** 센다 — 이건 위반(1)이 아니라 범위 상실(2)이다. */
+const unsupported = [];
 for (const [w, h, vpName] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: 'light' });
   const res = await ctx.request.post(`${BASE}/api/login/`, { data: { id, password: pw } });
@@ -611,6 +641,7 @@ for (const [w, h, vpName] of VIEWPORTS) {
     for (const g of m.glyphHole) findings.push({ url, vpName, kind: '글리프 구멍', detail: `${g.why} «${g.sample}» — ${g.cap}` });
     for (const x of m.markers.missing) findings.push({ url, vpName, kind: '마커 미해결', detail: x });
     for (const x of m.markers.dup) findings.push({ url, vpName, kind: '마커 중복', detail: x });
+    for (const u of m.unsupported ?? []) unsupported.push({ url, vpName, ...u });
     if ((i + 1) % 25 === 0) process.stderr.write(`  …${vpName} ${i + 1}/${urls.length}\n`);
   }
   console.log(`${vpName} ${w}px — 글자 있는 SVG ${figures}개 검사`);
@@ -628,6 +659,20 @@ for (const [w, h, vpName] of VIEWPORTS) {
 }
 await browser.close();
 
+// ★판정 불가를 **먼저** 본다. 위반 0건이어도 "전 항목 통과"라고 말하면 안 된다 —
+// 재지 못한 것을 재고 문제없다고 말하는 것이라, D-14가 막은 것과 같은 거짓말이다.
+//
+// ⚠ **이 처분에는 대조군이 없다.** 대조군 ⑬은 `measureInPage`가 `<use>`를 **감지하는지**만
+// 보고, 그 뒤 여기서 `2`가 나오는지는 `--self-test` 경로가 한 줄도 실행하지 않는다.
+// **⑨와 정확히 같은 모양이다** — 그때도 카운터만 보다가 가드를 통째로 지워도 통과했고,
+// ⑫(스텁 서버 + 자식 프로세스)를 만들어 막았다. 같은 처방이면 자식 실행이 하나 더 붙어
+// 자체검사가 약 50초 → 약 95초가 된다. 값이 커서 **아직 안 했다**(백로그 E-5).
+// *처분은 감지와 다른 주장이다* — 이 주석은 그 사실을 잊지 않으려고 남긴다.
+if (unsupported.length) {
+  console.error(`\n❌ 판정할 수 없는 구조 ${unsupported.length}건 — '통과'로 처리하지 않는다.`);
+  for (const u of unsupported.slice(0, 10)) console.error(`  ${u.vpName} ${u.url}\n      ${u.why} (${u.ref})`);
+  process.exit(2);
+}
 const byKind = findings.reduce((a, f) => ((a[f.kind] = (a[f.kind] ?? 0) + 1), a), {});
 if (findings.length === 0) {
   console.log('\n✅ 전 항목 통과 — 가로 넘침 0 · 글자 축소 0 · 대비 미달 0 · 글리프 구멍 0 · 마커 정합');
