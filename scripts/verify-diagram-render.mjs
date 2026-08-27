@@ -8,7 +8,9 @@
  *   이 스크립트 = **좌표가 결정하는 것** (무엇이 글자 밑에 오는지 · 실제 축소 배율 · 실제 넘침)
  * 중복이 아니다. G-9에서 잡은 결함 3건 중 겹침·실제 넘침은 좌표를 알아야 판정된다.
  *
- * 상시 관문이 아니다 — 서버와 자격 증명이 필요하고 SVG 92페이지 × 2뷰포트가 약 3분이다.
+ * 상시 관문이 아니다 — 서버와 자격 증명이 필요하고 SVG 92페이지 × 2뷰포트가 약 2.5분이다(자체검사 ⑫가 자식으로 본 검사를 한 번 더 도는 몫 약 46초 포함).
+ * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다 — 약 50초. 대조군 15건 중 setContent로 도는
+ *  14건은 0.3초고, 나머지 전부가 처분 대조군 ⑫의 자식 프로세스 몫이다.)
  * 사이클 종료 시점과 도해를 새로 추가했을 때 돌린다.
  *
  * 자격 증명: process.env.SITE_AUTH_ID · SITE_AUTH_PASSWORD만 읽는다.
@@ -113,6 +115,8 @@ function measureInPage(minFont, minContrast) {
     lowContrast: [],
     markers: { missing: [], dup: [] },
     glyphHole: [],
+    /** 판정할 수 없는 구조 — "통과"가 아니라 `exit 2`다. */
+    unsupported: [],
     figures: 0,
   };
   const pageBg = parse(getComputedStyle(document.body).backgroundColor) ?? { r: 255, g: 255, b: 255, a: 1 };
@@ -122,7 +126,29 @@ function measureInPage(minFont, minContrast) {
     const rw = svg.getBoundingClientRect().width;
     if (!vb.width || !rw) return;
     const k = rw / vb.width;
-    const texts = [...svg.querySelectorAll('text')].filter((t) => t.textContent.trim());
+    // 그려지지 않는 요소 — 배경 후보(rects)와 라벨(texts) **양쪽**에서 뺀다.
+    const NOT_PAINTED = 'defs, mask, pattern, clipPath, symbol, marker';
+    // ★**그려지는** 글자만 라벨이다. `defs`·`pattern`·`mask` 안의 텍스트는 화면에
+    // 그려지지 않는다 — `<pattern>` 안의 `+`/`−` 글리프가 대표적이다.
+    // 지난 사이클이 **배경 후보(`rects`)** 에서 이것을 걸러 106건 오탐을 고쳤는데
+    // **글자 쪽(`texts`)은 그대로 뒀다.** 실제 앱에서 안 터진 것은 우연이다 —
+    // 패턴 글리프는 타일 좌표 (4,12)이고 층 rect는 bodyX=16,y=16에서 시작해
+    // 어느 rect에도 안 들어갔을 뿐이다. 대조군 ⑪이 이것을 고정한다.
+    const texts = [...svg.querySelectorAll('text')]
+      .filter((t) => t.textContent.trim() && !t.closest(NOT_PAINTED));
+    // ★`<use>`가 `defs`/`symbol` 안의 `<text>`를 가리키면 **글자는 그려지는데** 위 필터가
+    // 원본을 `NOT_PAINTED`로 빼 버려 세 판정을 통째로 빠져나간다. 인스턴스의 변환·상속
+    // 스타일까지 풀어 재려면 별개 설계라, 이 검사기는 **재는 척하지 않고 판정 불가라고 말한다.**
+    // 종료 코드 계약대로 `2`다 — "검사기가 자기 범위를 주장할 수 없음".
+    // 지금 저장소에 `<use>`는 0건이다. 이 가드는 **누가 처음 쓰는 순간** 울리라고 있다.
+    for (const u of svg.querySelectorAll('use')) {
+      const href = u.getAttribute('href') ?? u.getAttribute('xlink:href') ?? '';
+      if (!href.startsWith('#')) continue;
+      const target = svg.ownerDocument.getElementById(href.slice(1));
+      if (target && (target.tagName.toLowerCase() === 'text' || target.querySelector('text'))) {
+        out.unsupported.push({ why: '<use>가 글자를 참조한다 — 인스턴스를 재지 못한다', ref: href.slice(0, 40) });
+      }
+    }
     if (!texts.length) return;
     out.figures += 1;
     const cap = (svg.closest('figure')?.querySelector('figcaption')?.innerText ?? '').replace(/\s+/g, ' ').slice(0, 34);
@@ -132,7 +158,6 @@ function measureInPage(minFont, minContrast) {
     // 도형은 화면에 칠해지지 않는다. 이것을 안 걸렀더니 `LayerStack`이 라벨 자리에 낸
     // 마스크 구멍(`fill="black"`)이 **가장 작은 포함 사각형**으로 뽑혀 배경이 검정이 됐고,
     // 멀쩡한 라벨 106건(53영역 × 2뷰포트)이 대비 1.44로 잡혔다.
-    const NOT_PAINTED = 'defs, mask, pattern, clipPath, symbol, marker';
     const rects = [...svg.querySelectorAll('rect, circle, ellipse')]
       .filter((r) => !r.closest(NOT_PAINTED));
 
@@ -228,20 +253,327 @@ function measureInPage(minFont, minContrast) {
   return out;
 }
 
-// ── main ──────────────────────────────────────────────────────────────────────
-const id = process.env.SITE_AUTH_ID;
-const pw = process.env.SITE_AUTH_PASSWORD;
-if (!id || !pw) {
-  fail('SITE_AUTH_ID · SITE_AUTH_PASSWORD가 없다. 셸에서 넘겨라:\n'
-    + '     set -a; . ./.env.local; set +a; npm run verify:render');
+
+// ── 자체검사 (`render-gate-self-test`) ────────────────────────────────────────
+//
+// 왜 있나: 이 스크립트에는 대조군이 **0건**이었다. 지난 사이클이 배경 후보에서
+// 그려지지 않는 도형을 걸러 **106건 오탐**을 고쳤는데 그것을 고정하는 검사를 남기지
+// 못했다 — 한 줄을 지우면 그대로 돌아오고 아무도 모른다.
+//
+// 서버도 자격 증명도 필요 없다. `measureInPage`는 `.toString()`으로 직렬화돼
+// `page.evaluate`에 들어가므로 `setContent`로 만든 도해에 그대로 먹인다.
+// 색은 **`theme.css`에서 읽는다** — 값을 스크립트에 옮겨 적지 않는다(미러 금지).
+
+function selfTestFixtures() {
+  const theme = readFileSync('node_modules/tailwindcss/theme.css', 'utf8');
+  const tok = (name) => {
+    const m = theme.match(new RegExp(`--color-${name}:\\s*(oklch\\([^)]+\\))`));
+    if (!m) fail(`theme.css에서 --color-${name}를 못 읽었다 — 팔레트 형식이 바뀌었다.`);
+    return m[1];
+  };
+  const ink = tok('slate-800');
+  const bg = tok('rose-100');
+  // 문턱값 대조군용 — **양쪽**을 만든다. 한쪽만 보면 문턱이 고정되지 않는다:
+  // 초판은 글자와 배경에 같은 토큰을 써서 비율이 정확히 1.00이었고, MIN_CONTRAST를
+  // 1.05로 바꿔도 통과했다(Check A-3). 그 대조군은 4.5라는 선에 대해 아무것도 말하지 않는다.
+  const near = tok('slate-400');  // rose-100 위에서 AA 미달이지만 1.0보다 훨씬 크다
+  const over = tok('slate-600');  // rose-100 위에서 AA 통과
+
+  // ★`<figure>`에 배경을 주지 않는다 — 실제 `DiagramFrame`은 `className="not-prose my-6"`뿐이라
+  // 배경이 없고, 그러면 `frameBg.a === 0` → `base = pageBg` 갈래를 탄다.
+  // 초판은 `style="background:#fff"`를 줘서 **11건 전부가 실제 도해가 절대 안 지나는 갈래**를
+  // 지났다(Check B ⓐ). 값이 우연히 같아 결과가 안 갈렸을 뿐이다.
+  const wrap = (svg, extra = '') => `<!doctype html><html><body style="background:#fff;margin:0">`
+    + `${extra}<figure style="margin:0">${svg}<figcaption>대조군</figcaption></figure></body></html>`;
+
+  const patDefs = (id) => `<pattern id="${id}" width="16" height="16" patternUnits="userSpaceOnUse">`
+    + `<text x="4" y="12" font-size="11" fill="${ink}">+</text></pattern>`;
+
+  /** 정상 도해 — 여기서 무엇이든 나오면 아래 양성들이 전부 공허하다. */
+  const clean = `<svg viewBox="0 0 200 100" width="200" height="100">`
+    + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+    + `<text x="8" y="52" font-size="14" fill="${ink}">잘 보인다</text></svg>`;
+
+  return [
+    { name: '① 음성 — 정상 도해에 아무것도 내지 않는다', html: wrap(clean),
+      only: [],
+      ok: (o) => o.small.length === 0 && o.lowContrast.length === 0 && o.glyphHole.length === 0
+        && o.markers.missing.length === 0 && o.markers.dup.length === 0 && !o.pageOverflow && o.figures === 1 },
+
+    { name: '② 가로 넘침을 잡는다',
+      html: wrap(clean, '<div style="width:3000px;height:1px"></div>'),
+      only: ['overflow'],
+      ok: (o) => !!o.pageOverflow },
+
+    { name: '③ 글자 축소 — 하한 바로 아래를 잡는다 (8.8px)',
+      // ★문턱 **바로 옆**이어야 문턱이 고정된다. 초판은 5px과 10px이라 하한을 6으로
+      // 낮춰도 둘 다 유지됐다(Check A-7). viewBox 400 을 176px에 → ×0.44, 20px → 8.8px.
+      html: wrap(`<svg viewBox="0 0 400 100" width="176" height="44">`
+        + `<rect x="0" y="0" width="400" height="100" fill="${bg}"/>`
+        + `<text x="10" y="50" font-size="20" fill="${ink}">작다</text></svg>`),
+      only: ['small'],
+      ok: (o) => o.small.length === 1 && o.small[0].px < MIN_FONT_PX },
+
+    { name: '③b 글자 축소 — 하한 바로 위는 잡지 않는다 (9.6px)',
+      // ×0.48 — 20px 글자가 9.6px. ③(8.8)과 함께 9라는 선을 양쪽에서 조인다.
+      html: wrap(`<svg viewBox="0 0 400 100" width="192" height="48">`
+        + `<rect x="0" y="0" width="400" height="100" fill="${bg}"/>`
+        + `<text x="10" y="50" font-size="20" fill="${ink}">넉넉하다</text></svg>`),
+      only: [],
+      ok: (o) => o.small.length === 0 },
+
+    { name: '④ 대비 — AA 미달을 잡는다 (토큰 색)',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<text x="8" y="52" font-size="14" fill="${near}">묻힌다</text></svg>`),
+      only: ['lowContrast'],
+      ok: (o) => o.lowContrast.length === 1 && o.lowContrast[0].ratio < MIN_CONTRAST },
+
+    { name: '④b 대비 — AA 통과는 잡지 않는다 (문턱의 반대쪽)',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<text x="8" y="52" font-size="14" fill="${over}">잘 보인다</text></svg>`),
+      ok: (o) => o.lowContrast.length === 0 },
+
+    { name: '⑤ 글리프 구멍 — 마스크가 없으면 잡는다',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100"><defs>${patDefs('p5')}</defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<rect x="0" y="0" width="200" height="100" fill="url(#p5)"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      only: ['glyphHole'],
+      ok: (o) => o.glyphHole.some((g) => /마스크가 없다/.test(g.why)) },
+
+    { name: '⑥ 글리프 구멍 — 구멍이 글자를 안 덮으면 잡는다',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100"><defs>${patDefs('p6')}`
+        + `<mask id="m6"><rect x="0" y="0" width="200" height="100" fill="white"/>`
+        + `<rect x="180" y="90" width="4" height="4" fill="black"/></mask></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<rect x="0" y="0" width="200" height="100" fill="url(#p6)" mask="url(#m6)"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      only: ['glyphHole'],
+      ok: (o) => o.glyphHole.some((g) => /덮지 않는다/.test(g.why)) },
+
+    { name: '⑦ 마커 미해결을 잡는다',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">가</text>`
+        + `<path d="M 0 0 L 10 10" marker-end="url(#없는마커)"/></svg>`),
+      only: ['markersMissing'],
+      ok: (o) => o.markers.missing.length > 0 },
+
+    { name: '⑧ 마커 중복을 잡는다',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100"><defs>`
+        + `<marker id="dup1" viewBox="0 0 8 8"><path d="M0 0 L8 4 L0 8z"/></marker>`
+        + `<marker id="dup1" viewBox="0 0 8 8"><path d="M0 0 L8 4 L0 8z"/></marker></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">가</text></svg>`),
+      only: ['markersDup'],
+      ok: (o) => o.markers.dup.length > 0 },
+
+    { name: '⑬ <use>가 글자를 가리키면 판정 불가라고 말한다 (통과가 아니다)',
+      // `<use>`가 `defs` 안의 글자를 그리면 화면에는 보이는데 `texts` 필터가 원본을
+      // NOT_PAINTED로 빼 버려 세 판정을 통째로 빠져나간다. 재는 척하지 않고 2로 끝낸다.
+      // 저장소에 `<use>`는 0건이다 — 이 대조군은 **누가 처음 쓸 때** 가드가 살아 있게 한다.
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<defs><text id="u13" x="8" y="52" font-size="14" fill="${ink}">숨은 라벨</text></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<use href="#u13"/>`
+        + `<text x="8" y="90" font-size="14" fill="${ink}">보이는 라벨</text></svg>`),
+      only: ['unsupported'],
+      ok: (o) => o.unsupported.length === 1 && /<use>/.test(o.unsupported[0].why) },
+
+    { name: '⑨ 글자 없는 도해는 figures로 세지 않는다',
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100">`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/></svg>`),
+      only: [],
+      ok: (o) => o.figures === 0 },
+
+    { name: '⑩ 회귀 — 마스크 구멍을 배경으로 읽지 않는다 (106건 사건)',
+      // 구멍(fill=black)이 글자를 포함하는 **가장 작은** 사각형이다.
+      // NOT_PAINTED 필터를 지우면 배경이 검정이 되어 대비 1.44가 나온다.
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100"><defs>${patDefs('p10')}`
+        + `<mask id="m10"><rect x="0" y="0" width="200" height="100" fill="white"/>`
+        + `<rect x="0" y="32" width="128" height="32" fill="black"/></mask></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<rect x="0" y="0" width="200" height="100" fill="url(#p10)" mask="url(#m10)"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      ok: (o) => o.lowContrast.length === 0 },
+
+    { name: '⑪ 회귀 — pattern 안 글리프를 라벨로 판정하지 않는다',
+      // ⑩과 같은 도해다. `texts`에 NOT_PAINTED 필터가 없으면 pattern 안 `+`가
+      // 라벨로 잡혀 글리프 구멍이 뜬다 — Design §0.4에서 실제로 그랬다.
+      html: wrap(`<svg viewBox="0 0 200 100" width="200" height="100"><defs>${patDefs('p11')}`
+        + `<mask id="m11"><rect x="0" y="0" width="200" height="100" fill="white"/>`
+        + `<rect x="0" y="32" width="128" height="32" fill="black"/></mask></defs>`
+        + `<rect x="0" y="0" width="200" height="100" fill="${bg}"/>`
+        + `<rect x="0" y="0" width="200" height="100" fill="url(#p11)" mask="url(#m11)"/>`
+        + `<text x="8" y="52" font-size="14" fill="${ink}">패턴 위 글자</text></svg>`),
+      ok: (o) => o.glyphHole.length === 0 },
+  ];
 }
 
+
+/**
+ * A-1 — `figures === 0`의 **처분**을 확인한다 (Check 지적).
+ *
+ * 대조군 ⑨는 `measureInPage`의 **카운터**가 0이 되는 것까지만 본다. 그 뒤 본 검사 루프가
+ * `exit 2`를 내는지는 **`--self-test` 경로가 한 줄도 실행하지 않는다** — 가드를 통째로
+ * 지워도 11/11이 통과했다(실측). *"감지는 증명하고 처분은 증명 안 한다"* — 정적 관문이
+ * 종료 코드 대조군을 만들며 배운 것과 같은 구분이다(usage §2.1.1f).
+ *
+ * 도해가 하나도 없는 응답만 주는 최소 서버를 세우고 자식으로 본 검사를 돌린다.
+ */
+async function selfTestFiguresDisposition() {
+  const { createServer } = await import('node:http');
+  // ★`spawnSync`를 쓰면 안 된다 — 부모의 이벤트 루프를 막아 아래 스텁 서버가 요청을
+  // 받지 못하고, 자식이 "연결할 수 없다"로 죽는다(실측). 비동기 spawn으로 기다린다.
+  const { spawn } = await import('node:child_process');
+  const server = createServer((req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+    // 어떤 경로든 도해 없는 페이지를 준다 — 로그인도 200으로 통과시킨다.
+    res.end('<!doctype html><html><body><p>도해가 없다</p></body></html>');
+  });
+  await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
+  const port = server.address().port;
+  try {
+    const child = spawn(process.execPath, [path.resolve(process.argv[1])], {
+      env: { ...process.env, DGM_RENDER_CHILD: '1', RENDER_BASE: `http://127.0.0.1:${port}`, SITE_AUTH_ID: 'x', SITE_AUTH_PASSWORD: 'x' },
+    });
+    let out = '';
+    child.stdout.on('data', (d) => { out += d; });
+    child.stderr.on('data', (d) => { out += d; });
+    // ★제한 시간을 준다. 안 주면 자식이 안 끝날 때 여기서 **무기한** 매달리고,
+    // 이 대조군은 **본 검사 앞**에서 도니까 `verify:render`가 실패도 못 알린 채 멈춘다.
+    // 이 스크립트는 같은 함정을 서버 탐지 `fetch`에서 이미 피해 놨다(거기 AbortSignal).
+    // 실측 약 46초라 3분이면 넉넉하다 — 느린 기계에서 거짓 실패를 내지 않을 만큼 크고,
+    // 사람이 멈춘 줄 알고 손대기 전에 끝날 만큼 작다.
+    const LIMIT_MS = 180_000;
+    let timedOut = false;
+    const status = await new Promise((ok) => {
+      const timer = setTimeout(() => {
+        timedOut = true;
+        child.kill('SIGKILL');           // 죽이고 **회수까지 기다린다** — close가 이 뒤에 온다
+      }, LIMIT_MS);
+      child.on('close', (code) => { clearTimeout(timer); ok(code); });
+    });
+    const pass = !timedOut && status === 2 && /하나도 보지 못했다/.test(out);
+    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ⑫ 도해를 하나도 못 보면 exit 2 (처분)`);
+    if (!pass) {
+      if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 끝나지 않아 강제 종료했다 — 처분을 확인하지 못했다.`);
+      else console.log(`      종료 ${status} (기대 2) · ${(out.match(/❌ [^\n]*|✅ [^\n]*/)?.[0] ?? '').slice(0, 90)}`);
+    }
+    return pass;
+  } finally {
+    server.close();
+  }
+}
+
+/**
+ * ★대조군이 **자기 판정만** 켜는지 본다.
+ *
+ * `ok:` 술어는 노리는 버킷 하나만 봤다 — 이를테면 ②는 `!!o.pageOverflow`뿐이라
+ * 같은 fixture에서 `lowContrast`가 **잘못** 떠도 통과했다. 그러면 대조군은
+ * *"잡는다"* 만 증명하고 *"그것만 잡는다"* 는 증명하지 않는다. **과잉 탐지가 안 보인다.**
+ * 이 사이클이 문턱에서 배운 것(*"한쪽 끝만 보면 문턱이 고정되지 않는다"*)과 같은 병이다.
+ *
+ * `only`에 적은 버킷 **밖**이 하나라도 비어 있지 않으면 실패다. `only`가 없으면 전부 0이어야 한다.
+ * `figures`는 버킷이 아니다 — 개수 자체가 판정이라 각 대조군의 `ok:`가 직접 본다.
+ */
+function offTarget(c, o) {
+  const buckets = {
+    small: o.small.length,
+    lowContrast: o.lowContrast.length,
+    glyphHole: o.glyphHole.length,
+    markersMissing: o.markers.missing.length,
+    markersDup: o.markers.dup.length,
+    unsupported: o.unsupported.length,
+    overflow: o.pageOverflow ? 1 : 0,
+  };
+  const allowed = new Set(c.only ?? []);
+  return Object.entries(buckets)
+    .filter(([k, n]) => n > 0 && !allowed.has(k))
+    .map(([k, n]) => `${k}=${n}`);
+}
+
+async function runSelfTest(chromium) {
+  // ★fixture를 **Chrome 기동 전에** 만든다. `selfTestFixtures()` 안의 `tok()`은 실패 시
+  // `fail()` → `process.exit(2)`이고, exit은 `finally`를 실행하지 않는다 — try 안에서
+  // 부르면 브라우저가 안 닫혀 **좀비 Chrome이 쌓인다.** 이 스크립트는 같은 함정을
+  // `figures === 0` 자리에서 이미 피해 놨다(거기 주석 참고).
+  const fixtures = selfTestFixtures();
+
+  const browser = await chromium.launch({ channel: 'chrome', headless: true }).catch(() => null);
+  if (!browser) fail('Chrome을 찾지 못했다 — 자체검사에도 브라우저가 필요하다.');
+  // 본 검사와 같은 색 구성을 쓴다 — 기본값에 기대지 않는다(본 검사는 colorScheme을 명시한다).
+  const ctx = await browser.newContext({ viewport: { width: 800, height: 600 }, colorScheme: 'light' });
+  const page = await ctx.newPage();
+  console.log('★ 렌더 판정 대조군 (setContent · 서버 없음)');
+  let ok = true;
+  try {
+    for (const c of fixtures) {
+      // ★대조군 하나가 **예외로** 죽어도 그것은 "통과"가 아니라 **실패**다.
+      // 안 잡으면 예외가 여기서 밖으로 나가 호출자에 catch가 없으니 unhandled rejection이
+      // 되고, Node는 **1**로 끝난다 — 종료 코드 계약상 1은 *콘텐츠 위반*이다.
+      // 자체검사가 터진 것은 **검사기가 자기 범위를 주장할 수 없다**는 뜻이라 2여야 한다.
+      // 실제로 겪었다: 되돌림이 `cap` 선언 앞에 코드를 넣어 TDZ가 나자 `page.evaluate`가
+      // 통째로 터졌고 **`❌ 실패` 줄이 하나도 안 나왔다.** 조용한 것이 가장 나쁘다.
+      let o = null;
+      let boom = null;
+      try {
+        await page.setContent(c.html);
+        o = await page.evaluate(
+          ([src, mf, mc]) => new Function(`${src}; return measureInPage(${mf}, ${mc});`)(),
+          [measureInPage.toString(), MIN_FONT_PX, MIN_CONTRAST],
+        );
+      } catch (e) {
+        boom = e;
+      }
+      const only = boom ? null : offTarget(c, o);
+      const pass = !boom && c.ok(o) && only.length === 0;
+      console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
+      if (!pass) {
+        ok = false;
+        if (boom) console.log(`      대조군이 예외로 죽었다 — ${String(boom?.message ?? boom).split('\n')[0].slice(0, 110)}`);
+        else {
+          if (only.length) console.log(`      ★비대상 판정이 함께 떴다: ${only.join(' · ')} (기대: ${c.only?.join(' · ') || '전부 0'})`);
+          console.log(`      ${JSON.stringify({ small: o.small.length, lowContrast: o.lowContrast.map((x) => x.ratio), glyphHole: o.glyphHole.map((g) => g.sample), markers: o.markers, overflow: !!o.pageOverflow, figures: o.figures })}`);
+        }
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+  if (!await selfTestFiguresDisposition()) ok = false;
+  return ok;
+}
+
+// ── main ──────────────────────────────────────────────────────────────────────
+
+// playwright를 먼저 연다 — `--self-test`는 서버도 자격 증명도 필요 없으므로
+// 그 두 검사보다 **앞**에서 끝난다.
 let chromium;
 try {
   ({ chromium } = await import('playwright-core'));
 } catch {
   fail('playwright-core가 없다. `npm i -D playwright-core` 후 다시 실행하라.\n'
     + '     (브라우저 바이너리는 내려받지 않는다 — 설치된 Chrome을 쓴다.)');
+}
+
+// `--self-test` — 판정 대조군만 돌리고 끝낸다. **본 검사를 건너뛴다.**
+// 서버·자격 증명 없이 도는 것이 요점이다: 검사기 자신이 건강한지는 앱과 무관하게 물을 수 있어야 한다.
+if (process.argv.slice(2).includes('--self-test')) {
+  const ok = await runSelfTest(chromium);
+  console.log(ok
+    ? '\n✅ 자체검사 전 항목 통과 — ※ **본 검사는 돌지 않았다.**'
+    : '\n❌ 자체검사 실패 — 판정 함수가 오류를 놓친다.');
+  process.exit(ok ? 0 : 2);
+}
+
+const id = process.env.SITE_AUTH_ID;
+const pw = process.env.SITE_AUTH_PASSWORD;
+if (!id || !pw) {
+  fail('SITE_AUTH_ID · SITE_AUTH_PASSWORD가 없다. 셸에서 넘겨라:\n'
+    + '     set -a; . ./.env.local; set +a; npm run verify:render');
 }
 
 // 서버를 띄우지 않는다 — 포트·빌드 상태·predev 재실행이라는 부작용을 검사기가 만들면 안 된다.
@@ -254,6 +586,17 @@ try {
   fail(`${BASE} 에 연결할 수 없다. 먼저 \`npm run dev\`(또는 \`npm run start\`)를 띄워라.`);
 }
 
+// 본 검사 앞에서 자체검사를 먼저 돌린다 — `verify:diagram`과 같은 계약이다.
+// 검사기가 눈먼 채로 "전 항목 통과"를 내지 않게.
+// ★자식은 자체검사를 건너뛴다 — 부모가 이미 돌렸고, 안 건너뛰면 자식이 또 자식을 낳아
+// **무한 재귀**가 된다(실측: 10분 타임아웃). 정적 관문이 `--assert-only`로 같은 함정을
+// 끊은 것과 같은 이유다. 이 변수는 ⑫ 대조군이 자식에 넘길 때만 켜진다.
+if (!process.env.DGM_RENDER_CHILD && !await runSelfTest(chromium)) {
+  console.error('\n❌ 자체검사 실패 — 판정 함수가 오류를 놓친다. 본 검사를 실행하지 않는다.');
+  process.exit(2);
+}
+console.log('');
+
 const urls = collectUrls();
 if (!urls.length) fail('SVG 도해를 가진 페이지를 찾지 못했다 — 경로 규약이 바뀌었다.');
 console.log(`SVG 도해 보유 페이지 ${urls.length}개 × 뷰포트 ${VIEWPORTS.length} — 하한 ${MIN_FONT_PX}px · 대비 ${MIN_CONTRAST}\n`);
@@ -263,6 +606,8 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true }).cat
 if (!browser) fail('Chrome을 띄우지 못했다. Google Chrome이 설치돼 있는지 확인하라.');
 
 const findings = [];
+/** 판정 불가 구조. findings와 **따로** 센다 — 이건 위반(1)이 아니라 범위 상실(2)이다. */
+const unsupported = [];
 for (const [w, h, vpName] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: 'light' });
   const res = await ctx.request.post(`${BASE}/api/login/`, { data: { id, password: pw } });
@@ -296,6 +641,7 @@ for (const [w, h, vpName] of VIEWPORTS) {
     for (const g of m.glyphHole) findings.push({ url, vpName, kind: '글리프 구멍', detail: `${g.why} «${g.sample}» — ${g.cap}` });
     for (const x of m.markers.missing) findings.push({ url, vpName, kind: '마커 미해결', detail: x });
     for (const x of m.markers.dup) findings.push({ url, vpName, kind: '마커 중복', detail: x });
+    for (const u of m.unsupported ?? []) unsupported.push({ url, vpName, ...u });
     if ((i + 1) % 25 === 0) process.stderr.write(`  …${vpName} ${i + 1}/${urls.length}\n`);
   }
   console.log(`${vpName} ${w}px — 글자 있는 SVG ${figures}개 검사`);
@@ -313,6 +659,20 @@ for (const [w, h, vpName] of VIEWPORTS) {
 }
 await browser.close();
 
+// ★판정 불가를 **먼저** 본다. 위반 0건이어도 "전 항목 통과"라고 말하면 안 된다 —
+// 재지 못한 것을 재고 문제없다고 말하는 것이라, D-14가 막은 것과 같은 거짓말이다.
+//
+// ⚠ **이 처분에는 대조군이 없다.** 대조군 ⑬은 `measureInPage`가 `<use>`를 **감지하는지**만
+// 보고, 그 뒤 여기서 `2`가 나오는지는 `--self-test` 경로가 한 줄도 실행하지 않는다.
+// **⑨와 정확히 같은 모양이다** — 그때도 카운터만 보다가 가드를 통째로 지워도 통과했고,
+// ⑫(스텁 서버 + 자식 프로세스)를 만들어 막았다. 같은 처방이면 자식 실행이 하나 더 붙어
+// 자체검사가 약 50초 → 약 95초가 된다. 값이 커서 **아직 안 했다**(백로그 E-5).
+// *처분은 감지와 다른 주장이다* — 이 주석은 그 사실을 잊지 않으려고 남긴다.
+if (unsupported.length) {
+  console.error(`\n❌ 판정할 수 없는 구조 ${unsupported.length}건 — '통과'로 처리하지 않는다.`);
+  for (const u of unsupported.slice(0, 10)) console.error(`  ${u.vpName} ${u.url}\n      ${u.why} (${u.ref})`);
+  process.exit(2);
+}
 const byKind = findings.reduce((a, f) => ((a[f.kind] = (a[f.kind] ?? 0) + 1), a), {});
 if (findings.length === 0) {
   console.log('\n✅ 전 항목 통과 — 가로 넘침 0 · 글자 축소 0 · 대비 미달 0 · 글리프 구멍 0 · 마커 정합');

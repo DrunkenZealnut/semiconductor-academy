@@ -1409,6 +1409,15 @@
         "lastUpdated": "2026-08-26T01:34:15.316Z"
       },
       "lastFile": "(저장소 밖: main.js)"
+    },
+    "render-gate-self-test": {
+      "phase": "archived",
+      "matchRate": 93,
+      "iterationCount": 0,
+      "startedAt": "2026-08-27",
+      "archivedAt": "2026-08-27",
+      "archivedTo": "docs/archive/2026-08/render-gate-self-test/",
+      "backlog": "A-2(검사 범위에 하한 없음 — SVG_COMPONENTS에서 빠지면 페이지가 통째로 검사 밖인데 exit 0 · 가장 큼) · A-4(SLACK 문턱 무고정) · A-5(불투명 well 맨 위 무대조군) · A-6(알파 합성 무대조군) · A-8(색 해석 실패 분기 무대조군) · B-b(k 분포 비대표) · B-c(tspan 무대조군) · D-2(⑫가 자체검사 비용의 92%)"
     }
   },
   "pipeline": {
