@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-27T08:36:36.347Z",
+  "lastUpdated": "2026-08-28T06:19:12.000Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1598,7 +1598,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-27T08:36:36.347Z"
+    "lastActivity": "2026-08-28T06:19:12.000Z"
   },
   "history": [
     {
@@ -4758,6 +4758,12 @@
       "feature": "diagram",
       "phase": "do",
       "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-28T06:19:12.000Z",
+      "feature": "render-gate-scope-floor",
+      "phase": "archived",
+      "action": "feature_archived"
     }
   ]
 }

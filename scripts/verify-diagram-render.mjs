@@ -229,6 +229,21 @@ function collectUrls() {
     }
   };
   walk('src/content');
+  // ★ζ **표본** — 유도가 *비SVG*로 분류한 종마다 그 종을 쓰는 페이지 **하나**를 검사에 넣는다.
+  //
+  // δ는 그 종이 **글자 있는 SVG를 그리는 것을 본 적이 있어야** 운다. 그런데 비SVG 종이
+  // SVG 종과 한 번도 같은 페이지에 안 나오면 **관측 자체가 생기지 않아** δ가 침묵한다.
+  // `FlowSteps`(lucide 아이콘으로 SVG를 그린다)가 그 위험을 실물로 보여 줬다 — 지금은
+  // 우연히 SVG 종과 겹치는 페이지가 있어 관측되지만, 겹치지 않는 종이 생기면 조용해진다.
+  //
+  // 배럴 종의 **모든** 페이지를 검사하면(248페이지) 유도를 아예 안 믿게 되지만 본 검사가
+  // 113초 → 약 304초가 된다(실측 추정). **표본 하나면 관측이 생기고, 판정은 δ가 한다** —
+  // 그 종이 정말 글자 있는 SVG를 그리면 δ가 나머지 페이지를 전부 지목한다. 비용은 최대 6페이지다.
+  for (const c of BARREL_COMPONENTS) {
+    if (SVG_COMPONENTS.includes(c)) continue;          // 유도가 이미 전량을 넣었다
+    const pages = [...(pagesByKind.get(c) ?? [])].sort();
+    if (pages.length && !pages.some((u) => urls.has(u))) urls.add(pages[0]);
+  }
   // 범위를 조용히 줄이지 않는다 — 빠진 것이 있으면 말한다.
   return { urls: [...urls].sort(), usedInMdx, pagesByKind, skipped };
 }
@@ -626,9 +641,13 @@ async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }
   // ★`spawnSync`를 쓰면 안 된다 — 부모의 이벤트 루프를 막아 스텁 서버가 요청을 못 받고
   // 자식이 "연결할 수 없다"로 죽는다(실측: 종료 코드는 2로 맞았지만 **이유가 달랐다**).
   const { spawn } = await import('node:child_process');
+  // ★`html`이 문자열이면 어떤 경로든 같은 페이지를 준다(로그인도 200으로 통과시킨다).
+  // 함수면 **경로별로 다른 페이지**를 준다 — 어떤 대조군은 그것이 있어야 성립한다.
+  // ζ(표본)가 그렇다: 스텁이 모든 URL에 같은 HTML을 주면 비SVG 종이 **표본 없이도**
+  // 다른 페이지에서 관측돼 버려, ζ를 지워도 대조군이 안 깨진다(실측).
   const server = createServer((req, res) => {
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-    res.end(html);            // 어떤 경로든 같은 페이지 — 로그인도 200으로 통과시킨다
+    res.end(typeof html === 'function' ? html(req.url ?? '/') : html);
   });
   await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
   const port = server.address().port;
@@ -725,9 +744,30 @@ async function selfTestDispositions() {
   ok = await spawnChildAgainst({
     name: '㉒ 판정 대상인데 검사 목록에 없는 페이지가 있으면 exit 2 (δ 배선)',
     html: stubFigures([...SVG6, 'FlowSteps']),
+    // ★페이지를 **둘** 준다. ζ 표본이 하나를 가져가므로 하나만 주면 δ가 울 대상이 없어진다
+    // — 실제로 ζ를 넣자 이 대조군이 깨졌다. **표본은 관측을 만들고 판정은 δ가 한다**는
+    // 설계가 대조군에도 그대로 적용된다.
     mdx: {
       ...MDX_LS,                                   // urls에 들어간다(LayerStack은 유도에 있다)
-      'sources/probe/b.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',  // urls에 없다
+      'sources/probe/b.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',  // ζ 표본이 가져간다
+      'sources/probe/c.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'b\' }]} />\n',  // 이것이 검사 목록 밖 → δ
+    },
+    wantReason: /δ FlowSteps —[\s\S]*검사 목록에 없다/,
+  }) && ok;
+
+  // ㉓ ★ζ(표본) — 비SVG로 분류된 종의 페이지가 **하나도** 검사되지 않으면 그 종이 글자 있는
+  // SVG를 그리는지 **알 수 없다.** 표본이 관측을 만들고, 판정은 δ가 한다.
+  //
+  // ★스텁이 경로별로 달라야 성립한다. 모든 URL에 같은 HTML을 주면 `FlowSteps`가 표본 없이도
+  // `a` 페이지에서 관측돼 δ가 울고, **ζ를 지워도 대조군이 안 깨진다**(실측으로 확인했다).
+  ok = await spawnChildAgainst({
+    name: '㉓ 비SVG 종의 페이지를 표본으로 검사한다 (ζ) — 없으면 그 종을 영영 못 본다',
+    html: (u) => (u.includes('/probe-f/') ? stubFigures(['FlowSteps']) : stubFigures(SVG6)),
+    mdx: {
+      ...MDX_LS,
+      // FlowSteps만 쓰는 페이지 둘. ζ가 하나를 표본으로 넣어 관측을 만들고, δ가 나머지를 짚는다.
+      'sources/probe-f/x.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',
+      'sources/probe-f/y.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'b\' }]} />\n',
     },
     wantReason: /δ FlowSteps —[\s\S]*검사 목록에 없다/,
   }) && ok;

@@ -23,7 +23,7 @@ npm run build:cross-link    # cross-link.json 재생성 (통제 어휘 검증 + 
 
 npm run verify:diagram      # 도해 관문 C-1~C-20 (5웨이브 · 도해 489건 전량) — 브라우저 없이, 약 1.7초
 npm run verify:render       # 도해 렌더 심층 검증 (브라우저·서버·자격증명 필요, 약 1.8분)
-npm run verify:render -- --self-test   # 렌더 대조군 28건만 (Chrome만 필요 · 약 7초)
+npm run verify:render -- --self-test   # 렌더 대조군 29건만 (Chrome만 필요 · 약 11초)
 ```
 
 테스트 러너는 없다. 검증은 `typecheck` + `lint` + 빌드 스크립트의 자체 검증 + **도해 관문**으로 한다.
@@ -45,8 +45,8 @@ npm run verify:render -- --self-test   # 렌더 대조군 28건만 (Chrome만 �
 `ScaleRuler.refs`. 각각의 이유와 "대신 무엇이 지키나"는
 `docs/02-design/features/diagram-component-set.usage.md` §2.1.1d에 있다. 넷째를 만들려면 그 표에 줄을 더한다.
 
-**`verify:render`도 자체검사를 갖는다** — 대조군 **28건**이 세 무리다: **판정 14건**(`page.setContent()`로
-만든 도해에 판정 함수를 그대로 먹인다) · **범위 10건**(순수 함수 `scopeStatic()`·`scopeViolations()`) · **처분 4건**(자식
+**`verify:render`도 자체검사를 갖는다** — 대조군 **29건**이 세 무리다: **판정 14건**(`page.setContent()`로
+만든 도해에 판정 함수를 그대로 먹인다) · **범위 10건**(순수 함수 `scopeStatic()`·`scopeViolations()`) · **처분 5건**(자식
 프로세스를 임시 cwd에서 돌려 종료 코드와 사유를 본다). **판정을 순수 함수로 뽑으면 대조군이 싸지지만
 그 함수를 부르는 자리(배선)가 무대조군이 된다** — 처분 무리가 그 자리를 덮는다.
 **서버도 자격 증명도 필요 없어** `--self-test`만 따로 돌릴 수 있다(약 7초). 본 검사 앞에서 먼저 돌고 실패하면 본 검사를 실행하지 않는다(`exit 2`).
@@ -55,7 +55,7 @@ npm run verify:render -- --self-test   # 렌더 대조군 28건만 (Chrome만 �
 유도(기대)** 와 **실제 렌더(관측)** 를 **네 방향**으로 대조한다: α(유도에 있는데 안 그려졌다) · β(그려졌는데
 파일이 없다) · γ(배럴은 아는데 파일이 없다) · **δ(이 종을 쓰는 페이지가 검사 목록에서 빠졌다)**.
 어긋나면 `exit 2`. 여기에 **브라우저를 띄우기 전에** 아는 셋이 더 붙는다 — ε(파일은 있는데 배럴이
-안 내보낸다) · α₀(유도는 SVG로 보는데 어느 MDX도 안 쓴다) · σ(도해가 있는 MDX인데 URL 규칙이 없다).
+안 내보낸다) · α₀(유도는 SVG로 보는데 어느 MDX도 안 쓴다) · σ(도해가 있는 MDX인데 URL 규칙이 없다). 여기에 **ζ(표본)** — 비SVG로 분류된 종마다 페이지 하나를 검사에 넣어 **관측을 만든다**(없으면 δ가 그 종을 영영 못 본다 · 비용 +1페이지).
 **δ가 없으면 헛것이다** — `LayerStack`을 유도에서 빼면 92→56페이지로 줄어드는데
 α·β·γ는 조용했다(남은 페이지에 함께 있어 관측에는 나온다). 실측 근거는
 `docs/archive/2026-08/render-gate-scope-floor/`.
