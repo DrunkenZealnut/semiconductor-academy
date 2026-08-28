@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-08-26T01:34:15.316Z",
+  "lastUpdated": "2026-08-27T08:36:36.347Z",
   "activeFeatures": [
     "SemiconductorAcademy",
     "layout",
@@ -1091,9 +1091,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-08-09T08:38:56.085Z",
-        "lastUpdated": "2026-08-26T01:06:47.558Z"
+        "lastUpdated": "2026-08-27T08:36:36.347Z"
       },
-      "lastFile": "src/components/diagram/LayerStack.tsx"
+      "lastFile": "src/components/diagram/types.ts"
     },
     "diagram-component-set — Match Rate 78.1%": {
       "phase": "act",
@@ -1418,6 +1418,15 @@
       "archivedAt": "2026-08-27",
       "archivedTo": "docs/archive/2026-08/render-gate-self-test/",
       "backlog": "A-2(검사 범위에 하한 없음 — SVG_COMPONENTS에서 빠지면 페이지가 통째로 검사 밖인데 exit 0 · 가장 큼) · A-4(SLACK 문턱 무고정) · A-5(불투명 well 맨 위 무대조군) · A-6(알파 합성 무대조군) · A-8(색 해석 실패 분기 무대조군) · B-b(k 분포 비대표) · B-c(tspan 무대조군) · D-2(⑫가 자체검사 비용의 92%)"
+    },
+    "render-gate-scope-floor": {
+      "phase": "archived",
+      "matchRate": 94,
+      "iterationCount": 0,
+      "startedAt": "2026-08-27",
+      "archivedAt": "2026-08-28",
+      "archivedTo": "docs/archive/2026-08/render-gate-scope-floor/",
+      "backlog": "B-1 β의 배선 무대조군(C-1과 같은 모양이 하나 남았다 · 임시 cwd에 가짜 data-diagram을 내는 스텁이 한 겹 더 필요) · B-5 정적 판정이 자식 대조군 앞을 막아 메시지가 원인을 안 가리킨다(C-9가 실물) · B-2 stubFigures 마크업이 실제 DiagramFrame과 다르다 · B-3 data-diagram이 사라지면 α가 6건 터지지만 \"속성이 없다\"는 진단은 아니다 · B-4 usedInMdx가 배너에만 남았다 · F-2 잔재: chapters.json의 number 부재를 id로 우회했고 다른 소비자는 안 봤다 · 선행 A-4·A-5·A-6·A-8·B-b·B-c 유지"
     }
   },
   "pipeline": {
@@ -1589,7 +1598,7 @@
   "session": {
     "startedAt": "2026-05-26T13:06:29.799Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-08-26T01:34:15.316Z"
+    "lastActivity": "2026-08-27T08:36:36.347Z"
   },
   "history": [
     {
@@ -4741,6 +4750,12 @@
     {
       "timestamp": "2026-08-26T01:34:15.316Z",
       "feature": "geom",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-08-27T08:36:36.347Z",
+      "feature": "diagram",
       "phase": "do",
       "action": "updated"
     }

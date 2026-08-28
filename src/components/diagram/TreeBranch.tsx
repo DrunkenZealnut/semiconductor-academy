@@ -29,7 +29,7 @@ const norm = (leaf: Leaf) => (typeof leaf === 'string' ? { label: leaf } : leaf)
  */
 export function TreeBranch({ root, branches, depth = 3, caption, note, altTable }: Props) {
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame kind="TreeBranch" caption={caption} note={note} altTable={altTable}>
       <div className="space-y-2">
         <div className={`${CARD} px-4 py-2 text-center text-sm font-semibold text-slate-800 dark:text-slate-100`}>
           {root}

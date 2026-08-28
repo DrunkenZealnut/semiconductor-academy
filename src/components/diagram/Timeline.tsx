@@ -23,7 +23,7 @@ export function Timeline({ events, emphasis = [], caption, note, altTable }: Pro
   const strong = new Set(emphasis);
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame kind="Timeline" caption={caption} note={note} altTable={altTable}>
       <ol className="relative space-y-4 border-l-2 border-slate-200 pl-6 dark:border-slate-700">
         {events.map((e, i) => (
           <li key={`${e.year}-${i}`} className="relative">

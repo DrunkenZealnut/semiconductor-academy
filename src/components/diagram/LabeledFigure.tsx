@@ -43,7 +43,7 @@ export function LabeledFigure({
   const autoDesc =
     desc || labels.map((l) => l.text.replace(/\n/g, ' ')).join(' · ') || caption || '도해';
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="LabeledFigure" caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         {...svgBox(viewBox)}
         className="mx-auto h-auto w-full"

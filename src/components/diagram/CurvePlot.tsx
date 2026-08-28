@@ -45,7 +45,7 @@ export function CurvePlot({ axes, curves, markers = [], caption, note, altTable 
     points.map(([x, y], i) => `${i === 0 ? 'M' : 'L'} ${px(x)} ${py(y)}`).join(' ');
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="CurvePlot" caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         {...svgBox(`0 0 ${width} ${height}`)}
         className="mx-auto h-auto w-full"

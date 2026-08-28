@@ -69,7 +69,7 @@ export function LatticeDiagram({
   const vacancy = valence < 4;
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="LatticeDiagram" caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         {...svgBox(`${VB_X} 0 ${VB_W} ${height}`, { fixed: true })}
         className="mx-auto h-auto"

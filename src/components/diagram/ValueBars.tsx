@@ -61,7 +61,7 @@ export function ValueBars({
       : String(v);
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame kind="ValueBars" caption={caption} note={note} altTable={altTable}>
       <ul className="space-y-2">
         {rows.map((r) => {
           const bar = r.tone ? TONE[r.tone].fill.replace(/fill-/g, 'bg-') : 'bg-brand-500';

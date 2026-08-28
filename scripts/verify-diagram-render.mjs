@@ -17,7 +17,7 @@
  * `.env.local`을 직접 파싱하지 않는다 — 파일을 읽으면 값이 스크립트를 지나 로그에 새기 쉽다.
  * 셸에서 넘긴다:  set -a; . ./.env.local; set +a; npm run verify:render
  */
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, mkdtempSync, mkdirSync, writeFileSync, symlinkSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
 const BASE = process.env.RENDER_BASE ?? 'http://localhost:3016';
@@ -36,6 +36,46 @@ const MIN_CONTRAST = 4.5;
  * — CLAUDE.md가 경계하는 수동 미러를 늘리는 일이다(G-5).
  */
 const DIAGRAM_DIR = 'src/components/diagram';
+/** 디렉터리에 파일로 있는 도해 12종. SVG 여부를 묻지 않는다. */
+const ALL_COMPONENTS = (() => {
+  // 읽기 실패는 `throw`가 아니라 `exit 2`다 — throw면 Node가 1을 내는데 계약상 1은 콘텐츠 위반이다.
+  // 바로 아래 배럴에는 이 방어를 했으면서 여기 두 줄은 빠져 있었다(Check 곁가지 지적).
+  try {
+    return readdirSync(DIAGRAM_DIR)
+      .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+      .map((f) => f.replace(/\.tsx$/, ''));
+  } catch {
+    console.error(`❌ ${DIAGRAM_DIR}를 읽을 수 없다 — 경로 규약이 바뀌었다.`);
+    process.exit(2);
+  }
+})();
+if (ALL_COMPONENTS.length === 0) {
+  console.error(`❌ ${DIAGRAM_DIR}에 도해 컴포넌트가 하나도 없다 — 경로 규약이 바뀌었다.`);
+  process.exit(2);
+}
+
+/**
+ * ★γ의 독립 출처 — 배럴(`index.ts`)이 **이름으로** 내보내는 도해.
+ *
+ * `readdirSync`와 같은 디렉터리를 보지만 **근거가 다르다.** 배럴은 이름과 경로를 따로
+ * 적으므로(`export { LayerStack } from './LayerStack'`) 파일이 디렉터리 **밖으로** 나가도
+ * 이름은 남는다 — 그때 `ALL_COMPONENTS`만 조용히 줄어든다. 그 어긋남이 γ다.
+ * `DiagramFrame`·토큰·타입은 도해가 아니라 뺀다.
+ */
+const BARREL_COMPONENTS = (() => {
+  const p = path.join(DIAGRAM_DIR, 'index.ts');
+  // 읽기 실패는 `throw`가 아니라 `exit 2`다 — throw면 Node가 **1**을 내는데, 계약상
+  // 1은 *콘텐츠 위반*이다. 정적 관문이 `readOrExit2()`로 같은 실수를 고쳤다(usage §2.1.1f).
+  let src;
+  try { src = readFileSync(p, 'utf8'); }
+  catch { console.error(`❌ 도해 배럴 ${p}을 읽을 수 없다 — 경로 규약이 바뀌었다.`); process.exit(2); }
+  const names = [...src.matchAll(/^export \{ (\w+) \} from/gm)].map((m) => m[1]);
+  return names.filter((n) => n !== 'DiagramFrame');
+})();
+if (BARREL_COMPONENTS.length === 0) {
+  console.error(`❌ ${DIAGRAM_DIR}/index.ts에서 도해 export를 하나도 읽지 못했다 — 배럴 형식이 바뀌었다.`);
+  process.exit(2);
+}
 const SVG_COMPONENTS = readdirSync(DIAGRAM_DIR)
   .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
   .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))
@@ -50,41 +90,147 @@ function fail(msg) {
   process.exit(2);
 }
 
+
+/**
+ * ★**브라우저 없이 아는 것은 브라우저 앞에서 말한다.** γ·ε·α₀·σ는 파일시스템과 MDX만 보면
+ * 판정되는데, 예전에는 본 검사 루프 **뒤**에 있어 92페이지 × 2뷰포트를 다 돈 **약 110초 뒤**에
+ * 울었다. 사람이 원인을 찾기 어렵고, 무엇보다 **그 110초가 헛수고**다.
+ *
+ * | | 비교 | 잡는 것 |
+ * |γ| 배럴 − 디렉터리 | 배럴은 아는데 파일이 없다(디렉터리 **밖으로** 옮겼다) |
+ * |ε| 디렉터리 − 배럴 | 파일은 있는데 배럴이 안 내보낸다. **배럴 정규식이 놓친 경우도 여기 걸린다** |
+ * |α₀| 유도 − MDX 사용 | SVG 도해로 보는데 **어느 MDX도 쓰지 않는다** |
+ * |σ| URL 규칙 밖 | 도해가 있는 MDX인데 URL로 못 옮겼다 — 예전엔 경고 한 줄 뒤 `exit 0`이었다(F-2의 형제) |
+ *
+ * ε가 없으면 배럴 한 줄만 어긋나도 조용하다 — `export { A, type B } from` 처럼 쓰면
+ * `^export \{ (\w+) \} from` 정규식이 놓치는데, 배럴은 δ의 기준선이자 `urls`의 상류였다.
+ * 실측: 배럴에서 `NodeGraph`를 빼면 URL이 92 → 87로 조용히 줄었다.
+ */
+function scopeStatic({ svg, dir, barrel, pagesByKind, skipped }) {
+  const out = [];
+  for (const c of barrel) {
+    if (!dir.includes(c)) out.push(`γ ${c} — 배럴이 내보내는데 ${DIAGRAM_DIR}에 파일이 없다 (밖으로 옮겼나)`);
+  }
+  for (const c of dir) {
+    if (!barrel.includes(c)) {
+      out.push(`ε ${c} — 파일은 있는데 배럴이 안 내보낸다 (도해가 아니면 디렉터리 밖에 두고, 맞으면 index.ts에 넣어라)`);
+    }
+  }
+  for (const c of svg) {
+    if ((pagesByKind?.get(c)?.size ?? 0) === 0) {
+      out.push(`α₀ ${c} — 유도는 SVG 도해로 보는데 **어느 MDX도 쓰지 않는다** (만들고 아직 안 썼나 · 그래도 미검사다)`);
+    }
+  }
+  for (const rel of skipped ?? []) {
+    out.push(`σ ${rel} — 도해가 있는 MDX인데 URL 규칙이 없어 검사 목록에 못 넣었다`);
+  }
+  return out;
+}
+
+/**
+ * ★범위 하한 — **네 방향**으로 본다. 순수 함수라 대조군이 브라우저 없이 부를 수 있다.
+ *
+ * `기대 − 관측`(α) 하나만 보면 **가장 중요한 경우를 놓친다.** 유도에서 빠진 컴포넌트는 URL
+ * 수집에서도 빠져 관측에 안 나오고, 그러면 기대에도 관측에도 없어 **차집합이 공집합**이다.
+ * 선행 사이클의 A-3(문턱을 한쪽 끝에서만 봤다)과 같은 병이다.
+ *
+ * | | 비교 | 잡는 것 |
+ * |α| 유도 − 관측        | 유도는 SVG로 보는데 어디에서도 안 그려졌다 |
+ * |β| 관측 − 디렉터리     | 그려졌는데 그런 컴포넌트 파일이 없다(`kind` 오타·유령) |
+ * |γ| 배럴 − 디렉터리     | 배럴은 아는데 파일이 없다(디렉터리 **밖으로** 옮겼다) |
+ * |δ| **페이지 단위 피복** | 이 종을 쓰는 페이지가 검사 목록에서 빠졌다 |
+ *
+ * **δ가 없으면 이 검사는 헛것이다.** 실측: `LayerStack`을 유도에서 빼면 92 → 56페이지로
+ * 줄었는데 α는 조용했다 — 남은 페이지 8개에 `LayerStack`이 함께 있어 관측에는 나왔다.
+ * **36페이지가 조용히 검사 밖이었다.**
+ */
+function scopeViolations({ svg, dir, barrel, observed, observedSvg, pagesByKind, urls }) {
+  const out = [];
+  const obs = new Set(observed);
+  const urlSet = new Set(urls);
+  for (const c of svg) {
+    if (obs.has(c)) continue;
+    // ★두 상황을 가른다. 판정은 같아도 **심각도가 다르다.**
+    //   used=0  아직 아무 MDX도 안 쓴다 — 새로 만들고 안 쓰는 흔한 경우다.
+    //   used>0  쓰는데 안 그려졌다 — 렌더가 죽었거나 URL 수집이 그 페이지를 놓쳤다.
+    // 메시지를 안 가르면 뒤엣것이 앞엣것에 묻힌다.
+    const used = pagesByKind?.get(c)?.size ?? 0;
+    out.push(used === 0
+      ? `α ${c} — 유도는 SVG 도해로 보는데 **어느 MDX도 쓰지 않는다** (만들고 아직 안 썼나 · 그래도 미검사다)`
+      : `α ${c} — MDX ${used}곳이 쓰는데 ${urls.length}페이지 어디에서도 그려지지 않았다 (렌더가 죽었나)`);
+  }
+  for (const c of obs) {
+    if (!dir.includes(c)) out.push(`β ${c} — 그려졌는데 ${DIAGRAM_DIR}에 그런 컴포넌트가 없다`);
+  }
+  for (const c of observedSvg) {
+    const want = pagesByKind.get(c);
+    if (!want) continue;                       // 배럴에 없는 종은 β가 말한다
+    const missed = [...want].filter((u) => !urlSet.has(u));
+    if (missed.length) {
+      out.push(`δ ${c} — 글자 있는 SVG를 그리는데 이 종을 쓰는 페이지 ${missed.length}개가 검사 목록에 없다`
+        + ` (예: ${missed.slice(0, 3).join(' ')})`);
+    }
+  }
+  return out;
+}
+
 /** 도해를 가진 MDX를 URL로 옮긴다. chapters는 slug 매핑이 필요하다. */
 function collectUrls() {
   const chapters = JSON.parse(readFileSync('src/data/chapters.json', 'utf8'));
-  const slugByNum = new Map();
+  // ★`number`가 아니라 `id`로 잇는다. `chapters.json`에 `number` 필드는 **하나도 없어서**
+  // 예전 매핑(`String(c.number).padStart(2,'0')`)은 빈 Map을 만들었고, **책 17장이 통째로
+  // 렌더 관문 밖**이었다. 경고 한 줄은 났지만 종료 코드는 0이었다 — 이 사이클이 막으려는
+  // 바로 그 모양이고, δ가 실물로 처음 잡아낸 것이다(Do §G-5b).
+  const slugById = new Map();
   for (const c of chapters.chapters ?? chapters) {
-    if (c.slug && c.number != null) slugByNum.set(String(c.number).padStart(2, '0'), c.slug);
+    if (c.slug && c.id) slugById.set(c.id, c.slug);
+  }
+  if (slugById.size === 0) {
+    console.error('❌ chapters.json에서 id→slug를 하나도 읽지 못했다 — 스키마가 바뀌었다.');
+    process.exit(2);
   }
   const re = new RegExp(`<(${SVG_COMPONENTS.join('|')})[\\s/>]`);
+  // ★δ의 기준선 — **배럴 이름으로** "이 종을 쓰는 페이지"를 전부 모은다.
+  // `<svg` 유도와 **다른 출처**라 유도가 틀려도 이쪽은 안 틀린다.
+  const reAny = new RegExp(`<(${BARREL_COMPONENTS.join('|')})[\\s/>]`, 'g');
+  const usedInMdx = new Set();
+  const pagesByKind = new Map(BARREL_COMPONENTS.map((c) => [c, new Set()]));
   const urls = new Set();
   const skipped = [];
+  /** MDX 경로 → URL. 유도와 무관하게 **모든** MDX에 대해 구한다. */
+  const toUrl = (rel) => {
+    if (rel.startsWith('chapters/')) {
+      const slug = slugById.get(rel.slice(9));
+      return slug ? `/chapter/${slug}/` : null;
+    }
+    // `part-2.ko` 처럼 언어 미러는 별도 라우트가 아니다 — 본 라우트가 두 언어를 함께 렌더한다.
+    if (rel.startsWith('sources/')) return `/sources/${rel.slice(8).replace(/\.ko$/, '')}/`;
+    if (rel.startsWith('processes/')) return `/process/${rel.slice(10)}/`;
+    return null;
+  };
   const walk = (dir) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, e.name);
       if (e.isDirectory()) { walk(p); continue; }
       if (!e.name.endsWith('.mdx')) continue;
-      if (!re.test(readFileSync(p, 'utf8'))) continue;
+      const src = readFileSync(p, 'utf8');
+      const kinds = [...new Set([...src.matchAll(reAny)].map((m) => m[1]))];
+      const inScope = re.test(src);
+      // ★`urls`를 배럴에서 **뗀다.** 예전에는 `kinds.length === 0`이면 여기서 나가는 바람에
+      // 배럴 정규식이 놓친 종만 쓰는 MDX가 `urls`에서도 사라졌다 — 배럴이 δ의 기준선이자
+      // `urls`의 상류라 **"두 독립 출처"가 실은 하나**였다. 실측: 배럴에서 `NodeGraph`를 빼면
+      // URL이 92 → 87로 조용히 줄었고 δ는 그 종의 키가 없어 침묵했다.
+      if (!kinds.length && !inScope) continue;
       const rel = p.replace(/^src\/content\//, '').replace(/\.mdx$/, '');
-      if (rel.startsWith('chapters/')) {
-        const slug = slugByNum.get(rel.slice(9, 11));
-        if (slug) urls.add(`/chapter/${slug}/`);
-        else skipped.push(rel);
-      } else if (rel.startsWith('sources/')) {
-        // `part-2.ko` 처럼 언어 미러는 별도 라우트가 아니다 — 본 라우트가 두 언어를 함께 렌더한다.
-        urls.add(`/sources/${rel.slice(8).replace(/\.ko$/, '')}/`);
-      } else if (rel.startsWith('processes/')) {
-        urls.add(`/process/${rel.slice(10)}/`);
-      } else {
-        skipped.push(rel);
-      }
+      const url = toUrl(rel);
+      if (!url) { skipped.push(rel); continue; }
+      for (const k of kinds) { usedInMdx.add(k); pagesByKind.get(k)?.add(url); }
+      if (inScope) urls.add(url);
     }
   };
   walk('src/content');
   // 범위를 조용히 줄이지 않는다 — 빠진 것이 있으면 말한다.
-  if (skipped.length) console.log(`⚠ URL 규칙이 없어 건너뛴 ${skipped.length}개: ${skipped.slice(0, 5).join(', ')}`);
-  return [...urls].sort();
+  return { urls: [...urls].sort(), usedInMdx, pagesByKind, skipped };
 }
 
 /** 페이지에서 계측한다. 브라우저 안에서 실행되는 코드다. */
@@ -117,9 +263,30 @@ function measureInPage(minFont, minContrast) {
     glyphHole: [],
     /** 판정할 수 없는 구조 — "통과"가 아니라 `exit 2`다. */
     unsupported: [],
+    /** ★관측 — 이 페이지가 실제로 그린 도해 종류. 범위 하한 대조의 한쪽이다. */
+    kinds: [],
+    /**
+     * ★그중 **이 관문이 판정할 것을 그린** 종 — 글자 있는 SVG다. δ의 대상.
+     *
+     * *"SVG를 그린다"* 와 *"이 관문이 판정할 것을 그린다"* 는 다른 문장이다.
+     * `FlowSteps`는 `lucide-react` 아이콘 때문에 `<svg viewBox>`를 그리지만 그 안에 글자가
+     * 없다 — `figures`로 세지도 않고 판정도 안 한다. 넓게 잡았더니 62페이지를 거짓으로
+     * 지목했다(실측). `out.figures`와 **같은 기준**을 쓴다.
+     */
+    kindsSvg: [],
     figures: 0,
   };
   const pageBg = parse(getComputedStyle(document.body).backgroundColor) ?? { r: 255, g: 255, b: 255, a: 1 };
+  // ★`figure svg[viewBox]`가 아니라 `figure[data-diagram]` 전부를 본다 — SVG를 안 그리는
+  // 종도 세야 γ(둘 다 몰랐다)의 기준선과 견줄 수 있다.
+  const figs = [...document.querySelectorAll('figure[data-diagram]')];
+  out.kinds = [...new Set(figs.map((f) => f.getAttribute('data-diagram')).filter(Boolean))];
+  // 판정 대상 여부를 **유도가 아니라 관측**으로 정한다 — 파일 내용(`<svg` 포함)이 아니라
+  // 실제로 그려진 것으로 안다. 기준은 `figures`와 같다: viewBox가 있고 **그려지는 글자**가 있다.
+  const NOT_PAINTED_SEL = 'defs, mask, pattern, clipPath, symbol, marker';
+  out.kindsSvg = [...new Set(figs.filter((f) => [...f.querySelectorAll('svg[viewBox] text')]
+    .some((t) => t.textContent.trim() && !t.closest(NOT_PAINTED_SEL)))
+    .map((f) => f.getAttribute('data-diagram')).filter(Boolean))];
 
   document.querySelectorAll('figure svg[viewBox]').forEach((svg) => {
     const vb = svg.viewBox.baseVal;
@@ -413,60 +580,6 @@ function selfTestFixtures() {
 }
 
 
-/**
- * A-1 — `figures === 0`의 **처분**을 확인한다 (Check 지적).
- *
- * 대조군 ⑨는 `measureInPage`의 **카운터**가 0이 되는 것까지만 본다. 그 뒤 본 검사 루프가
- * `exit 2`를 내는지는 **`--self-test` 경로가 한 줄도 실행하지 않는다** — 가드를 통째로
- * 지워도 11/11이 통과했다(실측). *"감지는 증명하고 처분은 증명 안 한다"* — 정적 관문이
- * 종료 코드 대조군을 만들며 배운 것과 같은 구분이다(usage §2.1.1f).
- *
- * 도해가 하나도 없는 응답만 주는 최소 서버를 세우고 자식으로 본 검사를 돌린다.
- */
-async function selfTestFiguresDisposition() {
-  const { createServer } = await import('node:http');
-  // ★`spawnSync`를 쓰면 안 된다 — 부모의 이벤트 루프를 막아 아래 스텁 서버가 요청을
-  // 받지 못하고, 자식이 "연결할 수 없다"로 죽는다(실측). 비동기 spawn으로 기다린다.
-  const { spawn } = await import('node:child_process');
-  const server = createServer((req, res) => {
-    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-    // 어떤 경로든 도해 없는 페이지를 준다 — 로그인도 200으로 통과시킨다.
-    res.end('<!doctype html><html><body><p>도해가 없다</p></body></html>');
-  });
-  await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
-  const port = server.address().port;
-  try {
-    const child = spawn(process.execPath, [path.resolve(process.argv[1])], {
-      env: { ...process.env, DGM_RENDER_CHILD: '1', RENDER_BASE: `http://127.0.0.1:${port}`, SITE_AUTH_ID: 'x', SITE_AUTH_PASSWORD: 'x' },
-    });
-    let out = '';
-    child.stdout.on('data', (d) => { out += d; });
-    child.stderr.on('data', (d) => { out += d; });
-    // ★제한 시간을 준다. 안 주면 자식이 안 끝날 때 여기서 **무기한** 매달리고,
-    // 이 대조군은 **본 검사 앞**에서 도니까 `verify:render`가 실패도 못 알린 채 멈춘다.
-    // 이 스크립트는 같은 함정을 서버 탐지 `fetch`에서 이미 피해 놨다(거기 AbortSignal).
-    // 실측 약 46초라 3분이면 넉넉하다 — 느린 기계에서 거짓 실패를 내지 않을 만큼 크고,
-    // 사람이 멈춘 줄 알고 손대기 전에 끝날 만큼 작다.
-    const LIMIT_MS = 180_000;
-    let timedOut = false;
-    const status = await new Promise((ok) => {
-      const timer = setTimeout(() => {
-        timedOut = true;
-        child.kill('SIGKILL');           // 죽이고 **회수까지 기다린다** — close가 이 뒤에 온다
-      }, LIMIT_MS);
-      child.on('close', (code) => { clearTimeout(timer); ok(code); });
-    });
-    const pass = !timedOut && status === 2 && /하나도 보지 못했다/.test(out);
-    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ⑫ 도해를 하나도 못 보면 exit 2 (처분)`);
-    if (!pass) {
-      if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 끝나지 않아 강제 종료했다 — 처분을 확인하지 못했다.`);
-      else console.log(`      종료 ${status} (기대 2) · ${(out.match(/❌ [^\n]*|✅ [^\n]*/)?.[0] ?? '').slice(0, 90)}`);
-    }
-    return pass;
-  } finally {
-    server.close();
-  }
-}
 
 /**
  * ★대조군이 **자기 판정만** 켜는지 본다.
@@ -493,6 +606,215 @@ function offTarget(c, o) {
   return Object.entries(buckets)
     .filter(([k, n]) => n > 0 && !allowed.has(k))
     .map(([k, n]) => `${k}=${n}`);
+}
+
+
+
+/**
+ * ★처분 대조군의 기계 — 스텁 서버 + **임시 cwd**에서 자식을 돌리고 종료 코드와 사유를 본다.
+ *
+ * **왜 임시 cwd인가.** `collectUrls()`는 cwd 기준으로 `src/content`를 훑는다. 콘텐츠가
+ * 한둘뿐인 루트에서 돌리면 URL이 저절로 줄어 자식이 몇 초에 끝난다 — `RENDER_ONLY_URLS`
+ * 같은 **범위 축소 인자를 만들지 않고** 같은 효과를 얻는다. 그런 인자는 이 사이클이 막으려는
+ * 바로 그 위험이다. 정적 관문의 `selfTestExitCode()`가 쓰는 수단과 같다.
+ *
+ * **자식은 자체검사를 건너뛴다**(`DGM_RENDER_CHILD`) — 안 그러면 자식이 또 자식을 낳는다.
+ * 이 함정은 이 저장소에서 네 번째다(`--all`·`--assert-only`·`--self-test`·여기).
+ */
+async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }) {
+  const { createServer } = await import('node:http');
+  // ★`spawnSync`를 쓰면 안 된다 — 부모의 이벤트 루프를 막아 스텁 서버가 요청을 못 받고
+  // 자식이 "연결할 수 없다"로 죽는다(실측: 종료 코드는 2로 맞았지만 **이유가 달랐다**).
+  const { spawn } = await import('node:child_process');
+  const server = createServer((req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+    res.end(html);            // 어떤 경로든 같은 페이지 — 로그인도 200으로 통과시킨다
+  });
+  await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
+  const port = server.address().port;
+  const root = mkdtempSync(path.join(process.env.TMPDIR ?? '/tmp', 'dgm-render-'));
+  try {
+    // 자식이 읽어야 하는 것만 잇는다 — 컴포넌트 목록·배럴·chapters.json·playwright.
+    mkdirSync(path.join(root, 'src'), { recursive: true });
+    for (const parts of [['node_modules'], ['src', 'components'], ['src', 'data']]) {
+      symlinkSync(path.resolve(...parts), path.join(root, ...parts));
+    }
+    for (const [rel, body] of Object.entries(mdx)) {
+      const f = path.join(root, 'src', 'content', rel);
+      mkdirSync(path.dirname(f), { recursive: true });
+      writeFileSync(f, body);
+    }
+    const child = spawn(process.execPath, [path.resolve(process.argv[1])], {
+      cwd: root,
+      env: { ...process.env, DGM_RENDER_CHILD: '1', RENDER_BASE: `http://127.0.0.1:${port}`, SITE_AUTH_ID: 'x', SITE_AUTH_PASSWORD: 'x' },
+    });
+    let out = '';
+    child.stdout.on('data', (d) => { out += d; });
+    child.stderr.on('data', (d) => { out += d; });
+    // ★제한 시간을 준다. `close`만 기다리면 자식이 안 끝날 때 **무기한** 매달리고,
+    // 이 대조군은 **본 검사 앞**에서 도니까 관문이 실패도 못 알린 채 멈춘다.
+    const LIMIT_MS = 180_000;
+    let timedOut = false;
+    const status = await new Promise((ok) => {
+      const timer = setTimeout(() => { timedOut = true; child.kill('SIGKILL'); }, LIMIT_MS);
+      child.on('close', (code) => { clearTimeout(timer); ok(code); });
+    });
+    const pass = !timedOut && status === wantStatus && wantReason.test(out);
+    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${name}`);
+    if (!pass) {
+      if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 안 끝나 강제 종료했다 — 처분을 확인하지 못했다.`);
+      else console.log(`      종료 ${status} (기대 ${wantStatus}) · 사유 ${wantReason} 불일치 · ${(out.match(/❌ [^\n]*/)?.[0] ?? out.slice(-90)).slice(0, 110)}`);
+    }
+    return pass;
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+    server.close();
+  }
+}
+
+/** 대조군 스텁 페이지 — 글자 있는 SVG를 종마다 하나씩 그린다. */
+function stubFigures(kinds, extra = '') {
+  const one = (k) => `<figure data-diagram="${k}"><svg viewBox="0 0 120 40" width="120" height="40">`
+    + `<text x="6" y="24" font-size="14" fill="#111">${k}</text></svg></figure>`;
+  return `<!doctype html><html><body>${kinds.map(one).join('')}${extra}</body></html>`;
+}
+
+
+/** ★처분 대조군 3종 — 감지가 아니라 **종료 코드**를 본다. 전부 임시 cwd 자식이다. */
+async function selfTestDispositions() {
+  console.log('★ 처분 대조군 (자식 프로세스 · 임시 cwd)');
+  // ★fixture MDX도 **손으로 적지 않는다.** 유도가 SVG로 보는 종을 전부 써야 α₀
+  // ("어느 MDX도 쓰지 않는다")가 조용하다 — 안 그러면 자식이 브라우저를 띄우기도 전에
+  // α₀로 죽어 **모든 처분 대조군이 같은 이유로 실패**한다(실측).
+  // MDX는 정규식으로만 훑기 때문에 `<Name />` 한 줄이면 족하다.
+  const MDX_LS = { 'sources/probe/a.mdx': `본문.\n\n${SVG_COMPONENTS.map((c) => `<${c} />`).join('\n')}\n` };
+  // ★손으로 적지 않는다 — 7번째 SVG 종이 생기면 자식에서 α가 먼저 울어 **사유가 어긋나고**
+  // 출력이 원인을 오도한다(Check 지적). 유도 결과를 그대로 쓴다.
+  const SVG6 = SVG_COMPONENTS;
+  let ok = true;
+
+  // ⑲ 글자 있는 SVG를 하나도 못 보면 exit 2 (선행 ⑫ — 기계만 바뀌었다)
+  ok = await spawnChildAgainst({
+    name: '⑲ 도해를 하나도 못 보면 exit 2 (처분)',
+    html: '<!doctype html><html><body><p>도해가 없다</p></body></html>',
+    mdx: MDX_LS, wantReason: /하나도 보지 못했다/,
+  }) && ok;
+
+  // ⑳ 범위 하한 위반이면 exit 2 — 이 사이클이 만든 처분(A-2)
+  //
+  // ★사유에 종 이름을 **박지 않는다.** 초판은 `/α LayerStack/`이었는데, 유도에서 그 종이
+  // 빠지는 조작(G-5)을 하면 α가 다른 종으로 울어 **사유 불일치**로 실패했다 — 관문은
+  // 빨개지지만 진단이 엉뚱해진다. C-6과 같은 수동 미러다. 유도 결과에서 고른다:
+  // 첫째 종만 그리고, **둘째 종**이 α로 울 것을 기대한다.
+  const [drawn, expectAlpha] = [SVG6[0], SVG6[1]];
+  ok = await spawnChildAgainst({
+    name: `⑳ 범위 하한 위반이면 exit 2 (A-2 처분 · α ${expectAlpha})`,
+    html: stubFigures([drawn]),
+    mdx: MDX_LS,
+    wantReason: new RegExp(`검사 범위가 주장한 만큼이 아니다[\\s\\S]*α ${expectAlpha}`),
+  }) && ok;
+
+  // ㉒ ★δ **배선**이 살아 있는가 — Check가 찾은 구멍이다.
+  // ⑱은 `scopeViolations()`를 **직접** 불러 δ를 증명하지만, 본 검사가 그 함수에 무엇을
+  // 넘기는지는 한 줄도 실행하지 않는다. 실측: `pagesByKind`를 빈 Map으로, `observedSvg`를
+  // 빈 Set으로 바꿔도 자체검사가 **통과**했다(종료 0). 선행 A-1과 같은 모양이다 —
+  // *감지는 증명하고 배선은 증명 안 한다.*
+  //
+  // 시나리오는 **F-1의 실물**이다: 유도가 비SVG로 분류한 종(`FlowSteps`)이 실제로는
+  // 글자 있는 SVG를 그린다. 그 종만 쓰는 MDX는 `urls`에 없으므로 δ가 울어야 한다.
+  ok = await spawnChildAgainst({
+    name: '㉒ 판정 대상인데 검사 목록에 없는 페이지가 있으면 exit 2 (δ 배선)',
+    html: stubFigures([...SVG6, 'FlowSteps']),
+    mdx: {
+      ...MDX_LS,                                   // urls에 들어간다(LayerStack은 유도에 있다)
+      'sources/probe/b.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',  // urls에 없다
+    },
+    wantReason: /δ FlowSteps —[\s\S]*검사 목록에 없다/,
+  }) && ok;
+
+  // ㉑ 판정 불가 구조면 exit 2 — 선행 사이클이 남긴 E-5
+  ok = await spawnChildAgainst({
+    name: '㉑ 판정할 수 없는 구조면 exit 2 (E-5 처분)',
+    // 범위는 온전하게 두고(6종 전부 그린다) `<use>`만 얹는다 — 범위 위반이 먼저 울면
+    // 이 대조군이 **다른 이유로** 통과하게 된다.
+    html: stubFigures(SVG6,
+      '<figure data-diagram="LabeledFigure"><svg viewBox="0 0 120 40" width="120" height="40">'
+      + '<defs><text id="u" x="6" y="24" font-size="14" fill="#111">숨은 라벨</text></defs>'
+      + '<use href="#u"/><text x="6" y="38" font-size="12" fill="#111">보이는</text></svg></figure>'),
+    mdx: MDX_LS, wantReason: /판정할 수 없는 구조/,
+  }) && ok;
+
+  return ok;
+}
+
+/**
+ * ★범위 하한 대조군 — `scopeViolations()`가 순수 함수라 **브라우저도 서버도 없이** 돈다.
+ *
+ * 판정이 본 검사 루프 뒤에 인라인으로 있었다면 `--self-test`가 한 줄도 실행하지 못했을 것이다.
+ * 그 모양이 선행 사이클의 A-1(⑨가 카운터만 보고 처분을 안 봤다)이었다.
+ */
+function selfTestScope() {
+  const base = {
+    svg: ['LayerStack', 'NodeGraph'],
+    dir: ['LayerStack', 'NodeGraph', 'FlowSteps'],
+    barrel: ['LayerStack', 'NodeGraph', 'FlowSteps'],
+    observed: ['LayerStack', 'NodeGraph', 'FlowSteps'],
+    observedSvg: ['LayerStack', 'NodeGraph'],
+    pagesByKind: new Map([['LayerStack', new Set(['/a/'])], ['NodeGraph', new Set(['/b/'])], ['FlowSteps', new Set(['/c/'])]]),
+    urls: ['/a/', '/b/'],
+  };
+  const cases = [
+    { name: '⑭ 음성 — 정상 범위에 위반을 내지 않는다', v: base, want: 0 },
+    { name: '⑮ α — MDX가 쓰는데 안 그려졌다 (심각한 쪽)',
+      v: { ...base, observed: ['NodeGraph', 'FlowSteps'], observedSvg: ['NodeGraph'] },
+      want: 1, why: /^α LayerStack — MDX 1곳이 쓰는데/ },
+    { name: '⑮b α — 아무 MDX도 안 쓴다 (흔한 쪽) — 같은 판정, 다른 문장',
+      v: { ...base, observed: ['NodeGraph', 'FlowSteps'], observedSvg: ['NodeGraph'],
+           pagesByKind: new Map([...base.pagesByKind, ['LayerStack', new Set()]]) },
+      want: 1, why: /^α LayerStack — .*어느 MDX도 쓰지 않는다/ },
+    { name: '⑯ β — 그려졌는데 그런 컴포넌트 파일이 없다 (kind 오타)',
+      v: { ...base, observed: [...base.observed, 'LayerStac'] }, want: 1, why: /^β LayerStac /},
+    { name: '⑱ δ — 이 종의 페이지가 검사 목록에서 빠졌다 (α는 조용한 경우)',
+      // ★LayerStack은 여전히 관측된다(다른 이유로 방문한 페이지에 함께 있다) — α가 안 운다.
+      // 그런데 이 종을 쓰는 페이지 하나가 목록에 없다. 실물 사고와 같은 모양이다.
+      v: { ...base, pagesByKind: new Map([...base.pagesByKind, ['LayerStack', new Set(['/a/', '/lost/'])]]) },
+      want: 1, why: /^δ LayerStack/ },
+  ];
+  // ★정적 판정(브라우저 앞에서 돈다)도 같은 자리에서 본다.
+  const sbase = {
+    svg: ['LayerStack', 'NodeGraph'],
+    dir: ['LayerStack', 'NodeGraph', 'FlowSteps'],
+    barrel: ['LayerStack', 'NodeGraph', 'FlowSteps'],
+    pagesByKind: new Map([['LayerStack', new Set(['/a/'])], ['NodeGraph', new Set(['/b/'])], ['FlowSteps', new Set(['/c/'])]]),
+    skipped: [],
+  };
+  const scases = [
+    { name: '⑰ 음성 — 정상 정적 범위에 위반을 내지 않는다', v: sbase, want: 0 },
+    { name: '⑰b γ — 배럴은 아는데 파일이 없다 (디렉터리 밖으로)',
+      v: { ...sbase, dir: ['NodeGraph', 'FlowSteps'], svg: ['NodeGraph'] }, want: 1, why: /^γ LayerStack/ },
+    { name: '⑰c ε — 파일은 있는데 배럴이 안 내보낸다 (배럴 정규식이 놓친 경우도 여기다)',
+      v: { ...sbase, barrel: ['NodeGraph', 'FlowSteps'] }, want: 1, why: /^ε LayerStack/ },
+    { name: '⑰d α₀ — 유도는 SVG로 보는데 어느 MDX도 안 쓴다',
+      v: { ...sbase, pagesByKind: new Map([...sbase.pagesByKind, ['LayerStack', new Set()]]) }, want: 1, why: /^α₀ LayerStack/ },
+    { name: '⑰e σ — 도해가 있는 MDX인데 URL 규칙이 없다 (F-2의 형제)',
+      v: { ...sbase, skipped: ['topics/foo'] }, want: 1, why: /^σ topics\/foo/ },
+  ];
+
+  let ok = true;
+  console.log('★ 범위 하한 대조군 (순수 함수 · 브라우저 없음)');
+  for (const c of scases) {
+    const got = scopeStatic(c.v);
+    const pass = got.length === c.want && (!c.why || c.why.test(got[0] ?? ''));
+    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
+    if (!pass) { ok = false; console.log(`      ${got.length}건 ${JSON.stringify(got).slice(0, 130)}`); }
+  }
+  for (const c of cases) {
+    const got = scopeViolations(c.v);
+    const pass = got.length === c.want && (!c.why || c.why.test(got[0] ?? ''));
+    console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
+    if (!pass) { ok = false; console.log(`      ${got.length}건 ${JSON.stringify(got).slice(0, 130)}`); }
+  }
+  return ok;
 }
 
 async function runSelfTest(chromium) {
@@ -543,7 +865,8 @@ async function runSelfTest(chromium) {
   } finally {
     await browser.close();
   }
-  if (!await selfTestFiguresDisposition()) ok = false;
+  if (!selfTestScope()) ok = false;
+  if (!await selfTestDispositions()) ok = false;
   return ok;
 }
 
@@ -597,9 +920,18 @@ if (!process.env.DGM_RENDER_CHILD && !await runSelfTest(chromium)) {
 }
 console.log('');
 
-const urls = collectUrls();
+const { urls, usedInMdx, pagesByKind, skipped } = collectUrls();
 if (!urls.length) fail('SVG 도해를 가진 페이지를 찾지 못했다 — 경로 규약이 바뀌었다.');
 console.log(`SVG 도해 보유 페이지 ${urls.length}개 × 뷰포트 ${VIEWPORTS.length} — 하한 ${MIN_FONT_PX}px · 대비 ${MIN_CONTRAST}\n`);
+
+// ★정적으로 아는 범위 위반은 **브라우저를 띄우기 전에** 말한다.
+const pre = scopeStatic({ svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
+if (pre.length) {
+  console.error(`\n❌ 검사 범위가 주장한 만큼이 아니다 ${pre.length}건 — 브라우저를 띄우기 전에 안다.`);
+  console.error(`   유도 ${SVG_COMPONENTS.length}종 / 배럴 ${BARREL_COMPONENTS.length}종 / 디렉터리 ${ALL_COMPONENTS.length}종 / 페이지 ${urls.length}`);
+  for (const l of pre) console.error(`  ${l}`);
+  process.exit(2);
+}
 
 // channel: 'chrome' — 설치된 Chrome을 찾는다. 경로를 박으면 macOS 밖에서 못 돈다(G-9 스크립트의 결함).
 const browser = await chromium.launch({ channel: 'chrome', headless: true }).catch(() => null);
@@ -608,6 +940,10 @@ if (!browser) fail('Chrome을 띄우지 못했다. Google Chrome이 설치돼 �
 const findings = [];
 /** 판정 불가 구조. findings와 **따로** 센다 — 이건 위반(1)이 아니라 범위 상실(2)이다. */
 const unsupported = [];
+/** ★관측 — 검사 중 실제로 그려진 도해 종류. 범위 하한 대조의 한쪽이다. */
+const observed = new Set();
+/** 그중 SVG를 그린 종. δ의 대상이다. */
+const observedSvg = new Set();
 for (const [w, h, vpName] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, colorScheme: 'light' });
   const res = await ctx.request.post(`${BASE}/api/login/`, { data: { id, password: pw } });
@@ -642,6 +978,8 @@ for (const [w, h, vpName] of VIEWPORTS) {
     for (const x of m.markers.missing) findings.push({ url, vpName, kind: '마커 미해결', detail: x });
     for (const x of m.markers.dup) findings.push({ url, vpName, kind: '마커 중복', detail: x });
     for (const u of m.unsupported ?? []) unsupported.push({ url, vpName, ...u });
+    for (const k of m.kinds ?? []) observed.add(k);
+    for (const k of m.kindsSvg ?? []) observedSvg.add(k);
     if ((i + 1) % 25 === 0) process.stderr.write(`  …${vpName} ${i + 1}/${urls.length}\n`);
   }
   console.log(`${vpName} ${w}px — 글자 있는 SVG ${figures}개 검사`);
@@ -658,6 +996,32 @@ for (const [w, h, vpName] of VIEWPORTS) {
   }
 }
 await browser.close();
+
+// ═══ 범위 하한 — α·β·γ·δ ════════════════════════════════════════════════════
+const scope = scopeViolations({
+  svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS,
+  observed, observedSvg, pagesByKind, urls,
+});
+// `usedInMdx`는 유도와 같은 목록에서 만든 정규식으로 채워져 **유도와 함께 틀린다.**
+// 판정에 쓰지 않고 배너에만 쓴다 — 대조에 넣으면 공허한 검사가 된다.
+
+if (scope.length) {
+  // ★범위 판정보다 **먼저** 페이지 오류를 보여 준다. 얇은 종(보유 MDX 2개)의 페이지가
+  // 일시적으로 실패하면 α가 울면서 진짜 원인인 [오류]·[HTTP]를 삼킨다 — 운영자가
+  // "유도가 틀렸다"고 읽게 된다(Check 지적).
+  const broken = findings.filter((f) => f.kind === '오류' || f.kind === 'HTTP');
+  if (broken.length) {
+    console.error(`\n⚠ 페이지를 못 읽은 것이 ${broken.length}건 있다 — 아래 범위 위반의 원인일 수 있다.`);
+    for (const f of broken.slice(0, 5)) console.error(`  [${f.kind}] ${f.vpName} ${f.url} — ${f.detail}`);
+  }
+  console.error(`\n❌ 검사 범위가 주장한 만큼이 아니다 ${scope.length}건 — '통과'로 처리하지 않는다.`);
+  console.error(`   유도 ${SVG_COMPONENTS.length}종 / 관측 ${observed.size}종 / MDX ${usedInMdx.size}종`);
+  for (const l of scope) console.error(`  ${l}`);
+  await browser.close().catch(() => {});
+  process.exit(2);
+}
+
+console.log(`범위: 유도 ${SVG_COMPONENTS.length}종 / 관측 ${observed.size}종(SVG ${observedSvg.size}종) / 배럴 ${BARREL_COMPONENTS.length}종 / 페이지 ${urls.length}`);
 
 // ★판정 불가를 **먼저** 본다. 위반 0건이어도 "전 항목 통과"라고 말하면 안 된다 —
 // 재지 못한 것을 재고 문제없다고 말하는 것이라, D-14가 막은 것과 같은 거짓말이다.
