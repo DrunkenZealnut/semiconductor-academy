@@ -32,7 +32,7 @@ export function CompareCards({ columns, rows, emphasis = [], caption, note, altT
   const strong = new Set(emphasis);
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame kind="CompareCards" caption={caption} note={note} altTable={altTable}>
       {/* 좁은 화면: 열별 카드 */}
       <div className="space-y-3 sm:hidden">
         {columns.map((col, ci) => (

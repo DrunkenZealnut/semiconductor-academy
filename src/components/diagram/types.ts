@@ -1,6 +1,31 @@
 import type { ReactNode } from 'react';
 
 /**
+ * 도해 12종의 이름. `DiagramFrame`이 `data-diagram`으로 DOM에 내보낸다.
+ *
+ * ★**리터럴이어야 한다.** `LayerStack.name` 같은 식별자 유도는 프로덕션에서 죽는다 —
+ * Next.js가 서버 번들도 최소화해서 `LayerStack.name`이 **`"J"`** 가 되는 것을 실측했다
+ * (`render-gate-scope-floor` Design §0.1).
+ *
+ * ★**이름이 파일명과 달라지면 `verify:render`가 운다.** 그것이 이 값의 쓸모다 —
+ * 관문은 파일시스템에서 유도한 **기대**와 브라우저가 본 **관측**을 대조하고,
+ * 어긋나면 `exit 2`(범위 상실)로 끝낸다. 조용히 맞는 것보다 시끄럽게 어긋나는 편이 낫다.
+ */
+export type DiagramKind =
+  | 'CompareCards'
+  | 'CurvePlot'
+  | 'FlowSteps'
+  | 'LabeledFigure'
+  | 'LatticeDiagram'
+  | 'LayerStack'
+  | 'NodeGraph'
+  | 'ScaleRuler'
+  | 'Timeline'
+  | 'TreeBranch'
+  | 'TruthTable'
+  | 'ValueBars';
+
+/**
  * 도해 컴포넌트 공통 props.
  * Design: docs/02-design/features/diagram-component-set.design.md §2.1
  */

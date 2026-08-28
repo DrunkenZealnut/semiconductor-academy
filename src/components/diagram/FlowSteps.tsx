@@ -72,7 +72,7 @@ export function FlowSteps({
   const branchOf = (id: string) => branch.filter((b) => b.at === id);
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable}>
+    <DiagramFrame kind="FlowSteps" caption={caption} note={note} altTable={altTable}>
       <div className="space-y-3">
         <div className={WRAP[orientation]}>
           {steps.map((step, i) => (

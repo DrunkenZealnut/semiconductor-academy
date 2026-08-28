@@ -39,7 +39,7 @@ export function ScaleRuler({ marks, refs = [], caption, note, altTable }: Props)
   const height = AXIS_Y + 56;
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="ScaleRuler" caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         {...svgBox(`0 0 ${DIM.width} ${height}`)}
         className="h-auto w-full"

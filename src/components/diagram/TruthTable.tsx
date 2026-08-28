@@ -34,7 +34,7 @@ export function TruthTable({
   const nIn = inputs.length;
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="TruthTable" caption={caption} note={note} altTable={altTable} scrollable>
       <table className="mx-auto border-separate border-spacing-1 text-center text-sm">
         <thead>
           <tr>

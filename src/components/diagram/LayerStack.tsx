@@ -220,7 +220,7 @@ export function LayerStack({
   });
 
   return (
-    <DiagramFrame caption={caption} note={note} altTable={altTable} scrollable>
+    <DiagramFrame kind="LayerStack" caption={caption} note={note} altTable={altTable} scrollable>
       <svg
         {...svgBox(`0 0 ${DIM.width} ${totalH}`)}
         className="h-auto w-full"
