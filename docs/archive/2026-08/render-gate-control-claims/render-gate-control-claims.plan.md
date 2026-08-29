@@ -71,8 +71,8 @@
 
 ```text
 임시 cwd/
-  node_modules -> 심링크        (playwright-core만 있으면 된다)
-  src/data     -> 심링크        (chapters.json)
+  node_modules -> 심링크        (playwright-core만 있으면 된다 · **유일하게 빌리는 것**)
+  src/data/chapters.json        ← 직접 쓴다 (Design 0.2에서 확정 — 슬러그 맵일 뿐이다)
   src/components/diagram/       ← 직접 만든다
       Alpha.tsx   ( <svg 포함 )
       Beta.tsx    ( <svg 없음 )
