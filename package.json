@@ -14,7 +14,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "verify:diagram": "node scripts/verify-diagram-placement.mjs --all",
-    "verify:render": "node scripts/verify-diagram-render.mjs"
+    "verify:render": "node scripts/verify-diagram-render.mjs",
+    "audit:wiring": "node scripts/audit-render-wiring.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
