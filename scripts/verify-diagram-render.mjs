@@ -781,6 +781,10 @@ async function selfTestDispositions() {
   // ★손으로 적지 않는다 — 7번째 SVG 종이 생기면 자식에서 α가 먼저 울어 **사유가 어긋나고**
   // 출력이 원인을 오도한다(Check 지적). 유도 결과를 그대로 쓴다.
   const SVG6 = SVG_COMPONENTS;
+  // ★가드는 **자식이 하나라도 돌기 전에** 둔다. 뒤에 두면 ⑲가 먼저 돌아 실패하고,
+  // 진짜 원인(SVG 종이 둘 미만)은 한참 뒤에야 나온다 — 조건이 못 갖춰졌으면
+  // 대조군을 돌리기 전에 말한다. 이 파일의 다른 가드와 같은 자리다.
+  if (SVG6.length < 2) fail(`SVG 도해 종이 ${SVG6.length}개다 — ⑳이 기대할 α 대상을 고를 수 없다(둘 이상 필요).`);
 
   // ★가짜 도해 트리 — 자식이 **소유**한다. `Alpha`가 유일한 SVG 종이고 `Extra`는 비SVG다.
   // 파일 내용은 정규식으로만 훑기 때문에 컴파일되지 않는다 — `<svg` 포함 여부만 뜻이 있다.
@@ -812,10 +816,6 @@ async function selfTestDispositions() {
   // 빠지는 조작(G-5)을 하면 α가 다른 종으로 울어 **사유 불일치**로 실패했다 — 관문은
   // 빨개지지만 진단이 엉뚱해진다. C-6과 같은 수동 미러다. 유도 결과에서 고른다:
   // 첫째 종만 그리고, **둘째 종**이 α로 울 것을 기대한다.
-  // ★종이 둘 미만이면 `expectAlpha`가 undefined가 되어 정규식이 `α undefined`가 되고,
-  // 대조군이 "사유 불일치"로 실패한다 — **원인이 출력에 안 나온다.** 이 파일의 다른
-  // 가드(배럴·디렉터리 읽기 실패)와 같이 이유를 밝히고 `exit 2`로 끝낸다.
-  if (SVG6.length < 2) fail(`SVG 도해 종이 ${SVG6.length}개다 — ⑳이 기대할 α 대상을 고를 수 없다(둘 이상 필요).`);
   const [drawn, expectAlpha] = [SVG6[0], SVG6[1]];
   ok = await spawnChildAgainst({
     name: `⑳ 범위 하한 위반이면 exit 2 (A-2 처분 · α ${expectAlpha})`,
