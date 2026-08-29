@@ -144,7 +144,7 @@ function scopeStatic({ svg, dir, barrel, pagesByKind, skipped }) {
  * 줄었는데 α는 조용했다 — 남은 페이지 8개에 `LayerStack`이 함께 있어 관측에는 나왔다.
  * **36페이지가 조용히 검사 밖이었다.**
  */
-function scopeViolations({ svg, dir, barrel, observed, observedSvg, pagesByKind, urls }) {
+function scopeViolations({ svg, dir, observed, observedSvg, pagesByKind, urls }) {
   const out = [];
   const obs = new Set(observed);
   const urlSet = new Set(urls);
@@ -636,7 +636,7 @@ function offTarget(c, o) {
  * **자식은 자체검사를 건너뛴다**(`DGM_RENDER_CHILD`) — 안 그러면 자식이 또 자식을 낳는다.
  * 이 함정은 이 저장소에서 네 번째다(`--all`·`--assert-only`·`--self-test`·여기).
  */
-async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }) {
+async function spawnChildAgainst({ name, html, mdx, tree, wantStatus = 2, wantReason, denyReason = [], repoBroken = false }) {
   const { createServer } = await import('node:http');
   // ★`spawnSync`를 쓰면 안 된다 — 부모의 이벤트 루프를 막아 스텁 서버가 요청을 못 받고
   // 자식이 "연결할 수 없다"로 죽는다(실측: 종료 코드는 2로 맞았지만 **이유가 달랐다**).
@@ -653,10 +653,31 @@ async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }
   const port = server.address().port;
   const root = mkdtempSync(path.join(process.env.TMPDIR ?? '/tmp', 'dgm-render-'));
   try {
-    // 자식이 읽어야 하는 것만 잇는다 — 컴포넌트 목록·배럴·chapters.json·playwright.
+    // ★`tree`가 있으면 **가짜 도해 트리**를 심고, 없으면 실제 저장소를 심링크로 잇는다.
+    //
+    // **왜 가짜인가.** 실제 트리를 잇는 자식은 저장소 상태를 **공유**한다. 그래서
+    // (a) 정적 판정의 **배선**을 무력화해도 자식은 그냥 지나가고(무대조군)
+    // (b) 저장소의 정적 범위가 깨지면 자식이 그 메시지로 죽어 **노린 사유와 어긋난다.**
+    // 트리를 소유하면 상태를 마음대로 만들 수 있어 γ·ε·α₀·σ·β를 **직접 유발**한다.
+    //
+    // **왜 하나는 실제로 남기나.** 전부 가짜면 *"유도 규칙이 **실제** 컴포넌트에서 도는가"* 를
+    // 아무도 안 본다 — 이 사이클이 고치는 병과 같은 모양이다. ⑳이 그 갈래다(Design D-4).
     mkdirSync(path.join(root, 'src'), { recursive: true });
-    for (const parts of [['node_modules'], ['src', 'components'], ['src', 'data']]) {
-      symlinkSync(path.resolve(...parts), path.join(root, ...parts));
+    // `node_modules`만은 언제나 빌린다 — 검사 대상이 아니라 **실행 수단**(playwright-core)이다.
+    symlinkSync(path.resolve('node_modules'), path.join(root, 'node_modules'));
+    if (tree) {
+      const dir = path.join(root, 'src', 'components', 'diagram');
+      mkdirSync(dir, { recursive: true });
+      mkdirSync(path.join(root, 'src', 'data'), { recursive: true });
+      // 슬러그 맵일 뿐이라 가짜로 족하다. 비면 스키마 가드가 `exit 2`를 내므로 한 줄은 있어야 한다.
+      writeFileSync(path.join(root, 'src', 'data', 'chapters.json'),
+        JSON.stringify({ chapters: [{ id: '01-probe', slug: 'probe', order: 1 }] }));
+      for (const [f, body] of Object.entries(tree.components)) writeFileSync(path.join(dir, f), body);
+      writeFileSync(path.join(dir, 'index.ts'), tree.barrel);
+    } else {
+      for (const parts of [['src', 'components'], ['src', 'data']]) {
+        symlinkSync(path.resolve(...parts), path.join(root, ...parts));
+      }
     }
     for (const [rel, body] of Object.entries(mdx)) {
       const f = path.join(root, 'src', 'content', rel);
@@ -678,11 +699,32 @@ async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }
       const timer = setTimeout(() => { timedOut = true; child.kill('SIGKILL'); }, LIMIT_MS);
       child.on('close', (code) => { clearTimeout(timer); ok(code); });
     });
-    const pass = !timedOut && status === wantStatus && wantReason.test(out);
+    // ★`wantReason`은 배열도 받는다 — 한 자식에 여러 판정을 겹쳐 실을 때 **전부** 요구하고,
+    // 실패하면 **어느 사유가 빠졌는지** 이름으로 말한다. 하나만 맞아도 통과하면 공허하다.
+    const reasons = Array.isArray(wantReason) ? wantReason : [wantReason];
+    const missing = reasons.filter((re) => !re.test(out));
+    // ★`denyReason` — **과잉 발화**를 잡는다. `wantReason`만 보면 대조군이 *"적어도 이것"*
+    // 만 요구해 판정이 **더 시끄러워지는** 훼손을 통과시킨다. 판정 fixture는 `offTarget()`으로,
+    // 순수 함수 대조군은 `got.length === want`로 이미 양쪽을 보는데 **처분 쪽에만 없었다.**
+    const extra = denyReason.filter((re) => re.test(out));
+    const pass = !timedOut && status === wantStatus && missing.length === 0 && extra.length === 0;
     console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${name}`);
     if (!pass) {
       if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 안 끝나 강제 종료했다 — 처분을 확인하지 못했다.`);
-      else console.log(`      종료 ${status} (기대 ${wantStatus}) · 사유 ${wantReason} 불일치 · ${(out.match(/❌ [^\n]*/)?.[0] ?? out.slice(-90)).slice(0, 110)}`);
+      else {
+        console.log(`      종료 ${status} (기대 ${wantStatus})`
+          + `${missing.length ? ` · 빠진 사유 ${missing.length}/${reasons.length}: ${missing.join(' ')}` : ''}`
+          + `${extra.length ? ` · ★있으면 안 되는 사유: ${extra.join(' ')}` : ''}`);
+        // ★저장소의 **정적** 범위가 깨져서 자식이 죽은 경우를 구분한다(Design D-5).
+        // 실제 트리를 쓰는 대조군은 저장소가 망가지면 노린 사유에 못 닿는다 — 관문은
+        // 여전히 실패지만(통과시키지 않는다) **진단이 이 대조군을 가리키면 안 된다.**
+        // ★저장소가 **실제로** 깨졌을 때만 면책한다. 자식 출력만 보면 호출부를 훼손해도
+        // 같은 문구가 나와 **거짓 면책**이 뜬다(gap-detector ⑤).
+        if (!tree && repoBroken) {
+          console.log('      ※ 저장소의 정적 범위 위반 때문이다 — 이 대조군의 잘못이 아니다. 위 범위 지적을 먼저 고쳐라.');
+        }
+        console.log(`      ${(out.match(/❌ [^\n]*/)?.[0] ?? out.slice(-90)).slice(0, 110)}`);
+      }
     }
     return pass;
   } finally {
@@ -695,13 +737,42 @@ async function spawnChildAgainst({ name, html, mdx, wantStatus = 2, wantReason }
 function stubFigures(kinds, extra = '') {
   const one = (k) => `<figure data-diagram="${k}"><svg viewBox="0 0 120 40" width="120" height="40">`
     + `<text x="6" y="24" font-size="14" fill="#111">${k}</text></svg></figure>`;
-  return `<!doctype html><html><body>${kinds.map(one).join('')}${extra}</body></html>`;
+  // ★배경을 **반드시** 준다. 없으면 `getComputedStyle(body).backgroundColor`가
+  // `rgba(0,0,0,0)`이라 `pageBg`가 **투명 검정**이 되고, `#111` 글자가 대비 1.1로 잡힌다.
+  // 판정 fixture의 `wrap()`은 이미 `background:#fff`를 주고 있었다 — **한 곳에서 피한
+  // 함정이 다른 곳에서 되살아났다.** 지금까지는 자식이 앞선 `exit 2`로 죽어 **가려져** 있었다
+  // (시제품의 음성 케이스가 `exit 1 · {"대비":2}`로 죽어 드러났다).
+  return `<!doctype html><html><body style="background:#fff;margin:0">${kinds.map(one).join('')}${extra}</body></html>`;
 }
 
 
 /** ★처분 대조군 3종 — 감지가 아니라 **종료 코드**를 본다. 전부 임시 cwd 자식이다. */
+/**
+ * ★**실제 트리의 정적 범위**를 자체검사 안에서 한 번 잰다.
+ *
+ * 실제 트리를 쓰는 자식(⑳)은 저장소의 정적 범위가 깨지면 노린 사유에 못 닿는다.
+ * 그때 *"이 대조군의 잘못이 아니다"* 를 붙이는데, 예전에는 **자식 출력에 그 문구가 있는지**
+ * 로 판단했다 — 호출부를 훼손해도 같은 문구가 나오므로 **거짓 면책**이 떴다
+ * (gap-detector ⑤ 실측: 배선 감사 도는 내내 저장소는 멀쩡한데 그 문구가 붙었다).
+ *
+ * 지금은 **저장소를 직접 본다.** 파일시스템과 MDX만 읽으므로 브라우저도 서버도 필요 없다.
+ */
+function realTreeScopeViolations() {
+  try {
+    const { pagesByKind, skipped } = collectUrls();
+    return scopeStatic({ svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
+  } catch {
+    return ['(저장소 정적 범위를 재지 못했다)'];
+  }
+}
+
 async function selfTestDispositions() {
   console.log('★ 처분 대조군 (자식 프로세스 · 임시 cwd)');
+  const repoScope = realTreeScopeViolations();
+  if (repoScope.length) {
+    console.log(`   ⚠ 저장소의 정적 범위가 ${repoScope.length}건 깨져 있다 — 실제 트리를 쓰는 대조군이 그 때문에 실패할 수 있다.`);
+    for (const l of repoScope.slice(0, 3)) console.log(`     ${l}`);
+  }
   // ★fixture MDX도 **손으로 적지 않는다.** 유도가 SVG로 보는 종을 전부 써야 α₀
   // ("어느 MDX도 쓰지 않는다")가 조용하다 — 안 그러면 자식이 브라우저를 띄우기도 전에
   // α₀로 죽어 **모든 처분 대조군이 같은 이유로 실패**한다(실측).
@@ -710,16 +781,36 @@ async function selfTestDispositions() {
   // ★손으로 적지 않는다 — 7번째 SVG 종이 생기면 자식에서 α가 먼저 울어 **사유가 어긋나고**
   // 출력이 원인을 오도한다(Check 지적). 유도 결과를 그대로 쓴다.
   const SVG6 = SVG_COMPONENTS;
+  // ★가드는 **자식이 하나라도 돌기 전에** 둔다. 뒤에 두면 ⑲가 먼저 돌아 실패하고,
+  // 진짜 원인(SVG 종이 둘 미만)은 한참 뒤에야 나온다 — 조건이 못 갖춰졌으면
+  // 대조군을 돌리기 전에 말한다. 이 파일의 다른 가드와 같은 자리다.
+  if (SVG6.length < 2) fail(`SVG 도해 종이 ${SVG6.length}개다 — ⑳이 기대할 α 대상을 고를 수 없다(둘 이상 필요).`);
+
+  // ★가짜 도해 트리 — 자식이 **소유**한다. `Alpha`가 유일한 SVG 종이고 `Extra`는 비SVG다.
+  // 파일 내용은 정규식으로만 훑기 때문에 컴파일되지 않는다 — `<svg` 포함 여부만 뜻이 있다.
+  const SVGC = 'export function X() { return <svg viewBox="0 0 1 1" />; }\n';
+  const HTMLC = 'export function X() { return <div />; }\n';
+  /** 정상 트리 — 유도 1종(Alpha) · 배럴 1종 · MDX 하나가 그것을 쓴다. */
+  const CLEAN = {
+    components: { 'Alpha.tsx': SVGC },
+    barrel: "export { Alpha } from './Alpha';\n",
+  };
+  const CLEAN_MDX = { 'sources/probe/a.mdx': '본문.\n\n<Alpha />\n' };
   let ok = true;
 
   // ⑲ 글자 있는 SVG를 하나도 못 보면 exit 2 (선행 ⑫ — 기계만 바뀌었다)
   ok = await spawnChildAgainst({
     name: '⑲ 도해를 하나도 못 보면 exit 2 (처분)',
-    html: '<!doctype html><html><body><p>도해가 없다</p></body></html>',
-    mdx: MDX_LS, wantReason: /하나도 보지 못했다/,
+    html: '<!doctype html><html><body style="background:#fff">도해가 없다</body></html>',
+    tree: CLEAN, mdx: CLEAN_MDX, wantReason: /하나도 보지 못했다/,
   }) && ok;
 
   // ⑳ 범위 하한 위반이면 exit 2 — 이 사이클이 만든 처분(A-2)
+  //
+  // ★★이 대조군만 **실제 트리**를 쓴다(Design D-4). 전부 가짜로 바꾸면 *"유도 규칙이
+  // **실제** 컴포넌트에서 도는가"* 를 아무도 안 본다 — 이 사이클이 고치는 병과 같은 모양이다.
+  // 대신 저장소의 정적 범위가 깨지면 이 대조군이 노린 사유에 못 닿는다(B-5). 그때
+  // `spawnChildAgainst`가 *"이 대조군의 잘못이 아니다"* 를 덧붙인다(D-5).
   //
   // ★사유에 종 이름을 **박지 않는다.** 초판은 `/α LayerStack/`이었는데, 유도에서 그 종이
   // 빠지는 조작(G-5)을 하면 α가 다른 종으로 울어 **사유 불일치**로 실패했다 — 관문은
@@ -728,6 +819,7 @@ async function selfTestDispositions() {
   const [drawn, expectAlpha] = [SVG6[0], SVG6[1]];
   ok = await spawnChildAgainst({
     name: `⑳ 범위 하한 위반이면 exit 2 (A-2 처분 · α ${expectAlpha})`,
+    repoBroken: repoScope.length > 0,
     html: stubFigures([drawn]),
     mdx: MDX_LS,
     wantReason: new RegExp(`검사 범위가 주장한 만큼이 아니다[\\s\\S]*α ${expectAlpha}`),
@@ -743,16 +835,101 @@ async function selfTestDispositions() {
   // 글자 있는 SVG를 그린다. 그 종만 쓰는 MDX는 `urls`에 없으므로 δ가 울어야 한다.
   ok = await spawnChildAgainst({
     name: '㉒ 판정 대상인데 검사 목록에 없는 페이지가 있으면 exit 2 (δ 배선)',
-    html: stubFigures([...SVG6, 'FlowSteps']),
+    html: stubFigures(['Alpha', 'Extra']),
     // ★페이지를 **둘** 준다. ζ 표본이 하나를 가져가므로 하나만 주면 δ가 울 대상이 없어진다
     // — 실제로 ζ를 넣자 이 대조군이 깨졌다. **표본은 관측을 만들고 판정은 δ가 한다**는
     // 설계가 대조군에도 그대로 적용된다.
+    tree: { components: { 'Alpha.tsx': SVGC, 'Extra.tsx': HTMLC },
+             barrel: "export { Alpha } from './Alpha';\nexport { Extra } from './Extra';\n" },
     mdx: {
-      ...MDX_LS,                                   // urls에 들어간다(LayerStack은 유도에 있다)
-      'sources/probe/b.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',  // ζ 표본이 가져간다
-      'sources/probe/c.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'b\' }]} />\n',  // 이것이 검사 목록 밖 → δ
+      ...CLEAN_MDX,                                     // urls에 들어간다(Alpha는 유도에 있다)
+      'sources/probe/b.mdx': '본문.\n\n<Extra />\n',   // ζ 표본이 가져간다
+      'sources/probe/c.mdx': '본문.\n\n<Extra />\n',   // 이것이 검사 목록 밖 → δ
     },
-    wantReason: /δ FlowSteps —[\s\S]*검사 목록에 없다/,
+    wantReason: /δ Extra —[\s\S]*검사 목록에 없다/,
+  }) && ok;
+
+  // ㉔ ★정적 4종을 **한 자식에 겹쳐** 싣는다 — γ·ε·α₀·σ.
+  //
+  // **왜 겹치나.** 배선 감사는 인자를 **하나씩** 훼손한다. 네 사유를 **모두** 요구하면
+  // `svg`(α₀ 사라짐)·`dir`/`barrel`(γ·ε 둘 다 상쇄)·`skipped`(σ 사라짐) 어느 것을
+  // 건드려도 이 대조군 하나가 깨진다 — **자식 하나로 네 자리를 덮는다**(Design 0.1).
+  //
+  // 가짜 트리라 상태를 마음대로 만든다:
+  //   Ghost   배럴에만 있고 파일이 없다        → γ
+  //   Extra   파일만 있고 배럴에 없다          → ε
+  //   Lonely  SVG인데 어느 MDX도 안 쓴다       → α₀
+  //   topics/ URL 규칙 밖 경로에 도해가 있다    → σ
+  // `sources/probe/a.mdx`가 정상 URL 하나를 만든다 — 없으면 `!urls.length` 가드가
+  // 먼저 울어 σ 목록을 못 본다(시제품 P-1에서 겪었다).
+  ok = await spawnChildAgainst({
+    name: '㉔ 정적 범위 위반 4종을 브라우저 앞에서 잡는다 (γ·ε·α₀·σ 배선)',
+    html: stubFigures(['Alpha']),
+    tree: {
+      components: { 'Alpha.tsx': SVGC, 'Extra.tsx': HTMLC, 'Lonely.tsx': SVGC },
+      barrel: "export { Alpha } from './Alpha';\nexport { Ghost } from './Ghost';\nexport { Lonely } from './Lonely';\n",
+    },
+    mdx: { ...CLEAN_MDX, 'topics/x.mdx': '본문.\n\n<Alpha />\n' },
+    wantReason: [
+      /브라우저를 띄우기 전에 안다/,
+      /γ Ghost —/,
+      /ε Extra —/,
+      /α₀ Lonely —/,
+      /σ topics\/x —/,
+    ],
+    // ★`Alpha`는 두 MDX가 쓰므로 α₀가 **뜨면 안 된다.** 이것이 없으면 `pagesByKind`를
+    // 비우는 훼손에서 α₀가 Alpha에도 뜨는데 위 다섯이 전부 맞아 **㉔이 통과한다**
+    // (gap-detector ③ 실측). *"적어도 이 넷"* 이 아니라 *"정확히 이 넷"* 이어야 한다.
+    denyReason: [/α₀ Alpha —/],
+  }) && ok;
+
+  // ㉕ ★β **배선**(선행 B-1) — 그려졌는데 그런 컴포넌트 파일이 없다.
+  //
+  // ⑯은 `scopeViolations()`를 **직접** 불러 β를 증명하지만, 본 검사가 그 함수에 `dir`을
+  // 무엇으로 넘기는지는 한 줄도 실행하지 않았다. 실측: `dir: BARREL_COMPONENTS`로
+  // 바꿔치기해도 자체검사가 **종료 0**이었다(감사 6/11 시점).
+  //
+  // 정적으로 깨끗한 가짜 트리에 스텁이 **없는 종**(`Nope`)을 그린다 → β가 울어야 한다.
+  //
+  // ★`dir`을 `barrel`로 바꿔치기하는 훼손은 **관측할 수 없다.** `scopeStatic`의 γ·ε가
+  // `dir ≡ barrel`을 이미 보장하므로, 그 검사를 통과한 실행에서 둘은 같은 값이다.
+  // **덮을 것이 없는 자리다.** 관측 가능한 훼손은 `dir: []` 같은 것이고, 그때는 β가
+  // **과잉 발화**한다 — 그것은 이 대조군이 아니라 **음성 자식 ㉖**이 잡는다.
+  ok = await spawnChildAgainst({
+    name: '㉕ 그려졌는데 그런 컴포넌트가 없으면 exit 2 (β 배선 · 선행 B-1)',
+    html: stubFigures(['Alpha', 'Nope']),
+    tree: CLEAN, mdx: CLEAN_MDX,
+    wantReason: [/검사 범위가 주장한 만큼이 아니다/, /β Nope —/],
+  }) && ok;
+
+  // ㉖ ★**음성 자식** — 정상 가짜 트리는 `exit 0`으로 끝난다.
+  //
+  // 처분 대조군이 전부 `exit 2`를 기대하면 **과잉 발화가 안 보인다.** 판정을 과하게
+  // 켜는 훼손(예: `dir: []` → β가 관측된 종 전부에 대해 운다)은 다른 대조군을 통과시키고
+  // 지나간다. *"잡는다"* 만 보고 *"안 잡을 것은 안 잡는다"* 를 안 보면 문턱이 고정되지
+  // 않는다 — 선행 사이클이 대비·글자 크기에서 배운 것과 같다(양쪽에서 보기).
+  ok = await spawnChildAgainst({
+    name: '㉖ 음성 — 정상 트리는 exit 0 (과잉 발화를 잡는다)',
+    html: stubFigures(['Alpha']),
+    tree: CLEAN, mdx: CLEAN_MDX,
+    wantStatus: 0,
+    wantReason: [/전 항목 통과/],
+  }) && ok;
+
+  // ㉗ ★도해 MDX가 **전부** URL 규칙 밖이면 σ가 **이름을 대며** 운다.
+  //
+  // `scopeStatic`을 `!urls.length` 가드보다 **앞**에 둔 이유가 이것이다(Design P-1).
+  // 뒤에 있으면 *"SVG 도해를 가진 페이지를 찾지 못했다 — 경로 규약이 바뀌었다"* 로
+  // 뭉뚱그린다. 종료 코드는 둘 다 2지만 **진단이 다르다** — 앞엣것은 어느 파일인지 말한다.
+  //
+  // ㉔에는 정상 URL이 하나 있어(`sources/probe/a.mdx`) 이 순서가 관측되지 않았다.
+  // 정상 URL을 **하나도** 두지 않아야 드러난다(FR-8 되돌림에서 알았다).
+  ok = await spawnChildAgainst({
+    name: '㉗ 도해가 전부 URL 규칙 밖이면 σ가 파일 이름을 댄다 (판정 순서)',
+    html: stubFigures(['Alpha']),
+    tree: CLEAN,
+    mdx: { 'topics/x.mdx': '본문.\n\n<Alpha />\n' },   // 정상 URL이 없다
+    wantReason: [/σ topics\/x —/],
   }) && ok;
 
   // ㉓ ★ζ(표본) — 비SVG로 분류된 종의 페이지가 **하나도** 검사되지 않으면 그 종이 글자 있는
@@ -762,14 +939,16 @@ async function selfTestDispositions() {
   // `a` 페이지에서 관측돼 δ가 울고, **ζ를 지워도 대조군이 안 깨진다**(실측으로 확인했다).
   ok = await spawnChildAgainst({
     name: '㉓ 비SVG 종의 페이지를 표본으로 검사한다 (ζ) — 없으면 그 종을 영영 못 본다',
-    html: (u) => (u.includes('/probe-f/') ? stubFigures(['FlowSteps']) : stubFigures(SVG6)),
+    html: (u) => (u.includes('/probe-f/') ? stubFigures(['Extra']) : stubFigures(['Alpha'])),
+    tree: { components: { 'Alpha.tsx': SVGC, 'Extra.tsx': HTMLC },
+             barrel: "export { Alpha } from './Alpha';\nexport { Extra } from './Extra';\n" },
     mdx: {
-      ...MDX_LS,
-      // FlowSteps만 쓰는 페이지 둘. ζ가 하나를 표본으로 넣어 관측을 만들고, δ가 나머지를 짚는다.
-      'sources/probe-f/x.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'a\' }]} />\n',
-      'sources/probe-f/y.mdx': '본문.\n\n<FlowSteps steps={[{ label: \'b\' }]} />\n',
+      ...CLEAN_MDX,
+      // Extra만 쓰는 페이지 둘. ζ가 하나를 표본으로 넣어 관측을 만들고, δ가 나머지를 짚는다.
+      'sources/probe-f/x.mdx': '본문.\n\n<Extra />\n',
+      'sources/probe-f/y.mdx': '본문.\n\n<Extra />\n',
     },
-    wantReason: /δ FlowSteps —[\s\S]*검사 목록에 없다/,
+    wantReason: /δ Extra —[\s\S]*검사 목록에 없다/,
   }) && ok;
 
   // ㉑ 판정 불가 구조면 exit 2 — 선행 사이클이 남긴 E-5
@@ -777,11 +956,11 @@ async function selfTestDispositions() {
     name: '㉑ 판정할 수 없는 구조면 exit 2 (E-5 처분)',
     // 범위는 온전하게 두고(6종 전부 그린다) `<use>`만 얹는다 — 범위 위반이 먼저 울면
     // 이 대조군이 **다른 이유로** 통과하게 된다.
-    html: stubFigures(SVG6,
-      '<figure data-diagram="LabeledFigure"><svg viewBox="0 0 120 40" width="120" height="40">'
+    html: stubFigures(['Alpha'],
+      '<figure data-diagram="Alpha"><svg viewBox="0 0 120 40" width="120" height="40">'
       + '<defs><text id="u" x="6" y="24" font-size="14" fill="#111">숨은 라벨</text></defs>'
       + '<use href="#u"/><text x="6" y="38" font-size="12" fill="#111">보이는</text></svg></figure>'),
-    mdx: MDX_LS, wantReason: /판정할 수 없는 구조/,
+    tree: CLEAN, mdx: CLEAN_MDX, wantReason: /판정할 수 없는 구조/,
   }) && ok;
 
   return ok;
@@ -797,7 +976,6 @@ function selfTestScope() {
   const base = {
     svg: ['LayerStack', 'NodeGraph'],
     dir: ['LayerStack', 'NodeGraph', 'FlowSteps'],
-    barrel: ['LayerStack', 'NodeGraph', 'FlowSteps'],
     observed: ['LayerStack', 'NodeGraph', 'FlowSteps'],
     observedSvg: ['LayerStack', 'NodeGraph'],
     pagesByKind: new Map([['LayerStack', new Set(['/a/'])], ['NodeGraph', new Set(['/b/'])], ['FlowSteps', new Set(['/c/'])]]),
@@ -961,9 +1139,6 @@ if (!process.env.DGM_RENDER_CHILD && !await runSelfTest(chromium)) {
 console.log('');
 
 const { urls, usedInMdx, pagesByKind, skipped } = collectUrls();
-if (!urls.length) fail('SVG 도해를 가진 페이지를 찾지 못했다 — 경로 규약이 바뀌었다.');
-console.log(`SVG 도해 보유 페이지 ${urls.length}개 × 뷰포트 ${VIEWPORTS.length} — 하한 ${MIN_FONT_PX}px · 대비 ${MIN_CONTRAST}\n`);
-
 // ★정적으로 아는 범위 위반은 **브라우저를 띄우기 전에** 말한다.
 const pre = scopeStatic({ svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
 if (pre.length) {
@@ -972,6 +1147,9 @@ if (pre.length) {
   for (const l of pre) console.error(`  ${l}`);
   process.exit(2);
 }
+if (!urls.length) fail('SVG 도해를 가진 페이지를 찾지 못했다 — 경로 규약이 바뀌었다.');
+console.log(`SVG 도해 보유 페이지 ${urls.length}개 × 뷰포트 ${VIEWPORTS.length} — 하한 ${MIN_FONT_PX}px · 대비 ${MIN_CONTRAST}\n`);
+
 
 // channel: 'chrome' — 설치된 Chrome을 찾는다. 경로를 박으면 macOS 밖에서 못 돈다(G-9 스크립트의 결함).
 const browser = await chromium.launch({ channel: 'chrome', headless: true }).catch(() => null);
@@ -1039,7 +1217,10 @@ await browser.close();
 
 // ═══ 범위 하한 — α·β·γ·δ ════════════════════════════════════════════════════
 const scope = scopeViolations({
-  svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS,
+  // ★`barrel`은 넘기지 않는다 — γ를 `scopeStatic`으로 옮길 때 남은 **죽은 인자**였다.
+  // 배선 감사의 미러 대조가 찾았다(Check C-2): 호출부에는 있는데 훼손 목록에 없어
+  // **한 자리가 조용히 세어지지 않고 있었다.** 11/11이 실은 11/12였다.
+  svg: SVG_COMPONENTS, dir: ALL_COMPONENTS,
   observed, observedSvg, pagesByKind, urls,
 });
 // `usedInMdx`는 유도와 같은 목록에서 만든 정규식으로 채워져 **유도와 함께 틀린다.**
