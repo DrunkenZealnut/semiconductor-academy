@@ -120,12 +120,32 @@ const CASES = [
  * 그것도 여기서 잡는다.
  */
 function assertCasesMirrorCallSites(src, cases) {
-  // 판정 함수를 부르는 자리 전부 — 아는 둘 말고 더 있으면 운다.
-  const heads = [...src.matchAll(/(?:const|let|var)\s+\w+\s*=\s*(scope[A-Za-z]*)\s*\(\{/g)].map((m) => m[1]);
-  const known = new Set(['scopeStatic', 'scopeViolations']);
-  const unknown = [...new Set(heads)].filter((h) => !known.has(h));
-  if (unknown.length) {
-    die(`판정 함수를 부르는 자리가 더 있다: ${unknown.join(' · ')} — 감사가 그 배선을 모른다. CASES에 더하라.`);
+  // ★**모든 호출 형태**를 본다. 초판은 `const|let|var X = scope…({` 만 찾아
+  // `return scopeStatic({ … })` 를 놓쳤다 — 그리고 그 자리는 **Check에서 내가 만든 것**이다
+  // (`realTreeScopeViolations()`, C-4 수정). **탐지기를 만든 사람이 탐지기의 사각에 코드를 놨다.**
+  // 함수 선언(`function scopeStatic(`)은 호출이 아니므로 뺀다.
+  const calls = [...src.matchAll(/(?<!function\s)\b(scope[A-Z][A-Za-z]*)\s*\(\{/g)]
+    .map((m) => ({ fn: m[1], at: m.index }))
+    .filter((c) => !/function\s+$/.test(src.slice(Math.max(0, c.at - 12), c.at)));
+  /**
+   * 아는 호출부. `audited: false`는 **감사 대상이 아님을 명시**하는 자리다 —
+   * 조용히 빠지는 것과 이유를 적고 빠지는 것은 다르다.
+   */
+  const SITES = [
+    { fn: 'scopeStatic', head: 'const pre = scopeStatic({', audited: true },
+    { fn: 'scopeViolations', head: 'const scope = scopeViolations({', audited: true },
+    { fn: 'scopeStatic', head: 'return scopeStatic({', audited: false,
+      why: '자체검사가 **저장소 상태**를 재는 자리다(D-5 면책 판단). 훼손하면 면책 문구만 흔들리고 본 검사 판정은 그대로라 감사의 대상이 아니다 — 대신 백로그 B-12로 남긴다.' },
+  ];
+  const covered = SITES.filter((s) => src.includes(s.head));
+  const missingSites = SITES.filter((s) => !src.includes(s.head));
+  if (missingSites.length) die(`아는 호출부가 사라졌다: ${missingSites.map((s) => s.head).join(' · ')} — 이름이 바뀌었나.`);
+  if (calls.length !== covered.length) {
+    die(`판정 함수 호출이 ${calls.length}곳인데 아는 자리는 ${covered.length}곳이다 — 새 호출부가 생겼다. SITES에 더하고 감사 대상 여부를 적어라.`);
+  }
+  const skipped = covered.filter((s) => !s.audited);
+  if (skipped.length) {
+    for (const s of skipped) console.log(`   ⏭ 감사 밖: ${s.head} — ${s.why}`);
   }
   // 호출부의 인자 이름을 유도한다. `key: value`와 축약(`key,` / `key }`) 둘 다 본다.
   const argsOf = (site) => {
