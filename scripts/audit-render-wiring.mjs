@@ -304,6 +304,21 @@ const DERIV = `  .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').
  * 실제 종까지 손으로 박으면 **같은 병을 하나 더 만드는 것**이므로 유도한다.
  * 유도할 것이 없으면 `die` — **훼손이 무동작인 채 초록이 되는 것**이 이 사이클이 고치는 병이다.
  */
+/**
+ * ★관문의 유도 규칙에 **앵커를 건다**(PR #42 리뷰 · 백로그 E-1).
+ * 아래 미러가 관문과 어긋나면 ㉛이 *관문이 실제로 고른 파일*을 검증하지 않게 되는데,
+ * 그때 감사는 `주장 대조군 ㉛ 이 안 깨졌다`로 **오도 보고**한다.
+ * `DERIV`·`KINDS_SVG`가 쓰는 방식 그대로 — 관문 소스에 그 조건이 있는지 단언한다.
+ */
+for (const [anchor, what] of [
+  ["/<text\\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8'))", '둘째 유도 조건'],
+  ["f !== 'DiagramFrame.tsx'", 'DiagramFrame 제외 조건'],
+]) {
+  if (!src0.includes(anchor)) {
+    die(`관문의 ${what}이 바뀌었다 — 아래 미러가 어긋난 채 돌면 ㉛이 엉뚱한 파일을 잰다.`);
+  }
+}
+
 const REAL_TEXTUAL_KIND = (() => {
   const D = 'src/components/diagram';
   let f;
@@ -418,8 +433,18 @@ const RULES_MIN = RULE_CLAIMS + RULE_GUARDS;   // ★손으로 안 적는다 —
 if (RULES.length !== RULES_MIN) {
   die(`판정 규칙 훼손이 ${RULES.length}개인데 RULES_MIN은 ${RULES_MIN}이다 — 더하든 빼든 이 수를 함께 고쳐라(그 diff가 근거가 된다).`);
 }
-for (const [kind, why, from] of RULES) {
+/**
+ * ★**앵커가 있는 것과 훼손이 무언가를 바꾸는 것은 다르다**(PR #42 리뷰 · 백로그 E-2 ·
+ * 선행 D-3의 나머지 절반). `to === from`이거나 치환 결과가 원본과 같으면 훼손이
+ * **무동작**인데, 감사는 그것을 *"주장 대조군이 안 깨졌다"* 로 **오도 보고**한다.
+ * 이 사이클이 실제로 그 오진을 겪었다(규칙 3/4 — 훼손이 가짜 종에 묶여 있었다).
+ */
+for (const [kind, why, from, to] of RULES) {
   if (!src0.includes(from)) die(`규칙 앵커가 사라졌다: ${kind}/${why} — 규칙이 바뀌었나.`);
+  if (to === from) die(`규칙 '${kind}/${why}'의 훼손이 원본과 같다 — 아무것도 안 바뀐다.`);
+  if (src0.replace(from, to) === src0) {
+    die(`규칙 '${kind}/${why}'의 훼손이 소스를 바꾸지 않는다 — 무동작인데 "대조군이 안 깨졌다"로 보고된다.`);
+  }
 }
 
 /**

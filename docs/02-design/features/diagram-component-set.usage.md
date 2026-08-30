@@ -264,11 +264,15 @@
 | 만들려는 것 | 어떻게 |
 |---|---|
 | 글자 있는 SVG 도해 | 그냥 만든다 — 지금 6종이 전부 이렇다 |
-| 글자 없는 **장식** SVG | `DiagramFrame`처럼 **`src/components/diagram/` 밖에** 두거나, 관문의 제외 목록(`f !== 'DiagramFrame.tsx'`)에 **이유와 함께** 더한다 |
+| 글자 없는 **장식** SVG | `scripts/verify-diagram-render.mjs`의 유도 조건 `f !== 'DiagramFrame.tsx'` 옆에 **이유와 함께** 이름을 더한다(제외 목록은 그 한 줄이 전부다). 또는 아예 `src/components/diagram/` 밖에 둔다 |
 | SVG를 안 쓰는 도해(HTML) | 그냥 만든다 — `FlowSteps`·`Timeline` 등 6종이 이렇다 |
 
 > **η는 막는 것이 아니라 묻는 것이다.** 조용히 δ 대상이 되어 나중에 본 검사에서
 > α로 우는 것보다, 만들 때 *"이건 어느 쪽이냐"* 를 묻는 편이 싸다.
+
+> **`DiagramFrame`은 장식 SVG가 아니라 공용 래퍼다.** `src/components/diagram/` **안**에 있고
+> 모든 도해를 `<figure data-diagram="…">`로 감싼다. 유도에서 이름으로 빼는 이유는
+> *"도해 종이 아니라서"* 이지 *"장식이라서"* 가 아니다.
 
 **`foreignObject` 등 `<text` 아닌 방법으로 글자를 그리면 η가 거짓 양성을 낸다.**
 그런 종이 필요하면 제외 목록에 이유를 적고 넣되, **그 종은 δ의 보호를 못 받는다**는 것을 알고 넣어라.

@@ -81,10 +81,25 @@ if (BARREL_COMPONENTS.length === 0) {
   console.error(`❌ ${DIAGRAM_DIR}/index.ts에서 도해 export를 하나도 읽지 못했다 — 배럴 형식이 바뀌었다.`);
   process.exit(2);
 }
-const SVG_COMPONENTS = readdirSync(DIAGRAM_DIR)
-  .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
-  .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))
-  .map((f) => f.replace(/\.tsx$/, ''));
+/**
+ * ★읽기 실패는 `throw`가 아니라 `exit 2`다 — throw면 Node가 **1**을 내는데 계약상 1은
+ * *콘텐츠 위반*이다. `ALL_COMPONENTS`는 이 방어를 갖는데 두 유도는 없었다(PR #42 리뷰).
+ *
+ * ★**필터 줄을 함수로 묶지 않는다.** 초판은 `deriveKinds()`로 묶었다가 감사의 앵커
+ * (`DERIV`·`TEXT_DERIV`)가 가리키던 줄을 없애 `규칙 앵커가 사라졌다`로 죽었다 —
+ * **감사가 즉시 잡았다.** 앵커는 글자 그대로 두고 `try`만 씌운다.
+ */
+const SVG_COMPONENTS = (() => {
+  try {
+    return readdirSync(DIAGRAM_DIR)
+      .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+      .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))
+      .map((f) => f.replace(/\.tsx$/, ''));
+  } catch (e) {
+    console.error(`❌ ${DIAGRAM_DIR}를 읽을 수 없다(<svg 유도) — ${e?.message ?? e}`);
+    process.exit(2);
+  }
+})();
 /**
  * ★★**근거가 다른 둘째 유도** — 글자를 넣는가.
  *
@@ -95,10 +110,17 @@ const SVG_COMPONENTS = readdirSync(DIAGRAM_DIR)
  * 다른 성질**을 읽는다. 그래서 파일 단위 훼손(둘 다 사라짐)에는 함께 흔들린다 —
  * 그 잔여는 관측만 본다. **더 독립적인 척하지 않는다.**
  */
-const TEXTUAL_COMPONENTS = readdirSync(DIAGRAM_DIR)
-  .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
-  .filter((f) => /<text\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8')))
-  .map((f) => f.replace(/\.tsx$/, ''));
+const TEXTUAL_COMPONENTS = (() => {
+  try {
+    return readdirSync(DIAGRAM_DIR)
+      .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+      .filter((f) => /<text\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8')))
+      .map((f) => f.replace(/\.tsx$/, ''));
+  } catch (e) {
+    console.error(`❌ ${DIAGRAM_DIR}를 읽을 수 없다(<text 유도) — ${e?.message ?? e}`);
+    process.exit(2);
+  }
+})();
 
 /**
  * ★`SVG_COMPONENTS`와 **대칭인** 가드. 없으면 `textual`이 빈 채로 η에 들어가
