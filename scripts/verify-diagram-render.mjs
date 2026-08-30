@@ -8,9 +8,14 @@
  *   이 스크립트 = **좌표가 결정하는 것** (무엇이 글자 밑에 오는지 · 실제 축소 배율 · 실제 넘침)
  * 중복이 아니다. G-9에서 잡은 결함 3건 중 겹침·실제 넘침은 좌표를 알아야 판정된다.
  *
- * 상시 관문이 아니다 — 서버와 자격 증명이 필요하고 SVG 92페이지 × 2뷰포트가 약 2.5분이다(자체검사 ⑫가 자식으로 본 검사를 한 번 더 도는 몫 약 46초 포함).
- * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다 — 약 50초. 대조군 15건 중 setContent로 도는
- *  14건은 0.3초고, 나머지 전부가 처분 대조군 ⑫의 자식 프로세스 몫이다.)
+ * 상시 관문이 아니다 — 서버와 자격 증명이 필요하다.
+ * (자체검사 `--self-test`만은 서버·자격 증명 없이 돈다. 대조군은 세 무리다 —
+ *  판정은 `setContent`로 즉시 끝나고, 처분은 자식 프로세스라 시간의 거의 전부를 쓴다.)
+ *
+ * ★**소요 시간과 대조군 수를 여기 적지 않는다.** 초판은 적었고 `대조군 15건`·`약 50초`·
+ * `처분 대조군 ⑫`(지금 이름은 ⑲)로 **셋 다 낡은 채 두 사이클을 살아남았다**(Check B).
+ * 수치는 `CLAUDE.md`의 명령어 표 한 곳에만 둔다 —
+ * **수치를 두 곳에 적으면 한 곳만 고치게 된다.**
  * 사이클 종료 시점과 도해를 새로 추가했을 때 돌린다.
  *
  * 자격 증명: process.env.SITE_AUTH_ID · SITE_AUTH_PASSWORD만 읽는다.
@@ -932,6 +937,111 @@ async function selfTestDispositions() {
     wantReason: [/σ topics\/x —/],
   }) && ok;
 
+  // ㉘ ★**유도 규칙을 자기 이름으로 주장한다**(선행 B-8).
+  //
+  // 지금까지 유도 규칙은 **부수 효과로** 지켜졌다 — ㉒㉓이 *"δ가 페이지를 짚는다"* 를
+  // 주장하는데, `Extra`가 SVG로 오분류되면 δ가 침묵해서 함께 깨졌을 뿐이다.
+  // 누가 그 fixture를 바꾸면 **보호가 조용히 사라진다.**
+  //
+  // ★**거를 것이 없는 트리에서는 거르는 규칙을 검사할 수 없다.** 시제품에서 확인했다 —
+  // `Alpha` 하나뿐인 트리에 *"유도 1종"* 을 요구했더니 **필터를 지워도 그대로 1종**이라
+  // 훼손을 못 잡았다. `Extra`(비SVG)가 **함께 있어야** 규칙이 검사된다.
+  //
+  // 배너로 유도 결과를 **직접** 요구한다. 규칙이 삭제되면 `유도 2종`이 되어 어긋난다.
+  ok = await spawnChildAgainst({
+    name: '㉘ 유도 규칙이 <svg 있는 종만 고른다 (선행 B-8 · R1)',
+    html: stubFigures(['Alpha', 'Beta', 'Extra']),
+    tree: { components: { 'Alpha.tsx': SVGC, 'Beta.tsx': SVGC, 'Extra.tsx': HTMLC },
+            barrel: "export { Alpha } from './Alpha';\nexport { Beta } from './Beta';\nexport { Extra } from './Extra';\n" },
+    mdx: {
+      'sources/probe/a.mdx': '본문.\n\n<Alpha />\n<Beta />\n',  // SVG 2종 → urls에 들어간다
+      'sources/probe/e1.mdx': '본문.\n\n<Extra />\n',            // ζ 표본이 가져간다
+      'sources/probe/e2.mdx': '본문.\n\n<Extra />\n',            // 이것이 검사 밖 → δ
+    },
+    // ★★fixture가 **비대칭**이어야 배너가 판별한다. 초판은 SVG 1종 + 비SVG 1종이라
+    // **반전해도 유도 결과가 1↔1로 같았고**, `유도 1종`이 성공 배너에 그대로 떴다.
+    // 그때 ㉘을 깨뜨린 것은 요구가 아니라 `wantStatus: 2`였다 — 자식이 exit 0으로 끝났다.
+    // **요구가 무엇을 잡는지 재 보지 않으면 장식을 주장으로 착각한다.**
+    //
+    // SVG 2종 + 비SVG 1종이면 정상 `유도 2종` · 반전 `유도 1종` · 삭제 `유도 3종`으로 갈린다.
+    //
+    // 요구는 **배너 하나**다. `δ Extra`도 함께 걸어 봤는데 **어느 훼손도 배타적으로 잡지
+    // 못했다**(실측 9조합):
+    //   훼손[삭제]·[반전] → 자식이 exit 0이라 `wantStatus`가 먼저 판별한다
+    //   훼손[부분 제외]   → δ는 **여전히 뜨므로** δ 요구는 만족된다. **배너만 판별한다**
+    // 그래서 `δ만` 남기면 부분 제외를 **종료 0으로 통째로 놓친다.**
+    wantReason: [/유도 2종/],
+    // ★`denyReason`을 두지 않는다. 초판은 `/δ Alpha —/`를 뒀는데 **두 훼손 모두에서
+    // 무동작**이었다 — 반전되면 Alpha가 비SVG가 되어 ζ 표본이 그 페이지를 검사에 넣고,
+    // δ 자체가 안 뜬다. *"반전되면 α₀/α가 운다"* 고 적었던 것도 **틀렸다**:
+    // α₀·α는 `for (const c of svg)`라 유도에서 빠진 종을 **아예 보지 않는다.**
+  }) && ok;
+
+  // ㉙ ★ζ 표본이 끌어들인 페이지도 **판정 대상이 된다**(선행 B-10).
+  //
+  // ζ는 비SVG 종마다 페이지 하나를 검사에 넣는다(§ζ). 그 페이지는 SVG 도해가 없어
+  // 예전에는 아무도 안 보던 자리인데, `pageOverflow`는 **문서 단위** 판정이라
+  // (`de.scrollWidth > de.clientWidth`) 그 페이지의 넓은 표·코드 블록이 `exit 1`을 낸다.
+  //
+  // **판정 범위를 좁히지 않는다** — 문서 단위인 것은 실제 넘침을 잡기 위한 것이었다.
+  // 대신 **그 표면이 판정 대상임을 대조군으로 고정**한다. 실측: 지금 표면은 1페이지
+  // (`/chapter/photolithography/` · Timeline)이고 이론상 최대 6이다.
+  //
+  // 경로별 스텁으로 **표본 페이지에만** 넓은 문서를 낸다.
+  ok = await spawnChildAgainst({
+    name: '㉙ ζ 표본 페이지의 가로 넘침도 잡는다 (선행 B-10)',
+    html: (u) => (u.includes('/probe-w/')
+      ? '<!doctype html><html><body style="background:#fff;margin:0">'
+        + '<div style="width:3000px">넓다</div>'
+        + '<figure data-diagram="Extra"><svg viewBox="0 0 120 40" width="120" height="40">'
+        + '<text x="6" y="24" font-size="14" fill="#111">Extra</text></svg></figure></body></html>'
+      : stubFigures(['Alpha'])),
+    tree: { components: { 'Alpha.tsx': SVGC, 'Extra.tsx': HTMLC },
+            barrel: "export { Alpha } from './Alpha';\nexport { Extra } from './Extra';\n" },
+    mdx: {
+      ...CLEAN_MDX,                                       // Alpha 페이지 — 정상
+      'sources/probe-w/w.mdx': '본문.\n\n<Extra />\n',   // ζ 표본이 이것을 넣는다
+    },
+    wantStatus: 1,                                        // 콘텐츠 위반이지 범위 상실이 아니다
+    wantReason: [/가로 넘침/, /probe-w/],
+  }) && ok;
+
+  // ㉚ ★**상한** — 글자 없는 SVG(아이콘)는 판정 대상이 **아니다**.
+  //
+  // 지금까지 규칙 훼손은 전부 *좁히는* 쪽이었다. `kindsSvg`를 `kinds`로 **넓히면**
+  // 아이콘만 그리는 종까지 δ의 대상이 되어 **거짓 지목**이 되살아난다 — 선행 사이클이
+  // `FlowSteps`에서 겪은 62페이지 오탐이 그것이다. **문턱은 양쪽에서 봐야 고정된다.**
+  //
+  // `Icon`은 배럴에 있고 MDX가 쓰지만 스텁이 **글자 없는** SVG만 그린다 →
+  // `observedSvg`에 들어가면 안 되고, 따라서 그 페이지가 δ로 지목되면 안 된다.
+  ok = await spawnChildAgainst({
+    name: '㉚ 글자 없는 SVG는 판정 대상이 아니다 (상한)',
+    html: (u) => (u.includes('/probe-i/')
+      ? '<!doctype html><html><body style="background:#fff;margin:0">'
+        + '<figure data-diagram="Icon"><svg viewBox="0 0 16 16" width="16" height="16">'
+        + '<path d="M2 2 L14 14" stroke="#111"/></svg></figure></body></html>'   // 글자가 없다
+      : stubFigures(['Alpha'])),
+    tree: { components: { 'Alpha.tsx': SVGC, 'Icon.tsx': HTMLC },
+            barrel: "export { Alpha } from './Alpha';\nexport { Icon } from './Icon';\n" },
+    mdx: {
+      ...CLEAN_MDX,
+      'sources/probe-i/i1.mdx': '본문.\n\n<Icon />\n',   // ζ 표본이 가져간다
+      'sources/probe-i/i2.mdx': '본문.\n\n<Icon />\n',   // 넓히면 이것이 δ로 지목된다
+    },
+    wantStatus: 0,
+    wantReason: [/전 항목 통과/],
+    // ★`denyReason: [/δ Icon —/]`을 **두지 않는다.** 초판은 뒀는데 **판별에 기여할 수 없다**:
+    // δ 문자열을 **만드는 자리는 하나**다 — `scopeViolations()` 안의 `out.push(\`δ ${c} — …\`)`.
+    // 그리고 그 배열의 **유일한 소비자**가 `if (scope.length)` 이고 거기서 `exit 2`로 끝난다.
+    // (`scopeStatic()`의 `pre` 경로는 γ·ε·α₀·σ만 내고 **δ를 내지 않는다.**)
+    // 그러므로 `wantStatus: 0`이 언제나 먼저 어긋난다 —
+    // **δ 문장이 뜨면서 종료 0인 상태는 만들 수 없다.**
+    // 실측으로도 확인했다 — 상한 훼손에 denyReason 유무만 바꿔 돌리면 결과가 같다.
+    //
+    // ㉘의 주석(아래 `요구가 무엇을 잡는지 재 보지 않으면 장식을 주장으로 착각한다`)이
+    // **그 문장을 쓴 커밋 안에서** 이 대조군에 되살아났다(Check A-2).
+  }) && ok;
+
   // ㉓ ★ζ(표본) — 비SVG로 분류된 종의 페이지가 **하나도** 검사되지 않으면 그 종이 글자 있는
   // SVG를 그리는지 **알 수 없다.** 표본이 관측을 만들고, 판정은 δ가 한다.
   //
@@ -1247,12 +1357,13 @@ console.log(`범위: 유도 ${SVG_COMPONENTS.length}종 / 관측 ${observed.size
 // ★판정 불가를 **먼저** 본다. 위반 0건이어도 "전 항목 통과"라고 말하면 안 된다 —
 // 재지 못한 것을 재고 문제없다고 말하는 것이라, D-14가 막은 것과 같은 거짓말이다.
 //
-// ⚠ **이 처분에는 대조군이 없다.** 대조군 ⑬은 `measureInPage`가 `<use>`를 **감지하는지**만
-// 보고, 그 뒤 여기서 `2`가 나오는지는 `--self-test` 경로가 한 줄도 실행하지 않는다.
-// **⑨와 정확히 같은 모양이다** — 그때도 카운터만 보다가 가드를 통째로 지워도 통과했고,
-// ⑫(스텁 서버 + 자식 프로세스)를 만들어 막았다. 같은 처방이면 자식 실행이 하나 더 붙어
-// 자체검사가 약 50초 → 약 95초가 된다. 값이 커서 **아직 안 했다**(백로그 E-5).
-// *처분은 감지와 다른 주장이다* — 이 주석은 그 사실을 잊지 않으려고 남긴다.
+// ★이 처분은 **㉑이 진다**(`㉑ 판정할 수 없는 구조면 exit 2 (E-5 처분)`) — 자식이
+// `wantReason: /판정할 수 없는 구조/`로 사유까지 확인한다. 대조군 ⑬은 `measureInPage`가
+// `<use>`를 **감지하는지**만 보므로, *처분은 감지와 다른 주장이다* 를 ㉑이 따로 진다.
+//
+// ★이 주석은 오래 **틀린 채** 남아 있었다 — `대조군이 없다 … 아직 안 했다(백로그 E-5)`.
+// 그 백로그는 ㉑으로 닫혔고 **이름까지 E-5를 달고 있는데** 주석만 몰랐다(Check B).
+// **주석은 자기 파일 안의 대조군도 모른다** — 그래서 수치와 상태는 검사가 지고 주석은 이유만 진다.
 if (unsupported.length) {
   console.error(`\n❌ 판정할 수 없는 구조 ${unsupported.length}건 — '통과'로 처리하지 않는다.`);
   for (const u of unsupported.slice(0, 10)) console.error(`  ${u.vpName} ${u.url}\n      ${u.why} (${u.ref})`);
