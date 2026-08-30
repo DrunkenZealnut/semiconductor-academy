@@ -121,7 +121,19 @@ try {
  */
 let signalled = false;
 const restore = () => {
-  try { writeFileSync(TARGET, src0); } catch { /* 원본을 메모리에 들고 있으니 이것이 최선이다 */ }
+  // ★**쓰기가 성공한 뒤에만 백업을 지운다**(PR #41 리뷰 · 백로그 D-8).
+  // 초판은 `writeFileSync` 실패를 조용히 삼킨 다음 `BACKUP`을 지웠다 —
+  // **복구 자산이 필요한 바로 그 경우에 그것이 사라진다.** 훼손된 TARGET은 남고
+  // 되돌릴 파일은 없다. 실패는 시끄럽게 알리고 백업은 남긴다.
+  let wrote = false;
+  try {
+    writeFileSync(TARGET, src0);
+    wrote = true;
+  } catch (e) {
+    console.error(`❌ 원본 복원에 실패했다: ${e?.message ?? e}`);
+    console.error(`   백업을 남긴다 — 손으로 되돌려라: cp ${BACKUP} ${TARGET}`);
+  }
+  if (!wrote) return;
   try { if (existsSync(BACKUP)) unlinkSync(BACKUP); } catch { /* 백업은 없어도 된다 */ }
 };
 for (const sig of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
