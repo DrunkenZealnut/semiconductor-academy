@@ -81,10 +81,59 @@ if (BARREL_COMPONENTS.length === 0) {
   console.error(`❌ ${DIAGRAM_DIR}/index.ts에서 도해 export를 하나도 읽지 못했다 — 배럴 형식이 바뀌었다.`);
   process.exit(2);
 }
-const SVG_COMPONENTS = readdirSync(DIAGRAM_DIR)
-  .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
-  .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))
-  .map((f) => f.replace(/\.tsx$/, ''));
+/**
+ * ★읽기 실패는 `throw`가 아니라 `exit 2`다 — throw면 Node가 **1**을 내는데 계약상 1은
+ * *콘텐츠 위반*이다. `ALL_COMPONENTS`는 이 방어를 갖는데 두 유도는 없었다(PR #42 리뷰).
+ *
+ * ★**필터 줄을 함수로 묶지 않는다.** 초판은 `deriveKinds()`로 묶었다가 감사의 앵커
+ * (`DERIV`·`TEXT_DERIV`)가 가리키던 줄을 없애 `규칙 앵커가 사라졌다`로 죽었다 —
+ * **감사가 즉시 잡았다.** 앵커는 글자 그대로 두고 `try`만 씌운다.
+ */
+const SVG_COMPONENTS = (() => {
+  try {
+    return readdirSync(DIAGRAM_DIR)
+      .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+      .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))
+      .map((f) => f.replace(/\.tsx$/, ''));
+  } catch (e) {
+    console.error(`❌ ${DIAGRAM_DIR}를 읽을 수 없다(<svg 유도) — ${e?.message ?? e}`);
+    process.exit(2);
+  }
+})();
+/**
+ * ★★**근거가 다른 둘째 유도** — 글자를 넣는가.
+ *
+ * `SVG_COMPONENTS`는 *"SVG를 그리는가"*(`'<svg'`)를 묻고 이것은 *"거기에 글자를 넣는가"*(`<text`)를
+ * 묻는다. **δ의 실제 대상은 글자 있는 SVG**이므로 둘은 같아야 한다 — 어긋나면 η다.
+ *
+ * **γ만큼 독립적이지는 않다.** γ는 배럴과 `readdir`라는 **다른 파일**을 읽고, 이것은 **같은 파일의
+ * 다른 성질**을 읽는다. 그래서 파일 단위 훼손(둘 다 사라짐)에는 함께 흔들린다 —
+ * 그 잔여는 관측만 본다. **더 독립적인 척하지 않는다.**
+ */
+const TEXTUAL_COMPONENTS = (() => {
+  try {
+    return readdirSync(DIAGRAM_DIR)
+      .filter((f) => f.endsWith('.tsx') && f !== 'DiagramFrame.tsx')
+      .filter((f) => /<text\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8')))
+      .map((f) => f.replace(/\.tsx$/, ''));
+  } catch (e) {
+    console.error(`❌ ${DIAGRAM_DIR}를 읽을 수 없다(<text 유도) — ${e?.message ?? e}`);
+    process.exit(2);
+  }
+})();
+
+/**
+ * ★`SVG_COMPONENTS`와 **대칭인** 가드. 없으면 `textual`이 빈 채로 η에 들어가
+ * *"SVG로 분류됐는데 글자가 없다"* 가 **6줄** 쏟아진다 — 실제 6종이 동시에 글자를 잃는
+ * **불가능한 세계**이고, 검사기가 **자기 고장을 콘텐츠 탓으로** 말하는 것이다(Check G-B).
+ * ㉗이 세운 원칙 그대로 — *종료 코드는 둘 다 2지만 진단이 달라야 한다.*
+ */
+if (TEXTUAL_COMPONENTS.length === 0) {
+  console.error(`❌ ${DIAGRAM_DIR}에서 글자 있는 도해를 찾지 못했다 — 둘째 유도(\`<text\`)가 깨졌다.`);
+  console.error('   (η가 SVG 전량을 "글자가 없다"로 지목하기 전에 여기서 멈춘다.)');
+  process.exit(2);
+}
+
 if (SVG_COMPONENTS.length === 0) {
   console.error(`❌ ${DIAGRAM_DIR}에서 SVG 컴포넌트를 찾지 못했다 — 경로가 바뀌었다.`);
   process.exit(2);
@@ -111,7 +160,7 @@ function fail(msg) {
  * `^export \{ (\w+) \} from` 정규식이 놓치는데, 배럴은 δ의 기준선이자 `urls`의 상류였다.
  * 실측: 배럴에서 `NodeGraph`를 빼면 URL이 92 → 87로 조용히 줄었다.
  */
-function scopeStatic({ svg, dir, barrel, pagesByKind, skipped }) {
+function scopeStatic({ svg, textual, dir, barrel, pagesByKind, skipped }) {
   const out = [];
   for (const c of barrel) {
     if (!dir.includes(c)) out.push(`γ ${c} — 배럴이 내보내는데 ${DIAGRAM_DIR}에 파일이 없다 (밖으로 옮겼나)`);
@@ -128,6 +177,23 @@ function scopeStatic({ svg, dir, barrel, pagesByKind, skipped }) {
   }
   for (const rel of skipped ?? []) {
     out.push(`σ ${rel} — 도해가 있는 MDX인데 URL 규칙이 없어 검사 목록에 못 넣었다`);
+  }
+  /**
+   * ★η — **두 유도가 어긋난다**(R2). `'<svg'`가 고른 것과 `<text`가 고른 것이 달라지면
+   * 검사기는 그 종을 δ의 대상으로 볼지 **모른다.** 그래서 γ·ε·α₀·σ와 같은 뜻의 `exit 2`다.
+   *
+   * 이것이 **실제 컴포넌트에 대한** 분류를 서버 없이 주장하는 자리다 — 선행 사이클이
+   * *"R2는 본 검사만 본다"* 로 남긴 것(D-5). 유도 규칙이 실제 종 **하나만** 놓쳐도 여기서 운다.
+   */
+  for (const c of svg) {
+    if (!(textual ?? []).includes(c)) {
+      out.push(`η ${c} — SVG로 분류됐는데 글자가 없다 (δ의 대상인지 검사기가 모른다 · 장식이면 DiagramFrame처럼 이유를 적고 빼라)`);
+    }
+  }
+  for (const c of textual ?? []) {
+    if (!svg.includes(c)) {
+      out.push(`η ${c} — 글자가 있는데 SVG로 분류되지 않았다 (유도 규칙이 이 종을 놓쳤다)`);
+    }
   }
   return out;
 }
@@ -765,7 +831,7 @@ function stubFigures(kinds, extra = '') {
 function realTreeScopeViolations() {
   try {
     const { pagesByKind, skipped } = collectUrls();
-    return scopeStatic({ svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
+    return scopeStatic({ svg: SVG_COMPONENTS, textual: TEXTUAL_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
   } catch {
     return ['(저장소 정적 범위를 재지 못했다)'];
   }
@@ -793,7 +859,11 @@ async function selfTestDispositions() {
 
   // ★가짜 도해 트리 — 자식이 **소유**한다. `Alpha`가 유일한 SVG 종이고 `Extra`는 비SVG다.
   // 파일 내용은 정규식으로만 훑기 때문에 컴파일되지 않는다 — `<svg` 포함 여부만 뜻이 있다.
-  const SVGC = 'export function X() { return <svg viewBox="0 0 1 1" />; }\n';
+  // ★`SVGC`는 **글자 있는 SVG**다 — 실제 도해 6종이 모두 그렇고, η(두 유도의 대조)가
+  // 그것을 요구한다. 초판은 `<svg`만 있어 η가 **모든 가짜 트리에서** 울었다:
+  // *"SVG로 분류됐는데 글자가 없다."* 스텁이 실제와 다른 성질을 가지면
+  // **가짜 트리가 불가능한 세계**가 되고, 거기서 얻은 통과는 아무것도 뜻하지 않는다.
+  const SVGC = 'export function X() { return <svg viewBox="0 0 1 1"><text x="1" y="1">x</text></svg>; }\n';
   const HTMLC = 'export function X() { return <div />; }\n';
   /** 정상 트리 — 유도 1종(Alpha) · 배럴 1종 · MDX 하나가 그것을 쓴다. */
   const CLEAN = {
@@ -968,6 +1038,9 @@ async function selfTestDispositions() {
     // 요구는 **배너 하나**다. `δ Extra`도 함께 걸어 봤는데 **어느 훼손도 배타적으로 잡지
     // 못했다**(실측 9조합):
     //   훼손[삭제]·[반전] → 자식이 exit 0이라 `wantStatus`가 먼저 판별한다
+    //     ※ **η 이후로는 이 경로가 달라졌다**(Check G-H) — 두 훼손 다 정적 단계에서 exit 2다
+    //       (이 트리에서 `Extra`가 svg에 들어가 η가 운다). ㉘은 여전히 배너로 깨지지만
+    //       **기록된 판별 경로가 사실과 다르면 다음 사람이 엉뚱한 것을 고친다.**
     //   훼손[부분 제외]   → δ는 **여전히 뜨므로** δ 요구는 만족된다. **배너만 판별한다**
     // 그래서 `δ만` 남기면 부분 제외를 **종료 0으로 통째로 놓친다.**
     wantReason: [/유도 2종/],
@@ -1042,6 +1115,24 @@ async function selfTestDispositions() {
     // **그 문장을 쓴 커밋 안에서** 이 대조군에 되살아났다(Check A-2).
   }) && ok;
 
+  // ㉛ ★**실제 트리**에서 η가 돈다 — R2.
+  //
+  // R2는 정의상 **실제 컴포넌트**에 대한 주장이다. 가짜 트리에서 η를 증명하면 그것은 R1이고,
+  // 이 사이클이 고치려는 병(*"주장하지 않는 보호"*)과 같은 모양이 된다. 그래서 ⑳처럼
+  // `tree`를 주지 않고 **저장소를 그대로** 쓴다.
+  //
+  // ★판별자는 `denyReason`이다. 이 자식은 정상에서도 α로 `exit 2`이므로(⑳과 같은 모양)
+  // `wantStatus`가 갈리지 않는다 — **어긋남이 있으면 η 줄이 뜬다**가 유일한 요구다.
+  // 유도 규칙이 실제 종 하나를 놓치면(감사의 `한 종만 제외`) 여기서 η가 뜬다.
+  ok = await spawnChildAgainst({
+    name: '㉛ 실제 트리에서 두 유도가 일치한다 (R2 · η)',
+    repoBroken: repoScope.length > 0,
+    html: stubFigures([SVG6[0]]),
+    mdx: MDX_LS,
+    wantReason: [/검사 범위가 주장한 만큼이 아니다/],
+    denyReason: [/η /],          // ★유도 규칙이 실제 종을 놓치면 이것이 뜬다
+  }) && ok;
+
   // ㉓ ★ζ(표본) — 비SVG로 분류된 종의 페이지가 **하나도** 검사되지 않으면 그 종이 글자 있는
   // SVG를 그리는지 **알 수 없다.** 표본이 관측을 만들고, 판정은 δ가 한다.
   //
@@ -1111,6 +1202,7 @@ function selfTestScope() {
   // ★정적 판정(브라우저 앞에서 돈다)도 같은 자리에서 본다.
   const sbase = {
     svg: ['LayerStack', 'NodeGraph'],
+    textual: ['LayerStack', 'NodeGraph'],   // 두 유도가 일치하는 정상 상태
     dir: ['LayerStack', 'NodeGraph', 'FlowSteps'],
     barrel: ['LayerStack', 'NodeGraph', 'FlowSteps'],
     pagesByKind: new Map([['LayerStack', new Set(['/a/'])], ['NodeGraph', new Set(['/b/'])], ['FlowSteps', new Set(['/c/'])]]),
@@ -1119,11 +1211,22 @@ function selfTestScope() {
   const scases = [
     { name: '⑰ 음성 — 정상 정적 범위에 위반을 내지 않는다', v: sbase, want: 0 },
     { name: '⑰b γ — 배럴은 아는데 파일이 없다 (디렉터리 밖으로)',
-      v: { ...sbase, dir: ['NodeGraph', 'FlowSteps'], svg: ['NodeGraph'] }, want: 1, why: /^γ LayerStack/ },
+      // ★`textual`도 함께 뺀다 — 파일이 디렉터리를 떠났으면 **두 유도가 모두** 잃는다.
+      // 초판은 `svg`만 뺐고 η가 그것을 잡았다: 파일이 없는데 글자는 있는 **불가능한 세계**였다.
+      // 판정을 더하면 기존 fixture가 그 판정에게도 말을 걸게 된다.
+      v: { ...sbase, dir: ['NodeGraph', 'FlowSteps'], svg: ['NodeGraph'], textual: ['NodeGraph'] },
+      want: 1, why: /^γ LayerStack/ },
     { name: '⑰c ε — 파일은 있는데 배럴이 안 내보낸다 (배럴 정규식이 놓친 경우도 여기다)',
       v: { ...sbase, barrel: ['NodeGraph', 'FlowSteps'] }, want: 1, why: /^ε LayerStack/ },
     { name: '⑰d α₀ — 유도는 SVG로 보는데 어느 MDX도 안 쓴다',
       v: { ...sbase, pagesByKind: new Map([...sbase.pagesByKind, ['LayerStack', new Set()]]) }, want: 1, why: /^α₀ LayerStack/ },
+    // ★η — 두 유도의 어긋남(R2). 두 방향을 따로 본다.
+    { name: '⑰f η — 글자가 있는데 SVG로 분류되지 않았다 (유도가 한 종을 놓쳤다)',
+      v: { ...sbase, svg: ['NodeGraph'] }, want: 1, why: /^η LayerStack — 글자가 있는데/ },
+    { name: '⑰g η — SVG로 분류됐는데 글자가 없다 (장식이거나 라벨을 잃었다)',
+      v: { ...sbase, textual: ['NodeGraph'] }, want: 1, why: /^η LayerStack — SVG로 분류됐는데/ },
+    { name: '⑰h η 음성 — 두 유도가 순서만 다르면 조용하다',
+      v: { ...sbase, textual: ['NodeGraph', 'LayerStack'] }, want: 0 },
     { name: '⑰e σ — 도해가 있는 MDX인데 URL 규칙이 없다 (F-2의 형제)',
       v: { ...sbase, skipped: ['topics/foo'] }, want: 1, why: /^σ topics\/foo/ },
   ];
@@ -1250,7 +1353,7 @@ console.log('');
 
 const { urls, usedInMdx, pagesByKind, skipped } = collectUrls();
 // ★정적으로 아는 범위 위반은 **브라우저를 띄우기 전에** 말한다.
-const pre = scopeStatic({ svg: SVG_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
+const pre = scopeStatic({ svg: SVG_COMPONENTS, textual: TEXTUAL_COMPONENTS, dir: ALL_COMPONENTS, barrel: BARREL_COMPONENTS, pagesByKind, skipped });
 if (pre.length) {
   console.error(`\n❌ 검사 범위가 주장한 만큼이 아니다 ${pre.length}건 — 브라우저를 띄우기 전에 안다.`);
   console.error(`   유도 ${SVG_COMPONENTS.length}종 / 배럴 ${BARREL_COMPONENTS.length}종 / 디렉터리 ${ALL_COMPONENTS.length}종 / 페이지 ${urls.length}`);

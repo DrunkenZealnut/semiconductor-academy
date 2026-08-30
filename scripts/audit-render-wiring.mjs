@@ -185,6 +185,9 @@ const CASES = [
   // ㉔에 `denyReason`을 주어 **과잉 발화**(α₀가 하나 더 뜨는 것)를 잡게 했다.
   ['scopeStatic', 'pagesByKind', 'α₀ 근거', stat, 'pagesByKind,', 'pagesByKind: new Map(),', ['㉔']],
   ['scopeStatic', 'skipped', 'σ', stat, 'skipped }', 'skipped: [] }', ['㉔', '㉗']],
+  // ★η의 둘째 유도. 비우면 **실제 6종 전부**가 "SVG로 분류됐는데 글자가 없다"로 운다 —
+  // 실제 트리를 쓰는 ㉛이 그것을 본다(R2).
+  ['scopeStatic', 'textual', 'η 둘째 유도', stat, 'textual: TEXTUAL_COMPONENTS', 'textual: []', ['㉛']],
   ['scopeViolations', 'svg', 'α', obs, 'svg: SVG_COMPONENTS', 'svg: []', ['⑳']],
   // ★`dir → BARREL_COMPONENTS`는 **도달 불가**라 훼손으로 쓰지 않는다. `scopeStatic`의
   // γ·ε가 `dir ≡ barrel`을 보장하므로 그 검사를 통과한 실행에서 둘은 같은 값이고,
@@ -290,19 +293,77 @@ const KINDS_SVG = `  out.kindsSvg = [...new Set(figs.filter((f) => [...f.querySe
     .some((t) => t.textContent.trim() && !t.closest(NOT_PAINTED_SEL)))
     .map((f) => f.getAttribute('data-diagram')).filter(Boolean))];`;
 const DERIV = `  .filter((f) => readFileSync(path.join(DIAGRAM_DIR, f), 'utf8').includes('<svg'))`;
+/**
+ * ★훼손이 지목할 **실제** 종을 유도한다 — 손으로 박지 않는다.
+ *
+ * `한 종만 제외`의 초판은 `'Beta.tsx'` 하나만 뺐다. 그것은 ㉘의 **가짜 트리에만** 있는
+ * 이름이라 **실제 저장소에서는 아무것도 거르지 않았고**, 그래서 R2를 지는 ㉛이 안 깨졌다
+ * (실측: 규칙 3/4 · `주장 대조군 ㉛ 이 안 깨졌다`). 선행 백로그 D-3이 예고한 그대로다 —
+ * *"'Beta.tsx' 하드코딩이 ㉘ fixture에 묶여 있다."*
+ *
+ * 실제 종까지 손으로 박으면 **같은 병을 하나 더 만드는 것**이므로 유도한다.
+ * 유도할 것이 없으면 `die` — **훼손이 무동작인 채 초록이 되는 것**이 이 사이클이 고치는 병이다.
+ */
+/**
+ * ★관문의 유도 규칙에 **앵커를 건다**(PR #42 리뷰 · 백로그 E-1).
+ * 아래 미러가 관문과 어긋나면 ㉛이 *관문이 실제로 고른 파일*을 검증하지 않게 되는데,
+ * 그때 감사는 `주장 대조군 ㉛ 이 안 깨졌다`로 **오도 보고**한다.
+ * `DERIV`·`KINDS_SVG`가 쓰는 방식 그대로 — 관문 소스에 그 조건이 있는지 단언한다.
+ */
+for (const [anchor, what] of [
+  ["/<text\\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8'))", '둘째 유도 조건'],
+  ["f !== 'DiagramFrame.tsx'", 'DiagramFrame 제외 조건'],
+]) {
+  if (!src0.includes(anchor)) {
+    die(`관문의 ${what}이 바뀌었다 — 아래 미러가 어긋난 채 돌면 ㉛이 엉뚱한 파일을 잰다.`);
+  }
+}
+
+const REAL_TEXTUAL_KIND = (() => {
+  const D = 'src/components/diagram';
+  let f;
+  try {
+    f = readdirSync(D)
+      .filter((x) => x.endsWith('.tsx') && x !== 'DiagramFrame.tsx')
+      .filter((x) => /<text\b/.test(readFileSync(path.join(D, x), 'utf8')))
+      .sort()[0];
+  } catch { /* 아래에서 die */ }
+  if (!f) die(`${D}에 글자 있는 도해가 없다 — '한 종만 제외' 훼손이 실제 트리에서 무동작이 된다.`);
+  return f;
+})();
+
+const TEXT_DERIV = "  .filter((f) => /<text\\b/.test(readFileSync(path.join(DIAGRAM_DIR, f), 'utf8')))";
+
+/**
+ * ★**유도가 둘이 됐는데 규칙은 하나만 걸고 있었다**(Check G-C). `DERIV`(`'<svg'`)에는
+ * 훼손 넷이 붙었는데 둘째 유도(`<text`)에는 하나도 없었다 — **분모가 안 늘었다.**
+ * 둘째 유도가 R2를 지는 축인데 그 축이 무대조군이면 η의 절반이 주장 없이 선다.
+ */
 const RULES = [
   ['유도', '필터 삭제', DERIV, '', ['㉘']],
   ['유도', '필터 반전', DERIV, DERIV.replace('=> readFileSync', '=> !readFileSync'), ['㉘']],
   // ★**부분 제외** — 규칙은 살아 있는데 한 종만 빠진다. 선행 G-5(LayerStack 하나만 제외)의
   // 모양이다. 이때 종료 코드도 δ 사유도 **안 갈리므로**(둘 다 exit 2 · δ Extra 그대로)
   // ㉘의 배너 요구 `유도 2종`이 **유일한 판별자**다.
-  ['유도', '한 종만 제외', DERIV, DERIV + " .filter((f) => f !== 'Beta.tsx')", ['㉘']],
+  // ★**가짜 종 하나 · 실제 종 하나**를 함께 뺀다.
+  //   `Beta.tsx`          → ㉘의 가짜 트리에서 어긋남 → **R1**(규칙이 옳게 동작한다)
+  //   `${REAL_TEXTUAL_KIND}` → 실제 저장소에서 η가 운다 → **R2**(규칙이 실제를 옳게 가른다)
+  // 하나만 빼면 반쪽이다 — 초판이 `Beta.tsx`만 빼서 ㉛이 안 깨졌다(실측 규칙 3/4).
+  ['유도', '한 종만 제외', DERIV,
+    DERIV + ` .filter((f) => f !== 'Beta.tsx' && f !== '${REAL_TEXTUAL_KIND}')`, ['㉘', '㉛']],
   ['유도', '리터럴 오타', DERIV, DERIV.replace("'<svg'", "'<svq'"), [], '부모의 시작 가드(SVG_COMPONENTS.length === 0)가 모듈 적재 때 exit 2 — 대조군이 하나도 돌지 않는다',
     /SVG 컴포넌트를 찾지 못했다/],
   // ★**상한** — 지금까지 규칙 훼손은 전부 *좁히는* 쪽이었다. `kindsSvg`를 `kinds`로 넓히면
   // 글자 없는 SVG(아이콘)까지 판정 대상이 되어 **거짓 지목**이 되살아난다(주석이 기록한 62페이지 사건).
   // 문턱은 양쪽에서 봐야 고정된다 — 이 저장소가 대비·글자 크기에서 배운 것과 같다.
   ['관측', '판정 대상을 넓힌다', KINDS_SVG, '  out.kindsSvg = out.kinds;', ['㉚']],
+  // ★둘째 유도(`<text`)의 필터를 **지운다** — 전 종이 textual이 되어 비SVG 6종이
+  // *"글자가 있는데 SVG로 분류되지 않았다"* 로 운다. 실제 트리를 쓰는 ㉛이 그것을 본다.
+  //
+  // ★**반전이 아니라 삭제다.** 반전(`!/<text`)은 textual을 **여집합**으로 만드는데,
+  // 그러면 ⑲⑳㉒㉕㉖㉗이 먼저 터지고 **㉛은 안 깨진다**(실측). 시작 가드도 안 걸린다 —
+  // 비는 게 아니라 뒤집히기 때문이다. **훼손의 모양을 재 보지 않으면 엉뚱한 것을 건다.**
+  ['유도', '둘째 유도 삭제', TEXT_DERIV, '', ['㉛']],
 ];
 
 const selfTest = () => {
@@ -357,8 +418,8 @@ const selfTest = () => {
  * 아무것도 안 물었다). 대조가 유도값과 이뤄지면 그 수를 지킬 또 다른 수는 필요 없다 —
  * `RULE_CLAIMS`가 틀리면 `RULES`를 세는 것만으로 드러난다. **거기서 후퇴가 멈춘다.**
  */
-const RULE_CLAIMS = 4;   // 주장 행(대조군이 져야 하는 것)
-const RULE_GUARDS = 1;   // 가드 행(대조군이 잡을 수 없는 것)
+const RULE_CLAIMS = 5;   // <svg 유도 3 + 관측 상한 1 + <text 유도 1   // 주장 행(대조군이 져야 하는 것)
+const RULE_GUARDS = 1;   // 리터럴 오타   // 가드 행(대조군이 잡을 수 없는 것)
 
 /**
  * ★**`<`가 아니라 `!==`다.** 초판은 `RULES_MIN = 4`에 `<` 비교였는데, 같은 반영에서
@@ -372,8 +433,18 @@ const RULES_MIN = RULE_CLAIMS + RULE_GUARDS;   // ★손으로 안 적는다 —
 if (RULES.length !== RULES_MIN) {
   die(`판정 규칙 훼손이 ${RULES.length}개인데 RULES_MIN은 ${RULES_MIN}이다 — 더하든 빼든 이 수를 함께 고쳐라(그 diff가 근거가 된다).`);
 }
-for (const [kind, why, from] of RULES) {
+/**
+ * ★**앵커가 있는 것과 훼손이 무언가를 바꾸는 것은 다르다**(PR #42 리뷰 · 백로그 E-2 ·
+ * 선행 D-3의 나머지 절반). `to === from`이거나 치환 결과가 원본과 같으면 훼손이
+ * **무동작**인데, 감사는 그것을 *"주장 대조군이 안 깨졌다"* 로 **오도 보고**한다.
+ * 이 사이클이 실제로 그 오진을 겪었다(규칙 3/4 — 훼손이 가짜 종에 묶여 있었다).
+ */
+for (const [kind, why, from, to] of RULES) {
   if (!src0.includes(from)) die(`규칙 앵커가 사라졌다: ${kind}/${why} — 규칙이 바뀌었나.`);
+  if (to === from) die(`규칙 '${kind}/${why}'의 훼손이 원본과 같다 — 아무것도 안 바뀐다.`);
+  if (src0.replace(from, to) === src0) {
+    die(`규칙 '${kind}/${why}'의 훼손이 소스를 바꾸지 않는다 — 무동작인데 "대조군이 안 깨졌다"로 보고된다.`);
+  }
 }
 
 /**
@@ -500,4 +571,8 @@ console.log('✅ 호출부 전 인자와 판정 규칙이 대조군에 덮인다
 // *"실제 컴포넌트가 그 규칙에 옳게 분류되는가"*(R2)는 자체검사로 볼 수 없고
 // **서버가 필요한 본 검사(δ)** 만 본다 — 부분 오분류가 그 예다.
 // 덮지 않은 것을 말하지 않으면 이 수치가 "닫았다"로 읽힌다.
-console.log('   ※ R1(규칙이 옳게 동작한다)만 잰다. R2(실제 컴포넌트가 옳게 분류된다)는 서버가 필요한 본 검사만 본다.');
+// ★이 줄은 오래 **틀린 채** 있었다(Check G-A). 선행 사이클에는 참이었지만 η·㉛이 서면서
+// R2의 대부분이 여기로 왔는데 문구는 그대로였다 — 같은 파일이 위에서는 *"㉛이 R2를 진다"* 고 적는다.
+// **이 사이클의 주제가 *닫았다고 적고 안 닫는 것*인데, 그 반대(닫았는데 안 닫았다고 적는 것)를 남겼다.**
+console.log('   ※ R1(규칙이 옳게 동작한다)에 더해 **R2의 대부분**(실제 컴포넌트가 옳게 분류된다)도 잰다 — η·㉛.');
+console.log('     남는 것은 **두 어휘 신호(`<svg`·`<text`)가 함께 옳거나 함께 틀리는 경우**뿐이고, 그것은 서버가 필요한 본 검사만 본다.');
