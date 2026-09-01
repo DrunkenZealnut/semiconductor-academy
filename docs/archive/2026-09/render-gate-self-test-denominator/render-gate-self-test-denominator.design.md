@@ -1,6 +1,6 @@
 # 자체검사가 자기 분모를 지킨다 — Design
 
-> Plan: `../../01-plan/features/render-gate-self-test-denominator.plan.md`
+> Plan: `./render-gate-self-test-denominator.plan.md`
 > **한 줄**: 총수를 지키고 구성을 안 지키면 총수가 거짓말을 한다 — 선행이 감사에서 배운 것을 관문에 옮긴다.
 
 ---

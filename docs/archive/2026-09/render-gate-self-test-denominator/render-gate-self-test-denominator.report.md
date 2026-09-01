@@ -1,9 +1,9 @@
 # 자체검사가 자기 분모를 지킨다 — 완료 보고서
 
 > **기간** 2026-08-30 ~ 2026-09-01 · **Match Rate 91%** · Act 3회 · 독립 판독 4회
-> Plan `../01-plan/features/render-gate-self-test-denominator.plan.md` ·
-> Design `../02-design/features/render-gate-self-test-denominator.design.md` ·
-> Check `../03-analysis/render-gate-self-test-denominator.analysis.md`
+> Plan `./render-gate-self-test-denominator.plan.md` ·
+> Design `./render-gate-self-test-denominator.design.md` ·
+> Check `./render-gate-self-test-denominator.analysis.md`
 > **선행** `render-gate-derivation-claim`(90%) 잔존 **D-2**
 
 ---

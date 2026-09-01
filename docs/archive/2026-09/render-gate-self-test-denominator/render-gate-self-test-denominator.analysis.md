@@ -2,8 +2,8 @@
 
 > ※ 이 문서의 `파일:줄` 인용은 Check 시점의 스냅숏이다 — 코드 주석 쪽은 앵커를 쓴다.
 >
-> Plan: `../01-plan/features/render-gate-self-test-denominator.plan.md`
-> Design: `../02-design/features/render-gate-self-test-denominator.design.md`
+> Plan: `./render-gate-self-test-denominator.plan.md`
+> Design: `./render-gate-self-test-denominator.design.md`
 > **한 줄**: 내가 "실행 집계"라 부른 것이 사실은 **선언 집계**였다 — 그리고 그것을 고친 뒤에도
 > 같은 병이 **두 겹 더** 아래에 있었다.
 
