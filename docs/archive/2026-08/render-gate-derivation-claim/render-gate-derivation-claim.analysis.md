@@ -4,8 +4,8 @@
 > 실제로 4회차에 여러 건이 밀린 것을 확인했고, **코드 주석 쪽은 앵커로 바꿨다**(설계 §7.4).
 > 여기서는 분석이 무엇을 보고 판정했는지 남기는 것이 목적이라 숫자를 유지한다.
 >
-> Plan: `../01-plan/features/render-gate-derivation-claim.plan.md`
-> Design: `../02-design/features/render-gate-derivation-claim.design.md`
+> Plan: `./render-gate-derivation-claim.plan.md`
+> Design: `./render-gate-derivation-claim.design.md`
 > **한 줄**: 이 사이클은 *"주장하지 않는 보호는 사라진다"* 를 고치러 왔는데, **그 고치는 손으로 방어하지 않는 방어 장치를 셋 더 만들었다.**
 
 ---

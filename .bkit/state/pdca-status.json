@@ -1486,6 +1486,41 @@
       "prReview": "PR #42 CodeRabbit 5건 전부 반영. ①usage.md가 DiagramFrame을 \"장식 SVG\"이자 \"디렉터리 밖\"으로 잘못 적었다 — 실제로는 src/components/diagram/ **안**의 공용 래퍼이고, 유도에서 이름으로 빼는 이유는 \"도해 종이 아니라서\"이지 \"장식이라서\"가 아니다 ②설계·상태의 규칙 4/4 → 5/5 ③REAL_TEXTUAL_KIND 미러에 관문 소스 앵커를 걸었다 — **백로그 E-1 종료** ④RULES 훼손이 실제로 소스를 바꾸는지 단언(to!==from + replace 결과 대조) — **백로그 E-2 및 선행 D-3의 나머지 절반 종료** ⑤두 유도의 읽기 오류가 exit 1로 새던 것을 exit 2로(계약상 1은 콘텐츠 위반이다). ★⑤는 SVG_COMPONENTS에도 있던 기존 결함이라 함께 고쳤다.",
       "prReviewLesson": "★고치다 두 번 데었다. ①내 ⑤ 수정이 두 유도를 deriveKinds()로 묶어 감사의 앵커(DERIV·TEXT_DERIV)가 가리키던 필터 줄을 없앴고, 감사가 즉시 \"규칙 앵커가 사라졌다\"로 죽었다 — **감사가 자기 일을 했다.** 미러는 앵커에 묶여 있으므로 필터 줄을 글자 그대로 두고 try만 씌웠다 ②정리하려던 git checkout이 ③④를 커밋본으로 되돌렸다. 셸 인용이 깨진 실험을 수습하다 생긴 일이고, 이 세션에서 셸 안 정규식으로 네 번째 헛돌았다 — 스크립트를 파일로 쓰면 안 겪는다.",
       "backlogAfterReview": "E-3 textual은 폴백이 있고 svg는 없다(같은 함수의 두 인자가 실패 모양이 다르다) · E-4 선행 백로그 유지(A-3 잔여 · D-1 · D-2 · D-4 · D-6 · D-7 · D-9~D-13). ★E-1·E-2는 PR #42 리뷰에서 닫혔다."
+    },
+    "render-gate-self-test-denominator": {
+      "phase": "archived",
+      "startedAt": "2026-08-30",
+      "planDoc": "docs/archive/2026-09/render-gate-self-test-denominator/render-gate-self-test-denominator.plan.md",
+      "origin": "render-gate-derivation-claim(90%, 2026-08-30 아카이브) 잔존 D-2",
+      "problem": "자체검사는 대조군 40건을 돌리는데 그 수를 아무도 안 잰다. 실측: 대조군 하나를 지우니 39건인데 \"✅ 전 항목 통과 · exit 0\"이다. 선행 사이클이 이미 대가를 치렀다 — 35→36이 됐는데 아무도 안 울었고 CLAUDE.md 수치가 두 사이클 표류했다. 감사(RULES_MIN·RULE_CLAIMS·assertCasesMirrorCallSites)는 자기 분모를 지키는데 관문만 안 지킨다.",
+      "preMeasured": "★착수 전 실측이 설계를 결정했다 — **유도할 원천이 없다.** fixtures.length도, 소스의 spawnChildAgainst 개수도, scases/cases.length도 대조군을 지우면 **함께 준다**(공허한 미러). 감사가 CASES를 호출부라는 다른 원천에서 유도하는 것과 다르다 — 자체검사의 대조군 수는 자기 자신 말고 근거가 없다. 그러므로 선행 원칙 그대로 \"손으로 적되 유도값(실행 집계)과 대조한다\"로 간다(RULE_CLAIMS와 같은 처방을 관문 자신에게). ★출력 자리는 넷(:782 처분 · :1239·:1245 범위 · :1286 판정)이라 Act에서 한 번 접었던 것인데, 무리 함수가 이미 셋으로 나뉘어 있어(selfTestFixtures·selfTestScope·selfTestDispositions) 무리별로 세면 자리가 셋으로 준다. 다만 뒤 둘은 지금 boolean만 반환한다.",
+      "openDecisions": "A.한 수(40)인가 세 수(14·13·13)인가 — 총계는 간단하고 무리별은 진단이 정확하다 · B.무리 함수가 개수를 돌려주게 할 것인가, 공용 note() 헬퍼로 출력 자리를 묶을 것인가 · C.CLAUDE.md 수치와의 관계 — 코드가 자기 수를 알면 문서-코드 사이에 새 미러가 생긴다 · D.감사에 이 판정의 훼손을 더할 것인가(자기 참조가 성립하는가 · 항목 18→19, 약 25초).",
+      "frCount": 6,
+      "gates": "G-1~G-7. ★G-5(대조군을 하나 지우면 운다)와 G-6(하나 더해도 운다)이 핵심 — 지금은 둘 다 조용하다.",
+      "topRisk": "★공허한 미러를 하나 더 만드는 것 — §0.3의 논증이 그것을 막는다. 그리고 자기 참조(자체검사가 자기 개수를 단언하고 감사가 그것을 훼손한다)는 성립한다: 감사는 바깥에서 소스를 고치고 자식이 그 위에서 도는 것이라 관측자와 대상이 분리돼 있다.",
+      "scopeOut": "D-7(감사 자신을 재는 자) · verify:render 상시 관문화 · 선행 백로그 유지(A-3 잔여 · D-1 · D-3 · D-4 · D-6 · D-9~D-13 · E-3 · E-4)",
+      "designDoc": "docs/archive/2026-09/render-gate-self-test-denominator/render-gate-self-test-denominator.design.md",
+      "resolvedDecisions": "D-1 **세 수**다(열린 문제 A) — 한 수(총 40)로는 무리 간 이동을 못 본다(판정14·범위12·처분14도 총 40이다). 선행 G-1이 글자 그대로 이것이었다: 총수를 지키고 구성을 안 지키면 총수가 거짓말을 한다 · D-2 무리 함수가 개수를 함께 반환한다(열린 문제 B) — 집계 자리는 셋이면 된다(판정 fixtures.length 0곳 · 범위 반환값 1곳 · 처분은 spawnChildAgainst 안에서 1곳, 처분 대조군이 전부 그 함수를 지나므로). 공용 note() 헬퍼로 출력 자리 넷을 묶는 안은 루프 안을 건드려 대조군을 깨뜨릴 위험이 크다 · D-3 CLAUDE.md는 수를 안 적고 코드를 가리킨다(열린 문제 C) — 코드가 자기 수를 알면 문서-코드 사이에 새 미러가 생기고, 이 저장소가 두 사이클 표류로 겪은 그것이다 · D-4 감사에 **가드 행**을 더한다(열린 문제 D) — 기존 훼손 중 대조군 개수를 바꾸는 것이 하나도 없어 **새로 덮이는 자리**다(선행 D-3이 경계한 \"같은 훼손 두 번\"이 아니다). 대조군을 지우면 나머지가 전부 ✅를 찍고 그 뒤에 단언이 죽어 broke가 비므로 주장 대조군을 댈 수 없다 — 리터럴 오타와 같은 모양이라 사유 정규식으로 관측한다.",
+      "keyArgument": "★유도와 선언은 **다른 층**이다 — Plan §1.2가 \"유도가 전부 공허하다\"고 잰 것은 맞지만 그것은 유도끼리 비교했을 때다. 실행 집계(fixtures.length 등)는 대조군을 지우면 함께 주는데 손으로 적은 선언은 안 준다. 대조가 그 둘 사이에서 이뤄지므로 공허하지 않다. 선행 RULE_CLAIMS의 논증과 같다.",
+      "designPlan": "JUDGE_CONTROLS=14 · SCOPE_CONTROLS=13 · DISPOSE_CONTROLS=13 선언, runSelfTest 끝에서 실행 집계와 !== 로 대조(하한 아님 — 선행 A-1이 늘리는 쪽을 공짜로 놓쳤다), 어긋나면 exit 2 + 어느 무리인지 진단. 성공 시 무리별 수를 출력해 문서가 되풀이하지 않게 한다. 감사에 가드 행 1개(항목 18→19).",
+      "doResult": "★자체검사가 자기 분모를 지킨다 — JUDGE 14 · SCOPE 13 · DISPOSE 13을 선언하고 실행 집계와 !==로 대조, 어긋나면 exit 2 + 어느 무리인지 진단. 성공 시 \"대조군 판정 14 · 범위 13 · 처분 13 — 선언과 일치\"를 출력한다. 감사 규칙 5/5(+가드 **2/2**) · 항목 18→19 · 373.58초.",
+      "doVerified": "★세 방향 되돌림 전부 검출: ①지우기 exit 2(범위 12인데 선언 13) ②더하기 exit 2(범위 14인데 13) ③**무리 간 이동**(범위−1·처분+1) exit 2 — **총계는 40으로 그대로인데 두 무리를 동시에 짚는다.** ③이 이 사이클의 숫자이고 Design §0.1이 예측한 그대로다. !== 라서 ②(늘리는 쪽)도 물린다 — 선행 A-1이 <로 놓쳤던 방향.",
+      "doFindings": "★집계 자리는 정말 셋이었다 — Plan §1.3이 출력 자리를 넷으로 세고 \"한 줄이 아니다\"로 접었는데, **집계는 출력과 다른 자리에서 할 수 있다**(Design §0.2). 판정 fixtures.length 0곳 · 범위 반환 1곳 · 처분은 spawnChildAgainst 안 계수기 1곳. **루프 안을 한 번도 안 건드렸다** · 감사 가드가 사유까지 관측한다(guardReason — 선행 N-2가 세운 요구) · CLAUDE.md에서 무리별 수를 뺐다(Design D-3) — 코드가 스스로 단언·출력하므로 문서가 되풀이하면 또 표류한다.",
+      "matchRate": 91,
+      "iterationCount": 3,
+      "checkedAt": "2026-09-01",
+      "analysisDoc": "docs/archive/2026-09/render-gate-self-test-denominator/render-gate-self-test-denominator.analysis.md",
+      "check1": "★독립 판독 88% · 갭 6건. G-2(중) **내 \"실행 집계\"가 사실은 선언 집계였다** — fixtures.length와 scases+cases.length는 배열 길이라 루프 안 continue 한 줄이면 대조군이 조용히 빠지는데 길이는 그대로다(실측: ✅ 통과 39줄뿐인데 \"판정 14 · 선언과 일치 · exit 0\"). **Plan §1.1이 잡으려던 병이 한 겹 아래에서 그대로 살아 있었다.** 셋 중 처분만 진짜 실행 계수기였다 · G-1(심각) CLAUDE.md가 규칙 5/5(+가드 1)인데 코드는 RULE_GUARDS=2 — **이 사이클의 명제(\"문서가 수를 되풀이하면 또 표류한다\")를 같은 diff 안에서, 그 문단 바로 아래 줄에서 어겼다** · G-3(중) selfTestScope/Dispositions 호출에 try가 없어 예외가 exit 1로 새고 **분모 주장까지 사라진다**(이 사이클이 꼬리에 단언을 얹어 비용을 올렸다) · G-4(중) tally 세 행 중 범위만 배선이 확인되고 판정·처분은 무대조군 — 선행 G-1이 한 겹 더 아래에서 반복 · G-5 CLAUDE.md의 총계 40 · G-6 정적 관문 분모 무방비.",
+      "act1": "G-2 세 무리 모두 **판정을 찍는 자리**에서 세도록(설계 §5.2의 \"루프를 안 건드렸다\"를 포기 — 그 회피가 곧 대가였다) · G-1 CLAUDE.md 가드 표기 정정 · G-3 try/catch → exit 2(실측) · G-4 판정·처분 선언 훼손 가드 행 추가(가드 2→4) · G-5 총계 제거 · G-6은 F-1 백로그.",
+      "act1Verified": "★건너뛰기 재측정 exit 2 · 예외 재측정 exit 2(전용 메시지) · 감사 완주 422.48초 · 배선 12/12 · 규칙 5/5(**+가드 4/4**) — tally 세 행이 각각 자기 가드를 갖는다 · 원복 확인 · 고아 없음.",
+      "preFound": "★계수기 누적은 내가 판독 전에 먼저 찾아 고쳤다 — 모듈 수준 let이라 runSelfTest가 두 번 불리면 13→26이 되어 거짓 빨강이 난다. --self-test의 process.exit에 기대고 있었고, 리셋 + 두 번 부르는 훼손으로 실측했다(두 실행 모두 14·13·13).",
+      "backlog": "F-1 정적 관문(verify-diagram-placement.mjs)의 분모가 무방비 — 대조군 69건·8건이 손 숫자이고 지키는 것이 없다(값은 맞다). CLAUDE.md가 두 정책을 동시에 주장한다 · F-7 collectUrls()의 catch가 위반을 지어내 repoBroken을 켠다 — 거짓 면책 = 거짓 초록 · F-6 G-2 상비화, 단 훼손 모양이 중요하다: fixtures.slice(1)은 길이 계수에서도 울어 두 구현을 못 가른다. 판별자는 루프 안 continue 주입이다 · F-8 문서 검사를 --doc-only로 분리 — 지금은 되돌림 1건당 7분이라 앵커 줄 좁히기가 이 감사의 유일한 무대조군으로 남았다 · F-9 프로세스 경계 가드가 unhandledRejection만 탄다 · F-3 오도하는 실패 메시지 셋(규칙 앵커 소실 · 이름 가드의 join 재정렬 · wantReason 누락 시 TypeError) · F-10 아카이브가 문서 안의 상대 링크를 안 고친다 — CodeRabbit은 상태 파일만 짚었는데 저장소를 세니 6건 더 있었다(고침). docs/archive/2026-05/에 15건 잔존. 아카이브 절차에 \"형제 링크는 ./로\" 규칙 필요 · D-7 감사 자신을 재는 자 · 선행 백로그 유지(E-3 · A-3 잔여 · D-1 · D-3 · D-4 · D-6 · D-9~D-13). ※ F-2(SCOPE와 DISPOSE가 둘 다 13이라 맞바꿔도 조용)는 이 사이클에서 해소됐다 — 짝을 키가 정하게 만들어 오배선이 표현 불가능해졌다.",
+      "note": "독립 판독 4회(88·88·89·91). 되돌림 15건 관측. 감사 배선 12/12 · 규칙 5/5(+가드 7/7).",
+      "completedAt": "2026-09-01",
+      "archivedAt": "2026-09-01",
+      "archivedTo": "docs/archive/2026-09/render-gate-self-test-denominator/",
+      "reportDoc": "docs/archive/2026-09/render-gate-self-test-denominator/render-gate-self-test-denominator.report.md",
+      "postMergeNote": "CodeRabbit PR #43 지적 1건 반영 — 아카이브 후에도 planDoc/designDoc/analysisDoc이 원위치를 가리켰다. 이 사이클이 남긴 문장(\"고칠 때 그 문자열이 몇 곳에 있는지 먼저 센다\")에 그대로 걸린 자리다: 문서를 옮기면서 그 경로를 든 곳을 다 안 셌다."
     }
   },
   "pipeline": {
@@ -4830,5 +4865,8 @@
       "phase": "archived",
       "action": "feature_archived"
     }
-  ]
+  ],
+  "currentFeature": "render-gate-self-test-denominator",
+  "phase": "archived",
+  "matchRate": 91
 }
