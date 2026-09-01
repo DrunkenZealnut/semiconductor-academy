@@ -25,6 +25,26 @@
 import { readFileSync, readdirSync, existsSync, mkdtempSync, mkdirSync, writeFileSync, symlinkSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
+/**
+ * ★**어디서 터지든 종료 코드는 2다**(Check N-3).
+ *
+ * 계약상 `1`은 *콘텐츠 위반*이고 `2`는 *검사기가 자기 범위를 주장할 수 없음*이다.
+ * 그런데 Node의 기본값은 예외·거부 모두 **1**이라, 검사기가 터진 것이 **콘텐츠가 틀린 것**으로
+ * 보고된다. `--all` 부모는 2만 중단 신호로 보므로 **터진 검사기를 지나친다.**
+ *
+ * G-3이 `runSelfTest` 안쪽에 `try`를 놓아 이 병을 절반 고쳤는데, **바깥이 넷 남아 있었다** —
+ * `selfTestFixtures()` · `browser.newContext()` · `finally`의 `browser.close()` ·
+ * `runSelfTest()` 호출부 둘. Chrome close 실패는 드물지 않다. 한 자리씩 `try`를 덧대는 대신
+ * **프로세스 경계 한 곳**에서 처분을 정한다 — 자리를 세는 방식은 다섯째를 놓친다.
+ */
+const dieOnCrash = (kind) => (e) => {
+  console.error(`❌ 검사기가 ${kind}으로 죽었다 — ${e?.stack ?? e}`);
+  console.error('   (검사기가 자기 범위를 주장할 수 없다 — 종료 코드는 2다. 1은 콘텐츠 위반을 뜻한다.)');
+  process.exit(2);
+};
+process.on('uncaughtException', dieOnCrash('예외'));
+process.on('unhandledRejection', dieOnCrash('처리 안 된 거부'));
+
 const BASE = process.env.RENDER_BASE ?? 'http://localhost:3016';
 const VIEWPORTS = [
   [375, 760, '모바일'],
@@ -697,6 +717,71 @@ function offTarget(c, o) {
 
 
 /**
+ * ★★**자체검사가 자기 분모를 지킨다**(선행 백로그 D-2).
+ *
+ * 실측: 대조군을 하나 지우면 **39건인데 `✅ 전 항목 통과 · exit 0`** 이었다. 조용히 준다.
+ * 선행 사이클이 이미 그 대가를 치렀다 — 35→36이 됐는데 아무도 안 울었고
+ * `CLAUDE.md`의 수치가 **두 사이클** 표류했다.
+ *
+ * **유도할 원천이 없다.** `fixtures.length`도 소스의 호출 수도 대조군을 지우면 **함께 준다** —
+ * 전부 같은 곳에서 나오기 때문이다(감사가 `CASES`를 *호출부*라는 다른 원천에서 유도하는 것과 다르다).
+ * 그래서 선행이 세운 원칙대로 간다 — **손으로 적되 유도값과 대조한다.**
+ * 대조는 `실행 집계`(유도)와 `아래 선언`(사람) **사이**에서 이뤄지므로 공허하지 않다.
+ *
+ * **세 수다, 한 수가 아니다.** 총계만 지키면 **무리 사이의 이동**을 못 본다 —
+ * **판정 하나가 줄고 처분 하나가 늘면 총계는 그대로다.** 선행 G-1이 글자 그대로 이것이었다:
+ * *"총수를 지키고 구성을 안 지키면 총수가 거짓말을 한다."*
+ */
+/**
+ * ★★**짝은 키가 정한다 — 손으로 짝짓지 않는다**(Check N-2b).
+ *
+ * 초판은 선언 셋과 계수기 셋을 따로 두고 tally에서 **손으로** 짝지었다:
+ *   `['처분', disposeRan, DISPOSE_CONTROLS]`
+ * 그 짝짓기가 **아무도 안 재는 자리**였다. 실측으로 확인했다 — `disposeRan`을 `scopeRan`으로
+ * 오배선하면 처분 계수기가 **아무와도 대조되지 않는데** 감사 가드는 **초록**을 찍는다.
+ * 사유 정규식을 무리별로 좁혀도 안 막힌다: 정규식은 tally 행의 **라벨**을 볼 뿐,
+ * 그 행이 **어느 계수기를 읽는지**는 못 본다. 라벨은 오배선해도 그대로다.
+ *
+ * **그래서 재는 대신 없앴다.** 이름 하나가 선언·집계·출력을 함께 들고, tally는 키를 훑어
+ * 만든다 — 오배선이 **쓸 수 없는 모양**이 된다. 세 리터럴 행을 복붙하다 한 칸 어긋나는
+ * 흔한 사고가 표현 불가능해진다. 백로그 F-2(`범위`·`처분`이 둘 다 13이라 맞바꿔도
+ * 조용하다)도 같은 뿌리였으므로 함께 죽는다.
+ *
+ * **재서 막는 것과 못 쓰게 막는 것은 다르다.** 이 저장소는 전자를 오래 해 왔고, 그때마다
+ * *재는 자가 옳게 재는가* 라는 한 겹을 새로 떠안았다. 여기서는 후자가 싸다.
+ */
+const CONTROLS = {
+  판정: 14,   // page.setContent()로 만든 도해에 판정 함수를 먹인다
+  범위: 13,   // 순수 함수(scopeStatic·scopeViolations)
+  처분: 13,   // 자식 프로세스를 임시 cwd에서 돌린다
+};
+/**
+ * 실행 집계. ★**판정을 찍은 자리에서 센다 — 배열 길이가 아니다**(Check G-2).
+ *
+ * 초판은 `fixtures.length`·`scases.length + cases.length`를 "실행 집계"라 불렀는데
+ * 그것은 **선언 집계**였다. 루프 안에 `continue` 한 줄이면 대조군이 조용히 빠지는데
+ * 길이는 그대로다 — 실측: 대조군 하나를 건너뛰니 `✅ 통과`가 **39줄**뿐인데
+ * 집계는 `판정 14 · 선언과 일치 · exit 0` 이었다.
+ * **Plan §1.1이 잡으려던 병("39건인데 조용하다")이 한 겹 아래에서 그대로 살아 있었다.**
+ * 설계 §5.2가 *"루프 안을 한 번도 안 건드렸다"* 를 순이득으로 적었는데, **그 대가가 이것이고**
+ * 어디에도 안 적혀 있었다. **편의를 이득으로만 적으면 대가가 숨는다.**
+ *
+ * ★처분도 마찬가지다(Check N-5). 초판은 `spawnChildAgainst()` **진입부**에서 셌는데
+ * 그것은 판정 계수기가 아니라 **호출 계수기**였다 — 진입과 판정 사이에 이른 `return`이
+ * 생기면 대조군이 조용히 빠지는데 수는 그대로다. 주석은 *"세 무리 모두 판정을 찍는
+ * 자리에서 센다"* 라고 적고 있었고 **사실이 아니었다.** 지금은 사실이다.
+ */
+const ran = { 판정: 0, 범위: 0, 처분: 0 };
+{
+  // 한쪽에만 무리를 더하면 조용할 수 있다 — `ran`에만 더한 경우가 그렇다(tally가 안 본다).
+  const a = Object.keys(CONTROLS).join(','), b = Object.keys(ran).join(',');
+  if (a !== b) {
+    console.error(`❌ 무리 이름이 선언(${a})과 집계(${b})에서 다르다 — 한쪽만 고쳤다.`);
+    process.exit(2);
+  }
+}
+
+/**
  * ★처분 대조군의 기계 — 스텁 서버 + **임시 cwd**에서 자식을 돌리고 종료 코드와 사유를 본다.
  *
  * **왜 임시 cwd인가.** `collectUrls()`는 cwd 기준으로 `src/content`를 훑는다. 콘텐츠가
@@ -779,6 +864,7 @@ async function spawnChildAgainst({ name, html, mdx, tree, wantStatus = 2, wantRe
     // 순수 함수 대조군은 `got.length === want`로 이미 양쪽을 보는데 **처분 쪽에만 없었다.**
     const extra = denyReason.filter((re) => re.test(out));
     const pass = !timedOut && status === wantStatus && missing.length === 0 && extra.length === 0;
+    ran.처분 += 1;
     console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${name}`);
     if (!pass) {
       if (timedOut) console.log(`      자식이 ${LIMIT_MS / 1000}초 안에 안 끝나 강제 종료했다 — 처분을 확인하지 못했다.`);
@@ -817,7 +903,6 @@ function stubFigures(kinds, extra = '') {
 }
 
 
-/** ★처분 대조군 3종 — 감지가 아니라 **종료 코드**를 본다. 전부 임시 cwd 자식이다. */
 /**
  * ★**실제 트리의 정적 범위**를 자체검사 안에서 한 번 잰다.
  *
@@ -837,6 +922,11 @@ function realTreeScopeViolations() {
   }
 }
 
+/**
+ * ★**처분 무리** — 감지가 아니라 **종료 코드**를 본다. 전부 임시 cwd의 자식 프로세스다.
+ * (수는 적지 않는다 — `CONTROLS.처분`이 선언이고 실행이 그것과 대조해 찍는다.
+ *  초판은 여기 `3종`이라 적어 두고 13이 되도록 두었으며, 그나마 **엉뚱한 함수 위**에 떠 있었다.)
+ */
 async function selfTestDispositions() {
   console.log('★ 처분 대조군 (자식 프로세스 · 임시 cwd)');
   const repoScope = realTreeScopeViolations();
@@ -1236,12 +1326,14 @@ function selfTestScope() {
   for (const c of scases) {
     const got = scopeStatic(c.v);
     const pass = got.length === c.want && (!c.why || c.why.test(got[0] ?? ''));
+    ran.범위 += 1;
     console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
     if (!pass) { ok = false; console.log(`      ${got.length}건 ${JSON.stringify(got).slice(0, 130)}`); }
   }
   for (const c of cases) {
     const got = scopeViolations(c.v);
     const pass = got.length === c.want && (!c.why || c.why.test(got[0] ?? ''));
+    ran.범위 += 1;
     console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
     if (!pass) { ok = false; console.log(`      ${got.length}건 ${JSON.stringify(got).slice(0, 130)}`); }
   }
@@ -1253,6 +1345,16 @@ async function runSelfTest(chromium) {
   // `fail()` → `process.exit(2)`이고, exit은 `finally`를 실행하지 않는다 — try 안에서
   // 부르면 브라우저가 안 닫혀 **좀비 Chrome이 쌓인다.** 이 스크립트는 같은 함정을
   // `figures === 0` 자리에서 이미 피해 놨다(거기 주석 참고).
+  /**
+   * ★계수기를 **여기서 되돌린다.** 모듈 수준 `let`이라 `runSelfTest`가 두 번 불리면
+   * `ran.처분`이 13 → 26으로 **누적되어 거짓 빨강**이 난다.
+   *
+   * 지금은 `--self-test` 경로가 `process.exit`으로 끝나 한 번만 돈다 — **그 exit에 기대는 것**이
+   * 문제다. 누가 그 줄을 옮기면 조용히 두 번 돌고, 관문은 멀쩡한데 수치가 거짓말을 한다.
+   * 선행 사이클이 N-1에서 배운 모양이다(*덮였는데 빨강*). **기대지 않고 되돌린다.**
+   */
+  for (const g of Object.keys(ran)) ran[g] = 0;
+
   const fixtures = selfTestFixtures();
 
   const browser = await chromium.launch({ channel: 'chrome', headless: true }).catch(() => null);
@@ -1283,6 +1385,7 @@ async function runSelfTest(chromium) {
       }
       const only = boom ? null : offTarget(c, o);
       const pass = !boom && c.ok(o) && only.length === 0;
+      ran.판정 += 1;
       console.log(`   ${pass ? '✅ 통과' : '❌ 실패'}  ${c.name}`);
       if (!pass) {
         ok = false;
@@ -1296,8 +1399,41 @@ async function runSelfTest(chromium) {
   } finally {
     await browser.close();
   }
-  if (!selfTestScope()) ok = false;
-  if (!await selfTestDispositions()) ok = false;
+  /**
+   * ★**예외를 여기서 잡는다**(Check G-3). 안 잡으면 Node가 **1**로 끝나는데 계약상 1은
+   * *콘텐츠 위반*이고, 검사기가 터진 것은 **2**여야 한다. 게다가 이 사이클이 `runSelfTest`의
+   * 꼬리에 **분모 단언**을 얹으면서 비용이 올랐다 — 예외가 나면 종료 코드만 틀리는 게 아니라
+   * **분모 주장까지 함께 사라진다.**
+   *
+   * 바로 위 판정 루프는 이 함정 때문에 대조군마다 `try`를 두고 *"조용한 것이 가장 나쁘다"* 를
+   * 적어 놨다. **같은 보호가 범위·처분에는 없었다.**
+   */
+  try {
+    if (!selfTestScope()) ok = false;
+    if (!await selfTestDispositions()) ok = false;
+  } catch (e) {
+    console.error(`❌ 자체검사가 예외로 죽었다 — ${e?.stack ?? e}`);
+    console.error('   (검사기가 자기 범위를 주장할 수 없다 — 종료 코드는 2다.)');
+    process.exit(2);
+  }
+
+  /**
+   * ★**분모 대조.** 여기까지 오면 대조군은 전부 판정을 냈다 — 이제 **몇 개였는지**를 묻는다.
+   *
+   * `!==`다, `<`가 아니다. 선행 A-1이 하한만 두었다가 **늘리는 쪽을 공짜로** 놓쳤다
+   * (`RULES_MIN = 4`인데 행이 5여서 장치가 태어나면서 한 칸 헐거웠다).
+   */
+  const off = Object.entries(CONTROLS).filter(([g, want]) => ran[g] !== want);
+  if (off.length) {
+    for (const [g, want] of off) {
+      console.error(`❌ 대조군 수가 선언과 다르다 — ${g} ${ran[g]}건인데 선언은 ${want}이다.`);
+    }
+    console.error('   대조군을 더하거나 뺐으면 이 수도 함께 고쳐라 — 그 diff가 근거가 된다.');
+    console.error('   (수를 안 고치면 다음 사람은 몇 건이 도는지 문서로만 알게 되고, 그 문서가 표류한다.)');
+    process.exit(2);
+  }
+  console.log(`   대조군 ${Object.entries(ran).map(([g, n]) => `${g} ${n}`).join(' · ')} — 선언과 일치`);
+
   return ok;
 }
 
