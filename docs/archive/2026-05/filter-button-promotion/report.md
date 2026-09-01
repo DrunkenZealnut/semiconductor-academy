@@ -276,8 +276,8 @@ aria-pressed annotation을 자동 출력 → 별도 수동 inspector 필요 없�
 
 ## 연관 문서
 
-- **Plan**: [docs/01-plan/features/filter-button-promotion.plan.md](../../01-plan/features/filter-button-promotion.plan.md) (v0.1)
+- **Plan**: [plan.md](./plan.md) (v0.1)
 - **Design**: N/A (Micro-cycle, skipped per Plan §8)
-- **Analysis**: [docs/03-analysis/filter-button-promotion.analysis.md](../../03-analysis/filter-button-promotion.analysis.md) (Match Rate 99%)
-- **Previous Cycle**: [docs/archive/2026-05/quotes-source-filter-polish/](../../archive/2026-05/quotes-source-filter-polish/) (직전 micro-cycle #1)
-- **UI Primitive Reference**: [src/components/ui/Tag.tsx](../../../src/components/ui/Tag.tsx) (non-interactive primitive pattern)
+- **Analysis**: [analysis.md](./analysis.md) (Match Rate 99%)
+- **Previous Cycle**: [docs/archive/2026-05/quotes-source-filter-polish/](../quotes-source-filter-polish/) (직전 micro-cycle #1)
+- **UI Primitive Reference**: [src/components/ui/Tag.tsx](../../../../src/components/ui/Tag.tsx) (non-interactive primitive pattern)

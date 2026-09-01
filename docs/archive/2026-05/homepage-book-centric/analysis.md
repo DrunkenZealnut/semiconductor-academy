@@ -6,7 +6,7 @@
 **Feature**: `homepage-book-centric`
 **PDCA Phase**: Check
 **Analyzer**: gap-detector agent
-**Linked Design**: [docs/02-design/features/homepage-book-centric.design.md](../02-design/features/homepage-book-centric.design.md)
+**Linked Design**: [design.md](./design.md)
 
 ---
 

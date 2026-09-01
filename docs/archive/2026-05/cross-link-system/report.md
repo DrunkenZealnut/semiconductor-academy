@@ -68,7 +68,7 @@ variables:
 
 ### 2.1 Plan Phase
 
-**Document**: [cross-link-system.plan.md](../../01-plan/features/cross-link-system.plan.md)
+**Document**: [cross-link-system.plan.md](./plan.md)
 
 **주요 내용**:
 - 직전 cycle `multi-source-learning-platform`에서 의도적으로 분리한 Phase C를 본 cycle로 정식화
@@ -80,7 +80,7 @@ variables:
 
 ### 2.2 Design Phase
 
-**Document**: [cross-link-system.design.md](../../02-design/features/cross-link-system.design.md)
+**Document**: [cross-link-system.design.md](./design.md)
 
 **Extensibility 5원칙 (핵심 설계 결정)**:
 
@@ -128,7 +128,7 @@ variables:
 
 ### 2.4 Check Phase (Analysis)
 
-**Document**: [cross-link-system.analysis.md](../../03-analysis/cross-link-system.analysis.md)
+**Document**: [cross-link-system.analysis.md](./analysis.md)
 
 **Gap Detector 결과**:
 
