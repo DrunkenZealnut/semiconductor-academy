@@ -19,7 +19,7 @@ variables:
 > **Author**: DrunkenZealnut
 > **Date**: 2026-05-30
 > **Status**: Draft
-> **Planning Doc**: [multi-source-learning-platform.plan.md](../../01-plan/features/multi-source-learning-platform.plan.md)
+> **Planning Doc**: [multi-source-learning-platform.plan.md](./plan.md)
 
 ### Pipeline References
 

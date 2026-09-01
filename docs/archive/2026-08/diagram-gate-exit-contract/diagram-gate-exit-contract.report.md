@@ -123,7 +123,7 @@
 
 ### 선행 사이클과의 연결
 
-**선행**: [`diagram-gate-coverage`](../archive/2026-08/diagram-gate-coverage/) (2026-08-16, 98%)
+**선행**: [`diagram-gate-coverage`](../diagram-gate-coverage/) (2026-08-16, 98%)
 - **L-3 해소**: 그 사이클이 남긴 "D-10·D-11 대조군이 `hard: false`라 `exit 2` 처분 자체는 미검증"이라는 문제를 이 사이클이 **종료 코드 대조군으로 검증**
 - **파생 백로그 유지**: R-3·D-13·미사용 예외 검사·`--wave w4` 단독 호출은 그대로 유지
 

@@ -19,8 +19,8 @@ variables:
 > **Author**: DrunkenZealnut
 > **Date**: 2026-05-30
 > **Status**: Draft
-> **Planning Doc**: [cross-link-system.plan.md](../../01-plan/features/cross-link-system.plan.md)
-> **상속점**: [multi-source-learning-platform archive](../../archive/2026-05/multi-source-learning-platform/)
+> **Planning Doc**: [cross-link-system.plan.md](./plan.md)
+> **상속점**: [multi-source-learning-platform archive](../multi-source-learning-platform/)
 
 ### Pipeline References
 

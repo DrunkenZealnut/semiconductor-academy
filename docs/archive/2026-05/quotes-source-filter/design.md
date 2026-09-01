@@ -19,7 +19,7 @@ variables:
 > **Author**: DrunkenZealnut
 > **Date**: 2026-05-30
 > **Status**: Draft
-> **Planning Doc**: [quotes-source-filter.plan.md](../../01-plan/features/quotes-source-filter.plan.md) (v0.2 Option B)
+> **Planning Doc**: [quotes-source-filter.plan.md](./plan.md) (v0.2 Option B)
 
 ### Pipeline References
 

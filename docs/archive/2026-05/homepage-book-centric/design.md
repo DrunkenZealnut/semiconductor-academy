@@ -5,7 +5,7 @@
 **작성일**: 2026-05-29
 **Feature**: `homepage-book-centric`
 **PDCA Phase**: Design
-**Linked Plan**: [docs/01-plan/features/homepage-book-centric.plan.md](../../01-plan/features/homepage-book-centric.plan.md)
+**Linked Plan**: [plan.md](./plan.md)
 **Status**: Draft
 
 ---

@@ -10,7 +10,7 @@
 - [Plan](../01-plan/features/ch3-ch4-foundation.plan.md)
 - [Design](../02-design/features/ch3-ch4-foundation.design.md)
 - [Analysis](../03-analysis/ch3-ch4-foundation.analysis.md)
-- Batch parent: [ch3-to-ch17-batch Plan](../01-plan/features/ch3-to-ch17-batch.plan.md)
+- Batch parent: [ch3-to-ch17-batch Plan](../archive/2026-05/ch3-to-ch17-batch/plan.md)
 
 ---
 

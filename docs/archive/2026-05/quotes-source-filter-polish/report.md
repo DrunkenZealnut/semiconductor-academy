@@ -323,7 +323,7 @@ Plan 직접 implementation 참조 → 설계 단계 14m 절감 → 30m 달성. �
 
 ## 연관 문서
 
-- **Plan**: [docs/01-plan/features/quotes-source-filter-polish.plan.md](../../01-plan/features/quotes-source-filter-polish.plan.md) (v0.1)
+- **Plan**: [plan.md](./plan.md) (v0.1)
 - **Design**: N/A (Micro-cycle, skipped per Plan §8)
-- **Analysis**: [docs/03-analysis/quotes-source-filter-polish.analysis.md](../../03-analysis/quotes-source-filter-polish.analysis.md) (Match Rate 99%)
-- **Previous Cycle**: [docs/archive/2026-05/quotes-source-filter/report.md](../../archive/2026-05/quotes-source-filter/report.md) (Minor 5건 → polish 3건 분류)
+- **Analysis**: [analysis.md](./analysis.md) (Match Rate 99%)
+- **Previous Cycle**: [docs/archive/2026-05/quotes-source-filter/report.md](../quotes-source-filter/report.md) (Minor 5건 → polish 3건 분류)

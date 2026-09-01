@@ -256,7 +256,7 @@ extract-quotes.mjs의 OSHA_PART_META와 sources.ts가 현재 수동 미러. 글�
 
 ## 연관 문서
 
-- **Plan**: [docs/01-plan/features/quotes-source-filter.plan.md](../../01-plan/features/quotes-source-filter.plan.md) — v0.2 Option B
-- **Design**: [docs/02-design/features/quotes-source-filter.design.md](../../02-design/features/quotes-source-filter.design.md) — v0.1
-- **Analysis**: [docs/03-analysis/quotes-source-filter.analysis.md](../../03-analysis/quotes-source-filter.analysis.md) — Match Rate 95%
+- **Plan**: [plan.md](./plan.md) — v0.2 Option B
+- **Design**: [design.md](./design.md) — v0.1
+- **Analysis**: [analysis.md](./analysis.md) — Match Rate 95%
 - **Archive**: `/pdca archive quotes-source-filter --summary` 권장
