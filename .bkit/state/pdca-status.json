@@ -1521,6 +1521,40 @@
       "archivedTo": "docs/archive/2026-09/render-gate-self-test-denominator/",
       "reportDoc": "docs/archive/2026-09/render-gate-self-test-denominator/render-gate-self-test-denominator.report.md",
       "postMergeNote": "CodeRabbit PR #43 지적 1건 반영 — 아카이브 후에도 planDoc/designDoc/analysisDoc이 원위치를 가리켰다. 이 사이클이 남긴 문장(\"고칠 때 그 문자열이 몇 곳에 있는지 먼저 센다\")에 그대로 걸린 자리다: 문서를 옮기면서 그 경로를 든 곳을 다 안 셌다."
+    },
+    "doc-link-gate": {
+      "phase": "archived",
+      "startedAt": "2026-09-02",
+      "planDoc": "docs/archive/2026-09/doc-link-gate/doc-link-gate.plan.md",
+      "origin": "render-gate-self-test-denominator(91%, 2026-09-01 아카이브) 파생 F-10",
+      "problem": "도해에는 관문이 다섯 겹인데 문서 링크는 무방비다. CodeRabbit이 죽은 링크 1건을 짚었는데 세니 21건이었고 성질이 넷이었다. 고친 뒤 \"저장소 전체 0건\"이라 적었는데 그 문장을 쓴 표가 곧바로 4건을 만들었다(가상 경로 예시). 전수 측정에서 살아 있는 콘텐츠 페이지의 사고 링크 1건이 나왔고, 그 규칙은 2026-07 설계서에 적혀 있었다.",
+      "preMeasured": "★.md 224 + .mdx 342 = 566개 · 마크다운 링크 151건(remark) / 146건(정규식). 구체 해석 성공 116 · 실패 2 · 사이트 라우트 24 · 모양 4. ★실패 2건은 깨진 링크가 아니라 둘 다 사고 링크다(1[H](헨리) — 살아 있는 페이지 / [...](...) — 링크 문법을 설명하는 자리, 그 문서가 첫째의 규칙을 적어 놓은 바로 그 문서다). ★★정규식으로는 안 된다: 단위 대괄호 뒤 여는 괄호를 정규식으로 찾으면 4건인데 파서에 물으면 1건이다(나머지 셋은 목적지에 공백이 있어 CommonMark상 링크가 아니다) — 거짓 경보 75%. 인라인 코드 경로 언급 1295건 중 256건 해석 실패이나 대부분 아카이브 문서의 정당한 역사 기술(BookHero.tsx 개명 등)이라 범위 밖. 전량 파싱 1.12초(verify:diagram 1.7초와 같은 급). remark-parse·unified·unist-util-visit는 전이 의존으로 이미 있고 직접 의존은 remark-gfm 하나뿐.",
+      "openDecisions": "A.파서인가 정규식인가(파서는 거짓 경보 75%를 없애지만 전이 의존에 기댄다 — 이 저장소의 정적 관문은 의존이 없다) · B.사이트 라우트 24건을 볼 것인가(generateStaticParams 전개와 대조하면 가치가 크나 관문이 앱을 알아야 한다) · C.예시를 어떻게 가르나(가상 경로 예시 / 문법 설명 두 종류가 실측됐다. 도해 관문에 diagram-check-allow.json 선례) · D.사고 링크를 이 관문이 볼 것인가(구체 실패 2건이 전부 이것이라 사실상 주 수확이다) · E.종료 코드 계약(2의 조건) · F.감사까지 만들 것인가",
+      "frCount": 7,
+      "gates": "G-1~G-8. ★G-4(사고 링크가 운다)·G-5(거짓 경보 셋은 안 운다)·G-6(문서가 링크를 설명해도 안 운다)이 핵심 — 셋이 함께 서야 관문이 쓸모 있다.",
+      "topRisk": "★거짓 경보로 관문이 무시되는 것 — 정규식이면 75%가 거짓임을 먼저 쟀다. 그리고 검사기를 만들면 그 검사기의 대조군이 필요하다(선행 사이클이 이것으로 네 겹을 팠다) — 분모를 처음부터 코드가 들게 한다.",
+      "scopeOut": "외부 URL 검사(네트워크) · 인라인 코드 경로 언급(256건 중 대부분 정당한 역사 기술) · docs/archive/2026-05 정리(PR #44로 이미 끝남) · 감사 신설(열린 문제 F) · 선행 백로그 유지",
+      "firstStep": "★① 선행 사이클이 남긴 거짓 문장부터 정정한다 — docs/archive/2026-09/_INDEX.md의 \"재스캔 0건\"이 자기 예시 4건을 안 센다. 이 사이클은 \"고쳤다는 말이 참인가\"를 다루는데 착수 시점에 저장소가 그 말을 거짓으로 들고 있다.",
+      "designDoc": "docs/archive/2026-09/doc-link-gate/doc-link-gate.design.md",
+      "resolvedDecisions": "A. 파서를 쓴다 — remark-parse + remark-gfm. remark-mdx는 안 쓴다(.mdx에서 링크 집합 차이가 정확히 0인데 .md 13개를 파싱 실패시킨다 — 얻는 것이 없고 잃는 것이 있다). gfm은 필요하다(.md에서 +23건, 앱도 GitHub도 GFM). unified·remark-parse·unist-util-visit를 devDependencies로 올린다(playwright-core 선례), import 실패는 exit 2 · B. 라우트를 본다 — 정적은 src/app 트리에서 유도, 동적은 해석기 등록제(지금은 process/[slug] 하나). ★해석기가 없는 동적 라우트는 조용히 통과시키지 않고 exit 2(렌더 관문의 δ와 같은 처분) · C. ★allow 파일을 만들지 않는다 — 필요가 0으로 측정됐다. 파서가 코드 스팬을 건너뛰어 「문서가 링크를 설명하는 자리」가 애초에 링크가 아니다. 필요를 재지 않고 장치를 만들지 않는다(도해 관문의 allow도 필요가 측정된 뒤에 생겼다). 대신 위반 메시지가 백틱을 권한다 — 우회로가 공짜다 · D. 사고 링크는 같은 판정으로 잡힌다(별도 판정 불필요) — 파일 후보 해석 실패 1건이 곧 그것이다. 관문은 의도를 모르고 알 필요도 없다, 메시지가 두 길을 다 제시한다 · E. 종료 코드는 기존 계약 그대로(0/1/2). 2의 조건: 파서 import 실패·대상 파일 0개·해석기 없는 동적 라우트·src/app 또는 데이터 못 읽음·자체검사 실패·대조군 수 불일치 · F. 감사는 안 만든다 — 선행이 실측한 비용(항목 24 × 자체검사 = 7분)에 비해 이 관문은 판정과 본 검사 사이의 층이 얇다. 판정 호출을 한 자리로 모으고 그 사실을 적는다. 안 만든 것을 백로그로 선언한다.",
+      "keyFinding": "★판독의 처방을 넣고 **재 봤더니 안 먹은 것이 네 번**이다. 대표는 6차 B: `ran += 1`과 `push()`가 두 문장이라 조용하다는 진단은 옳았는데, 처방(헬퍼로 묶기)을 넣어도 **여전히 두 문장이라 그대로 조용했다**(실측 exit 0). 원천을 하나로(이름 배열 길이가 곧 수) 만들고서야 물었다 — *묶는다고 하나가 되는 것이 아니다.* · ★\"이미지도 본다\"가 실물의 극히 일부였고(마크다운 ![]()만 봤는데 실제는 다중행 <ImageFigure src=), 처방은 \"안 보는 것에 적어라\"였지만 재 보니 거짓 경보 0이라 **문구로 덮지 않고 실제로 봤다**(덮는 범위 3.4배). · ★\"대조군을 만들 수 없는 자리\" 수를 넷→다섯→여섯→일곱으로 **다섯 번 틀리고** 지웠다 — 손으로 세는 수는 다음에도 틀린다, 목록만 남기면 틀릴 수가 없다.",
+      "designMeasured": "파서 구성 비교: bare(.md 127/.mdx 24) · +gfm(150/24, 채택) · +gfm+mdx(144/24, .md 13개 파싱 실패). 라우트 23건 17종 전부 유효(정적 8 + processes.json 슬러그 9). 파일 후보 115건 중 모양 0 · 해석 실패 1(헨리). 외부 38 · 앵커 1. gfm 포함 파싱 비용 2.10초(567파일). 설치판 unified 11.0.5 · remark-parse 11.0.0 · remark-gfm 4.0.1 · unist-util-visit 5.1.0.",
+      "buildPlan": "scripts/verify-doc-links.mjs → npm run verify:links. 수집 → 파싱 → 링크 추출 → 분류(외부/앵커/라우트/파일) → 해석 → 처분. classify·resolveFile·resolveRoute를 순수 함수로 뽑아 대조군이 직접 먹인다(브라우저·자식 없이 싸다). 분모는 CONTROLS/ran 객체로 짝을 키가 정하게 하고 판정 찍는 자리에서 센다.",
+      "startOrder": "① _INDEX.md에 어떻게 쟀는지 적기 ② devDependencies 셋 추가·잠금 파일 변동 확인 ③ 순수 함수 + 라우트 유도 → 지금 상태에서 위반 1건이 나오는지 확인 ④ 대조군 + 개수 선언 → 되돌림 ⑤ FR-6 사고 링크 수정 → 초록 ⑥ 스크립트·CLAUDE.md·Check. ★③이 ⑤보다 먼저인 이유: 고치기 전에 관문이 그것을 잡는지 봐야 한다. 먼저 고치면 관문이 무엇을 잡는지 영영 모른다.",
+      "doResult": "scripts/verify-doc-links.mjs 신설 · npm run verify:links 등록. 파서(remark-parse+remark-gfm)로 마크다운 링크를 뽑아 분류(외부/앵커/라우트/파일)하고 해석한다. classify·resolveFile·resolveRoute를 순수 함수로 뽑았다. 라우트는 src/app에서 유도하고 동적 세그먼트는 ROUTE_RESOLVERS 등록제(현재 /process/[slug] 하나 → 9종 전개). allow 파일은 만들지 않았다(Design C). 종료 코드 0/1/2 계약. 프로세스 경계 uncaughtException·unhandledRejection → exit 2. 분모는 CONTROLS/ran 객체로 짝을 키가 정하고 판정 찍는 자리에서 센다.",
+      "doVerified": "★대조군 27건(판정 20 · 처분 7) 전 항목 통과 · 선언과 일치. ★되돌림 7건 전부 관측: G-7 파일 링크를 깨면 exit 1 · G-7b 라우트를 깨면 exit 1 · ★G-6 코드 스팬 예시를 더해도 exit 0 · ★G-5 공백 목적지를 더해도 exit 0(정규식이면 거짓 경보) · ★D-2 해석기 없는 동적 라우트는 exit 2 · 분모 대조군 삭제 exit 2 · 분모 선언 훼손 exit 2. 원복 확인. 게이트: typecheck 0 · lint 기존 <img> 경고만 · verify:diagram 5웨이브 · verify:links exit 0. 소요 2.5초(자체검사 0.42 + 본 검사 2.18). 문서 568개 · 링크 173건(파일 112 · 라우트 23 · 외부 37 · 앵커 1).",
+      "doFindings": "★★대조군 ㉔이 배선 결함을 잡았다 — dynamicTemplates에 **해석기가 있는** 템플릿까지 담아서, 이미 전개된 /process/[slug]의 죽은 슬러그를 \"주장할 수 없음\"(exit 2)으로 냈다. 판정할 수 있는 것을 판정 안 한 것이다. 순수 함수(resolveRoute)는 옳았고 **배선**이 틀렸다 — 선행 사이클의 주제가 착수 첫날에 그대로 나왔다. 해석기가 없는 템플릿만 담도록 고쳤다. · devDependencies 셋 추가는 예측대로 선언만 늘었다(패키지 항목 583→583, 추가·제거 0). · FR-6 사고 링크는 「1[H](헨리)」→「1[H] (헨리)」 한 칸으로 고쳤다 — 수정안 넷을 파서에 물어 고른 것이다.",
+      "matchRate": 87,
+      "iterationCount": 7,
+      "checkedAt": "2026-09-03",
+      "completedAt": "2026-09-03",
+      "analysisDoc": "docs/archive/2026-09/doc-link-gate/doc-link-gate.analysis.md",
+      "reportDoc": "docs/archive/2026-09/doc-link-gate/doc-link-gate.report.md",
+      "checkHistory": "독립 판독 7회 — 72 · 82 · 84 · 80(↓ 주장을 점수에 넣어 부풀었던 것이 드러났다) · 86 · 84 · 87. 매 판독이 새 무대조군을 짚었다: 출력 문구 → resolvePublic 배선 → 다중행 JSX 형태 → settled 삼항 → 상한을 적은 그 문구 → seenNames 배선 → 설계서.",
+      "finalMeasured": "대조군 43(판정 29 · 처분 14) · 참조 607(link 177 · image 4 · src 425 · href 1) · 되돌림 26건 관측 · typecheck 0 · lint Error 0 · verify:diagram 5웨이브 · verify:links exit 0. 관문 683줄. 파싱이 비용의 거의 전부(추출 0.18초).",
+      "backlog": "F-12(대조군 못 만드는 자리들 — 감사 필요, 그중 본 검사 앞 게이트가 가장 값지다) · F-11(exit-2 분기 다섯) · F-14(동적 라우트 해석기 7종) · F-20 · F-13 · F-15 · F-17~F-19 · F-21 · F-22. 닫힘: F-10 · F-16 · F-23.",
+      "archivedAt": "2026-09-03",
+      "archivedTo": "docs/archive/2026-09/doc-link-gate/"
     }
   },
   "pipeline": {
@@ -4866,7 +4900,7 @@
       "action": "feature_archived"
     }
   ],
-  "currentFeature": "render-gate-self-test-denominator",
+  "currentFeature": "doc-link-gate",
   "phase": "archived",
-  "matchRate": 91
+  "matchRate": 87
 }

@@ -14,6 +14,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "verify:diagram": "node scripts/verify-diagram-placement.mjs --all",
+    "verify:links": "node scripts/verify-doc-links.mjs",
+    "verify:links:self": "node scripts/verify-doc-links.mjs --self-test",
     "verify:render": "node scripts/verify-diagram-render.mjs",
     "audit:wiring": "node scripts/audit-render-wiring.mjs"
   },
@@ -47,8 +49,11 @@
     "eslint-config-next": "^15.1.0",
     "playwright-core": "^1.62.1",
     "postcss": "^8.4.49",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^4.0.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0"
   }
 }
