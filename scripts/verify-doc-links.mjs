@@ -34,21 +34,51 @@
  * (진짜로 예시를 쓰려는 사람에게는 위반 메시지가 백틱을 권한다 — **우회로가 공짜다**.)
  *
  * **종료 코드는 계약이다** — `0` 통과 · `1` 콘텐츠 위반(대상이 없다) ·
- * `2` **검사기가 자기 범위를 주장할 수 없음**(파서 없음 · 대상 파일 0개 ·
- * **해석기 없는 동적 라우트** · `src/app`/데이터 못 읽음 · 자체검사 실패 · 대조군 수 불일치).
+ * `2` **검사기가 자기 범위를 주장할 수 없음** — *검사기가 판정을 못 하겠다고 말하는 모든 자리.*
  *
- * ★**대조군을 만들 수 없는 자리가 일곱 있다.**
- *   ① `dieOnCrash` 등록  ② 무리 이름 가드  ③ `!(kind in tally)`  ④ `!(node in byNode)`
- *   ⑤ `CONTROLS`/`seen` 불일치 단언  ⑥ 대조군 **식별자 유일성** 단언  ⑦ 대조군 **식별자 모양** 단언
- * ③④는 `classify`가 다섯 갈래만·`refsIn`이 네 출처만 내므로, ⑤⑥⑦은 자식이 `DLG_CHILD`로
- * 자체검사를 건너뛰어 `--self-test`를 도는 자식이 없으므로 — **전부 소스를 훼손해야** 관측된다.
+ * ★★**자리를 여기 열거하지 않는다.** 이 목록은 **세 번 낡았다**:
+ *   두 번은 편집 배치의 뒤 항목이 죽어 **쓰기가 통째로 안 됐는데 ✅만 보고 넘어갔고**
+ *   (→ 편집마다 즉시 쓰고 **다시 읽도록** 도구를 고쳤다),
+ *   세 번째는 **쓰기는 성공했는데 손으로 센 열거가 불완전**했다 —
+ *   *같은 배치가 만든 자리 둘*(`keys()`의 키 누락 · 죽은 해석기 키)을 빠뜨렸고,
+ *   *"`fail()`이 가는 자리 전부"* 라 적어 놓고 절반은 `fail()`이 아니라 직접 `process.exit(2)`였다.
  *
- * ★**이 수는 넷 → 다섯 → 여섯 → 일곱으로 네 번 틀렸다.** 장치를 더할 때마다 함께 늘려야 하는데
- * 매번 안 늘렸다(마지막은 ⑦을 세우면서 목록에 안 넣은 것이다). *덮을 수 없는 것을 **덜 세도**
- * 수치가 거짓말을 한다* — 방향만 반대고 이 사이클이 경계하는 그 병이다.
- * 일곱 다 **소스를 훼손해야** 관측되는데 이 관문에는 감사가 없다(위 D-4). 선행 사이클은 감사로
+ * **도구를 고쳐도 손 열거는 안 고쳐진다.** 이 파일은 이미 상한 목록에서
+ * *"손으로 세는 수는 다음에도 틀린다 — 목록만 남기면 틀릴 수가 없다"* 로 한 번 강등했는데
+ * **목록도 틀렸다.** 다음 강등은 하나뿐이다 — **유도하거나 지운다.** 지운다:
+ *
+ *   자리를 알고 싶으면 소스에게 물어라 —
+ *   `rg 'fail\(|process\.exit\(2\)' scripts/verify-doc-links.mjs`
+ *
+ * 각 자리는 **자기 사유 문자열**을 들고 있고, 그것이 유일한 진실이다.
+ *
+ * ★**대조군을 만들 수 없는 자리들** — **세지 않는다, 열거만 한다:**
+ *   · `dieOnCrash` 등록                · 무리 이름 가드
+ *   · `!(kind in tally)`                · `!(node in byNode)`
+ *   · `CONTROLS`/`seen` 불일치 단언     · 식별자 **유일성** 단언 · 식별자 **모양·무리** 단언
+ *   · `runSelfTest`의 예외 catch → exit 2      · `--self-test` 실패 → exit 2
+ *   · `fromTs()`의 **캐시**(*"한 번만 뜬다"*) — 지워도 결과가 같아 아무도 안 운다
+ *   · `existsSync(bin)` 가드 — **행동상 잉여다**(지워도 `spawnSync`가 ENOENT로 같은 `fail` 경로로 간다)
+ *   · ★**`!DLG_CHILD`로 조건 지어진 자리들** — **구조적으로 관측 불가**다.
+ *     자식을 `DLG_CHILD` 없이 돌리면 자체검사가 **재귀**하기 때문이다. 지금 둘이다:
+ *       — **본 검사 앞 게이트**(`!DLG_CHILD && !await runSelfTest()`): **가장 값진 무보증 자리**.
+ *         그 배선이 죽으면 자체검사 실패가 본 검사를 못 막고 **대조군 전부가 장식**이 된다.
+ *       — **죽은 해석기 키 검사**의 `!process.env.DLG_CHILD ||` 분지: 그것만 지우면
+ *         `DLG_KEYCHECK`를 직접 넘기는 대조군들이 그대로 통과해 **아무도 안 운다**
+ *         (판정은 덮였고 **배선**이 안 덮였다 — 이 저장소가 반복해 앓는 그 모양).
+ *     ★**통제할 방법이 없다. 줄이려면 조건을 없애야 한다** — `okTree`가 기본으로 8종 라우트와
+ *     가짜 TS를 소유하게 하면 조건이 사라지지만, 자식 전부가 `tsx`를 띄운다. 비용을 재고 정할 일이다.
+ *
+ * ★★**수를 안 적는다.** 넷 → 다섯 → 여섯 → 일곱으로 **다섯 번 틀렸고** 매번 *"이제 맞다"* 고 적었다.
+ * **손으로 세는 수는 다음에도 틀린다 — 목록만 남기면 틀릴 수가 없다.**
+ * 장치를 더하면 줄을 더한다, 수를 고치지 않는다.
+ * ★선행 사이클(7차)이 *"수를 지우고 목록만 남겼다"* 고 **보고서에까지 적었는데 실제로는 안 들어갔다** —
+ * 편집 배치의 뒤 항목이 예외로 죽어 **쓰기가 통째로 안 됐고, ✅만 보고 넘어갔다.**
+ * *성공 메시지는 성공이 아니다.* 이번에 실제로 넣는다.
+ *
+ * 전부 **소스를 훼손해야** 관측되는데 이 관문에는 감사가 없다(위 D-4). 선행 사이클은 감사로
  * 그런 자리를 닫았다(*핸들러를 빼면 2→1 · 이름 가드를 무력화하면 2→0*). **여기서는 못 닫는다 —
- * 그래서 적는다.** 백로그 **F-12**(`docs/03-analysis/doc-link-gate.analysis.md` §6 — 4차 E:
+ * 그래서 적는다.** 백로그 **F-12**(`docs/archive/2026-09/doc-link-gate/doc-link-gate.analysis.md` §6 — 4차 E:
  * 초판은 여기서 F-12를 인용했는데 **그 ID가 어디에도 없었다.** *"그래서 적는다"* 가 거짓 문장이었다).
  * 덮을 수 없는 것을 덮었다고 세면 수치가 거짓말을 한다.
  *
@@ -71,6 +101,11 @@
 import { readdirSync, readFileSync, existsSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import * as tsSpawn from 'node:child_process';
+
+/** 관문 자신의 절대 경로 — `tsx`를 **cwd가 아니라 여기서** 푼다(자식은 임시 cwd에서 돈다). */
+const SELF = fileURLToPath(import.meta.url);
 
 /** ★파서를 못 얻으면 **판정을 흉내 내지 않고 죽는다**(exit 2). 전이 의존이 아니라
  *  `devDependencies`에 올려 두었지만, 그래도 없을 수 있다 — 그때 정규식으로 물러서면
@@ -102,11 +137,94 @@ const ROUTE_RESOLVERS = {
   // ★`?? p.id` 폴백을 두지 않는다(Check). 실측: `processes.json`에 `slug` 없는 항목이 **0개**라
   // 그 경로는 **한 번도 안 돈다.** 무근거 폴백은 3주 전 커밋(`02aafac`)이 지운 병이다 —
   // 없는 길을 열어 두면 그 길이 옳은지 아무도 모른 채 남는다. `slug`가 없어지면 여기서 운다.
-  '/process/[slug]': () => readJson('src/data/processes.json').map((p) => p.slug).filter(Boolean),
+  '/process/[slug]': () => keys('src/data/processes.json', 'slug'),
+  // ── JSON에서 오는 둘 ────────────────────────────────────────
+  '/chapter/[slug]': () => keys('src/data/chapters.json', 'slug'),
+  '/chemicals/[id]': () => keys('src/data/chemicals.json', 'id'),
+  // ── TypeScript에서 오는 다섯 ────────────────────────────────
+  // ★`.mjs`는 TS를 못 읽는다 — `CLAUDE.md`가 명시한 **수동 미러**의 원인이다.
+  // 그런데 `tsx`가 devDependency로 있고 **앱의 진짜 원천을 그대로 평가한다**(실측 0.35초).
+  // → **미러를 새로 만들지 않는다.** 새 JSON 미러는 이 저장소의 *세 번째* 수동 미러가 됐을 것이다.
+  '/sources/[source]': () => fromTs().sources,
+  '/sources/[source]/[module]': () => fromTs().sourceModules,
+  '/sources/osha-scs/[part]': () => fromTs().oshaParts,
+  '/sources/ncs-semi/[module]': () => fromTs().ncsModules,
+  '/sources/daegu-hs-process/[module]': () => fromTs().daeguModules,
 };
+
+/**
+ * 앱의 TypeScript 원천에서 라우트 값을 받아 온다.
+ *
+ * ★**한 번만 뜬다** — 다섯 템플릿이 같은 결과를 공유한다(따로 부르면 `tsx`가 다섯 번 뜬다).
+ * ★**필요할 때만 뜬다** — 해석기는 스캔된 `src/app`에 그 템플릿이 있을 때만 불린다.
+ *   대부분의 대조군 트리에는 없으므로 **`tsx`가 아예 안 뜬다**(자식이 안 무거워진다).
+ * ★**절대 경로로 부른다** — `npx`도 cwd 상대도 아니다. 자식은 **임시 cwd**에서 돌기 때문에
+ *   cwd 상대로는 `tsx`를 못 찾는다. 관문 **자신의 위치**에서 `node_modules/.bin/tsx`를 푼다.
+ *   (그러면 자식이 소유한 **가짜 TS**를 평가한다 — 대조군이 저장소 상태와 무관해진다.)
+ * ★죽으면 **`exit 2`** — 라우트를 열거하지 못하면 검사기가 자기 범위를 주장할 수 없다.
+ *   `sources.ts`에는 **의도된 `throw`** 가 있다(로더 미등록 시). 그때 관문이 죽는 것이 옳다.
+ *
+ * **선**: 이 관문은 라우트를 **열거**할 수 있는지만 본다 —
+ * 앱 데이터의 **내용**(제목이 비었나 · 순서가 맞나)은 안 본다. 그것은 다른 관문의 일이다.
+ */
+let tsCache = null;
+function fromTs() {
+  if (tsCache) return tsCache;
+  const { spawnSync } = tsSpawn;
+  const bin = path.resolve(path.dirname(SELF), '..', 'node_modules', '.bin', 'tsx');
+  if (!existsSync(bin)) fail(`tsx를 찾을 수 없다(${bin}) — 앱의 TS 원천에서 라우트를 열거할 수 없다.`);
+  const r = spawnSync(bin, ['-e', TS_PROBE], { encoding: 'utf8', maxBuffer: 32e6, timeout: 60_000 });
+  if (r.status !== 0) {
+    // ★**던진 메시지를 고른다 — 스택 꼬리가 아니다**(대조군 D-22가 잡았다).
+    // 마지막 세 줄만 취하면 `at [eval]:6:69` 같은 프레임만 남아 **왜 죽었는지가 사라진다.**
+    const out = (r.stderr ?? '') + (r.stdout ?? '');
+    const lines = out.split('\n').filter(Boolean);
+    const detail = (lines.find((l) => /Error:/.test(l)) ?? lines.slice(-3).join(' | ')).trim();
+    fail(`tsx가 앱의 라우트 원천을 열거하지 못했다(종료 ${r.status}) — ${detail.slice(0, 400)}`);
+  }
+  try { tsCache = JSON.parse(r.stdout.trim().split('\n').pop()); }
+  catch (e) { fail(`tsx 출력이 JSON이 아니다 — ${e?.message ?? e}`); }
+  return tsCache;
+}
+
+/** `tsx`에 먹이는 프로그램. **앱이 `generateStaticParams`에서 쓰는 것과 같은 함수**를 부른다. */
+const TS_PROBE = `
+import { getOrderedSources, getSource, OSHA_SCS, NCS_SEMI, DAEGU_HS } from './src/lib/sources.ts';
+import { listSchoolTextSourceIds, hasModuleLoader } from './src/lib/schoolTextMdx.tsx';
+// ★**앱의 가드를 그대로 가져온다**(Check 1차 G-1). 초판은 \`?? []\`로 삼키고 로더 검사를 안 해서
+// *"앱이 쓰는 바로 그 함수를 부른다"* 가 **가장 큰 해석기에서 거짓**이었다 —
+// 로더 없는 모듈을 유효 라우트로 인정해, **앱이 빌드 못 하는 URL에 링크를 걸어도 초록**이었다.
+// 던지면 관문은 exit 2다: 라우트를 열거할 수 없으면 범위를 주장할 수 없다.
+console.log(JSON.stringify({
+  sources: getOrderedSources().map((s) => s.id),
+  sourceModules: listSchoolTextSourceIds().flatMap((id) => {
+    const src = getSource(id);
+    if (!src) throw new Error(\`\${id}: REGISTRY에 있는데 sources.ts에 메타데이터가 없다\`);
+    return src.sections.map((x) => {
+      if (!hasModuleLoader(id, x.id)) throw new Error(\`\${id}/\${x.id}: sections에 있는데 로더가 없다\`);
+      return id + '/' + x.id;
+    });
+  }),
+  oshaParts: OSHA_SCS.sections.map((s) => s.id),
+  ncsModules: NCS_SEMI.sections.map((s) => s.id),
+  daeguModules: DAEGU_HS.sections.map((s) => s.id),
+}));
+`;
 
 function readJson(p) {
   return JSON.parse(readFileSync(p, 'utf8'));
+}
+
+/**
+ * JSON 배열에서 키 값을 뽑는다. ★**`.filter(Boolean)`을 쓰지 않는다** — 조용한 축소는
+ * 세 줄 위에서 `?? p.id` 폴백을 거부한 것과 **같은 부류**다(한 주석 안에 두 정책이었다).
+ * 앱은 그 항목에서 빌드가 깨지는데 관문만 조용히 줄이면, 그 링크에 **거짓 `exit 1`** 이 난다.
+ */
+function keys(file, prop) {
+  const rows = readJson(file);
+  const missing = rows.map((r, i) => (r?.[prop] ? null : i)).filter((i) => i !== null);
+  if (missing.length) fail(`${file}의 항목 ${missing.join(',')}에 '${prop}'이 없다 — 라우트를 열거할 수 없다.`);
+  return rows.map((r) => r[prop]);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -195,6 +313,14 @@ function deriveRoutes(appDir = APP_DIR) {
   const routes = new Set();
   const dynamicTemplates = [];
   const expanded = [];
+  /**
+   * ★**해석기 키가 `src/app`에 실재하는지도 본다**(Check 2차 신규).
+   * 지금까지는 트리 → 키 한 방향만 봤다. 앱이 `/chapter/[slug]`를 `/chapters/[slug]`로 바꾸면
+   * 새 템플릿은 `exit 2`로 시끄럽지만 **옛 키는 영영 조용한 죽은 표면**이 된다.
+   * 렌더 관문이 ε(*배럴은 아는데 파일이 없다*)로 닫아 둔 자리이고,
+   * 키가 하나일 때는 눈에 보였는데 **일곱이 되면서 안 보이게 됐다.**
+   */
+  const usedKeys = new Set();
   for (const p of pages) {
     const rel = path.dirname(path.relative(appDir, p));
     const segs = rel === '.' ? [] : rel.split(path.sep).filter((s) => !/^\(.*\)$/.test(s));   // 라우트 그룹 제외
@@ -206,11 +332,47 @@ function deriveRoutes(appDir = APP_DIR) {
     // 이미 전개된 `/process/[slug]`로 가는 **죽은 슬러그**까지 *주장할 수 없음*(exit 2)으로 냈다.
     // 그것은 **판정할 수 있는 것을 판정 안 한 것**이다 — 순수 함수는 옳았고 **배선**이 틀렸다.
     if (!resolver) { dynamicTemplates.push(norm); continue; }
+    usedKeys.add(norm);
     let values;
     try { values = resolver(); } catch (e) { fail(`동적 라우트 ${norm}의 해석기가 죽었다 — ${e?.message ?? e}`); }
     if (!values?.length) fail(`동적 라우트 ${norm}의 해석기가 아무것도 못 냈다 — 데이터가 비었나.`);
-    for (const v of values) routes.add(norm.replace(/\[[^\]]+\]/, String(v)));
+    // ★★**브래킷이 둘인 템플릿이 있다**(Check 1차 #1). 초판은 `replace`가 **비전역**이라
+    // `/sources/[source]/[module]`에 `'src-a/mod-a'`를 먹이면 `/sources/src-a/mod-a/[module]`이
+    // 나왔다 — **206건 전량이 쓰레기 문자열**이었다. 그러면 진짜 링크가 집합에 없어
+    // **거짓 `exit 1`**("라우트가 src/app에 없다")이 난다. 지뢰(`exit 2`·정직)를
+    // **거짓말로 바꾼 것**이라 시작보다 나쁘다. 대조군 D-17이 브래킷 **하나짜리** 템플릿을 써서
+    // 이 자리를 못 봤다 — *fixture의 모양이 판별력을 정한다.*
+    // ★수가 안 맞으면 **조용히 만들지 않고 죽는다** — 오전개를 표현 불가능하게 만든다.
+    // ★**catch-all(`[...x]`)은 이제 등록할 수 없다** — 슬롯 하나에 값이 여러 조각이라
+    // 이 단언이 `exit 2`를 낸다(실물 0건). 백로그 F-17이 *"거짓 위반(exit 1)"* 이라 적어 뒀는데
+    // **성질이 바뀌었다**: 미등록이면 여전히 거짓 위반, 등록하면 `exit 2`다.
+    const slots = norm.match(/\[[^\]]+\]/g) ?? [];
+    for (const v of values) {
+      const parts = String(v).split('/');
+      // ★빈 세그먼트(`'a/'`)는 개수 단언을 통과하고 `/sources/a/`라는 **매칭 불가 라우트**를
+      // 조용히 만든다(실물 0건 · 백로그). 한 줄이면 막히지만 대조군이 하나 더 는다 —
+      // *필요를 재지 않고 장치를 만들지 않는다*(선행 D-3)에 따라 지금은 **적어만 둔다.**
+      if (parts.length !== slots.length) {
+        fail(`동적 라우트 ${norm}의 해석기가 세그먼트 ${slots.length}개를 기대하는 자리에 「${v}」를 냈다.`);
+      }
+      // ★**조립한다 — 치환하지 않는다.** `String.replace`의 두 번째 인자가 문자열이면
+      // `$&`·`$'` 가 **치환 패턴으로 해석**되고, 값에 `[…]`가 들어가면 다음 회차가 그 안을 다시 친다.
+      // 원래 치명 결함(비전역 replace)과 **같은 계열**이다 — *재서 막는 것이 아니라 못 쓰게 만든다.*
+      let i = 0;
+      const route = '/' + norm.split('/').filter(Boolean)
+        .map((seg) => (seg.startsWith('[') ? parts[i++] : seg)).join('/');
+      routes.add(route);
+    }
     expanded.push(`${norm} → ${values.length}`);
+  }
+  // ★**가짜 트리에는 8개 라우트가 다 없다** — 그래서 자식은 기본으로 건너뛰고,
+  // 이 검사를 겨누는 대조군만 `DLG_KEYCHECK`로 켠다. 부모(실제 저장소)는 언제나 본다.
+  // *조건을 달면서 그 조건을 잴 수 없게 만들면 장치가 또 무대조군이 된다.*
+  const dead = (!process.env.DLG_CHILD || process.env.DLG_KEYCHECK)
+    ? Object.keys(ROUTE_RESOLVERS).filter((k) => !usedKeys.has(k)) : [];
+  if (dead.length) {
+    fail(`ROUTE_RESOLVERS에 있는데 ${appDir}에 없는 템플릿이 있다 — ${dead.join(' · ')}. `
+      + '앱이 라우트를 옮겼거나 지웠다. 죽은 키는 조용하므로 여기서 운다.');
   }
   return { routes, dynamicTemplates, expanded };
 }
@@ -404,7 +566,8 @@ function runMain() {
   console.log('     이름이 바뀌거나 지워진 파일을 그때의 이름으로 적은 것이라 고칠 대상이 아니다).');
   console.log('   ※ 보는 것: 마크다운 링크·이미지 + **JSX/HTML의 `src=""`·`href=""`**.');
   console.log('     `src`는 `public/` 자산으로, `href`·링크는 라우트로 푼다(못 찾으면 `public/`도 본다).');
-  console.log('     라우트는 `page.*`와 `route.*` 둘 다에서 유도한다.');
+  console.log('     라우트는 `page.*`와 `route.*` 둘 다에서 유도한다 — 동적 세그먼트는 **앱의 원천**에서 푼다.');
+  console.log('   ※ 이 관문은 라우트를 **열거**할 수 있는지만 본다 — 앱 데이터의 **내용**은 안 본다.');
   console.log(`\n소요 ${((Date.now() - T0) / 1000).toFixed(2)}초`);
   return 0;
 }
@@ -419,7 +582,7 @@ function runMain() {
  */
 const CONTROLS = {
   판정: 29,   // 순수 함수와 파서에 직접 먹인다
-  처분: 14,   // 자식 프로세스를 임시 cwd에서 돌린다
+  처분: 26,   // 자식 프로세스를 임시 cwd에서 돌린다
 };
 /**
  * 실행 집계 — **판정을 찍는 자리**에서만 올린다(배열 선언 길이가 아니다 · 선행 G-2).
@@ -503,7 +666,7 @@ function selfTestJudge() {
 }
 
 /** 처분 대조군 — 가짜 트리를 소유한 **임시 cwd**에서 자식을 돌리고 종료 코드와 사유를 본다. */
-async function spawnChild({ name, tree, wantStatus, wantReason = [], denyReason = [] }) {
+async function spawnChild({ name, tree, wantStatus, wantReason = [], denyReason = [], env = {} }) {
   const { spawnSync } = await import('node:child_process');
   const dir = mkdtempSync(path.join(os.tmpdir(), 'dlg-'));
   try {
@@ -513,7 +676,7 @@ async function spawnChild({ name, tree, wantStatus, wantReason = [], denyReason 
       writeFileSync(p, body);
     }
     const r = spawnSync(process.execPath, [path.resolve('scripts/verify-doc-links.mjs')], {
-      cwd: dir, encoding: 'utf8', env: { ...process.env, DLG_CHILD: '1' }, timeout: 30_000,
+      cwd: dir, encoding: 'utf8', env: { ...process.env, DLG_CHILD: '1', ...env }, timeout: 30_000,
     });
     const out = (r.stdout ?? '') + (r.stderr ?? '');
     const want = (Array.isArray(wantReason) ? wantReason : [wantReason]).filter(Boolean);
@@ -535,13 +698,50 @@ async function spawnChild({ name, tree, wantStatus, wantReason = [], denyReason 
 }
 
 const PAGE = 'export default function P(){return null}\n';
+/**
+ * ★**가짜 TS를 대조군이 소유한다**(Design E). `tsx`는 임시 cwd에서 이 파일들을 평가한다 —
+ * 그래서 TS 기반 해석기의 대조군도 **실제 저장소와 무관**하다(이 관문이 지켜 온 성질이다).
+ * JSX가 없는 `.tsx`는 그냥 TS라 문제없다(실측).
+ */
+/** 해석기 키 일곱 + process — **전부** 트리에 두는 조각(D-24·D-25용). */
+const ALL_ROUTE_DIRS = {
+  'src/app/chapter/[slug]/page.tsx': PAGE,
+  'src/app/chemicals/[id]/page.tsx': PAGE,
+  'src/app/sources/[source]/page.tsx': PAGE,
+  'src/app/sources/[source]/[module]/page.tsx': PAGE,
+  'src/app/sources/osha-scs/[part]/page.tsx': PAGE,
+  'src/app/sources/ncs-semi/[module]/page.tsx': PAGE,
+  'src/app/sources/daegu-hs-process/[module]/page.tsx': PAGE,
+  'src/data/chapters.json': JSON.stringify([{ slug: 'ch-a' }]),
+  'src/data/chemicals.json': JSON.stringify([{ id: 'cas-1' }]),
+};
+
+const FAKE_TS = (extra = {}) => ({
+  'src/lib/sources.ts': `
+export const OSHA_SCS = { sections: [{ id: 'part-1' }] };
+export const NCS_SEMI = { sections: [{ id: 'ncs-a' }] };
+export const DAEGU_HS = { sections: [{ id: 'dg-a' }] };
+const ALL: Record<string, { sections: { id: string }[] }> = { 'src-a': { sections: [{ id: 'mod-a' }] } };
+export function getOrderedSources() { return [{ id: 'src-a' }]; }
+export function getSource(id: string) { return ALL[id]; }
+`,
+  'src/lib/schoolTextMdx.tsx': `export function listSchoolTextSourceIds(): string[] { return ['src-a']; }
+export function hasModuleLoader(_id: string, _mod: string): boolean { return true; }
+`,
+  ...extra,
+});
 const okTree = (extra = {}) => ({
   'src/app/about/page.tsx': PAGE,
   'src/app/process/[slug]/page.tsx': PAGE,
   // ★**해석기 없는 템플릿을 정상 트리에 둔다**(Check 3차 C-2). 링크가 안 걸리면 `exit 0`이지만
   // 관문은 그것을 **말해야** 한다 — 안 말하면 *"동적 라우트는 다 본다"* 로 읽힌다.
   // D-01(정상 트리)의 사유 정규식이 그 줄을 관측하므로, 출력을 지우면 그 대조군이 운다.
-  'src/app/chapter/[slug]/page.tsx': PAGE,
+  // ★**합성 템플릿이다 — 실제 라우트 이름을 빌리지 않는다**(Design D-0).
+  // 초판은 `chapter/[slug]`를 "미등록 예시"로 썼는데, 그 템플릿에 해석기가 등록되는 순간
+  // `미등록 템플릿` 줄이 안 찍혀 이 대조군이 **조용히 무너진다**(실측으로 먼저 확인했다).
+  // `합성/[없는것]`은 `ROUTE_RESOLVERS`에 영영 안 들어가므로 **영구 표적**이다 —
+  // *장치를 늘리면 옛 장치가 무력해진다*를 막는다.
+  'src/app/합성/[없는것]/page.tsx': PAGE,
   // ★`SKIP_DIRS`의 `data/` 배선을 여기서 잰다(Check 4차 G). 성공 출력이 *"`data/` 제외"* 를
   // 주장하는데 지키는 자가 없었다 — `'data'`를 빼면 이 깨진 링크가 exit 1을 낸다.
   'data/원문.md': '# 원문\n\n[깨짐](./없다.md)\n',
@@ -565,7 +765,7 @@ async function selfTestDisposition() {
         /JSX 여는 태그/, /data\//, /대소문자/, /인라인 코드의 경로 언급/,
         // ★`/보는 것:/`은 **공허했다**(Check 6차 A) — 「안 **보는 것:**」에 이미 걸린다.
         // 그래서 「※ 보는 것:」과 그 아래 두 줄을 각각 붙든다.
-        /※ 보는 것:/, /자산으로/, /둘 다에서 유도한다/, /출처: link/, /동적 라우트: /,
+        /※ 보는 것:/, /자산으로/, /둘 다에서 유도한다/, /출처: link/, /동적 라우트: /, /열거/,
         /미등록 템플릿/, /소요 [\d.]+초/],
       denyReason: [/링크 대상이 없다/, /해석기가 없는/] },
     { name: 'D-02 죽은 파일 링크는 exit 1', wantStatus: 1, wantReason: [/링크 대상이 없다/, /없다\.md/],
@@ -576,7 +776,8 @@ async function selfTestDisposition() {
       tree: okTree({ 'docs/a.md': '# a\n\n[슬러그](/process/없는슬러그/)\n' }) },
     { name: 'D-05 ★해석기 없는 동적 라우트는 exit 2 (조용히 통과시키지 않는다)', wantStatus: 2,
       wantReason: [/해석기가 없는 동적 라우트/, /ROUTE_RESOLVERS/], denyReason: [/링크 대상이 없다/],
-      tree: okTree({ 'src/app/sources/[source]/page.tsx': PAGE, 'docs/a.md': '# a\n\n[자료원](/sources/뭐든/)\n' }) },
+      // ★여기도 합성 템플릿이다(Design D-0) — 실제 이름을 쓰면 등록될 때 이 대조군이 죽는다.
+      tree: okTree({ 'src/app/합성둘/[없는것]/page.tsx': PAGE, 'docs/a.md': '# a\n\n[합성](/합성둘/뭐든/)\n' }) },
     { name: 'D-06 검사할 문서가 하나도 없으면 exit 2', wantStatus: 2, wantReason: [/파일을 하나도 못 찾았다/],
       tree: { 'src/app/about/page.tsx': PAGE, 'src/data/processes.json': '[]' } },
     { name: 'D-07 해석기가 아무것도 못 내면 exit 2 (데이터가 비었다)', wantStatus: 2, wantReason: [/아무것도 못 냈다/],
@@ -605,6 +806,95 @@ async function selfTestDisposition() {
     { name: 'D-13 ★JSX src=""도 본다 (마크다운 ![]()는 몇 건, 이 꼴이 대부분)', wantStatus: 1,
       wantReason: [/링크 대상이 없다/, /없는이미지\.png/, /public\//],   // ★`/public\//`가 ASSET의 'src' 성분을 지킨다(D-13의 수법)
       tree: okTree({ 'docs/a.md': '# a\n\n<img src="/없는이미지.png" alt="x" />\n' }) },
+    // ★해석기 일곱에 대조군을 붙인다(Design 위험 표). **등록만 하고 안 재면** 선행이 일곱 판독
+    // 내내 짚은 그 자리다 — *장치를 세우면 그 장치가 무대조군이 된다.*
+    { name: 'D-15 ★JSON 해석기(chapter)가 전개된다 — 오타 슬러그는 exit 1', wantStatus: 1,
+      wantReason: [/링크 대상이 없다/, /없는장/],
+      // ★긍정 경로도 잰다(Check 1차 #7) — 해석기가 엉뚱한 값을 내면 좋은 링크도 함께 죽는데,
+      // 그러면 `없는장`만 보는 대조군은 그대로 초록이다.
+      denyReason: [/해석기가 없는/, /ch-a/],
+      tree: okTree({ 'src/app/chapter/[slug]/page.tsx': PAGE,
+        'src/data/chapters.json': JSON.stringify([{ slug: 'ch-a' }]),
+        'docs/a.md': '# a\n\n[좋다](/chapter/ch-a/) · [나쁘다](/chapter/없는장/)\n' }) },
+    { name: 'D-16 ★JSON 해석기(chemicals)가 전개된다 — 오타 id는 exit 1', wantStatus: 1,
+      wantReason: [/링크 대상이 없다/, /없는물질/], denyReason: [/해석기가 없는/, /cas-1/],
+      tree: okTree({ 'src/app/chemicals/[id]/page.tsx': PAGE,
+        'src/data/chemicals.json': JSON.stringify([{ id: 'cas-1' }]),
+        'docs/a.md': '# a\n\n[좋다](/chemicals/cas-1/) · [나쁘다](/chemicals/없는물질/)\n' }) },
+    { name: 'D-17 ★TS 원천(tsx)에서 전개된다 — 옳은 링크는 exit 0', wantStatus: 0,
+      wantReason: [/전 항목 통과/, /sources\/\[source\] → 1/], denyReason: [/링크 대상이 없다/, /해석기가 없는/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/page.tsx': PAGE,
+        'docs/a.md': '# a\n\n[자료원](/sources/src-a/)\n' })) },
+    { name: 'D-18 ★TS 전개의 오타는 exit 1 (가짜 TS가 원천이다)', wantStatus: 1,
+      wantReason: [/링크 대상이 없다/, /없는자료원/], denyReason: [/해석기가 없는/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/page.tsx': PAGE,
+        'docs/a.md': '# a\n\n[없다](/sources/없는자료원/)\n' })) },
+    { name: 'D-19 ★TS 원천이 던지면 exit 2 (조용히 빈 집합을 쓰지 않는다)', wantStatus: 2,
+      wantReason: [/라우트 원천을 열거하지 못했다|해석기가 죽었다/], denyReason: [/링크 대상이 없다/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/page.tsx': PAGE,
+        'src/lib/sources.ts': `export function getOrderedSources(): { id: string }[] { throw new Error('로더 미등록'); }
+export function getSource() { return undefined; }
+export const OSHA_SCS = { sections: [] }; export const NCS_SEMI = { sections: [] }; export const DAEGU_HS = { sections: [] };`,
+        'docs/a.md': '# a\n\n[자료원](/sources/src-a/)\n' })) },
+    // ★★**브래킷이 둘인 템플릿**을 겨눈다(Check 1차 #1). 초판은 이 자리가 없어
+    // 206건이 쓰레기 문자열인데도 48건이 전원 초록이었다 — *fixture의 모양이 판별력을 정한다.*
+    { name: 'D-20 ★브래킷 둘짜리 템플릿이 옳게 전개된다 (206건이 쓰레기였던 자리)', wantStatus: 0,
+      wantReason: [/전 항목 통과/, /\[source\]\/\[module\] → 1/], denyReason: [/링크 대상이 없다/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/[module]/page.tsx': PAGE,
+        'docs/a.md': '# a\n\n[모듈](/sources/src-a/mod-a/)\n' })) },
+    { name: 'D-21 ★해석기가 세그먼트 수를 안 맞추면 exit 2 (조용한 오전개를 막는다)', wantStatus: 2,
+      wantReason: [/세그먼트 2개를 기대하는 자리에/], denyReason: [/링크 대상이 없다/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/[module]/page.tsx': PAGE,
+        'src/lib/schoolTextMdx.tsx': `export function listSchoolTextSourceIds(): string[] { return ['src-a']; }
+export function hasModuleLoader(): boolean { return true; }
+`,
+        'src/lib/sources.ts': `
+export const OSHA_SCS = { sections: [] }; export const NCS_SEMI = { sections: [] }; export const DAEGU_HS = { sections: [] };
+export function getOrderedSources() { return [{ id: 'src-a' }]; }
+export function getSource() { return { sections: [{ id: 'mod-a/여분' }] }; }
+`,
+        'docs/a.md': '# a\n\n[모듈](/sources/src-a/mod-a/)\n' })) },
+    // ★앱의 가드가 **실제로 도는지** 잰다(되돌림 실측: 이 대조군이 없으면 가드를 빼도 조용했다).
+    { name: 'D-22 ★로더 없는 모듈이면 exit 2 (앱의 가드를 그대로 진다)', wantStatus: 2,
+      wantReason: [/열거하지 못했다/, /로더가 없다/], denyReason: [/링크 대상이 없다/],
+      tree: okTree(FAKE_TS({ 'src/app/sources/[source]/[module]/page.tsx': PAGE,
+        'src/lib/schoolTextMdx.tsx': `export function listSchoolTextSourceIds(): string[] { return ['src-a']; }
+export function hasModuleLoader(): boolean { return false; }
+`,
+        'docs/a.md': '# a\n\n[모듈](/sources/src-a/mod-a/)\n' })) },
+    // ★**해석기 셋을 한 자식으로 덮는다**(Check 2차 G-2). 초판은 D-20~22가 셋 다
+    // `sourceModules` **한 해석기**를 겨눠서, `oshaParts`와 `ncsModules`를 **맞바꿔도**
+    // 51건 전원 초록이었다 — D-20이 잡은 병(206건이 쓰레기인데 전원 초록)과 같은 모양이 셋 남아 있었다.
+    { name: 'D-23 ★osha·ncs·daegu 해석기가 각각 자기 값을 낸다 (맞바꾸면 운다)', wantStatus: 0,
+      wantReason: [/전 항목 통과/, /osha-scs\/\[part\] → 1/, /ncs-semi\/\[module\] → 2/, /daegu-hs-process\/\[module\] → 3/],
+      denyReason: [/링크 대상이 없다/],
+      tree: okTree(FAKE_TS({
+        'src/app/sources/osha-scs/[part]/page.tsx': PAGE,
+        'src/app/sources/ncs-semi/[module]/page.tsx': PAGE,
+        'src/app/sources/daegu-hs-process/[module]/page.tsx': PAGE,
+        // ★수를 1·2·3으로 다르게 준다 — 같으면 맞바꿔도 조용하다.
+        'src/lib/sources.ts': `
+export const OSHA_SCS = { sections: [{ id: 'o1' }] };
+export const NCS_SEMI = { sections: [{ id: 'n1' }, { id: 'n2' }] };
+export const DAEGU_HS = { sections: [{ id: 'd1' }, { id: 'd2' }, { id: 'd3' }] };
+export function getOrderedSources() { return [{ id: 'src-a' }]; }
+export function getSource() { return { sections: [{ id: 'mod-a' }] }; }
+`,
+        'docs/a.md': '# a\n\n[o](/sources/osha-scs/o1/) · [n](/sources/ncs-semi/n2/) · [d](/sources/daegu-hs-process/d3/)\n' })) },
+    // ★해석기 키가 트리에 실재하는지 잰다 — **죽은 키는 조용하다**(렌더 관문의 ε와 같은 자리).
+    { name: 'D-24 ★해석기 키가 전부 트리에 있으면 exit 0', wantStatus: 0, env: { DLG_KEYCHECK: '1' },
+      wantReason: [/전 항목 통과/], denyReason: [/ROUTE_RESOLVERS에 있는데/],
+      tree: okTree(FAKE_TS(ALL_ROUTE_DIRS)) },
+    { name: 'D-25 ★해석기 키가 트리에 없으면 exit 2 (죽은 표면을 잡는다)', wantStatus: 2, env: { DLG_KEYCHECK: '1' },
+      wantReason: [/ROUTE_RESOLVERS에 있는데/, /chapter\/\[slug\]/],
+      tree: (() => { const t = okTree(FAKE_TS(ALL_ROUTE_DIRS)); delete t['src/app/chapter/[slug]/page.tsx']; return t; })() },
+    // ★`keys()`의 누락 단언을 잰다 — 초판의 `.filter(Boolean)`은 **조용히 줄여서**
+    // 그 항목의 링크에 거짓 `exit 1`을 냈다. 앱은 그 자리에서 빌드가 깨진다.
+    { name: 'D-26 ★JSON 항목에 키가 없으면 exit 2 (조용히 줄이지 않는다)', wantStatus: 2,
+      wantReason: [/'slug'이 없다/, /라우트를 열거할 수 없다/], denyReason: [/링크 대상이 없다/],
+      tree: okTree({ 'src/app/chapter/[slug]/page.tsx': PAGE,
+        'src/data/chapters.json': JSON.stringify([{ slug: 'ch-a' }, { title: '슬러그 없음' }]),
+        'docs/a.md': '# a\n\n[좋다](/chapter/ch-a/)\n' }) },
     { name: 'D-14 ★링크의 절대 경로는 라우트에 없으면 public/도 본다 (비대칭 제거)', wantStatus: 0,
       wantReason: [/전 항목 통과/], denyReason: [/링크 대상이 없다/],
       tree: okTree({ 'public/sitemap.xml': '<x/>', 'docs/a.md': '# a\n\n[사이트맵](/sitemap.xml)\n' }) },
@@ -630,7 +920,8 @@ async function runSelfTest() {
   // ★**이름이 유일한지 본다**(Check 5차 4). `CONTROLS`는 **개수**만 재므로 같은 이름이 둘이어도
   // 43은 43이다 — 실제로 번호가 **세 번** 충돌했고(재번호 3회) 마지막엔 판정과 처분에 같은 번호가
   // 하나씩 있었다. 그래서 번호를 버리고 무리별 접두어(`J-01`·`D-01`)로 바꾸면서 이 단언을 얹는다.
-  // (이 단언 자신은 대조군을 만들 수 없다 — 위 상한 목록의 여섯째다.)
+  // (이 단언 자신은 대조군을 만들 수 없다 — 위 상한 목록의 *식별자 유일성 단언*이 그것이다.
+  //  **서수로 가리키지 않는다** — 이 파일이 번호 인용으로 세 번 낡았고, 그 목록에서 방금 수를 지웠다.)
   // ★**식별자만** 본다 — 이름 전체를 비교하면 공허하다(Check 5차 실측: 접두어를 겹쳐도
   // 뒤 설명이 달라 통과했다. 실제 충돌이었던 `㉙ 홑따옴표` vs `㉙ 정상 트리`도 못 잡았을 것이다).
   // **인용에 쓰이는 것은 식별자이므로 유일해야 하는 것도 식별자다.**
