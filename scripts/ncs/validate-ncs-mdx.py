@@ -4,7 +4,7 @@
 사용: python3 scripts/ncs/validate-ncs-mdx.py src/content/sources/ncs-semi/*.mdx
 
 스펙: docs/02-design/features/ncs-semiconductor-dev-track.spec.md (구조)
-    + docs/02-design/features/ncs-image-expansion.design.md §6.1 (ImageFigure 확장)
+    + docs/archive/2026-07/ncs-image-expansion/design.md §6.1 (ImageFigure 확장)
 """
 import re
 import sys

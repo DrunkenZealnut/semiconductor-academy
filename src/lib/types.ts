@@ -184,7 +184,7 @@ export const HAZARD_COLOR: Record<HazardType, string> = {
 
 // ─────────────────────────────────────────────────────────────
 // Source (자료원) — multi-source-learning-platform
-// Design: docs/02-design/features/multi-source-learning-platform.design.md §3.1
+// Design: docs/archive/2026-05/multi-source-learning-platform/design.md §3.1
 // ─────────────────────────────────────────────────────────────
 
 export type SourceKind =

@@ -1,7 +1,7 @@
 /**
  * Cross-link runtime lookup.
  *
- * Design: docs/02-design/features/cross-link-system.design.md §4.2
+ * Design: docs/archive/2026-05/cross-link-system/design.md §4.2
  *
  * 핵심 책임:
  * - 같은 source 내 자기 참조 자동 제외

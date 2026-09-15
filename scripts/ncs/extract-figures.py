@@ -9,7 +9,7 @@ flags:
   self_attributed — NCS 자체 저작 표기(집필진 제작·교육부 자기 인용) — 사용 가능
   boilerplate     — 표지·NCS 활용 안내 구간 (page <= 8)
   photo           — 실사 사진(파일명 Picture) — 개념도 대비 보수 취급
-설계: docs/02-design/features/ncs-image-expansion.design.md §1.1
+설계: docs/archive/2026-07/ncs-image-expansion/design.md §1.1
 (출처 표기가 있어도 저작 주체가 집필진·교육부·직업능력개발원·산업인력공단이면 국가 저작 — 사용 가능)
 """
 import json

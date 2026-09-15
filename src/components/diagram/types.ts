@@ -27,7 +27,7 @@ export type DiagramKind =
 
 /**
  * 도해 컴포넌트 공통 props.
- * Design: docs/02-design/features/diagram-component-set.design.md §2.1
+ * Design: docs/archive/2026-08/diagram-component-set/diagram-component-set.design.md §2.1
  */
 export interface DiagramCommon {
   /** 도해 제목. SVG `<title>`에도 쓰인다. */

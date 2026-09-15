@@ -1,6 +1,6 @@
 /**
  * 자체 도해 컴포넌트 세트.
- * Design: docs/02-design/features/diagram-component-set.design.md
+ * Design: docs/archive/2026-08/diagram-component-set/diagram-component-set.design.md
  *
  * 전부 서버 컴포넌트다 — 'use client' 없이 SVG/HTML을 서버에서 렌더해
  * First Load JS 증가를 0으로 유지한다.
