@@ -229,8 +229,11 @@ aria-pressed annotation을 자동 출력 → 별도 수동 inspector 필요 없�
 
 직전 cycle `quotes-source-filter-polish`에서 분류된 Minor 5건 중 본 cycle 미처리 없음(scope out of scope는 계획된 ChemicalSearch 후속):
 
-| ID | 항목 | 우선순위 |
-|---|------|:--------:|
+> ⚠️ **2026-09-06 정정** — 헤더가 3열인데 행이 4열이라 **우선순위(P1~P3)가 렌더에서 잘렸다.**
+> 빠져 있던 **설명** 칸을 헤더에 더했다(행은 그대로).
+
+| ID | 항목 | 설명 | 우선순위 |
+|---|------|---|:--------:|
 | a | `filter-button-promotion-chemicals` | ChemicalSearch 카테고리/공정 chip + variant='solid' 1건 design decision (~30m) | P1 |
 | b | `chip-variant-system` | (a)에서 자연 도출되면 통합 | P2 |
 | c | `chip-group-roving-tabindex` | (선택) 키보드 좌우 화살표 a11y | P3 |

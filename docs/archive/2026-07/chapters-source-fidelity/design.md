@@ -98,7 +98,7 @@
 
 | 컴포넌트 | 시그니처 | 비고 |
 |---|---|---|
-| `Callout` | `<Callout type="info|warning|tip|source" title="…">본문</Callout>` | 이 4가지 type만 |
+| `Callout` | `<Callout type="info\|warning\|tip\|source" title="…">본문</Callout>` | 이 4가지 type만 |
 | `Term` | `<Term id="…">표시 텍스트</Term>` | id ∈ semiconductor, wafer, photoresist, cleanroom, ingot, doping, plasma, mask, etching, deposition, cmp, precautionary-principle, msds, iarc-1, emf |
 | `ChemicalCard` | `<ChemicalCard id="…" />` | id ∈ benzene, arsine, phosphine, diborane, hydrofluoric-acid, hydrogen-peroxide, isopropyl-alcohol, pgmea, tmah, hmds, chlorine, fluorine, silane, ammonia, tungsten-hexafluoride, boron-trifluoride, silica-slurry, ceria-slurry, lead, epoxy-resin, solder-flux, trichlorosilane, arsenic, ethylene-glycol-ether, antimony-trioxide, boron-tribromide, phosphorus-oxychloride, dichlorosilane, ozone, sulfuric-acid |
 | `HazardBadge` | `<HazardBadge type="…" />` | type ∈ carcinogen-1, carcinogen-2a, reproductive-toxin, mutagen, corrosive, acute-toxic, sensitizer |

@@ -12,7 +12,7 @@
  * ★**절대 경로를 `public/`으로 푸는 근거는 HTML 규칙이 아니라 컴포넌트 계약이다** —
  * `src/components/content/ImageFigure.tsx`가 `src.startsWith('/') ? basePath + src : src`로 쓴다.
  *
- * Design: docs/02-design/features/doc-link-gate.design.md
+ * Design: docs/archive/2026-09/doc-link-gate/doc-link-gate.design.md
  *
  * ```bash
  * npm run verify:links
@@ -60,8 +60,9 @@
  *   · `fromTs()`의 **캐시**(*"한 번만 뜬다"*) — 지워도 결과가 같아 아무도 안 운다
  *   · `existsSync(bin)` 가드 — **행동상 잉여다**(지워도 `spawnSync`가 ENOENT로 같은 `fail` 경로로 간다)
  *   · ★**`!DLG_CHILD`로 조건 지어진 자리들** — **구조적으로 관측 불가**다.
- *     자식을 `DLG_CHILD` 없이 돌리면 자체검사가 **재귀**하기 때문이다. 지금 둘이다:
- *       — **본 검사 앞 게이트**(`!DLG_CHILD && !await runSelfTest()`): **가장 값진 무보증 자리**.
+ *     자식을 `DLG_CHILD` 없이 돌리면 자체검사가 **재귀**하기 때문이다. ★**수를 안 적는다**
+ *     (초판은 *"둘이다"* 라 적었고 셋이 됐다 — Check 3차 G-9). 하나만 이름으로 남긴다:
+ *       — **본 검사 앞 게이트**(`!DLG_CHILD && !await runSelfTest()`)   ※ 수는 안 적는다 — `rg` 로 물어라: **가장 값진 무보증 자리**.
  *         그 배선이 죽으면 자체검사 실패가 본 검사를 못 막고 **대조군 전부가 장식**이 된다.
  *       — **죽은 해석기 키 검사**의 `!process.env.DLG_CHILD ||` 분지: 그것만 지우면
  *         `DLG_KEYCHECK`를 직접 넘기는 대조군들이 그대로 통과해 **아무도 안 운다**
@@ -132,7 +133,8 @@ const PUBLIC_DIR = 'public';
 
 /** 동적 라우트 해석기. ★**여기 없는 동적 라우트로 가는 링크는 `exit 2`다** —
  *  조용히 통과시키면 그 라우트는 영영 무검사다(렌더 관문의 δ와 같은 처분).
- *  지금 등록된 것이 하나뿐인 이유는 **실측상 링크가 그리로만 가기 때문**이다. */
+ *  ★**수를 여기 안 적는다** — 등록된 해석기가 몇인지는 **실행이 찍는다**(`동적 라우트: … → N`).
+ *  초판은 *"하나뿐"* 이라 적었고 **두 사이클 뒤에 여덟이 됐다**(Check 2차 A-11). */
 const ROUTE_RESOLVERS = {
   // ★`?? p.id` 폴백을 두지 않는다(Check). 실측: `processes.json`에 `slug` 없는 항목이 **0개**라
   // 그 경로는 **한 번도 안 돈다.** 무근거 폴백은 3주 전 커밋(`02aafac`)이 지운 병이다 —
@@ -406,9 +408,64 @@ const PROC = unified().use(remarkParse).use(remarkGfm);
  * `matchAll`은 그 부류를 통째로 없앤다 — **재는 대신 못 쓰게 만든다.**
  */
 const ATTR = /\s(src|href)="([^"]+)"/g;
-function refsIn(source) {
+
+/**
+ * ★**표가 «적힌 것과 다르게» 렌더되는 것을 잰다**(F-27).
+ *
+ * GFM에서 표 안의 리터럴 `|`는 **백틱 안이라도** 열 구분자다 — 파이프 이스케이프가
+ * **인라인 파싱보다 먼저** 오기 때문이다. 그래서 셀이 쪼개지고 **뒤 내용이 렌더에서 사라진다.**
+ * 직전 사이클이 자기 손으로 3건을 만들었고, 잡은 것은 관문이 아니라 리뷰어였다.
+ *
+ * ★**규칙은 하나다 — `셀 수 ≠ 헤더 열 수`.** 셀이 «모자란» 경우를 뺄까 따졌는데
+ * (*"빈 칸 렌더라 무해하다"*) **재보니 거짓이었다**: `ch2-deep-content.analysis.md`는
+ * 헤더가 5열인데 행이 4라 값이 **한 칸씩 밀려** `영역=3 · ✅=0`으로 읽히고,
+ * `w4-design.md:166`은 **문단이 표 행으로 삼켜졌다**. 둘 다 진짜 오렌더다.
+ *
+ * ★**두 번째 신호는 «만들지 않았다» — 후보 둘을 재보고 뺐다**(Design §0).
+ * 표적이던 실물 1건(`quotes-source-filter/analysis.md:34`)은 **표 밖에서 파싱해도 똑같이
+ * 깨진다** — 코드 스팬 안에는 이스케이프가 없어서(CommonMark) 백틱이 첫 짝에서 닫히는
+ * **저작 실수**이고 표와 무관하다. 그 계열은 F-29다.
+ * *신호를 세우기 전에, 그 신호가 겨누는 것이 정말 그 자리에 있는지 먼저 잰다.*
+ *
+ * 안 보는 것: HTML `<table>`·JSX 표(파서가 `html` 노드로 준다 — 셀을 못 센다) ·
+ * **코드 펜스 안의 표**(파서가 표로 안 본다 — 그것이 곧 우회로다).
+ */
+/**
+ * 대조군용 얇은 겉옷 — **본 검사와 같은 `PROC`로 트리를 만들어** `refsIn`에 넘긴다.
+ * `refsIn`이 트리를 받게 된 뒤(doc-table-integrity 착수 ①) 판정 대조군 10건이 **즉시 빨개졌다** —
+ * 그 자체가 이 이동의 첫 되돌림 관측이고, `D-29`를 만들기 전에 기존 장치가 먼저 울었다.
+ * 파싱을 «부르는 자리»는 여기가 아니라 본 검사에 있고, 그 배선은 처분 대조군이 덮는다.
+ */
+/** 파싱 조립의 **단일 원천**. 본 검사도 대조군도 이것만 부른다 — 이음매가 생길 자리가 없다. */
+const treeOf = (src) => PROC.parse(src);
+// ★**상한**: 오늘 `treeOf`는 한 줄 통과라, 대조군이 `PROC.parse`를 직접 불러도 **동작이 같아 조용하다**
+//   (되돌림으로 확인). 즉 «단일 원천»은 지금 **규율**이지 **관측된 사실**이 아니다 —
+//   `treeOf`에 단계가 붙는 순간 관측 가능해진다. 그때까지는 이 문장이 상한이다(Check 3차 G-3).
+const refsOf = (src) => refsIn(treeOf(src));
+
+function tableViolations(tree) {
   const out = [];
-  visit(PROC.parse(source), (n) => {
+  visit(tree, (n) => {
+    if (n.type !== 'table') return;
+    const head = n.children?.[0];
+    if (!head) return;
+    const want = head.children.length;
+    for (const row of n.children.slice(1)) {
+      const got = row.children.length;
+      if (got !== want) out.push({ line: row.position?.start?.line ?? 0, want, got });
+    }
+  });
+  return out;
+}
+/**
+ * ★**트리를 «받는다» — 자기 안에서 파싱하지 않는다**(doc-table-integrity 착수 ①).
+ * 표 검사가 같은 트리를 한 번 더 순회해야 하는데, 여기서 파싱하면 파일마다 **두 번** 파싱한다.
+ * 호출부가 한 번 파싱해 두 검사에 넘긴다. ★**이 이동을 지킨 것은 `D-29`가 아니라 기존 판정
+ * 대조군 10건**이었다 — 옮기는 즉시 빨개졌다(Check 정정 · 초판은 `D-29`가 잰다고 적었다).
+ */
+function refsIn(tree) {
+  const out = [];
+  visit(tree, (n) => {
     const line = n.position?.start?.line ?? 0;
     if (n.type === 'link' || n.type === 'image') { out.push({ url: n.url, line, node: n.type }); return; }
     // ★**JSX·HTML 속성도 본다**(Check G-1). 초판은 마크다운 `![]()` 4건만 보면서
@@ -451,12 +508,17 @@ function runMain() {
   /** 절대 경로가 **라우트가 아니라 `public/` 자산**을 뜻하는 출처. */
   const ASSET = new Set(['image', 'src']);
   const violations = [];
+  const tableViol = [];
   const unclaimable = [];
 
   for (const f of files) {
-    let refs;
-    try { refs = refsIn(readFileSync(f, 'utf8')); }
-    catch (e) { fail(`${f}을 파싱하지 못했다 — ${e?.message ?? e}`); }
+    let refs, tableBad;
+    try {
+      const tree = treeOf(readFileSync(f, 'utf8'));       // ★한 번만 파싱한다 · 대조군과 같은 조립
+      refs = refsIn(tree);
+      tableBad = tableViolations(tree);
+    } catch (e) { fail(`${f}을 파싱하지 못했다 — ${e?.message ?? e}`); }
+    for (const t of tableBad) tableViol.push({ f, ...t });
     for (const { url, line, node } of refs) {
       const kind = classify(url);
       // ★갈래를 늘리고 여기 안 더하면 `undefined + 1 = NaN`이 되어 **총계가 조용히 죽는다.**
@@ -531,6 +593,18 @@ function runMain() {
     process.exit(2);
   }
 
+  // 표를 먼저 찍는다 — 표가 깨지면 그 행의 링크가 «다른 셀»로 읽히므로 원인이 위에 오는 것이 낫다.
+  // ★단 **끝내지는 않는다**: 초판은 여기서 `exit 1`을 내 링크를 통째로 가렸다(Check 5-3).
+  if (tableViol.length) {
+    console.error(`\n❌ 표의 셀 수가 헤더와 다르다 — ${tableViol.length}건`);
+    for (const v of tableViol) {
+      console.error(`   ${v.f}:${v.line}  헤더 열 ${v.want} → 이 행 셀 ${v.got}`);
+    }
+    console.error('      ① 셀 안의 리터럴 `|`는 **백틱 안이라도** 열 구분자다 — `\\|`로 이스케이프하라.');
+    console.error('      ② 표를 설명하려던 것이면 **코드 펜스**로 옮겨라 — 파서가 표로 보지 않는다.');
+    console.error('      ③ 열을 정말 더하거나 뺄 생각이었으면 **헤더**를 함께 고쳐라.');
+  }
+
   if (violations.length) {
     console.error(`\n❌ 링크 대상이 없다 — ${violations.length}건`);
     for (const v of violations) {
@@ -550,8 +624,13 @@ function runMain() {
         console.error('      라우트가 src/app 에 없다. 페이지를 옮겼으면 링크도 함께 고쳐라.');
       }
     }
-    process.exit(1);
   }
+
+  // ★**둘 다 찍고 한 번에 끝낸다**(Check A-2). 초판은 표에서 먼저 `exit 1`을 내서
+  // 표·링크가 함께 깨진 트리에서 **링크 위반이 아예 안 보였다**(실측: 자식으로 돌려 확인).
+  // 정당화는 *"원인부터 고치게 한다"* 였는데, 그 근거(표가 깨지면 링크 자리가 어긋난다)를
+  // **재본 적이 없다.** 한 번에 다 말하면 왕복이 한 번이고, 그 근거도 필요 없어진다.
+  if (tableViol.length || violations.length) process.exit(1);
 
   console.log('\n✅ 전 항목 통과 — 죽은 링크 없음.');
   // ★**안 보는 것을 말한다.** 안 적으면 이 수치가 "닫았다"로 읽힌다.
@@ -567,6 +646,14 @@ function runMain() {
   console.log('   ※ 보는 것: 마크다운 링크·이미지 + **JSX/HTML의 `src=""`·`href=""`**.');
   console.log('     `src`는 `public/` 자산으로, `href`·링크는 라우트로 푼다(못 찾으면 `public/`도 본다).');
   console.log('     라우트는 `page.*`와 `route.*` 둘 다에서 유도한다 — 동적 세그먼트는 **앱의 원천**에서 푼다.');
+  console.log('   ※ **표**도 본다 — 행의 셀 수가 헤더 열 수와 같은지. 안 보는 것: HTML `<table>`·JSX 표');
+  console.log('     (파서가 `html` 노드로 준다 — 셀을 못 센다) · **코드 펜스 안의 표**(표로 안 본다 — 그것이 우회로다) ·');
+  console.log('     **셀 수가 맞는데 뜻이 바뀐 경우**(후보 신호 둘을 재보고 뺐다 — 표적이던 실물 1건은 표 결함이 아니었다) ·');
+  console.log('     ★**헤더 행·구분자 행 자체가 깨지면** 파서가 표로 **인식조차 안 해** 이 검사가 침묵한다');
+  console.log('     (그 줄은 그냥 문단이 된다 — 실물 0건 · 우회로는 같다: 백틱 말고 `\\|`로 이스케이프) ·');
+  console.log('     `.mdx`의 **JSX 여는 태그 바로 다음 줄부터의 표**(링크와 같은 자리 — `html`에 삼켜진다) ·');
+  console.log('     **데이터 행이 0인 표**(검사할 행이 없다) · ★**`.md`/`.mdx` 밖은 안 본다** —');
+  console.log('     `.ts`·`.mjs`·`.py` 주석의 `docs/…` 경로는 이 관문의 사각이다(실측: 죽은 것이 있었다).');
   console.log('   ※ 이 관문은 라우트를 **열거**할 수 있는지만 본다 — 앱 데이터의 **내용**은 안 본다.');
   console.log(`\n소요 ${((Date.now() - T0) / 1000).toFixed(2)}초`);
   return 0;
@@ -580,9 +667,61 @@ function runMain() {
  * ★**짝을 키가 정한다**(선행 `render-gate-self-test-denominator` N-2b).
  * 선언과 집계를 따로 두고 손으로 짝지으면 오배선이 조용하다 — 그 자리를 없앤다.
  */
+/**
+ * ★★**성공 출력의 «안 보는 것» 줄들을 손으로 세지 않는다 — 소스에서 유도한다.**
+ *
+ * 이 저장소는 *"새로 적은 상한 문구가 무대조군이 된다"* 를 **아홉 번** 겪었다. 그때마다 처방은
+ * *"`wantReason`에 한 줄 더 걸어라"* 였고, 그 처방이 **매번 다음 줄에서 다시 뚫렸다** —
+ * 손 목록은 사람이 지키기 때문이다. **재는 대신 못 쓰게 만든다**: `D-31`이 이 함수가 뽑은
+ * **전 줄**을 자식의 출력에서 찾는다. 줄을 더하면 **자동으로** 걸리고, 지우면 개수가 어긋나 운다.
+ *
+ * 뽑는 것은 성공 블록의 **홑따옴표 리터럴**뿐이다(템플릿 리터럴은 값이 실행마다 달라 못 건다 —
+ * 그쪽은 `D-01`이 `/출처: link/` 같은 **모양**으로 계속 붙든다).
+ */
+const SUCCESS_LINES = 20;        // 손으로 적지만 **기계가 대조한다** — 어긋나면 exit 2
+// ★**`소요`는 자체검사를 포함한다** — `T0`가 모듈 적재 시각이고 부모는 본 검사 앞에 자체검사를
+//   먼저 돌린다(실측: 전체 ~6.4초 중 자체검사가 ~3.7초). 자식(`DLG_CHILD=1`)의 `소요`는 본 검사만이라
+//   **같은 라벨이 두 뜻**이다. 사이클 간 비교는 «같은 방식으로 잰 값끼리»만 유효하다(팀 F6).
+const FAILURE_FILE_LINES = 6;    // 같다 (죽은 «파일» 링크 분기의 힌트 줄)
+function successLines() {
+  const src = readFileSync(SELF, 'utf8');
+  const i = src.indexOf("console.log('\\n✅ 전 항목 통과");
+  const j = src.indexOf('소요', i);
+  if (i < 0 || j < 0) fail('성공 출력 블록을 소스에서 찾지 못했다 — 유도가 깨졌다.');
+  const lits = [...src.slice(i, j).matchAll(/console\.log\('((?:[^'\\]|\\.)*)'\)/g)]
+    .map((m) => m[1].replace(/\\n/g, '').replace(/\\'/g, "'").replace(/\\\\/g, '\\'));
+  if (lits.length !== SUCCESS_LINES) {
+    fail(`성공 출력이 ${lits.length}줄인데 선언은 ${SUCCESS_LINES}이다 — ` +
+      '줄을 더했거나 지웠다. 수를 맞추면 D-31이 새 줄까지 자동으로 관측한다.');
+  }
+  return lits;
+}
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * ★**실패 힌트도 유도한다**(Check 3차 G-2). 1차 판독이 *"우회로가 무대조군"* 이라 짚었을 때
+ * **표 쪽만 덮고 링크 쪽 쌍둥이 6줄을 남겼다** — 손으로 고치면 늘 한쪽만 고친다.
+ * 이 6줄은 헤더와 `CLAUDE.md`가 *"allow 파일이 없다 — 우회로가 공짜다"* 라고 주장하는 것의
+ * **유일한 구현**이라 무보증이면 그 주장이 거짓이 된다.
+ * ★**상한은 `successLines()`와 같다**(F-31) — 시작·끝 마커 변조는 개수가 어긋나 울지만,
+ *   유도 결과를 긴 상수로 바꾸거나 `SELF`를 상대 경로로 바꾸면 **조용하다**(되돌림 확인).
+ */
+function failureFileLines() {
+  const src = readFileSync(SELF, 'utf8');
+  const i = src.indexOf("} else if (v.kind === 'file') {");
+  const j = src.indexOf('} else {', i);
+  if (i < 0 || j < 0) fail('실패 힌트 블록을 소스에서 찾지 못했다 — 유도가 깨졌다.');
+  const lits = [...src.slice(i, j).matchAll(/console\.error\('((?:[^'\\]|\\.)*)'\)/g)]
+    .map((m) => m[1].replace(/\\'/g, "'").replace(/\\\\/g, '\\'));
+  if (lits.length !== FAILURE_FILE_LINES) {
+    fail(`실패 힌트가 ${lits.length}줄인데 선언은 ${FAILURE_FILE_LINES}이다 — 줄을 더했거나 지웠다.`);
+  }
+  return lits;
+}
+
 const CONTROLS = {
-  판정: 29,   // 순수 함수와 파서에 직접 먹인다
-  처분: 26,   // 자식 프로세스를 임시 cwd에서 돌린다
+  판정: 32,   // 순수 함수와 파서에 직접 먹인다
+  처분: 31,   // 자식 프로세스를 임시 cwd에서 돌린다
 };
 /**
  * 실행 집계 — **판정을 찍는 자리**에서만 올린다(배열 선언 길이가 아니다 · 선행 G-2).
@@ -627,27 +766,39 @@ function judgeCases() {
     { name: 'J-16 뒤 슬래시 유무는 무관하다', ok: () => resolveRoute('/about', R, T).ok === true },
     { name: 'J-17 ★해석기 없는 동적 템플릿은 **주장할 수 없음**이다(실패가 아니다)', ok: () => { const r = resolveRoute('/sources/foo/bar/', R, T); return r.ok === false && r.unclaimable === true; } },
     // 파서 — ★Design C의 근거가 여기 있다
-    { name: 'J-18 ★코드 스팬 안의 링크 예시는 링크가 아니다 (allow 파일이 필요 없는 이유)', ok: () => refsIn('예: `[a](b.md)` 처럼 적는다').length === 0 },
-    { name: 'J-19 ★목적지에 공백이 있으면 링크가 아니다 (정규식이면 거짓 경보)', ok: () => refsIn('760[mmHg](수은주 높이)와 같다').length === 0 },
-    { name: 'J-20 ★대괄호 직후 여는 괄호는 링크다 (사고 링크 회귀)', ok: () => { const l = refsIn('1[H](헨리)의 인덕턴스'); return l.length === 1 && l[0].url === '헨리'; } },
+    { name: 'J-18 ★코드 스팬 안의 링크 예시는 링크가 아니다 (allow 파일이 필요 없는 이유)', ok: () => refsOf('예: `[a](b.md)` 처럼 적는다').length === 0 },
+    { name: 'J-19 ★목적지에 공백이 있으면 링크가 아니다 (정규식이면 거짓 경보)', ok: () => refsOf('760[mmHg](수은주 높이)와 같다').length === 0 },
+    { name: 'J-20 ★대괄호 직후 여는 괄호는 링크다 (사고 링크 회귀)', ok: () => { const l = refsOf('1[H](헨리)의 인덕턴스'); return l.length === 1 && l[0].url === '헨리'; } },
     // ★아래 넷이 Check가 지목한 무대조군을 덮는다.
     { name: 'J-21 ★gfm 자동 링크를 본다 (gfm을 빼면 관문이 **더 조용해지는 방향**으로 망가진다)',
-      ok: () => { const l = refsIn('보라 https://x.com 을'); return l.length === 1 && l[0].url === 'https://x.com'; } },
+      ok: () => { const l = refsOf('보라 https://x.com 을'); return l.length === 1 && l[0].url === 'https://x.com'; } },
     { name: 'J-22 ★이미지도 뽑는다 (초판은 link 노드만 봐서 image가 사각이었다)',
-      ok: () => { const l = refsIn('![캡션](./shot.png)'); return l.length === 1 && l[0].node === 'image'; } },
+      ok: () => { const l = refsOf('![캡션](./shot.png)'); return l.length === 1 && l[0].node === 'image'; } },
     { name: 'J-23 ★이미지의 절대 경로는 public/ 자산이다 (라우트가 아니다)',
       ok: () => resolvePublic('/logo.png', (t) => t === path.resolve('public/logo.png')).ok === true },
     { name: 'J-24 빈 목적지는 empty다 — 조용히 지나가면 안 된다', ok: () => classify('') === 'empty' && classify(undefined) === 'empty' },
     { name: 'J-25 ★JSX/HTML의 src=""도 뽑는다 (살아 있는 페이지의 이미지가 이 꼴이다)',
-      ok: () => { const l = refsIn('<img src="/a.png" alt="x" />'); return l.length === 1 && l[0].node === 'src' && l[0].url === '/a.png'; } },
+      ok: () => { const l = refsOf('<img src="/a.png" alt="x" />'); return l.length === 1 && l[0].node === 'src' && l[0].url === '/a.png'; } },
     { name: 'J-26 src={표현식}은 안 뽑는다 — 따옴표 문자열만 본다 (상한을 대조군이 고정한다)',
-      ok: () => refsIn('<img src={foo} alt="x" />').length === 0 },
+      ok: () => refsOf('<img src={foo} alt="x" />').length === 0 },
     { name: 'J-27 ★다중행 JSX의 src를 뽑고 **줄 번호가 그 줄**이다 (덮는 것의 대부분이 이 꼴이다)',
-      ok: () => { const l = refsIn('x\n\n<ImageFigure\n  src="/a.jpg"\n  alt="x"\n/>'); return l.length === 1 && l[0].url === '/a.jpg' && l[0].node === 'src' && l[0].line === 4; } },
+      ok: () => { const l = refsOf('x\n\n<ImageFigure\n  src="/a.jpg"\n  alt="x"\n/>'); return l.length === 1 && l[0].url === '/a.jpg' && l[0].node === 'src' && l[0].line === 4; } },
     { name: 'J-28 ★홑따옴표·빈 값 속성은 안 뽑는다 — 상한을 대조군이 고정한다 (실측 0건)',
-      ok: () => refsIn(`<img src='/a.png' alt="x" />`).length === 0 && refsIn('<img src="" alt="x" />').length === 0 },
+      ok: () => refsOf(`<img src='/a.png' alt="x" />`).length === 0 && refsOf('<img src="" alt="x" />').length === 0 },
     { name: 'J-29 ★href 속성도 뽑는다 (ATTR을 src만으로 줄여도 전에는 조용했다)',
-      ok: () => { const l = refsIn('<a href="/about/">가기</a>'); return l.length === 1 && l[0].node === 'href' && l[0].url === '/about/'; } },
+      ok: () => { const l = refsOf('<a href="/about/">가기</a>'); return l.length === 1 && l[0].node === 'href' && l[0].url === '/about/'; } },
+
+    // ── 표 (F-27) ──────────────────────────────────────────────────────────
+    // ★fixture는 **실물에서 가져온다.** 직전 사이클의 `D-17`이 브래킷 하나짜리 템플릿을 써서
+    //   206건 결함을 못 봤다 — **fixture의 모양이 판별력을 정한다.**
+    { name: 'J-30 정상 표는 조용하다 (거짓 경보 0)',
+      ok: () => tableViolations(treeOf('| a | b |\n|---|---|\n| 1 | 2 |\n')).length === 0 },
+    { name: 'J-31 ★셀 > 열을 잡는다 — 백틱 안의 파이프도 열 구분자다 (직전 사이클이 실제로 만든 훼손)',
+      ok: () => { const v = tableViolations(treeOf('| a | b |\n|---|---|\n| x | `!DLG_CHILD ||` 분지 |\n'));
+                  return v.length === 1 && v[0].want === 2 && v[0].got === 4 && v[0].line === 3; } },
+    { name: 'J-32 ★셀 < 열도 잡는다 — 값이 한 칸씩 밀린다 (ch2-deep-content의 모양)',
+      ok: () => { const v = tableViolations(treeOf('| § | 영역 | ✅ | ⚠️ | ❌ |\n|---|---|:-:|:-:|:-:|\n| §2 자산 | 3 | 0 | 0 |\n'));
+                  return v.length === 1 && v[0].want === 5 && v[0].got === 4 && v[0].line === 3; } },
   ];
 }
 
@@ -766,16 +917,35 @@ async function selfTestDisposition() {
         // ★`/보는 것:/`은 **공허했다**(Check 6차 A) — 「안 **보는 것:**」에 이미 걸린다.
         // 그래서 「※ 보는 것:」과 그 아래 두 줄을 각각 붙든다.
         /※ 보는 것:/, /자산으로/, /둘 다에서 유도한다/, /출처: link/, /동적 라우트: /, /열거/,
-        /미등록 템플릿/, /소요 [\d.]+초/],
+        /미등록 템플릿/, /소요 [\d.]+초/,
+        // ★**표 상한 세 줄도 건다**(Check A-3). 새로 적은 그 문구가 **또 무대조군이었다** —
+        // 바로 위 주석이 경고하는 그 병을 같은 사이클 안에서 재현했다.
+        /※ \*\*표\*\*도 본다/, /HTML `<table>`·JSX 표/, /코드 펜스 안의 표/, /뜻이 바뀐 경우/,
+        /헤더 행·구분자 행 자체가 깨지면/, /그 줄은 그냥 문단이 된다/,
+        // ★상한을 **두 줄**로 적었으면 패턴도 **둘**이다(Check 2차 A-1). 646만 걸고 647을 빼서
+        //   *같은 커밋*이 같은 병을 한 번 더 냈다 — **아홉 번째**다.
+        /JSX 여는 태그 바로 다음 줄부터의 표/, /데이터 행이 0인 표/],
       denyReason: [/링크 대상이 없다/, /해석기가 없는/] },
-    { name: 'D-02 죽은 파일 링크는 exit 1', wantStatus: 1, wantReason: [/링크 대상이 없다/, /없다\.md/],
+    { name: `D-02 죽은 파일 링크는 exit 1 · ★우회로 ${FAILURE_FILE_LINES}줄을 «유도해» 관측한다`,
+      wantStatus: 1,
+      wantReason: (() => {
+        // ★**건수**도 건다(Check 4차) — 999로 바꿔도 조용했다.
+        const rs = [/링크 대상이 없다 — 1건/, /없다\.md/,
+          ...failureFileLines().map((l) => new RegExp(reEsc(l.trim())))];
+        if (rs.length !== FAILURE_FILE_LINES + 2) fail('실패 힌트 유도가 어긋났다.');
+        for (const re of rs) if (re.source.length < 6) fail('유도한 패턴이 너무 짧다.');
+        return rs;
+      })(),
       tree: okTree({ 'docs/a.md': '# a\n\n[깨짐](./없다.md)\n' }) },
-    { name: 'D-03 죽은 라우트는 exit 1', wantStatus: 1, wantReason: [/링크 대상이 없다/, /src\/app 에 없다/],
+    { name: 'D-03 죽은 라우트는 exit 1 · 그 분기의 안내 문구도 본다', wantStatus: 1,
+      wantReason: [/링크 대상이 없다/, /src\/app 에 없다/, /페이지를 옮겼으면 링크도 함께 고쳐라/],
       tree: okTree({ 'docs/a.md': '# a\n\n[없는쪽](/그런거없다/)\n' }) },
     { name: 'D-04 없는 슬러그도 exit 1 (동적 라우트가 실제로 전개된다)', wantStatus: 1, wantReason: [/없는슬러그/],
       tree: okTree({ 'docs/a.md': '# a\n\n[슬러그](/process/없는슬러그/)\n' }) },
     { name: 'D-05 ★해석기 없는 동적 라우트는 exit 2 (조용히 통과시키지 않는다)', wantStatus: 2,
-      wantReason: [/해석기가 없는 동적 라우트/, /ROUTE_RESOLVERS/], denyReason: [/링크 대상이 없다/],
+      // ★안내 줄까지 건다(팀 F2: 지워도 조용했다). 이 줄은 D-2 결정의 **유일한 설명**이다.
+      wantReason: [/해석기가 없는 동적 라우트/, /ROUTE_RESOLVERS/, /조용히 통과시키면 그 라우트는 영영 무검사다/],
+      denyReason: [/링크 대상이 없다/],
       // ★여기도 합성 템플릿이다(Design D-0) — 실제 이름을 쓰면 등록될 때 이 대조군이 죽는다.
       tree: okTree({ 'src/app/합성둘/[없는것]/page.tsx': PAGE, 'docs/a.md': '# a\n\n[합성](/합성둘/뭐든/)\n' }) },
     { name: 'D-06 검사할 문서가 하나도 없으면 exit 2', wantStatus: 2, wantReason: [/파일을 하나도 못 찾았다/],
@@ -783,7 +953,7 @@ async function selfTestDisposition() {
     { name: 'D-07 해석기가 아무것도 못 내면 exit 2 (데이터가 비었다)', wantStatus: 2, wantReason: [/아무것도 못 냈다/],
       tree: okTree({ 'src/data/processes.json': '[]' }) },
     // ★아래 셋이 Check가 지목한 사각을 덮는다.
-    { name: 'D-08 ★빈 목적지는 exit 1 (초판은 총계에만 넣고 처분도 내역도 없었다)', wantStatus: 1,
+    { name: 'D-08 ★빈 목적지는 exit 1 · 그 분기의 안내 문구도 본다', wantStatus: 1,
       wantReason: [/목적지가 비었다/, /empty 1/],
       tree: okTree({ 'docs/a.md': '# a\n\n[돌아오는링크]()\n' }) },
     { name: 'D-09 ★죽은 이미지도 exit 1 (초판은 link 노드만 봤다)', wantStatus: 1,
@@ -801,7 +971,7 @@ async function selfTestDisposition() {
       wantReason: [/전 항목 통과/, /public 1/], denyReason: [/링크 대상이 없다/, /route 1/],
       tree: okTree({ 'public/logo.png': 'x', 'docs/a.md': '# a\n\n![로고](/logo.png)\n' }) },
     { name: 'D-12 ★public/에 없는 절대 경로 이미지는 exit 1', wantStatus: 1,
-      wantReason: [/링크 대상이 없다/, /public\//, /없다\.png/],
+      wantReason: [/링크 대상이 없다/, /public\//, /없다\.png/, /파일을 두거나 경로를 고쳐라/],
       tree: okTree({ 'docs/a.md': '# a\n\n![없음](/없다.png)\n' }) },
     { name: 'D-13 ★JSX src=""도 본다 (마크다운 ![]()는 몇 건, 이 꼴이 대부분)', wantStatus: 1,
       wantReason: [/링크 대상이 없다/, /없는이미지\.png/, /public\//],   // ★`/public\//`가 ASSET의 'src' 성분을 지킨다(D-13의 수법)
@@ -898,6 +1068,49 @@ export function getSource() { return { sections: [{ id: 'mod-a' }] }; }
     { name: 'D-14 ★링크의 절대 경로는 라우트에 없으면 public/도 본다 (비대칭 제거)', wantStatus: 0,
       wantReason: [/전 항목 통과/], denyReason: [/링크 대상이 없다/],
       tree: okTree({ 'public/sitemap.xml': '<x/>', 'docs/a.md': '# a\n\n[사이트맵](/sitemap.xml)\n' }) },
+
+    // ── 표 (F-27) ──────────────────────────────────────────────────────────
+    { name: 'D-27 ★깨진 표는 exit 1 (처분과 사유)', wantStatus: 1,
+      // ★사유만이 아니라 **자리**와 **우회로 문구**도 건다(Check G-2·G-7).
+      //   둘 다 무대조군이었다 — 지워도 조용했다.
+      // ★**건수**도 건다(Check 4차) — 999로 바꿔도 조용했다.
+      wantReason: [/표의 셀 수가 헤더와 다르다 — 1건/, /헤더 열 2 → 이 행 셀 4/,
+        // ★줄 번호는 **값까지** 건다(Check 2차 A-2). `\\d+`만 걸면 엉뚱한 값을 찍어도 조용하다.
+        /docs\/a\.md:5\b/, /이스케이프하라/, /코드 펜스/, /헤더\*\*를 함께 고쳐라/],
+      tree: okTree({ 'docs/a.md': '# a\n\n| a | b |\n|---|---|\n| x | `!DLG_CHILD ||` 분지 |\n' }) },
+    // ★**셀<열도 처분까지 간다**(Check 2차 A-9). 규칙을 `got > want`로 좁히면 `J-32`만 울고
+    //   처분 무리는 전원 초록이었다 — **판정은 덮였는데 처분이 안 덮인** 그 자리다.
+    { name: 'D-30 ★셀 < 열도 exit 1 (판정만이 아니라 처분까지 간다)', wantStatus: 1,
+      // ★쌍둥이 `D-27`이 줄 번호 값을 거는데 여기만 없었다 — «또 한쪽만 고쳤다»(Check 4차 E).
+      wantReason: [/표의 셀 수가 헤더와 다르다 — 1건/, /docs\/a\.md:5\b/, /헤더 열 3 → 이 행 셀 2/],
+      tree: okTree({ 'docs/a.md': '# a\n\n| a | b | c |\n|---|---|---|\n| 1 | 2 |\n' }) },
+    // ★**배선** — 판정이 통과해도 «부르는 자리»가 죽으면 여기가 운다.
+    //   선행 사이클이 일곱 판독 내내 짚은 자리다: *순수 함수를 뽑으면 부르는 자리가 무대조군이 된다.*
+    { name: 'D-28 ★정상 표만 있으면 exit 0 (표 검사가 거짓 경보를 안 낸다)', wantStatus: 0,
+      wantReason: [/전 항목 통과/], denyReason: [/표의 셀 수가/],
+      tree: okTree({ 'docs/a.md': '# a\n\n| a | b |\n|---|---|\n| 1 | 2 |\n' }) },
+    // ★**둘 다 깨지면 둘 다 말한다**(Check 5-3). 초판 D-29는 *"파싱 이동을 잰다"* 는 이름이었는데
+    //   실측하면 **잉여**였다 — 빼고 이동을 되돌려도 21건이 이미 울었다. 이름이 대상을 잘못 가리켰다.
+    //   지금은 **아무도 안 재던 자리**를 잰다: 표에서 조기 `exit 1`을 내면 링크가 통째로 가려진다.
+    { name: 'D-29 ★표와 링크가 동시에 깨지면 둘 다 찍는다 (표에서 조기 종료하지 않는다)', wantStatus: 1,
+      wantReason: [/표의 셀 수가 헤더와 다르다/, /링크 대상이 없다/, /없다\.md/],
+      tree: okTree({ 'docs/a.md': '# a\n\n| a | b |\n|---|---|\n| x | `A ||` |\n\n[깨진](./없다.md)\n' }) },
+    // ★★**손 목록을 대신하는 유도 대조군**(Check 2차). 성공 출력의 홑따옴표 줄 **전부**를
+    //   소스에서 뽑아 자식의 출력에서 찾는다 — 줄을 더하면 **자동으로** 걸린다.
+    //   `D-01`은 **템플릿 리터럴 줄**(값이 실행마다 다르다)만 모양으로 붙든다.
+    { name: `D-31 ★성공 출력 ${SUCCESS_LINES}줄을 «소스에서 유도해» 전부 관측한다 (손 목록이 아니다)`,
+      wantStatus: 0, tree: okTree(),
+      // ★유도기가 **빈 목록을 내면** 이 대조군이 아무것도 안 걸고 통과한다 —
+      //   되돌림으로 확인한 자리다(`return []`이 조용했다). **쓰는 자리에서 다시 센다.**
+      wantReason: (() => {
+        const rs = successLines().map((l) => new RegExp(reEsc(l.trim())));
+        if (rs.length !== SUCCESS_LINES) fail(`유도가 ${rs.length}줄을 냈다 — 선언은 ${SUCCESS_LINES}이다.`);
+        // ★**상한**: 개수는 재는데 **내용**은 못 잰다. 유도를 `() => /a/`로 바꾸면 20개가 그대로
+        //   나오고 'a'는 어느 출력에나 있어 **조용하다**(되돌림으로 확인). 짧은 것만 쳐낸다 —
+        //   *재는 자를 재는 자*의 되돌이는 여기서 끊고, 못 덮는 자리를 **적는다**(F-31).
+        for (const re of rs) if (re.source.length < 10) fail('유도한 패턴이 너무 짧다 — 유도가 깨졌다.');
+        return rs;
+      })() },
   ];
   for (const c of cases) if (!await spawnChild(c)) ok = false;
   return ok;

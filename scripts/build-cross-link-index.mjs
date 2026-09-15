@@ -15,7 +15,7 @@
  *   exit 1  — unknown topic/hazard, JSON parse error
  *   exit 0  — success (warnings for unknown chemicals are non-fatal)
  *
- * Design: docs/02-design/features/cross-link-system.design.md §4.1
+ * Design: docs/archive/2026-05/cross-link-system/design.md §4.1
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';

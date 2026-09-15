@@ -1,6 +1,6 @@
 /**
  * 자료원(Source) 레지스트리
- * Design: docs/02-design/features/multi-source-learning-platform.design.md §3.1
+ * Design: docs/archive/2026-05/multi-source-learning-platform/design.md §3.1
  *
  * - EPI_BOOK: 「반도체 산업의 유해인자」 (윤충식 외) — 17 챕터를 SourceSection으로 노출
  * - OSHA_SCS: OSHA Semiconductor Chemical Safety 5 Part — Phase B에서 본문 추가

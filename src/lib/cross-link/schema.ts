@@ -1,7 +1,7 @@
 /**
  * Cross-link 통제 어휘 + 인덱스 타입.
  *
- * Design: docs/02-design/features/cross-link-system.design.md §3.1
+ * Design: docs/archive/2026-05/cross-link-system/design.md §3.1
  *
  * ⚠️ 어휘 확장 시 반드시 두 곳을 함께 수정해야 한다:
  *   1. 이 파일의 TOPICS / HAZARDS 배열

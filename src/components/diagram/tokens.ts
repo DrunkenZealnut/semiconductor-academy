@@ -1,6 +1,6 @@
 /**
  * 도해 공통 색·치수 토큰.
- * Design: docs/02-design/features/diagram-component-set.design.md §3
+ * Design: docs/archive/2026-08/diagram-component-set/diagram-component-set.design.md §3
  *
  * 12종이 전부 이 값을 참조한다. 나란히 놓았을 때 선 굵기·글자·색이 어긋나지 않게
  * 하는 것이 목적이므로, 개별 컴포넌트에서 색을 하드코딩하지 않는다.

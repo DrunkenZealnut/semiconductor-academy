@@ -31,7 +31,7 @@ variables:
 | FR-02 | 책 추출 entry에 `sourceId: 'epi-semi-hazards'` + `language: 'ko'` 부여 | ✅ Pass | `extract-quotes.mjs:201-202, 244-245` — LE/SQ 두 경로 모두 부여. quotes.json 91 entries 100% 일관 |
 | FR-03 | OSHA 추출: 5 Part × Course Overview/LO/Summary/Definitions (총 25+) | ✅ Pass | `extract-quotes.mjs:335-399` — 4 함수 구현. 결과: Overview 5 + LO 5 + Summary 5 + Definition 11 = **26 entries**. 0 selector miss |
 | FR-04 | QuoteCard에 SourceBadge + OSHA 메타 표시 | ✅ Pass | `QuoteCard.tsx:107-142` — OshaQuoteCard에 `SourceBadge variant="lang"`(line 118), partTitle chip(120), sectionRef heading(124-128), kind label("OSHA · 정의"등) 표시 |
-| FR-05 | 링크: 책 → `/chapter/{slug}`, OSHA → `/sources/osha-scs/{partId}` | ✅ Pass | BookQuoteCard `href={\`/chapter/${quote.chapterSlug}/\`}` (98), OshaQuoteCard `href={quote.partHref}` (135). partHref는 `/sources/osha-scs/part-{x}/` 형식 |
+| FR-05 | 링크: 책 → `/chapter/{slug}`, OSHA → `/sources/osha-scs/{partId}` | ✅ Pass | BookQuoteCard ``href={`/chapter/${quote.chapterSlug}/`}`` (98), OshaQuoteCard `href={quote.partHref}` (135). partHref는 `/sources/osha-scs/part-{x}/` 형식 |
 | FR-06 | QuoteIndex source 필터 (자료원 ≥2 시 노출) | ✅ Pass | `QuoteIndex.tsx:18-19, 132-155` — `showSourceFilter = sources.length >= 2`, 전체/책/OSHA 3개 chip 렌더. 자료원 카운트(91/26/117) 표시 |
 | FR-07 | `/quotes` 헤더 update + 카운트 동적 | ✅ Pass | `page.tsx:25-54` — 제목 "인용 인덱스 — 책 + OSHA 통합", bookCount/oshaCount 동적, footer attribution 양쪽 자료원 명시 |
 | FR-08 | Fuse keys 확장 (`sectionRef`, `partTitle` 등) | ✅ Pass | `QuoteIndex.tsx:29-36` — text/section/sectionRef/chapterTitle/partTitle/page 6 keys. Plan은 sourceId weight 0.05를 언급했지만 실제로는 sectionRef 0.15 + partTitle 0.1로 더 의미 있게 가중. sourceId는 필터에서 처리 |
